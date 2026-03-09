@@ -1,0 +1,161 @@
+/* ═══════════════════════════════════════════════════════
+   ALBERT'S ODYSSEY — Shared Styles v2
+   DM Serif Display + DM Sans · Editorial · Crema/Blanco
+═══════════════════════════════════════════════════════ */
+
+@import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap');
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --bg:       #F5F4F0;
+  --surface:  #FFFFFF;
+  --border:   #E8E6E0;
+  --border-2: #D0CEC8;
+  --text-1:   #1A1916;
+  --text-2:   #6B6860;
+  --text-3:   #A8A49C;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--bg);
+  color: var(--text-1);
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ── NAV ── */
+nav {
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+  padding: 0 48px;
+  display: flex; align-items: center; gap: 0;
+  position: sticky; top: 0; z-index: 100;
+  height: 56px;
+}
+.nav-logo {
+  font-family: 'DM Serif Display', serif;
+  font-size: 18px; letter-spacing: -0.3px;
+  color: var(--text-1); text-decoration: none;
+  margin-right: 36px; white-space: nowrap; flex-shrink: 0;
+}
+.nav-logo span { font-style: italic; color: var(--text-2); }
+.nav-links { display: flex; align-items: stretch; gap: 0; flex: 1; overflow-x: auto; }
+.nav-link {
+  font-size: 12px; font-weight: 500; color: var(--text-2);
+  padding: 0 16px; text-decoration: none; height: 56px;
+  display: flex; align-items: center; white-space: nowrap;
+  border-bottom: 2px solid transparent; margin-bottom: -1px;
+  transition: color 0.15s, border-color 0.15s;
+  letter-spacing: 0.01em;
+}
+.nav-link:hover { color: var(--text-1); }
+.nav-link.active { color: var(--text-1); border-bottom-color: var(--text-1); font-weight: 600; }
+
+/* ── PAGE ── */
+.page { max-width: 1280px; margin: 0 auto; padding: 48px; }
+
+/* ── SECTION LABEL ── */
+.sl {
+  font-size: 11px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase;
+  color: var(--text-3); margin: 40px 0 20px;
+}
+
+/* ── CARDS ── */
+.card {
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: 12px; overflow: hidden;
+  transition: all 0.2s;
+}
+.card:hover { border-color: var(--border-2); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,0.06); }
+
+/* ── GRID ── */
+.grid-2 { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px,1fr)); gap: 16px; }
+.grid-3 { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px,1fr)); gap: 16px; }
+
+/* ── BADGE ── */
+.badge {
+  font-size: 11px; font-weight: 600; padding: 3px 10px;
+  border-radius: 20px; display: inline-block;
+  background: var(--bg); color: var(--text-2); border: 1px solid var(--border);
+}
+
+/* ── SECTION HERO (inner pages) ── */
+.section-hero {
+  padding: 48px 0 36px;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 40px;
+  display: flex; align-items: flex-start; gap: 24px; flex-wrap: wrap;
+}
+.sh-icon-wrap {
+  width: 52px; height: 52px; border-radius: 12px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 24px; flex-shrink: 0;
+  background: var(--bg); border: 1px solid var(--border);
+}
+.sh-eyebrow {
+  font-size: 11px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase;
+  color: var(--text-3); margin-bottom: 6px;
+}
+.sh-title {
+  font-family: 'DM Serif Display', serif;
+  font-size: 32px; letter-spacing: -0.5px; line-height: 1.1; margin-bottom: 8px;
+}
+.sh-sub { font-size: 14px; color: var(--text-2); line-height: 1.6; max-width: 560px; }
+
+/* ── TOOL CARD (inner pages) ── */
+.tool-card {
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: 12px; padding: 28px;
+  text-decoration: none; display: block; color: inherit;
+  transition: all 0.2s; cursor: pointer; position: relative; overflow: hidden;
+}
+.tool-card::before {
+  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+  opacity: 0; transition: opacity 0.2s;
+}
+.tool-card:hover::before { opacity: 1; }
+.tool-card:hover { border-color: var(--border-2); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,0.06); }
+.tc-icon { font-size: 28px; margin-bottom: 16px; display: block; }
+.tc-title { font-family: 'DM Serif Display', serif; font-size: 20px; margin-bottom: 8px; letter-spacing: -0.3px; }
+.tc-desc { font-size: 13px; color: var(--text-2); line-height: 1.65; margin-bottom: 14px; }
+.tc-arrow { font-size: 16px; color: var(--text-3); transition: transform 0.2s; display: inline-block; }
+.tool-card:hover .tc-arrow { transform: translateX(4px); color: var(--text-1); }
+
+/* ── COMING SOON ── */
+.coming-soon {
+  border: 1px dashed var(--border); border-radius: 12px;
+  padding: 36px 28px; text-align: center;
+  background: #FAFAF8;
+}
+.coming-soon .cs-icon { font-size: 32px; margin-bottom: 12px; opacity: 0.5; }
+.coming-soon h3 { font-family: 'DM Serif Display', serif; font-size: 17px; color: var(--text-2); margin-bottom: 6px; }
+.coming-soon p { font-size: 13px; color: var(--text-3); line-height: 1.6; max-width: 240px; margin: 0 auto; }
+
+/* ── NOTICE ── */
+.notice {
+  border-radius: 8px; padding: 14px 20px;
+  display: flex; align-items: flex-start; gap: 12px;
+  margin-bottom: 24px; font-size: 13px; line-height: 1.5;
+}
+.notice .n-icon { font-size: 15px; flex-shrink: 0; margin-top: 1px; }
+.notice-info    { background:#F0F4FF; border:1px solid #C8D4F5; border-left:3px solid #3D405B; color:#3D405B; }
+.notice-warning { background:#FFF8EC; border:1px solid #F2CC8F; border-left:3px solid #C9A227; color:#7A6010; }
+
+/* ── SCROLLBAR ── */
+::-webkit-scrollbar { width: 5px; height: 5px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: rgba(0,0,0,0.12); border-radius: 3px; }
+
+/* ── RESPONSIVE ── */
+@media (max-width: 1100px) { .page { padding: 36px 32px; } }
+@media (max-width: 768px) {
+  nav { padding: 0 20px; }
+  .nav-logo { margin-right: 20px; }
+  .page { padding: 24px 20px; }
+  .grid-2, .grid-3 { grid-template-columns: 1fr; }
+  .section-hero { padding: 32px 0 24px; }
+}
