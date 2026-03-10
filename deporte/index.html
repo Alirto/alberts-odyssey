@@ -4,9 +4,82 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Deporte — Albert's Odyssey</title>
-<link rel="stylesheet" href="../style.css">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
-.tool-card::before { background: var(--tc, #1A1916); }
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --bg: #F5F4F0; --surface: #FFFFFF; --border: #E8E6E0; --border-2: #D0CEC8;
+  --text-1: #1A1916; --text-2: #6B6860; --text-3: #A8A49C;
+  --green: #2D6A4F; --green-bg: #EAF3EE;
+}
+body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--text-1); min-height: 100vh; -webkit-font-smoothing: antialiased; }
+
+/* NAV */
+nav { background: var(--surface); border-bottom: 1px solid var(--border); padding: 0 48px; display: flex; align-items: center; height: 56px; position: sticky; top: 0; z-index: 100; }
+.nav-logo { font-family: 'DM Serif Display', serif; font-size: 18px; letter-spacing: -0.3px; color: var(--text-1); text-decoration: none; margin-right: 36px; white-space: nowrap; flex-shrink: 0; }
+.nav-logo span { font-style: italic; color: var(--text-2); }
+.nav-links { display: flex; align-items: stretch; flex: 1; overflow-x: auto; }
+.nav-link { font-size: 12px; font-weight: 500; color: var(--text-2); padding: 0 16px; text-decoration: none; height: 56px; display: flex; align-items: center; white-space: nowrap; border-bottom: 2px solid transparent; margin-bottom: -1px; transition: color .15s, border-color .15s; }
+.nav-link:hover { color: var(--text-1); }
+.nav-link.active { color: var(--text-1); border-bottom-color: var(--text-1); font-weight: 600; }
+
+/* PAGE */
+.page { max-width: 1280px; margin: 0 auto; padding: 48px; }
+
+/* HEADER */
+.page-hdr { padding: 48px 0 48px; border-bottom: 1px solid var(--border); margin-bottom: 48px; display: flex; align-items: flex-end; justify-content: space-between; gap: 24px; flex-wrap: wrap; }
+.ph-eyebrow { font-size: 11px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; color: var(--text-3); margin-bottom: 12px; }
+.ph-title { font-family: 'DM Serif Display', serif; font-size: 48px; letter-spacing: -1px; line-height: 1.0; margin-bottom: 12px; }
+.ph-title em { font-style: italic; color: var(--text-2); }
+.ph-sub { font-size: 14px; color: var(--text-2); line-height: 1.7; max-width: 480px; font-weight: 300; }
+.ph-meta { display: flex; gap: 32px; flex-shrink: 0; }
+.ph-stat-val { font-family: 'DM Serif Display', serif; font-size: 28px; line-height: 1; letter-spacing: -0.5px; color: var(--green); }
+.ph-stat-lbl { font-size: 11px; color: var(--text-3); font-weight: 500; margin-top: 3px; }
+
+/* SECTION LABEL */
+.sl { font-size: 11px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; color: var(--text-3); margin: 0 0 20px; display: flex; align-items: center; gap: 14px; }
+.sl::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+
+/* CONTENT GRID */
+.content-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 16px; margin-bottom: 48px; }
+
+/* CONTENT CARD — activo */
+.content-card { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; overflow: hidden; text-decoration: none; color: inherit; transition: all .2s; display: flex; flex-direction: column; }
+.content-card:hover { border-color: var(--border-2); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,0.06); }
+.card-top { padding: 24px 24px 20px; flex: 1; }
+.card-icon { width: 44px; height: 44px; border-radius: 10px; background: var(--green-bg); border: 1px solid #C3DDD1; display: flex; align-items: center; justify-content: center; font-size: 20px; margin-bottom: 16px; }
+.card-label { font-size: 10px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--text-3); margin-bottom: 8px; }
+.card-title { font-family: 'DM Serif Display', serif; font-size: 22px; letter-spacing: -0.3px; margin-bottom: 8px; line-height: 1.2; }
+.card-desc { font-size: 13px; color: var(--text-2); line-height: 1.65; }
+.card-bottom { padding: 16px 24px; border-top: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; background: #FAFAF8; }
+.card-tags { display: flex; gap: 6px; flex-wrap: wrap; }
+.card-tag { font-size: 11px; font-weight: 600; padding: 3px 10px; border-radius: 20px; background: var(--green-bg); color: var(--green); border: 1px solid #C3DDD1; }
+.card-arrow { font-size: 16px; color: var(--text-3); transition: transform .2s; }
+.content-card:hover .card-arrow { transform: translateX(4px); color: var(--text-1); }
+
+/* CONTENT CARD — próximamente */
+.content-card.soon { opacity: 0.55; cursor: default; pointer-events: none; }
+.content-card.soon:hover { transform: none; box-shadow: none; border-color: var(--border); }
+.soon-badge { font-size: 11px; font-weight: 600; padding: 3px 10px; border-radius: 20px; background: var(--bg); color: var(--text-3); border: 1px solid var(--border); }
+
+/* OBJETIVO ACTIVO */
+.objetivo { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 24px 28px; margin-bottom: 48px; border-left: 3px solid var(--green); }
+.obj-label { font-size: 10px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--green); margin-bottom: 10px; }
+.obj-text { font-size: 14px; color: var(--text-1); line-height: 1.7; margin-bottom: 16px; }
+.obj-hitos { display: flex; gap: 12px; flex-wrap: wrap; }
+.hito { display: flex; align-items: center; gap: 8px; font-size: 12px; color: var(--text-2); }
+.hito-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+.hito.active .hito-dot { background: var(--green); box-shadow: 0 0 0 3px var(--green-bg); }
+.hito.pending .hito-dot { background: var(--border-2); }
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+  nav { padding: 0 20px; } .nav-logo { margin-right: 20px; }
+  .page { padding: 24px 20px; }
+  .page-hdr { padding: 32px 0 32px; }
+  .content-grid { grid-template-columns: 1fr; }
+}
+::-webkit-scrollbar { width: 5px; } ::-webkit-scrollbar-track { background: transparent; } ::-webkit-scrollbar-thumb { background: rgba(0,0,0,.12); border-radius: 3px; }
 </style>
 </head>
 <body>
@@ -14,41 +87,99 @@
 <nav>
   <a href="../index.html" class="nav-logo">Albert's <span>Odyssey</span></a>
   <div class="nav-links">
-    <a href="../index.html" class="nav-link">Home</a>
-    <a href="../salud/index.html" class="nav-link">Salud</a>
-    <a href="../deporte/index.html" class="nav-link active">Deporte</a>
-    <a href="../vlog/index.html" class="nav-link">Vlog</a>
-    <a href="../lecturas/index.html" class="nav-link">Lecturas</a>
-    <a href="../finanzas/index.html" class="nav-link">Finanzas</a>
+    <a href="../index.html"            class="nav-link">Home</a>
+    <a href="../salud/index.html"      class="nav-link">Salud</a>
+    <a href="../deporte/index.html"    class="nav-link active">Deporte</a>
+    <a href="../vlog/index.html"       class="nav-link">Vlog</a>
+    <a href="../lecturas/index.html"   class="nav-link">Lecturas</a>
+    <a href="../finanzas/index.html"   class="nav-link">Finanzas</a>
     <a href="../desarrollo/index.html" class="nav-link">Desarrollo</a>
-    <a href="../escritos/index.html" class="nav-link">Escritos</a>
+    <a href="../escritos/index.html"   class="nav-link">Escritos</a>
   </div>
 </nav>
 
 <div class="page">
 
-  <div class="section-hero">
-    <div class="sh-icon-wrap">🏃</div>
+  <div class="page-hdr">
     <div>
-      <div class="sh-eyebrow">Pilar 1b</div>
-      <div class="sh-title">Deporte</div>
-      <div class="sh-sub">Entrenamiento, rutinas y rendimiento físico. Maratón Feb 2025. Objetivo: Upper/Lower 4 días/semana.</div>
+      <div class="ph-eyebrow">Salud · Deporte</div>
+      <h1 class="ph-title">Deporte<br><em>&amp; Movimiento</em></h1>
+      <p class="ph-sub">Fuerza como base. 3 sesiones semanales, Full Body, progresión estructurada. El objetivo no es entrenar más — es no parar.</p>
+    </div>
+    <div class="ph-meta">
+      <div>
+        <div class="ph-stat-val">Fase 1</div>
+        <div class="ph-stat-lbl">23 Mar → 13 Jul</div>
+      </div>
+      <div>
+        <div class="ph-stat-val">16 sem</div>
+        <div class="ph-stat-lbl">Horizonte activo</div>
+      </div>
+      <div>
+        <div class="ph-stat-val">88→81</div>
+        <div class="ph-stat-lbl">kg objetivo</div>
+      </div>
     </div>
   </div>
 
-  
-  <div class="sl">Próximamente</div>
-  <div class="grid-2">
-    <div class="coming-soon">
-      <div class="cs-icon">🗓️</div>
-      <h3>Rutina de Entrenamiento</h3>
-      <p>Planificación semanal Upper/Lower adaptada al objetivo de composición corporal.</p>
+  <!-- OBJETIVO ACTIVO -->
+  <div class="sl">Objetivo activo</div>
+  <div class="objetivo">
+    <div class="obj-label">→ En curso · Fase 1 · Cimientos</div>
+    <div class="obj-text">Completar mínimo 3 sesiones de fuerza por semana durante 16 semanas consecutivas (Full Body). Incorporación a Portland el 23 de marzo — el gimnasio se elige antes de llegar.</div>
+    <div class="obj-hitos">
+      <div class="hito active"><div class="hito-dot"></div>Elegir gimnasio en Madrid antes del 23 Mar</div>
+      <div class="hito pending"><div class="hito-dot"></div>4 semanas consecutivas completadas</div>
+      <div class="hito pending"><div class="hito-dot"></div>8 semanas consecutivas completadas</div>
+      <div class="hito pending"><div class="hito-dot"></div>16 semanas — hábito instalado</div>
     </div>
-    <div class="coming-soon">
-      <div class="cs-icon">🏆</div>
-      <h3>Registro de PRs</h3>
-      <p>Historial de marcas personales y evolución del rendimiento.</p>
+  </div>
+
+  <!-- CONTENIDO -->
+  <div class="sl">Contenido</div>
+  <div class="content-grid">
+
+    <a href="rutina.html" class="content-card">
+      <div class="card-top">
+        <div class="card-icon">🏋️</div>
+        <div class="card-label">Programa · Fase 1</div>
+        <div class="card-title">Rutina Full Body 3×/semana</div>
+        <div class="card-desc">16 semanas estructuradas en 4 fases. Lunes, miércoles y viernes. Hombro protegido. Progresión de carga semanal con descarga cada 4 semanas.</div>
+      </div>
+      <div class="card-bottom">
+        <div class="card-tags">
+          <span class="card-tag">Full Body</span>
+          <span class="card-tag">3×/semana</span>
+          <span class="card-tag">16 semanas</span>
+        </div>
+        <div class="card-arrow">→</div>
+      </div>
+    </a>
+
+    <div class="content-card soon">
+      <div class="card-top">
+        <div class="card-icon">📊</div>
+        <div class="card-label">Seguimiento</div>
+        <div class="card-title">Registro de sesiones</div>
+        <div class="card-desc">Tracker de cargas, series y progresión semanal. Disponible cuando el hábito esté instalado.</div>
+      </div>
+      <div class="card-bottom">
+        <div class="card-tags"><span class="soon-badge">Próximamente</span></div>
+      </div>
     </div>
+
+    <div class="content-card soon">
+      <div class="card-top">
+        <div class="card-icon">🏃</div>
+        <div class="card-label">Cardio</div>
+        <div class="card-title">Protocolo de cardio</div>
+        <div class="card-desc">Zona 2 y actividad aeróbica complementaria al programa de fuerza. Fase 2 en adelante.</div>
+      </div>
+      <div class="card-bottom">
+        <div class="card-tags"><span class="soon-badge">Fase 2</span></div>
+      </div>
+    </div>
+
   </div>
 
 </div>
