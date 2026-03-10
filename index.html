@@ -3,325 +3,157 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Albert's Odyssey</title>
-<link rel="stylesheet" href="style.css">
+<title>Life OS — Panel de Control</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --bg: #F5F4F0; --surface: #FFFFFF; --border: #E8E6E0;
+    --text-primary: #1A1916; --text-secondary: #6B6860; --text-muted: #A8A49C;
+  }
+  body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--text-primary); min-height: 100vh; }
 
-/* ── HERO ── */
-.hero {
-  padding: 80px 0 72px;
-  border-bottom: 1px solid var(--border);
-  margin-bottom: 0;
-}
-.hero-eyebrow {
-  font-size: 11px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase;
-  color: var(--text-3); margin-bottom: 20px;
-  display: flex; align-items: center; gap: 12px;
-}
-.hero-eyebrow::before { content: ''; width: 28px; height: 1px; background: var(--text-3); }
-.hero-title {
-  font-family: 'DM Serif Display', serif;
-  font-size: clamp(52px, 8vw, 88px);
-  line-height: 1.0; letter-spacing: -2px; margin-bottom: 12px;
-}
-.hero-title em { font-style: italic; color: var(--text-2); }
-.hero-sub {
-  font-size: 16px; color: var(--text-2); line-height: 1.7;
-  max-width: 480px; margin-bottom: 36px; font-weight: 300;
-}
-.hero-meta {
-  display: flex; gap: 32px; flex-wrap: wrap;
-}
-.hero-stat { }
-.hero-stat-val {
-  font-family: 'DM Serif Display', serif;
-  font-size: 28px; line-height: 1; letter-spacing: -0.5px;
-}
-.hero-stat-lbl { font-size: 11px; color: var(--text-3); font-weight: 500; margin-top: 3px; letter-spacing: 0.03em; }
+  /* HEADER */
+  header { background: var(--surface); border-bottom: 1px solid var(--border); padding: 28px 48px; display: flex; align-items: center; justify-content: space-between; position: sticky; top: 0; z-index: 100; }
+  .logo { font-family: 'DM Serif Display', serif; font-size: 22px; letter-spacing: -0.5px; }
+  .logo span { font-style: italic; color: var(--text-secondary); }
+  .header-meta { display: flex; align-items: center; gap: 32px; }
+  .year-label { font-size: 12px; font-weight: 500; letter-spacing: 2px; text-transform: uppercase; color: var(--text-muted); }
+  .global-score { display: flex; align-items: baseline; gap: 6px; }
+  .global-score .num { font-family: 'DM Serif Display', serif; font-size: 32px; line-height: 1; }
+  .global-score .lbl { font-size: 12px; color: var(--text-muted); }
 
-/* ── TIMELINE SECTION ── */
-.timeline-section {
-  background: var(--surface);
-  border-bottom: 1px solid var(--border);
-  padding: 40px 48px 0;
-}
-.timeline-top {
-  display: flex; align-items: flex-end; justify-content: space-between;
-  margin-bottom: 32px; flex-wrap: wrap; gap: 12px;
-}
-.tl-heading {
-  font-family: 'DM Serif Display', serif;
-  font-size: 13px; font-style: italic; color: var(--text-3); margin-bottom: 4px;
-}
-.tl-title {
-  font-family: 'DM Serif Display', serif;
-  font-size: 28px; letter-spacing: -0.5px; line-height: 1;
-}
-.tl-horizon {
-  font-size: 11px; font-weight: 600; letter-spacing: 2px;
-  text-transform: uppercase; color: var(--text-3); text-align: right;
-}
+  /* TIMELINE */
+  .timeline-section { background: var(--surface); border-bottom: 1px solid var(--border); padding: 40px 48px 0; }
+  .timeline-top { display: flex; align-items: flex-end; justify-content: space-between; margin-bottom: 32px; }
+  .tl-heading { font-family: 'DM Serif Display', serif; font-size: 13px; font-style: italic; color: var(--text-muted); margin-bottom: 4px; }
+  .tl-title   { font-family: 'DM Serif Display', serif; font-size: 28px; letter-spacing: -0.5px; line-height: 1; }
+  .tl-horizon { font-size: 11px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; color: var(--text-muted); text-align: right; }
 
-.phases-strip { display: grid; grid-template-columns: repeat(6, 1fr); }
-.phase-col { position: relative; }
-.phase-inner {
-  border-top: 2px solid var(--border);
-  border-right: 1px solid var(--border);
-  padding: 20px 18px 24px; height: 100%; position: relative;
-}
-.phase-col:last-child .phase-inner { border-right: none; }
-.phase-col.past    .phase-inner { border-top-color: var(--border-2); background: #FAFAF8; }
-.phase-col.current .phase-inner { border-top-color: var(--text-1); background: #F8F7F3; }
-.phase-col.future  .phase-inner { border-top-color: var(--border); }
-.phase-col.current .phase-inner::before {
-  content: 'AHORA'; position: absolute; top: -10px; left: 18px;
-  font-size: 9px; font-weight: 700; letter-spacing: 2px; color: var(--text-1);
-  background: var(--surface); padding: 0 5px;
-}
-.phase-period {
-  font-size: 10px; font-weight: 600; letter-spacing: 1.5px;
-  text-transform: uppercase; margin-bottom: 6px; color: var(--text-3);
-}
-.phase-col.current .phase-period { color: var(--text-1); }
-.phase-col.past    .phase-period { color: var(--border-2); }
-.phase-name {
-  font-family: 'DM Serif Display', serif;
-  font-size: 15px; line-height: 1.2; margin-bottom: 8px;
-}
-.phase-col.past   .phase-name { color: var(--text-3); }
-.phase-col.future .phase-name { color: var(--text-2); }
-.phase-desc { font-size: 11px; color: var(--text-3); line-height: 1.5; margin-bottom: 12px; }
-.phase-pillars { display: flex; flex-wrap: wrap; gap: 4px; margin-bottom: 12px; }
-.phase-pill { font-size: 10px; font-weight: 600; padding: 2px 7px; border-radius: 20px; }
-.phase-milestones { display: flex; flex-direction: column; gap: 5px; }
-.phase-milestone {
-  display: flex; align-items: flex-start; gap: 7px;
-  font-size: 10.5px; line-height: 1.35; color: var(--text-2);
-}
-.phase-col.past   .phase-milestone,
-.phase-col.future .phase-milestone { color: var(--text-3); }
-.phase-ms-dot { width: 5px; height: 5px; border-radius: 50%; flex-shrink: 0; margin-top: 4px; }
+  .phases-strip { display: grid; grid-template-columns: repeat(6, 1fr); }
+  .phase-col { position: relative; }
+  .phase-inner { border-top: 2px solid var(--border); border-right: 1px solid var(--border); padding: 20px 18px 24px; height: 100%; position: relative; }
+  .phase-col:last-child .phase-inner { border-right: none; }
+  .phase-col.past    .phase-inner { border-top-color: #C0BDB6; background: #FAFAF8; }
+  .phase-col.current .phase-inner { border-top-color: var(--text-primary); background: #F8F7F3; }
+  .phase-col.future  .phase-inner { border-top-color: var(--border); }
+  .phase-col.current .phase-inner::before {
+    content: 'AHORA'; position: absolute; top: -10px; left: 18px;
+    font-size: 9px; font-weight: 700; letter-spacing: 2px; color: var(--text-primary);
+    background: var(--surface); padding: 0 5px;
+  }
+  .phase-period { font-size: 10px; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 6px; color: var(--text-muted); }
+  .phase-col.current .phase-period { color: var(--text-primary); }
+  .phase-col.past    .phase-period { color: #C0BDB6; }
+  .phase-name { font-family: 'DM Serif Display', serif; font-size: 15px; line-height: 1.2; margin-bottom: 8px; }
+  .phase-col.past   .phase-name { color: var(--text-muted); }
+  .phase-col.future .phase-name { color: var(--text-secondary); }
+  .phase-desc { font-size: 11px; color: var(--text-muted); line-height: 1.5; margin-bottom: 12px; }
+  .phase-pillars { display: flex; flex-wrap: wrap; gap: 4px; margin-bottom: 12px; }
+  .phase-pill { font-size: 10px; font-weight: 600; padding: 2px 7px; border-radius: 20px; }
+  .phase-milestones { display: flex; flex-direction: column; gap: 5px; }
+  .phase-milestone { display: flex; align-items: flex-start; gap: 7px; font-size: 10.5px; line-height: 1.35; color: var(--text-secondary); }
+  .phase-col.past   .phase-milestone,
+  .phase-col.future .phase-milestone { color: var(--text-muted); }
+  .phase-ms-dot { width: 5px; height: 5px; border-radius: 50%; flex-shrink: 0; margin-top: 4px; }
 
-.tl-bar-wrap { padding: 20px 0 28px; }
-.tl-bar-label { font-size: 10px; font-weight: 600; letter-spacing: 1px; color: var(--text-3); margin-bottom: 8px; }
-.tl-bar-track { height: 2px; background: var(--border); border-radius: 1px; overflow: hidden; }
-.tl-bar-fill  { height: 100%; background: var(--text-1); width: 0%; transition: width 1.2s cubic-bezier(0.4,0,0.2,1); }
+  .tl-bar-wrap { position: relative; padding: 20px 0 28px; }
+  .tl-bar-label { font-size: 10px; font-weight: 600; letter-spacing: 1px; color: var(--text-muted); margin-bottom: 8px; }
+  .tl-bar-track { height: 2px; background: var(--border); border-radius: 1px; overflow: hidden; }
+  .tl-bar-fill  { height: 100%; background: var(--text-primary); width: 0%; transition: width 1.2s cubic-bezier(0.4,0,0.2,1); }
 
-/* ── MAIN DASHBOARD ── */
-.dash-main { max-width: 1280px; margin: 0 auto; padding: 48px; }
+  /* MAIN */
+  main { max-width: 1280px; margin: 0 auto; padding: 48px; }
 
-/* ── NOTICES ── */
-.notice-dayone  { background:#F0F4FF; border:1px solid #C8D4F5; border-left:3px solid #3D405B; color:#3D405B; }
-.notice-warning { background:#FFF8EC; border:1px solid #F2CC8F; border-left:3px solid #C9A227; color:#7A6010; display:none; }
-.notice-warning.visible { display:flex; }
+  /* NOTICES */
+  .notice { border-radius: 8px; padding: 14px 20px; display: flex; align-items: flex-start; gap: 12px; margin-bottom: 24px; font-size: 13px; line-height: 1.5; }
+  .notice .icon { font-size: 15px; flex-shrink: 0; margin-top: 1px; }
+  .notice-dayone  { background: #F0F4FF; border: 1px solid #C8D4F5; border-left: 3px solid #3D405B; color: #3D405B; }
+  .notice-warning { background: #FFF8EC; border: 1px solid #F2CC8F; border-left: 3px solid #C9A227; color: #7A6010; display: none; }
+  .notice-warning.visible { display: flex; }
 
-/* ── PILLARS GRID ── */
-.pillars-grid {
-  display: grid; grid-template-columns: repeat(5, 1fr);
-  gap: 16px; margin-bottom: 48px;
-}
-.pillar-card {
-  background: var(--surface); border: 1px solid var(--border);
-  border-radius: 12px; padding: 24px 20px 20px;
-  cursor: pointer; transition: all 0.2s; position: relative; overflow: hidden;
-}
-.pillar-card::before {
-  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
-  background: var(--pillar-color); opacity: 0; transition: opacity 0.2s;
-}
-.pillar-card:hover::before, .pillar-card.active::before { opacity: 1; }
-.pillar-card:hover { border-color: var(--border-2); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,0.06); }
-.pillar-card.active { border-color: var(--pillar-color); box-shadow: 0 0 0 1px var(--pillar-color); }
-.p-icon {
-  width: 36px; height: 36px; border-radius: 8px;
-  background: var(--pillar-bg); display: flex; align-items: center;
-  justify-content: center; font-size: 18px; margin-bottom: 16px;
-}
-.p-name { font-size: 11px; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase; color: var(--text-3); margin-bottom: 8px; }
-.p-pct  { font-family: 'DM Serif Display', serif; font-size: 36px; line-height: 1; margin-bottom: 16px; }
-.p-pct span { font-family: 'DM Sans', sans-serif; font-size: 14px; font-weight: 400; color: var(--text-3); }
-.p-bar-bg   { height: 4px; background: var(--border); border-radius: 2px; overflow: hidden; margin-bottom: 12px; }
-.p-bar-fill { height: 100%; border-radius: 2px; transition: width 1s cubic-bezier(0.4,0,0.2,1); }
-.p-stats { display: flex; justify-content: space-between; font-size: 11.5px; color: var(--text-3); }
-.p-stats strong { color: var(--text-2); font-weight: 500; }
+  /* PILLARS */
+  .pillars-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 16px; margin-bottom: 48px; }
+  .pillar-card { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 24px 20px 20px; cursor: pointer; transition: all 0.2s; position: relative; overflow: hidden; }
+  .pillar-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: var(--pillar-color); opacity: 0; transition: opacity 0.2s; }
+  .pillar-card:hover::before, .pillar-card.active::before { opacity: 1; }
+  .pillar-card:hover { border-color: #D0CEC8; transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,0.06); }
+  .pillar-card.active { border-color: var(--pillar-color); box-shadow: 0 0 0 1px var(--pillar-color); }
+  .p-icon { width: 36px; height: 36px; border-radius: 8px; background: var(--pillar-bg); display: flex; align-items: center; justify-content: center; font-size: 18px; margin-bottom: 16px; }
+  .p-name { font-size: 11px; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase; color: var(--text-muted); margin-bottom: 8px; }
+  .p-pct  { font-family: 'DM Serif Display', serif; font-size: 36px; line-height: 1; margin-bottom: 16px; }
+  .p-pct span { font-family: 'DM Sans', sans-serif; font-size: 14px; font-weight: 400; color: var(--text-muted); }
+  .p-bar-bg   { height: 4px; background: var(--border); border-radius: 2px; overflow: hidden; margin-bottom: 12px; }
+  .p-bar-fill { height: 100%; border-radius: 2px; transition: width 1s cubic-bezier(0.4,0,0.2,1); }
+  .p-stats { display: flex; justify-content: space-between; font-size: 11.5px; color: var(--text-muted); }
+  .p-stats strong { color: var(--text-secondary); font-weight: 500; }
 
-/* ── DETAIL PANEL ── */
-.detail-panel {
-  background: var(--surface); border: 1px solid var(--border);
-  border-radius: 16px; overflow: hidden;
-  display: none; animation: up 0.25s ease; margin-bottom: 48px;
-}
-.detail-panel.visible { display: block; }
-@keyframes up { from { opacity:0; transform:translateY(12px); } to { opacity:1; transform:translateY(0); } }
-.detail-hdr {
-  padding: 28px 36px; border-bottom: 1px solid var(--border);
-  display: flex; align-items: center; justify-content: space-between;
-}
-.detail-hdr-left { display: flex; align-items: center; gap: 16px; }
-.detail-ico {
-  width: 48px; height: 48px; border-radius: 12px;
-  display: flex; align-items: center; justify-content: center;
-  font-size: 22px; color: white;
-}
-.detail-ttl { font-family: 'DM Serif Display', serif; font-size: 24px; }
-.detail-sub { font-size: 13px; color: var(--text-2); margin-top: 2px; }
-.detail-cls {
-  background: none; border: 1px solid var(--border);
-  border-radius: 8px; padding: 8px 12px; cursor: pointer;
-  font-size: 13px; color: var(--text-2); font-family: 'DM Sans', sans-serif;
-  transition: all 0.15s;
-}
-.detail-cls:hover { background: var(--border); color: var(--text-1); }
-.detail-body {
-  padding: 36px; display: grid;
-  grid-template-columns: 1fr 1fr; gap: 24px;
-}
-.obj-block { border: 1px solid var(--border); border-radius: 12px; overflow: hidden; }
-.obj-hdr {
-  padding: 16px 20px; border-bottom: 1px solid var(--border);
-  display: flex; align-items: center; justify-content: space-between;
-  background: #FAFAF8;
-}
-.obj-name { font-weight: 600; font-size: 14px; }
-.obj-badge {
-  font-size: 11px; font-weight: 600; padding: 3px 10px;
-  border-radius: 20px; background: var(--pillar-bg); color: var(--pillar-color);
-}
-.obj-meta { padding: 14px 20px 10px; display: flex; align-items: center; gap: 12px; }
-.obj-bar-bg   { flex: 1; height: 6px; background: var(--border); border-radius: 3px; overflow: hidden; }
-.obj-bar-fill { height: 100%; border-radius: 3px; transition: width 0.8s cubic-bezier(0.4,0,0.2,1); }
-.obj-pct { font-size: 12px; font-weight: 600; color: var(--pillar-color); white-space: nowrap; }
-.ms-list { padding: 4px 20px 16px; }
-.ms-item {
-  display: flex; align-items: flex-start; gap: 12px;
-  padding: 10px 0; border-bottom: 1px solid var(--border);
-}
-.ms-item:last-child { border-bottom: none; }
-.ms-check {
-  width: 18px; height: 18px; border-radius: 50%;
-  border: 2px solid var(--border); flex-shrink: 0; margin-top: 1px;
-  display: flex; align-items: center; justify-content: center; font-size: 10px;
-}
-.ms-item.done   .ms-check { background: var(--pillar-color); border-color: var(--pillar-color); color: #fff; }
-.ms-item.active .ms-check { border-color: var(--pillar-color); box-shadow: 0 0 0 3px var(--pillar-bg); }
-.ms-content { flex: 1; }
-.ms-title { font-size: 13.5px; font-weight: 500; line-height: 1.3; }
-.ms-item.done .ms-title { color: var(--text-3); text-decoration: line-through; text-decoration-color: var(--text-3); }
-.ms-date { font-size: 11px; color: var(--text-3); margin-top: 3px; }
-.ms-status { font-size: 10.5px; font-weight: 600; padding: 2px 8px; border-radius: 20px; flex-shrink: 0; margin-top: 2px; }
-.ms-item.done    .ms-status { background: #EAF3EE; color: #2D6A4F; }
-.ms-item.active  .ms-status { background: #EEF2FF; color: #3D405B; }
-.ms-item.pending .ms-status { background: var(--bg); color: var(--text-3); }
+  /* DETAIL */
+  .detail-panel { background: var(--surface); border: 1px solid var(--border); border-radius: 16px; overflow: hidden; display: none; animation: up 0.25s ease; margin-bottom: 48px; }
+  .detail-panel.visible { display: block; }
+  @keyframes up { from { opacity:0; transform:translateY(12px); } to { opacity:1; transform:translateY(0); } }
+  .detail-hdr { padding: 28px 36px; border-bottom: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; }
+  .detail-hdr-left { display: flex; align-items: center; gap: 16px; }
+  .detail-ico { width: 48px; height: 48px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 22px; }
+  .detail-ttl { font-family: 'DM Serif Display', serif; font-size: 24px; }
+  .detail-sub { font-size: 13px; color: var(--text-secondary); margin-top: 2px; }
+  .detail-cls { background: none; border: 1px solid var(--border); border-radius: 8px; padding: 8px 12px; cursor: pointer; font-size: 13px; color: var(--text-secondary); font-family: 'DM Sans', sans-serif; transition: all 0.15s; }
+  .detail-cls:hover { background: var(--border); color: var(--text-primary); }
+  .detail-body { padding: 36px; display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
 
-/* ── BOTTOM ROW ── */
-.bottom-row { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
-.summary-card {
-  background: var(--surface); border: 1px solid var(--border);
-  border-radius: 16px; padding: 28px 32px;
-}
-.summary-card h3 { font-family: 'DM Serif Display', serif; font-size: 18px; margin-bottom: 20px; }
-.radar-wrap { display: flex; align-items: center; justify-content: center; }
-.next-action {
-  display: flex; align-items: flex-start; gap: 14px;
-  padding: 14px 0; border-bottom: 1px solid var(--border);
-}
-.next-action:last-child { border-bottom: none; }
-.na-dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; margin-top: 5px; }
-.na-text { font-size: 13.5px; line-height: 1.4; }
-.na-meta { font-size: 11.5px; color: var(--text-3); margin-top: 2px; }
-.no-active { font-size: 13px; color: var(--text-3); padding: 12px 0; font-style: italic; }
+  .obj-block { border: 1px solid var(--border); border-radius: 12px; overflow: hidden; }
+  .obj-hdr { padding: 16px 20px; border-bottom: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; background: #FAFAF8; }
+  .obj-name { font-weight: 600; font-size: 14px; }
+  .obj-badge { font-size: 11px; font-weight: 600; padding: 3px 10px; border-radius: 20px; background: var(--pillar-bg); color: var(--pillar-color); }
+  .obj-meta { padding: 14px 20px 10px; display: flex; align-items: center; gap: 12px; }
+  .obj-bar-bg   { flex: 1; height: 6px; background: var(--border); border-radius: 3px; overflow: hidden; }
+  .obj-bar-fill { height: 100%; border-radius: 3px; transition: width 0.8s cubic-bezier(0.4,0,0.2,1); }
+  .obj-pct { font-size: 12px; font-weight: 600; color: var(--pillar-color); white-space: nowrap; }
+  .ms-list { padding: 4px 20px 16px; }
+  .ms-item { display: flex; align-items: flex-start; gap: 12px; padding: 10px 0; border-bottom: 1px solid var(--border); }
+  .ms-item:last-child { border-bottom: none; }
+  .ms-check { width: 18px; height: 18px; border-radius: 50%; border: 2px solid var(--border); flex-shrink: 0; margin-top: 1px; display: flex; align-items: center; justify-content: center; font-size: 10px; }
+  .ms-item.done   .ms-check { background: var(--pillar-color); border-color: var(--pillar-color); color: #fff; }
+  .ms-item.active .ms-check { border-color: var(--pillar-color); box-shadow: 0 0 0 3px var(--pillar-bg); }
+  .ms-content { flex: 1; }
+  .ms-title { font-size: 13.5px; font-weight: 500; line-height: 1.3; }
+  .ms-item.done .ms-title { color: var(--text-muted); text-decoration: line-through; text-decoration-color: var(--text-muted); }
+  .ms-date { font-size: 11px; color: var(--text-muted); margin-top: 3px; }
+  .ms-status { font-size: 10.5px; font-weight: 600; padding: 2px 8px; border-radius: 20px; flex-shrink: 0; margin-top: 2px; }
+  .ms-item.done    .ms-status { background: #EAF3EE; color: #2D6A4F; }
+  .ms-item.active  .ms-status { background: #EEF2FF; color: #3D405B; }
+  .ms-item.pending .ms-status { background: #F5F4F0; color: var(--text-muted); }
 
-/* ── SECTION NAV STRIP (below hero) ── */
-.section-strip {
-  background: var(--surface);
-  border-bottom: 1px solid var(--border);
-  padding: 0 48px;
-  display: flex; gap: 0; overflow-x: auto;
-}
-.section-strip a {
-  font-size: 12px; font-weight: 500; color: var(--text-2);
-  padding: 16px 20px; text-decoration: none; white-space: nowrap;
-  border-bottom: 2px solid transparent; margin-bottom: -1px;
-  transition: color 0.15s, border-color 0.15s; display: flex; align-items: center; gap: 7px;
-}
-.section-strip a:hover { color: var(--text-1); }
+  /* BOTTOM */
+  .bottom-row { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+  .summary-card { background: var(--surface); border: 1px solid var(--border); border-radius: 16px; padding: 28px 32px; }
+  .summary-card h3 { font-family: 'DM Serif Display', serif; font-size: 18px; margin-bottom: 20px; }
+  .radar-wrap { display: flex; align-items: center; justify-content: center; }
+  .next-action { display: flex; align-items: flex-start; gap: 14px; padding: 14px 0; border-bottom: 1px solid var(--border); }
+  .next-action:last-child { border-bottom: none; }
+  .na-dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; margin-top: 5px; }
+  .na-text { font-size: 13.5px; line-height: 1.4; }
+  .na-meta { font-size: 11.5px; color: var(--text-muted); margin-top: 2px; }
+  .no-active { font-size: 13px; color: var(--text-muted); padding: 12px 0; font-style: italic; }
 
-/* ── RESPONSIVE ── */
-@media (max-width: 1100px) {
-  .pillars-grid { grid-template-columns: repeat(3,1fr); }
-  .phases-strip { grid-template-columns: repeat(3,1fr); }
-  .timeline-section { padding-left: 32px; padding-right: 32px; }
-}
-@media (max-width: 768px) {
-  .hero { padding: 48px 0 40px; }
-  .timeline-section, .section-strip { padding-left: 20px; padding-right: 20px; }
-  .dash-main { padding: 24px 20px; }
-  .pillars-grid { grid-template-columns: repeat(2,1fr); }
-  .phases-strip { grid-template-columns: repeat(2,1fr); }
-  .detail-body { grid-template-columns: 1fr; }
-  .bottom-row { grid-template-columns: 1fr; }
-}
-@media (max-width: 480px) {
-  .pillars-grid { grid-template-columns: 1fr; }
-}
+  /* RESPONSIVE */
+  @media (max-width: 1100px) { .pillars-grid { grid-template-columns: repeat(3,1fr); } .phases-strip { grid-template-columns: repeat(3,1fr); } }
+  @media (max-width: 768px) { header, .timeline-section { padding-left:24px; padding-right:24px; } main { padding:24px; } .pillars-grid { grid-template-columns: repeat(2,1fr); } .phases-strip { grid-template-columns: repeat(2,1fr); } .detail-body { grid-template-columns: 1fr; } .bottom-row { grid-template-columns: 1fr; } }
 </style>
 </head>
 <body>
 
-<!-- NAV -->
-<nav>
-  <a href="index.html" class="nav-logo">Albert's <span>Odyssey</span></a>
-  <div class="nav-links">
-    <a href="index.html"          class="nav-link active">Home</a>
-    <a href="salud/index.html"    class="nav-link">Salud</a>
-    <a href="deporte/index.html"  class="nav-link">Deporte</a>
-    <a href="vlog/index.html"     class="nav-link">Vlog</a>
-    <a href="lecturas/index.html" class="nav-link">Lecturas</a>
-    <a href="finanzas/index.html" class="nav-link">Finanzas</a>
-    <a href="desarrollo/index.html" class="nav-link">Desarrollo</a>
-    <a href="escritos/index.html" class="nav-link">Escritos</a>
-  </div>
-</nav>
-
-<!-- HERO -->
-<div style="max-width:1280px;margin:0 auto;padding:0 48px">
-  <div class="hero">
-    <div class="hero-eyebrow">Sistema de vida personal</div>
-    <h1 class="hero-title">Albert's<br><em>Odyssey</em></h1>
-    <p class="hero-sub">Un sistema completo para construir la mejor versión de mí mismo. Salud, desarrollo, finanzas, relaciones y propósito — todo en un único lugar.</p>
-    <div class="hero-meta">
-      <div class="hero-stat">
-        <div class="hero-stat-val" id="heroDate">—</div>
-        <div class="hero-stat-lbl">Día de inicio</div>
-      </div>
-      <div class="hero-stat">
-        <div class="hero-stat-val" id="globalScore">0%</div>
-        <div class="hero-stat-lbl">Progreso global</div>
-      </div>
-      <div class="hero-stat">
-        <div class="hero-stat-val">6</div>
-        <div class="hero-stat-lbl">Fases · 3 años</div>
-      </div>
-      <div class="hero-stat">
-        <div class="hero-stat-val">5</div>
-        <div class="hero-stat-lbl">Pilares activos</div>
-      </div>
+<header>
+  <div class="logo">Life <span>OS</span></div>
+  <div class="header-meta">
+    <div class="year-label">10 Mar 2026 · Día 1</div>
+    <div class="global-score">
+      <div class="num" id="globalScore">0%</div>
+      <div class="lbl">global</div>
     </div>
   </div>
-</div>
+</header>
 
-<!-- SECTION STRIP -->
-<div class="section-strip">
-  <a href="salud/index.html">🫀 Salud</a>
-  <a href="deporte/index.html">🏃 Deporte</a>
-  <a href="vlog/index.html">✍️ Vlog</a>
-  <a href="lecturas/index.html">📚 Lecturas</a>
-  <a href="finanzas/index.html">📈 Finanzas</a>
-  <a href="desarrollo/index.html">🧠 Desarrollo</a>
-  <a href="escritos/index.html">🖊️ Escritos</a>
-</div>
-
-<!-- TIMELINE -->
 <section class="timeline-section">
   <div class="timeline-top">
     <div>
@@ -337,16 +169,15 @@
   </div>
 </section>
 
-<!-- MAIN DASHBOARD -->
-<div class="dash-main">
+<main>
 
   <div class="notice notice-dayone">
-    <div class="n-icon">◎</div>
-    <div><strong>Día 1 — 9 de marzo de 2026.</strong> Pivot de banca a real estate. Madrid en 3 semanas. El sistema arranca desde cero. Activa el primer hito de cada pilar esta semana.</div>
+    <div class="icon">◎</div>
+    <div><strong>Día 1 — 10 de marzo de 2026.</strong> Incorporación a Portland el 23 de marzo. 14 días para preparar el terreno. Proyecto Gobelas desde el primer día. Activa los hitos de esta semana antes de llegar a Madrid.</div>
   </div>
 
   <div class="notice notice-warning" id="balanceAlert">
-    <div class="n-icon">⚠</div>
+    <div class="icon">⚠</div>
     <div id="balanceAlertText"></div>
   </div>
 
@@ -377,293 +208,605 @@
     </div>
   </div>
 
-</div>
+</main>
 
 <script>
 // ═══════════════════════════════════════════════════════
-//  DATA
+//  PILLARS — Datos reales. Día 1, 9 marzo 2026.
+//  pending → active (cuando lo inicias) → done (cuando lo completas)
 // ═══════════════════════════════════════════════════════
 const PILLARS = [
+
+  // ── SALUD ──────────────────────────────────────────
+  // Visión (Mar 2029): 80-81kg con buena composición, entrenamiento automático,
+  // alimentación sin esfuerzo consciente, energía alta y sostenida.
+  // Protocolo: Upper/Lower 3-4 días. Déficit limpio. ~160g proteína/día. Cooking batch 2×/sem.
   {
     id:'salud', name:'Salud', icon:'◎', color:'#2D6A4F', bg:'#EAF3EE',
     objectives:[
       {
-        name:'Composición corporal: de 88kg a 81kg',
+        name:'SMART · Completar mín. 3 sesiones de fuerza/semana durante 16 semanas consecutivas (Upper/Lower) · 23 Mar → 13 Jul 2026',
         milestones:[
-          { title:'Activar rutina Upper/Lower 4 días (Lunes·Martes·Jueves·Viernes)', status:'active', date:'Mar 2026' },
-          { title:'Eliminar azúcar añadido y ultraprocesados de la compra', status:'active', date:'Mar 2026' },
-          { title:'Incorporar suplementación: whey, vitamina D3+K2, omega-3', status:'pending', date:'Abr 2026' },
-          { title:'Alcanzar 84kg con composición mejorada', status:'pending', date:'Jun 2026' },
-          { title:'Llegar a 81kg con % grasa saludable', status:'pending', date:'Sep 2026' },
+          { title:'Elegir y fijar gimnasio en Madrid antes de la incorporación', status:'active', date:'Antes 23 Mar' },
+          { title:'Completar las primeras 4 semanas sin saltarse ningún día de entreno', status:'pending', date:'20 Abr 2026' },
+          { title:'Completar 8 semanas consecutivas de entrenamiento Upper/Lower', status:'pending', date:'18 May 2026' },
+          { title:'16 semanas consecutivas completadas — hábito instalado', status:'pending', date:'13 Jul 2026' },
         ]
       },
       {
-        name:'Energía sostenida y gestión del estrés',
+        name:'SMART · Mantener mín. 80% de comidas con proteína + verdura + CH de calidad, con cooking batch 2×/semana · 23 Mar → 13 Jul 2026',
         milestones:[
-          { title:'Despertador fijo a las 7:00 al llegar a Madrid (no negociable)', status:'pending', date:'Abr 2026' },
-          { title:'Cocinar en bloques 2x semana (domingo + miércoles, 45 min)', status:'pending', date:'Abr 2026' },
-          { title:'Reconocer señales de estrés antes del tic ocular', status:'pending', date:'May 2026' },
-          { title:'Sin pantallas 45 min antes de dormir — rutina fija', status:'pending', date:'May 2026' },
-          { title:'3 meses consecutivos sin semanas de entrenamiento cero', status:'pending', date:'Jul 2026' },
+          { title:'Primera compra en Madrid sin ultraprocesados ni azúcar añadido', status:'active', date:'24 Mar 2026' },
+          { title:'Incorporar suplementación base: whey, vitamina D3+K2, omega-3', status:'pending', date:'Abr 2026' },
+          { title:'2 semanas consecutivas de cooking batch activo (dom + mié)', status:'pending', date:'7 Abr 2026' },
+          { title:'8 semanas consecutivas con cooking batch y protocolo de comidas activo', status:'pending', date:'18 May 2026' },
+        ]
+      },
+      {
+        name:'Resultados medibles de composición corporal',
+        milestones:[
+          { title:'Peso por debajo de 85kg', status:'pending', date:'Jun 2026' },
+          { title:'Llegar a 81kg con % grasa saludable', status:'pending', date:'Sep 2026' },
+          { title:'3 meses consecutivos sin semana de cero entrenamientos', status:'pending', date:'Jul 2026' },
         ]
       }
     ]
   },
+
+  // ── SOCIAL ─────────────────────────────────────────
+  // Visión (Mar 2029): relación sólida con novia a pesar de la distancia,
+  // red social de calidad en Madrid, familia y amigos de Sevilla cuidados.
+  // Riesgo principal: Madrid absorbe energía y la distancia erosiona sin estructura.
   {
     id:'social', name:'Social', icon:'◈', color:'#C0614A', bg:'#FCEEE9',
     objectives:[
       {
-        name:'Relación a distancia con estructura, no con improvisación',
+        name:'SMART · Establecer 1 cita virtual semanal con plan diferente y entretenido, y vernos en persona 2 veces con fecha cerrada · 23 Mar → 30 Sep 2026',
         milestones:[
-          { title:'Acordar con tu novia un protocolo de comunicación semanal', status:'active', date:'Mar 2026' },
-          { title:'Planificar y reservar los próximos 2 viajes a Buenos Aires con fecha cerrada', status:'pending', date:'Abr 2026' },
-          { title:'Definir juntos el horizonte de la relación: ¿cuándo y cómo se cierra la distancia?', status:'pending', date:'Jun 2026' },
-          { title:'Primer año en Madrid sin que la relación haya perdido calidad respecto al día 1', status:'pending', date:'Mar 2027' },
+          { title:'Acordar con tu novia el formato de la cita virtual semanal (día, plan, dinámica)', status:'active', date:'Antes 23 Mar' },
+          { title:'Cerrar fecha y vuelos del primer encuentro en persona', status:'pending', date:'Abr 2026' },
+          { title:'Cerrar fecha y vuelos del segundo encuentro en persona', status:'pending', date:'Jun 2026' },
+          { title:'Primer encuentro en persona realizado', status:'pending', date:'Sep 2026' },
+          { title:'Segundo encuentro en persona realizado', status:'pending', date:'Sep 2026' },
         ]
       },
       {
-        name:'Construir red social real en Madrid',
+        name:'SMART · Establecer 1 actividad social recurrente en Madrid y realizar 1 actividad social diferente al mes · Antes 30 Sep 2026',
         milestones:[
-          { title:'Identificar 1 actividad social regular en Madrid (deporte, club, networking)', status:'pending', date:'Abr 2026' },
-          { title:'Tener 3 personas en Madrid con las que quedar de forma no laboral', status:'pending', date:'Jun 2026' },
-          { title:'Mantener contacto activo mensual con amigos clave de Sevilla', status:'pending', date:'Continuo' },
-          { title:'Visita familiar planificada cada trimestre', status:'pending', date:'Trimestral' },
+          { title:'Identificar y apuntarse a 1 actividad social recurrente en Madrid', status:'pending', date:'Abr 2026' },
+          { title:'Primera actividad social diferente realizada (trekking, conferencia, evento...)', status:'pending', date:'Abr 2026' },
+          { title:'Segunda actividad social diferente realizada', status:'pending', date:'May 2026' },
+          { title:'Tercera actividad social diferente realizada', status:'pending', date:'Jun 2026' },
+          { title:'Actividad recurrente consolidada — asistencia mín. 3 de cada 4 semanas', status:'pending', date:'Sep 2026' },
+        ]
+      },
+      {
+        name:'SMART · Contacto activo con mín. 3 amigos de Sevilla al mes y visita cada 6-8 semanas · 23 Mar → 30 Sep 2026',
+        milestones:[
+          { title:'Primera visita a Sevilla desde Madrid con fecha cerrada', status:'pending', date:'May 2026' },
+          { title:'Contacto activo mantenido con mínimo 3 amigos cercanos cada mes', status:'pending', date:'Continuo' },
+          { title:'Segunda visita a Sevilla o encuentro familiar', status:'pending', date:'Jul 2026' },
         ]
       }
     ]
   },
+
+  // ── PROFESIONAL ────────────────────────────────────
+  // Visión (Mar 2029): referente de coordinación y análisis financiero en Portland,
+  // dominio total de Gobelas, bases de conocimiento y red para emprender en real estate.
+  // Jefa directa: Annie. Incorporación: 23 marzo 2026.
+  // Proyecto principal: Gobelas (2 edificios turísticos, Pozuelo, Madrid).
   {
     id:'profesional', name:'Profesional', icon:'◧', color:'#3D405B', bg:'#ECEDF3',
     objectives:[
       {
-        name:'Dominar el sector inmobiliario desde dentro',
+        name:'SMART · Gestionar de forma autónoma las 4 dimensiones de Gobelas (legal, técnica, financiera, comercial) y elaborar el reporting completo sin supervisión · Antes 30 Sep 2026',
         milestones:[
-          { title:'Aprender los fundamentos de promoción inmobiliaria (normativa, fases, costes)', status:'active', date:'Mar – Jun 2026' },
-          { title:'Entender el modelo financiero de los proyectos de Portland en detalle', status:'pending', date:'Abr 2026' },
-          { title:'Liderar el proyecto de Pozuelo con autonomía y criterio propio', status:'pending', date:'Sep 2026' },
-          { title:'Conocer en profundidad los proyectos de Argentina, Uruguay y EEUU', status:'pending', date:'Dic 2026' },
+          { title:'Leer y entender toda la documentación legal existente (UTE, contratos, acuerdos)', status:'active', date:'Abr 2026' },
+          { title:'Mapear todos los actores del proyecto: roles, responsabilidades y relaciones', status:'pending', date:'Abr 2026' },
+          { title:'Dominar el modelo financiero: cash flow, costes, presupuesto y monitoring bancario', status:'pending', date:'Abr 2026' },
+          { title:'Conocer el estado técnico y urbanístico: licencias, normativa, hitos de obra', status:'pending', date:'May 2026' },
+          { title:'Elaborar el primer reporting periódico completo de forma autónoma', status:'pending', date:'Jun 2026' },
+          { title:'Gestionar el flujo documental sin supervisión de Annie', status:'pending', date:'Sep 2026' },
         ]
       },
       {
-        name:'Consolidar posición y construir reputación en Portland',
+        name:'SMART · Identificar e implementar al menos 2 mejoras concretas de proceso, herramienta o sistema en el equipo de Portland · Antes 30 Sep 2026',
         milestones:[
-          { title:'Superar el período de adaptación con valoración positiva de Gustavo', status:'pending', date:'Jun 2026' },
-          { title:'Proponer e implementar una mejora de proceso o herramienta en el equipo', status:'pending', date:'Sep 2026' },
-          { title:'Ser el punto de referencia para cualquier análisis financiero del equipo', status:'pending', date:'Dic 2026' },
-          { title:'Tener visión clara del paso siguiente dentro (o fuera) de Portland', status:'pending', date:'Mar 2027' },
+          { title:'Identificar 3 áreas de mejora concretas en procesos, herramientas o sistemas del equipo', status:'pending', date:'May 2026' },
+          { title:'Proponer la primera mejora con argumentación y plan de implementación', status:'pending', date:'Jun 2026' },
+          { title:'Primera mejora implementada y en uso por el equipo', status:'pending', date:'Jul 2026' },
+          { title:'Segunda mejora implementada y en uso por el equipo', status:'pending', date:'Sep 2026' },
         ]
       }
     ]
   },
+
+  // ── DESARROLLO PERSONAL ────────────────────────────
+  // Diagnóstico: voracidad intelectual alta pero foco bajo.
+  // ── DESARROLLO PERSONAL ────────────────────────────
+  // Visión (Mar 2029): sistema de aprendizaje continuo y selectivo.
+  // Máximo 2 habilidades nuevas activas simultáneamente.
+  // Lectura estructurada como hábito base.
+  // Fase actual: IA aplicada + lectura. Francés y resto: fase 2 en adelante.
   {
     id:'desarrollo', name:'Desarrollo', icon:'◉', color:'#9A7D2E', bg:'#FDF8EC',
     objectives:[
       {
-        name:'Francés: de cero a nivel funcional (B1)',
+        name:'SMART · Completar 1 curso estructurado de IA e implementar 3 herramientas en el flujo de trabajo real de Gobelas o Portland · Antes 30 Sep 2026',
         milestones:[
-          { title:'Definir método y herramienta para el francés (Pimsleur, clases, app)', status:'pending', date:'Sep 2026' },
-          { title:'Establecer práctica diaria de francés: 20 min mínimo', status:'pending', date:'Oct 2026' },
-          { title:'Alcanzar nivel A2: conversación básica sostenida', status:'pending', date:'Jun 2027' },
-          { title:'Alcanzar nivel B1: comunicarse en contexto profesional', status:'pending', date:'Mar 2028' },
+          { title:'Elegir y comenzar un curso estructurado de IA (no YouTube random)', status:'pending', date:'Abr 2026' },
+          { title:'Identificar 3 procesos de Gobelas o Portland donde aplicar IA', status:'pending', date:'May 2026' },
+          { title:'Completar el curso estructurado de IA', status:'pending', date:'Jun 2026' },
+          { title:'Primera herramienta de IA implementada en flujo de trabajo real', status:'pending', date:'Jun 2026' },
+          { title:'Segunda herramienta de IA implementada en flujo de trabajo real', status:'pending', date:'Jul 2026' },
+          { title:'Tercera herramienta de IA implementada en flujo de trabajo real', status:'pending', date:'Sep 2026' },
         ]
       },
       {
-        name:'IA aplicada: entender y usar, no solo consumir',
+        name:'SMART · Leer mínimo 6 libros de no ficción con lista definida de antemano · 23 Mar → 30 Sep 2026',
         milestones:[
-          { title:'Completar un curso estructurado de IA (no YouTube random)', status:'pending', date:'Jun 2026' },
-          { title:'Implementar 3 herramientas de IA en tu flujo de trabajo real', status:'pending', date:'Sep 2026' },
-          { title:'Aplicar IA a análisis inmobiliario o gestión de proyectos en Portland', status:'pending', date:'Dic 2026' },
-        ]
-      },
-      {
-        name:'Lectura: 10 libros al año como mínimo',
-        milestones:[
-          { title:'Definir lista de lectura anual (no ficción, biografías, economía, real estate)', status:'active', date:'Mar 2026' },
-          { title:'5 libros leídos en el año', status:'pending', date:'Jul 2026' },
-          { title:'10 libros leídos en el año', status:'pending', date:'Dic 2026' },
+          { title:'Definir lista de 6 libros para Mar–Sep 2026 (no ficción, economía, real estate, biografías)', status:'active', date:'Antes 23 Mar' },
+          { title:'Primer libro leído', status:'pending', date:'Abr 2026' },
+          { title:'Tercer libro leído', status:'pending', date:'Jun 2026' },
+          { title:'Sexto libro leído', status:'pending', date:'Sep 2026' },
         ]
       }
     ]
   },
+
+  // ── FINANZAS ───────────────────────────────────────
+  // Visión (Mar 2029): 100k€ patrimonio neto, ahorro automatizado,
+  // cartera diversificada, base financiera para emprender en real estate.
+  // Salario: 2.000€ netos/mes. Sin deudas. Inversor desde 2018.
+  // 65k€ total: 35k€ invertidos en acciones + 30k€ en liquidez sin decisión.
   {
     id:'finanzas', name:'Finanzas', icon:'◐', color:'#2E6653', bg:'#EFF5F2',
     objectives:[
       {
-        name:'Patrimonio: de 65k€ a 100k€ en 3 años',
+        name:'SMART · Ejecutar presupuesto mensual real con aportación fija automatizada de mín. 300€/mes a cartera · 23 Mar → 30 Sep 2026',
         milestones:[
-          { title:'Definir presupuesto mensual real para Madrid (alquiler, gastos fijos, variable)', status:'active', date:'Mar 2026' },
-          { title:'Automatizar aportación mensual fija a cartera (importe concreto)', status:'pending', date:'Abr 2026' },
-          { title:'Decidir qué hacer con los 30k€ en liquidez (inversión parcial vs. colchón)', status:'pending', date:'Abr 2026' },
-          { title:'Alcanzar 80k€ de patrimonio neto total', status:'pending', date:'Dic 2026' },
-          { title:'Alcanzar 100k€ de patrimonio neto total', status:'pending', date:'Dic 2027' },
+          { title:'Definir presupuesto mensual real para Madrid (alquiler, fijos, variable, inversión)', status:'active', date:'Antes 23 Mar' },
+          { title:'Firmar contrato de alquiler en Madrid', status:'pending', date:'Antes 30 Abr 2026' },
+          { title:'Configurar transferencia automática mensual de mínimo 300€ a cartera', status:'pending', date:'Abr 2026' },
+          { title:'Primer mes con presupuesto ejecutado según lo planificado', status:'pending', date:'Abr 2026' },
+          { title:'3 meses consecutivos con aportación automática realizada', status:'pending', date:'Jun 2026' },
+          { title:'6 meses consecutivos con aportación automática realizada', status:'pending', date:'Sep 2026' },
         ]
       },
       {
-        name:'Cartera más robusta y menos concentrada en acciones',
+        name:'SMART · Tomar decisión documentada sobre los 30k€ en liquidez e incorporar fondo indexado global como núcleo de cartera · Antes 30 Jun 2026',
         milestones:[
-          { title:'Auditar cartera actual: concentración, riesgo, rentabilidad histórica', status:'active', date:'Mar 2026' },
-          { title:'Incorporar un fondo indexado global como núcleo de la cartera', status:'pending', date:'Jun 2026' },
-          { title:'Explorar REITs como exposición al sector en el que trabajas', status:'pending', date:'Sep 2026' },
-          { title:'Cartera diversificada: máximo 40% en acciones individuales', status:'pending', date:'Dic 2026' },
+          { title:'Auditar cartera actual: concentración, riesgo y rentabilidad histórica', status:'active', date:'Mar 2026' },
+          { title:'Decidir destino de los 30k€ en liquidez con criterio documentado', status:'pending', date:'Abr 2026' },
+          { title:'Ejecutar la decisión sobre los 30k€', status:'pending', date:'Abr 2026' },
+          { title:'Incorporar fondo indexado global como núcleo de la cartera', status:'pending', date:'Jun 2026' },
+          { title:'Cartera con máximo 40% en acciones individuales', status:'pending', date:'Dic 2026' },
         ]
       }
     ]
   }
 ];
 
+// ═══════════════════════════════════════════════════════
+//  PHASES — 6 fases desde el 10 de marzo de 2026
+// ═══════════════════════════════════════════════════════
 const PHASES = [
-  { period:'Mar – Sep 2026', name:'Cimientos', status:'current', desc:'Instalarse en Madrid, arrancar en Portland, reactivar el cuerpo y automatizar las finanzas.', pillars:[{id:'salud',focus:'Reactivación física'},{id:'profesional',focus:'Arranque en Portland'},{id:'finanzas',focus:'Automatización'}], milestones:['Protocolo de entrenamiento activo','Proyecto Pozuelo dominado','Presupuesto Madrid definido','Red social inicial en Madrid'] },
-  { period:'Sep 2026 – Mar 2027', name:'Tracción', status:'future', desc:'Los hábitos consolidan. Escalar en Portland. Avanzar en francés e IA.', pillars:[{id:'profesional',focus:'Referente interno'},{id:'desarrollo',focus:'IA aplicada'},{id:'social',focus:'Red Madrid sólida'}], milestones:['81kg alcanzados','Referente financiero en Portland','Francés A2 operativo','Plan relación revisado'] },
-  { period:'Mar – Sep 2027', name:'Consolidación', status:'future', desc:'Solidificar resultados. Primeros 100k€. Visión del paso siguiente en la carrera.', pillars:[{id:'finanzas',focus:'100k€ patrimonio'},{id:'profesional',focus:'Visión post-Portland'},{id:'salud',focus:'Forma estable'}], milestones:['100k€ de patrimonio neto','Cartera diversificada activa','Forma física 12 meses','Francés B1 en camino'] },
-  { period:'Sep 2027 – Mar 2028', name:'Expansión', status:'future', desc:'Operar desde posición de fuerza. Abrir nuevos frentes con criterio.', pillars:[{id:'profesional',focus:'Siguiente nivel'},{id:'desarrollo',focus:'Francés arranca'},{id:'social',focus:'Relación resuelta'}], milestones:['Decisión sobre Portland','Francés B1 certificado','Situación novia definida','Proyectos propios iniciados'] },
-  { period:'Mar – Sep 2028', name:'Autonomía', status:'future', desc:'Sistema financiero autónomo. Carrera con dirección propia. Base para emprender.', pillars:[{id:'finanzas',focus:'Ingresos pasivos'},{id:'profesional',focus:'Bases empresariales'},{id:'salud',focus:'Hábitos automáticos'}], milestones:['Primer ingreso pasivo real','Plan empresarial esbozado','Hábitos en piloto automático','Patrimonio > 130k€'] },
-  { period:'Sep 2028 – Mar 2029', name:'Maestría', status:'future', desc:'Todos los pilares en verde. Sistema autónomo. Visión clara del empresario que quieres ser.', pillars:[{id:'salud',focus:'Óptimo'},{id:'profesional',focus:'Referente sectorial'},{id:'finanzas',focus:'Libertad financiera'},{id:'social',focus:'Estabilidad total'}], milestones:['Todos los pilares > 80%','Base primer proyecto propio','Relación con futuro claro','Sistema sin disciplina'] }
+  {
+    period: '23 Mar – Sep 2026',
+    name: 'Cimientos',
+    status: 'current',
+    desc: 'Incorporación a Portland el 23 Mar. Arrancar Gobelas, reactivar el cuerpo, automatizar las finanzas.',
+    pillars: [
+      { id:'salud',       focus:'Reactivación física' },
+      { id:'profesional', focus:'Arranque en Portland' },
+      { id:'finanzas',    focus:'Presupuesto Madrid' },
+    ],
+    milestones: [
+      'Incorporación a Portland — 23 Mar',
+      'Estructura legal de Gobelas dominada',
+      'Presupuesto Madrid con 2.000€ definido',
+      'Protocolo entrenamiento activo',
+    ]
+  },
+  {
+    period: 'Sep 2026 – Mar 2027',
+    name: 'Tracción',
+    status: 'future',
+    desc: 'Los hábitos consolidan. Escalar en Portland. Avanzar en francés e IA.',
+    pillars: [
+      { id:'profesional', focus:'Referente interno' },
+      { id:'desarrollo',  focus:'IA aplicada' },
+      { id:'social',      focus:'Red Madrid sólida' },
+    ],
+    milestones: [
+      '81kg alcanzados',
+      'Referente financiero en Portland',
+      'Francés A2 operativo',
+      'Plan de relación a distancia revisado',
+    ]
+  },
+  {
+    period: 'Mar – Sep 2027',
+    name: 'Consolidación',
+    status: 'future',
+    desc: 'Solidificar resultados. Primeros 100k€. Visión del paso siguiente en la carrera.',
+    pillars: [
+      { id:'finanzas',    focus:'100k€ patrimonio' },
+      { id:'profesional', focus:'Visión post-Portland' },
+      { id:'salud',       focus:'Forma estable' },
+    ],
+    milestones: [
+      '100k€ de patrimonio neto',
+      'Cartera diversificada activa',
+      'Forma física mantenida 12 meses',
+      'Francés B1 en camino',
+    ]
+  },
+  {
+    period: 'Sep 2027 – Mar 2028',
+    name: 'Expansión',
+    status: 'future',
+    desc: 'Operar desde posición de fuerza. Abrir nuevos frentes con criterio.',
+    pillars: [
+      { id:'profesional', focus:'Siguiente nivel' },
+      { id:'desarrollo',  focus:'Francés arranca' },
+      { id:'social',      focus:'Relación resuelta' },
+    ],
+    milestones: [
+      'Decisión sobre futuro en Portland',
+      'Francés B1 certificado',
+      'Situación con novia definida',
+      'Nuevos proyectos propios iniciados',
+    ]
+  },
+  {
+    period: 'Mar – Sep 2028',
+    name: 'Autonomía',
+    status: 'future',
+    desc: 'Sistema financiero autónomo. Carrera con dirección propia. Base para emprender.',
+    pillars: [
+      { id:'finanzas',    focus:'Ingresos pasivos' },
+      { id:'profesional', focus:'Bases empresariales' },
+      { id:'salud',       focus:'Hábitos automáticos' },
+    ],
+    milestones: [
+      'Primer ingreso pasivo real',
+      'Plan empresarial inmobiliario esbozado',
+      'Hábitos de salud en piloto automático',
+      'Patrimonio por encima de 130k€',
+    ]
+  },
+  {
+    period: 'Sep 2028 – Mar 2029',
+    name: 'Maestría',
+    status: 'future',
+    desc: 'Todos los pilares en verde. Sistema autónomo. Visión clara del empresario que quieres ser.',
+    pillars: [
+      { id:'salud',       focus:'Óptimo' },
+      { id:'profesional', focus:'Referente sectorial' },
+      { id:'finanzas',    focus:'Libertad financiera' },
+      { id:'social',      focus:'Estabilidad total' },
+    ],
+    milestones: [
+      'Todos los pilares por encima del 80%',
+      'Base para primer proyecto propio',
+      'Relación estable y con futuro claro',
+      'Sistema de vida que no depende de la disciplina',
+    ]
+  }
 ];
 
-// ── CALC ──
+// ═══════════════════════════════════════════════════════
+//  LÓGICA
+// ═══════════════════════════════════════════════════════
 const calcObjPct = obj => {
-  const t=obj.milestones.length, d=obj.milestones.filter(m=>m.status==='done').length, a=obj.milestones.filter(m=>m.status==='active').length;
-  return Math.round((d+a*0.5)/t*100);
+  const t=obj.milestones.length,
+        d=obj.milestones.filter(m=>m.status==='done').length,
+        a=obj.milestones.filter(m=>m.status==='active').length;
+  return Math.round((d + a*0.5) / t * 100);
 };
-const calcPillarPct = p => { const v=p.objectives.map(calcObjPct); return Math.round(v.reduce((a,b)=>a+b,0)/v.length); };
-const calcGlobal = () => { const v=PILLARS.map(calcPillarPct); return Math.round(v.reduce((a,b)=>a+b,0)/v.length); };
+const calcPillarPct = p => {
+  const v = p.objectives.map(calcObjPct);
+  return Math.round(v.reduce((a,b)=>a+b,0) / v.length);
+};
+const calcGlobal = () => {
+  const v = PILLARS.map(calcPillarPct);
+  return Math.round(v.reduce((a,b)=>a+b,0) / v.length);
+};
 
-// ── TIMELINE ──
+// ═══════════════════════════════════════════════════════
+//  TIMELINE
+// ═══════════════════════════════════════════════════════
 function renderTimeline() {
   const strip = document.getElementById('phasesStrip');
   strip.innerHTML = '';
+
   PHASES.forEach(phase => {
     const col = document.createElement('div');
     col.className = 'phase-col ' + phase.status;
+
     const pillsHTML = phase.pillars.map(pp => {
       const p = PILLARS.find(x=>x.id===pp.id);
       return p ? `<span class="phase-pill" style="background:${p.bg};color:${p.color}">${pp.focus}</span>` : '';
     }).join('');
+
     const dotColor = phase.status==='current' ? '#1A1916' : '#D0CEC8';
-    const msHTML = phase.milestones.map(m => `<div class="phase-milestone"><div class="phase-ms-dot" style="background:${dotColor}"></div><span>${m}</span></div>`).join('');
-    col.innerHTML = `<div class="phase-inner"><div class="phase-period">${phase.period}</div><div class="phase-name">${phase.name}</div><div class="phase-desc">${phase.desc}</div><div class="phase-pillars">${pillsHTML}</div><div class="phase-milestones">${msHTML}</div></div>`;
+    const msHTML = phase.milestones.map(m =>
+      `<div class="phase-milestone">
+        <div class="phase-ms-dot" style="background:${dotColor}"></div>
+        <span>${m}</span>
+      </div>`
+    ).join('');
+
+    col.innerHTML = `<div class="phase-inner">
+      <div class="phase-period">${phase.period}</div>
+      <div class="phase-name">${phase.name}</div>
+      <div class="phase-desc">${phase.desc}</div>
+      <div class="phase-pillars">${pillsHTML}</div>
+      <div class="phase-milestones">${msHTML}</div>
+    </div>`;
     strip.appendChild(col);
   });
+
   setTimeout(() => { document.getElementById('tlFill').style.width = '0%'; }, 200);
 }
 
-// ── PILLARS ──
+// ═══════════════════════════════════════════════════════
+//  PILLAR CARDS
+// ═══════════════════════════════════════════════════════
 function renderPillars() {
   const grid = document.getElementById('pillarsGrid');
   grid.innerHTML = '';
   PILLARS.forEach(p => {
-    const pct=calcPillarPct(p), total=p.objectives.reduce((a,o)=>a+o.milestones.length,0), done=p.objectives.reduce((a,o)=>a+o.milestones.filter(m=>m.status==='done').length,0);
-    const card=document.createElement('div');
-    card.className='pillar-card'; card.id='card-'+p.id;
-    card.style.setProperty('--pillar-color',p.color);
-    card.style.setProperty('--pillar-bg',p.bg);
-    card.onclick=()=>openDetail(p.id);
-    card.innerHTML=`<div class="p-icon">${p.icon}</div><div class="p-name">${p.name}</div><div class="p-pct">${pct}<span>%</span></div><div class="p-bar-bg"><div class="p-bar-fill" style="width:0%;background:${p.color}" data-t="${pct}"></div></div><div class="p-stats"><span><strong>${done}</strong>/${total} hitos</span><span>${p.objectives.length} objetivos</span></div>`;
+    const pct   = calcPillarPct(p);
+    const total = p.objectives.reduce((a,o)=>a+o.milestones.length, 0);
+    const done  = p.objectives.reduce((a,o)=>a+o.milestones.filter(m=>m.status==='done').length, 0);
+    const card  = document.createElement('div');
+    card.className = 'pillar-card';
+    card.id = 'card-' + p.id;
+    card.style.setProperty('--pillar-color', p.color);
+    card.style.setProperty('--pillar-bg', p.bg);
+    card.onclick = () => openDetail(p.id);
+    card.innerHTML = `
+      <div class="p-icon">${p.icon}</div>
+      <div class="p-name">${p.name}</div>
+      <div class="p-pct">${pct}<span>%</span></div>
+      <div class="p-bar-bg"><div class="p-bar-fill" style="width:0%;background:${p.color}" data-t="${pct}"></div></div>
+      <div class="p-stats"><span><strong>${done}</strong>/${total} hitos</span><span>${p.objectives.length} objetivos</span></div>`;
     grid.appendChild(card);
   });
-  setTimeout(()=>{ document.querySelectorAll('.p-bar-fill').forEach(el=>{el.style.width=el.dataset.t+'%';}); },100);
+  setTimeout(() => {
+    document.querySelectorAll('.p-bar-fill').forEach(el => { el.style.width = el.dataset.t + '%'; });
+  }, 100);
 }
 
-// ── DETAIL ──
-let activeId=null;
+// ═══════════════════════════════════════════════════════
+//  DETAIL PANEL
+// ═══════════════════════════════════════════════════════
+let activeId = null;
 function openDetail(id) {
-  const p=PILLARS.find(x=>x.id===id); if(!p) return;
-  if(activeId===id){closeDetail();return;}
-  activeId=id;
+  const p = PILLARS.find(x=>x.id===id);
+  if (!p) return;
+  if (activeId===id) { closeDetail(); return; }
+  activeId = id;
+
   document.querySelectorAll('.pillar-card').forEach(c=>c.classList.remove('active'));
   document.getElementById('card-'+id).classList.add('active');
-  document.getElementById('detailHdr').style.background=p.bg+'66';
-  document.getElementById('detailIco').style.background=p.color;
-  document.getElementById('detailIco').textContent=p.icon;
-  document.getElementById('detailTtl').textContent=p.name;
-  document.getElementById('detailSub').textContent=p.objectives.length+' objetivos · '+p.objectives.reduce((a,o)=>a+o.milestones.length,0)+' hitos totales';
-  const body=document.getElementById('detailBody');
-  body.innerHTML='';
-  body.style.setProperty('--pillar-color',p.color);
-  body.style.setProperty('--pillar-bg',p.bg);
-  p.objectives.forEach(obj=>{
-    const pct=calcObjPct(obj), block=document.createElement('div');
-    block.className='obj-block';
-    block.style.setProperty('--pillar-color',p.color);
-    block.style.setProperty('--pillar-bg',p.bg);
-    const msHTML=obj.milestones.map(m=>{
-      const lbl=m.status==='done'?'✓ Completado':m.status==='active'?'→ En curso':'· Pendiente';
-      return `<div class="ms-item ${m.status}"><div class="ms-check">${m.status==='done'?'✓':''}</div><div class="ms-content"><div class="ms-title">${m.title}</div><div class="ms-date">${m.date}</div></div><div class="ms-status">${lbl}</div></div>`;
+  document.getElementById('detailHdr').style.background = p.bg + '66';
+  document.getElementById('detailIco').style.background  = p.color;
+  document.getElementById('detailIco').textContent       = p.icon;
+  document.getElementById('detailTtl').textContent       = p.name;
+  document.getElementById('detailSub').textContent       =
+    p.objectives.length + ' objetivos · ' +
+    p.objectives.reduce((a,o)=>a+o.milestones.length,0) + ' hitos totales';
+
+  const body = document.getElementById('detailBody');
+  body.innerHTML = '';
+  body.style.setProperty('--pillar-color', p.color);
+  body.style.setProperty('--pillar-bg', p.bg);
+
+  p.objectives.forEach(obj => {
+    const pct   = calcObjPct(obj);
+    const block = document.createElement('div');
+    block.className = 'obj-block';
+    block.style.setProperty('--pillar-color', p.color);
+    block.style.setProperty('--pillar-bg', p.bg);
+
+    const msHTML = obj.milestones.map(m => {
+      const lbl = m.status==='done' ? '✓ Completado' : m.status==='active' ? '→ En curso' : '· Pendiente';
+      return `<div class="ms-item ${m.status}">
+        <div class="ms-check">${m.status==='done'?'✓':''}</div>
+        <div class="ms-content">
+          <div class="ms-title">${m.title}</div>
+          <div class="ms-date">${m.date}</div>
+        </div>
+        <div class="ms-status">${lbl}</div>
+      </div>`;
     }).join('');
-    block.innerHTML=`<div class="obj-hdr"><div class="obj-name">${obj.name}</div><div class="obj-badge">${pct}%</div></div><div class="obj-meta"><div class="obj-bar-bg"><div class="obj-bar-fill" style="width:0%" data-t="${pct}"></div></div><div class="obj-pct">${pct}%</div></div><div class="ms-list">${msHTML}</div>`;
+
+    block.innerHTML = `
+      <div class="obj-hdr">
+        <div class="obj-name">${obj.name}</div>
+        <div class="obj-badge">${pct}%</div>
+      </div>
+      <div class="obj-meta">
+        <div class="obj-bar-bg"><div class="obj-bar-fill" style="width:0%" data-t="${pct}"></div></div>
+        <div class="obj-pct">${pct}%</div>
+      </div>
+      <div class="ms-list">${msHTML}</div>`;
     body.appendChild(block);
   });
+
   document.getElementById('detailPanel').classList.add('visible');
-  setTimeout(()=>{ body.querySelectorAll('.obj-bar-fill').forEach(el=>{el.style.background=p.color;el.style.transition='width 0.8s cubic-bezier(0.4,0,0.2,1)';el.style.width=el.dataset.t+'%';}); },50);
-  document.getElementById('detailPanel').scrollIntoView({behavior:'smooth',block:'nearest'});
+  setTimeout(() => {
+    body.querySelectorAll('.obj-bar-fill').forEach(el => {
+      el.style.background = p.color;
+      el.style.transition = 'width 0.8s cubic-bezier(0.4,0,0.2,1)';
+      el.style.width = el.dataset.t + '%';
+    });
+  }, 50);
+  document.getElementById('detailPanel').scrollIntoView({behavior:'smooth', block:'nearest'});
 }
+
 function closeDetail() {
   document.getElementById('detailPanel').classList.remove('visible');
   document.querySelectorAll('.pillar-card').forEach(c=>c.classList.remove('active'));
-  activeId=null;
+  activeId = null;
 }
 
-// ── RADAR ──
+// ═══════════════════════════════════════════════════════
+//  RADAR
+// ═══════════════════════════════════════════════════════
 function drawRadar() {
-  const canvas=document.getElementById('radarChart'), ctx=canvas.getContext('2d');
-  const W=canvas.width,H=canvas.height,cx=W/2,cy=H/2,R=Math.min(W,H)/2-64;
+  const canvas = document.getElementById('radarChart');
+  const ctx = canvas.getContext('2d');
+  const W=canvas.width, H=canvas.height;
+  const cx=W/2, cy=H/2;
+  const R = Math.min(W,H)/2 - 64; // generous margin for labels
+
   ctx.clearRect(0,0,W,H);
-  const vals=PILLARS.map(p=>calcPillarPct(p)/100), N=PILLARS.length, step=(Math.PI*2)/N, start=-Math.PI/2;
-  const pt=(i,r)=>({x:cx+Math.cos(start+i*step)*r, y:cy+Math.sin(start+i*step)*r});
-  [0.25,0.5,0.75,1.0].forEach(l=>{
-    ctx.beginPath();
-    for(let i=0;i<N;i++){const p=pt(i,R*l);i===0?ctx.moveTo(p.x,p.y):ctx.lineTo(p.x,p.y);}
-    ctx.closePath(); ctx.strokeStyle=l===1.0?'#C8C5BE':'#E2DFD8'; ctx.lineWidth=l===1.0?1.5:1; ctx.stroke();
-    const lp=pt(2,R*l); ctx.font='500 9px DM Sans'; ctx.fillStyle='#C0BDB6'; ctx.textAlign='center'; ctx.textBaseline='middle'; ctx.fillText(Math.round(l*100)+'%',lp.x+10,lp.y);
+
+  const vals = PILLARS.map(p => calcPillarPct(p)/100);
+  const N = PILLARS.length;
+  const step  = (Math.PI*2)/N;
+  const start = -Math.PI/2;
+  const pt = (i,r) => ({
+    x: cx + Math.cos(start + i*step) * r,
+    y: cy + Math.sin(start + i*step) * r
   });
-  for(let i=0;i<N;i++){const p=pt(i,R);ctx.beginPath();ctx.moveTo(cx,cy);ctx.lineTo(p.x,p.y);ctx.strokeStyle='#E2DFD8';ctx.lineWidth=1;ctx.stroke();}
+
+  // Grid rings with labels
+  const levels = [0.25, 0.5, 0.75, 1.0];
+  levels.forEach(l => {
+    ctx.beginPath();
+    for(let i=0;i<N;i++){
+      const p=pt(i, R*l);
+      i===0 ? ctx.moveTo(p.x,p.y) : ctx.lineTo(p.x,p.y);
+    }
+    ctx.closePath();
+    ctx.strokeStyle = l===1.0 ? '#C8C5BE' : '#E2DFD8';
+    ctx.lineWidth   = l===1.0 ? 1.5 : 1;
+    ctx.stroke();
+
+    // Ring percentage label (bottom-right of each ring)
+    const labelPt = pt(2, R*l); // anchored to axis 2
+    ctx.font = '500 9px DM Sans';
+    ctx.fillStyle = '#C0BDB6';
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+    ctx.fillText(Math.round(l*100)+'%', labelPt.x + 10, labelPt.y);
+  });
+
+  // Axis lines
+  for(let i=0;i<N;i++){
+    const p=pt(i,R);
+    ctx.beginPath();
+    ctx.moveTo(cx,cy);
+    ctx.lineTo(p.x,p.y);
+    ctx.strokeStyle='#E2DFD8';
+    ctx.lineWidth=1;
+    ctx.stroke();
+  }
+
+  // Data polygon — minimum visible radius so it never collapses to a dot
+  const minDisplay = 0.06;
   ctx.beginPath();
-  vals.forEach((v,i)=>{const p=pt(i,R*Math.max(v,0.06));i===0?ctx.moveTo(p.x,p.y):ctx.lineTo(p.x,p.y);});
-  ctx.closePath(); ctx.fillStyle='rgba(26,25,22,0.07)'; ctx.fill(); ctx.strokeStyle='#1A1916'; ctx.lineWidth=2; ctx.stroke();
-  vals.forEach((v,i)=>{const p=pt(i,R*Math.max(v,0.06));ctx.beginPath();ctx.arc(p.x,p.y,5,0,Math.PI*2);ctx.fillStyle=PILLARS[i].color;ctx.fill();ctx.strokeStyle='#fff';ctx.lineWidth=1.5;ctx.stroke();});
-  ctx.font='600 12px DM Sans'; ctx.textAlign='center'; ctx.textBaseline='middle';
-  PILLARS.forEach((p,i)=>{const pos=pt(i,R+36);ctx.fillStyle=p.color;ctx.fillText(p.name.toUpperCase(),pos.x,pos.y);});
-  ctx.font='600 11px DM Sans';
-  vals.forEach((v,i)=>{const p=pt(i,R*Math.max(v,0.06)),angle=start+i*step,lx=p.x+Math.cos(angle)*18,ly=p.y+Math.sin(angle)*18;ctx.fillStyle=PILLARS[i].color;ctx.textAlign='center';ctx.textBaseline='middle';ctx.fillText(Math.round(v*100)+'%',lx,ly);});
+  vals.forEach((v,i)=>{
+    const p = pt(i, R * Math.max(v, minDisplay));
+    i===0 ? ctx.moveTo(p.x,p.y) : ctx.lineTo(p.x,p.y);
+  });
+  ctx.closePath();
+  ctx.fillStyle = 'rgba(26,25,22,0.07)';
+  ctx.fill();
+  ctx.strokeStyle = '#1A1916';
+  ctx.lineWidth = 2;
+  ctx.stroke();
+
+  // Data points
+  vals.forEach((v,i)=>{
+    const p = pt(i, R * Math.max(v, minDisplay));
+    ctx.beginPath();
+    ctx.arc(p.x, p.y, 5, 0, Math.PI*2);
+    ctx.fillStyle = PILLARS[i].color;
+    ctx.fill();
+    ctx.strokeStyle = '#fff';
+    ctx.lineWidth = 1.5;
+    ctx.stroke();
+  });
+
+  // Axis labels — larger, bolder, pushed further out
+  ctx.font = '600 12px DM Sans';
+  ctx.textAlign = 'center';
+  ctx.textBaseline = 'middle';
+  PILLARS.forEach((p,i)=>{
+    const pos = pt(i, R + 36);
+    ctx.fillStyle = p.color;
+    ctx.fillText(p.name.toUpperCase(), pos.x, pos.y);
+  });
+
+  // Value labels next to each data point
+  ctx.font = '600 11px DM Sans';
+  vals.forEach((v,i)=>{
+    const p = pt(i, R * Math.max(v, minDisplay));
+    // offset label slightly away from center
+    const angle = start + i*step;
+    const offset = 18;
+    const lx = p.x + Math.cos(angle) * offset;
+    const ly = p.y + Math.sin(angle) * offset;
+    ctx.fillStyle = PILLARS[i].color;
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+    ctx.fillText(Math.round(v*100)+'%', lx, ly);
+  });
 }
 
-// ── NEXT ACTIONS ──
+// ═══════════════════════════════════════════════════════
+//  NEXT ACTIONS
+// ═══════════════════════════════════════════════════════
 function renderNextActions() {
-  const container=document.getElementById('nextActions');
-  container.innerHTML='';
-  const active=[];
-  PILLARS.forEach(p=>p.objectives.forEach(obj=>obj.milestones.filter(m=>m.status==='active').forEach(m=>active.push({p,m}))));
-  if(!active.length){container.innerHTML='<div class="no-active">Sin hitos activos aún.</div>';return;}
-  active.slice(0,6).forEach(({p,m})=>{
-    const div=document.createElement('div'); div.className='next-action';
-    div.innerHTML=`<div class="na-dot" style="background:${p.color}"></div><div><div class="na-text">${m.title}</div><div class="na-meta">${p.name} · ${m.date}</div></div>`;
+  const container = document.getElementById('nextActions');
+  container.innerHTML = '';
+  const active = [];
+  PILLARS.forEach(p => p.objectives.forEach(obj =>
+    obj.milestones.filter(m=>m.status==='active').forEach(m => active.push({p, m}))
+  ));
+  if (!active.length) {
+    container.innerHTML = '<div class="no-active">Sin hitos activos aún. Activa el primero en cada pilar para empezar a mover el marcador.</div>';
+    return;
+  }
+  active.slice(0,6).forEach(({p,m}) => {
+    const div = document.createElement('div');
+    div.className = 'next-action';
+    div.innerHTML = `
+      <div class="na-dot" style="background:${p.color}"></div>
+      <div>
+        <div class="na-text">${m.title}</div>
+        <div class="na-meta">${p.name} · ${m.date}</div>
+      </div>`;
     container.appendChild(div);
   });
 }
 
-// ── BALANCE ──
+// ═══════════════════════════════════════════════════════
+//  BALANCE CHECK
+// ═══════════════════════════════════════════════════════
 function checkBalance() {
-  const vals=PILLARS.map(p=>({name:p.name,pct:calcPillarPct(p)}));
-  const avg=vals.reduce((a,b)=>a+b.pct,0)/vals.length;
-  const lags=vals.filter(v=>v.pct<avg-20);
-  if(lags.length){
+  const vals = PILLARS.map(p => ({name:p.name, pct:calcPillarPct(p)}));
+  const avg  = vals.reduce((a,b)=>a+b.pct,0) / vals.length;
+  const lags = vals.filter(v => v.pct < avg - 20);
+  if (lags.length) {
     document.getElementById('balanceAlert').classList.add('visible');
-    document.getElementById('balanceAlertText').textContent='Desequilibrio detectado: '+lags.map(l=>l.name+' ('+l.pct+'%)').join(', ')+' por debajo del promedio ('+Math.round(avg)+'%). Error estratégico — requiere atención inmediata.';
+    document.getElementById('balanceAlertText').textContent =
+      'Desequilibrio detectado: ' + lags.map(l=>l.name+' ('+l.pct+'%)').join(', ') +
+      ' por debajo del promedio (' + Math.round(avg) + '%). Error estratégico — requiere atención inmediata.';
   }
 }
 
-// ── HERO DATE ──
-function setHeroDate() {
-  const start = new Date('2026-03-09');
-  const now   = new Date();
-  const days  = Math.floor((now - start) / (1000*60*60*24)) + 1;
-  document.getElementById('heroDate').textContent = 'Día ' + days;
-  document.getElementById('globalScore').textContent = calcGlobal() + '%';
-}
-
-// ── INIT ──
+// ═══════════════════════════════════════════════════════
+//  INIT
+// ═══════════════════════════════════════════════════════
 window.addEventListener('DOMContentLoaded', () => {
-  setHeroDate();
   renderTimeline();
   renderPillars();
   renderNextActions();
