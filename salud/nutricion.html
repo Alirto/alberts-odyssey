@@ -3,445 +3,188 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Plan Nutricional</title>
-<link href="https://fonts.googleapis.com/css2?family=SF+Pro+Display:wght@300;400;500;600&family=Nunito:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<title>Plan Nutricional — Albert's Odyssey</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
-  * { margin: 0; padding: 0; box-sizing: border-box; }
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --bg: #F5F4F0; --surface: #FFFFFF; --border: #E8E6E0; --border-2: #D0CEC8;
+  --text-1: #1A1916; --text-2: #6B6860; --text-3: #A8A49C;
+  --green: #2D6A4F; --green-bg: #EAF3EE;
+}
+html { scroll-behavior: smooth; }
+body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--text-1); min-height: 100vh; -webkit-font-smoothing: antialiased; }
 
-  body {
-    font-family: 'Nunito', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', sans-serif;
-    background: linear-gradient(145deg, #e8f4f8 0%, #f0e8f8 30%, #f8eef0 60%, #eef4f0 100%);
-    min-height: 100vh;
-    color: #1a1a2e;
-    font-size: 14px;
-    overflow-x: hidden;
-  }
+/* ── NAV ── */
+nav { background: var(--surface); border-bottom: 1px solid var(--border); padding: 0 48px; display: flex; align-items: center; height: 56px; position: sticky; top: 0; z-index: 100; }
+.nav-logo { font-family: 'DM Serif Display', serif; font-size: 18px; letter-spacing: -0.3px; color: var(--text-1); text-decoration: none; margin-right: 36px; white-space: nowrap; flex-shrink: 0; }
+.nav-logo span { font-style: italic; color: var(--text-2); }
+.nav-links { display: flex; align-items: stretch; flex: 1; overflow-x: auto; }
+.nav-link { font-size: 12px; font-weight: 500; color: var(--text-2); padding: 0 16px; text-decoration: none; height: 56px; display: flex; align-items: center; white-space: nowrap; border-bottom: 2px solid transparent; margin-bottom: -1px; transition: color .15s, border-color .15s; }
+.nav-link:hover { color: var(--text-1); }
+.nav-link.active { color: var(--text-1); border-bottom-color: var(--text-1); font-weight: 600; }
 
-  /* Animated background blobs */
-  .bg-blob {
-    position: fixed;
-    border-radius: 50%;
-    filter: blur(80px);
-    opacity: 0.35;
-    pointer-events: none;
-    z-index: 0;
-    animation: float 12s ease-in-out infinite;
-  }
-  .bg-blob-1 { width: 600px; height: 600px; background: radial-gradient(circle, #b8d4f8, #d4b8f8); top: -150px; left: -150px; animation-delay: 0s; }
-  .bg-blob-2 { width: 500px; height: 500px; background: radial-gradient(circle, #f8d4e8, #f8f0b8); top: 30%; right: -100px; animation-delay: -4s; }
-  .bg-blob-3 { width: 400px; height: 400px; background: radial-gradient(circle, #b8f8e8, #b8e8f8); bottom: -100px; left: 30%; animation-delay: -8s; }
+/* ── LAYOUT ── */
+.page { max-width: 1280px; margin: 0 auto; padding: 48px; }
 
-  @keyframes float {
-    0%, 100% { transform: translate(0, 0) scale(1); }
-    33% { transform: translate(30px, -20px) scale(1.05); }
-    66% { transform: translate(-20px, 15px) scale(0.97); }
-  }
+/* ── PAGE HEADER ── */
+.page-hdr { padding: 48px 0 36px; border-bottom: 1px solid var(--border); margin-bottom: 40px; display: flex; align-items: flex-start; gap: 24px; flex-wrap: wrap; justify-content: space-between; }
+.ph-left { display: flex; align-items: flex-start; gap: 20px; }
+.ph-icon { width: 52px; height: 52px; border-radius: 12px; background: var(--green-bg); display: flex; align-items: center; justify-content: center; font-size: 24px; border: 1px solid var(--border); flex-shrink: 0; }
+.ph-eyebrow { font-size: 11px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; color: var(--text-3); margin-bottom: 6px; }
+.ph-title { font-family: 'DM Serif Display', serif; font-size: 32px; letter-spacing: -0.5px; line-height: 1.1; margin-bottom: 8px; }
+.ph-sub { font-size: 13px; color: var(--text-2); line-height: 1.6; }
+.ph-stats { display: flex; gap: 24px; align-items: flex-end; flex-wrap: wrap; }
+.ph-stat-val { font-family: 'DM Serif Display', serif; font-size: 28px; line-height: 1; letter-spacing: -0.5px; color: var(--green); }
+.ph-stat-lbl { font-size: 11px; color: var(--text-3); font-weight: 500; margin-top: 3px; }
 
-  .wrapper { position: relative; z-index: 1; max-width: 1200px; margin: 0 auto; padding: 32px 24px 60px; }
+/* ── TABS ── */
+.tabs-bar { display: flex; gap: 0; border-bottom: 1px solid var(--border); margin-bottom: 36px; overflow-x: auto; }
+.tab { font-family: 'DM Sans', sans-serif; font-size: 13px; font-weight: 500; color: var(--text-2); padding: 12px 20px; background: none; border: none; border-bottom: 2px solid transparent; margin-bottom: -1px; cursor: pointer; white-space: nowrap; transition: color .15s, border-color .15s; display: flex; align-items: center; gap: 7px; }
+.tab:hover { color: var(--text-1); }
+.tab.active { color: var(--text-1); border-bottom-color: var(--green); font-weight: 600; }
 
-  /* HEADER */
-  .header {
-    background: rgba(255, 255, 255, 0.55);
-    backdrop-filter: blur(40px) saturate(180%);
-    -webkit-backdrop-filter: blur(40px) saturate(180%);
-    border: 1px solid rgba(255, 255, 255, 0.8);
-    border-radius: 28px;
-    padding: 32px 40px;
-    margin-bottom: 20px;
-    box-shadow: 0 8px 32px rgba(0,0,0,0.06), inset 0 1px 0 rgba(255,255,255,0.9);
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 24px;
-    flex-wrap: wrap;
-  }
+/* ── SECTION LABEL ── */
+.sl { font-size: 11px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; color: var(--text-3); margin: 36px 0 18px; display: flex; align-items: center; gap: 14px; }
+.sl::after { content: ''; flex: 1; height: 1px; background: var(--border); }
 
-  .header-icon {
-    width: 56px; height: 56px;
-    background: linear-gradient(135deg, #6ec6f5, #a78bfa);
-    border-radius: 16px;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 26px;
-    box-shadow: 0 4px 16px rgba(110, 198, 245, 0.4);
-    flex-shrink: 0;
-  }
+/* ── GRID ── */
+.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); gap: 14px; margin-bottom: 8px; }
+.grid-3 { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 14px; margin-bottom: 8px; }
 
-  .header-title {
-    font-size: 30px;
-    font-weight: 700;
-    background: linear-gradient(135deg, #3b82f6, #8b5cf6, #ec4899);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    letter-spacing: -0.5px;
-  }
+/* ── CARD ACCORDION ── */
+.card { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; overflow: hidden; transition: all .2s; }
+.card:hover { border-color: var(--border-2); box-shadow: 0 4px 16px rgba(0,0,0,.06); }
+.card.open { border-color: var(--border-2); }
+.ch { padding: 16px 20px; display: flex; align-items: center; gap: 14px; cursor: pointer; user-select: none; }
+.c-icon { width: 36px; height: 36px; border-radius: 8px; background: var(--bg); display: flex; align-items: center; justify-content: center; font-size: 18px; flex-shrink: 0; border: 1px solid var(--border); }
+.cn { font-size: 14px; font-weight: 600; flex: 1; color: var(--text-1); }
+.dose { font-size: 11px; font-weight: 600; padding: 3px 10px; border-radius: 20px; flex-shrink: 0; }
+.chev { color: var(--text-3); font-size: 10px; flex-shrink: 0; transition: transform .25s; }
+.card.open .chev { transform: rotate(180deg); }
+.cb { display: none; border-top: 1px solid var(--border); }
+.card.open .cb { display: block; }
 
-  .header-sub {
-    font-size: 12px;
-    font-weight: 500;
-    color: #8892a4;
-    margin-top: 3px;
-    letter-spacing: 0.02em;
-  }
+/* ── INNER ACCORDION ── */
+.acc { border-bottom: 1px solid var(--border); }
+.acc:last-child { border-bottom: none; }
+.at { padding: 11px 20px; font-size: 11px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: var(--text-3); display: flex; align-items: center; justify-content: space-between; cursor: pointer; user-select: none; transition: color .15s; gap: 8px; }
+.at:hover { color: var(--text-1); }
+.acc.open .at { color: var(--text-1); }
+.ac { display: none; padding: 2px 20px 14px; font-size: 13px; color: var(--text-2); line-height: 1.7; }
+.acc.open .ac { display: block; }
 
-  .header-badge {
-    background: rgba(255,255,255,0.7);
-    backdrop-filter: blur(20px);
-    border: 1px solid rgba(255,255,255,0.9);
-    border-radius: 20px;
-    padding: 10px 20px;
-    font-size: 13px;
-    font-weight: 600;
-    color: #5b6af0;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
-    white-space: nowrap;
-  }
+/* ── FOOD TAGS ── */
+.fg { display: flex; flex-wrap: wrap; gap: 7px; padding: 8px 0; }
+.ft { background: var(--bg); border: 1px solid var(--border); border-radius: 20px; padding: 4px 12px; font-size: 12px; font-weight: 500; color: var(--text-2); display: flex; gap: 6px; align-items: center; }
+.ft span { color: var(--text-3); font-size: 11px; }
 
-  /* TABS */
-  .tabs-container {
-    background: rgba(255, 255, 255, 0.5);
-    backdrop-filter: blur(30px) saturate(160%);
-    -webkit-backdrop-filter: blur(30px) saturate(160%);
-    border: 1px solid rgba(255,255,255,0.75);
-    border-radius: 20px;
-    padding: 6px;
-    margin-bottom: 24px;
-    display: flex;
-    gap: 4px;
-    box-shadow: 0 4px 16px rgba(0,0,0,0.05), inset 0 1px 0 rgba(255,255,255,0.8);
-    overflow-x: auto;
-  }
+/* ── ALERTS ── */
+.al { padding: 10px 14px; border-radius: 8px; margin-top: 8px; font-size: 12px; font-weight: 500; line-height: 1.6; display: flex; gap: 8px; align-items: flex-start; }
+.aw { background: #FFF8EC; border: 1px solid #F2CC8F; border-left: 3px solid #C9A227; color: #7A6010; }
+.ad { background: #FEF3F2; border: 1px solid #FECDCA; border-left: 3px solid #D92D20; color: #912018; }
+.al::before { font-size: 13px; flex-shrink: 0; margin-top: 1px; }
+.aw::before { content: '⚠'; }
+.ad::before { content: '⚡'; }
 
-  .tab {
-    flex: 1;
-    min-width: 120px;
-    padding: 10px 20px;
-    border-radius: 14px;
-    font-size: 13px;
-    font-weight: 600;
-    color: #8892a4;
-    cursor: pointer;
-    transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
-    text-align: center;
-    white-space: nowrap;
-    border: none;
-    background: transparent;
-    user-select: none;
-  }
+/* ── TAB PANELS ── */
+.tp { display: none; }
+.tp.active { display: block; }
 
-  .tab:hover { color: #5b6af0; background: rgba(255,255,255,0.5); }
+/* ── MACROS STRIP ── */
+.macros-strip { display: grid; grid-template-columns: repeat(5, 1fr); gap: 14px; margin-bottom: 36px; }
+.mc { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 20px; }
+.mc-lbl { font-size: 10px; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase; color: var(--text-3); margin-bottom: 10px; }
+.mc-val { font-family: 'DM Serif Display', serif; font-size: 26px; line-height: 1; margin-bottom: 4px; color: var(--text-1); }
+.mc-sub { font-size: 11px; color: var(--text-3); }
 
-  .tab.active {
-    background: rgba(255, 255, 255, 0.9);
-    backdrop-filter: blur(20px);
-    color: #5b6af0;
-    box-shadow: 0 4px 16px rgba(91, 106, 240, 0.15), 0 1px 4px rgba(0,0,0,0.08);
-    transform: translateY(-1px);
-  }
+/* ── PRINCIPLE CARDS ── */
+.pg { display: grid; grid-template-columns: repeat(auto-fill, minmax(270px, 1fr)); gap: 12px; margin-bottom: 24px; }
+.pr { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 18px 20px; border-left: 3px solid; }
+.pt { font-size: 14px; font-weight: 600; margin-bottom: 6px; }
+.pb { font-size: 13px; color: var(--text-2); line-height: 1.65; }
 
-  /* SECTION LABEL */
-  .sl {
-    font-size: 11px;
-    font-weight: 700;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: #9ba8c0;
-    margin: 24px 0 14px;
-    display: flex;
-    align-items: center;
-    gap: 12px;
-  }
-  .sl::after { content: ''; flex: 1; height: 1px; background: linear-gradient(90deg, rgba(155,168,192,0.4), transparent); }
+/* ── DIET BLOCKS ── */
+.db { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; margin-bottom: 14px; overflow: hidden; }
+.dbh { padding: 16px 24px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px; border-bottom: 1px solid var(--border); background: #FAFAF8; }
+.dbt { font-family: 'DM Serif Display', serif; font-size: 18px; color: var(--text-1); }
+.dbs { font-size: 11px; font-weight: 500; color: var(--text-3); margin-top: 2px; letter-spacing: .04em; }
+.dbk { background: var(--green-bg); border: 1px solid #c3ddd1; border-radius: 20px; padding: 5px 14px; font-size: 12px; font-weight: 600; color: var(--green); }
+.dbb { padding: 20px 24px; }
+.meal { margin-bottom: 20px; }
+.meal:last-child { margin-bottom: 0; }
+.mn { font-size: 10px; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase; color: var(--text-3); margin-bottom: 12px; }
+.mi { background: var(--bg); border: 1px solid var(--border); border-radius: 8px; padding: 10px 16px; margin-bottom: 7px; display: flex; gap: 10px; align-items: flex-start; }
+.mi::before { content: '→'; color: var(--green); font-size: 12px; font-weight: 700; flex-shrink: 0; margin-top: 2px; }
+.mit { font-size: 13px; font-weight: 500; color: var(--text-1); line-height: 1.45; }
+.min2 { font-size: 11px; color: var(--text-3); margin-top: 3px; }
 
-  /* GRID */
-  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); gap: 14px; margin-bottom: 8px; }
+/* ── ELIMINATE ── */
+.eg { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 10px; margin-bottom: 24px; }
+.elim { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 16px; border-left: 3px solid; }
+.elim-title { font-size: 13px; font-weight: 600; margin-bottom: 5px; }
+.elim-desc { font-size: 12px; color: var(--text-2); line-height: 1.6; }
 
-  /* GLASS CARD */
-  .card {
-    background: rgba(255, 255, 255, 0.52);
-    backdrop-filter: blur(40px) saturate(180%);
-    -webkit-backdrop-filter: blur(40px) saturate(180%);
-    border: 1px solid rgba(255, 255, 255, 0.8);
-    border-radius: 22px;
-    overflow: hidden;
-    transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
-    box-shadow: 0 4px 20px rgba(0,0,0,0.05), inset 0 1px 0 rgba(255,255,255,0.9);
-  }
+/* ── RESPONSIVE ── */
+@media (max-width: 1100px) { .macros-strip { grid-template-columns: repeat(3,1fr); } }
+@media (max-width: 768px) { nav { padding: 0 20px; } .nav-logo { margin-right: 20px; } .page { padding: 24px 20px; } .page-hdr { padding: 32px 0 24px; } .macros-strip { grid-template-columns: repeat(2,1fr); } .grid, .grid-3 { grid-template-columns: 1fr; } }
 
-  .card:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 12px 40px rgba(0,0,0,0.1), inset 0 1px 0 rgba(255,255,255,0.95);
-    border-color: rgba(255,255,255,0.95);
-  }
-
-  .card.open {
-    box-shadow: 0 8px 32px rgba(91, 106, 240, 0.12), inset 0 1px 0 rgba(255,255,255,0.95);
-  }
-
-  .ch {
-    padding: 18px 20px;
-    display: flex;
-    align-items: center;
-    gap: 13px;
-    cursor: pointer;
-    user-select: none;
-  }
-
-  .dot-wrap {
-    width: 36px; height: 36px;
-    border-radius: 10px;
-    display: flex; align-items: center; justify-content: center;
-    flex-shrink: 0;
-    font-size: 16px;
-  }
-
-  .cn {
-    font-size: 15px;
-    font-weight: 700;
-    flex: 1;
-    color: #1a1a2e;
-  }
-
-  .dose {
-    font-size: 11px;
-    font-weight: 600;
-    padding: 4px 12px;
-    border-radius: 20px;
-    flex-shrink: 0;
-  }
-
-  .chev {
-    color: #b0bac8;
-    font-size: 11px;
-    transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
-    flex-shrink: 0;
-  }
-  .card.open .chev { transform: rotate(180deg); }
-
-  .cb {
-    display: none;
-    border-top: 1px solid rgba(255,255,255,0.7);
-  }
-  .card.open .cb { display: block; }
-
-  /* ACCORDION */
-  .acc { border-bottom: 1px solid rgba(200, 210, 230, 0.3); }
-  .acc:last-child { border-bottom: none; }
-
-  .at {
-    padding: 12px 20px;
-    font-size: 11px;
-    font-weight: 700;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-    color: #9ba8c0;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    cursor: pointer;
-    user-select: none;
-    transition: color 0.2s;
-    gap: 8px;
-  }
-  .at:hover { color: #5b6af0; }
-  .acc.open .at { color: #5b6af0; }
-
-  .ac {
-    display: none;
-    padding: 0 20px 14px;
-    font-size: 13px;
-    color: #4a5568;
-    line-height: 1.75;
-  }
-  .acc.open .ac { display: block; }
-
-  /* FOOD TAGS */
-  .fg { display: flex; flex-wrap: wrap; gap: 7px; padding: 8px 0; }
-  .ft {
-    background: rgba(255,255,255,0.8);
-    backdrop-filter: blur(10px);
-    border: 1px solid rgba(200,210,230,0.5);
-    border-radius: 20px;
-    padding: 5px 12px;
-    font-size: 12px;
-    font-weight: 600;
-    color: #4a5568;
-    display: flex;
-    gap: 6px;
-    align-items: center;
-    box-shadow: 0 1px 4px rgba(0,0,0,0.04);
-  }
-  .ft span { color: #9ba8c0; font-size: 11px; font-weight: 500; }
-
-  /* ALERTS */
-  .al {
-    padding: 10px 14px;
-    border-radius: 12px;
-    margin-top: 8px;
-    font-size: 12px;
-    font-weight: 500;
-    line-height: 1.55;
-    display: flex;
-    gap: 8px;
-    align-items: flex-start;
-  }
-  .aw {
-    background: rgba(251, 191, 36, 0.1);
-    border: 1px solid rgba(251, 191, 36, 0.3);
-    color: #92700a;
-  }
-  .ad {
-    background: rgba(239, 68, 68, 0.08);
-    border: 1px solid rgba(239, 68, 68, 0.25);
-    color: #b91c1c;
-  }
-  .al::before { font-size: 14px; flex-shrink: 0; }
-  .aw::before { content: '⚠️'; }
-  .ad::before { content: '⚡'; }
-
-  /* MACRO CARDS */
-  .mr { display: flex; gap: 12px; margin-bottom: 24px; flex-wrap: wrap; }
-  .mc {
-    flex: 1;
-    min-width: 130px;
-    background: rgba(255,255,255,0.55);
-    backdrop-filter: blur(30px);
-    -webkit-backdrop-filter: blur(30px);
-    border: 1px solid rgba(255,255,255,0.85);
-    border-radius: 20px;
-    padding: 18px 20px;
-    box-shadow: 0 4px 16px rgba(0,0,0,0.05), inset 0 1px 0 rgba(255,255,255,0.9);
-    transition: transform 0.25s;
-  }
-  .mc:hover { transform: translateY(-2px); }
-  .ml { font-size: 10px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: #9ba8c0; margin-bottom: 8px; }
-  .mv { font-size: 26px; font-weight: 800; line-height: 1; margin-bottom: 4px; }
-  .mu2 { font-size: 11px; color: #9ba8c0; font-weight: 500; }
-
-  /* PRINCIPLE CARDS */
-  .pg { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 12px; margin-bottom: 24px; }
-  .pr {
-    background: rgba(255,255,255,0.52);
-    backdrop-filter: blur(30px);
-    -webkit-backdrop-filter: blur(30px);
-    border: 1px solid rgba(255,255,255,0.8);
-    border-radius: 18px;
-    padding: 18px 20px;
-    box-shadow: 0 4px 16px rgba(0,0,0,0.05), inset 0 1px 0 rgba(255,255,255,0.9);
-    border-left: 4px solid;
-    transition: transform 0.25s;
-  }
-  .pr:hover { transform: translateY(-2px); }
-  .pt { font-size: 15px; font-weight: 700; margin-bottom: 6px; color: #1a1a2e; }
-  .pb { font-size: 13px; color: #64748b; line-height: 1.65; }
-
-  /* DIET BLOCKS */
-  .db {
-    background: rgba(255,255,255,0.52);
-    backdrop-filter: blur(40px) saturate(160%);
-    -webkit-backdrop-filter: blur(40px) saturate(160%);
-    border: 1px solid rgba(255,255,255,0.8);
-    border-radius: 22px;
-    margin-bottom: 14px;
-    overflow: hidden;
-    box-shadow: 0 4px 20px rgba(0,0,0,0.05), inset 0 1px 0 rgba(255,255,255,0.9);
-  }
-  .dbh {
-    padding: 16px 24px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 8px;
-    border-bottom: 1px solid rgba(200,210,230,0.3);
-  }
-  .dbt { font-size: 18px; font-weight: 800; color: #1a1a2e; }
-  .dbs { font-size: 11px; font-weight: 600; color: #9ba8c0; margin-top: 2px; letter-spacing: 0.04em; }
-  .dbk {
-    background: rgba(91,106,240,0.1);
-    border: 1px solid rgba(91,106,240,0.2);
-    border-radius: 14px;
-    padding: 6px 14px;
-    font-size: 12px;
-    font-weight: 700;
-    color: #5b6af0;
-  }
-  .dbb { padding: 20px 24px; }
-  .meal { margin-bottom: 20px; }
-  .meal:last-child { margin-bottom: 0; }
-  .mn { font-size: 10px; font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase; color: #9ba8c0; margin-bottom: 10px; }
-  .mi {
-    background: rgba(255,255,255,0.65);
-    backdrop-filter: blur(10px);
-    border: 1px solid rgba(200,210,230,0.4);
-    border-radius: 14px;
-    padding: 10px 16px;
-    margin-bottom: 7px;
-    display: flex;
-    gap: 12px;
-    align-items: flex-start;
-  }
-  .mi::before { content: '→'; color: #5b6af0; font-size: 12px; font-weight: 700; flex-shrink: 0; margin-top: 2px; }
-  .mit { font-size: 13px; font-weight: 600; color: #2d3748; line-height: 1.45; }
-  .min2 { font-size: 11px; color: #9ba8c0; margin-top: 3px; font-weight: 500; }
-
-  /* ELIMINATE GRID */
-  .eg { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 10px; margin-bottom: 24px; }
-
-  /* TAB PANELS */
-  .tp { display: none; }
-  .tp.active { display: block; }
-
-  /* Tablet/Mobile */
-  @media (max-width: 680px) {
-    .wrapper { padding: 16px 12px 40px; }
-    .header { padding: 20px 20px; border-radius: 20px; }
-    .header-title { font-size: 22px; }
-    .tabs-container { border-radius: 16px; }
-    .grid { grid-template-columns: 1fr; }
-    .mr { flex-direction: column; }
-  }
-
-  /* Scrollbar */
-  ::-webkit-scrollbar { width: 6px; height: 6px; }
-  ::-webkit-scrollbar-track { background: transparent; }
-  ::-webkit-scrollbar-thumb { background: rgba(155,168,192,0.4); border-radius: 3px; }
-
-  /* Stagger animation on load */
-  .card { animation: fadeUp 0.4s ease both; }
-  @keyframes fadeUp { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
-  .card:nth-child(1){animation-delay:.05s} .card:nth-child(2){animation-delay:.1s}
-  .card:nth-child(3){animation-delay:.15s} .card:nth-child(4){animation-delay:.2s}
-  .card:nth-child(5){animation-delay:.25s} .card:nth-child(6){animation-delay:.3s}
-  .card:nth-child(7){animation-delay:.35s} .card:nth-child(8){animation-delay:.4s}
+::-webkit-scrollbar { width: 5px; height: 5px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: rgba(0,0,0,.12); border-radius: 3px; }
 </style>
-<link rel="stylesheet" href="../style.css">
 </head>
 <body>
-<div class="bg-blob bg-blob-1"></div>
-<div class="bg-blob bg-blob-2"></div>
-<div class="bg-blob bg-blob-3"></div>
 
-<div class="wrapper" style="padding-top:80px">
+<!-- NAV -->
+<nav>
+  <a href="../index.html" class="nav-logo">Albert's <span>Odyssey</span></a>
+  <div class="nav-links">
+    <a href="../index.html"           class="nav-link">Home</a>
+    <a href="../salud/index.html"     class="nav-link active">Salud</a>
+    <a href="../deporte/index.html"   class="nav-link">Deporte</a>
+    <a href="../vlog/index.html"      class="nav-link">Vlog</a>
+    <a href="../lecturas/index.html"  class="nav-link">Lecturas</a>
+    <a href="../finanzas/index.html"  class="nav-link">Finanzas</a>
+    <a href="../desarrollo/index.html" class="nav-link">Desarrollo</a>
+    <a href="../escritos/index.html"  class="nav-link">Escritos</a>
+  </div>
+</nav>
 
-  <!-- HEADER -->
-  <div class="header">
-    <div style="display:flex;align-items:center;gap:16px">
-      <div class="header-icon">🥗</div>
+<div class="page">
+
+  <!-- PAGE HEADER -->
+  <div class="page-hdr">
+    <div class="ph-left">
+      <div class="ph-icon">🥗</div>
       <div>
-        <div class="header-title">Plan Nutricional</div>
-        <div class="header-sub">Masculino · 26 años · 88 kg · 1.78 m · Objetivo 80 kg</div>
+        <div class="ph-eyebrow">Salud · Nutrición</div>
+        <div class="ph-title">Plan Nutricional</div>
+        <div class="ph-sub">Masculino · 26 años · 88 kg · 1.78 m · Objetivo 80 kg</div>
       </div>
     </div>
-    <div class="header-badge">📊 IMC: 27.8 → Objetivo 25.3</div>
+    <div class="ph-stats">
+      <div>
+        <div class="ph-stat-val">88 → 80 kg</div>
+        <div class="ph-stat-lbl">Objetivo composición</div>
+      </div>
+      <div>
+        <div class="ph-stat-val">2200 kcal</div>
+        <div class="ph-stat-lbl">Déficit diario</div>
+      </div>
+      <div>
+        <div class="ph-stat-val">27.8 → 25.3</div>
+        <div class="ph-stat-lbl">IMC objetivo</div>
+      </div>
+    </div>
   </div>
 
   <!-- TABS -->
-  <div class="tabs-container">
-    <div class="tab active" onclick="st('vitaminas')">💊 Vitaminas</div>
-    <div class="tab" onclick="st('minerales')">⚗️ Minerales</div>
-    <div class="tab" onclick="st('macros')">🔋 Macros</div>
-    <div class="tab" onclick="st('dieta')">🍽️ Dieta</div>
+  <div class="tabs-bar">
+    <button class="tab active" onclick="st('vitaminas')">💊 Vitaminas</button>
+    <button class="tab" onclick="st('minerales')">⚗️ Minerales</button>
+    <button class="tab" onclick="st('macros')">🔋 Macros</button>
+    <button class="tab" onclick="st('dieta')">🍽️ Dieta</button>
   </div>
 
   <!-- ===== VITAMINAS ===== -->
@@ -452,9 +195,9 @@
 
       <div class="card" id="va">
         <div class="ch" onclick="tc('va')">
-          <div class="dot-wrap" style="background:linear-gradient(135deg,#fff3e8,#ffd4a8)">🥕</div>
+          <div class="c-icon">🥕</div>
           <div class="cn">Vitamina A</div>
-          <div class="dose" style="background:rgba(244,162,97,0.12);color:#c4621a;border:1px solid rgba(244,162,97,0.3)">900 mcg/día</div>
+          <div class="dose" style="background:#FFF3E8;color:#C4621A;border:1px solid #FCDBB8">900 mcg/día</div>
           <div class="chev">▼</div>
         </div>
         <div class="cb">
@@ -467,43 +210,43 @@
 
       <div class="card" id="vd">
         <div class="ch" onclick="tc('vd')">
-          <div class="dot-wrap" style="background:linear-gradient(135deg,#fffbe8,#fde68a)">☀️</div>
+          <div class="c-icon">☀️</div>
           <div class="cn">Vitamina D</div>
-          <div class="dose" style="background:rgba(249,199,79,0.12);color:#92700a;border:1px solid rgba(249,199,79,0.3)">15 mcg/día</div>
+          <div class="dose" style="background:#FFFBE8;color:#92700A;border:1px solid #F2CC8F">15 mcg/día</div>
           <div class="chev">▼</div>
         </div>
         <div class="cb">
-          <div class="acc open"><div class="at" onclick="ta(this)">Qué es y por qué la necesitas <span>▲</span></div><div class="ac">Crítica para absorber calcio, función inmune y rendimiento muscular. Se sintetiza con exposición solar (UVB). Con trabajo de oficina en Madrid la exposición será insuficiente. Deficiencia más extendida en adultos urbanos españoles. Suplementa: 2000–4000 UI/día.</div></div>
-          <div class="acc"><div class="at" onclick="ta(this)">Déficit <span>▼</span></div><div class="ac"><div class="al ad">Osteomalacia, osteoporosis, debilidad muscular. Compromete directamente tu recuperación deportiva y el objetivo de llegar a 80 kg con músculo preservado.</div></div></div>
+          <div class="acc open"><div class="at" onclick="ta(this)">Qué es y por qué la necesitas <span>▲</span></div><div class="ac">Crítica para absorber calcio, función inmune y rendimiento muscular. Se sintetiza con exposición solar (UVB). Con trabajo de oficina en Madrid la exposición será insuficiente. Suplementa: 2000–4000 UI/día.</div></div>
+          <div class="acc"><div class="at" onclick="ta(this)">Déficit <span>▼</span></div><div class="ac"><div class="al ad">Osteomalacia, debilidad muscular. Compromete directamente tu recuperación deportiva y el objetivo de llegar a 80 kg con músculo preservado.</div></div></div>
           <div class="acc"><div class="at" onclick="ta(this)">Exceso <span>▼</span></div><div class="ac"><div class="al aw">Hipercalcemia, problemas gastrointestinales y cálculos renales. Solo por suplementación excesiva.</div></div></div>
-          <div class="acc"><div class="at" onclick="ta(this)">Alimentos principales <span>▼</span></div><div class="ac"><div class="fg"><div class="ft">Aceite hígado bacalao <span>252 mcg</span></div><div class="ft">Anguila <span>110 mcg</span></div><div class="ft">Atún fresco <span>25 mcg</span></div><div class="ft">Sardinas lata <span>17 mcg</span></div><div class="ft">Salmón <span>5 mcg</span></div><div class="ft">Champiñones sol <span>~400 mcg</span></div></div></div></div>
+          <div class="acc"><div class="at" onclick="ta(this)">Alimentos principales <span>▼</span></div><div class="ac"><div class="fg"><div class="ft">Aceite hígado bacalao <span>252 mcg</span></div><div class="ft">Anguila <span>110 mcg</span></div><div class="ft">Atún fresco <span>25 mcg</span></div><div class="ft">Sardinas lata <span>17 mcg</span></div><div class="ft">Salmón <span>5 mcg</span></div></div></div></div>
         </div>
       </div>
 
       <div class="card" id="ve">
         <div class="ch" onclick="tc('ve')">
-          <div class="dot-wrap" style="background:linear-gradient(135deg,#eeffea,#bbf7d0)">🌿</div>
+          <div class="c-icon">🌿</div>
           <div class="cn">Vitamina E</div>
-          <div class="dose" style="background:rgba(144,190,109,0.12);color:#3a6b1e;border:1px solid rgba(144,190,109,0.3)">15 mg/día</div>
+          <div class="dose" style="background:#EAF3EE;color:#2D6A4F;border:1px solid #C3DDD1">15 mg/día</div>
           <div class="chev">▼</div>
         </div>
         <div class="cb">
-          <div class="acc open"><div class="at" onclick="ta(this)">Qué es y por qué la necesitas <span>▲</span></div><div class="ac">Antioxidante liposoluble potente. Protege las células del daño oxidativo, refuerza el sistema inmune. Especialmente relevante en fases de entrenamiento intenso donde la oxidación celular es mayor.</div></div>
-          <div class="acc"><div class="at" onclick="ta(this)">Déficit / Exceso <span>▼</span></div><div class="ac">Déficit: Desestabilización del sistema inmune, menor producción de anticuerpos. Exceso: Sin efectos adversos en dosis alimentarias.</div></div>
+          <div class="acc open"><div class="at" onclick="ta(this)">Qué es y por qué la necesitas <span>▲</span></div><div class="ac">Antioxidante liposoluble potente. Protege las células del daño oxidativo, refuerza el sistema inmune. Especialmente relevante en fases de entrenamiento intenso.</div></div>
+          <div class="acc"><div class="at" onclick="ta(this)">Déficit / Exceso <span>▼</span></div><div class="ac">Déficit: menor producción de anticuerpos. Exceso: sin efectos adversos en dosis alimentarias.</div></div>
           <div class="acc"><div class="at" onclick="ta(this)">Alimentos principales <span>▼</span></div><div class="ac"><div class="fg"><div class="ft">Aceite germen trigo <span>149 mg</span></div><div class="ft">Semillas girasol <span>52 mg</span></div><div class="ft">Almendras <span>26 mg</span></div><div class="ft">Avellanas <span>24 mg</span></div><div class="ft">Aceite oliva <span>14 mg</span></div><div class="ft">Aguacate <span>2.1 mg</span></div></div></div></div>
         </div>
       </div>
 
       <div class="card" id="vk">
         <div class="ch" onclick="tc('vk')">
-          <div class="dot-wrap" style="background:linear-gradient(135deg,#e8f4ff,#bae6fd)">🫙</div>
+          <div class="c-icon">🫙</div>
           <div class="cn">Vitamina K</div>
-          <div class="dose" style="background:rgba(76,201,240,0.12);color:#0369a1;border:1px solid rgba(76,201,240,0.3)">120 mcg/día</div>
+          <div class="dose" style="background:#EEF2FF;color:#3D405B;border:1px solid #C8D4F5">120 mcg/día</div>
           <div class="chev">▼</div>
         </div>
         <div class="cb">
-          <div class="acc open"><div class="at" onclick="ta(this)">Qué es y por qué la necesitas <span>▲</span></div><div class="ac">Esencial para coagulación y metabolismo óseo. K1 (verduras hoja verde) y K2 (fermentados, animal). Si tienes deficiencia de vitamina D —probable—, necesitas K2 para que el calcio llegue a los huesos en lugar de calcificar arterias.</div></div>
-          <div class="acc"><div class="at" onclick="ta(this)">Déficit / Exceso <span>▼</span></div><div class="ac">Déficit: Raro, puede ocurrir con antibióticos. Exceso: Sin efectos adversos conocidos.</div></div>
+          <div class="acc open"><div class="at" onclick="ta(this)">Qué es y por qué la necesitas <span>▲</span></div><div class="ac">Esencial para coagulación y metabolismo óseo. Si tienes deficiencia de vitamina D —probable—, necesitas K2 para que el calcio llegue a los huesos en lugar de calcificar arterias.</div></div>
+          <div class="acc"><div class="at" onclick="ta(this)">Déficit / Exceso <span>▼</span></div><div class="ac">Déficit raro, puede ocurrir con antibióticos. Exceso: sin efectos adversos conocidos.</div></div>
           <div class="acc"><div class="at" onclick="ta(this)">Alimentos principales <span>▼</span></div><div class="ac"><div class="fg"><div class="ft">Col rizada cocida <span>1054 mcg</span></div><div class="ft">Repollo verde <span>1060 mcg</span></div><div class="ft">Espinacas cocidas <span>884 mcg</span></div><div class="ft">Brócoli <span>154 mcg</span></div><div class="ft">Garbanzos <span>264 mcg</span></div></div></div></div>
         </div>
       </div>
@@ -514,14 +257,14 @@
 
       <div class="card" id="vc">
         <div class="ch" onclick="tc('vc')">
-          <div class="dot-wrap" style="background:linear-gradient(135deg,#fff0f6,#ffd6eb)">🍊</div>
+          <div class="c-icon">🍊</div>
           <div class="cn">Vitamina C</div>
-          <div class="dose" style="background:rgba(247,37,133,0.1);color:#9d1563;border:1px solid rgba(247,37,133,0.25)">90 mg/día</div>
+          <div class="dose" style="background:#FCEEE9;color:#C0614A;border:1px solid #F5C6BC">90 mg/día</div>
           <div class="chev">▼</div>
         </div>
         <div class="cb">
-          <div class="acc open"><div class="at" onclick="ta(this)">Qué es y por qué la necesitas <span>▲</span></div><div class="ac">Antioxidante clave. Forma colágeno (esencial para tendones al retomar entrenos), refuerza el sistema inmune, mejora la absorción de hierro. Con la dieta que describes —sin fruta— estás con casi certeza deficitario. Cambio de mayor impacto inmediato.</div></div>
-          <div class="acc"><div class="at" onclick="ta(this)">Déficit <span>▼</span></div><div class="ac"><div class="al ad">Fatiga, mayor riesgo de lesiones tendinosas, cicatrización lenta. Con entrenamiento alto las necesidades suben.</div></div></div>
+          <div class="acc open"><div class="at" onclick="ta(this)">Qué es y por qué la necesitas <span>▲</span></div><div class="ac">Antioxidante clave. Forma colágeno (esencial para tendones al retomar entrenos), refuerza el sistema inmune, mejora la absorción de hierro. Con la dieta que describes —sin fruta— estás con casi certeza deficitario.</div></div>
+          <div class="acc"><div class="at" onclick="ta(this)">Déficit <span>▼</span></div><div class="ac"><div class="al ad">Fatiga, mayor riesgo de lesiones tendinosas, cicatrización lenta.</div></div></div>
           <div class="acc"><div class="at" onclick="ta(this)">Exceso <span>▼</span></div><div class="ac">Molestias estomacales y cálculos renales con dosis muy altas (>2 g/día).</div></div>
           <div class="acc"><div class="at" onclick="ta(this)">Alimentos principales <span>▼</span></div><div class="ac"><div class="fg"><div class="ft">Guayaba <span>273 mg</span></div><div class="ft">Pimientos <span>131 mg</span></div><div class="ft">Kiwi <span>71 mg</span></div><div class="ft">Brócoli <span>65 mg</span></div><div class="ft">Fresas <span>60 mg</span></div><div class="ft">Naranja/Limón <span>50 mg</span></div></div></div></div>
         </div>
@@ -529,58 +272,55 @@
 
       <div class="card" id="vb12">
         <div class="ch" onclick="tc('vb12')">
-          <div class="dot-wrap" style="background:linear-gradient(135deg,#e8f8ff,#b8e8ff)">🐟</div>
+          <div class="c-icon">🐟</div>
           <div class="cn">Vitamina B12</div>
-          <div class="dose" style="background:rgba(72,202,228,0.12);color:#0c6c8a;border:1px solid rgba(72,202,228,0.3)">2.4 mcg/día</div>
+          <div class="dose" style="background:#EAF3EE;color:#2D6A4F;border:1px solid #C3DDD1">2.4 mcg/día</div>
           <div class="chev">▼</div>
         </div>
         <div class="cb">
           <div class="acc open"><div class="at" onclick="ta(this)">Qué es y por qué la necesitas <span>▲</span></div><div class="ac">Crítica para glóbulos rojos, síntesis de ADN y salud neurológica. Impacta en memoria y concentración. En tu nuevo puesto como coordinador vas a necesitar capacidad analítica alta. Su déficit es silencioso y se manifiesta meses después.</div></div>
-          <div class="acc"><div class="at" onclick="ta(this)">Déficit <span>▼</span></div><div class="ac"><div class="al ad">Anemia megaloblástica, deterioro neurológico, fatiga crónica. Uno de los déficits más subestimados.</div></div></div>
-          <div class="acc"><div class="at" onclick="ta(this)">Exceso <span>▼</span></div><div class="ac">Sin efectos adversos. Las hidrosolubles en exceso se excretan por orina.</div></div>
+          <div class="acc"><div class="at" onclick="ta(this)">Déficit <span>▼</span></div><div class="ac"><div class="al ad">Anemia megaloblástica, deterioro neurológico, fatiga crónica.</div></div></div>
           <div class="acc"><div class="at" onclick="ta(this)">Alimentos principales <span>▼</span></div><div class="ac"><div class="fg"><div class="ft">Hígado res <span>100 mcg</span></div><div class="ft">Mejillones <span>21 mcg</span></div><div class="ft">Sardinas <span>12 mcg</span></div><div class="ft">Atún plancha <span>2.7 mcg</span></div><div class="ft">Carne plancha <span>2 mcg</span></div><div class="ft">Huevo <span>0.5 mcg</span></div></div></div></div>
         </div>
       </div>
 
       <div class="card" id="vb6">
         <div class="ch" onclick="tc('vb6')">
-          <div class="dot-wrap" style="background:linear-gradient(135deg,#f3e8ff,#ddd6fe)">🧠</div>
+          <div class="c-icon">🧠</div>
           <div class="cn">Vitamina B6</div>
-          <div class="dose" style="background:rgba(167,139,250,0.12);color:#5b21b6;border:1px solid rgba(167,139,250,0.3)">1.3–1.7 mg/día</div>
+          <div class="dose" style="background:#F5F0FF;color:#5B21B6;border:1px solid #DDD6FE">1.3–1.7 mg/día</div>
           <div class="chev">▼</div>
         </div>
         <div class="cb">
           <div class="acc open"><div class="at" onclick="ta(this)">Qué es y por qué la necesitas <span>▲</span></div><div class="ac">Más de 100 reacciones enzimáticas. Metabolismo de proteínas, serotonina y dopamina. Si comes proteína alta —que necesitas para bajar peso preservando músculo—, la B6 debe ser proporcional.</div></div>
-          <div class="acc"><div class="at" onclick="ta(this)">Déficit / Exceso <span>▼</span></div><div class="ac">Déficit: Anemia, confusión, depresión y debilidad muscular.<div class="al aw">Exceso: Erupciones cutáneas, sensibilidad a luz solar. Solo con megadosis.</div></div></div>
+          <div class="acc"><div class="at" onclick="ta(this)">Déficit / Exceso <span>▼</span></div><div class="ac">Déficit: Anemia, confusión, depresión y debilidad muscular. <div class="al aw">Exceso: Erupciones cutáneas. Solo con megadosis.</div></div></div>
           <div class="acc"><div class="at" onclick="ta(this)">Alimentos principales <span>▼</span></div><div class="ac"><div class="fg"><div class="ft">Hígado res <span>0.9 mg</span></div><div class="ft">Nueces <span>0.7 mg</span></div><div class="ft">Salmón <span>0.6 mg</span></div><div class="ft">Garbanzos <span>0.6 mg</span></div><div class="ft">Pollo <span>0.5 mg</span></div><div class="ft">Plátano <span>0.4 mg</span></div></div></div></div>
         </div>
       </div>
 
       <div class="card" id="vb9">
         <div class="ch" onclick="tc('vb9')">
-          <div class="dot-wrap" style="background:linear-gradient(135deg,#e8fff5,#a7f3d0)">🥬</div>
+          <div class="c-icon">🥬</div>
           <div class="cn">Ácido Fólico (B9)</div>
-          <div class="dose" style="background:rgba(52,211,153,0.12);color:#065f46;border:1px solid rgba(52,211,153,0.3)">400 mcg/día</div>
+          <div class="dose" style="background:#EAF3EE;color:#2D6A4F;border:1px solid #C3DDD1">400 mcg/día</div>
           <div class="chev">▼</div>
         </div>
         <div class="cb">
           <div class="acc open"><div class="at" onclick="ta(this)">Qué es y por qué la necesitas <span>▲</span></div><div class="ac">Síntesis de ADN, división celular y glóbulos rojos. Regula la homocisteína (riesgo cardiovascular). Con alta actividad física y carga laboral, la renovación celular es mayor y la demanda sube.</div></div>
-          <div class="acc"><div class="at" onclick="ta(this)">Déficit / Exceso <span>▼</span></div><div class="ac">Déficit: Anemia megaloblástica, fatiga y debilidad. Exceso: Sin efectos adversos notables.</div></div>
-          <div class="acc"><div class="at" onclick="ta(this)">Alimentos principales <span>▼</span></div><div class="ac"><div class="fg"><div class="ft">Soja <span>240 mcg</span></div><div class="ft">Hígado <span>192 mcg</span></div><div class="ft">Garbanzos <span>180 mcg</span></div><div class="ft">Espinacas/Acelgas <span>140 mcg</span></div><div class="ft">Aguacate <span>~80 mcg</span></div><div class="ft">Naranja <span>36 mcg</span></div></div></div></div>
+          <div class="acc"><div class="at" onclick="ta(this)">Alimentos principales <span>▼</span></div><div class="ac"><div class="fg"><div class="ft">Soja <span>240 mcg</span></div><div class="ft">Hígado <span>192 mcg</span></div><div class="ft">Garbanzos <span>180 mcg</span></div><div class="ft">Espinacas/Acelgas <span>140 mcg</span></div><div class="ft">Aguacate <span>~80 mcg</span></div></div></div></div>
         </div>
       </div>
 
       <div class="card" id="vb3">
         <div class="ch" onclick="tc('vb3')">
-          <div class="dot-wrap" style="background:linear-gradient(135deg,#fff4e8,#fed7aa)">⚡</div>
+          <div class="c-icon">⚡</div>
           <div class="cn">Vitamina B3 (Niacina)</div>
-          <div class="dose" style="background:rgba(251,146,60,0.12);color:#9a3412;border:1px solid rgba(251,146,60,0.3)">16 mg/día</div>
+          <div class="dose" style="background:#FFF3E8;color:#C4621A;border:1px solid #FCDBB8">16 mg/día</div>
           <div class="chev">▼</div>
         </div>
         <div class="cb">
           <div class="acc open"><div class="at" onclick="ta(this)">Qué es y por qué la necesitas <span>▲</span></div><div class="ac">Producción de ATP y conversión de macronutrientes en energía. Directamente ligada a tu rendimiento físico y mental. Fácilmente cubierta con carne, pescado y legumbres.</div></div>
-          <div class="acc"><div class="at" onclick="ta(this)">Déficit / Exceso <span>▼</span></div><div class="ac">Déficit: Las 3D — Dermatitis, Diarrea, Demencia.<div class="al aw">Exceso: Daño hepático, úlceras pépticas. Solo con megadosis.</div></div></div>
-          <div class="acc"><div class="at" onclick="ta(this)">Alimentos principales <span>▼</span></div><div class="ac"><div class="fg"><div class="ft">Hígado plancha <span>11.9 mg</span></div><div class="ft">Atún fresco <span>11 mg</span></div><div class="ft">Cacahuetes <span>10.2 mg</span></div><div class="ft">Cerdo magro <span>8.7 mg</span></div><div class="ft">Pollo <span>7.6 mg</span></div><div class="ft">Salmón <span>5.4 mg</span></div></div></div></div>
+          <div class="acc"><div class="at" onclick="ta(this)">Alimentos principales <span>▼</span></div><div class="ac"><div class="fg"><div class="ft">Hígado plancha <span>11.9 mg</span></div><div class="ft">Atún fresco <span>11 mg</span></div><div class="ft">Cerdo magro <span>8.7 mg</span></div><div class="ft">Pollo <span>7.6 mg</span></div><div class="ft">Salmón <span>5.4 mg</span></div></div></div></div>
         </div>
       </div>
 
@@ -595,60 +335,57 @@
 
       <div class="card" id="ca">
         <div class="ch" onclick="tc('ca')">
-          <div class="dot-wrap" style="background:linear-gradient(135deg,#f5e8ff,#e9d5ff)">🦴</div>
+          <div class="c-icon">🦴</div>
           <div class="cn">Calcio</div>
-          <div class="dose" style="background:rgba(199,125,255,0.12);color:#6b21a8;border:1px solid rgba(199,125,255,0.3)">1000–1200 mg/día</div>
+          <div class="dose" style="background:#F5F0FF;color:#5B21B6;border:1px solid #DDD6FE">1000–1200 mg/día</div>
           <div class="chev">▼</div>
         </div>
         <div class="cb">
-          <div class="acc open"><div class="at" onclick="ta(this)">Qué es y por qué lo necesitas <span>▲</span></div><div class="ac">99% en huesos y dientes. Contracción muscular, transmisión nerviosa y coagulación. Debe ir acompañado de Vitamina D para ser absorbido. Un déficit crónico compromete la memoria y la concentración.</div></div>
-          <div class="acc"><div class="at" onclick="ta(this)">Déficit <span>▼</span></div><div class="ac"><div class="al ad">Problemas musculares y óseos, problemas dentales, falta de memoria y dificultad para concentrarse.</div></div></div>
-          <div class="acc"><div class="at" onclick="ta(this)">Exceso <span>▼</span></div><div class="ac">Cálculos renales, problemas digestivos. Solo por suplementación excesiva sin vitamina K2.</div></div>
-          <div class="acc"><div class="at" onclick="ta(this)">Alimentos principales <span>▼</span></div><div class="ac"><div class="fg"><div class="ft">Queso Gruyère <span>560–850 mg</span></div><div class="ft">Sardinas lata <span>400 mg</span></div><div class="ft">Yogur bajo grasa <span>415 mg</span></div><div class="ft">Almendras <span>240 mg</span></div><div class="ft">Leche de vaca <span>300 mg</span></div><div class="ft">Garbanzos <span>145 mg</span></div></div></div></div>
+          <div class="acc open"><div class="at" onclick="ta(this)">Qué es y por qué lo necesitas <span>▲</span></div><div class="ac">99% en huesos y dientes. Contracción muscular, transmisión nerviosa. Debe ir acompañado de Vitamina D para ser absorbido. Un déficit crónico compromete la concentración.</div></div>
+          <div class="acc"><div class="at" onclick="ta(this)">Déficit <span>▼</span></div><div class="ac"><div class="al ad">Problemas musculares y óseos, dificultad para concentrarse.</div></div></div>
+          <div class="acc"><div class="at" onclick="ta(this)">Alimentos principales <span>▼</span></div><div class="ac"><div class="fg"><div class="ft">Queso Gruyère <span>560–850 mg</span></div><div class="ft">Sardinas lata <span>400 mg</span></div><div class="ft">Yogur bajo grasa <span>415 mg</span></div><div class="ft">Almendras <span>240 mg</span></div><div class="ft">Leche de vaca <span>300 mg</span></div></div></div></div>
         </div>
       </div>
 
       <div class="card" id="mg">
         <div class="ch" onclick="tc('mg')">
-          <div class="dot-wrap" style="background:linear-gradient(135deg,#e8fff8,#99f6e4)">😴</div>
+          <div class="c-icon">😴</div>
           <div class="cn">Magnesio</div>
-          <div class="dose" style="background:rgba(46,196,182,0.12);color:#0f5049;border:1px solid rgba(46,196,182,0.3)">400–420 mg/día</div>
+          <div class="dose" style="background:#EAF3EE;color:#2D6A4F;border:1px solid #C3DDD1">400–420 mg/día</div>
           <div class="chev">▼</div>
         </div>
         <div class="cb">
           <div class="acc open"><div class="at" onclick="ta(this)">Qué es y por qué lo necesitas <span>▲</span></div><div class="ac">Más de 300 reacciones bioquímicas. Regula glucosa, ritmo cardíaco y contracción muscular. Reduce el cortisol y mejora el sueño. El ojo que te vibra puede ser señal directa de déficit. Uno de los más deficitarios en la población occidental.</div></div>
-          <div class="acc"><div class="at" onclick="ta(this)">Déficit <span>▼</span></div><div class="ac"><div class="al ad">Calambres musculares, arritmias, fatiga, trastornos del sueño, cambios de ánimo. Síntoma clásico: fasciculación del ojo — el tuyo.</div></div></div>
-          <div class="acc"><div class="at" onclick="ta(this)">Exceso <span>▼</span></div><div class="ac"><div class="al aw">Toxicidad y efectos sobre el corazón. Solo por suplementación masiva.</div></div></div>
-          <div class="acc"><div class="at" onclick="ta(this)">Alimentos principales <span>▼</span></div><div class="ac"><div class="fg"><div class="ft">Almendras/Cacahuetes <span>250 mg</span></div><div class="ft">Chocolate negro <span>100 mg</span></div><div class="ft">Pan integral <span>91 mg</span></div><div class="ft">Lentejas <span>78 mg</span></div><div class="ft">Espinacas <span>50 mg</span></div><div class="ft">Sardinas conserva <span>50 mg</span></div></div></div></div>
+          <div class="acc"><div class="at" onclick="ta(this)">Déficit <span>▼</span></div><div class="ac"><div class="al ad">Calambres musculares, arritmias, fatiga, trastornos del sueño. Síntoma clásico: fasciculación del ojo — el tuyo.</div></div></div>
+          <div class="acc"><div class="at" onclick="ta(this)">Alimentos principales <span>▼</span></div><div class="ac"><div class="fg"><div class="ft">Almendras/Cacahuetes <span>250 mg</span></div><div class="ft">Chocolate negro <span>100 mg</span></div><div class="ft">Pan integral <span>91 mg</span></div><div class="ft">Lentejas <span>78 mg</span></div><div class="ft">Espinacas <span>50 mg</span></div></div></div></div>
         </div>
       </div>
 
       <div class="card" id="fe">
         <div class="ch" onclick="tc('fe')">
-          <div class="dot-wrap" style="background:linear-gradient(135deg,#fff0f0,#fecaca)">🩸</div>
+          <div class="c-icon">🩸</div>
           <div class="cn">Hierro</div>
-          <div class="dose" style="background:rgba(230,57,70,0.1);color:#991b1b;border:1px solid rgba(230,57,70,0.25)">8 mg/día</div>
+          <div class="dose" style="background:#FEF3F2;color:#912018;border:1px solid #FECDCA">8 mg/día</div>
           <div class="chev">▼</div>
         </div>
         <div class="cb">
-          <div class="acc open"><div class="at" onclick="ta(this)">Qué es y por qué lo necesitas <span>▲</span></div><div class="ac">Componente de hemoglobina y mioglobina. Transporta oxígeno a los músculos. Corriste una maratón en febrero: el hierro se destruye en cada zancada (hemólisis por impacto). Tu reserva puede estar baja. Combina hierro hemo con vitamina C para maximizar absorción.</div></div>
-          <div class="acc"><div class="at" onclick="ta(this)">Déficit <span>▼</span></div><div class="ac"><div class="al ad">Anemia ferropénica, fatiga crónica, problemas cognitivos. Frecuente en deportistas de resistencia. Si te sientes sin energía, empieza aquí.</div></div></div>
+          <div class="acc open"><div class="at" onclick="ta(this)">Qué es y por qué lo necesitas <span>▲</span></div><div class="ac">Transporta oxígeno a los músculos. Corriste una maratón en febrero: el hierro se destruye en cada zancada. Tu reserva puede estar baja. Combina hierro hemo con vitamina C para maximizar absorción.</div></div>
+          <div class="acc"><div class="at" onclick="ta(this)">Déficit <span>▼</span></div><div class="ac"><div class="al ad">Anemia ferropénica, fatiga crónica. Frecuente en deportistas de resistencia. Si te sientes sin energía, empieza aquí.</div></div></div>
           <div class="acc"><div class="at" onclick="ta(this)">Exceso <span>▼</span></div><div class="ac"><div class="al aw">Daños en hígado, corazón y páncreas. No suplementes sin analítica previa.</div></div></div>
-          <div class="acc"><div class="at" onclick="ta(this)">Alimentos principales <span>▼</span></div><div class="ac"><div class="fg"><div class="ft">Almejas/Berberechos <span>24 mg</span></div><div class="ft">Hígado res <span>8 mg</span></div><div class="ft">Lentejas <span>7.1 mg</span></div><div class="ft">Garbanzos <span>6.7 mg</span></div><div class="ft">Espinacas <span>4 mg</span></div><div class="ft">Sardinas <span>3.2 mg</span></div></div></div></div>
+          <div class="acc"><div class="at" onclick="ta(this)">Alimentos principales <span>▼</span></div><div class="ac"><div class="fg"><div class="ft">Almejas/Berberechos <span>24 mg</span></div><div class="ft">Hígado res <span>8 mg</span></div><div class="ft">Lentejas <span>7.1 mg</span></div><div class="ft">Garbanzos <span>6.7 mg</span></div><div class="ft">Espinacas <span>4 mg</span></div></div></div></div>
         </div>
       </div>
 
       <div class="card" id="po">
         <div class="ch" onclick="tc('po')">
-          <div class="dot-wrap" style="background:linear-gradient(135deg,#fff8e8,#fde68a)">🍌</div>
+          <div class="c-icon">🍌</div>
           <div class="cn">Potasio</div>
-          <div class="dose" style="background:rgba(255,159,28,0.12);color:#92400e;border:1px solid rgba(255,159,28,0.3)">3400 mg/día</div>
+          <div class="dose" style="background:#FFF8EC;color:#92400E;border:1px solid #F2CC8F">3400 mg/día</div>
           <div class="chev">▼</div>
         </div>
         <div class="cb">
-          <div class="acc open"><div class="at" onclick="ta(this)">Qué es y por qué lo necesitas <span>▲</span></div><div class="ac">Regula equilibrio hídrico, presión arterial y función muscular cardíaca. Se pierde con el sudor — si entrenas con intensidad, tus necesidades suben. La fruta y verdura son su principal fuente, otro motivo para incorporarlas ya.</div></div>
-          <div class="acc"><div class="at" onclick="ta(this)">Déficit / Exceso <span>▼</span></div><div class="ac">Déficit (hipopotasemia): Debilidad muscular, taquicardia, hipotensión. Exceso (hiperpotasemia): Alteraciones cardíacas y renales.</div></div>
-          <div class="acc"><div class="at" onclick="ta(this)">Alimentos principales <span>▼</span></div><div class="ac"><div class="fg"><div class="ft">Espinaca cruda <span>529 mg</span></div><div class="ft">Aguacate <span>487 mg</span></div><div class="ft">Plátano <span>370 mg</span></div><div class="ft">Rúcula <span>369 mg</span></div><div class="ft">Melón <span>310 mg</span></div><div class="ft">Kiwi <span>290 mg</span></div></div></div></div>
+          <div class="acc open"><div class="at" onclick="ta(this)">Qué es y por qué lo necesitas <span>▲</span></div><div class="ac">Regula equilibrio hídrico, presión arterial y función muscular cardíaca. Se pierde con el sudor. La fruta y verdura son su principal fuente — otro motivo para incorporarlas ya.</div></div>
+          <div class="acc"><div class="at" onclick="ta(this)">Alimentos principales <span>▼</span></div><div class="ac"><div class="fg"><div class="ft">Espinaca cruda <span>529 mg</span></div><div class="ft">Aguacate <span>487 mg</span></div><div class="ft">Plátano <span>370 mg</span></div><div class="ft">Melón <span>310 mg</span></div><div class="ft">Kiwi <span>290 mg</span></div></div></div></div>
         </div>
       </div>
 
@@ -659,29 +396,28 @@
 
       <div class="card" id="zn">
         <div class="ch" onclick="tc('zn')">
-          <div class="dot-wrap" style="background:linear-gradient(135deg,#edfaea,#bbf7b0)">💪</div>
+          <div class="c-icon">💪</div>
           <div class="cn">Zinc</div>
-          <div class="dose" style="background:rgba(106,153,78,0.12);color:#14532d;border:1px solid rgba(106,153,78,0.3)">14 mg/día</div>
+          <div class="dose" style="background:#EAF3EE;color:#2D6A4F;border:1px solid #C3DDD1">14 mg/día</div>
           <div class="chev">▼</div>
         </div>
         <div class="cb">
-          <div class="acc open"><div class="at" onclick="ta(this)">Qué es y por qué lo necesitas <span>▲</span></div><div class="ac">+300 enzimas, sistema inmune, síntesis de proteínas y testosterona. Con tu objetivo de hipertrofia y pérdida de grasa, el zinc tiene un papel directo en la recuperación muscular y en los niveles hormonales.</div></div>
-          <div class="acc"><div class="at" onclick="ta(this)">Déficit / Exceso <span>▼</span></div><div class="ac">Déficit: Inmunidad comprometida, problemas de cicatrización, pérdida de gusto.<div class="al aw">Exceso: Náuseas, diarrea, interferencia en absorción de cobre y hierro.</div></div></div>
-          <div class="acc"><div class="at" onclick="ta(this)">Alimentos principales <span>▼</span></div><div class="ac"><div class="fg"><div class="ft">Ostras crudas <span>59.2 mg</span></div><div class="ft">Carne res asada <span>8.5 mg</span></div><div class="ft">Almendras <span>5.0 mg</span></div><div class="ft">Cacahuetes <span>4.8 mg</span></div><div class="ft">Lentejas <span>3.9 mg</span></div><div class="ft">Pollo cocido <span>2.9 mg</span></div></div></div></div>
+          <div class="acc open"><div class="at" onclick="ta(this)">Qué es y por qué lo necesitas <span>▲</span></div><div class="ac">+300 enzimas, sistema inmune, síntesis de proteínas y testosterona. Con tu objetivo de hipertrofia y pérdida de grasa, el zinc tiene un papel directo en la recuperación muscular.</div></div>
+          <div class="acc"><div class="at" onclick="ta(this)">Alimentos principales <span>▼</span></div><div class="ac"><div class="fg"><div class="ft">Ostras crudas <span>59.2 mg</span></div><div class="ft">Carne res asada <span>8.5 mg</span></div><div class="ft">Almendras <span>5.0 mg</span></div><div class="ft">Lentejas <span>3.9 mg</span></div><div class="ft">Pollo cocido <span>2.9 mg</span></div></div></div></div>
         </div>
       </div>
 
       <div class="card" id="se">
         <div class="ch" onclick="tc('se')">
-          <div class="dot-wrap" style="background:linear-gradient(135deg,#e8f8f8,#a5f3fc)">🌊</div>
+          <div class="c-icon">🌊</div>
           <div class="cn">Selenio</div>
-          <div class="dose" style="background:rgba(168,218,220,0.2);color:#164e63;border:1px solid rgba(168,218,220,0.4)">55 mcg/día</div>
+          <div class="dose" style="background:#EAF3EE;color:#2D6A4F;border:1px solid #C3DDD1">55 mcg/día</div>
           <div class="chev">▼</div>
         </div>
         <div class="cb">
           <div class="acc open"><div class="at" onclick="ta(this)">Qué es y por qué lo necesitas <span>▲</span></div><div class="ac">Antioxidante. Regula el metabolismo y la función tiroidea (que controla el peso y la energía). Los suelos europeos son deficitarios. Una nuez de Brasil al día cubre la dosis — no más de dos o tres.</div></div>
-          <div class="acc"><div class="at" onclick="ta(this)">Déficit / Exceso <span>▼</span></div><div class="ac">Déficit: Enfermedad de Keshan (cardíaca), debilidad inmune.<div class="al aw">Exceso: Selenosis (toxicidad). No excedas 2–3 nueces de Brasil al día.</div></div></div>
-          <div class="acc"><div class="at" onclick="ta(this)">Alimentos principales <span>▼</span></div><div class="ac"><div class="fg"><div class="ft">Nuez de Brasil <span>90 mcg</span></div><div class="ft">Bogavante <span>130 mcg</span></div><div class="ft">Bacalao salado <span>148 mcg</span></div><div class="ft">Sardina escabeche <span>59 mcg</span></div><div class="ft">Mejillón <span>56 mcg</span></div></div></div></div>
+          <div class="acc"><div class="at" onclick="ta(this)">Exceso <span>▼</span></div><div class="ac"><div class="al aw">Selenosis (toxicidad). No excedas 2–3 nueces de Brasil al día.</div></div></div>
+          <div class="acc"><div class="at" onclick="ta(this)">Alimentos principales <span>▼</span></div><div class="ac"><div class="fg"><div class="ft">Nuez de Brasil <span>90 mcg</span></div><div class="ft">Bacalao salado <span>148 mcg</span></div><div class="ft">Sardina escabeche <span>59 mcg</span></div><div class="ft">Mejillón <span>56 mcg</span></div></div></div></div>
         </div>
       </div>
 
@@ -690,51 +426,52 @@
 
   <!-- ===== MACROS ===== -->
   <div class="tp" id="tp-macros">
+
     <div class="sl">Objetivos diarios — 88 kg → 80 kg · actividad moderada-alta</div>
-    <div class="mr">
-      <div class="mc"><div class="ml">Calorías</div><div class="mv" style="background:linear-gradient(135deg,#3b82f6,#8b5cf6);-webkit-background-clip:text;-webkit-text-fill-color:transparent">2200</div><div class="mu2">kcal/día · déficit ~300 kcal</div></div>
-      <div class="mc"><div class="ml">Proteína</div><div class="mv" style="background:linear-gradient(135deg,#ec4899,#f472b6);-webkit-background-clip:text;-webkit-text-fill-color:transparent">160–180g</div><div class="mu2">~2g/kg peso objetivo</div></div>
-      <div class="mc"><div class="ml">Carbohidratos</div><div class="mv" style="background:linear-gradient(135deg,#f59e0b,#fbbf24);-webkit-background-clip:text;-webkit-text-fill-color:transparent">220–260g</div><div class="mu2">complejos prioritarios</div></div>
-      <div class="mc"><div class="ml">Grasas</div><div class="mv" style="background:linear-gradient(135deg,#10b981,#34d399);-webkit-background-clip:text;-webkit-text-fill-color:transparent">60–75g</div><div class="mu2">insaturadas prioritarias</div></div>
-      <div class="mc"><div class="ml">Agua</div><div class="mv" style="background:linear-gradient(135deg,#06b6d4,#67e8f9);-webkit-background-clip:text;-webkit-text-fill-color:transparent">2.5–3L</div><div class="mu2">por día</div></div>
+    <div class="macros-strip">
+      <div class="mc"><div class="mc-lbl">Calorías</div><div class="mc-val">2200</div><div class="mc-sub">kcal/día · déficit ~300 kcal</div></div>
+      <div class="mc"><div class="mc-lbl">Proteína</div><div class="mc-val">160–180g</div><div class="mc-sub">~2g/kg peso objetivo</div></div>
+      <div class="mc"><div class="mc-lbl">Carbohidratos</div><div class="mc-val">220–260g</div><div class="mc-sub">complejos prioritarios</div></div>
+      <div class="mc"><div class="mc-lbl">Grasas</div><div class="mc-val">60–75g</div><div class="mc-sub">insaturadas prioritarias</div></div>
+      <div class="mc"><div class="mc-lbl">Agua</div><div class="mc-val">2.5–3L</div><div class="mc-sub">por día</div></div>
     </div>
 
     <div class="grid">
       <div class="card" id="prot">
         <div class="ch" onclick="tc('prot')">
-          <div class="dot-wrap" style="background:linear-gradient(135deg,#fff0f6,#fce7f3)">🥚</div>
+          <div class="c-icon">🥚</div>
           <div class="cn">Proteínas</div>
-          <div class="dose" style="background:rgba(249,168,212,0.15);color:#9d174d;border:1px solid rgba(249,168,212,0.35)">160–180g/día</div>
+          <div class="dose" style="background:#FCEEE9;color:#C0614A;border:1px solid #F5C6BC">160–180g/día</div>
           <div class="chev">▼</div>
         </div>
         <div class="cb">
-          <div class="acc open"><div class="at" onclick="ta(this)">Por qué necesitas más de la mínima recomendada <span>▲</span></div><div class="ac">La recomendación oficial de 0.83g/kg es para sedentarios. Con tu objetivo de perder 8 kg preservando músculo, necesitas mínimo 1.8–2g/kg del peso objetivo (80 kg) = 144–160g/día. Alta proteína: mayor saciedad, protege músculo en déficit calórico y mayor efecto térmico.</div></div>
+          <div class="acc open"><div class="at" onclick="ta(this)">Por qué necesitas más de la mínima recomendada <span>▲</span></div><div class="ac">La recomendación oficial de 0.83g/kg es para sedentarios. Con tu objetivo de perder 8 kg preservando músculo, necesitas mínimo 1.8–2g/kg del peso objetivo (80 kg). Alta proteína: mayor saciedad, protege músculo en déficit calórico.</div></div>
           <div class="acc"><div class="at" onclick="ta(this)">Mejores fuentes <span>▼</span></div><div class="ac"><div class="fg"><div class="ft">Pechuga pollo <span>31g/100g</span></div><div class="ft">Atún lata <span>32g/100g</span></div><div class="ft">Sardinas <span>21g/100g</span></div><div class="ft">Lentejas <span>26g/100g</span></div><div class="ft">Huevos <span>~13g/100g</span></div><div class="ft">Garbanzos <span>21g/100g</span></div></div></div></div>
         </div>
       </div>
 
       <div class="card" id="carbs">
         <div class="ch" onclick="tc('carbs')">
-          <div class="dot-wrap" style="background:linear-gradient(135deg,#fffbeb,#fef3c7)">🌾</div>
+          <div class="c-icon">🌾</div>
           <div class="cn">Carbohidratos</div>
-          <div class="dose" style="background:rgba(251,191,36,0.12);color:#92400e;border:1px solid rgba(251,191,36,0.3)">220–260g · complejos</div>
+          <div class="dose" style="background:#FFF8EC;color:#92400E;border:1px solid #F2CC8F">220–260g · complejos</div>
           <div class="chev">▼</div>
         </div>
         <div class="cb">
-          <div class="acc open"><div class="at" onclick="ta(this)">El problema real con tus carbohidratos actuales <span>▲</span></div><div class="ac">Tu dieta tiene dulces y refinados. Picos de glucosa, bajadas de energía, mayor almacenamiento de grasa y hambre emocional. El cambio no es eliminarlos sino reemplazarlos: arroz integral, avena, patata, legumbres y fruta entera en lugar de azúcares añadidos.</div></div>
-          <div class="acc"><div class="at" onclick="ta(this)">Fuentes recomendadas <span>▼</span></div><div class="ac"><div class="fg"><div class="ft">Avena cocida <span>12g/100g</span></div><div class="ft">Arroz integral <span>23.5g/100g</span></div><div class="ft">Lentejas <span>20g/100g</span></div><div class="ft">Patata cocida <span>17.6g/100g</span></div><div class="ft">Garbanzos <span>27.4g/100g</span></div><div class="ft">Plátano <span>22.8g/100g</span></div></div></div></div>
+          <div class="acc open"><div class="at" onclick="ta(this)">El problema real con tus carbohidratos actuales <span>▲</span></div><div class="ac">Tu dieta tiene dulces y refinados. Picos de glucosa, bajadas de energía, mayor almacenamiento de grasa. El cambio no es eliminarlos sino reemplazarlos: arroz integral, avena, patata, legumbres en lugar de azúcares añadidos.</div></div>
+          <div class="acc"><div class="at" onclick="ta(this)">Fuentes recomendadas <span>▼</span></div><div class="ac"><div class="fg"><div class="ft">Avena cocida <span>12g/100g</span></div><div class="ft">Arroz integral <span>23.5g/100g</span></div><div class="ft">Lentejas <span>20g/100g</span></div><div class="ft">Patata cocida <span>17.6g/100g</span></div><div class="ft">Garbanzos <span>27.4g/100g</span></div></div></div></div>
         </div>
       </div>
 
       <div class="card" id="fats">
         <div class="ch" onclick="tc('fats')">
-          <div class="dot-wrap" style="background:linear-gradient(135deg,#f0fdf4,#bbf7d0)">🥑</div>
+          <div class="c-icon">🥑</div>
           <div class="cn">Grasas</div>
-          <div class="dose" style="background:rgba(134,239,172,0.15);color:#14532d;border:1px solid rgba(134,239,172,0.35)">25–30% calorías</div>
+          <div class="dose" style="background:#EAF3EE;color:#2D6A4F;border:1px solid #C3DDD1">25–30% calorías</div>
           <div class="chev">▼</div>
         </div>
         <div class="cb">
-          <div class="acc open"><div class="at" onclick="ta(this)">Qué grasas y por qué <span>▲</span></div><div class="ac">Las grasas insaturadas (MUFA/PUFA) son antiinflamatorias, protegen el corazón y ayudan a absorber vitaminas liposolubles (A, D, E, K). Los omega-3 del pescado azul reducen el cortisol. El problema no es la grasa: son las grasas trans y los ultraprocesados.</div></div>
+          <div class="acc open"><div class="at" onclick="ta(this)">Qué grasas y por qué <span>▲</span></div><div class="ac">Las grasas insaturadas (MUFA/PUFA) son antiinflamatorias, protegen el corazón y ayudan a absorber vitaminas liposolubles (A, D, E, K). El problema no son las grasas: son las grasas trans y los ultraprocesados.</div></div>
           <div class="acc"><div class="at" onclick="ta(this)">Fuentes recomendadas <span>▼</span></div><div class="ac"><div class="fg"><div class="ft">Aceite oliva virgen <span>MUFA</span></div><div class="ft">Aguacate <span>MUFA</span></div><div class="ft">Salmón / Sardinas <span>Omega-3</span></div><div class="ft">Nueces <span>Omega-3/6</span></div><div class="ft">Almendras <span>MUFA + Vit E</span></div></div></div></div>
         </div>
       </div>
@@ -745,29 +482,20 @@
   <div class="tp" id="tp-dieta">
 
     <div class="sl">Diagnóstico</div>
-    <div style="margin-bottom:24px">
-      <div class="pr" style="border-color:#5b6af0">
-        <div class="pt">El problema no es el qué, es el patrón</div>
-        <div class="pb">Llevas meses sin fruta, sin verdura, con dulces y comida de baja calidad. Estás 8–9 kg por encima de tu objetivo con energía baja. La nutrición es el lever más inmediato: 3 semanas de dieta limpia y notarás la diferencia en entrenamiento, concentración y estado de ánimo antes de que ningún otro cambio tenga efecto.</div>
-      </div>
-      <div class="pr" style="border-color:#ef4444;margin-top:12px">
-        <div class="pt">⚠️ Advertencia: mudanza + trabajo nuevo = trampa</div>
-        <div class="pb">La mudanza a Madrid y el nuevo trabajo crearán fricción real. El riesgo es usar el cambio como excusa para seguir comiendo mal. Es exactamente el momento en que debes instalar el sistema. Si no lo haces ahora, en 6 meses seguirás igual de peso y mucho más estresado.</div>
-      </div>
-      <div class="pr" style="border-color:#10b981;margin-top:12px">
-        <div class="pt">💊 Suplementación mínima recomendada</div>
-        <div class="pb">Vitamina D3 (2000–4000 UI/día con comida) + Magnesio glicinato (300–400 mg antes de dormir) + Omega-3 (1–2 g EPA+DHA). El resto cúbrelo con comida real.</div>
-      </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:12px;margin-bottom:36px">
+      <div class="pr" style="border-left-color:#3D405B"><div class="pt">El problema no es el qué, es el patrón</div><div class="pb">Llevas meses sin fruta, sin verdura, con dulces y comida de baja calidad. 3 semanas de dieta limpia y notarás la diferencia en entrenamiento, concentración y estado de ánimo antes de que ningún otro cambio tenga efecto.</div></div>
+      <div class="pr" style="border-left-color:#C9A227"><div class="pt">⚠️ Mudanza + trabajo nuevo = trampa</div><div class="pb">La mudanza a Madrid creará fricción real. El riesgo es usar el cambio como excusa para seguir comiendo mal. Si no instalas el sistema ahora, en 6 meses seguirás igual de peso y mucho más estresado.</div></div>
+      <div class="pr" style="border-left-color:#2D6A4F"><div class="pt">💊 Suplementación mínima recomendada</div><div class="pb">Vitamina D3 (2000–4000 UI/día con comida) + Magnesio glicinato (300–400 mg antes de dormir) + Omega-3 (1–2 g EPA+DHA) + Creatina monohidrato (3–5g/día). El resto cúbrelo con comida real.</div></div>
     </div>
 
     <div class="sl">Principios No Negociables</div>
     <div class="pg">
-      <div class="pr" style="border-color:#5b6af0"><div class="pt">🥩 Proteína en cada comida</div><div class="pb">Sin excepción. Huevo, pollo, sardinas, lentejas, yogur griego. La proteína da saciedad y protege músculo en déficit.</div></div>
-      <div class="pr" style="border-color:#10b981"><div class="pt">🥦 Verdura en almuerzo y cena</div><div class="pb">Mínimo 300 g al día. Espinacas, brócoli, pimientos, zanahoria. Vitaminas, fibra, micronutrientes que ahora te faltan.</div></div>
-      <div class="pr" style="border-color:#f472b6"><div class="pt">🍊 Fruta diaria</div><div class="pb">2–3 piezas. Kiwi, naranja, plátano. Vitamina C, potasio, fibra. Reemplaza los dulces con fruta cuando aparezca el antojo.</div></div>
-      <div class="pr" style="border-color:#f59e0b"><div class="pt">🚫 Elimina los ultraprocesados</div><div class="pb">Los dulces industriales son la causa número uno de tu sobrepeso y la falta de micronutrientes. Sin negociación.</div></div>
-      <div class="pr" style="border-color:#06b6d4"><div class="pt">💧 Agua como primera bebida</div><div class="pb">2.5–3 litros. El café no hidrata. Las infusiones sin azúcar cuentan.</div></div>
-      <div class="pr" style="border-color:#ef4444"><div class="pt">🐟 Pescado azul 3x/semana</div><div class="pb">Sardinas, salmón, atún, caballa. Omega-3, D, B12, proteína, selenio. Un alimento que cubre múltiples carencias.</div></div>
+      <div class="pr" style="border-left-color:#3D405B"><div class="pt">🥩 Proteína en cada comida</div><div class="pb">Sin excepción. Huevo, pollo, sardinas, lentejas, yogur griego. La proteína da saciedad y protege músculo en déficit.</div></div>
+      <div class="pr" style="border-left-color:#2D6A4F"><div class="pt">🥦 Verdura en almuerzo y cena</div><div class="pb">Mínimo 300 g al día. Espinacas, brócoli, pimientos, zanahoria. Vitaminas, fibra y micronutrientes que ahora te faltan.</div></div>
+      <div class="pr" style="border-left-color:#C0614A"><div class="pt">🍊 Fruta diaria</div><div class="pb">2–3 piezas. Kiwi, naranja, plátano. Vitamina C, potasio, fibra. Reemplaza los dulces con fruta cuando aparezca el antojo.</div></div>
+      <div class="pr" style="border-left-color:#C9A227"><div class="pt">🚫 Elimina los ultraprocesados</div><div class="pb">Los dulces industriales son la causa número uno de tu sobrepeso y la falta de micronutrientes. Sin negociación.</div></div>
+      <div class="pr" style="border-left-color:#2E6653"><div class="pt">💧 Agua como primera bebida</div><div class="pb">2.5–3 litros. El café no hidrata. Las infusiones sin azúcar cuentan.</div></div>
+      <div class="pr" style="border-left-color:#3D405B"><div class="pt">🐟 Pescado azul 3x/semana</div><div class="pb">Sardinas, salmón, atún, caballa. Omega-3, D, B12, proteína, selenio. Un alimento que cubre múltiples carencias.</div></div>
     </div>
 
     <div class="sl">Plan Diario Tipo</div>
@@ -790,10 +518,9 @@
       <div class="dbh"><div><div class="dbt">☀️ Almuerzo</div><div class="dbs">Comida principal · 13:30–14:30</div></div><div class="dbk">~700 kcal · 40–50g proteína</div></div>
       <div class="dbb">
         <div class="meal"><div class="mn">Estructura base — rotar componentes</div>
-          <div class="mi"><div><div class="mit">Proteína: 150–200 g de pollo, merluza, salmón, sardinas, ternera o lentejas/garbanzos</div><div class="min2">Rotar para cubrir distintos micronutrientes</div></div></div>
-          <div class="mi"><div><div class="mit">Carbohidrato: arroz integral, patata cocida o pasta integral (150–200 g cocido)</div><div class="min2">Ajustar la cantidad al nivel de actividad del día</div></div></div>
-          <div class="mi"><div><div class="mit">Verdura abundante: ensalada, brócoli, espinacas, pimientos asados</div><div class="min2">Mínimo 200 g. Es donde más fallas actualmente.</div></div></div>
-          <div class="mi"><div><div class="mit">Chorrito de aceite de oliva virgen extra</div></div></div>
+          <div class="mi"><div><div class="mit">Proteína: 150–200 g de pollo, merluza, salmón, sardinas, ternera o lentejas/garbanzos</div></div></div>
+          <div class="mi"><div><div class="mit">Carbohidrato: arroz integral, patata cocida o pasta integral (150–200 g cocido)</div></div></div>
+          <div class="mi"><div><div class="mit">Verdura abundante: ensalada, brócoli, espinacas, pimientos asados (mínimo 200 g)</div></div></div>
         </div>
         <div class="meal"><div class="mn">Ejemplo semanal</div>
           <div class="mi"><div><div class="mit">Lunes: Lentejas con verduras + zanahoria rallada</div></div></div>
@@ -821,8 +548,8 @@
       <div class="dbb">
         <div class="meal"><div class="mn">Proteína + verdura · reducir carbohidratos</div>
           <div class="mi"><div><div class="mit">Proteína: huevos, atún, pechuga, sardinas, queso fresco</div></div></div>
-          <div class="mi"><div><div class="mit">Verdura abundante: crema de verduras, salteado o ensalada</div><div class="min2">El 90% de las noches debería haber verdura.</div></div></div>
-          <div class="mi"><div><div class="mit">Si entrenas de noche: pequeña porción de carbohidrato (patata, arroz)</div></div></div>
+          <div class="mi"><div><div class="mit">Verdura abundante: crema de verduras, salteado o ensalada</div></div></div>
+          <div class="mi"><div><div class="mit">Si entrenas de noche: pequeña porción de carbohidrato</div></div></div>
         </div>
         <div class="meal"><div class="mn">Opciones rápidas para Madrid</div>
           <div class="mi"><div><div class="mit">Tortilla de espinacas (3 huevos) + ensalada grande</div></div></div>
@@ -834,10 +561,10 @@
 
     <div class="sl">Eliminar ahora mismo</div>
     <div class="eg">
-      <div class="al ad" style="padding:14px 16px;border-radius:14px"><strong>Dulces industriales</strong><br><span style="font-size:12px;opacity:.8;font-weight:500">La causa directa de tus kilos extra. Reemplaza con fruta o chocolate negro 85%.</span></div>
-      <div class="al ad" style="padding:14px 16px;border-radius:14px"><strong>Carbohidratos refinados frecuentes</strong><br><span style="font-size:12px;opacity:.8;font-weight:500">Pan blanco, bollería, cereales azucarados. Picos de glucosa e inflamación.</span></div>
-      <div class="al aw" style="padding:14px 16px;border-radius:14px"><strong>Comidas sin verdura ni fruta</strong><br><span style="font-size:12px;opacity:.8;font-weight:500">Cada comida sin vegetales es una oportunidad perdida de micronutrientes.</span></div>
-      <div class="al aw" style="padding:14px 16px;border-radius:14px"><strong>Cero suplementación</strong><br><span style="font-size:12px;opacity:.8;font-weight:500">D3, Mg glicinato y Omega-3 son no negociables con tu perfil urbano.</span></div>
+      <div class="elim" style="border-left-color:#D92D20"><div class="elim-title">Dulces industriales</div><div class="elim-desc">La causa directa de tus kilos extra. Reemplaza con fruta o chocolate negro 85%.</div></div>
+      <div class="elim" style="border-left-color:#D92D20"><div class="elim-title">Carbohidratos refinados frecuentes</div><div class="elim-desc">Pan blanco, bollería, cereales azucarados. Picos de glucosa e inflamación.</div></div>
+      <div class="elim" style="border-left-color:#C9A227"><div class="elim-title">Comidas sin verdura ni fruta</div><div class="elim-desc">Cada comida sin vegetales es una oportunidad perdida de micronutrientes.</div></div>
+      <div class="elim" style="border-left-color:#C9A227"><div class="elim-title">Cero suplementación</div><div class="elim-desc">D3, Mg glicinato, Omega-3 y Creatina son no negociables con tu perfil urbano.</div></div>
     </div>
 
   </div>
@@ -846,15 +573,14 @@
 
 <script>
 function st(id) {
-  var o = ['vitaminas','minerales','macros','dieta'];
+  var o=['vitaminas','minerales','macros','dieta'];
   document.querySelectorAll('.tab').forEach(function(t,i){ t.classList.toggle('active', o[i]===id); });
   document.querySelectorAll('.tp').forEach(function(p){ p.classList.toggle('active', p.id==='tp-'+id); });
 }
 function tc(id) { document.getElementById(id).classList.toggle('open'); }
 function ta(t) {
-  var a = t.parentElement;
-  a.classList.toggle('open');
-  t.querySelector('span').textContent = a.classList.contains('open') ? '▲' : '▼';
+  var a=t.parentElement; a.classList.toggle('open');
+  t.querySelector('span').textContent=a.classList.contains('open')?'▲':'▼';
 }
 </script>
 </body>
