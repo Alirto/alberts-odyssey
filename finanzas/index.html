@@ -4,9 +4,137 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Finanzas — Albert's Odyssey</title>
-<link rel="stylesheet" href="../style.css">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
 <style>
-.tool-card::before { background: var(--tc, #1A1916); }
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --bg: #F5F4F0; --surface: #FFFFFF; --border: #E8E6E0; --border-2: #D0CEC8;
+  --text-1: #1A1916; --text-2: #6B6860; --text-3: #A8A49C;
+  --green: #2E6653; --green-bg: #EFF5F2; --green-border: #C3DDD1;
+  --red: #C0614A; --red-bg: #FCEEE9; --red-border: #F5C6BC;
+  --blue: #3D405B; --blue-bg: #ECEDF3; --blue-border: #C8CAE8;
+  --gold: #9A7D2E; --gold-bg: #FDF8EC; --gold-border: #EDD98A;
+}
+body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--text-1); min-height: 100vh; -webkit-font-smoothing: antialiased; }
+
+/* NAV */
+nav { background: var(--surface); border-bottom: 1px solid var(--border); padding: 0 48px; display: flex; align-items: center; height: 56px; position: sticky; top: 0; z-index: 100; }
+.nav-logo { font-family: 'DM Serif Display', serif; font-size: 18px; letter-spacing: -0.3px; color: var(--text-1); text-decoration: none; margin-right: 36px; white-space: nowrap; flex-shrink: 0; }
+.nav-logo span { font-style: italic; color: var(--text-2); }
+.nav-links { display: flex; align-items: stretch; flex: 1; overflow-x: auto; }
+.nav-link { font-size: 12px; font-weight: 500; color: var(--text-2); padding: 0 16px; text-decoration: none; height: 56px; display: flex; align-items: center; white-space: nowrap; border-bottom: 2px solid transparent; margin-bottom: -1px; transition: color .15s, border-color .15s; }
+.nav-link:hover { color: var(--text-1); }
+.nav-link.active { color: var(--text-1); border-bottom-color: var(--text-1); font-weight: 600; }
+
+/* PAGE */
+.page { max-width: 1280px; margin: 0 auto; padding: 48px; }
+
+/* HEADER */
+.page-hdr { padding: 48px 0 48px; border-bottom: 1px solid var(--border); margin-bottom: 48px; display: flex; align-items: flex-end; justify-content: space-between; gap: 24px; flex-wrap: wrap; }
+.ph-eyebrow { font-size: 11px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; color: var(--text-3); margin-bottom: 12px; }
+.ph-title { font-family: 'DM Serif Display', serif; font-size: 48px; letter-spacing: -1px; line-height: 1.0; margin-bottom: 12px; }
+.ph-title em { font-style: italic; color: var(--text-2); }
+.ph-sub { font-size: 14px; color: var(--text-2); line-height: 1.7; max-width: 480px; font-weight: 300; }
+.ph-meta { display: flex; gap: 32px; flex-shrink: 0; flex-wrap: wrap; justify-content: flex-end; }
+.ph-stat { text-align: right; }
+.ph-stat-val { font-family: 'DM Serif Display', serif; font-size: 28px; line-height: 1; letter-spacing: -0.5px; color: var(--green); }
+.ph-stat-lbl { font-size: 11px; color: var(--text-3); font-weight: 500; margin-top: 3px; }
+
+/* SECTION LABEL */
+.sl { font-size: 11px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; color: var(--text-3); margin: 0 0 20px; display: flex; align-items: center; gap: 14px; }
+.sl::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+
+/* PATRIMONIO GRID */
+.patrimonio-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin-bottom: 48px; }
+.pat-card { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 20px 22px; }
+.pat-card.total { border-left: 3px solid var(--green); background: var(--green-bg); }
+.pat-label { font-size: 10px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--text-3); margin-bottom: 10px; }
+.pat-val { font-family: 'DM Serif Display', serif; font-size: 26px; letter-spacing: -0.5px; line-height: 1; margin-bottom: 6px; }
+.pat-val.total-val { color: var(--green); font-size: 30px; }
+.pat-sub { font-size: 12px; color: var(--text-2); line-height: 1.5; }
+.pat-badge { display: inline-flex; align-items: center; gap: 5px; font-size: 11px; font-weight: 600; padding: 3px 10px; border-radius: 20px; margin-top: 8px; }
+.badge-warn { background: var(--gold-bg); color: var(--gold); border: 1px solid var(--gold-border); }
+.badge-ok { background: var(--green-bg); color: var(--green); border: 1px solid var(--green-border); }
+.badge-neutral { background: var(--bg); color: var(--text-3); border: 1px solid var(--border); }
+
+/* CHART CARD */
+.chart-card { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; overflow: hidden; margin-bottom: 48px; }
+.chart-hdr { padding: 22px 28px 18px; border-bottom: 1px solid var(--border); display: flex; align-items: flex-start; justify-content: space-between; flex-wrap: wrap; gap: 16px; }
+.chart-hdr-left { }
+.chart-hdr-title { font-family: 'DM Serif Display', serif; font-size: 22px; letter-spacing: -0.3px; margin-bottom: 4px; }
+.chart-hdr-sub { font-size: 12px; color: var(--text-2); }
+.chart-stats { display: flex; gap: 28px; align-items: flex-end; flex-wrap: wrap; }
+.cs { text-align: right; }
+.cs-val { font-family: 'DM Serif Display', serif; font-size: 20px; letter-spacing: -0.3px; line-height: 1; }
+.cs-lbl { font-size: 10px; color: var(--text-3); font-weight: 500; margin-top: 3px; }
+.cs-val.pos { color: var(--green); }
+.cs-val.neg { color: var(--red); }
+.chart-body { padding: 28px 28px 24px; position: relative; }
+.chart-body canvas { max-height: 340px; }
+
+/* YEAR FILTER */
+.year-filter { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 20px; }
+.yf-btn { font-size: 11px; font-weight: 600; padding: 5px 14px; border-radius: 20px; border: 1px solid var(--border); background: var(--bg); color: var(--text-2); cursor: pointer; transition: all .15s; }
+.yf-btn:hover { border-color: var(--border-2); color: var(--text-1); }
+.yf-btn.active { background: var(--green); color: white; border-color: var(--green); }
+
+/* PRESUPUESTO */
+.presupuesto-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 48px; }
+.pres-card { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; overflow: hidden; }
+.pres-hdr { padding: 18px 24px; border-bottom: 1px solid var(--border); background: #FAFAF8; display: flex; align-items: center; justify-content: space-between; }
+.pres-hdr-title { font-family: 'DM Serif Display', serif; font-size: 18px; letter-spacing: -0.3px; }
+.pres-hdr-val { font-family: 'DM Serif Display', serif; font-size: 22px; letter-spacing: -0.5px; }
+.pres-body { padding: 20px 24px; }
+.bloque-row { display: flex; align-items: center; justify-content: space-between; padding: 12px 0; border-bottom: 1px solid var(--border); }
+.bloque-row:last-child { border-bottom: none; }
+.bloque-left { display: flex; align-items: center; gap: 12px; }
+.bloque-dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
+.bloque-name { font-size: 13.5px; font-weight: 500; }
+.bloque-desc { font-size: 11.5px; color: var(--text-3); margin-top: 2px; }
+.bloque-amount { font-family: 'DM Serif Display', serif; font-size: 18px; letter-spacing: -0.3px; }
+.bloque-amount.libre { color: var(--green); }
+.bloque-amount.negativo { color: var(--red); }
+.budget-bar { margin-top: 16px; background: var(--bg); border-radius: 6px; height: 8px; overflow: hidden; display: flex; }
+.bar-seg { height: 100%; }
+
+/* CARTERA */
+.cartera-layout { display: grid; grid-template-columns: 1fr 340px; gap: 16px; margin-bottom: 48px; }
+.cartera-table { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; overflow: hidden; }
+.ct-hdr { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 12px; padding: 14px 24px; border-bottom: 1px solid var(--border); background: #FAFAF8; }
+.ct-hdr span { font-size: 10px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--text-3); }
+.ct-hdr span:not(:first-child) { text-align: right; }
+.ct-row { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 12px; padding: 14px 24px; border-bottom: 1px solid var(--border); align-items: center; transition: background .15s; }
+.ct-row:last-child { border-bottom: none; }
+.ct-row:hover { background: var(--bg); }
+.ct-ticker { font-size: 13px; font-weight: 700; letter-spacing: 0.5px; font-family: 'DM Serif Display', serif; }
+.ct-name { font-size: 11px; color: var(--text-3); margin-top: 2px; }
+.ct-pct { font-size: 12px; color: var(--text-2); text-align: right; }
+.ct-custodio { text-align: right; }
+.ct-badge { font-size: 10px; font-weight: 600; padding: 2px 8px; border-radius: 20px; display: inline-block; }
+.badge-rh { background: #FEF3F2; color: #C0614A; border: 1px solid #F5C6BC; }
+.badge-idx { background: var(--green-bg); color: var(--green); border: 1px solid var(--green-border); }
+.custodios { display: flex; flex-direction: column; gap: 12px; }
+.cust-card { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 18px 20px; }
+.cust-name { font-size: 11px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--text-3); margin-bottom: 8px; }
+.cust-val { font-family: 'DM Serif Display', serif; font-size: 22px; letter-spacing: -0.3px; margin-bottom: 4px; }
+.cust-sub { font-size: 12px; color: var(--text-2); line-height: 1.5; }
+
+/* NOTICE */
+.notice { border-radius: 8px; padding: 14px 20px; display: flex; align-items: flex-start; gap: 12px; margin-bottom: 32px; font-size: 13px; line-height: 1.6; }
+.notice-icon { font-size: 14px; flex-shrink: 0; margin-top: 1px; }
+.notice-warn { background: #FFF8EC; border: 1px solid #F2CC8F; border-left: 3px solid #C9A227; color: #7A6010; }
+
+/* RESPONSIVE */
+@media (max-width: 1100px) { .cartera-layout { grid-template-columns: 1fr; } .patrimonio-grid { grid-template-columns: repeat(2,1fr); } }
+@media (max-width: 768px) {
+  nav { padding: 0 20px; } .nav-logo { margin-right: 20px; }
+  .page { padding: 24px 20px; } .page-hdr { padding: 32px 0 32px; }
+  .presupuesto-grid { grid-template-columns: 1fr; }
+  .patrimonio-grid { grid-template-columns: 1fr 1fr; }
+  .chart-body canvas { max-height: 240px; }
+}
+::-webkit-scrollbar { width: 5px; } ::-webkit-scrollbar-track { background: transparent; } ::-webkit-scrollbar-thumb { background: rgba(0,0,0,.12); border-radius: 3px; }
 </style>
 </head>
 <body>
@@ -14,43 +142,498 @@
 <nav>
   <a href="../index.html" class="nav-logo">Albert's <span>Odyssey</span></a>
   <div class="nav-links">
-    <a href="../index.html" class="nav-link">Home</a>
-    <a href="../salud/index.html" class="nav-link">Salud</a>
-    <a href="../deporte/index.html" class="nav-link">Deporte</a>
-    <a href="../vlog/index.html" class="nav-link">Vlog</a>
-    <a href="../lecturas/index.html" class="nav-link">Lecturas</a>
-    <a href="../finanzas/index.html" class="nav-link active">Finanzas</a>
+    <a href="../index.html"            class="nav-link">Home</a>
+    <a href="../salud/index.html"      class="nav-link">Salud</a>
+    <a href="../deporte/index.html"    class="nav-link">Deporte</a>
+    <a href="../vlog/index.html"       class="nav-link">Vlog</a>
+    <a href="../lecturas/index.html"   class="nav-link">Lecturas</a>
+    <a href="../finanzas/index.html"   class="nav-link active">Finanzas</a>
     <a href="../desarrollo/index.html" class="nav-link">Desarrollo</a>
-    <a href="../escritos/index.html" class="nav-link">Escritos</a>
+    <a href="../escritos/index.html"   class="nav-link">Escritos</a>
   </div>
 </nav>
 
 <div class="page">
 
-  <div class="section-hero">
-    <div class="sh-icon-wrap">📈</div>
+  <div class="page-hdr">
     <div>
-      <div class="sh-eyebrow">Pilar 5</div>
-      <div class="sh-title">Finanzas</div>
-      <div class="sh-sub">Control de patrimonio, inversiones y ahorro. Objetivo: de 65k€ a 100k€ en 3 años con cartera diversificada.</div>
+      <div class="ph-eyebrow">Finanzas</div>
+      <h1 class="ph-title">Patrimonio<br><em>&amp; Control</em></h1>
+      <p class="ph-sub">Control por bloques, no por tickets. Tres números al mes: lo que entra, lo que sale fijo, lo que queda. El resto es tuyo.</p>
+    </div>
+    <div class="ph-meta">
+      <div class="ph-stat">
+        <div class="ph-stat-val" id="stat-actual">66.147 €</div>
+        <div class="ph-stat-lbl">Patrimonio Mar 2026</div>
+      </div>
+      <div class="ph-stat">
+        <div class="ph-stat-val" id="stat-crecimiento" style="color:var(--green)">+90%</div>
+        <div class="ph-stat-lbl">vs. inicio 2023</div>
+      </div>
+      <div class="ph-stat">
+        <div class="ph-stat-val">0 €</div>
+        <div class="ph-stat-lbl">Deuda</div>
+      </div>
     </div>
   </div>
 
-  
-  <div class="sl">Próximamente</div>
-  <div class="grid-2">
-    <div class="coming-soon">
-      <div class="cs-icon">💼</div>
-      <h3>Portfolio de Inversiones</h3>
-      <p>Seguimiento de posiciones, rentabilidad y evolución del patrimonio.</p>
+  <!-- AVISO FISCAL -->
+  <div class="notice notice-warn">
+    <div class="notice-icon">⚠</div>
+    <div><strong>Obligación fiscal pendiente:</strong> Las posiciones en Robinhood y los intereses del 3,5% tributan en España como rendimiento de capital mobiliario (IRPF). Si el total de activos en el extranjero supera 50.000€, aplica el Modelo 720. Consulta con un gestor antes de junio 2026.</div>
+  </div>
+
+  <!-- SNAPSHOT -->
+  <div class="sl">Composición del patrimonio — Marzo 2026</div>
+
+  <!-- TOTAL + DONUT -->
+  <div style="display:grid;grid-template-columns:1fr 320px;gap:16px;margin-bottom:16px;align-items:start">
+    <div class="pat-card total" style="padding:28px 32px">
+      <div class="pat-label">Patrimonio neto total</div>
+      <div class="pat-val total-val" style="font-size:42px;margin-bottom:10px">66.147 €</div>
+      <div class="pat-sub" style="margin-bottom:16px">Conversión USD→EUR al tipo 1 USD = 0,87 EUR · Sin deuda · Actualizado Mar 2026</div>
+      <div style="display:flex;gap:10px;flex-wrap:wrap">
+        <div class="pat-badge badge-ok">✓ Sin deuda</div>
+        <div class="pat-badge badge-warn">⚠ 83% en USD</div>
+        <div class="pat-badge badge-neutral">Indexa pendiente</div>
+      </div>
     </div>
-    <div class="coming-soon">
-      <div class="cs-icon">💰</div>
-      <h3>Control de Gastos</h3>
-      <p>Registro mensual de ingresos, gastos y tasa de ahorro en Madrid.</p>
+    <div style="background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:20px 24px">
+      <div style="font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--text-3);margin-bottom:14px">Distribución</div>
+      <canvas id="donutChart" style="max-height:180px"></canvas>
+      <div id="donut-legend" style="margin-top:14px;display:flex;flex-direction:column;gap:6px"></div>
+    </div>
+  </div>
+
+  <!-- DESGLOSE POR CUENTA -->
+  <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:48px">
+
+    <div class="pat-card" style="border-left:3px solid #C0614A">
+      <div class="pat-label">Acciones · Robinhood</div>
+      <div class="pat-val">22.133 €</div>
+      <div style="font-size:11px;color:var(--text-3);margin-bottom:6px">25.440 USD · tipo 0,87</div>
+      <div class="pat-sub">NVDA, TSLA, AAPL, GOOGL, MSFT, SUPV, GGAL + otros. Operado activamente.</div>
+      <div class="pat-badge badge-neutral" style="margin-top:8px">USD · Riesgo divisa</div>
+    </div>
+
+    <div class="pat-card" style="border-left:3px solid var(--gold)">
+      <div class="pat-label">Cash remunerado · Robinhood</div>
+      <div class="pat-val">32.704 €</div>
+      <div style="font-size:11px;color:var(--text-3);margin-bottom:6px">37.591 USD · tipo 0,87 · 3,5% anual</div>
+      <div class="pat-sub">Cuenta remunerada en USD. Genera intereses. Decisión de destino pendiente para Jun 2026.</div>
+      <div class="pat-badge badge-warn" style="margin-top:8px">⚡ Decisión Jun 2026</div>
+    </div>
+
+    <div class="pat-card" style="border-left:3px solid #3D405B">
+      <div class="pat-label">Acciones · Banco Santander</div>
+      <div class="pat-val">7.655 €</div>
+      <div style="font-size:11px;color:var(--text-3);margin-bottom:6px">Posiciones en euros</div>
+      <div class="pat-sub">Cartera en Santander. Sin riesgo de divisa. En proceso de revisión.</div>
+      <div class="pat-badge badge-neutral" style="margin-top:8px">EUR</div>
+    </div>
+
+    <div class="pat-card">
+      <div class="pat-label">Cuenta corriente · Santander</div>
+      <div class="pat-val">1.704 €</div>
+      <div style="font-size:11px;color:var(--text-3);margin-bottom:6px">Liquidez operativa EUR</div>
+      <div class="pat-sub">Cuenta operativa para gastos corrientes en España.</div>
+      <div class="pat-badge badge-ok" style="margin-top:8px">Operativa</div>
+    </div>
+
+    <div class="pat-card">
+      <div class="pat-label">Cuenta corriente · Wells Fargo</div>
+      <div class="pat-val">1.951 €</div>
+      <div style="font-size:11px;color:var(--text-3);margin-bottom:6px">~2.243 USD · tipo 0,87</div>
+      <div class="pat-sub">Cuenta residual de la etapa en Miami. Evaluar si mantener o cerrar.</div>
+      <div class="pat-badge badge-warn" style="margin-top:8px">Cuenta USA pendiente</div>
+    </div>
+
+    <div class="pat-card" style="border-left:3px solid var(--green);background:var(--green-bg)">
+      <div class="pat-label">Indexa Capital</div>
+      <div class="pat-val" style="color:var(--green)">En configuración</div>
+      <div style="font-size:11px;color:var(--text-3);margin-bottom:6px">Traspaso en proceso</div>
+      <div class="pat-sub">Objetivo: aportación automática mínima de 300€/mes. Diversificador estructural frente a concentración en Tech USA.</div>
+      <div class="pat-badge badge-neutral" style="margin-top:8px">Pendiente activar</div>
+    </div>
+
+  </div>
+
+  <!-- GRÁFICA EVOLUCIÓN -->
+  <div class="sl">Evolución del patrimonio</div>
+  <div class="chart-card">
+    <div class="chart-hdr">
+      <div class="chart-hdr-left">
+        <div class="chart-hdr-title">Patrimonio total 2023–2026</div>
+        <div class="chart-hdr-sub">Seguimiento mensual · Datos reales</div>
+      </div>
+      <div class="chart-stats">
+        <div class="cs">
+          <div class="cs-val">34.734 €</div>
+          <div class="cs-lbl">Enero 2023</div>
+        </div>
+        <div class="cs">
+          <div class="cs-val pos">66.147 €</div>
+          <div class="cs-lbl">Marzo 2026</div>
+        </div>
+        <div class="cs">
+          <div class="cs-val pos">+31.413 €</div>
+          <div class="cs-lbl">Crecimiento total</div>
+        </div>
+        <div class="cs">
+          <div class="cs-val pos">+90%</div>
+          <div class="cs-lbl">Rentabilidad 3 años</div>
+        </div>
+      </div>
+    </div>
+    <div class="chart-body">
+      <div class="year-filter">
+        <button class="yf-btn active" onclick="filterChart('all')">Todo</button>
+        <button class="yf-btn" onclick="filterChart('2023')">2023</button>
+        <button class="yf-btn" onclick="filterChart('2024')">2024</button>
+        <button class="yf-btn" onclick="filterChart('2025')">2025</button>
+        <button class="yf-btn" onclick="filterChart('2026')">2026</button>
+      </div>
+      <canvas id="patrimonioChart"></canvas>
+    </div>
+  </div>
+
+  <!-- PRESUPUESTO MENSUAL -->
+  <div class="sl">Presupuesto mensual — Madrid</div>
+  <div class="presupuesto-grid">
+    <div class="pres-card">
+      <div class="pres-hdr">
+        <div class="pres-hdr-title">Bloques de gasto</div>
+        <div class="pres-hdr-val" style="color:var(--red)">−1.330 €</div>
+      </div>
+      <div class="pres-body">
+        <div class="bloque-row">
+          <div class="bloque-left"><div class="bloque-dot" style="background:#C0614A"></div><div><div class="bloque-name">Alquiler</div><div class="bloque-desc">Fijo mensual</div></div></div>
+          <div class="bloque-amount negativo">750 €</div>
+        </div>
+        <div class="bloque-row">
+          <div class="bloque-left"><div class="bloque-dot" style="background:#9A7D2E"></div><div><div class="bloque-name">Alimentación</div><div class="bloque-desc">Supermercado + batch cooking</div></div></div>
+          <div class="bloque-amount">200 €</div>
+        </div>
+        <div class="bloque-row">
+          <div class="bloque-left"><div class="bloque-dot" style="background:#3D405B"></div><div><div class="bloque-name">Transporte</div><div class="bloque-desc">Abono mensual + ocasional</div></div></div>
+          <div class="bloque-amount">80 €</div>
+        </div>
+        <div class="bloque-row">
+          <div class="bloque-left"><div class="bloque-dot" style="background:#2D6A4F"></div><div><div class="bloque-name">Gimnasio</div><div class="bloque-desc">Fijo mensual</div></div></div>
+          <div class="bloque-amount">50 €</div>
+        </div>
+        <div class="bloque-row">
+          <div class="bloque-left"><div class="bloque-dot" style="background:#A8A49C"></div><div><div class="bloque-name">Ocio + varios</div><div class="bloque-desc">Salidas, ropa, suscripciones</div></div></div>
+          <div class="bloque-amount">250 €</div>
+        </div>
+        <div class="budget-bar">
+          <div class="bar-seg" style="width:56%;background:#C0614A;opacity:.8"></div>
+          <div class="bar-seg" style="width:15%;background:#9A7D2E;opacity:.8"></div>
+          <div class="bar-seg" style="width:6%;background:#3D405B;opacity:.8"></div>
+          <div class="bar-seg" style="width:4%;background:#2D6A4F;opacity:.8"></div>
+          <div class="bar-seg" style="width:19%;background:#A8A49C;opacity:.8"></div>
+        </div>
+      </div>
+    </div>
+    <div class="pres-card">
+      <div class="pres-hdr">
+        <div class="pres-hdr-title">Resultado mensual</div>
+        <div class="pres-hdr-val" style="color:var(--green)">+670 €</div>
+      </div>
+      <div class="pres-body">
+        <div class="bloque-row">
+          <div class="bloque-left"><div class="bloque-dot" style="background:#2E6653"></div><div><div class="bloque-name">Nómina Portland</div><div class="bloque-desc">Neto mensual</div></div></div>
+          <div class="bloque-amount" style="color:var(--green)">2.000 €</div>
+        </div>
+        <div class="bloque-row">
+          <div class="bloque-left"><div class="bloque-dot" style="background:#C0614A"></div><div><div class="bloque-name">Gastos totales</div><div class="bloque-desc">Todos los bloques</div></div></div>
+          <div class="bloque-amount negativo">−1.330 €</div>
+        </div>
+        <div class="bloque-row">
+          <div class="bloque-left"><div class="bloque-dot" style="background:#2E6653;box-shadow:0 0 0 3px var(--green-bg)"></div><div><div class="bloque-name">Margen disponible</div><div class="bloque-desc">Para ahorrar e invertir</div></div></div>
+          <div class="bloque-amount libre">670 €</div>
+        </div>
+        <div class="bloque-row">
+          <div class="bloque-left"><div class="bloque-dot" style="background:#9A7D2E"></div><div><div class="bloque-name">Tasa de ahorro</div><div class="bloque-desc">Mínimo objetivo: 300€/mes automático</div></div></div>
+          <div class="bloque-amount" style="color:var(--gold)">33,5%</div>
+        </div>
+        <div class="bloque-row" style="border:none">
+          <div class="bloque-left"><div class="bloque-dot" style="background:var(--border-2)"></div><div><div class="bloque-name">Regla del mes</div><div class="bloque-desc">Si el saldo no baja del umbral → mes bien</div></div></div>
+          <div class="bloque-amount" style="font-size:13px;color:var(--text-3)">Simple</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CARTERA -->
+  <div class="sl">Cartera de acciones</div>
+  <div class="cartera-layout">
+    <div class="cartera-table">
+      <div class="ct-hdr">
+        <span>Posición</span>
+        <span>Custodio</span>
+        <span>Sector</span>
+      </div>
+      <div class="ct-row"><div><div class="ct-ticker">NVDA</div><div class="ct-name">Nvidia Corporation</div></div><div class="ct-custodio"><span class="ct-badge badge-rh">Robinhood</span></div><div class="ct-pct">Semiconductores</div></div>
+      <div class="ct-row"><div><div class="ct-ticker">TSLA</div><div class="ct-name">Tesla, Inc.</div></div><div class="ct-custodio"><span class="ct-badge badge-rh">Robinhood</span></div><div class="ct-pct">Vehículos / Energía</div></div>
+      <div class="ct-row"><div><div class="ct-ticker">AAPL</div><div class="ct-name">Apple Inc.</div></div><div class="ct-custodio"><span class="ct-badge badge-rh">Robinhood</span></div><div class="ct-pct">Tecnología</div></div>
+      <div class="ct-row"><div><div class="ct-ticker">GOOGL</div><div class="ct-name">Alphabet Inc.</div></div><div class="ct-custodio"><span class="ct-badge badge-rh">Robinhood</span></div><div class="ct-pct">Tecnología</div></div>
+      <div class="ct-row"><div><div class="ct-ticker">MSFT</div><div class="ct-name">Microsoft Corporation</div></div><div class="ct-custodio"><span class="ct-badge badge-rh">Robinhood</span></div><div class="ct-pct">Tecnología</div></div>
+      <div class="ct-row"><div><div class="ct-ticker">SUPV</div><div class="ct-name">Grupo Supervielle S.A.</div></div><div class="ct-custodio"><span class="ct-badge badge-rh">Robinhood</span></div><div class="ct-pct">Banca Argentina</div></div>
+      <div class="ct-row"><div><div class="ct-ticker">GGAL</div><div class="ct-name">Grupo Financiero Galicia</div></div><div class="ct-custodio"><span class="ct-badge badge-rh">Robinhood</span></div><div class="ct-pct">Banca Argentina</div></div>
+      <div class="ct-row" style="background:var(--bg)"><div><div class="ct-ticker" style="color:var(--text-3)">INDEXA</div><div class="ct-name">Cartera indexada global</div></div><div class="ct-custodio"><span class="ct-badge badge-idx">Indexa</span></div><div class="ct-pct">Indexado global</div></div>
+    </div>
+    <div class="custodios">
+      <div class="cust-card">
+        <div class="cust-name">Robinhood</div>
+        <div class="cust-val">~65.000 USD</div>
+        <div class="cust-sub">Acciones + liquidez remunerada al 3,5%. Riesgo de tipo de cambio EUR/USD activo.</div>
+        <div class="pat-badge badge-warn" style="margin-top:10px">⚠ Fiscalidad España</div>
+      </div>
+      <div class="cust-card">
+        <div class="cust-name">Indexa Capital</div>
+        <div class="cust-val">En configuración</div>
+        <div class="cust-sub">Objetivo: aportación automática mínima 300€/mes. Perfil de riesgo por definir.</div>
+        <div class="pat-badge badge-neutral" style="margin-top:10px">Pendiente activar</div>
+      </div>
+      <div class="cust-card" style="border-left:3px solid var(--gold)">
+        <div class="cust-name">Concentración de riesgo</div>
+        <div class="cust-val" style="font-size:14px;font-family:'DM Sans';font-weight:600;color:var(--gold)">Alta en Tech USA</div>
+        <div class="cust-sub">NVDA + TSLA + AAPL + GOOGL + MSFT son posiciones concentradas en un solo sector y divisa. Indexa actúa como diversificador estructural.</div>
+      </div>
     </div>
   </div>
 
 </div>
+
+<script>
+// ── DATOS COMPLETOS ──────────────────────────────────────────────
+const MESES = ['Ene','Feb','Mar','Abr','May','Jun','Jul','Ago','Sep','Oct','Nov','Dic'];
+
+const rawData = {
+  2023: [34734.49, 34648.81, 35142.90, 34350.08, 32866.44, 34528.75, 35643.39, 36567.99, 35902.82, 45204.17, 46302.78, 46108.00],
+  2024: [44369.99, 44423.07, 42182.00, 41346.80, 39975.87, 39570.44, 37755.60, 36832.00, 36597.00, 36492.00, 47385.97, 50625.00],
+  2025: [49701.00, 49567.00, 49096.00, 53282.93, 55877.07, 55518.18, 58601.68, 60281.00, 62859.00, 72524.00, 73021.00, 72673.00],
+  2026: [71275.67, 65637.00, 66147.00]
+};
+
+// Aplanar todos los datos con etiquetas
+function buildFull() {
+  const labels = [], values = [], years = [];
+  [2023,2024,2025,2026].forEach(yr => {
+    rawData[yr].forEach((v, i) => {
+      labels.push(MESES[i] + ' ' + String(yr).slice(2));
+      values.push(v);
+      years.push(yr);
+    });
+  });
+  return { labels, values, years };
+}
+
+const full = buildFull();
+
+// Color dinámico por segmento
+function buildGradient(ctx, chartArea, values) {
+  if (!chartArea) return '#2E6653';
+  const grad = ctx.createLinearGradient(chartArea.left, 0, chartArea.right, 0);
+  grad.addColorStop(0,   '#9A7D2E');
+  grad.addColorStop(0.5, '#2E6653');
+  grad.addColorStop(1,   '#2D6A4F');
+  return grad;
+}
+
+// Gradiente de relleno
+function buildFillGradient(ctx, chartArea) {
+  if (!chartArea) return 'rgba(46,102,83,0.1)';
+  const grad = ctx.createLinearGradient(0, chartArea.top, 0, chartArea.bottom);
+  grad.addColorStop(0,   'rgba(46,102,83,0.18)');
+  grad.addColorStop(1,   'rgba(46,102,83,0.01)');
+  return grad;
+}
+
+let chart;
+
+function initChart(labels, values) {
+  const ctx = document.getElementById('patrimonioChart').getContext('2d');
+
+  if (chart) chart.destroy();
+
+  chart = new Chart(ctx, {
+    type: 'line',
+    data: {
+      labels,
+      datasets: [{
+        label: 'Patrimonio (€)',
+        data: values,
+        borderWidth: 2.5,
+        borderColor: function(ctx) {
+          const chart = ctx.chart;
+          const {ctx: c, chartArea} = chart;
+          if (!chartArea) return '#2E6653';
+          return buildGradient(c, chartArea, values);
+        },
+        backgroundColor: function(ctx) {
+          const chart = ctx.chart;
+          const {ctx: c, chartArea} = chart;
+          return buildFillGradient(c, chartArea);
+        },
+        fill: true,
+        tension: 0.35,
+        pointRadius: values.length <= 12 ? 5 : 3,
+        pointHoverRadius: 7,
+        pointBackgroundColor: '#2E6653',
+        pointBorderColor: '#FFFFFF',
+        pointBorderWidth: 2,
+      }]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: true,
+      interaction: { intersect: false, mode: 'index' },
+      plugins: {
+        legend: { display: false },
+        tooltip: {
+          backgroundColor: '#1A1916',
+          titleColor: '#A8A49C',
+          bodyColor: '#FFFFFF',
+          padding: 12,
+          titleFont: { family: 'DM Sans', size: 11, weight: '600' },
+          bodyFont: { family: 'DM Serif Display', size: 16 },
+          callbacks: {
+            title: (items) => items[0].label,
+            label: (item) => {
+              const val = item.raw;
+              const idx = item.dataIndex;
+              let delta = '';
+              if (idx > 0) {
+                const prev = item.dataset.data[idx-1];
+                const diff = val - prev;
+                const pct = ((diff/prev)*100).toFixed(1);
+                delta = (diff >= 0 ? ' ▲ +' : ' ▼ ') + formatEur(Math.abs(diff)) + ' (' + (diff>=0?'+':'') + pct + '%)';
+              }
+              return formatEur(val) + delta;
+            }
+          }
+        }
+      },
+      scales: {
+        x: {
+          grid: { color: 'rgba(0,0,0,0.04)', drawBorder: false },
+          ticks: {
+            font: { family: 'DM Sans', size: 11 },
+            color: '#A8A49C',
+            maxRotation: 45,
+            autoSkip: true,
+            maxTicksLimit: 20
+          },
+          border: { display: false }
+        },
+        y: {
+          grid: { color: 'rgba(0,0,0,0.05)', drawBorder: false },
+          ticks: {
+            font: { family: 'DM Sans', size: 11 },
+            color: '#A8A49C',
+            callback: v => formatEurShort(v)
+          },
+          border: { display: false },
+          min: 28000
+        }
+      }
+    }
+  });
+}
+
+function formatEur(n) {
+  return new Intl.NumberFormat('es-ES', { style: 'currency', currency: 'EUR', maximumFractionDigits: 0 }).format(n);
+}
+function formatEurShort(n) {
+  if (n >= 1000) return (n/1000).toFixed(0) + 'k €';
+  return n + ' €';
+}
+
+// Filtro por año
+function filterChart(yr) {
+  document.querySelectorAll('.yf-btn').forEach(b => b.classList.remove('active'));
+  event.target.classList.add('active');
+
+  let labels, values;
+  if (yr === 'all') {
+    labels = full.labels;
+    values = full.values;
+  } else {
+    const year = parseInt(yr);
+    labels = [];
+    values = [];
+    full.labels.forEach((l, i) => {
+      if (full.years[i] === year) { labels.push(l); values.push(full.values[i]); }
+    });
+  }
+  initChart(labels, values);
+}
+
+// Init
+initChart(full.labels, full.values);
+
+// ── DONUT CHART ──────────────────────────────────────────────────
+const donutData = [
+  { label: 'Acciones Robinhood', value: 22133, color: '#C0614A' },
+  { label: 'Cash Robinhood 3,5%', value: 32704, color: '#9A7D2E' },
+  { label: 'Acciones Santander', value: 7655,  color: '#3D405B' },
+  { label: 'Cuenta Santander',   value: 1704,  color: '#A8A49C' },
+  { label: 'Wells Fargo',        value: 1951,  color: '#D0CEC8' },
+];
+const total = donutData.reduce((s,d) => s+d.value, 0);
+
+const dCtx = document.getElementById('donutChart').getContext('2d');
+new Chart(dCtx, {
+  type: 'doughnut',
+  data: {
+    labels: donutData.map(d => d.label),
+    datasets: [{
+      data: donutData.map(d => d.value),
+      backgroundColor: donutData.map(d => d.color),
+      borderColor: '#FFFFFF',
+      borderWidth: 3,
+      hoverOffset: 6
+    }]
+  },
+  options: {
+    responsive: true,
+    cutout: '68%',
+    plugins: {
+      legend: { display: false },
+      tooltip: {
+        backgroundColor: '#1A1916',
+        titleColor: '#A8A49C',
+        bodyColor: '#FFFFFF',
+        padding: 10,
+        callbacks: {
+          label: (item) => {
+            const v = item.raw;
+            const pct = ((v/total)*100).toFixed(1);
+            return formatEur(v) + ' · ' + pct + '%';
+          }
+        }
+      }
+    }
+  }
+});
+
+// Legend
+const legend = document.getElementById('donut-legend');
+donutData.forEach(d => {
+  const pct = ((d.value/total)*100).toFixed(1);
+  const row = document.createElement('div');
+  row.style.cssText = 'display:flex;align-items:center;justify-content:space-between;gap:8px;font-size:11px;';
+  row.innerHTML = `
+    <div style="display:flex;align-items:center;gap:7px;color:#6B6860">
+      <div style="width:8px;height:8px;border-radius:50%;background:${d.color};flex-shrink:0"></div>
+      ${d.label}
+    </div>
+    <div style="font-weight:600;color:#1A1916;white-space:nowrap">${pct}%</div>
+  `;
+  legend.appendChild(row);
+});
+</script>
 </body>
 </html>
