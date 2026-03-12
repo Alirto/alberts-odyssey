@@ -4,9 +4,187 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Escritos — Albert's Odyssey</title>
-<link rel="stylesheet" href="../style.css">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
-.tool-card::before { background: var(--tc, #1A1916); }
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --bg: #F5F4F0; --surface: #FFFFFF; --border: #E8E6E0; --border-2: #D0CEC8;
+  --text-1: #1A1916; --text-2: #6B6860; --text-3: #A8A49C;
+  --green: #2E6653; --green-bg: #EFF5F2;
+
+  /* Colores por categoría */
+  --c-historia:    #8B6914;
+  --c-politica:    #3D405B;
+  --c-economia:    #2E6653;
+  --c-emprender:   #C0614A;
+  --c-personal:    #9A7D2E;
+  --c-estetica:    #7B5EA7;
+  --c-construc:    #4A7C59;
+  --c-urbanismo:   #2D6080;
+  --c-inmobilia:   #5C3D0A;
+}
+
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--bg);
+  color: var(--text-1);
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+/* NAV */
+nav { background: var(--surface); border-bottom: 1px solid var(--border); padding: 0 48px; display: flex; align-items: center; height: 56px; position: sticky; top: 0; z-index: 200; }
+.nav-logo { font-family: 'DM Serif Display', serif; font-size: 18px; letter-spacing: -0.3px; color: var(--text-1); text-decoration: none; margin-right: 36px; white-space: nowrap; flex-shrink: 0; }
+.nav-logo span { font-style: italic; color: var(--text-2); }
+.nav-links { display: flex; align-items: stretch; flex: 1; overflow-x: auto; }
+.nav-link { font-size: 12px; font-weight: 500; color: var(--text-2); padding: 0 16px; text-decoration: none; height: 56px; display: flex; align-items: center; white-space: nowrap; border-bottom: 2px solid transparent; margin-bottom: -1px; transition: color .15s, border-color .15s; }
+.nav-link:hover { color: var(--text-1); }
+.nav-link.active { color: var(--text-1); border-bottom-color: var(--text-1); font-weight: 600; }
+
+/* HEADER */
+.page-hdr {
+  max-width: 1280px; margin: 0 auto;
+  padding: 48px 48px 40px;
+  display: flex; align-items: flex-end; justify-content: space-between; gap: 24px; flex-wrap: wrap;
+  border-bottom: 1px solid var(--border);
+}
+.ph-eyebrow { font-size: 11px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; color: var(--text-3); margin-bottom: 12px; }
+.ph-title { font-family: 'DM Serif Display', serif; font-size: 48px; letter-spacing: -1px; line-height: 1.0; margin-bottom: 12px; }
+.ph-title em { font-style: italic; color: var(--text-2); }
+.ph-sub { font-size: 14px; color: var(--text-2); line-height: 1.7; max-width: 480px; font-weight: 300; }
+.ph-meta { display: flex; gap: 32px; flex-shrink: 0; flex-wrap: wrap; justify-content: flex-end; }
+.ph-stat-val { font-family: 'DM Serif Display', serif; font-size: 28px; line-height: 1; letter-spacing: -0.5px; color: var(--green); }
+.ph-stat-lbl { font-size: 11px; color: var(--text-3); font-weight: 500; margin-top: 3px; }
+
+/* LEYENDA */
+.legend-bar {
+  max-width: 1280px; margin: 0 auto;
+  padding: 16px 48px;
+  border-bottom: 1px solid var(--border);
+  display: flex; gap: 18px; flex-wrap: wrap; align-items: center;
+}
+.legend-bar-label { font-size: 10px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--text-3); margin-right: 6px; flex-shrink: 0; }
+.leg { display: flex; align-items: center; gap: 6px; font-size: 11px; color: var(--text-2); cursor: pointer; padding: 4px 10px; border-radius: 20px; border: 1px solid transparent; transition: all .15s; }
+.leg:hover { background: var(--surface); border-color: var(--border); }
+.leg.active-filter { border-color: currentColor; }
+.leg-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+
+/* CANVAS AREA */
+.canvas-wrap {
+  position: relative;
+  width: 100%;
+  height: calc(100vh - 180px);
+  min-height: 600px;
+  overflow: hidden;
+  cursor: grab;
+  user-select: none;
+}
+.canvas-wrap:active { cursor: grabbing; }
+
+#neural-canvas {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+}
+
+/* Hint */
+.canvas-hint {
+  position: absolute;
+  bottom: 20px; right: 24px;
+  font-size: 11px; color: var(--text-3);
+  display: flex; gap: 16px;
+  pointer-events: none;
+  z-index: 10;
+}
+.canvas-hint span { display: flex; align-items: center; gap: 5px; }
+
+/* TOOLTIP */
+#node-tooltip {
+  position: fixed;
+  background: var(--text-1);
+  color: #F5EDD8;
+  padding: 10px 14px;
+  border-radius: 8px;
+  font-size: 12px;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity .12s;
+  z-index: 300;
+  max-width: 220px;
+  line-height: 1.5;
+}
+#node-tooltip .tt-title { font-family: 'DM Serif Display', serif; font-size: 14px; margin-bottom: 3px; }
+#node-tooltip .tt-cat   { font-size: 10px; opacity: .65; letter-spacing: 0.5px; text-transform: uppercase; }
+
+/* PANEL lateral */
+#node-panel {
+  position: fixed;
+  top: 56px; right: 0;
+  width: 360px;
+  height: calc(100vh - 56px);
+  background: var(--surface);
+  border-left: 1px solid var(--border);
+  transform: translateX(100%);
+  transition: transform .3s cubic-bezier(.4,0,.2,1);
+  z-index: 150;
+  display: flex; flex-direction: column;
+  overflow: hidden;
+}
+#node-panel.open { transform: translateX(0); }
+.panel-hdr {
+  padding: 24px 24px 20px;
+  border-bottom: 1px solid var(--border);
+  flex-shrink: 0;
+}
+.panel-cat {
+  font-size: 10px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase;
+  margin-bottom: 8px;
+}
+.panel-title {
+  font-family: 'DM Serif Display', serif; font-size: 22px; letter-spacing: -0.3px;
+  line-height: 1.2; margin-bottom: 10px;
+}
+.panel-meta { font-size: 12px; color: var(--text-3); display: flex; gap: 12px; flex-wrap: wrap; }
+.panel-body { padding: 20px 24px; flex: 1; overflow-y: auto; }
+.panel-text { font-size: 13.5px; line-height: 1.8; color: var(--text-2); }
+.panel-placeholder {
+  padding: 24px; background: var(--bg); border-radius: 8px;
+  border: 1px dashed var(--border-2); text-align: center;
+  font-size: 13px; color: var(--text-3); line-height: 1.6;
+}
+.panel-close {
+  position: absolute; top: 16px; right: 16px;
+  width: 28px; height: 28px; border-radius: 6px;
+  background: var(--bg); border: 1px solid var(--border);
+  cursor: pointer; font-size: 16px; line-height: 1;
+  display: flex; align-items: center; justify-content: center;
+  color: var(--text-2); transition: all .15s;
+}
+.panel-close:hover { color: var(--text-1); background: var(--surface); }
+
+/* Zoom controls */
+.zoom-controls {
+  position: absolute; bottom: 20px; left: 24px;
+  display: flex; flex-direction: column; gap: 4px;
+  z-index: 10;
+}
+.zoom-btn {
+  width: 28px; height: 28px;
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: 6px; cursor: pointer; font-size: 16px;
+  display: flex; align-items: center; justify-content: center;
+  color: var(--text-2); transition: all .15s;
+}
+.zoom-btn:hover { color: var(--text-1); border-color: var(--border-2); }
+
+@media (max-width: 768px) {
+  nav { padding: 0 20px; } .nav-logo { margin-right: 20px; }
+  .page-hdr { padding: 32px 20px 24px; }
+  .legend-bar { padding: 12px 20px; }
+  #node-panel { width: 100%; }
+}
+::-webkit-scrollbar { width: 5px; } ::-webkit-scrollbar-track { background: transparent; } ::-webkit-scrollbar-thumb { background: rgba(0,0,0,.12); border-radius: 3px; }
 </style>
 </head>
 <body>
@@ -14,43 +192,502 @@
 <nav>
   <a href="../index.html" class="nav-logo">Albert's <span>Odyssey</span></a>
   <div class="nav-links">
-    <a href="../index.html" class="nav-link">Home</a>
-    <a href="../salud/index.html" class="nav-link">Salud</a>
-    <a href="../deporte/index.html" class="nav-link">Deporte</a>
-    <a href="../vlog/index.html" class="nav-link">Vlog</a>
-    <a href="../lecturas/index.html" class="nav-link">Lecturas</a>
-    <a href="../finanzas/index.html" class="nav-link">Finanzas</a>
+    <a href="../index.html"            class="nav-link">Home</a>
+    <a href="../salud/index.html"      class="nav-link">Salud</a>
+    <a href="../deporte/index.html"    class="nav-link">Deporte</a>
+    <a href="../vlog/index.html"       class="nav-link">Vlog</a>
+    <a href="../lecturas/index.html"   class="nav-link">Lecturas</a>
+    <a href="../finanzas/index.html"   class="nav-link">Finanzas</a>
     <a href="../desarrollo/index.html" class="nav-link">Desarrollo</a>
-    <a href="../escritos/index.html" class="nav-link active">Escritos</a>
+    <a href="../escritos/index.html"   class="nav-link active">Escritos</a>
   </div>
 </nav>
 
-<div class="page">
-
-  <div class="section-hero">
-    <div class="sh-icon-wrap">🖊️</div>
-    <div>
-      <div class="sh-eyebrow">Ideas propias</div>
-      <div class="sh-title">Escritos</div>
-      <div class="sh-sub">Ensayos y reflexiones sobre economía, real estate, historia, geopolítica y vida.</div>
-    </div>
+<div class="page-hdr">
+  <div>
+    <div class="ph-eyebrow">Escritos</div>
+    <h1 class="ph-title">Mapa<br><em>de Ideas</em></h1>
+    <p class="ph-sub">El pensamiento no es lineal. Cada escrito conecta con otro. Explora el mapa, haz clic en cualquier nodo para leer.</p>
   </div>
-
-  
-  <div class="sl">Próximamente</div>
-  <div class="grid-2">
-    <div class="coming-soon">
-      <div class="cs-icon">📄</div>
-      <h3>Primeros Ensayos</h3>
-      <p>Reflexiones sobre los temas que más me interesan.</p>
-    </div>
-    <div class="coming-soon">
-      <div class="cs-icon">🌍</div>
-      <h3>Geopolítica y Economía</h3>
-      <p>Análisis y opiniones sobre el mundo que me rodea.</p>
-    </div>
+  <div class="ph-meta">
+    <div><div class="ph-stat-val" id="stat-escritos">0</div><div class="ph-stat-lbl">Escritos</div></div>
+    <div><div class="ph-stat-val">9</div><div class="ph-stat-lbl">Categorías</div></div>
   </div>
-
 </div>
+
+<!-- LEYENDA -->
+<div class="legend-bar">
+  <span class="legend-bar-label">Categorías</span>
+  <div class="leg" data-cat="Historia"              onclick="filterCat(this)" style="color:var(--c-historia)"><div class="leg-dot" style="background:var(--c-historia)"></div>Historia</div>
+  <div class="leg" data-cat="Política"              onclick="filterCat(this)" style="color:var(--c-politica)"><div class="leg-dot" style="background:var(--c-politica)"></div>Política</div>
+  <div class="leg" data-cat="Economía"              onclick="filterCat(this)" style="color:var(--c-economia)"><div class="leg-dot" style="background:var(--c-economia)"></div>Economía</div>
+  <div class="leg" data-cat="Emprendimiento"        onclick="filterCat(this)" style="color:var(--c-emprender)"><div class="leg-dot" style="background:var(--c-emprender)"></div>Emprendimiento</div>
+  <div class="leg" data-cat="Desarrollo Personal"   onclick="filterCat(this)" style="color:var(--c-personal)"><div class="leg-dot" style="background:var(--c-personal)"></div>Desarrollo Personal</div>
+  <div class="leg" data-cat="Estética"              onclick="filterCat(this)" style="color:var(--c-estetica)"><div class="leg-dot" style="background:var(--c-estetica)"></div>Estética</div>
+  <div class="leg" data-cat="Construcción"          onclick="filterCat(this)" style="color:var(--c-construc)"><div class="leg-dot" style="background:var(--c-construc)"></div>Construcción</div>
+  <div class="leg" data-cat="Urbanismo"             onclick="filterCat(this)" style="color:var(--c-urbanismo)"><div class="leg-dot" style="background:var(--c-urbanismo)"></div>Urbanismo</div>
+  <div class="leg" data-cat="Desarrollo Inmobiliario" onclick="filterCat(this)" style="color:var(--c-inmobilia)"><div class="leg-dot" style="background:var(--c-inmobilia)"></div>Des. Inmobiliario</div>
+</div>
+
+<!-- CANVAS -->
+<div class="canvas-wrap" id="canvas-wrap">
+  <canvas id="neural-canvas"></canvas>
+
+  <div class="zoom-controls">
+    <div class="zoom-btn" onclick="zoomMap(1.25)" title="Ampliar">+</div>
+    <div class="zoom-btn" onclick="zoomMap(0.8)"  title="Alejar">−</div>
+    <div class="zoom-btn" onclick="resetView()"   title="Reset" style="font-size:13px">↺</div>
+  </div>
+
+  <div class="canvas-hint">
+    <span>🖱 Arrastra para mover</span>
+    <span>⚲ Rueda para zoom</span>
+    <span>· Clic en nodo para leer</span>
+  </div>
+</div>
+
+<!-- TOOLTIP -->
+<div id="node-tooltip">
+  <div class="tt-cat" id="tt-cat"></div>
+  <div class="tt-title" id="tt-title"></div>
+</div>
+
+<!-- PANEL LATERAL -->
+<div id="node-panel">
+  <div class="panel-close" onclick="closePanel()">×</div>
+  <div class="panel-hdr">
+    <div class="panel-cat" id="panel-cat"></div>
+    <div class="panel-title" id="panel-title"></div>
+    <div class="panel-meta" id="panel-meta"></div>
+  </div>
+  <div class="panel-body" id="panel-body"></div>
+</div>
+
+<script>
+// ═══════════════════════════════════════════════════════════
+// DATOS — Nodos del mapa neuronal
+// Estructura: categorías con hub central + nodos satélite
+// Coordenadas en espacio virtual (0–2000 x 0–1200)
+// ═══════════════════════════════════════════════════════════
+
+const COLORS = {
+  'Historia':               '#8B6914',
+  'Política':               '#3D405B',
+  'Economía':               '#2E6653',
+  'Emprendimiento':         '#C0614A',
+  'Desarrollo Personal':    '#9A7D2E',
+  'Estética':               '#7B5EA7',
+  'Construcción':           '#4A7C59',
+  'Urbanismo':              '#2D6080',
+  'Desarrollo Inmobiliario':'#5C3D0A',
+};
+
+// Nodos: { id, label, cat, x, y, r, type, content, date }
+// type: 'hub' = neurona principal de categoría, 'sub' = sub-tema, 'leaf' = escrito
+const nodes = [
+
+  // ── HISTORIA (arriba izquierda) ──
+  { id:'h0',  label:'Historia',         cat:'Historia',  x:320,  y:200, r:28, type:'hub',  content:null },
+  { id:'h1',  label:'Imperio Romano',   cat:'Historia',  x:230,  y:130, r:18, type:'sub',  content:null },
+  { id:'h2',  label:'Civilizaciones\nAntiguas', cat:'Historia', x:180, y:220, r:16, type:'sub', content:null },
+  { id:'h3',  label:'Historia\nModerna',cat:'Historia',  x:240,  y:310, r:15, type:'sub',  content:null },
+  { id:'h4',  label:'Grandes\nImperios',cat:'Historia',  x:140,  y:160, r:13, type:'leaf', content:null },
+  { id:'h5',  label:'La caída de Roma', cat:'Historia',  x:160,  y:80,  r:11, type:'leaf', content:null },
+  { id:'h6',  label:'Mesopotamia',      cat:'Historia',  x:90,   y:240, r:10, type:'leaf', content:null },
+
+  // ── POLÍTICA (arriba centro) ──
+  { id:'p0',  label:'Política',         cat:'Política',  x:560,  y:180, r:26, type:'hub',  content:null },
+  { id:'p1',  label:'Geopolítica',      cat:'Política',  x:490,  y:100, r:17, type:'sub',  content:null },
+  { id:'p2',  label:'Sistemas\nPolíticos', cat:'Política', x:630, y:100, r:16, type:'sub', content:null },
+  { id:'p3',  label:'Poder y\nSociedad',cat:'Política',  x:650,  y:240, r:14, type:'sub',  content:null },
+  { id:'p4',  label:'El orden\nmundial',cat:'Política',  x:430,  y:80,  r:11, type:'leaf', content:null },
+  { id:'p5',  label:'Democracia\nvs Autocracia', cat:'Política', x:690, y:140, r:10, type:'leaf', content:null },
+
+  // ── ECONOMÍA (centro) ──
+  { id:'e0',  label:'Economía',         cat:'Economía',  x:800,  y:300, r:28, type:'hub',  content:null },
+  { id:'e1',  label:'Macro\neconomía',  cat:'Economía',  x:730,  y:200, r:18, type:'sub',  content:null },
+  { id:'e2',  label:'Mercados\nFinancieros', cat:'Economía', x:900, y:200, r:17, type:'sub', content:null },
+  { id:'e3',  label:'Historia\nEconómica',cat:'Economía', x:870, y:380, r:15, type:'sub',  content:null },
+  { id:'e4',  label:'Inflación\ny poder',cat:'Economía', x:660, y:230, r:11, type:'leaf',  content:null },
+  { id:'e5',  label:'Ciclos\nbursátiles',cat:'Economía', x:960, y:170, r:11, type:'leaf',  content:null },
+
+  // ── EMPRENDIMIENTO (derecha arriba) ──
+  { id:'em0', label:'Emprendimiento',   cat:'Emprendimiento', x:1050, y:160, r:26, type:'hub', content:null },
+  { id:'em1', label:'Startups\ny Capital', cat:'Emprendimiento', x:1130, y:90, r:17, type:'sub', content:null },
+  { id:'em2', label:'Estrategia\nempresarial', cat:'Emprendimiento', x:980, y:80, r:15, type:'sub', content:null },
+  { id:'em3', label:'Liderazgo',        cat:'Emprendimiento', x:1150, y:220, r:14, type:'sub', content:null },
+  { id:'em4', label:'El arte\nde vender',cat:'Emprendimiento', x:1220, y:130, r:11, type:'leaf', content:null },
+
+  // ── DESARROLLO PERSONAL (derecha) ──
+  { id:'dp0', label:'Desarrollo\nPersonal', cat:'Desarrollo Personal', x:1200, y:380, r:26, type:'hub', content:null },
+  { id:'dp1', label:'Hábitos\ny Disciplina', cat:'Desarrollo Personal', x:1300, y:300, r:17, type:'sub', content:null },
+  { id:'dp2', label:'Mentalidad',       cat:'Desarrollo Personal', x:1310, y:440, r:16, type:'sub', content:null },
+  { id:'dp3', label:'Productividad',    cat:'Desarrollo Personal', x:1180, y:480, r:14, type:'sub', content:null },
+  { id:'dp4', label:'El largo\nplazo',  cat:'Desarrollo Personal', x:1380, y:360, r:11, type:'leaf', content:null },
+  { id:'dp5', label:'Foco\nvs multitarea', cat:'Desarrollo Personal', x:1380, y:480, r:10, type:'leaf', content:null },
+
+  // ── ESTÉTICA (centro arriba — puente entre Historia y construcción) ──
+  { id:'es0', label:'Estética',         cat:'Estética',  x:700,  y:560, r:22, type:'hub',  content:null },
+  { id:'es1', label:'Diseño\ny Forma',  cat:'Estética',  x:630,  y:480, r:15, type:'sub',  content:null },
+  { id:'es2', label:'Arte e\nArquitectura', cat:'Estética', x:770, y:480, r:14, type:'sub', content:null },
+  { id:'es3', label:'Belleza\ny Función',cat:'Estética',  x:750,  y:640, r:13, type:'sub',  content:null },
+  { id:'es4', label:'El minimalismo\ncomo filosofía', cat:'Estética', x:590, y:560, r:10, type:'leaf', content:null },
+
+  // ── CONSTRUCCIÓN (abajo centro-izquierda) ──
+  { id:'c0',  label:'Construcción',     cat:'Construcción', x:520, y:700, r:24, type:'hub', content:null },
+  { id:'c1',  label:'Técnicas\nConstructivas', cat:'Construcción', x:430, y:640, r:16, type:'sub', content:null },
+  { id:'c2',  label:'Materiales',       cat:'Construcción', x:430, y:760, r:15, type:'sub', content:null },
+  { id:'c3',  label:'Procesos\nde Obra',cat:'Construcción', x:560, y:790, r:14, type:'sub', content:null },
+  { id:'c4',  label:'Estructura\nvs Forma',cat:'Construcción', x:360, y:680, r:10, type:'leaf', content:null },
+
+  // ── URBANISMO (abajo izquierda) ──
+  { id:'u0',  label:'Urbanismo',        cat:'Urbanismo', x:300,  y:800, r:24, type:'hub',  content:null },
+  { id:'u1',  label:'Ciudades\ndel futuro', cat:'Urbanismo', x:210, y:740, r:16, type:'sub', content:null },
+  { id:'u2',  label:'Espacio\npúblico', cat:'Urbanismo', x:200,  y:860, r:15, type:'sub',  content:null },
+  { id:'u3',  label:'Movilidad\nurbana',cat:'Urbanismo', x:330,  y:900, r:13, type:'sub',  content:null },
+  { id:'u4',  label:'¿Para quién\nse construye?', cat:'Urbanismo', x:130, y:800, r:10, type:'leaf', content:null },
+
+  // ── DESARROLLO INMOBILIARIO (abajo derecha) ──
+  { id:'di0', label:'Des.\nInmobiliario',cat:'Desarrollo Inmobiliario', x:950, y:700, r:26, type:'hub', content:null },
+  { id:'di1', label:'Promoción\ny Gestión', cat:'Desarrollo Inmobiliario', x:1060, y:640, r:17, type:'sub', content:null },
+  { id:'di2', label:'Mercado\nInmobiliario', cat:'Desarrollo Inmobiliario', x:1070, y:760, r:16, type:'sub', content:null },
+  { id:'di3', label:'Inversión\nInmobiliaria', cat:'Desarrollo Inmobiliario', x:950, y:800, r:15, type:'sub', content:null },
+  { id:'di4', label:'El suelo\ncomo activo',cat:'Desarrollo Inmobiliario', x:1160, y:700, r:11, type:'leaf', content:null },
+  { id:'di5', label:'Ciclos del\nmercado',cat:'Desarrollo Inmobiliario', x:1000, y:870, r:10, type:'leaf', content:null },
+];
+
+// Conexiones [ idOrigen, idDestino ]
+const edges = [
+  // Historia interna
+  ['h0','h1'],['h0','h2'],['h0','h3'],['h1','h4'],['h1','h5'],['h2','h6'],
+  // Política interna
+  ['p0','p1'],['p0','p2'],['p0','p3'],['p1','p4'],['p2','p5'],
+  // Economía interna
+  ['e0','e1'],['e0','e2'],['e0','e3'],['e1','e4'],['e2','e5'],
+  // Emprendimiento interna
+  ['em0','em1'],['em0','em2'],['em0','em3'],['em1','em4'],
+  // Desarrollo Personal interna
+  ['dp0','dp1'],['dp0','dp2'],['dp0','dp3'],['dp1','dp4'],['dp2','dp5'],
+  // Estética interna
+  ['es0','es1'],['es0','es2'],['es0','es3'],['es1','es4'],
+  // Construcción interna
+  ['c0','c1'],['c0','c2'],['c0','c3'],['c1','c4'],
+  // Urbanismo interna
+  ['u0','u1'],['u0','u2'],['u0','u3'],['u1','u4'],
+  // Desarrollo Inmobiliario interna
+  ['di0','di1'],['di0','di2'],['di0','di3'],['di1','di4'],['di3','di5'],
+
+  // ── CONEXIONES INTER-CATEGORÍAS (proximidad temática) ──
+  ['h0','p0'],   // Historia ↔ Política
+  ['p0','e0'],   // Política ↔ Economía
+  ['e0','em0'],  // Economía ↔ Emprendimiento
+  ['em0','dp0'], // Emprendimiento ↔ Desarrollo Personal
+  ['es0','c0'],  // Estética ↔ Construcción
+  ['c0','u0'],   // Construcción ↔ Urbanismo
+  ['c0','di0'],  // Construcción ↔ Des. Inmobiliario
+  ['u0','di0'],  // Urbanismo ↔ Des. Inmobiliario
+  ['es0','di0'], // Estética ↔ Des. Inmobiliario
+  ['e0','di0'],  // Economía ↔ Des. Inmobiliario
+  ['h0','es0'],  // Historia ↔ Estética (arte clásico)
+  ['p0','dp0'],  // Política ↔ Desarrollo Personal
+];
+
+// ═══════════════════════════════════════════════════════════
+// CANVAS ENGINE
+// ═══════════════════════════════════════════════════════════
+const canvas  = document.getElementById('neural-canvas');
+const ctx     = canvas.getContext('2d');
+const wrap    = document.getElementById('canvas-wrap');
+
+// Viewport transform
+let vx = 0, vy = 0, vscale = 1;
+const VPAD = 80;
+
+// Build node map
+const nodeMap = {};
+nodes.forEach(n => nodeMap[n.id] = n);
+
+// Count escritos
+const escritosCount = nodes.filter(n => n.type === 'leaf' && n.content).length;
+document.getElementById('stat-escritos').textContent = escritosCount;
+
+// Filtro activo
+let activeFilter = null;
+
+// Ajuste inicial: centrar el grafo en la pantalla
+function fitGraph() {
+  const xs = nodes.map(n => n.x);
+  const ys = nodes.map(n => n.y);
+  const minX = Math.min(...xs) - VPAD;
+  const minY = Math.min(...ys) - VPAD;
+  const maxX = Math.max(...xs) + VPAD;
+  const maxY = Math.max(...ys) + VPAD;
+  const gW = maxX - minX, gH = maxY - minY;
+  const cW = canvas.width,  cH = canvas.height;
+  vscale = Math.min(cW / gW, cH / gH, 1);
+  vx = (cW - gW * vscale) / 2 - minX * vscale;
+  vy = (cH - gH * vscale) / 2 - minY * vscale;
+}
+
+function resize() {
+  canvas.width  = wrap.clientWidth;
+  canvas.height = wrap.clientHeight;
+  fitGraph();
+  draw();
+}
+
+// ── DRAW ──────────────────────────────────────────────────
+function worldToScreen(x, y) {
+  return [x * vscale + vx, y * vscale + vy];
+}
+
+function draw() {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+  const dimmed = activeFilter !== null;
+
+  // ── Conexiones ──
+  edges.forEach(([aId, bId]) => {
+    const a = nodeMap[aId], b = nodeMap[bId];
+    const [ax, ay] = worldToScreen(a.x, a.y);
+    const [bx, by] = worldToScreen(b.x, b.y);
+
+    const aFaded = dimmed && a.cat !== activeFilter && b.cat !== activeFilter;
+    const interCat = a.cat !== b.cat;
+
+    ctx.beginPath();
+    ctx.moveTo(ax, ay);
+    ctx.lineTo(bx, by);
+    ctx.strokeStyle = aFaded
+      ? 'rgba(0,0,0,0.04)'
+      : interCat
+        ? 'rgba(0,0,0,0.10)'
+        : 'rgba(0,0,0,0.15)';
+    ctx.lineWidth = interCat ? 1 : 1.2;
+    if (interCat) ctx.setLineDash([4, 4]);
+    else ctx.setLineDash([]);
+    ctx.stroke();
+    ctx.setLineDash([]);
+  });
+
+  // ── Nodos ──
+  nodes.forEach(n => {
+    const [sx, sy] = worldToScreen(n.x, n.y);
+    const r = n.r * vscale;
+    const color = COLORS[n.cat];
+    const faded = dimmed && n.cat !== activeFilter;
+
+    // Halo para hubs
+    if (n.type === 'hub' && !faded) {
+      ctx.beginPath();
+      ctx.arc(sx, sy, r + 6 * vscale, 0, Math.PI * 2);
+      ctx.fillStyle = color + '18';
+      ctx.fill();
+    }
+
+    // Círculo principal
+    ctx.beginPath();
+    ctx.arc(sx, sy, r, 0, Math.PI * 2);
+    ctx.fillStyle = faded ? '#D0CEC8' : (n.type === 'hub' ? color : color + 'CC');
+    ctx.fill();
+
+    // Borde
+    ctx.beginPath();
+    ctx.arc(sx, sy, r, 0, Math.PI * 2);
+    ctx.strokeStyle = faded ? '#C0BDB8' : (n.type === 'hub' ? color : '#FFFFFF40');
+    ctx.lineWidth = n.type === 'hub' ? 2 : 1;
+    ctx.stroke();
+
+    // Punto central en nodos hoja
+    if (n.type === 'leaf' && n.content && !faded) {
+      ctx.beginPath();
+      ctx.arc(sx, sy, 3 * vscale, 0, Math.PI * 2);
+      ctx.fillStyle = '#FFFFFF';
+      ctx.fill();
+    }
+
+    // Etiqueta
+    if (!faded) {
+      const lines = n.label.split('\n');
+      const fontSize = n.type === 'hub'
+        ? Math.max(10, 13 * vscale)
+        : Math.max(8, 10 * vscale);
+      ctx.font = `${n.type === 'hub' ? '600' : '400'} ${fontSize}px DM Sans`;
+      ctx.fillStyle = n.type === 'hub' ? '#FFFFFF' : '#1A1916';
+      ctx.textAlign = 'center';
+      ctx.textBaseline = 'middle';
+
+      if (n.type === 'hub') {
+        // Texto dentro del nodo
+        const lineH = fontSize * 1.2;
+        const startY = sy - (lines.length - 1) * lineH / 2;
+        lines.forEach((l, i) => ctx.fillText(l, sx, startY + i * lineH));
+      } else {
+        // Texto fuera del nodo, debajo
+        const labelY = sy + r + Math.max(6, 8 * vscale);
+        const lineH = fontSize * 1.3;
+        lines.forEach((l, i) => ctx.fillText(l, sx, labelY + i * lineH));
+      }
+    }
+  });
+}
+
+// ── HIT TEST ──────────────────────────────────────────────
+function getNodeAt(cx, cy) {
+  for (let i = nodes.length - 1; i >= 0; i--) {
+    const n = nodes[i];
+    const [sx, sy] = worldToScreen(n.x, n.y);
+    const r = n.r * vscale;
+    const dx = cx - sx, dy = cy - sy;
+    if (dx*dx + dy*dy <= r*r) return n;
+  }
+  return null;
+}
+
+// ── INTERACCIÓN ───────────────────────────────────────────
+let dragging = false, lastX = 0, lastY = 0, moved = false;
+const tt = document.getElementById('node-tooltip');
+
+canvas.addEventListener('mousedown', e => {
+  dragging = true; moved = false;
+  lastX = e.clientX; lastY = e.clientY;
+});
+canvas.addEventListener('mousemove', e => {
+  if (dragging) {
+    vx += e.clientX - lastX;
+    vy += e.clientY - lastY;
+    lastX = e.clientX; lastY = e.clientY;
+    moved = true;
+    draw();
+    tt.style.opacity = '0';
+    return;
+  }
+  const rect = canvas.getBoundingClientRect();
+  const node = getNodeAt(e.clientX - rect.left, e.clientY - rect.top);
+  if (node) {
+    canvas.style.cursor = 'pointer';
+    document.getElementById('tt-cat').textContent   = node.cat;
+    document.getElementById('tt-title').textContent = node.label.replace('\n',' ');
+    tt.style.opacity = '1';
+    tt.style.left = (e.clientX + 14) + 'px';
+    tt.style.top  = (e.clientY - 30) + 'px';
+  } else {
+    canvas.style.cursor = 'grab';
+    tt.style.opacity = '0';
+  }
+});
+canvas.addEventListener('mouseup', e => {
+  dragging = false;
+  if (!moved) {
+    const rect = canvas.getBoundingClientRect();
+    const node = getNodeAt(e.clientX - rect.left, e.clientY - rect.top);
+    if (node) openPanel(node);
+  }
+});
+canvas.addEventListener('mouseleave', () => { dragging = false; tt.style.opacity = '0'; });
+
+// Zoom rueda
+canvas.addEventListener('wheel', e => {
+  e.preventDefault();
+  const rect = canvas.getBoundingClientRect();
+  const mx = e.clientX - rect.left;
+  const my = e.clientY - rect.top;
+  const factor = e.deltaY < 0 ? 1.12 : 0.89;
+  vscale *= factor;
+  vscale = Math.max(0.3, Math.min(4, vscale));
+  vx = mx - (mx - vx) * factor;
+  vy = my - (my - vy) * factor;
+  draw();
+}, { passive: false });
+
+// Touch
+let lastDist = 0, lastTX = 0, lastTY = 0;
+canvas.addEventListener('touchstart', e => {
+  if (e.touches.length === 1) { lastTX = e.touches[0].clientX; lastTY = e.touches[0].clientY; moved = false; }
+  if (e.touches.length === 2) {
+    const dx = e.touches[0].clientX - e.touches[1].clientX;
+    const dy = e.touches[0].clientY - e.touches[1].clientY;
+    lastDist = Math.sqrt(dx*dx + dy*dy);
+  }
+});
+canvas.addEventListener('touchmove', e => {
+  e.preventDefault();
+  if (e.touches.length === 1) {
+    vx += e.touches[0].clientX - lastTX;
+    vy += e.touches[0].clientY - lastTY;
+    lastTX = e.touches[0].clientX; lastTY = e.touches[0].clientY;
+    moved = true; draw();
+  }
+  if (e.touches.length === 2) {
+    const dx = e.touches[0].clientX - e.touches[1].clientX;
+    const dy = e.touches[0].clientY - e.touches[1].clientY;
+    const dist = Math.sqrt(dx*dx + dy*dy);
+    const factor = dist / lastDist;
+    vscale = Math.max(0.3, Math.min(4, vscale * factor));
+    lastDist = dist; draw();
+  }
+}, { passive: false });
+canvas.addEventListener('touchend', e => {
+  if (!moved && e.changedTouches.length === 1) {
+    const rect = canvas.getBoundingClientRect();
+    const node = getNodeAt(e.changedTouches[0].clientX - rect.left, e.changedTouches[0].clientY - rect.top);
+    if (node) openPanel(node);
+  }
+});
+
+// ── PANEL ─────────────────────────────────────────────────
+function openPanel(node) {
+  const color = COLORS[node.cat];
+  document.getElementById('panel-cat').textContent   = node.cat;
+  document.getElementById('panel-cat').style.color   = color;
+  document.getElementById('panel-title').textContent = node.label.replace('\n',' ');
+  document.getElementById('panel-meta').textContent  = node.date || '';
+
+  const body = document.getElementById('panel-body');
+  if (node.content) {
+    body.innerHTML = `<div class="panel-text">${node.content}</div>`;
+  } else {
+    const typeLabel = node.type === 'hub' ? 'Categoría' : node.type === 'sub' ? 'Sub-tema' : 'Escrito';
+    body.innerHTML = `
+      <div class="panel-placeholder">
+        <div style="font-size:24px;margin-bottom:10px">✦</div>
+        <div style="font-weight:600;margin-bottom:6px;color:var(--text-2)">${typeLabel} pendiente</div>
+        <div>Este nodo está reservado. Añade el contenido editando el array <code style="background:var(--border);padding:1px 5px;border-radius:3px;font-size:11px">nodes</code> en el HTML.</div>
+      </div>`;
+  }
+
+  document.getElementById('node-panel').classList.add('open');
+}
+function closePanel() { document.getElementById('node-panel').classList.remove('open'); }
+
+// ── FILTRO ────────────────────────────────────────────────
+function filterCat(el) {
+  const cat = el.dataset.cat;
+  if (activeFilter === cat) {
+    activeFilter = null;
+    document.querySelectorAll('.leg').forEach(l => l.classList.remove('active-filter'));
+  } else {
+    activeFilter = cat;
+    document.querySelectorAll('.leg').forEach(l => {
+      l.classList.toggle('active-filter', l.dataset.cat === cat);
+    });
+  }
+  draw();
+}
+
+// ── ZOOM BOTONES ──────────────────────────────────────────
+function zoomMap(factor) {
+  const cx = canvas.width / 2, cy = canvas.height / 2;
+  vscale = Math.max(0.3, Math.min(4, vscale * factor));
+  vx = cx - (cx - vx) * factor;
+  vy = cy - (cy - vy) * factor;
+  draw();
+}
+function resetView() { fitGraph(); draw(); }
+
+// ── INIT ──────────────────────────────────────────────────
+window.addEventListener('resize', resize);
+resize();
+</script>
 </body>
 </html>
