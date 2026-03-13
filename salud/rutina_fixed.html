@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rutina Deportiva — Albert's Odyssey</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --bg: #F5F4F0; --surface: #FFFFFF; --border: #E8E6E0; --border-2: #D0CEC8;
+  --text-1: #1A1916; --text-2: #6B6860; --text-3: #A8A49C;
+  --green: #2D6A4F; --green-bg: #EAF3EE;
+}
+body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--text-1); min-height: 100vh; -webkit-font-smoothing: antialiased; }
+
+/* NAV */
+nav { background: var(--surface); border-bottom: 1px solid var(--border); padding: 0 48px; display: flex; align-items: center; height: 56px; position: sticky; top: 0; z-index: 100; }
+.nav-logo { font-family: 'DM Serif Display', serif; font-size: 18px; letter-spacing: -0.3px; color: var(--text-1); text-decoration: none; margin-right: 36px; white-space: nowrap; flex-shrink: 0; }
+.nav-logo span { font-style: italic; color: var(--text-2); }
+.nav-links { display: flex; align-items: stretch; flex: 1; overflow-x: auto; }
+.nav-link { font-size: 12px; font-weight: 500; color: var(--text-2); padding: 0 16px; text-decoration: none; height: 56px; display: flex; align-items: center; white-space: nowrap; border-bottom: 2px solid transparent; margin-bottom: -1px; transition: color .15s, border-color .15s; }
+.nav-link:hover { color: var(--text-1); }
+.nav-link.active { color: var(--text-1); border-bottom-color: var(--text-1); font-weight: 600; }
+
+/* PAGE */
+.page { max-width: 1280px; margin: 0 auto; padding: 48px; }
+
+/* HEADER */
+.page-hdr { padding: 48px 0 36px; border-bottom: 1px solid var(--border); margin-bottom: 40px; display: flex; align-items: flex-start; justify-content: space-between; gap: 24px; flex-wrap: wrap; }
+.ph-left { display: flex; align-items: flex-start; gap: 20px; }
+.ph-icon { width: 52px; height: 52px; border-radius: 12px; background: var(--green-bg); display: flex; align-items: center; justify-content: center; font-size: 24px; border: 1px solid var(--border); flex-shrink: 0; }
+.ph-eyebrow { font-size: 11px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; color: var(--text-3); margin-bottom: 6px; }
+.ph-title { font-family: 'DM Serif Display', serif; font-size: 32px; letter-spacing: -0.5px; line-height: 1.1; margin-bottom: 8px; }
+.ph-sub { font-size: 13px; color: var(--text-2); line-height: 1.6; }
+.ph-stats { display: flex; gap: 32px; align-items: flex-end; flex-wrap: wrap; }
+.ph-stat { text-align: right; }
+.ph-stat-val { font-family: 'DM Serif Display', serif; font-size: 28px; line-height: 1; letter-spacing: -0.5px; color: var(--green); }
+.ph-stat-lbl { font-size: 11px; color: var(--text-3); font-weight: 500; margin-top: 3px; }
+
+/* NOTICE */
+.notice { border-radius: 8px; padding: 14px 20px; display: flex; align-items: flex-start; gap: 12px; margin-bottom: 32px; font-size: 13px; line-height: 1.6; }
+.notice-icon { font-size: 14px; flex-shrink: 0; margin-top: 1px; }
+.notice-warn { background: #FFF8EC; border: 1px solid #F2CC8F; border-left: 3px solid #C9A227; color: #7A6010; }
+.notice-info { background: var(--green-bg); border: 1px solid #C3DDD1; border-left: 3px solid var(--green); color: #1D4A35; }
+
+/* SECTION LABEL */
+.sl { font-size: 11px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; color: var(--text-3); margin: 40px 0 20px; display: flex; align-items: center; gap: 14px; }
+.sl::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+
+/* WEEK GRID */
+.week-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-bottom: 40px; }
+
+/* SESSION CARD */
+.session { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; overflow: hidden; }
+.session-hdr { padding: 20px 24px 16px; border-bottom: 1px solid var(--border); background: #FAFAF8; }
+.session-day { font-size: 10px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--text-3); margin-bottom: 6px; }
+.session-title { font-family: 'DM Serif Display', serif; font-size: 20px; letter-spacing: -0.3px; margin-bottom: 4px; }
+.session-meta { font-size: 12px; color: var(--text-2); display: flex; gap: 14px; flex-wrap: wrap; }
+.session-meta span { display: flex; align-items: center; gap: 5px; }
+.session-body { padding: 20px 24px; }
+
+/* BLOCK */
+.block { margin-bottom: 20px; }
+.block:last-child { margin-bottom: 0; }
+.block-label { font-size: 10px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--text-3); margin-bottom: 10px; padding-bottom: 6px; border-bottom: 1px solid var(--border); }
+
+/* EXERCISE ROW */
+.ex { display: grid; grid-template-columns: 1fr auto; gap: 8px; align-items: start; padding: 10px 0; border-bottom: 1px solid var(--border); }
+.ex:last-child { border-bottom: none; }
+.ex-name { font-size: 13.5px; font-weight: 600; color: var(--text-1); margin-bottom: 3px; }
+.ex-detail { font-size: 12px; color: var(--text-2); line-height: 1.5; }
+.ex-tag { font-size: 11px; font-weight: 600; padding: 3px 10px; border-radius: 20px; white-space: nowrap; align-self: start; margin-top: 2px; }
+.tag-primary   { background: var(--green-bg); color: var(--green); border: 1px solid #C3DDD1; }
+.tag-secondary { background: #F0F0F8; color: #3D405B; border: 1px solid #C8D4F5; }
+.tag-finisher  { background: #FEF3F2; color: #C0614A; border: 1px solid #F5C6BC; }
+.tag-warmup    { background: var(--bg); color: var(--text-3); border: 1px solid var(--border); }
+.tag-shoulder  { background: #FFF8EC; color: #92400E; border: 1px solid #F2CC8F; }
+
+/* REST DAYS */
+.rest-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin-bottom: 40px; }
+.rest-card { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 20px; }
+.rest-day { font-size: 10px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--text-3); margin-bottom: 8px; }
+.rest-title { font-family: 'DM Serif Display', serif; font-size: 16px; margin-bottom: 6px; color: var(--text-2); }
+.rest-desc { font-size: 12px; color: var(--text-3); line-height: 1.6; }
+
+/* PRINCIPLES */
+.principles-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 12px; margin-bottom: 40px; }
+.principle { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 18px 20px; border-left: 3px solid; }
+.pr-title { font-size: 13.5px; font-weight: 600; margin-bottom: 5px; }
+.pr-body { font-size: 12.5px; color: var(--text-2); line-height: 1.65; }
+
+/* PROGRESSION TABLE */
+.prog-table { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; overflow: hidden; margin-bottom: 40px; }
+.prog-table-hdr { padding: 16px 24px; border-bottom: 1px solid var(--border); background: #FAFAF8; display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; gap: 12px; }
+.prog-table-hdr span { font-size: 10px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--text-3); }
+.prog-row { padding: 14px 24px; border-bottom: 1px solid var(--border); display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; gap: 12px; align-items: center; }
+.prog-row:last-child { border-bottom: none; }
+.prog-row:hover { background: var(--bg); }
+.prog-phase { font-size: 13px; font-weight: 600; }
+.prog-weeks { font-size: 12px; color: var(--text-2); }
+.prog-focus { font-size: 12px; color: var(--text-2); }
+.prog-badge { font-size: 11px; font-weight: 600; padding: 3px 10px; border-radius: 20px; display: inline-block; }
+
+/* RESPONSIVE */
+@media (max-width: 1100px) { .week-grid { grid-template-columns: 1fr; } .rest-grid { grid-template-columns: repeat(2,1fr); } }
+@media (max-width: 768px) { nav { padding: 0 20px; } .nav-logo { margin-right: 20px; } .page { padding: 24px 20px; } .page-hdr { padding: 32px 0 24px; } .rest-grid { grid-template-columns: repeat(2,1fr); } .prog-table-hdr, .prog-row { grid-template-columns: 1fr 1fr; } }
+::-webkit-scrollbar { width: 5px; height: 5px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: rgba(0,0,0,.12); border-radius: 3px; }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="../index.html" class="nav-logo">Albert's <span>Odyssey</span></a>
+  <div class="nav-links">
+    <a href="../index.html"            class="nav-link">Home</a>
+    <a href="../salud/index.html"      class="nav-link active">Salud</a>
+    <a href="../vlog/index.html"       class="nav-link">Vlog</a>
+    <a href="../lecturas/index.html"   class="nav-link">Lecturas</a>
+    <a href="../finanzas/index.html"   class="nav-link">Finanzas</a>
+    <a href="../desarrollo/index.html" class="nav-link">Desarrollo</a>
+  </div>
+</nav>
+
+<div class="page">
+
+  <div class="page-hdr">
+    <div class="ph-left">
+      <div class="ph-icon">🏋️</div>
+      <div>
+        <div class="ph-eyebrow">Salud · Deporte</div>
+        <div class="ph-title">Rutina de Fuerza</div>
+        <div class="ph-sub">Full Body 3×/semana · 16 semanas · 23 Mar → 13 Jul 2026<br>Hombro con carga controlada · Déficit calórico activo</div>
+      </div>
+    </div>
+    <div class="ph-stats">
+      <div class="ph-stat">
+        <div class="ph-stat-val">3×</div>
+        <div class="ph-stat-lbl">Sesiones / semana</div>
+      </div>
+      <div class="ph-stat">
+        <div class="ph-stat-val">55–65'</div>
+        <div class="ph-stat-lbl">Duración sesión</div>
+      </div>
+      <div class="ph-stat">
+        <div class="ph-stat-val">16 sem</div>
+        <div class="ph-stat-lbl">Horizonte fase 1</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="notice notice-warn">
+    <div class="notice-icon">⚠</div>
+    <div><strong>Hombros:</strong> Nada de press militar pesado ni elevaciones frontales con carga alta durante las primeras 8 semanas. Todos los movimientos de hombro son con mancuernas ligeras y rango controlado. Si hay dolor (no molestia, sino dolor), para el ejercicio y sustituye.</div>
+  </div>
+
+  <div class="notice notice-info">
+    <div class="notice-icon">◎</div>
+    <div><strong>Por qué Full Body y no Upper/Lower:</strong> Con 3 días, Full Body da más frecuencia por grupo muscular (3×/semana vs 1.5×). En déficit calórico es superior para retener músculo. Más tolerante a semanas con un día perdido por trabajo o viaje.</div>
+  </div>
+
+  <div class="sl">Distribución semanal</div>
+
+  <div class="week-grid">
+
+    <!-- LUNES -->
+    <div class="session">
+      <div class="session-hdr">
+        <div class="session-day">Lunes</div>
+        <div class="session-title">Full Body A</div>
+        <div class="session-meta">
+          <span>⏱ 55–65 min</span>
+          <span>🎯 Patrón de empuje + tirón</span>
+        </div>
+      </div>
+      <div class="session-body">
+
+        <div class="block">
+          <div class="block-label">Calentamiento — 8 min</div>
+          <div class="ex">
+            <div><div class="ex-name">Remo con banda + rotación externa</div><div class="ex-detail">2×15 · Activa manguito rotador</div></div>
+            <div class="ex-tag tag-warmup">Hombro</div>
+          </div>
+          <div class="ex">
+            <div><div class="ex-name">Hip hinge con palo</div><div class="ex-detail">2×10 · Activa cadena posterior</div></div>
+            <div class="ex-tag tag-warmup">Movilidad</div>
+          </div>
+        </div>
+
+        <div class="block">
+          <div class="block-label">Bloque principal</div>
+          <div class="ex">
+            <div><div class="ex-name">Sentadilla con barra</div><div class="ex-detail">4×6–8 · RPE 7–8 · 2–3 min descanso</div></div>
+            <div class="ex-tag tag-primary">Principal</div>
+          </div>
+          <div class="ex">
+            <div><div class="ex-name">Press banca con barra</div><div class="ex-detail">4×6–8 · RPE 7–8 · 2–3 min descanso</div></div>
+            <div class="ex-tag tag-primary">Principal</div>
+          </div>
+          <div class="ex">
+            <div><div class="ex-name">Remo con barra (pronado)</div><div class="ex-detail">4×8–10 · RPE 7 · 90 seg descanso</div></div>
+            <div class="ex-tag tag-primary">Principal</div>
+          </div>
+        </div>
+
+        <div class="block">
+          <div class="block-label">Accesorios</div>
+          <div class="ex">
+            <div><div class="ex-name">Elevaciones laterales mancuerna</div><div class="ex-detail">3×15–20 · Peso ligero · Codo ligeramente flexionado</div></div>
+            <div class="ex-tag tag-shoulder">Hombro ⚠</div>
+          </div>
+          <div class="ex">
+            <div><div class="ex-name">Curl de bíceps con mancuernas</div><div class="ex-detail">3×12–15 · 60 seg descanso</div></div>
+            <div class="ex-tag tag-secondary">Accesorio</div>
+          </div>
+          <div class="ex">
+            <div><div class="ex-name">Plancha frontal</div><div class="ex-detail">3×30–45 seg · Core activo</div></div>
+            <div class="ex-tag tag-secondary">Core</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- MIÉRCOLES -->
+    <div class="session">
+      <div class="session-hdr">
+        <div class="session-day">Miércoles</div>
+        <div class="session-title">Full Body B</div>
+        <div class="session-meta">
+          <span>⏱ 55–65 min</span>
+          <span>🎯 Patrón de bisagra + vertical</span>
+        </div>
+      </div>
+      <div class="session-body">
+
+        <div class="block">
+          <div class="block-label">Calentamiento — 8 min</div>
+          <div class="ex">
+            <div><div class="ex-name">Face pull con goma</div><div class="ex-detail">2×15 · Protege hombro posterior</div></div>
+            <div class="ex-tag tag-warmup">Hombro</div>
+          </div>
+          <div class="ex">
+            <div><div class="ex-name">Activación glúteo con banda</div><div class="ex-detail">2×15 · Clamshell o puente</div></div>
+            <div class="ex-tag tag-warmup">Movilidad</div>
+          </div>
+        </div>
+
+        <div class="block">
+          <div class="block-label">Bloque principal</div>
+          <div class="ex">
+            <div><div class="ex-name">Peso muerto convencional</div><div class="ex-detail">4×5 · RPE 7–8 · 3 min descanso · Rey del programa</div></div>
+            <div class="ex-tag tag-primary">Principal</div>
+          </div>
+          <div class="ex">
+            <div><div class="ex-name">Dominadas (o jalón al pecho)</div><div class="ex-detail">4×6–8 · Agarre neutro o supino · 2 min descanso</div></div>
+            <div class="ex-tag tag-primary">Principal</div>
+          </div>
+          <div class="ex">
+            <div><div class="ex-name">Press inclinado con mancuernas</div><div class="ex-detail">3×10–12 · 90 seg descanso · Menos estrés en hombro que barra</div></div>
+            <div class="ex-tag tag-primary">Principal</div>
+          </div>
+        </div>
+
+        <div class="block">
+          <div class="block-label">Accesorios</div>
+          <div class="ex">
+            <div><div class="ex-name">Extensiones de tríceps en polea</div><div class="ex-detail">3×15 · 60 seg descanso</div></div>
+            <div class="ex-tag tag-secondary">Accesorio</div>
+          </div>
+          <div class="ex">
+            <div><div class="ex-name">Curl femoral en máquina</div><div class="ex-detail">3×12–15 · Complementa el peso muerto</div></div>
+            <div class="ex-tag tag-secondary">Accesorio</div>
+          </div>
+          <div class="ex">
+            <div><div class="ex-name">Rueda abdominal o hollow hold</div><div class="ex-detail">3×10 o 3×20 seg · Core antiextensión</div></div>
+            <div class="ex-tag tag-secondary">Core</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- VIERNES -->
+    <div class="session">
+      <div class="session-hdr">
+        <div class="session-day">Viernes</div>
+        <div class="session-title">Full Body C</div>
+        <div class="session-meta">
+          <span>⏱ 55–65 min</span>
+          <span>🎯 Volumen acumulado + finisher</span>
+        </div>
+      </div>
+      <div class="session-body">
+
+        <div class="block">
+          <div class="block-label">Calentamiento — 8 min</div>
+          <div class="ex">
+            <div><div class="ex-name">Rotación torácica en suelo</div><div class="ex-detail">2×10 por lado · Movilidad columna</div></div>
+            <div class="ex-tag tag-warmup">Movilidad</div>
+          </div>
+          <div class="ex">
+            <div><div class="ex-name">Sentadilla goblet con kettlebell</div><div class="ex-detail">2×10 · Activación y movilidad</div></div>
+            <div class="ex-tag tag-warmup">Activación</div>
+          </div>
+        </div>
+
+        <div class="block">
+          <div class="block-label">Bloque principal</div>
+          <div class="ex">
+            <div><div class="ex-name">Prensa de pierna</div><div class="ex-detail">4×10–12 · RPE 7 · Alternativa a sentadilla con más volumen</div></div>
+            <div class="ex-tag tag-primary">Principal</div>
+          </div>
+          <div class="ex">
+            <div><div class="ex-name">Remo en polea baja (agarre neutro)</div><div class="ex-detail">4×10–12 · Pecho al pecho · 90 seg descanso</div></div>
+            <div class="ex-tag tag-primary">Principal</div>
+          </div>
+          <div class="ex">
+            <div><div class="ex-name">Dips en paralelas</div><div class="ex-detail">3×8–12 · Torso ligeramente inclinado · Si molesta hombro, sustituir por fondos en banco</div></div>
+            <div class="ex-tag tag-primary">Principal</div>
+          </div>
+        </div>
+
+        <div class="block">
+          <div class="block-label">Accesorios + Finisher</div>
+          <div class="ex">
+            <div><div class="ex-name">Zancadas con mancuernas</div><div class="ex-detail">3×10 por pierna · Glúteo e isquio</div></div>
+            <div class="ex-tag tag-secondary">Accesorio</div>
+          </div>
+          <div class="ex">
+            <div><div class="ex-name">Face pull alto en polea</div><div class="ex-detail">3×20 · Peso muy ligero · Salud del hombro posterior</div></div>
+            <div class="ex-tag tag-shoulder">Hombro ⚠</div>
+          </div>
+          <div class="ex">
+            <div><div class="ex-name">Finisher metabólico</div><div class="ex-detail">3 rondas: 10 KB swing + 10 sentadillas goblet + 10 remos con goma · Sin descanso entre ejercicios · 90 seg entre rondas</div></div>
+            <div class="ex-tag tag-finisher">Finisher</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+
+  <!-- DÍAS DE DESCANSO -->
+  <div class="sl">Días de descanso activo</div>
+  <div class="rest-grid">
+    <div class="rest-card">
+      <div class="rest-day">Martes</div>
+      <div class="rest-title">Descanso activo</div>
+      <div class="rest-desc">Caminar 30–45 min a paso ligero o estiramientos. Sin carga. El músculo crece aquí.</div>
+    </div>
+    <div class="rest-card">
+      <div class="rest-day">Jueves</div>
+      <div class="rest-title">Movilidad o cardio suave</div>
+      <div class="rest-desc">20 min de movilidad de cadera y hombros, o bicicleta estática a ritmo conversacional.</div>
+    </div>
+    <div class="rest-card">
+      <div class="rest-day">Sábado</div>
+      <div class="rest-title">Actividad libre</div>
+      <div class="rest-desc">Trekking, pádel, fútbol, natación — lo que apetezca. Cuenta como actividad social también.</div>
+    </div>
+    <div class="rest-card">
+      <div class="rest-day">Domingo</div>
+      <div class="rest-title">Descanso completo</div>
+      <div class="rest-desc">Recuperación total. Aquí es donde preparas el cooking batch semanal.</div>
+    </div>
+  </div>
+
+  <!-- PRINCIPIOS -->
+  <div class="sl">Principios de ejecución</div>
+  <div class="principles-grid">
+    <div class="principle" style="border-left-color:#2D6A4F">
+      <div class="pr-title">Progresión semanal</div>
+      <div class="pr-body">Si completas todas las series en el rango alto de reps con buena técnica, añade 2.5 kg la semana siguiente en ejercicios de tren inferior y 1.25–2.5 kg en superior.</div>
+    </div>
+    <div class="principle" style="border-left-color:#3D405B">
+      <div class="pr-title">RPE, no ego</div>
+      <div class="pr-body">RPE 7–8 significa que podrías hacer 2–3 reps más. Nunca al fallo en los ejercicios principales. En déficit calórico, entrenar al fallo destruye la recuperación.</div>
+    </div>
+    <div class="principle" style="border-left-color:#C9A227">
+      <div class="pr-title">Hombro: señal de alarma</div>
+      <div class="pr-body">Molestia leve → reduce carga. Dolor agudo o que irradia → para el ejercicio ese día. No seas héroe. Un hombro roto te saca 8 semanas del programa.</div>
+    </div>
+    <div class="principle" style="border-left-color:#C0614A">
+      <div class="pr-title">Semana de descarga (cada 4)</div>
+      <div class="pr-body">Semanas 4, 8, 12, 16: reduce la carga un 40–50%. Mismos ejercicios, menos peso. No es pereza, es parte del programa.</div>
+    </div>
+    <div class="principle" style="border-left-color:#2E6653">
+      <div class="pr-title">Proteína antes de entrenar</div>
+      <div class="pr-body">Si entrenas por la mañana, toma al menos 20–30g de proteína antes. Si entrenas por la tarde, la comida previa ya cubre. No entrenes en ayunas con esta frecuencia.</div>
+    </div>
+    <div class="principle" style="border-left-color:#9A7D2E">
+      <div class="pr-title">Si pierdes un día</div>
+      <div class="pr-body">No lo recuperes. Continúa con la siguiente sesión en el próximo día disponible. El objetivo es la consistencia a 16 semanas, no la perfección de cada semana.</div>
+    </div>
+  </div>
+
+  <!-- PROGRESIÓN POR FASES -->
+  <div class="sl">Progresión por fases — 16 semanas</div>
+  <div class="prog-table">
+    <div class="prog-table-hdr">
+      <span>Fase</span>
+      <span>Semanas</span>
+      <span>Enfoque</span>
+      <span>Volumen / Intensidad</span>
+    </div>
+    <div class="prog-row">
+      <div class="prog-phase">Adaptación</div>
+      <div class="prog-weeks">1–4</div>
+      <div class="prog-focus">Técnica, activar el sistema. Pesos conservadores.</div>
+      <div><span class="prog-badge" style="background:#EAF3EE;color:#2D6A4F">3 series · RPE 6–7</span></div>
+    </div>
+    <div class="prog-row">
+      <div class="prog-phase">Construcción</div>
+      <div class="prog-weeks">5–8</div>
+      <div class="prog-focus">Subir carga progresivamente. Técnica asentada.</div>
+      <div><span class="prog-badge" style="background:#EEF2FF;color:#3D405B">4 series · RPE 7–8</span></div>
+    </div>
+    <div class="prog-row">
+      <div class="prog-phase">Intensificación</div>
+      <div class="prog-weeks">9–12</div>
+      <div class="prog-focus">Máxima carga del ciclo. Series más pesadas.</div>
+      <div><span class="prog-badge" style="background:#FDF8EC;color:#9A7D2E">4 series · RPE 8–8.5</span></div>
+    </div>
+    <div class="prog-row">
+      <div class="prog-phase">Consolidación</div>
+      <div class="prog-weeks">13–16</div>
+      <div class="prog-focus">Mantener fuerza, reducir volumen. Resultados visibles.</div>
+      <div><span class="prog-badge" style="background:#FCEEE9;color:#C0614A">3 series · RPE 7.5 + descarga sem 16</span></div>
+    </div>
+  </div>
+
+  <!-- NOTA FINAL -->
+  <div class="notice notice-info" style="margin-bottom:0">
+    <div class="notice-icon">◎</div>
+    <div><strong>Revisión obligatoria en semana 8.</strong> Evalúa progreso en fuerza, composición corporal y nivel de fatiga. Si la carga laboral en Portland es muy alta las primeras semanas, reduce a 2 sesiones temporalmente — pero no a cero. 2 sesiones mantiene, 0 sesiones retrocede.</div>
+  </div>
+
+</div>
+</body>
+</html>
