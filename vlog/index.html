@@ -14,209 +14,141 @@
   --text-1: #1A1916; --text-2: #6B6860; --text-3: #A8A49C;
   --green: #2E6653; --green-bg: #EFF5F2; --green-border: #C3DDD1;
   --gold: #9A7D2E; --gold-bg: #FDF8EC;
-  /* Paleta mapa vintage */
-  --map-bg: #E8DCC8;
-  --map-land: #C4A882;
-  --map-visited: #8B6914;
-  --map-home: #5C3D0A;
-  --map-border: #A08555;
-  --map-grid: #C9B99A;
-  --map-ink: #4A3520;
+  --map-bg: #E8DCC8; --map-land: #C4A882; --map-visited: #8B6914;
+  --map-home: #5C3D0A; --map-ink: #4A3520;
+  --c-historia:#8B6914; --c-politica:#3D405B; --c-economia:#2E6653;
+  --c-emprender:#C0614A; --c-personal:#9A7D2E; --c-estetica:#7B5EA7;
+  --c-construc:#4A7C59; --c-urbanismo:#2D6080; --c-inmobilia:#5C3D0A;
 }
-body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--text-1); min-height: 100vh; -webkit-font-smoothing: antialiased; }
+body { font-family:'DM Sans',sans-serif; background:var(--bg); color:var(--text-1); min-height:100vh; -webkit-font-smoothing:antialiased; overflow-x:hidden; }
 
 /* NAV */
-nav { background: var(--surface); border-bottom: 1px solid var(--border); padding: 0 48px; display: flex; align-items: center; height: 56px; position: sticky; top: 0; z-index: 100; }
-.nav-logo { font-family: 'DM Serif Display', serif; font-size: 18px; letter-spacing: -0.3px; color: var(--text-1); text-decoration: none; margin-right: 36px; white-space: nowrap; flex-shrink: 0; }
-.nav-logo span { font-style: italic; color: var(--text-2); }
-.nav-links { display: flex; align-items: stretch; flex: 1; overflow-x: auto; }
-.nav-link { font-size: 12px; font-weight: 500; color: var(--text-2); padding: 0 16px; text-decoration: none; height: 56px; display: flex; align-items: center; white-space: nowrap; border-bottom: 2px solid transparent; margin-bottom: -1px; transition: color .15s, border-color .15s; }
-.nav-link:hover { color: var(--text-1); }
-.nav-link.active { color: var(--text-1); border-bottom-color: var(--text-1); font-weight: 600; }
+nav { background:var(--surface); border-bottom:1px solid var(--border); padding:0 48px; display:flex; align-items:center; height:56px; position:sticky; top:0; z-index:200; }
+.nav-logo { font-family:'DM Serif Display',serif; font-size:18px; letter-spacing:-0.3px; color:var(--text-1); text-decoration:none; margin-right:36px; white-space:nowrap; flex-shrink:0; }
+.nav-logo span { font-style:italic; color:var(--text-2); }
+.nav-links { display:flex; align-items:stretch; flex:1; overflow-x:auto; }
+.nav-link { font-size:12px; font-weight:500; color:var(--text-2); padding:0 16px; text-decoration:none; height:56px; display:flex; align-items:center; white-space:nowrap; border-bottom:2px solid transparent; margin-bottom:-1px; transition:color .15s,border-color .15s; }
+.nav-link:hover { color:var(--text-1); }
+.nav-link.active { color:var(--text-1); border-bottom-color:var(--text-1); font-weight:600; }
 
 /* PAGE */
-.page { max-width: 1280px; margin: 0 auto; padding: 48px; }
+.page { max-width:1280px; margin:0 auto; padding:48px; }
 
 /* HEADER */
-.page-hdr { padding: 48px 0 48px; border-bottom: 1px solid var(--border); margin-bottom: 48px; display: flex; align-items: flex-end; justify-content: space-between; gap: 24px; flex-wrap: wrap; }
-.ph-eyebrow { font-size: 11px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; color: var(--text-3); margin-bottom: 12px; }
-.ph-title { font-family: 'DM Serif Display', serif; font-size: 48px; letter-spacing: -1px; line-height: 1.0; margin-bottom: 12px; }
-.ph-title em { font-style: italic; color: var(--text-2); }
-.ph-sub { font-size: 14px; color: var(--text-2); line-height: 1.7; max-width: 480px; font-weight: 300; }
-.ph-meta { display: flex; gap: 32px; flex-shrink: 0; flex-wrap: wrap; justify-content: flex-end; }
-.ph-stat-val { font-family: 'DM Serif Display', serif; font-size: 28px; line-height: 1; letter-spacing: -0.5px; color: var(--green); }
-.ph-stat-lbl { font-size: 11px; color: var(--text-3); font-weight: 500; margin-top: 3px; }
+.page-hdr { padding:48px 0; border-bottom:1px solid var(--border); margin-bottom:48px; display:flex; align-items:flex-end; justify-content:space-between; gap:24px; flex-wrap:wrap; }
+.ph-eyebrow { font-size:11px; font-weight:600; letter-spacing:2px; text-transform:uppercase; color:var(--text-3); margin-bottom:12px; }
+.ph-title { font-family:'DM Serif Display',serif; font-size:48px; letter-spacing:-1px; line-height:1.0; margin-bottom:12px; }
+.ph-title em { font-style:italic; color:var(--text-2); }
+.ph-sub { font-size:14px; color:var(--text-2); line-height:1.7; max-width:480px; font-weight:300; }
+.ph-meta { display:flex; gap:32px; flex-shrink:0; flex-wrap:wrap; justify-content:flex-end; }
+.ph-stat-val { font-family:'DM Serif Display',serif; font-size:28px; line-height:1; letter-spacing:-0.5px; color:var(--green); }
+.ph-stat-lbl { font-size:11px; color:var(--text-3); font-weight:500; margin-top:3px; }
 
 /* SECTION LABEL */
-.sl { font-size: 11px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; color: var(--text-3); margin: 0 0 24px; display: flex; align-items: center; gap: 14px; }
-.sl::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+.sl { font-size:11px; font-weight:600; letter-spacing:2px; text-transform:uppercase; color:var(--text-3); margin:0 0 24px; display:flex; align-items:center; gap:14px; }
+.sl::after { content:''; flex:1; height:1px; background:var(--border); }
 
-/* ── CALENDARIO ── */
-.cal-section { margin-bottom: 64px; }
-.cal-year-group { margin-bottom: 40px; }
-.cal-year-label { font-family: 'DM Serif Display', serif; font-size: 22px; letter-spacing: -0.3px; color: var(--text-2); margin-bottom: 20px; padding-bottom: 12px; border-bottom: 1px solid var(--border); }
-.cal-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 12px; }
-.entry-card:not(.open):not(.placeholder) { aspect-ratio: 1 / 1; display: flex; flex-direction: column; }
-.entry-card:not(.open):not(.placeholder) .entry-header { flex: 1; align-items: center; }
-.entry-card { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; cursor: pointer; transition: border-color .15s, box-shadow .15s; }
-.entry-card:hover { border-color: var(--border-2); box-shadow: 0 4px 16px rgba(0,0,0,0.06); }
-.entry-card.open { border-color: var(--text-1); }
-.entry-header { padding: 16px 18px; display: flex; align-items: flex-start; gap: 14px; }
-.entry-date-block { flex-shrink: 0; width: 44px; text-align: center; background: var(--bg); border-radius: 8px; padding: 6px 4px; border: 1px solid var(--border); }
-.entry-day { font-family: 'DM Serif Display', serif; font-size: 22px; line-height: 1; color: var(--text-1); }
-.entry-month { font-size: 9px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: var(--text-3); margin-top: 2px; }
-.entry-meta { flex: 1; min-width: 0; }
-.entry-title { font-size: 13.5px; font-weight: 600; line-height: 1.35; margin-bottom: 4px; color: var(--text-1); }
-.entry-tag { font-size: 10px; font-weight: 600; padding: 2px 8px; border-radius: 20px; display: inline-block; }
-.entry-arrow { font-size: 12px; color: var(--text-3); transition: transform .2s; flex-shrink: 0; margin-top: 2px; }
-.entry-card.open .entry-arrow { transform: rotate(90deg); color: var(--text-1); }
-.entry-body { display: none; padding: 0 18px 18px; border-top: 1px solid var(--border); }
-.entry-card.open .entry-body { display: block; }
-.entry-text { font-size: 13.5px; line-height: 1.8; color: var(--text-2); padding-top: 14px; white-space: pre-wrap; }
-.entry-card.placeholder { border-style: dashed; background: transparent; cursor: default; opacity: 0.5; }
-.entry-card.placeholder:hover { box-shadow: none; border-color: var(--border); }
-.placeholder-inner { padding: 20px 18px; display: flex; align-items: center; gap: 12px; color: var(--text-3); font-size: 13px; }
+/* DIARIO */
+.cal-section { margin-bottom:64px; }
+.cal-year-group { margin-bottom:40px; }
+.cal-year-label { font-family:'DM Serif Display',serif; font-size:22px; letter-spacing:-0.3px; color:var(--text-2); margin-bottom:20px; padding-bottom:12px; border-bottom:1px solid var(--border); }
+.cal-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(220px,1fr)); gap:12px; }
+.entry-card:not(.open):not(.placeholder) { aspect-ratio:1/1; display:flex; flex-direction:column; }
+.entry-card:not(.open):not(.placeholder) .entry-header { flex:1; align-items:center; }
+.entry-card { background:var(--surface); border:1px solid var(--border); border-radius:10px; overflow:hidden; cursor:pointer; transition:border-color .15s,box-shadow .15s; }
+.entry-card:hover { border-color:var(--border-2); box-shadow:0 4px 16px rgba(0,0,0,0.06); }
+.entry-card.open { border-color:var(--text-1); }
+.entry-header { padding:16px 18px; display:flex; align-items:flex-start; gap:14px; }
+.entry-date-block { flex-shrink:0; width:44px; text-align:center; background:var(--bg); border-radius:8px; padding:6px 4px; border:1px solid var(--border); }
+.entry-day { font-family:'DM Serif Display',serif; font-size:22px; line-height:1; color:var(--text-1); }
+.entry-month { font-size:9px; font-weight:700; letter-spacing:1px; text-transform:uppercase; color:var(--text-3); margin-top:2px; }
+.entry-meta { flex:1; min-width:0; }
+.entry-title { font-size:13.5px; font-weight:600; line-height:1.35; margin-bottom:4px; color:var(--text-1); }
+.entry-tag { font-size:10px; font-weight:600; padding:2px 8px; border-radius:20px; display:inline-block; }
+.entry-arrow { font-size:12px; color:var(--text-3); transition:transform .2s; flex-shrink:0; margin-top:2px; }
+.entry-card.open .entry-arrow { transform:rotate(90deg); color:var(--text-1); }
+.entry-body { display:none; padding:0 18px 18px; border-top:1px solid var(--border); }
+.entry-card.open .entry-body { display:block; }
+.entry-text { font-size:13.5px; line-height:1.8; color:var(--text-2); padding-top:14px; white-space:pre-wrap; }
+.entry-card.placeholder { border-style:dashed; background:transparent; cursor:default; opacity:0.5; }
+.entry-card.placeholder:hover { box-shadow:none; border-color:var(--border); }
+.placeholder-inner { padding:20px 18px; display:flex; align-items:center; gap:12px; color:var(--text-3); font-size:13px; }
 
-/* ── MAPA VINTAGE ── */
-.map-section { margin-bottom: 64px; }
+/* MAPA VIAJES */
+.map-section { margin-bottom:64px; }
+.map-outer { border-radius:12px; overflow:hidden; border:1px solid var(--border); box-shadow:0 4px 24px rgba(0,0,0,0.08); }
+.map-toolbar { background:var(--surface); padding:18px 24px; border-bottom:1px solid var(--border); display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:12px; }
+.map-toolbar-title { font-family:'DM Serif Display',serif; font-size:18px; letter-spacing:-0.3px; }
+.map-legend { display:flex; gap:18px; flex-wrap:wrap; }
+.legend-item { display:flex; align-items:center; gap:7px; font-size:12px; color:var(--text-2); }
+.legend-dot { width:10px; height:10px; border-radius:2px; flex-shrink:0; }
+#map-wrap { position:relative; background:var(--map-bg); background-image:radial-gradient(ellipse at 20% 30%,rgba(180,140,80,0.15) 0%,transparent 60%),radial-gradient(ellipse at 80% 70%,rgba(160,120,60,0.12) 0%,transparent 55%); overflow:hidden; }
+#map-wrap::before { content:''; position:absolute; inset:0; background-image:linear-gradient(rgba(160,133,85,0.18) 1px,transparent 1px),linear-gradient(90deg,rgba(160,133,85,0.18) 1px,transparent 1px); background-size:60px 40px; pointer-events:none; z-index:1; }
+#world-svg { width:100%; height:auto; display:block; position:relative; z-index:2; }
+.country { fill:var(--map-land); stroke:var(--map-bg); stroke-width:0.6; }
+.country.visited { fill:var(--map-visited); }
+.country.home-country { fill:var(--map-home); }
+.country.visited:hover,.country.home-country:hover { opacity:0.75; cursor:pointer; }
+.city-group { cursor:pointer; }
+.city-circle { fill:var(--map-ink); stroke:var(--map-bg); stroke-width:1.2; }
+.city-circle.home-marker { fill:#1A1916; }
+#map-tt { position:absolute; background:var(--map-ink); color:#F5EDD8; padding:9px 13px; border-radius:6px; font-size:12px; pointer-events:none; opacity:0; transition:opacity .12s; z-index:20; white-space:nowrap; border:1px solid rgba(255,255,255,0.1); }
+#map-tt .tt-name { font-family:'DM Serif Display',serif; font-size:14px; color:#F5EDD8; margin-bottom:2px; }
+#map-tt .tt-sub  { font-size:10px; color:#C4A882; letter-spacing:0.5px; }
+#city-panel { display:none; background:var(--surface); padding:18px 24px; border-top:1px solid var(--border); }
+.cp-inner { display:flex; align-items:flex-start; justify-content:space-between; gap:20px; flex-wrap:wrap; }
+.cp-left { flex:1; min-width:200px; }
+.cp-city { font-family:'DM Serif Display',serif; font-size:24px; letter-spacing:-0.4px; margin-bottom:4px; }
+.cp-meta { font-size:12px; color:var(--text-3); margin-bottom:8px; display:flex; gap:12px; }
+.cp-note { font-size:13px; color:var(--text-2); line-height:1.65; font-style:italic; max-width:500px; }
+.cp-right { display:flex; align-items:center; gap:12px; }
+.cp-badge { font-size:11px; font-weight:600; padding:4px 12px; border-radius:20px; background:var(--gold-bg); color:var(--gold); border:1px solid #EDD98A; }
+.cp-close { font-size:20px; cursor:pointer; color:var(--text-3); padding:4px 8px; line-height:1; border-radius:6px; transition:color .15s; }
+.cp-close:hover { color:var(--text-1); }
 
-.map-outer {
-  border-radius: 12px;
-  overflow: hidden;
-  border: 1px solid var(--border);
-  box-shadow: 0 4px 24px rgba(0,0,0,0.08);
-}
+/* MAPA NEURONAL */
+.neural-section { margin-bottom:64px; }
+.neural-outer { border-radius:12px; overflow:hidden; border:1px solid var(--border); box-shadow:0 4px 24px rgba(0,0,0,0.08); }
+.neural-toolbar { background:var(--surface); padding:18px 24px; border-bottom:1px solid var(--border); display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:12px; }
+.neural-toolbar-title { font-family:'DM Serif Display',serif; font-size:18px; letter-spacing:-0.3px; }
+.legend-bar { padding:12px 24px; border-bottom:1px solid var(--border); display:flex; gap:12px; flex-wrap:wrap; align-items:center; background:var(--surface); }
+.legend-bar-label { font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:var(--text-3); margin-right:6px; flex-shrink:0; }
+.leg { display:flex; align-items:center; gap:6px; font-size:11px; cursor:pointer; padding:4px 10px; border-radius:20px; border:1px solid transparent; transition:all .15s; }
+.leg:hover { background:var(--bg); border-color:var(--border); }
+.leg.active-filter { border-color:currentColor; }
+.leg-dot { width:8px; height:8px; border-radius:50%; flex-shrink:0; }
+.canvas-wrap { position:relative; width:100%; height:600px; overflow:hidden; cursor:grab; user-select:none; background:var(--bg); }
+.canvas-wrap:active { cursor:grabbing; }
+#neural-canvas { position:absolute; top:0; left:0; width:100%; height:100%; }
+.canvas-hint { position:absolute; bottom:16px; right:20px; font-size:11px; color:var(--text-3); display:flex; gap:16px; pointer-events:none; }
+.canvas-hint span { display:flex; align-items:center; gap:5px; }
+.zoom-controls { position:absolute; bottom:16px; left:20px; display:flex; flex-direction:column; gap:4px; z-index:10; }
+.zoom-btn { width:28px; height:28px; background:var(--surface); border:1px solid var(--border); border-radius:6px; cursor:pointer; font-size:16px; display:flex; align-items:center; justify-content:center; color:var(--text-2); transition:all .15s; }
+.zoom-btn:hover { color:var(--text-1); border-color:var(--border-2); }
 
-.map-toolbar {
-  background: var(--surface);
-  padding: 18px 24px;
-  border-bottom: 1px solid var(--border);
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  gap: 12px;
-}
-.map-toolbar-title { font-family: 'DM Serif Display', serif; font-size: 18px; letter-spacing: -0.3px; }
-.map-legend { display: flex; gap: 18px; flex-wrap: wrap; }
-.legend-item { display: flex; align-items: center; gap: 7px; font-size: 12px; color: var(--text-2); }
-.legend-dot { width: 10px; height: 10px; border-radius: 2px; flex-shrink: 0; }
+/* TOOLTIP + PANEL */
+#node-tooltip { position:fixed; background:var(--text-1); color:#F5EDD8; padding:10px 14px; border-radius:8px; font-size:12px; pointer-events:none; opacity:0; transition:opacity .12s; z-index:300; max-width:220px; line-height:1.5; }
+#node-tooltip .tt-cat   { font-size:10px; opacity:.65; letter-spacing:0.5px; text-transform:uppercase; }
+#node-tooltip .tt-label { font-family:'DM Serif Display',serif; font-size:14px; margin-top:2px; }
+#node-panel { position:fixed; top:56px; right:0; width:360px; height:calc(100vh - 56px); background:var(--surface); border-left:1px solid var(--border); transform:translateX(100%); transition:transform .3s cubic-bezier(.4,0,.2,1); z-index:250; display:flex; flex-direction:column; overflow:hidden; }
+#node-panel.open { transform:translateX(0); }
+.panel-hdr { padding:24px 24px 20px; border-bottom:1px solid var(--border); flex-shrink:0; }
+.panel-cat { font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; margin-bottom:8px; }
+.panel-title { font-family:'DM Serif Display',serif; font-size:22px; letter-spacing:-0.3px; line-height:1.2; margin-bottom:10px; }
+.panel-meta { font-size:12px; color:var(--text-3); }
+.panel-body { padding:20px 24px; flex:1; overflow-y:auto; }
+.panel-text { font-size:13.5px; line-height:1.8; color:var(--text-2); }
+.panel-placeholder { padding:24px; background:var(--bg); border-radius:8px; border:1px dashed var(--border-2); text-align:center; font-size:13px; color:var(--text-3); line-height:1.6; }
+.panel-close { position:absolute; top:16px; right:16px; width:28px; height:28px; border-radius:6px; background:var(--bg); border:1px solid var(--border); cursor:pointer; font-size:16px; display:flex; align-items:center; justify-content:center; color:var(--text-2); transition:all .15s; }
+.panel-close:hover { color:var(--text-1); }
 
-/* El contenedor del SVG */
-#map-wrap {
-  position: relative;
-  background: var(--map-bg);
-  /* Textura de pergamino con gradientes radiales */
-  background-image:
-    radial-gradient(ellipse at 20% 30%, rgba(180,140,80,0.15) 0%, transparent 60%),
-    radial-gradient(ellipse at 80% 70%, rgba(160,120,60,0.12) 0%, transparent 55%),
-    radial-gradient(ellipse at 50% 50%, rgba(200,170,110,0.08) 0%, transparent 70%);
-  overflow: hidden;
+@media (max-width:768px) {
+  nav { padding:0 20px; } .nav-logo { margin-right:20px; }
+  .page { padding:24px 20px; } .page-hdr { padding:32px 0; }
+  .cal-grid { grid-template-columns:1fr; }
+  #node-panel { width:100%; }
 }
-
-/* Grid de navegación vintage */
-#map-wrap::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background-image:
-    linear-gradient(rgba(160,133,85,0.18) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(160,133,85,0.18) 1px, transparent 1px);
-  background-size: 60px 40px;
-  pointer-events: none;
-  z-index: 1;
-}
-
-#world-svg {
-  width: 100%;
-  height: auto;
-  display: block;
-  position: relative;
-  z-index: 2;
-}
-
-/* Países */
-.country {
-  fill: var(--map-land);
-  stroke: var(--map-bg);
-  stroke-width: 0.6;
-  transition: fill .2s;
-}
-.country.visited {
-  fill: var(--map-visited);
-  stroke: var(--map-bg);
-}
-.country.home-country {
-  fill: var(--map-home);
-  stroke: var(--map-bg);
-}
-.country:hover { opacity: 0.85; cursor: default; }
-.country.visited:hover, .country.home-country:hover { opacity: 0.75; cursor: pointer; }
-
-/* Marcadores de ciudad */
-.city-group { cursor: pointer; }
-.city-group:hover .city-pulse { opacity: 0.6; transform: scale(1.8); }
-.city-circle {
-  fill: var(--map-ink);
-  stroke: var(--map-bg);
-  stroke-width: 1.2;
-  transition: r .15s;
-}
-.city-circle.home-marker { fill: #1A1916; stroke: var(--map-bg); }
-.city-pulse {
-  fill: none;
-  stroke: var(--map-ink);
-  stroke-width: 1;
-  opacity: 0;
-  transition: opacity .3s, transform .3s;
-  transform-origin: center;
-}
-
-/* Tooltip */
-#map-tt {
-  position: absolute;
-  background: var(--map-ink);
-  color: #F5EDD8;
-  padding: 9px 13px;
-  border-radius: 6px;
-  font-size: 12px;
-  pointer-events: none;
-  opacity: 0;
-  transition: opacity .12s;
-  z-index: 20;
-  white-space: nowrap;
-  border: 1px solid rgba(255,255,255,0.1);
-}
-#map-tt .tt-name { font-family: 'DM Serif Display', serif; font-size: 14px; color: #F5EDD8; margin-bottom: 2px; }
-#map-tt .tt-sub  { font-size: 10px; color: #C4A882; letter-spacing: 0.5px; }
-
-/* Panel ciudad */
-#city-panel {
-  display: none;
-  background: var(--surface);
-  padding: 18px 24px;
-  border-top: 1px solid var(--border);
-  animation: slideUp .2s ease;
-}
-@keyframes slideUp { from { opacity:0; transform:translateY(6px); } to { opacity:1; transform:translateY(0); } }
-.cp-inner { display: flex; align-items: flex-start; justify-content: space-between; gap: 20px; flex-wrap: wrap; }
-.cp-left { flex: 1; min-width: 200px; }
-.cp-city { font-family: 'DM Serif Display', serif; font-size: 24px; letter-spacing: -0.4px; margin-bottom: 4px; }
-.cp-meta { font-size: 12px; color: var(--text-3); margin-bottom: 8px; display: flex; gap: 12px; }
-.cp-note { font-size: 13px; color: var(--text-2); line-height: 1.65; font-style: italic; max-width: 500px; }
-.cp-right { display: flex; align-items: center; gap: 12px; }
-.cp-badge { font-size: 11px; font-weight: 600; padding: 4px 12px; border-radius: 20px; background: var(--gold-bg); color: var(--gold); border: 1px solid #EDD98A; }
-.cp-close { font-size: 20px; cursor: pointer; color: var(--text-3); padding: 4px 8px; line-height: 1; border-radius: 6px; transition: color .15s, background .15s; }
-.cp-close:hover { color: var(--text-1); background: var(--bg); }
-.cp-photos { margin-top: 12px; padding: 12px 16px; background: var(--bg); border: 1px dashed var(--border-2); border-radius: 8px; font-size: 12px; color: var(--text-3); text-align: center; }
-
-/* RESPONSIVE */
-@media (max-width: 768px) {
-  nav { padding: 0 20px; } .nav-logo { margin-right: 20px; }
-  .page { padding: 24px 20px; } .page-hdr { padding: 32px 0 32px; }
-  .cal-grid { grid-template-columns: 1fr; }
-}
-::-webkit-scrollbar { width: 5px; } ::-webkit-scrollbar-track { background: transparent; } ::-webkit-scrollbar-thumb { background: rgba(0,0,0,.12); border-radius: 3px; }
+::-webkit-scrollbar { width:5px; } ::-webkit-scrollbar-track { background:transparent; } ::-webkit-scrollbar-thumb { background:rgba(0,0,0,.12); border-radius:3px; }
 </style>
 </head>
 <body>
@@ -231,7 +163,6 @@ nav { background: var(--surface); border-bottom: 1px solid var(--border); paddin
     <a href="../lecturas/index.html"   class="nav-link">Lecturas</a>
     <a href="../finanzas/index.html"   class="nav-link">Finanzas</a>
     <a href="../desarrollo/index.html" class="nav-link">Desarrollo</a>
-    <a href="../escritos/index.html"   class="nav-link">Escritos</a>
   </div>
 </nav>
 
@@ -240,26 +171,17 @@ nav { background: var(--surface); border-bottom: 1px solid var(--border); paddin
   <div class="page-hdr">
     <div>
       <div class="ph-eyebrow">Vlog</div>
-      <h1 class="ph-title">Diario<br><em>&amp; Viajes</em></h1>
-      <p class="ph-sub">Reflexiones sin filtro. Lo que pasa, lo que pienso, lo que aprendes cuando dejas de correr y te pones a escribir.</p>
+      <h1 class="ph-title">Diario,<br><em>Viajes &amp; Ideas</em></h1>
+      <p class="ph-sub">Reflexiones sin filtro. Ciudades visitadas. El mapa de ideas que conecta todo lo que pienso.</p>
     </div>
     <div class="ph-meta">
-      <div>
-        <div class="ph-stat-val">1</div>
-        <div class="ph-stat-lbl">Entradas escritas</div>
-      </div>
-      <div>
-        <div class="ph-stat-val">32</div>
-        <div class="ph-stat-lbl">Ciudades visitadas</div>
-      </div>
-      <div>
-        <div class="ph-stat-val">20+</div>
-        <div class="ph-stat-lbl">Países</div>
-      </div>
+      <div><div class="ph-stat-val">1</div><div class="ph-stat-lbl">Entradas escritas</div></div>
+      <div><div class="ph-stat-val">34</div><div class="ph-stat-lbl">Ciudades visitadas</div></div>
+      <div><div class="ph-stat-val">22</div><div class="ph-stat-lbl">Países</div></div>
     </div>
   </div>
 
-  <!-- DIARIO -->
+  <!-- 1. DIARIO -->
   <div class="cal-section">
     <div class="sl">Diario</div>
     <div class="cal-year-group">
@@ -290,7 +212,7 @@ El miedo y la ambición se parecen mucho cuando los miras de cerca. Los dos te a
     </div>
   </div>
 
-  <!-- MAPA -->
+  <!-- 2. MAPA DE VIAJES -->
   <div class="map-section">
     <div class="sl">Mapa de viajes</div>
     <div class="map-outer">
@@ -302,9 +224,9 @@ El miedo y la ambición se parecen mucho cuando los miras de cerca. Los dos te a
             <div class="legend-item"><div class="legend-dot" style="background:#C4A882"></div>Sin visitar</div>
           </div>
           <div style="display:flex;align-items:center;gap:6px;border-left:1px solid var(--border);padding-left:20px">
-            <button id="btn-zoomin"  onclick="zoomIn()"    style="width:28px;height:28px;border:1px solid var(--border);border-radius:6px;background:var(--bg);cursor:pointer;font-size:16px;display:flex;align-items:center;justify-content:center;color:var(--text-2)">+</button>
-            <button id="btn-zoomout" onclick="zoomOut()"   style="width:28px;height:28px;border:1px solid var(--border);border-radius:6px;background:var(--bg);cursor:pointer;font-size:16px;display:flex;align-items:center;justify-content:center;color:var(--text-2)">−</button>
-            <button id="btn-reset"   onclick="zoomReset()" style="width:28px;height:28px;border:1px solid var(--border);border-radius:6px;background:var(--bg);cursor:pointer;font-size:13px;display:flex;align-items:center;justify-content:center;color:var(--text-2)" title="Restablecer">↺</button>
+            <button onclick="zoomIn()"    style="width:28px;height:28px;border:1px solid var(--border);border-radius:6px;background:var(--bg);cursor:pointer;font-size:16px;display:flex;align-items:center;justify-content:center;color:var(--text-2)">+</button>
+            <button onclick="zoomOut()"   style="width:28px;height:28px;border:1px solid var(--border);border-radius:6px;background:var(--bg);cursor:pointer;font-size:16px;display:flex;align-items:center;justify-content:center;color:var(--text-2)">−</button>
+            <button onclick="zoomReset()" style="width:28px;height:28px;border:1px solid var(--border);border-radius:6px;background:var(--bg);cursor:pointer;font-size:13px;display:flex;align-items:center;justify-content:center;color:var(--text-2)">↺</button>
           </div>
         </div>
       </div>
@@ -318,12 +240,47 @@ El miedo y la ambición se parecen mucho cuando los miras de cerca. Los dos te a
             <div class="cp-city" id="cp-name">—</div>
             <div class="cp-meta"><span id="cp-country">—</span><span id="cp-when">—</span></div>
             <div class="cp-note" id="cp-note">—</div>
-            <div class="cp-photos">📷 Las fotos de este viaje se añadirán aquí</div>
           </div>
           <div class="cp-right">
             <span class="cp-badge" id="cp-badge">Visitada</span>
-            <div class="cp-close" onclick="closePanel()">×</div>
+            <div class="cp-close" onclick="closeMapPanel()">×</div>
           </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 3. MAPA DE IDEAS -->
+  <div class="neural-section">
+    <div class="sl">Mapa de ideas</div>
+    <div class="neural-outer">
+      <div class="neural-toolbar">
+        <div class="neural-toolbar-title">Pensamiento conectado</div>
+        <div style="font-size:12px;color:var(--text-3)">Clic en cualquier nodo para explorar</div>
+      </div>
+      <div class="legend-bar">
+        <span class="legend-bar-label">Categorías</span>
+        <div class="leg" data-cat="Historia"               onclick="filterCat(this)" style="color:var(--c-historia)"><div class="leg-dot" style="background:var(--c-historia)"></div>Historia</div>
+        <div class="leg" data-cat="Política"               onclick="filterCat(this)" style="color:var(--c-politica)"><div class="leg-dot" style="background:var(--c-politica)"></div>Política</div>
+        <div class="leg" data-cat="Economía"               onclick="filterCat(this)" style="color:var(--c-economia)"><div class="leg-dot" style="background:var(--c-economia)"></div>Economía</div>
+        <div class="leg" data-cat="Emprendimiento"         onclick="filterCat(this)" style="color:var(--c-emprender)"><div class="leg-dot" style="background:var(--c-emprender)"></div>Emprendimiento</div>
+        <div class="leg" data-cat="Desarrollo Personal"    onclick="filterCat(this)" style="color:var(--c-personal)"><div class="leg-dot" style="background:var(--c-personal)"></div>Desarrollo Personal</div>
+        <div class="leg" data-cat="Estética"               onclick="filterCat(this)" style="color:var(--c-estetica)"><div class="leg-dot" style="background:var(--c-estetica)"></div>Estética</div>
+        <div class="leg" data-cat="Construcción"           onclick="filterCat(this)" style="color:var(--c-construc)"><div class="leg-dot" style="background:var(--c-construc)"></div>Construcción</div>
+        <div class="leg" data-cat="Urbanismo"              onclick="filterCat(this)" style="color:var(--c-urbanismo)"><div class="leg-dot" style="background:var(--c-urbanismo)"></div>Urbanismo</div>
+        <div class="leg" data-cat="Desarrollo Inmobiliario" onclick="filterCat(this)" style="color:var(--c-inmobilia)"><div class="leg-dot" style="background:var(--c-inmobilia)"></div>Des. Inmobiliario</div>
+      </div>
+      <div class="canvas-wrap" id="canvas-wrap">
+        <canvas id="neural-canvas"></canvas>
+        <div class="zoom-controls">
+          <div class="zoom-btn" onclick="zoomNeural(1.25)">+</div>
+          <div class="zoom-btn" onclick="zoomNeural(0.8)">−</div>
+          <div class="zoom-btn" onclick="resetNeural()" style="font-size:13px">↺</div>
+        </div>
+        <div class="canvas-hint">
+          <span>🖱 Arrastra</span>
+          <span>⚲ Zoom</span>
+          <span>· Clic en nodo</span>
         </div>
       </div>
     </div>
@@ -331,297 +288,372 @@ El miedo y la ambición se parecen mucho cuando los miras de cerca. Los dos te a
 
 </div>
 
+<!-- TOOLTIP NEURONAL -->
+<div id="node-tooltip">
+  <div class="tt-cat" id="n-tt-cat"></div>
+  <div class="tt-label" id="n-tt-label"></div>
+</div>
+
+<!-- PANEL LATERAL -->
+<div id="node-panel">
+  <div class="panel-close" onclick="closeNeuralPanel()">×</div>
+  <div class="panel-hdr">
+    <div class="panel-cat" id="panel-cat"></div>
+    <div class="panel-title" id="panel-title"></div>
+    <div class="panel-meta" id="panel-meta"></div>
+  </div>
+  <div class="panel-body" id="panel-body"></div>
+</div>
+
 <script>
-// ── DIARIO ────────────────────────────────────────────────────────
+// ── 1. DIARIO ──────────────────────────────────────────────
 function toggleEntry(card) {
-  const isOpen = card.classList.contains('open');
+  const open = card.classList.contains('open');
   document.querySelectorAll('.entry-card.open').forEach(c => c.classList.remove('open'));
-  if (!isOpen) card.classList.add('open');
+  if (!open) card.classList.add('open');
 }
 
-// ── MAPA ──────────────────────────────────────────────────────────
-
-// Países visitados por código numérico ISO (topojson natural earth usa id numérico)
-// Mapeamos por nombre para usarlo con la proyección
+// ── 2. MAPA DE VIAJES ──────────────────────────────────────
 const visitedCountries = new Set([
-  'Spain','Portugal','France','United Kingdom','Ireland',
-  'Germany','Austria','Switzerland','Belgium','Netherlands',
-  'Italy','Slovenia','Croatia','Hungary','Czech Republic',
-  'Denmark','Greece','Malta','Luxembourg','Andorra',
+  'Spain','Portugal','France','United Kingdom','Ireland','Germany','Austria',
+  'Switzerland','Belgium','Netherlands','Italy','Slovenia','Croatia','Hungary',
+  'Czech Republic','Denmark','Greece','Malta','Luxembourg','Andorra',
   'United States of America','Argentina'
 ]);
 const homeCountries = new Set(['Spain']);
 
-// Ciudades con coordenadas [lon, lat]
 const cities = [
-  { name:'Madrid',    country:'España',          when:'Residencia · Mar 2026',   note:'Tu ciudad de residencia a partir de marzo 2026. Base de operaciones para el proyecto Gobelas y Grupo Portland.', badge:'Base',       lon:-3.70,  lat:40.42, home:true },
-  { name:'Sevilla',   country:'España',          when:'Origen',                  note:'Tu ciudad natal. Donde empezó todo antes del salto a Madrid.',                                                      badge:'Origen',     lon:-5.99,  lat:37.39, home:true },
-  { name:'Miami',     country:'EE.UU.',          when:'Residencia · 2023–2025',  note:'Dos años viviendo aquí. La ciudad que más te formó profesionalmente hasta ahora.',                                  badge:'Vivida',      lon:-80.19, lat:25.76, home:true },
-  { name:'Buenos Aires', country:'Argentina',    when:'Visitada · conexión especial', note:'Donde está tu novia. La ciudad más europea de América Latina.',                                               badge:'Especial',    lon:-58.38, lat:-34.6 },
-  { name:'Nueva York',country:'EE.UU.',          when:'Visitada',                note:'La ciudad más intensa del mundo. La que nunca duerme.',                                                             badge:'Visitada',    lon:-74.01, lat:40.71 },
-  { name:'Londres',   country:'Reino Unido',     when:'Visitada',                note:'Capital financiera europea. Ciudad de contrastes permanentes.',                                                     badge:'Visitada',    lon:-0.13,  lat:51.51 },
-  { name:'Edimburgo', country:'Reino Unido',     when:'Visitada',                note:'La capital escocesa. Una de las ciudades más atmosféricas de Europa.',                                              badge:'Visitada',    lon:-3.19,  lat:55.95 },
-  { name:'Glasgow',   country:'Reino Unido',     when:'Visitada',                note:'Ciudad industrial reconvertida en ciudad cultural.',                                                                 badge:'Visitada',    lon:-4.25,  lat:55.86 },
-  { name:'Dublín',    country:'Irlanda',         when:'Visitada',                note:'Ciudad de pubs, literatura y carácter propio.',                                                                     badge:'Visitada',    lon:-6.27,  lat:53.33 },
-  { name:'París',     country:'Francia',         when:'Visitada',                note:'La ciudad más fotografiada del mundo. Y con razón.',                                                                badge:'Visitada',    lon:2.35,   lat:48.85 },
-  { name:'Marsella',  country:'Francia',         when:'Visitada',                note:'Puerto mediterráneo, mezcla de culturas.',                                                                          badge:'Visitada',    lon:5.37,   lat:43.30 },
-  { name:'Estrasburgo',country:'Francia',        when:'Visitada',                note:'La ciudad donde Europa se encuentra. Sede del Parlamento Europeo.',                                                 badge:'Visitada',    lon:7.75,   lat:48.57 },
-  { name:'Bruselas',  country:'Bélgica',         when:'Visitada',                note:'Capital de Europa y de las cervezas belgas.',                                                                       badge:'Visitada',    lon:4.35,   lat:50.85 },
-  { name:'Brujas',    country:'Bélgica',         when:'Visitada',                note:'La Venecia del norte. Canales, chocolate y medievalismo.',                                                          badge:'Visitada',    lon:3.22,   lat:51.21 },
-  { name:'Gante',     country:'Bélgica',         when:'Visitada',                note:'Ciudad universitaria y medieval, más auténtica que Brujas.',                                                        badge:'Visitada',    lon:3.72,   lat:51.05 },
-  { name:'Ámsterdam', country:'Países Bajos',    when:'Visitada',                note:'Canales, bicicletas y arquitectura única.',                                                                         badge:'Visitada',    lon:4.90,   lat:52.37 },
-  { name:'Berlín',    country:'Alemania',        when:'Visitada',                note:'La ciudad que define la historia contemporánea de Europa.',                                                          badge:'Visitada',    lon:13.40,  lat:52.52 },
-  { name:'Múnich',    country:'Alemania',        when:'Visitada',                note:'Bayern, cerveza y eficiencia alemana.',                                                                             badge:'Visitada',    lon:11.58,  lat:48.14 },
-  { name:'Stuttgart', country:'Alemania',        when:'Visitada',                note:'Ciudad del automóvil. Mercedes, Porsche y el Württemberg.',                                                         badge:'Visitada',    lon:9.18,   lat:48.78 },
-  { name:'Copenhague',country:'Dinamarca',       when:'Visitada',                note:'La capital más feliz de Europa, según dicen.',                                                                      badge:'Visitada',    lon:12.57,  lat:55.68 },
-  { name:'Zúrich',    country:'Suiza',           when:'Visitada',                note:'Precisión, orden y el lago más bonito de Europa.',                                                                  badge:'Visitada',    lon:8.55,   lat:47.37 },
-  { name:'Andorra la Vella', country:'Andorra',  when:'Visitada',                note:'El microestado entre España y Francia.',                                                                            badge:'Visitada',    lon:1.52,   lat:42.51 },
-  { name:'Viena',     country:'Austria',         when:'Visitada',                note:'La ciudad imperial. Mozart, Klimt y los cafés históricos.',                                                         badge:'Visitada',    lon:16.37,  lat:48.21 },
-  { name:'Praga',     country:'Rep. Checa',      when:'Visitada',                note:'Una de las ciudades más bellas de Europa del Este.',                                                                badge:'Visitada',    lon:14.42,  lat:50.09 },
-  { name:'Budapest',  country:'Hungría',         when:'Visitada',                note:'El Danubio partiendo la ciudad en dos. Buda y Pest.',                                                              badge:'Visitada',    lon:19.04,  lat:47.50 },
-  { name:'Ljubljana', country:'Eslovenia',       when:'Visitada',                note:'La capital más pequeña y encantadora de Europa.',                                                                   badge:'Visitada',    lon:14.51,  lat:46.05 },
-  { name:'Zagreb',    country:'Croacia',         when:'Visitada',                note:'Capital croata, puerta de entrada a la costa adriática.',                                                           badge:'Visitada',    lon:15.98,  lat:45.81 },
-  { name:'Lisboa',    country:'Portugal',        when:'Visitada',                note:'La ciudad de los miradores y el fado.',                                                                             badge:'Visitada',    lon:-9.14,  lat:38.72 },
-  { name:'Roma',      country:'Italia',          when:'Visitada',                note:'La ciudad eterna. La historia en cada esquina.',                                                                    badge:'Visitada',    lon:12.50,  lat:41.90 },
-  { name:'Nápoles',   country:'Italia',          when:'Visitada',                note:'La ciudad más caótica y auténtica de Italia.',                                                                      badge:'Visitada',    lon:14.27,  lat:40.84 },
-  { name:'Milán',     country:'Italia',          when:'Visitada',                note:'Moda, diseño y el norte industrial de Italia.',                                                                     badge:'Visitada',    lon:9.19,   lat:45.46 },
-  { name:'Venecia',   country:'Italia',          when:'Visitada',                note:'La ciudad que se hunde lentamente y no le importa.',                                                                badge:'Visitada',    lon:12.34,  lat:45.44 },
-  { name:'Atenas',    country:'Grecia',          when:'Visitada',                note:'La cuna de la civilización occidental.',                                                                            badge:'Visitada',    lon:23.73,  lat:37.98 },
-  { name:'La Valeta', country:'Malta',           when:'Visitada',                note:'La isla fortaleza en el centro del Mediterráneo.',                                                                  badge:'Visitada',    lon:14.51,  lat:35.90 },
+  { name:'Madrid',       country:'España',      when:'Residencia · Mar 2026',       note:'Base de operaciones para el proyecto Gobelas y Grupo Portland.',       badge:'Base',     lon:-3.70,  lat:40.42, home:true },
+  { name:'Sevilla',      country:'España',      when:'Origen',                       note:'Tu ciudad natal. Donde empezó todo antes del salto a Madrid.',          badge:'Origen',   lon:-5.99,  lat:37.39, home:true },
+  { name:'Miami',        country:'EE.UU.',      when:'Residencia · 2023–2025',       note:'Dos años viviendo aquí. La ciudad que más te formó profesionalmente.',   badge:'Vivida',   lon:-80.19, lat:25.76, home:true },
+  { name:'Buenos Aires', country:'Argentina',   when:'Visitada · conexión especial', note:'Donde está tu novia. La ciudad más europea de América Latina.',          badge:'Especial', lon:-58.38, lat:-34.6 },
+  { name:'Nueva York',   country:'EE.UU.',      when:'Visitada',                     note:'La ciudad más intensa del mundo.',                                       badge:'Visitada', lon:-74.01, lat:40.71 },
+  { name:'Londres',      country:'Reino Unido', when:'Visitada',                     note:'Capital financiera europea.',                                            badge:'Visitada', lon:-0.13,  lat:51.51 },
+  { name:'Edimburgo',    country:'Reino Unido', when:'Visitada',                     note:'La capital escocesa. Una de las ciudades más atmosféricas de Europa.',   badge:'Visitada', lon:-3.19,  lat:55.95 },
+  { name:'Glasgow',      country:'Reino Unido', when:'Visitada',                     note:'Ciudad industrial reconvertida en ciudad cultural.',                     badge:'Visitada', lon:-4.25,  lat:55.86 },
+  { name:'Dublín',       country:'Irlanda',     when:'Visitada',                     note:'Ciudad de pubs, literatura y carácter propio.',                         badge:'Visitada', lon:-6.27,  lat:53.33 },
+  { name:'París',        country:'Francia',     when:'Visitada',                     note:'La ciudad más fotografiada del mundo.',                                  badge:'Visitada', lon:2.35,   lat:48.85 },
+  { name:'Marsella',     country:'Francia',     when:'Visitada',                     note:'Puerto mediterráneo, mezcla de culturas.',                               badge:'Visitada', lon:5.37,   lat:43.30 },
+  { name:'Estrasburgo',  country:'Francia',     when:'Visitada',                     note:'Sede del Parlamento Europeo.',                                           badge:'Visitada', lon:7.75,   lat:48.57 },
+  { name:'Bruselas',     country:'Bélgica',     when:'Visitada',                     note:'Capital de Europa y de las cervezas belgas.',                            badge:'Visitada', lon:4.35,   lat:50.85 },
+  { name:'Brujas',       country:'Bélgica',     when:'Visitada',                     note:'La Venecia del norte.',                                                  badge:'Visitada', lon:3.22,   lat:51.21 },
+  { name:'Gante',        country:'Bélgica',     when:'Visitada',                     note:'Ciudad universitaria y medieval.',                                       badge:'Visitada', lon:3.72,   lat:51.05 },
+  { name:'Ámsterdam',    country:'Países Bajos',when:'Visitada',                     note:'Canales, bicicletas y arquitectura única.',                              badge:'Visitada', lon:4.90,   lat:52.37 },
+  { name:'Berlín',       country:'Alemania',    when:'Visitada',                     note:'La ciudad que define la historia contemporánea de Europa.',              badge:'Visitada', lon:13.40,  lat:52.52 },
+  { name:'Múnich',       country:'Alemania',    when:'Visitada',                     note:'Bayern, cerveza y eficiencia alemana.',                                  badge:'Visitada', lon:11.58,  lat:48.14 },
+  { name:'Stuttgart',    country:'Alemania',    when:'Visitada',                     note:'Ciudad del automóvil. Mercedes y Porsche.',                              badge:'Visitada', lon:9.18,   lat:48.78 },
+  { name:'Copenhague',   country:'Dinamarca',   when:'Visitada',                     note:'La capital más feliz de Europa.',                                        badge:'Visitada', lon:12.57,  lat:55.68 },
+  { name:'Zúrich',       country:'Suiza',       when:'Visitada',                     note:'Precisión, orden y el lago más bonito de Europa.',                       badge:'Visitada', lon:8.55,   lat:47.37 },
+  { name:'Andorra la Vella',country:'Andorra',  when:'Visitada',                     note:'El microestado entre España y Francia.',                                 badge:'Visitada', lon:1.52,   lat:42.51 },
+  { name:'Viena',        country:'Austria',     when:'Visitada',                     note:'La ciudad imperial. Mozart, Klimt y los cafés históricos.',              badge:'Visitada', lon:16.37,  lat:48.21 },
+  { name:'Praga',        country:'Rep. Checa',  when:'Visitada',                     note:'Una de las ciudades más bellas de Europa del Este.',                     badge:'Visitada', lon:14.42,  lat:50.09 },
+  { name:'Budapest',     country:'Hungría',     when:'Visitada',                     note:'El Danubio partiendo la ciudad en dos.',                                 badge:'Visitada', lon:19.04,  lat:47.50 },
+  { name:'Ljubljana',    country:'Eslovenia',   when:'Visitada',                     note:'La capital más pequeña y encantadora de Europa.',                        badge:'Visitada', lon:14.51,  lat:46.05 },
+  { name:'Zagreb',       country:'Croacia',     when:'Visitada',                     note:'Capital croata, puerta de entrada a la costa adriática.',                badge:'Visitada', lon:15.98,  lat:45.81 },
+  { name:'Lisboa',       country:'Portugal',    when:'Visitada',                     note:'La ciudad de los miradores y el fado.',                                  badge:'Visitada', lon:-9.14,  lat:38.72 },
+  { name:'Roma',         country:'Italia',      when:'Visitada',                     note:'La ciudad eterna.',                                                      badge:'Visitada', lon:12.50,  lat:41.90 },
+  { name:'Nápoles',      country:'Italia',      when:'Visitada',                     note:'La ciudad más caótica y auténtica de Italia.',                           badge:'Visitada', lon:14.27,  lat:40.84 },
+  { name:'Milán',        country:'Italia',      when:'Visitada',                     note:'Moda, diseño y el norte industrial de Italia.',                          badge:'Visitada', lon:9.19,   lat:45.46 },
+  { name:'Venecia',      country:'Italia',      when:'Visitada',                     note:'La ciudad que se hunde lentamente y no le importa.',                     badge:'Visitada', lon:12.34,  lat:45.44 },
+  { name:'Atenas',       country:'Grecia',      when:'Visitada',                     note:'La cuna de la civilización occidental.',                                 badge:'Visitada', lon:23.73,  lat:37.98 },
+  { name:'La Valeta',    country:'Malta',       when:'Visitada',                     note:'La isla fortaleza en el centro del Mediterráneo.',                       badge:'Visitada', lon:14.51,  lat:35.90 },
 ];
 
-// Tooltip
-const tt    = document.getElementById('map-tt');
-const ttN   = document.getElementById('tt-name');
-const ttS   = document.getElementById('tt-sub');
-const wrap  = document.getElementById('map-wrap');
-
-wrap.addEventListener('mousemove', e => {
-  if (tt.style.opacity === '1') {
-    const r = wrap.getBoundingClientRect();
-    let x = e.clientX - r.left + 14;
-    let y = e.clientY - r.top  - 36;
+const mapTT = document.getElementById('map-tt');
+const mapWrap = document.getElementById('map-wrap');
+mapWrap.addEventListener('mousemove', e => {
+  if (mapTT.style.opacity === '1') {
+    const r = mapWrap.getBoundingClientRect();
+    let x = e.clientX - r.left + 14, y = e.clientY - r.top - 36;
     if (x + 160 > r.width) x -= 170;
-    tt.style.left = x + 'px';
-    tt.style.top  = y + 'px';
+    mapTT.style.left = x+'px'; mapTT.style.top = y+'px';
   }
 });
-
-function showTT(e, name, sub) {
-  ttN.textContent = name;
-  ttS.textContent = sub;
-  tt.style.opacity = '1';
-  wrap.dispatchEvent(new MouseEvent('mousemove', { clientX: e.clientX, clientY: e.clientY }));
+function showMapTT(e, name, sub) {
+  document.getElementById('tt-name').textContent = name;
+  document.getElementById('tt-sub').textContent  = sub;
+  mapTT.style.opacity = '1';
+  mapWrap.dispatchEvent(new MouseEvent('mousemove', { clientX:e.clientX, clientY:e.clientY }));
 }
-function hideTT() { tt.style.opacity = '0'; }
-
+function hideMapTT() { mapTT.style.opacity = '0'; }
 function showCity(city) {
   document.getElementById('cp-name').textContent    = city.name;
   document.getElementById('cp-country').textContent = city.country;
   document.getElementById('cp-when').textContent    = city.when;
   document.getElementById('cp-note').textContent    = city.note;
   document.getElementById('cp-badge').textContent   = city.badge;
-  const panel = document.getElementById('city-panel');
-  panel.style.display = 'block';
-  panel.scrollIntoView({ behavior:'smooth', block:'nearest' });
+  const p = document.getElementById('city-panel');
+  p.style.display = 'block';
+  p.scrollIntoView({ behavior:'smooth', block:'nearest' });
 }
-function closePanel() { document.getElementById('city-panel').style.display = 'none'; }
+function closeMapPanel() { document.getElementById('city-panel').style.display = 'none'; }
 
-// ── D3 MAP ────────────────────────────────────────────────────────
-const svg    = d3.select('#world-svg');
-const width  = 960;
-const height = 500;
+const svg   = d3.select('#world-svg');
+const W = 960, H = 500;
+const proj  = d3.geoNaturalEarth1().scale(153).translate([W/2,H/2]);
+const gpath = d3.geoPath().projection(proj);
+const mapG  = svg.append('g');
 
-const projection = d3.geoNaturalEarth1()
-  .scale(153)
-  .translate([width / 2, height / 2]);
-
-const path = d3.geoPath().projection(projection);
-
-// Grupo principal que se transforma con el zoom
-const mapG = svg.append('g').attr('id', 'map-g');
-
-// ── ZOOM ──────────────────────────────────────────────────────────
-const zoom = d3.zoom()
-  .scaleExtent([1, 12])
-  .translateExtent([[0,0],[width,height]])
-  .on('zoom', (event) => {
-    mapG.attr('transform', event.transform);
-    // Mantener marcadores de ciudad proporcionales al zoom
-    const k = event.transform.k;
-    const invK = 1 / Math.sqrt(k);
+const mapZoom = d3.zoom().scaleExtent([1,12]).translateExtent([[0,0],[W,H]])
+  .on('zoom', ev => {
+    mapG.attr('transform', ev.transform);
+    const k = ev.transform.k, ik = 1/Math.sqrt(k);
     mapG.selectAll('.city-group').each(function() {
       const g = d3.select(this);
-      g.selectAll('circle').each(function() {
-        const c = d3.select(this);
-        if (c.classed('city-circle')) {
-          c.attr('r', (c.classed('home-marker') ? 4 : 3) * invK);
-        } else {
-          c.attr('r', 7 * invK);
-        }
-      });
-      g.selectAll('line').each(function(d, i) {
-        const l = d3.select(this);
-        const v = 6 * invK;
-        if (i === 0) { l.attr('x1', -v).attr('x2', v).attr('y1', 0).attr('y2', 0); }
-        else         { l.attr('x1', 0).attr('x2', 0).attr('y1', -v).attr('y2', v); }
+      g.selectAll('circle.city-circle').attr('r', function() { return (d3.select(this).classed('home-marker')?4:3)*ik; });
+      g.selectAll('circle:not(.city-circle)').attr('r', 7*ik);
+      g.selectAll('line').each(function(d,i) {
+        const l=d3.select(this),v=6*ik;
+        if(i===0) l.attr('x1',-v).attr('x2',v).attr('y1',0).attr('y2',0);
+        else      l.attr('x1',0).attr('x2',0).attr('y1',-v).attr('y2',v);
       });
     });
   });
+svg.style('cursor','grab').on('mousedown.c',()=>svg.style('cursor','grabbing')).on('mouseup.c',()=>svg.style('cursor','grab'));
+svg.call(mapZoom);
+function zoomIn()    { svg.transition().duration(300).call(mapZoom.scaleBy,1.6); }
+function zoomOut()   { svg.transition().duration(300).call(mapZoom.scaleBy,0.625); }
+function zoomReset() { svg.transition().duration(400).call(mapZoom.transform,d3.zoomIdentity); }
 
-// Cursor de arrastre
-svg.style('cursor', 'grab')
-  .on('mousedown.cursor', () => svg.style('cursor','grabbing'))
-  .on('mouseup.cursor',   () => svg.style('cursor','grab'));
+const idToName = {
+  724:'Spain',620:'Portugal',250:'France',826:'United Kingdom',372:'Ireland',
+  276:'Germany',40:'Austria',756:'Switzerland',56:'Belgium',528:'Netherlands',
+  380:'Italy',705:'Slovenia',191:'Croatia',348:'Hungary',203:'Czech Republic',
+  208:'Denmark',300:'Greece',470:'Malta',442:'Luxembourg',20:'Andorra',
+  840:'United States of America',32:'Argentina'
+};
 
-svg.call(zoom);
-
-// Funciones de zoom para los botones
-function zoomIn()    { svg.transition().duration(300).call(zoom.scaleBy, 1.6); }
-function zoomOut()   { svg.transition().duration(300).call(zoom.scaleBy, 0.625); }
-function zoomReset() { svg.transition().duration(400).call(zoom.transform, d3.zoomIdentity); }
-
-// Cargar topojson de Natural Earth vía CDN
 fetch('https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json')
-  .then(r => r.json())
-  .then(world => {
+  .then(r=>r.json()).then(world=>{
     const countries = topojson.feature(world, world.objects.countries);
-
-    // Nombres por id (ISO numérico) — lista de los países que necesitamos
-    const idToName = {
-      724:'Spain', 620:'Portugal', 250:'France', 826:'United Kingdom',
-      372:'Ireland', 276:'Germany', 40:'Austria', 756:'Switzerland',
-      56:'Belgium', 528:'Netherlands', 380:'Italy', 705:'Slovenia',
-      191:'Croatia', 348:'Hungary', 203:'Czech Republic', 208:'Denmark',
-      300:'Greece', 470:'Malta', 442:'Luxembourg', 20:'Andorra',
-      840:'United States of America', 32:'Argentina',
-      124:'Canada', 484:'Mexico', 76:'Brazil', 152:'Chile',
-      604:'Peru', 170:'Colombia', 862:'Venezuela',
-      818:'Egypt', 504:'Morocco', 788:'Tunisia', 12:'Algeria',
-      710:'South Africa', 566:'Nigeria', 404:'Kenya', 231:'Ethiopia',
-      643:'Russia', 792:'Turkey', 356:'India', 156:'China',
-      392:'Japan', 410:'South Korea', 682:'Saudi Arabia',
-      818:'Egypt', 360:'Indonesia', 036:'Australia', 554:'New Zealand',
-      710:'South Africa'
-    };
-
-    // Dibujar países
-    mapG.append('g')
-      .selectAll('path')
-      .data(countries.features)
-      .join('path')
-      .attr('class', d => {
-        const name = idToName[+d.id] || '';
-        if (homeCountries.has(name)) return 'country home-country';
-        if (visitedCountries.has(name)) return 'country visited';
+    mapG.append('g').selectAll('path').data(countries.features).join('path')
+      .attr('class', d=>{
+        const n=idToName[+d.id]||'';
+        if(homeCountries.has(n)) return 'country home-country';
+        if(visitedCountries.has(n)) return 'country visited';
         return 'country';
       })
-      .attr('d', path)
-      .on('mouseenter', function(event, d) {
-        const name = idToName[+d.id];
-        if (name && (visitedCountries.has(name) || homeCountries.has(name))) {
-          showTT(event, name, homeCountries.has(name) ? 'Residencia' : 'Visitado');
-        }
-      })
-      .on('mouseleave', hideTT);
-
-    // Graticule (líneas de latitud/longitud vintage)
-    const graticule = d3.geoGraticule()();
-    mapG.append('path')
-      .datum(graticule)
-      .attr('d', path)
-      .attr('fill', 'none')
-      .attr('stroke', 'rgba(160,133,85,0.2)')
-      .attr('stroke-width', 0.5);
-
-    // Dibujar ciudades
-    const cityG = mapG.append('g');
-
-    cities.forEach(city => {
-      const [cx, cy] = projection([city.lon, city.lat]);
-      if (!cx || !cy) return;
-
-      const g = cityG.append('g')
-        .attr('class', 'city-group')
-        .attr('transform', `translate(${cx},${cy})`)
-        .style('cursor', 'pointer')
-        .on('mouseenter', (e) => showTT(e, city.name, city.country))
-        .on('mouseleave', hideTT)
-        .on('click', () => showCity(city));
-
-      // Anillo exterior para ciudades especiales
-      if (city.home) {
-        g.append('circle')
-          .attr('r', 7)
-          .attr('fill', 'none')
-          .attr('stroke', '#4A3520')
-          .attr('stroke-width', 1)
-          .attr('stroke-dasharray', '2,2')
-          .attr('opacity', 0.6);
-      }
-
-      // Punto principal
-      g.append('circle')
-        .attr('r', city.home ? 4 : 3)
-        .attr('class', city.home ? 'city-circle home-marker' : 'city-circle');
-
-      // Cruz cartográfica para ciudades de residencia
-      if (city.home) {
-        g.append('line').attr('x1',-6).attr('x2',6).attr('y1',0).attr('y2',0)
-          .attr('stroke','#4A3520').attr('stroke-width',0.8).attr('opacity',0.5);
-        g.append('line').attr('x1',0).attr('x2',0).attr('y1',-6).attr('y2',6)
-          .attr('stroke','#4A3520').attr('stroke-width',0.8).attr('opacity',0.5);
+      .attr('d',gpath)
+      .on('mouseenter',(e,d)=>{
+        const n=idToName[+d.id];
+        if(n&&(visitedCountries.has(n)||homeCountries.has(n)))
+          showMapTT(e,n,homeCountries.has(n)?'Residencia':'Visitado');
+      }).on('mouseleave',hideMapTT);
+    mapG.append('path').datum(d3.geoGraticule()()).attr('d',gpath).attr('fill','none').attr('stroke','rgba(160,133,85,0.2)').attr('stroke-width',0.5);
+    const cg = mapG.append('g');
+    cities.forEach(city=>{
+      const [cx,cy]=proj([city.lon,city.lat]);
+      if(!cx||!cy) return;
+      const g=cg.append('g').attr('class','city-group').attr('transform',`translate(${cx},${cy})`)
+        .on('mouseenter',e=>showMapTT(e,city.name,city.country)).on('mouseleave',hideMapTT).on('click',()=>showCity(city));
+      if(city.home){ g.append('circle').attr('r',7).attr('fill','none').attr('stroke','#4A3520').attr('stroke-width',1).attr('stroke-dasharray','2,2').attr('opacity',0.6); }
+      g.append('circle').attr('r',city.home?4:3).attr('class',city.home?'city-circle home-marker':'city-circle');
+      if(city.home){
+        g.append('line').attr('x1',-6).attr('x2',6).attr('y1',0).attr('y2',0).attr('stroke','#4A3520').attr('stroke-width',0.8).attr('opacity',0.5);
+        g.append('line').attr('x1',0).attr('x2',0).attr('y1',-6).attr('y2',6).attr('stroke','#4A3520').attr('stroke-width',0.8).attr('opacity',0.5);
       }
     });
-
-    // Decoración: rosa de los vientos esquina inferior izquierda
-    drawCompassRose(mapG, 48, 440, 30);
-  })
-  .catch(() => {
-    // Fallback si no carga el topojson
-    svg.append('text')
-      .attr('x', width/2).attr('y', height/2)
-      .attr('text-anchor','middle')
-      .attr('fill','#8B6914')
-      .attr('font-family','DM Serif Display, serif')
-      .attr('font-size',16)
-      .text('Cargando mapa...');
+    // Compass rose
+    const cr=mapG.append('g').attr('transform','translate(48,440)').attr('opacity',0.4);
+    [[0,-30],[30,0],[0,30],[-30,0]].forEach(([dx,dy])=>cr.append('line').attr('x1',0).attr('y1',0).attr('x2',dx).attr('y2',dy).attr('stroke','#4A3520').attr('stroke-width',1));
+    [
+      [[-4.5,-4.5],[0,-30],[4.5,-4.5]],[[4.5,-4.5],[30,0],[4.5,4.5]],
+      [[-4.5,4.5],[0,30],[4.5,4.5]],[[-4.5,-4.5],[-30,0],[-4.5,4.5]],
+    ].forEach(p=>cr.append('polygon').attr('points',p.map(d=>d.join(',')).join(' ')).attr('fill','#4A3520'));
+    cr.append('circle').attr('r',3.6).attr('fill','#E8DCC8').attr('stroke','#4A3520').attr('stroke-width',1);
+    cr.append('text').attr('x',0).attr('y',-34).attr('text-anchor','middle').attr('font-size',9).attr('font-family','DM Serif Display,serif').attr('fill','#4A3520').text('N');
   });
 
-function drawCompassRose(svg, cx, cy, r) {
-  const g = svg.append('g')
-    .attr('transform', `translate(${cx},${cy})`)
-    .attr('opacity', 0.4);
+// ── 3. MAPA NEURONAL ───────────────────────────────────────
+const COLORS = {
+  'Historia':'#8B6914','Política':'#3D405B','Economía':'#2E6653',
+  'Emprendimiento':'#C0614A','Desarrollo Personal':'#9A7D2E','Estética':'#7B5EA7',
+  'Construcción':'#4A7C59','Urbanismo':'#2D6080','Desarrollo Inmobiliario':'#5C3D0A',
+};
+const nodes = [
+  {id:'h0',label:'Historia',cat:'Historia',x:320,y:200,r:28,type:'hub',content:null},
+  {id:'h1',label:'Imperio Romano',cat:'Historia',x:230,y:130,r:18,type:'sub',content:null},
+  {id:'h2',label:'Civilizaciones\nAntiguas',cat:'Historia',x:180,y:220,r:16,type:'sub',content:null},
+  {id:'h3',label:'Historia\nModerna',cat:'Historia',x:240,y:310,r:15,type:'sub',content:null},
+  {id:'h4',label:'Grandes\nImperios',cat:'Historia',x:140,y:160,r:13,type:'leaf',content:null},
+  {id:'h5',label:'La caída de Roma',cat:'Historia',x:160,y:80,r:11,type:'leaf',content:null},
+  {id:'h6',label:'Mesopotamia',cat:'Historia',x:90,y:240,r:10,type:'leaf',content:null},
+  {id:'p0',label:'Política',cat:'Política',x:560,y:180,r:26,type:'hub',content:null},
+  {id:'p1',label:'Geopolítica',cat:'Política',x:490,y:100,r:17,type:'sub',content:null},
+  {id:'p2',label:'Sistemas\nPolíticos',cat:'Política',x:630,y:100,r:16,type:'sub',content:null},
+  {id:'p3',label:'Poder y\nSociedad',cat:'Política',x:650,y:240,r:14,type:'sub',content:null},
+  {id:'p4',label:'El orden\nmundial',cat:'Política',x:430,y:80,r:11,type:'leaf',content:null},
+  {id:'p5',label:'Democracia\nvs Autocracia',cat:'Política',x:690,y:140,r:10,type:'leaf',content:null},
+  {id:'e0',label:'Economía',cat:'Economía',x:800,y:300,r:28,type:'hub',content:null},
+  {id:'e1',label:'Macro\neconomía',cat:'Economía',x:730,y:200,r:18,type:'sub',content:null},
+  {id:'e2',label:'Mercados\nFinancieros',cat:'Economía',x:900,y:200,r:17,type:'sub',content:null},
+  {id:'e3',label:'Historia\nEconómica',cat:'Economía',x:870,y:380,r:15,type:'sub',content:null},
+  {id:'e4',label:'Inflación\ny poder',cat:'Economía',x:660,y:230,r:11,type:'leaf',content:null},
+  {id:'e5',label:'Ciclos\nbursátiles',cat:'Economía',x:960,y:170,r:11,type:'leaf',content:null},
+  {id:'em0',label:'Emprendimiento',cat:'Emprendimiento',x:1050,y:160,r:26,type:'hub',content:null},
+  {id:'em1',label:'Startups\ny Capital',cat:'Emprendimiento',x:1130,y:90,r:17,type:'sub',content:null},
+  {id:'em2',label:'Estrategia\nempresarial',cat:'Emprendimiento',x:980,y:80,r:15,type:'sub',content:null},
+  {id:'em3',label:'Liderazgo',cat:'Emprendimiento',x:1150,y:220,r:14,type:'sub',content:null},
+  {id:'em4',label:'El arte\nde vender',cat:'Emprendimiento',x:1220,y:130,r:11,type:'leaf',content:null},
+  {id:'dp0',label:'Desarrollo\nPersonal',cat:'Desarrollo Personal',x:1200,y:380,r:26,type:'hub',content:null},
+  {id:'dp1',label:'Hábitos\ny Disciplina',cat:'Desarrollo Personal',x:1300,y:300,r:17,type:'sub',content:null},
+  {id:'dp2',label:'Mentalidad',cat:'Desarrollo Personal',x:1310,y:440,r:16,type:'sub',content:null},
+  {id:'dp3',label:'Productividad',cat:'Desarrollo Personal',x:1180,y:480,r:14,type:'sub',content:null},
+  {id:'dp4',label:'El largo\nplazo',cat:'Desarrollo Personal',x:1380,y:360,r:11,type:'leaf',content:null},
+  {id:'dp5',label:'Foco\nvs multitarea',cat:'Desarrollo Personal',x:1380,y:480,r:10,type:'leaf',content:null},
+  {id:'es0',label:'Estética',cat:'Estética',x:700,y:560,r:22,type:'hub',content:null},
+  {id:'es1',label:'Diseño\ny Forma',cat:'Estética',x:630,y:480,r:15,type:'sub',content:null},
+  {id:'es2',label:'Arte e\nArquitectura',cat:'Estética',x:770,y:480,r:14,type:'sub',content:null},
+  {id:'es3',label:'Belleza\ny Función',cat:'Estética',x:750,y:640,r:13,type:'sub',content:null},
+  {id:'es4',label:'El minimalismo\ncomo filosofía',cat:'Estética',x:590,y:560,r:10,type:'leaf',content:null},
+  {id:'c0',label:'Construcción',cat:'Construcción',x:520,y:700,r:24,type:'hub',content:null},
+  {id:'c1',label:'Técnicas\nConstructivas',cat:'Construcción',x:430,y:640,r:16,type:'sub',content:null},
+  {id:'c2',label:'Materiales',cat:'Construcción',x:430,y:760,r:15,type:'sub',content:null},
+  {id:'c3',label:'Procesos\nde Obra',cat:'Construcción',x:560,y:790,r:14,type:'sub',content:null},
+  {id:'c4',label:'Estructura\nvs Forma',cat:'Construcción',x:360,y:680,r:10,type:'leaf',content:null},
+  {id:'u0',label:'Urbanismo',cat:'Urbanismo',x:300,y:800,r:24,type:'hub',content:null},
+  {id:'u1',label:'Ciudades\ndel futuro',cat:'Urbanismo',x:210,y:740,r:16,type:'sub',content:null},
+  {id:'u2',label:'Espacio\npúblico',cat:'Urbanismo',x:200,y:860,r:15,type:'sub',content:null},
+  {id:'u3',label:'Movilidad\nurbana',cat:'Urbanismo',x:330,y:900,r:13,type:'sub',content:null},
+  {id:'u4',label:'¿Para quién\nse construye?',cat:'Urbanismo',x:130,y:800,r:10,type:'leaf',content:null},
+  {id:'di0',label:'Des.\nInmobiliario',cat:'Desarrollo Inmobiliario',x:950,y:700,r:26,type:'hub',content:null},
+  {id:'di1',label:'Promoción\ny Gestión',cat:'Desarrollo Inmobiliario',x:1060,y:640,r:17,type:'sub',content:null},
+  {id:'di2',label:'Mercado\nInmobiliario',cat:'Desarrollo Inmobiliario',x:1070,y:760,r:16,type:'sub',content:null},
+  {id:'di3',label:'Inversión\nInmobiliaria',cat:'Desarrollo Inmobiliario',x:950,y:800,r:15,type:'sub',content:null},
+  {id:'di4',label:'El suelo\ncomo activo',cat:'Desarrollo Inmobiliario',x:1160,y:700,r:11,type:'leaf',content:null},
+  {id:'di5',label:'Ciclos del\nmercado',cat:'Desarrollo Inmobiliario',x:1000,y:870,r:10,type:'leaf',content:null},
+];
+const edges = [
+  ['h0','h1'],['h0','h2'],['h0','h3'],['h1','h4'],['h1','h5'],['h2','h6'],
+  ['p0','p1'],['p0','p2'],['p0','p3'],['p1','p4'],['p2','p5'],
+  ['e0','e1'],['e0','e2'],['e0','e3'],['e1','e4'],['e2','e5'],
+  ['em0','em1'],['em0','em2'],['em0','em3'],['em1','em4'],
+  ['dp0','dp1'],['dp0','dp2'],['dp0','dp3'],['dp1','dp4'],['dp2','dp5'],
+  ['es0','es1'],['es0','es2'],['es0','es3'],['es1','es4'],
+  ['c0','c1'],['c0','c2'],['c0','c3'],['c1','c4'],
+  ['u0','u1'],['u0','u2'],['u0','u3'],['u1','u4'],
+  ['di0','di1'],['di0','di2'],['di0','di3'],['di1','di4'],['di3','di5'],
+  ['h0','p0'],['p0','e0'],['e0','em0'],['em0','dp0'],
+  ['es0','c0'],['c0','u0'],['c0','di0'],['u0','di0'],
+  ['es0','di0'],['e0','di0'],['h0','es0'],['p0','dp0'],
+];
 
-  // Líneas cardinales
-  const dirs = [[0,-r],[r,0],[0,r],[-r,0]];
-  dirs.forEach(([dx,dy]) => {
-    g.append('line').attr('x1',0).attr('y1',0).attr('x2',dx).attr('y2',dy)
-      .attr('stroke','#4A3520').attr('stroke-width',1);
-  });
+const nc   = document.getElementById('neural-canvas');
+const nctx = nc.getContext('2d');
+const nw   = document.getElementById('canvas-wrap');
+const nmap = {};
+nodes.forEach(n => nmap[n.id] = n);
 
-  // Puntas
-  const pts = [
-    [[-r*0.15, -r*0.15], [0, -r], [r*0.15, -r*0.15]],
-    [[r*0.15, -r*0.15],  [r, 0],  [r*0.15, r*0.15]],
-    [[-r*0.15, r*0.15],  [0, r],  [r*0.15, r*0.15]],
-    [[-r*0.15,-r*0.15],  [-r,0],  [-r*0.15,r*0.15]],
-  ];
-  pts.forEach(p => {
-    g.append('polygon')
-      .attr('points', p.map(d=>d.join(',')).join(' '))
-      .attr('fill','#4A3520');
-  });
+let vx=0, vy=0, vs=1;
+let activeFilter=null;
+const VPAD=80;
 
-  // Circulo central
-  g.append('circle').attr('r', r*0.12).attr('fill','#E8DCC8').attr('stroke','#4A3520').attr('stroke-width',1);
-
-  // N
-  g.append('text').attr('x',0).attr('y',-r-4)
-    .attr('text-anchor','middle').attr('font-size',9)
-    .attr('font-family','DM Serif Display, serif')
-    .attr('fill','#4A3520').text('N');
+function fitGraph() {
+  const xs=nodes.map(n=>n.x), ys=nodes.map(n=>n.y);
+  const x0=Math.min(...xs)-VPAD, y0=Math.min(...ys)-VPAD;
+  const x1=Math.max(...xs)+VPAD, y1=Math.max(...ys)+VPAD;
+  vs = Math.min(nc.width/(x1-x0), nc.height/(y1-y0), 1);
+  vx = (nc.width -(x1-x0)*vs)/2 - x0*vs;
+  vy = (nc.height-(y1-y0)*vs)/2 - y0*vs;
 }
+function w2s(x,y) { return [x*vs+vx, y*vs+vy]; }
+
+function nDraw() {
+  nctx.clearRect(0,0,nc.width,nc.height);
+  const dim = activeFilter!==null;
+  edges.forEach(([a,b])=>{
+    const na=nmap[a], nb=nmap[b];
+    const [ax,ay]=w2s(na.x,na.y), [bx,by]=w2s(nb.x,nb.y);
+    const faded = dim && na.cat!==activeFilter && nb.cat!==activeFilter;
+    const inter = na.cat!==nb.cat;
+    nctx.beginPath(); nctx.moveTo(ax,ay); nctx.lineTo(bx,by);
+    nctx.strokeStyle = faded?'rgba(0,0,0,0.04)':inter?'rgba(0,0,0,0.10)':'rgba(0,0,0,0.15)';
+    nctx.lineWidth = inter?1:1.2;
+    if(inter) nctx.setLineDash([4,4]); else nctx.setLineDash([]);
+    nctx.stroke(); nctx.setLineDash([]);
+  });
+  nodes.forEach(n=>{
+    const [sx,sy]=w2s(n.x,n.y), r=n.r*vs, col=COLORS[n.cat];
+    const faded = dim && n.cat!==activeFilter;
+    if(n.type==='hub'&&!faded){ nctx.beginPath(); nctx.arc(sx,sy,r+6*vs,0,Math.PI*2); nctx.fillStyle=col+'18'; nctx.fill(); }
+    nctx.beginPath(); nctx.arc(sx,sy,r,0,Math.PI*2);
+    nctx.fillStyle = faded?'#D0CEC8':(n.type==='hub'?col:col+'CC'); nctx.fill();
+    nctx.beginPath(); nctx.arc(sx,sy,r,0,Math.PI*2);
+    nctx.strokeStyle = faded?'#C0BDB8':(n.type==='hub'?col:'#FFFFFF40');
+    nctx.lineWidth = n.type==='hub'?2:1; nctx.stroke();
+    if(n.type==='leaf'&&n.content&&!faded){ nctx.beginPath(); nctx.arc(sx,sy,3*vs,0,Math.PI*2); nctx.fillStyle='#FFF'; nctx.fill(); }
+    if(!faded){
+      const lines=n.label.split('\n');
+      const fs=n.type==='hub'?Math.max(10,13*vs):Math.max(8,10*vs);
+      nctx.font=`${n.type==='hub'?'600':'400'} ${fs}px DM Sans`;
+      nctx.fillStyle=n.type==='hub'?'#FFF':'#1A1916';
+      nctx.textAlign='center'; nctx.textBaseline='middle';
+      if(n.type==='hub'){
+        const lh=fs*1.2, sy0=sy-(lines.length-1)*lh/2;
+        lines.forEach((l,i)=>nctx.fillText(l,sx,sy0+i*lh));
+      } else {
+        const ly=sy+r+Math.max(6,8*vs), lh=fs*1.3;
+        lines.forEach((l,i)=>nctx.fillText(l,sx,ly+i*lh));
+      }
+    }
+  });
+}
+
+function getNodeAt(cx,cy){
+  for(let i=nodes.length-1;i>=0;i--){
+    const n=nodes[i],[sx,sy]=w2s(n.x,n.y),r=n.r*vs;
+    if((cx-sx)**2+(cy-sy)**2<=r*r) return n;
+  }
+  return null;
+}
+
+let ndrag=false,nlx=0,nly=0,nmov=false;
+const ntt=document.getElementById('node-tooltip');
+
+nc.addEventListener('mousedown',e=>{ndrag=true;nmov=false;nlx=e.clientX;nly=e.clientY;});
+nc.addEventListener('mousemove',e=>{
+  if(ndrag){ vx+=e.clientX-nlx; vy+=e.clientY-nly; nlx=e.clientX; nly=e.clientY; nmov=true; nDraw(); ntt.style.opacity='0'; return; }
+  const rect=nc.getBoundingClientRect(), node=getNodeAt(e.clientX-rect.left,e.clientY-rect.top);
+  if(node){
+    nc.style.cursor='pointer';
+    document.getElementById('n-tt-cat').textContent=node.cat;
+    document.getElementById('n-tt-label').textContent=node.label.replace('\n',' ');
+    ntt.style.opacity='1'; ntt.style.left=(e.clientX+14)+'px'; ntt.style.top=(e.clientY-30)+'px';
+  } else { nc.style.cursor='grab'; ntt.style.opacity='0'; }
+});
+nc.addEventListener('mouseup',e=>{ ndrag=false; if(!nmov){ const rect=nc.getBoundingClientRect(),node=getNodeAt(e.clientX-rect.left,e.clientY-rect.top); if(node) openNeuralPanel(node); }});
+nc.addEventListener('mouseleave',()=>{ ndrag=false; ntt.style.opacity='0'; });
+nc.addEventListener('wheel',e=>{ e.preventDefault(); const rect=nc.getBoundingClientRect(),mx=e.clientX-rect.left,my=e.clientY-rect.top,f=e.deltaY<0?1.12:0.89; vs=Math.max(0.3,Math.min(4,vs*f)); vx=mx-(mx-vx)*f; vy=my-(my-vy)*f; nDraw(); },{passive:false});
+
+function openNeuralPanel(node){
+  const col=COLORS[node.cat];
+  document.getElementById('panel-cat').textContent=node.cat;
+  document.getElementById('panel-cat').style.color=col;
+  document.getElementById('panel-title').textContent=node.label.replace('\n',' ');
+  document.getElementById('panel-meta').textContent=node.date||'';
+  const body=document.getElementById('panel-body');
+  if(node.content){ body.innerHTML=`<div class="panel-text">${node.content}</div>`; }
+  else {
+    const lbl=node.type==='hub'?'Categoría':node.type==='sub'?'Sub-tema':'Escrito';
+    body.innerHTML=`<div class="panel-placeholder"><div style="font-size:24px;margin-bottom:10px">✦</div><div style="font-weight:600;margin-bottom:6px;color:var(--text-2)">${lbl} pendiente</div><div>Añade contenido en el array <code style="background:var(--border);padding:1px 5px;border-radius:3px;font-size:11px">nodes</code>.</div></div>`;
+  }
+  document.getElementById('node-panel').classList.add('open');
+}
+function closeNeuralPanel(){ document.getElementById('node-panel').classList.remove('open'); }
+
+function filterCat(el){
+  const cat=el.dataset.cat;
+  if(activeFilter===cat){ activeFilter=null; document.querySelectorAll('.leg').forEach(l=>l.classList.remove('active-filter')); }
+  else { activeFilter=cat; document.querySelectorAll('.leg').forEach(l=>l.classList.toggle('active-filter',l.dataset.cat===cat)); }
+  nDraw();
+}
+function zoomNeural(f){ const cx=nc.width/2,cy=nc.height/2; vs=Math.max(0.3,Math.min(4,vs*f)); vx=cx-(cx-vx)*f; vy=cy-(cy-vy)*f; nDraw(); }
+function resetNeural(){ fitGraph(); nDraw(); }
+
+function nResize(){ nc.width=nw.clientWidth; nc.height=nw.clientHeight; fitGraph(); nDraw(); }
+window.addEventListener('resize', nResize);
+nResize();
+document.addEventListener('keydown', e=>{ if(e.key==='Escape') closeNeuralPanel(); });
 </script>
 </body>
 </html>
