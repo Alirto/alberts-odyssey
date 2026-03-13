@@ -175,14 +175,18 @@
 <body>
 
 <!-- NAV -->
-<div class="nav-links">
-  <a href="../index.html"            class="nav-link">Home</a>
-  <a href="../salud/index.html"      class="nav-link">Salud</a>
-  <a href="../vlog/index.html"       class="nav-link">Vlog</a>
-  <a href="../lecturas/index.html"   class="nav-link">Lecturas</a>
-  <a href="../finanzas/index.html"   class="nav-link">Finanzas</a>
-  <a href="../desarrollo/index.html" class="nav-link">Desarrollo</a>
-</div>
+<nav>
+  <a href="index.html" class="nav-logo">Albert's <span>Odyssey</span></a>
+  <div class="nav-links">
+    <a href="index.html"            class="nav-link active">Home</a>
+    <a href="salud/index.html"      class="nav-link">Salud</a>
+    <a href="vlog/index.html"       class="nav-link">Vlog</a>
+    <a href="lecturas/index.html"   class="nav-link">Lecturas</a>
+    <a href="finanzas/index.html"   class="nav-link">Finanzas</a>
+    <a href="desarrollo/index.html" class="nav-link">Desarrollo</a>
+  </div>
+</nav>
+
 <!-- HERO -->
 <div class="hero-wrap">
   <div class="hero">
@@ -211,12 +215,10 @@
 <!-- SECTION STRIP -->
 <div class="section-strip">
   <a href="salud/index.html">🫀 Salud</a>
-  <a href="deporte/index.html">🏃 Deporte</a>
   <a href="vlog/index.html">✍️ Vlog</a>
   <a href="lecturas/index.html">📚 Lecturas</a>
   <a href="finanzas/index.html">📈 Finanzas</a>
   <a href="desarrollo/index.html">🧠 Desarrollo</a>
-  <a href="escritos/index.html">🖊️ Escritos</a>
 </div>
 
 <!-- DASHBOARD HEADER -->
@@ -532,7 +534,7 @@ function renderNextActions() {
   const container=document.getElementById('nextActions'); container.innerHTML='';
   const active=[];
   PILLARS.forEach(p=>p.objectives.forEach(obj=>obj.milestones.filter(m=>m.status==='active').forEach(m=>active.push({p,m}))));
-  if(!active.length){container.innerHTML='<div class="no-active">Sin hitos activos aún. Activa el primero en cada pilar para empezar a mover el marcador.</div>';return;}
+  if(!active.length){container.innerHTML='<div class="no-active">Sin hitos activos aún.</div>';return;}
   active.slice(0,6).forEach(({p,m})=>{
     const div=document.createElement('div'); div.className='next-action';
     div.innerHTML=`<div class="na-dot" style="background:${p.color}"></div><div><div class="na-text">${m.title}</div><div class="na-meta">${p.name} · ${m.date}</div></div>`;
