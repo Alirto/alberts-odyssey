@@ -4,9 +4,112 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Lecturas — Albert's Odyssey</title>
-<link rel="stylesheet" href="../style.css">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
-.tool-card::before { background: var(--tc, #1A1916); }
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --bg: #F5F4F0; --surface: #FFFFFF; --border: #E8E6E0; --border-2: #D0CEC8;
+  --text-1: #1A1916; --text-2: #6B6860; --text-3: #A8A49C;
+  --accent: #8B6914; --accent-bg: #F7F0E0; --accent-border: #D4B96A;
+}
+body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--text-1); min-height: 100vh; -webkit-font-smoothing: antialiased; }
+
+/* NAV */
+nav { background: var(--surface); border-bottom: 1px solid var(--border); padding: 0 48px; display: flex; align-items: center; height: 56px; position: sticky; top: 0; z-index: 100; }
+.nav-logo { font-family: 'DM Serif Display', serif; font-size: 18px; letter-spacing: -0.3px; color: var(--text-1); text-decoration: none; margin-right: 36px; white-space: nowrap; flex-shrink: 0; }
+.nav-logo span { font-style: italic; color: var(--text-2); }
+.nav-links { display: flex; align-items: stretch; flex: 1; overflow-x: auto; }
+.nav-link { font-size: 12px; font-weight: 500; color: var(--text-2); padding: 0 16px; text-decoration: none; height: 56px; display: flex; align-items: center; white-space: nowrap; border-bottom: 2px solid transparent; margin-bottom: -1px; transition: color .15s, border-color .15s; }
+.nav-link:hover { color: var(--text-1); }
+.nav-link.active { color: var(--text-1); border-bottom-color: var(--text-1); font-weight: 600; }
+
+/* PAGE */
+.page { max-width: 1280px; margin: 0 auto; padding: 48px; }
+
+/* HEADER */
+.page-hdr { padding: 48px 0; border-bottom: 1px solid var(--border); margin-bottom: 48px; display: flex; align-items: flex-end; justify-content: space-between; gap: 24px; flex-wrap: wrap; }
+.ph-eyebrow { font-size: 11px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; color: var(--text-3); margin-bottom: 12px; }
+.ph-title { font-family: 'DM Serif Display', serif; font-size: 48px; letter-spacing: -1px; line-height: 1.0; margin-bottom: 12px; }
+.ph-title em { font-style: italic; color: var(--text-2); }
+.ph-sub { font-size: 14px; color: var(--text-2); line-height: 1.7; max-width: 480px; font-weight: 300; }
+.ph-meta { display: flex; gap: 32px; flex-shrink: 0; }
+.ph-stat-val { font-family: 'DM Serif Display', serif; font-size: 28px; line-height: 1; letter-spacing: -0.5px; color: var(--accent); }
+.ph-stat-lbl { font-size: 11px; color: var(--text-3); font-weight: 500; margin-top: 3px; }
+
+/* FILTERS */
+.filters { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 36px; }
+.filter-btn { font-size: 12px; font-weight: 600; padding: 6px 16px; border-radius: 20px; border: 1px solid var(--border); background: var(--surface); color: var(--text-2); cursor: pointer; transition: all .15s; }
+.filter-btn:hover { border-color: var(--border-2); color: var(--text-1); }
+.filter-btn.active { background: var(--text-1); color: #fff; border-color: var(--text-1); }
+
+/* SECTION LABEL */
+.sl { font-size: 11px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; color: var(--text-3); margin: 0 0 20px; display: flex; align-items: center; gap: 14px; }
+.sl::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+.sl-count { font-size: 11px; font-weight: 600; color: var(--accent); background: var(--accent-bg); padding: 2px 10px; border-radius: 20px; border: 1px solid var(--accent-border); letter-spacing: 0; text-transform: none; }
+
+/* YEAR SECTION */
+.year-section { margin-bottom: 52px; }
+
+/* BOOK GRID */
+.book-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 12px; }
+
+/* BOOK CARD */
+.book-card {
+  background: var(--surface); border: 1px solid var(--border); border-radius: 10px;
+  padding: 18px 16px; cursor: pointer; transition: all .18s;
+  display: flex; flex-direction: column; gap: 8px; position: relative;
+}
+.book-card:hover { border-color: var(--border-2); transform: translateY(-2px); box-shadow: 0 6px 20px rgba(0,0,0,0.07); }
+.book-card.has-notes::after { content: '✎'; position: absolute; top: 10px; right: 12px; font-size: 11px; color: var(--accent); opacity: 0.7; }
+
+.book-rating { display: flex; gap: 2px; }
+.star { font-size: 11px; }
+.star.full { color: var(--accent); }
+.star.empty { color: var(--border-2); }
+
+.book-title { font-family: 'DM Serif Display', serif; font-size: 15px; line-height: 1.3; color: var(--text-1); flex: 1; }
+.book-author { font-size: 11px; color: var(--text-3); font-weight: 500; line-height: 1.4; }
+
+/* MODAL */
+.modal-overlay {
+  position: fixed; inset: 0; background: rgba(26,25,22,0.55); backdrop-filter: blur(4px);
+  z-index: 1000; display: flex; align-items: center; justify-content: center; padding: 24px;
+  opacity: 0; pointer-events: none; transition: opacity .2s;
+}
+.modal-overlay.open { opacity: 1; pointer-events: all; }
+.modal {
+  background: var(--surface); border-radius: 16px; width: 100%; max-width: 600px;
+  max-height: 80vh; overflow-y: auto; box-shadow: 0 24px 64px rgba(0,0,0,0.18);
+  transform: translateY(12px); transition: transform .2s;
+}
+.modal-overlay.open .modal { transform: translateY(0); }
+
+.modal-hdr { padding: 28px 28px 0; border-bottom: 1px solid var(--border); padding-bottom: 20px; }
+.modal-close { float: right; background: none; border: none; font-size: 20px; cursor: pointer; color: var(--text-3); line-height: 1; margin-left: 12px; transition: color .15s; }
+.modal-close:hover { color: var(--text-1); }
+.modal-rating { display: flex; gap: 3px; margin-bottom: 10px; }
+.modal-rating .star { font-size: 14px; }
+.modal-title { font-family: 'DM Serif Display', serif; font-size: 22px; line-height: 1.25; margin-bottom: 6px; }
+.modal-author { font-size: 13px; color: var(--text-2); }
+.modal-meta { display: flex; gap: 16px; margin-top: 14px; flex-wrap: wrap; }
+.modal-tag { font-size: 11px; font-weight: 600; padding: 3px 10px; border-radius: 20px; background: var(--bg); color: var(--text-2); border: 1px solid var(--border); }
+
+.modal-body { padding: 24px 28px 28px; }
+.modal-notes-label { font-size: 10px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--text-3); margin-bottom: 12px; }
+.modal-notes { font-size: 14px; color: var(--text-2); line-height: 1.75; white-space: pre-wrap; }
+.modal-no-notes { font-size: 13px; color: var(--text-3); font-style: italic; line-height: 1.6; }
+.modal-add-btn { margin-top: 16px; display: inline-flex; align-items: center; gap: 6px; font-size: 12px; font-weight: 600; color: var(--accent); border: 1px solid var(--accent-border); background: var(--accent-bg); padding: 7px 16px; border-radius: 8px; cursor: pointer; transition: all .15s; }
+.modal-add-btn:hover { background: var(--accent); color: #fff; }
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+  nav { padding: 0 20px; } .nav-logo { margin-right: 20px; }
+  .page { padding: 24px 20px; }
+  .page-hdr { padding: 32px 0; }
+  .book-grid { grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 10px; }
+  .ph-meta { gap: 20px; }
+}
+::-webkit-scrollbar { width: 5px; } ::-webkit-scrollbar-track { background: transparent; } ::-webkit-scrollbar-thumb { background: rgba(0,0,0,.12); border-radius: 3px; }
 </style>
 </head>
 <body>
@@ -14,43 +117,362 @@
 <nav>
   <a href="../index.html" class="nav-logo">Albert's <span>Odyssey</span></a>
   <div class="nav-links">
-    <a href="../index.html" class="nav-link">Home</a>
-    <a href="../salud/index.html" class="nav-link">Salud</a>
-    <a href="../deporte/index.html" class="nav-link">Deporte</a>
-    <a href="../vlog/index.html" class="nav-link">Vlog</a>
-    <a href="../lecturas/index.html" class="nav-link active">Lecturas</a>
-    <a href="../finanzas/index.html" class="nav-link">Finanzas</a>
+    <a href="../index.html"            class="nav-link">Home</a>
+    <a href="../salud/index.html"      class="nav-link">Salud</a>
+    <a href="../deporte/index.html"    class="nav-link">Deporte</a>
+    <a href="../vlog/index.html"       class="nav-link">Vlog</a>
+    <a href="../lecturas/index.html"   class="nav-link active">Lecturas</a>
+    <a href="../finanzas/index.html"   class="nav-link">Finanzas</a>
     <a href="../desarrollo/index.html" class="nav-link">Desarrollo</a>
-    <a href="../escritos/index.html" class="nav-link">Escritos</a>
+    <a href="../escritos/index.html"   class="nav-link">Escritos</a>
   </div>
 </nav>
 
 <div class="page">
 
-  <div class="section-hero">
-    <div class="sh-icon-wrap">📚</div>
+  <div class="page-hdr">
     <div>
-      <div class="sh-eyebrow">Desarrollo · Libros</div>
-      <div class="sh-title">Lecturas</div>
-      <div class="sh-sub">Biblioteca personal. Libros leídos, en curso y pendientes. Objetivo: 10 libros al año.</div>
+      <div class="ph-eyebrow">Desarrollo Personal · Lecturas</div>
+      <h1 class="ph-title">Biblioteca<br><em>personal</em></h1>
+      <p class="ph-sub">Registro de lecturas desde 2018. Biografías, economía, ciencia, filosofía. Clicar en cualquier libro para ver notas.</p>
+    </div>
+    <div class="ph-meta">
+      <div>
+        <div class="ph-stat-val">171</div>
+        <div class="ph-stat-lbl">Libros leídos</div>
+      </div>
+      <div>
+        <div class="ph-stat-val">9</div>
+        <div class="ph-stat-lbl">Años de registro</div>
+      </div>
+      <div>
+        <div class="ph-stat-val">4.1★</div>
+        <div class="ph-stat-lbl">Rating medio</div>
+      </div>
     </div>
   </div>
 
-  
-  <div class="sl">Próximamente</div>
-  <div class="grid-2">
-    <div class="coming-soon">
-      <div class="cs-icon">📖</div>
-      <h3>Biblioteca Personal</h3>
-      <p>Listado con valoración, fecha y principales aprendizajes de cada libro.</p>
-    </div>
-    <div class="coming-soon">
-      <div class="cs-icon">🗒️</div>
-      <h3>Notas de Lectura</h3>
-      <p>Resúmenes y reflexiones de los libros más influyentes.</p>
-    </div>
+  <!-- FILTERS -->
+  <div class="filters" id="filters">
+    <button class="filter-btn active" onclick="filterYear('all', this)">Todos</button>
+    <button class="filter-btn" onclick="filterYear('2026', this)">2026</button>
+    <button class="filter-btn" onclick="filterYear('2025', this)">2025</button>
+    <button class="filter-btn" onclick="filterYear('2023', this)">2023</button>
+    <button class="filter-btn" onclick="filterYear('2022', this)">2022</button>
+    <button class="filter-btn" onclick="filterYear('2021', this)">2021</button>
+    <button class="filter-btn" onclick="filterYear('2020', this)">2020</button>
+    <button class="filter-btn" onclick="filterYear('2019', this)">2019</button>
+    <button class="filter-btn" onclick="filterYear('2018', this)">2018</button>
   </div>
+
+  <div id="books-container"></div>
 
 </div>
+
+<!-- MODAL -->
+<div class="modal-overlay" id="modal-overlay" onclick="closeModal(event)">
+  <div class="modal" id="modal">
+    <div class="modal-hdr">
+      <button class="modal-close" onclick="closeModalDirect()">✕</button>
+      <div class="modal-rating" id="m-rating"></div>
+      <div class="modal-title" id="m-title"></div>
+      <div class="modal-author" id="m-author"></div>
+      <div class="modal-meta" id="m-meta"></div>
+    </div>
+    <div class="modal-body">
+      <div class="modal-notes-label">Notas de lectura</div>
+      <div id="m-notes-content"></div>
+    </div>
+  </div>
+</div>
+
+<script>
+// ── BOOK DATA ─────────────────────────────────────────────
+const BOOKS = [
+  // 2026
+  { title: "Roma soy yo", author: "Santiago Posteguillo", rating: 5, year: "2026", pages: 752, notes: "" },
+  { title: "El último secreto", author: "Dan Brown", rating: 3, year: "2026", pages: 832, notes: "" },
+  { title: "El libro negro del emprendedor", author: "Fernando Trías de Bes", rating: 4, year: "2026", pages: 192, notes: "" },
+
+  // 2025
+  { title: "Elon Musk", author: "Walter Isaacson", rating: 4, year: "2025", pages: 688, notes: "" },
+  { title: "Titan: The Life of John D. Rockefeller, Sr.", author: "Ron Chernow", rating: 4, year: "2025", pages: 832, notes: "" },
+  { title: "The Checklist Manifesto", author: "Atul Gawande", rating: 2, year: "2025", pages: 208, notes: "" },
+  { title: "How to Live on 24 Hours a Day", author: "Arnold Bennett", rating: 4, year: "2025", pages: 92, notes: "" },
+  { title: "25 Hours a Day", author: "Nick Bare", rating: 2, year: "2025", pages: 125, notes: "" },
+  { title: "Deep Work", author: "Cal Newport", rating: 4, year: "2025", pages: 296, notes: "" },
+  { title: "Poor Charlie's Almanack", author: "Charles T. Munger", rating: 4, year: "2025", pages: 548, notes: "" },
+
+  // 2023
+  { title: "Breve historia de la química", author: "Isaac Asimov", rating: 2, year: "2023", pages: 266, notes: "" },
+  { title: "Seeking Wisdom: From Darwin To Munger", author: "Peter Bevelin", rating: 3, year: "2023", pages: 318, notes: "" },
+  { title: "American Prometheus", author: "Kai Bird", rating: 3, year: "2023", pages: 721, notes: "" },
+  { title: "The Sailor Who Fell from Grace with the Sea", author: "Yukio Mishima", rating: 2, year: "2023", pages: 181, notes: "" },
+  { title: "The Autobiography of Benjamin Franklin", author: "Benjamin Franklin", rating: 3, year: "2023", pages: 143, notes: "" },
+  { title: "Influence: The Psychology of Persuasion", author: "Robert B. Cialdini", rating: 4, year: "2023", pages: 320, notes: "" },
+  { title: "The Brain: The Story of You", author: "David Eagleman", rating: 3, year: "2023", pages: 224, notes: "" },
+  { title: "Papà Goriot", author: "Honoré de Balzac", rating: 1, year: "2023", pages: 256, notes: "" },
+  { title: "El viaje es la recompensa", author: "Francisco Luzon", rating: 3, year: "2023", pages: 268, notes: "" },
+  { title: "Good to Great", author: "Jim Collins", rating: 3, year: "2023", pages: 300, notes: "" },
+  { title: "El príncipe", author: "Niccolò Machiavelli", rating: 3, year: "2023", pages: 132, notes: "" },
+  { title: "Ruido: Un fallo en el juicio humano", author: "Daniel Kahneman", rating: 3, year: "2023", pages: 540, notes: "" },
+  { title: "Schliemann - Geschichte eines Goldsuchers", author: "Emil Ludwig", rating: 4, year: "2023", pages: 355, notes: "" },
+  { title: "Eugenia Grandet / Piel de Zapa", author: "Honoré de Balzac", rating: 2, year: "2023", pages: 464, notes: "" },
+  { title: "Harry Potter and the Prisoner of Azkaban", author: "J.K. Rowling", rating: 4, year: "2023", pages: 547, notes: "" },
+  { title: "Harry Potter and the Chamber of Secrets", author: "J.K. Rowling", rating: 4, year: "2023", pages: 341, notes: "" },
+
+  // 2022
+  { title: "Harry Potter and the Philosopher's Stone", author: "J.K. Rowling", rating: 5, year: "2022", pages: 309, notes: "" },
+  { title: "Viajes de Marco Polo", author: "Marco Polo", rating: 3, year: "2022", pages: 0, notes: "" },
+  { title: "Ana Karenina", author: "Leo Tolstoy", rating: 2, year: "2022", pages: 0, notes: "" },
+  { title: "Los días de gloria", author: "Mario Conde", rating: 3, year: "2022", pages: 0, notes: "" },
+  { title: "The Psychology of Human Misjudgement", author: "Charles T. Munger", rating: 5, year: "2022", pages: 0, notes: "" },
+  { title: "Jugarse la piel", author: "Nassim Nicholas Taleb", rating: 4, year: "2022", pages: 0, notes: "" },
+  { title: "Antifrágil", author: "Nassim Nicholas Taleb", rating: 4, year: "2022", pages: 0, notes: "" },
+  { title: "Fooled by Randomness", author: "Nassim Nicholas Taleb", rating: 4, year: "2022", pages: 0, notes: "" },
+  { title: "El cisne negro", author: "Nassim Nicholas Taleb", rating: 4, year: "2022", pages: 0, notes: "" },
+  { title: "2001: Una odisea espacial", author: "Arthur C. Clarke", rating: 2, year: "2022", pages: 0, notes: "" },
+  { title: "The New New Thing", author: "Michael Lewis", rating: 3, year: "2022", pages: 0, notes: "" },
+  { title: "Dune Messiah", author: "Frank Herbert", rating: 3, year: "2022", pages: 0, notes: "" },
+  { title: "A Short History of Financial Euphoria", author: "John Kenneth Galbraith", rating: 4, year: "2022", pages: 0, notes: "" },
+  { title: "The Great Crash 1929", author: "John Kenneth Galbraith", rating: 3, year: "2022", pages: 0, notes: "" },
+  { title: "Dune", author: "Frank Herbert", rating: 4, year: "2022", pages: 0, notes: "" },
+
+  // 2021
+  { title: "Cuentos completos Oscar Wilde", author: "Oscar Wilde", rating: 4, year: "2021", pages: 287, notes: "" },
+  { title: "Brave New World", author: "Aldous Huxley", rating: 2, year: "2021", pages: 0, notes: "" },
+  { title: "Animal Farm", author: "George Orwell", rating: 2, year: "2021", pages: 0, notes: "" },
+  { title: "1984", author: "George Orwell", rating: 3, year: "2021", pages: 0, notes: "" },
+  { title: "Zero to One", author: "Peter Thiel", rating: 4, year: "2021", pages: 0, notes: "" },
+  { title: "Principles of Economics", author: "Carl Menger", rating: 4, year: "2021", pages: 0, notes: "" },
+  { title: "The Origins of Money", author: "Carl Menger", rating: 4, year: "2021", pages: 0, notes: "" },
+  { title: "El patrón Bitcoin", author: "Saifedean Ammous", rating: 3, year: "2021", pages: 0, notes: "" },
+  { title: "Digital Gold", author: "Nathaniel Popper", rating: 4, year: "2021", pages: 0, notes: "" },
+  { title: "The Essays of Warren Buffett", author: "Warren Buffett", rating: 5, year: "2021", pages: 0, notes: "" },
+  { title: "Tap Dancing to Work", author: "Carol J. Loomis", rating: 3, year: "2021", pages: 0, notes: "" },
+  { title: "El utilitarismo", author: "John Stuart Mill", rating: 3, year: "2021", pages: 0, notes: "" },
+  { title: "On Liberty", author: "John Stuart Mill", rating: 4, year: "2021", pages: 0, notes: "" },
+  { title: "Autobiography", author: "John Stuart Mill", rating: 4, year: "2021", pages: 0, notes: "" },
+  { title: "The Theory of Moral Sentiments", author: "Adam Smith", rating: 3, year: "2021", pages: 0, notes: "" },
+  { title: "The Invisible Hand", author: "Adam Smith", rating: 4, year: "2021", pages: 0, notes: "" },
+  { title: "The Wealth of Nations", author: "Adam Smith", rating: 5, year: "2021", pages: 0, notes: "" },
+  { title: "How to Avoid a Climate Disaster", author: "Bill Gates", rating: 4, year: "2021", pages: 0, notes: "" },
+  { title: "La conquista de América contada para escépticos", author: "Juan Eslava Galán", rating: 3, year: "2021", pages: 0, notes: "" },
+  { title: "Winston Churchill: Una biografía colectiva", author: "Richard Toye", rating: 3, year: "2021", pages: 0, notes: "" },
+  { title: "Historia de España contada para escépticos", author: "Juan Eslava Galán", rating: 4, year: "2021", pages: 0, notes: "" },
+
+  // 2020
+  { title: "Los Reyes Católicos", author: "Juan Eslava Galán", rating: 3, year: "2020", pages: 0, notes: "" },
+  { title: "Invent and Wander", author: "Jeff Bezos", rating: 5, year: "2020", pages: 0, notes: "" },
+  { title: "12 Rules for Life", author: "Jordan B. Peterson", rating: 3, year: "2020", pages: 0, notes: "" },
+  { title: "The Monk Who Sold His Ferrari", author: "Robin Sharma", rating: 3, year: "2020", pages: 0, notes: "" },
+  { title: "Los renglones torcidos de Dios", author: "Torcuato Luca de Tena", rating: 4, year: "2020", pages: 0, notes: "" },
+  { title: "University of Berkshire Hathaway", author: "Daniel Pecaut", rating: 4, year: "2020", pages: 0, notes: "" },
+  { title: "Beating the Street", author: "Peter Lynch", rating: 3, year: "2020", pages: 0, notes: "" },
+  { title: "\"Surely You're Joking, Mr. Feynman!\"", author: "Richard P. Feynman", rating: 5, year: "2020", pages: 0, notes: "" },
+  { title: "Good Economics for Hard Times", author: "Abhijit V. Banerjee", rating: 5, year: "2020", pages: 0, notes: "" },
+  { title: "The Innovators", author: "Walter Isaacson", rating: 4, year: "2020", pages: 0, notes: "" },
+  { title: "Man's Search for Meaning", author: "Viktor E. Frankl", rating: 3, year: "2020", pages: 0, notes: "" },
+  { title: "The Lessons of History", author: "Will Durant", rating: 3, year: "2020", pages: 0, notes: "" },
+  { title: "The Game", author: "Alessandro Baricco", rating: 3, year: "2020", pages: 0, notes: "" },
+  { title: "Bloomberg by Bloomberg", author: "Michael R. Bloomberg", rating: 3, year: "2020", pages: 0, notes: "" },
+  { title: "Einstein: His Life and Universe", author: "Walter Isaacson", rating: 5, year: "2020", pages: 0, notes: "" },
+  { title: "Breve historia del tiempo", author: "Stephen W. Hawking", rating: 4, year: "2020", pages: 0, notes: "" },
+  { title: "Crashed: How a Decade of Financial Crises Changed the World", author: "Adam Tooze", rating: 4, year: "2020", pages: 0, notes: "" },
+  { title: "The Ride of a Lifetime", author: "Robert Iger", rating: 5, year: "2020", pages: 0, notes: "" },
+  { title: "Creativity, Inc.", author: "Ed Catmull", rating: 3, year: "2020", pages: 0, notes: "" },
+  { title: "Steve Jobs", author: "Walter Isaacson", rating: 5, year: "2020", pages: 0, notes: "" },
+  { title: "Thinking, Fast and Slow", author: "Daniel Kahneman", rating: 5, year: "2020", pages: 0, notes: "" },
+  { title: "Energy: A Beginner's Guide", author: "Vaclav Smil", rating: 4, year: "2020", pages: 0, notes: "" },
+  { title: "Invirtiendo a largo plazo", author: "Francisco García Paramés", rating: 4, year: "2020", pages: 0, notes: "" },
+  { title: "Tim Cook", author: "Leander Kahney", rating: 3, year: "2020", pages: 0, notes: "" },
+  { title: "Banker to the Poor", author: "Muhammad Yunus", rating: 4, year: "2020", pages: 0, notes: "" },
+  { title: "A World of Three Zeros", author: "Muhammad Yunus", rating: 4, year: "2020", pages: 0, notes: "" },
+  { title: "Principles: Life and Work", author: "Ray Dalio", rating: 3, year: "2020", pages: 0, notes: "" },
+  { title: "The Most Important Thing", author: "Howard Marks", rating: 4, year: "2020", pages: 0, notes: "" },
+  { title: "Capital in the Twenty First Century", author: "Thomas Piketty", rating: 5, year: "2020", pages: 0, notes: "" },
+
+  // 2019
+  { title: "El retorno del rey", author: "J.R.R. Tolkien", rating: 5, year: "2019", pages: 0, notes: "" },
+  { title: "El Principito", author: "Antoine de Saint-Exupéry", rating: 5, year: "2019", pages: 0, notes: "" },
+  { title: "Lords of Finance", author: "Liaquat Ahamed", rating: 4, year: "2019", pages: 0, notes: "" },
+  { title: "El pequeño libro para invertir con sentido común", author: "John C. Bogle", rating: 4, year: "2019", pages: 0, notes: "" },
+  { title: "The Picture of Dorian Gray", author: "Oscar Wilde", rating: 5, year: "2019", pages: 0, notes: "" },
+  { title: "Liar's Poker", author: "Michael Lewis", rating: 3, year: "2019", pages: 0, notes: "" },
+  { title: "Leonardo da Vinci", author: "Walter Isaacson", rating: 5, year: "2019", pages: 0, notes: "" },
+  { title: "Robinson Crusoe", author: "Daniel Defoe", rating: 4, year: "2019", pages: 0, notes: "" },
+  { title: "The Economic Consequences of the Peace", author: "John Maynard Keynes", rating: 4, year: "2019", pages: 0, notes: "" },
+  { title: "Las dos torres", author: "J.R.R. Tolkien", rating: 4, year: "2019", pages: 0, notes: "" },
+  { title: "The Future of Humanity", author: "Michio Kaku", rating: 5, year: "2019", pages: 0, notes: "" },
+  { title: "La comunidad del anillo", author: "J.R.R. Tolkien", rating: 4, year: "2019", pages: 0, notes: "" },
+  { title: "El imperio IBM", author: "Thomas J. Watson Jr.", rating: 4, year: "2019", pages: 0, notes: "" },
+  { title: "The Outsiders", author: "William N. Thorndike Jr.", rating: 3, year: "2019", pages: 0, notes: "" },
+  { title: "Sapiens: A Brief History of Humankind", author: "Yuval Noah Harari", rating: 5, year: "2019", pages: 0, notes: "" },
+  { title: "The Compound Effect", author: "Darren Hardy", rating: 5, year: "2019", pages: 0, notes: "" },
+  { title: "Outliers: The Story of Success", author: "Malcolm Gladwell", rating: 4, year: "2019", pages: 0, notes: "" },
+  { title: "Common Stocks and Uncommon Profits", author: "Philip A. Fisher", rating: 5, year: "2019", pages: 0, notes: "" },
+  { title: "The Hobbit", author: "J.R.R. Tolkien", rating: 4, year: "2019", pages: 0, notes: "" },
+  { title: "The Last Question", author: "Isaac Asimov", rating: 5, year: "2019", pages: 0, notes: "" },
+  { title: "Factfulness", author: "Hans Rosling", rating: 5, year: "2019", pages: 0, notes: "" },
+  { title: "Smarter Faster Better", author: "Charles Duhigg", rating: 4, year: "2019", pages: 0, notes: "" },
+  { title: "La teoría del todo", author: "Stephen W. Hawking", rating: 4, year: "2019", pages: 0, notes: "" },
+  { title: "Educated", author: "Tara Westover", rating: 5, year: "2019", pages: 0, notes: "" },
+
+  // 2018
+  { title: "Harry Potter and the Deathly Hallows", author: "J.K. Rowling", rating: 5, year: "2018", pages: 759, notes: "" },
+  { title: "Harry Potter and the Half-Blood Prince", author: "J.K. Rowling", rating: 5, year: "2018", pages: 652, notes: "" },
+  { title: "Harry Potter and the Order of the Phoenix", author: "J.K. Rowling", rating: 5, year: "2018", pages: 870, notes: "" },
+  { title: "Harry Potter and the Goblet of Fire", author: "J.K. Rowling", rating: 5, year: "2018", pages: 734, notes: "" },
+  { title: "The Snowball: Warren Buffett and the Business of Life", author: "Alice Schroeder", rating: 5, year: "2018", pages: 960, notes: "" },
+  { title: "Flash Boys", author: "Michael Lewis", rating: 3, year: "2018", pages: 304, notes: "" },
+  { title: "The Subtle Art of Not Giving a F*ck", author: "Mark Manson", rating: 4, year: "2018", pages: 224, notes: "" },
+  { title: "Elon Musk: Tesla, SpaceX, and the Quest for a Fantastic Future", author: "Ashlee Vance", rating: 4, year: "2018", pages: 392, notes: "" },
+  { title: "Shoe Dog", author: "Phil Knight", rating: 5, year: "2018", pages: 400, notes: "" },
+  { title: "SuperFreakonomics", author: "Steven D. Levitt", rating: 4, year: "2018", pages: 270, notes: "" },
+  { title: "Business Adventures", author: "John Brooks", rating: 5, year: "2018", pages: 408, notes: "" },
+  { title: "The Hunger Games", author: "Suzanne Collins", rating: 5, year: "2018", pages: 374, notes: "" },
+  { title: "Memorias de um Operador da Bolsa", author: "Edwin Lefèvre", rating: 4, year: "2018", pages: 272, notes: "" },
+  { title: "Directo Al Infierno", author: "John LeFevre", rating: 4, year: "2018", pages: 288, notes: "" },
+  { title: "The Richest Man in Babylon", author: "George S. Clason", rating: 5, year: "2018", pages: 194, notes: "" },
+  { title: "The Power of Habit", author: "Charles Duhigg", rating: 5, year: "2018", pages: 375, notes: "" },
+  { title: "Philip A. Fisher Collected Works", author: "Philip A. Fisher", rating: 5, year: "2018", pages: 806, notes: "" },
+  { title: "Perdiendo la virginidad", author: "Richard Branson", rating: 4, year: "2018", pages: 632, notes: "" },
+  { title: "Focus: The Hidden Driver of Excellence", author: "Daniel Goleman", rating: 4, year: "2018", pages: 320, notes: "" },
+  { title: "Unshakeable", author: "Anthony Robbins", rating: 4, year: "2018", pages: 256, notes: "" },
+  { title: "Think and Grow Rich", author: "Napoleon Hill", rating: 4, year: "2018", pages: 233, notes: "" },
+  { title: "Who Moved My Cheese?", author: "Spencer Johnson", rating: 4, year: "2018", pages: 98, notes: "" },
+  { title: "Harry Potter and the Sorcerer's Stone", author: "J.K. Rowling", rating: 5, year: "2018", pages: 309, notes: "" },
+  { title: "The Everything Store: Jeff Bezos and the Age of Amazon", author: "Brad Stone", rating: 3, year: "2018", pages: 384, notes: "" },
+  { title: "Rich Dad, Poor Dad", author: "Robert T. Kiyosaki", rating: 5, year: "2018", pages: 195, notes: "" },
+  { title: "Emotional Intelligence", author: "Daniel Goleman", rating: 3, year: "2018", pages: 352, notes: "" },
+  { title: "Space Chronicles", author: "Neil deGrasse Tyson", rating: 3, year: "2018", pages: 384, notes: "" },
+  { title: "El Arte de la Guerra", author: "Sun Tzu", rating: 3, year: "2018", pages: 55, notes: "" },
+  { title: "Trading en la zona", author: "Mark Douglas", rating: 2, year: "2018", pages: 208, notes: "" },
+  { title: "Gánate y ganarás en bolsa", author: "Jose Antonio Madrigal", rating: 3, year: "2018", pages: 128, notes: "" },
+  { title: "Un monje en Wall Street", author: "Jose Antonio Madrigal", rating: 3, year: "2018", pages: 128, notes: "" },
+  { title: "Invertir en bolsa con sentido común", author: "Jose Antonio Madrigal", rating: 3, year: "2018", pages: 128, notes: "" },
+];
+
+// Load notes from localStorage
+const NOTES_KEY = 'ao_book_notes';
+function loadNotes() {
+  try { return JSON.parse(localStorage.getItem(NOTES_KEY) || '{}'); } catch(e) { return {}; }
+}
+function saveNote(title, text) {
+  const notes = loadNotes();
+  notes[title] = text;
+  localStorage.setItem(NOTES_KEY, JSON.stringify(notes));
+}
+
+// ── RENDER ────────────────────────────────────────────────
+const YEARS = ['2026','2025','2023','2022','2021','2020','2019','2018'];
+let activeYear = 'all';
+
+function stars(r) {
+  if (!r) return '<span style="font-size:11px;color:var(--text-3)">Sin rating</span>';
+  let s = '';
+  for (let i = 1; i <= 5; i++) s += `<span class="star ${i <= r ? 'full' : 'empty'}">${i <= r ? '★' : '☆'}</span>`;
+  return s;
+}
+
+function render() {
+  const notes = loadNotes();
+  const container = document.getElementById('books-container');
+  const yearsToShow = activeYear === 'all' ? YEARS : [activeYear];
+  let html = '';
+
+  yearsToShow.forEach(year => {
+    const books = BOOKS.filter(b => b.year === year);
+    if (!books.length) return;
+    html += `<div class="year-section" id="year-${year}">
+      <div class="sl">${year} <span class="sl-count">${books.length} libro${books.length !== 1 ? 's' : ''}</span></div>
+      <div class="book-grid">`;
+    books.forEach((b, i) => {
+      const hasNotes = !!(b.notes || notes[b.title]);
+      html += `<div class="book-card${hasNotes ? ' has-notes' : ''}" onclick="openModal(${BOOKS.indexOf(b)})">
+        <div class="book-rating">${stars(b.rating)}</div>
+        <div class="book-title">${b.title}</div>
+        <div class="book-author">${b.author}</div>
+      </div>`;
+    });
+    html += `</div></div>`;
+  });
+
+  container.innerHTML = html;
+}
+
+function filterYear(year, btn) {
+  activeYear = year;
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  render();
+}
+
+// ── MODAL ─────────────────────────────────────────────────
+let currentBookIdx = null;
+
+function openModal(idx) {
+  const b = BOOKS[idx];
+  const notes = loadNotes();
+  const bookNotes = b.notes || notes[b.title] || '';
+  currentBookIdx = idx;
+
+  document.getElementById('m-rating').innerHTML = stars(b.rating);
+  document.getElementById('m-title').textContent = b.title;
+  document.getElementById('m-author').textContent = b.author;
+
+  let meta = `<span class="modal-tag">📅 ${b.year}</span>`;
+  if (b.pages) meta += `<span class="modal-tag">📄 ${b.pages} pág.</span>`;
+  if (b.rating) meta += `<span class="modal-tag">${b.rating}/5 ★</span>`;
+  document.getElementById('m-meta').innerHTML = meta;
+
+  if (bookNotes) {
+    document.getElementById('m-notes-content').innerHTML =
+      `<div class="modal-notes">${bookNotes}</div>
+       <button class="modal-add-btn" onclick="editNotes(${idx})">✎ Editar notas</button>`;
+  } else {
+    document.getElementById('m-notes-content').innerHTML =
+      `<div class="modal-no-notes">Aún no hay notas para este libro. Puedes añadirlas directamente aquí — se guardan en tu navegador.</div>
+       <button class="modal-add-btn" onclick="editNotes(${idx})">+ Añadir notas</button>`;
+  }
+
+  document.getElementById('modal-overlay').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function editNotes(idx) {
+  const b = BOOKS[idx];
+  const notes = loadNotes();
+  const current = b.notes || notes[b.title] || '';
+
+  document.getElementById('m-notes-content').innerHTML =
+    `<textarea id="notes-editor" style="width:100%;min-height:180px;font-family:'DM Sans',sans-serif;font-size:13px;line-height:1.7;border:1px solid var(--border);border-radius:8px;padding:12px;resize:vertical;color:var(--text-1);background:var(--bg);outline:none;" placeholder="Escribe tus notas, frases destacadas, reflexiones...">${current}</textarea>
+     <div style="display:flex;gap:8px;margin-top:12px;">
+       <button class="modal-add-btn" onclick="saveNoteUI(${idx})" style="background:var(--text-1);color:#fff;border-color:var(--text-1)">Guardar</button>
+       <button class="modal-add-btn" onclick="openModal(${idx})">Cancelar</button>
+     </div>`;
+  document.getElementById('notes-editor').focus();
+}
+
+function saveNoteUI(idx) {
+  const b = BOOKS[idx];
+  const text = document.getElementById('notes-editor').value.trim();
+  saveNote(b.title, text);
+  openModal(idx);
+  render();
+}
+
+function closeModal(e) {
+  if (e.target === document.getElementById('modal-overlay')) closeModalDirect();
+}
+function closeModalDirect() {
+  document.getElementById('modal-overlay').classList.remove('open');
+  document.body.style.overflow = '';
+}
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModalDirect(); });
+
+// ── INIT ──────────────────────────────────────────────────
+render();
+</script>
 </body>
 </html>
