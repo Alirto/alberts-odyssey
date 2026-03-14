@@ -198,7 +198,55 @@ nav { background: var(--surface); border-bottom: 1px solid var(--border); paddin
 .reset-btn { background: none; border: 1px solid var(--border); border-radius: 8px; padding: 9px 20px; font-size: 13px; font-weight: 500; color: var(--text-2); cursor: pointer; font-family: 'DM Sans', sans-serif; transition: all .15s; }
 .reset-btn:hover { border-color: var(--border-2); color: var(--text-1); background: var(--surface); }
 
-/* RESPONSIVE */
+/* ─── TRACKER DE PESO ─── */
+.peso-wrap { max-width: 780px; }
+.peso-hero { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 24px 28px; margin-bottom: 20px; display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
+.ph-cell { }
+.ph-cell-lbl { font-size: 9px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--text-3); margin-bottom: 6px; }
+.ph-cell-val { font-family: 'DM Serif Display', serif; font-size: 28px; line-height: 1; letter-spacing: -0.5px; }
+.ph-cell-sub { font-size: 11px; color: var(--text-3); margin-top: 4px; }
+.ph-cell-val.green { color: var(--green); }
+.ph-cell-val.red { color: #C0614A; }
+.ph-cell-val.gray { color: var(--text-3); }
+.peso-chart-box { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 20px 24px; margin-bottom: 20px; }
+.peso-chart-hdr { display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px; }
+.peso-chart-title { font-size: 11px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; color: var(--text-3); }
+.peso-chart-filters { display: flex; gap: 6px; }
+.pf-btn { font-size: 11px; font-weight: 600; padding: 4px 12px; border-radius: 20px; border: 1px solid var(--border); background: none; color: var(--text-2); cursor: pointer; font-family: 'DM Sans', sans-serif; transition: all .15s; }
+.pf-btn:hover { border-color: var(--border-2); color: var(--text-1); }
+.pf-btn.active { background: var(--green); color: #fff; border-color: var(--green); }
+.peso-chart-wrap { position: relative; height: 220px; }
+.peso-add-card { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 20px 24px; margin-bottom: 20px; }
+.peso-add-title { font-size: 11px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; color: var(--text-3); margin-bottom: 14px; }
+.peso-add-row { display: flex; gap: 10px; align-items: flex-end; flex-wrap: wrap; }
+.peso-input-group { display: flex; flex-direction: column; gap: 5px; }
+.peso-input-group label { font-size: 10px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: var(--text-3); }
+.peso-input-group input { font-family: 'DM Sans', sans-serif; font-size: 13px; color: var(--text-1); background: var(--bg); border: 1px solid var(--border); border-radius: 8px; padding: 9px 12px; outline: none; transition: border-color .15s; width: 140px; }
+.peso-input-group input:focus { border-color: var(--green); }
+.peso-input-group input[type="number"] { width: 110px; }
+.peso-add-btn { font-family: 'DM Sans', sans-serif; font-size: 13px; font-weight: 600; background: var(--text-1); color: #fff; border: none; border-radius: 8px; padding: 10px 20px; cursor: pointer; transition: opacity .15s; white-space: nowrap; }
+.peso-add-btn:hover { opacity: 0.85; }
+.peso-add-err { font-size: 12px; color: #C0614A; margin-top: 6px; display: none; width: 100%; }
+.peso-log { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; overflow: hidden; }
+.peso-log-hdr { padding: 14px 20px; border-bottom: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; background: #FAFAF8; }
+.peso-log-title { font-size: 11px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; color: var(--text-3); }
+.peso-row { display: grid; grid-template-columns: 110px 90px 90px 1fr 36px; gap: 12px; align-items: center; padding: 11px 20px; border-bottom: 1px solid var(--border); font-size: 13px; }
+.peso-row:last-child { border-bottom: none; }
+.peso-row.hdr { background: #FAFAF8; font-size: 10px; font-weight: 700; letter-spacing: .05em; text-transform: uppercase; color: var(--text-3); }
+.peso-date { color: var(--text-2); }
+.peso-kg { font-weight: 600; color: var(--text-1); font-family: 'DM Serif Display', serif; font-size: 16px; }
+.peso-delta-pos { color: var(--green); font-size: 12px; font-weight: 600; }
+.peso-delta-neg { color: #C0614A; font-size: 12px; font-weight: 600; }
+.peso-delta-zero { color: var(--text-3); font-size: 12px; }
+.peso-note { font-size: 12px; color: var(--text-2); overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }
+.peso-del-btn { background: none; border: none; cursor: pointer; color: var(--text-3); font-size: 14px; padding: 2px 4px; border-radius: 4px; transition: color .15s; font-family: 'DM Sans', sans-serif; }
+.peso-del-btn:hover { color: #C0614A; }
+.peso-empty { padding: 40px 24px; text-align: center; color: var(--text-3); font-size: 13px; line-height: 1.7; }
+.objetivo-band { background: var(--green-bg); border: 1px solid var(--green-border); border-radius: 10px; padding: 12px 16px; margin-bottom: 20px; display: flex; align-items: center; gap: 14px; font-size: 13px; }
+.ob-icon { font-size: 18px; }
+.ob-text { color: var(--green); font-weight: 500; }
+.ob-text strong { font-weight: 700; }
+@media (max-width: 600px) { .peso-hero { grid-template-columns: repeat(2,1fr); } .peso-row { grid-template-columns: 90px 70px 70px; } .peso-row .peso-note, .peso-row .peso-del-btn { display: none; } }
 @media (max-width: 1100px) { .macros-strip { grid-template-columns: repeat(3,1fr); } }
 @media (max-width: 900px) { .charts-grid { grid-template-columns: 1fr; } .stats-strip { grid-template-columns: repeat(2,1fr); } }
 @media (max-width: 768px) {
@@ -251,6 +299,7 @@ nav { background: var(--surface); border-bottom: 1px solid var(--border); paddin
     <button class="main-tab active" onclick="switchPanel('nutricion')">🥗 Nutrición</button>
     <button class="main-tab" onclick="switchPanel('deporte')">🏋️ Deporte</button>
     <button class="main-tab" onclick="switchPanel('lista')">🛒 Lista de la Compra</button>
+    <button class="main-tab" onclick="switchPanel('peso')">⚖️ Tracker de Peso</button>
   </div>
 
   <!-- ══════════════════════════════════════════════════
@@ -612,6 +661,92 @@ nav { background: var(--surface); border-bottom: 1px solid var(--border); paddin
     </div>
   </div><!-- /panel-lista -->
 
+  <!-- ══════════════════════════════════════════════════
+       PANEL 4 — TRACKER DE PESO
+  ══════════════════════════════════════════════════ -->
+  <div class="panel" id="panel-peso">
+    <div class="peso-wrap">
+
+      <div class="objetivo-band">
+        <span class="ob-icon">🎯</span>
+        <span class="ob-text">Objetivo: <strong>88 kg → 80 kg</strong> · Ritmo recomendado: 0.3–0.5 kg/semana · Inicio: 23 Mar 2026</span>
+      </div>
+
+      <!-- STATS -->
+      <div class="peso-hero">
+        <div class="ph-cell">
+          <div class="ph-cell-lbl">Peso actual</div>
+          <div class="ph-cell-val" id="pw-actual">—</div>
+          <div class="ph-cell-sub">kg</div>
+        </div>
+        <div class="ph-cell">
+          <div class="ph-cell-lbl">Objetivo</div>
+          <div class="ph-cell-val gray">80</div>
+          <div class="ph-cell-sub">kg</div>
+        </div>
+        <div class="ph-cell">
+          <div class="ph-cell-lbl">Por perder</div>
+          <div class="ph-cell-val" id="pw-resta">—</div>
+          <div class="ph-cell-sub">kg restantes</div>
+        </div>
+        <div class="ph-cell">
+          <div class="ph-cell-lbl">Variación total</div>
+          <div class="ph-cell-val" id="pw-total">—</div>
+          <div class="ph-cell-sub" id="pw-total-sub">desde inicio</div>
+        </div>
+      </div>
+
+      <!-- GRÁFICA -->
+      <div class="peso-chart-box">
+        <div class="peso-chart-hdr">
+          <div class="peso-chart-title">Evolución del peso</div>
+          <div class="peso-chart-filters">
+            <button class="pf-btn active" onclick="pfFilter('all',this)">Todo</button>
+            <button class="pf-btn" onclick="pfFilter(4,this)">4 sem</button>
+            <button class="pf-btn" onclick="pfFilter(8,this)">8 sem</button>
+            <button class="pf-btn" onclick="pfFilter(16,this)">16 sem</button>
+          </div>
+        </div>
+        <div class="peso-chart-wrap">
+          <canvas id="peso-chart"></canvas>
+        </div>
+      </div>
+
+      <!-- AÑADIR REGISTRO -->
+      <div class="peso-add-card">
+        <div class="peso-add-title">Añadir registro</div>
+        <div class="peso-add-row">
+          <div class="peso-input-group">
+            <label>Fecha</label>
+            <input type="date" id="p-date">
+          </div>
+          <div class="peso-input-group">
+            <label>Peso (kg)</label>
+            <input type="number" id="p-kg" placeholder="Ej: 87.4" step="0.1" min="40" max="200">
+          </div>
+          <div class="peso-input-group" style="flex:1;min-width:160px">
+            <label>Nota (opcional)</label>
+            <input type="text" id="p-note" placeholder="Ej: Después de entreno" style="width:100%">
+          </div>
+          <button class="peso-add-btn" onclick="addPeso()">+ Añadir</button>
+        </div>
+        <div class="peso-add-err" id="p-err"></div>
+      </div>
+
+      <!-- HISTORIAL -->
+      <div class="peso-log">
+        <div class="peso-log-hdr">
+          <span class="peso-log-title">Historial de registros</span>
+          <span style="font-size:11px;color:var(--text-3)" id="pw-count"></span>
+        </div>
+        <div id="peso-log-body">
+          <div class="peso-empty">Añade tu primer registro de peso para empezar el seguimiento.</div>
+        </div>
+      </div>
+
+    </div>
+  </div><!-- /panel-peso -->
+
 </div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
@@ -620,7 +755,7 @@ nav { background: var(--surface); border-bottom: 1px solid var(--border); paddin
 function switchPanel(id) {
   document.querySelectorAll('.panel').forEach(function(p) { p.classList.remove('active'); });
   document.querySelectorAll('.main-tab').forEach(function(t, i) {
-    var ids = ['nutricion','deporte','lista'];
+    var ids = ['nutricion','deporte','lista','peso'];
     t.classList.toggle('active', ids[i] === id);
   });
   document.getElementById('panel-' + id).classList.add('active');
@@ -847,11 +982,233 @@ function getWeekKey(date) {
   return d.toLocaleDateString('es-ES', { day:'2-digit', month:'short' });
 }
 
+// ── TRACKER DE PESO ──────────────────────────────────────
+var PESO_KEY = 'ao_peso_v1';
+var pesoChart = null;
+var pesoFilter = 'all';
+
+function loadPesos() { try { return JSON.parse(localStorage.getItem(PESO_KEY) || '[]'); } catch(e) { return []; } }
+function savePesos(d) { localStorage.setItem(PESO_KEY, JSON.stringify(d)); }
+
+function addPeso() {
+  var date = document.getElementById('p-date').value;
+  var kg   = parseFloat(document.getElementById('p-kg').value);
+  var note = document.getElementById('p-note').value.trim();
+  var err  = document.getElementById('p-err');
+  if (!date) { err.textContent = 'Elige una fecha.'; err.style.display = 'block'; return; }
+  if (isNaN(kg) || kg < 40 || kg > 200) { err.textContent = 'Introduce un peso válido (40–200 kg).'; err.style.display = 'block'; return; }
+  err.style.display = 'none';
+  var records = loadPesos();
+  // Replace if same date
+  var idx = records.findIndex(function(r) { return r.date === date; });
+  var entry = { date: date, kg: Math.round(kg * 10) / 10, note: note };
+  if (idx >= 0) records[idx] = entry; else records.push(entry);
+  records.sort(function(a, b) { return a.date.localeCompare(b.date); });
+  savePesos(records);
+  document.getElementById('p-kg').value = '';
+  document.getElementById('p-note').value = '';
+  renderPeso();
+}
+
+function delPeso(date) {
+  if (!confirm('¿Eliminar este registro?')) return;
+  savePesos(loadPesos().filter(function(r) { return r.date !== date; }));
+  renderPeso();
+}
+
+function pfFilter(val, btn) {
+  pesoFilter = val;
+  document.querySelectorAll('.pf-btn').forEach(function(b) { b.classList.remove('active'); });
+  btn.classList.add('active');
+  renderPesoChart(loadPesos());
+}
+
+function renderPeso() {
+  var records = loadPesos();
+  renderPesoStats(records);
+  renderPesoChart(records);
+  renderPesoLog(records);
+}
+
+function renderPesoStats(records) {
+  var OBJETIVO = 80;
+  if (!records.length) {
+    document.getElementById('pw-actual').textContent = '—';
+    document.getElementById('pw-actual').className = 'ph-cell-val gray';
+    document.getElementById('pw-resta').textContent = '—';
+    document.getElementById('pw-total').textContent = '—';
+    document.getElementById('pw-count').textContent = '0 registros';
+    return;
+  }
+  var last = records[records.length - 1];
+  var first = records[0];
+  var actual = last.kg;
+  var resta = Math.round((actual - OBJETIVO) * 10) / 10;
+  var diff = Math.round((actual - first.kg) * 10) / 10;
+
+  var actEl = document.getElementById('pw-actual');
+  actEl.textContent = actual.toFixed(1);
+  actEl.className = 'ph-cell-val ' + (actual <= OBJETIVO ? 'green' : '');
+
+  var restaEl = document.getElementById('pw-resta');
+  restaEl.textContent = resta > 0 ? resta.toFixed(1) : '✓ Alcanzado';
+  restaEl.className = 'ph-cell-val ' + (resta <= 0 ? 'green' : '');
+
+  var totalEl = document.getElementById('pw-total');
+  var sign = diff < 0 ? '' : (diff > 0 ? '+' : '');
+  totalEl.textContent = sign + diff.toFixed(1);
+  totalEl.className = 'ph-cell-val ' + (diff < 0 ? 'green' : diff > 0 ? 'red' : 'gray');
+
+  var subEl = document.getElementById('pw-total-sub');
+  subEl.textContent = 'desde ' + fmtDate(first.date);
+
+  document.getElementById('pw-count').textContent = records.length + ' registro' + (records.length !== 1 ? 's' : '');
+}
+
+function renderPesoChart(records) {
+  var filtered = records;
+  if (pesoFilter !== 'all' && records.length) {
+    var cutoff = new Date();
+    cutoff.setDate(cutoff.getDate() - pesoFilter * 7);
+    var cutStr = cutoff.toISOString().split('T')[0];
+    filtered = records.filter(function(r) { return r.date >= cutStr; });
+  }
+
+  var labels = filtered.map(function(r) { return fmtDate(r.date); });
+  var data   = filtered.map(function(r) { return r.kg; });
+  var OBJETIVO = 80;
+
+  var ctx = document.getElementById('peso-chart').getContext('2d');
+  if (pesoChart) pesoChart.destroy();
+
+  if (!filtered.length) {
+    pesoChart = null;
+    ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
+    return;
+  }
+
+  // Determine y-axis range
+  var allVals = data.concat([OBJETIVO]);
+  var minV = Math.floor(Math.min.apply(null, allVals)) - 1;
+  var maxV = Math.ceil(Math.max.apply(null, allVals)) + 1;
+
+  pesoChart = new Chart(ctx, {
+    type: 'line',
+    data: {
+      labels: labels,
+      datasets: [
+        {
+          label: 'Peso (kg)',
+          data: data,
+          borderColor: '#2D6A4F',
+          backgroundColor: 'rgba(45,106,79,0.08)',
+          borderWidth: 2.5,
+          pointBackgroundColor: '#2D6A4F',
+          pointRadius: 5,
+          pointHoverRadius: 7,
+          fill: true,
+          tension: 0.3,
+        },
+        {
+          label: 'Objetivo 80 kg',
+          data: labels.map(function() { return OBJETIVO; }),
+          borderColor: '#C0614A',
+          borderWidth: 1.5,
+          borderDash: [5, 4],
+          pointRadius: 0,
+          fill: false,
+          tension: 0,
+        }
+      ]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: {
+        legend: {
+          display: true,
+          position: 'bottom',
+          labels: { font: { size: 11, family: 'DM Sans' }, color: '#6B6860', boxWidth: 12, padding: 16 }
+        },
+        tooltip: {
+          callbacks: {
+            label: function(ctx) {
+              if (ctx.datasetIndex === 1) return 'Objetivo: 80 kg';
+              return 'Peso: ' + ctx.parsed.y.toFixed(1) + ' kg';
+            }
+          }
+        }
+      },
+      scales: {
+        x: {
+          grid: { color: '#E8E6E0' },
+          ticks: { font: { size: 10, family: 'DM Sans' }, color: '#A8A49C', maxRotation: 45, maxTicksLimit: 12 }
+        },
+        y: {
+          min: minV,
+          max: maxV,
+          grid: { color: '#E8E6E0' },
+          ticks: {
+            font: { size: 10, family: 'DM Sans' },
+            color: '#A8A49C',
+            callback: function(v) { return v + ' kg'; }
+          }
+        }
+      }
+    }
+  });
+}
+
+function renderPesoLog(records) {
+  var body = document.getElementById('peso-log-body');
+  if (!records.length) {
+    body.innerHTML = '<div class="peso-empty">Añade tu primer registro de peso para empezar el seguimiento.</div>';
+    return;
+  }
+  var sorted = records.slice().sort(function(a, b) { return b.date.localeCompare(a.date); });
+  var rows = sorted.map(function(r, i) {
+    // Find prev in original sorted-by-date list
+    var origIdx = records.findIndex(function(x) { return x.date === r.date; });
+    var prev = origIdx > 0 ? records[origIdx - 1] : null;
+    var diff = prev ? Math.round((r.kg - prev.kg) * 10) / 10 : null;
+    var deltaHtml = '';
+    if (diff === null) {
+      deltaHtml = '<span class="peso-delta-zero">—</span>';
+    } else if (diff < 0) {
+      deltaHtml = '<span class="peso-delta-pos">' + diff.toFixed(1) + ' kg ↓</span>';
+    } else if (diff > 0) {
+      deltaHtml = '<span class="peso-delta-neg">+' + diff.toFixed(1) + ' kg ↑</span>';
+    } else {
+      deltaHtml = '<span class="peso-delta-zero">= sin cambio</span>';
+    }
+    return '<div class="peso-row">'
+      + '<span class="peso-date">' + fmtDateLong(r.date) + '</span>'
+      + '<span class="peso-kg">' + r.kg.toFixed(1) + ' kg</span>'
+      + '<span>' + deltaHtml + '</span>'
+      + '<span class="peso-note">' + (r.note || '<span style="color:var(--text-3);font-style:italic">—</span>') + '</span>'
+      + '<button class="peso-del-btn" onclick="delPeso(\'' + r.date + '\')" title="Eliminar">×</button>'
+      + '</div>';
+  }).join('');
+  body.innerHTML = '<div class="peso-row hdr"><span>Fecha</span><span>Peso</span><span>Variación</span><span>Nota</span><span></span></div>' + rows;
+}
+
+function fmtDate(dateStr) {
+  var d = new Date(dateStr + 'T12:00:00');
+  return d.toLocaleDateString('es-ES', { day: '2-digit', month: 'short' });
+}
+function fmtDateLong(dateStr) {
+  var d = new Date(dateStr + 'T12:00:00');
+  return d.toLocaleDateString('es-ES', { day: '2-digit', month: 'short', year: '2-digit' });
+}
+
 // ── INIT ─────────────────────────────────────────────────
 document.addEventListener('DOMContentLoaded', function() {
   lcInit();
   lcLoad();
   lcUpdateAll();
+  // Set today as default date for peso input
+  document.getElementById('p-date').value = new Date().toISOString().split('T')[0];
+  renderPeso();
 });
 </script>
 </body>
