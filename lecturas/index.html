@@ -101,6 +101,32 @@ nav { background: var(--surface); border-bottom: 1px solid var(--border); paddin
 .modal-add-btn { margin-top: 16px; display: inline-flex; align-items: center; gap: 6px; font-size: 12px; font-weight: 600; color: var(--accent); border: 1px solid var(--accent-border); background: var(--accent-bg); padding: 7px 16px; border-radius: 8px; cursor: pointer; transition: all .15s; }
 .modal-add-btn:hover { background: var(--accent); color: #fff; }
 
+/* ADD BOOK */
+.add-book-btn { display:flex;align-items:center;gap:8px;font-size:13px;font-weight:600;color:var(--text-1);background:var(--surface);border:1.5px solid var(--text-1);border-radius:8px;padding:9px 20px;cursor:pointer;transition:all .15s;font-family:'DM Sans',sans-serif; }
+.add-book-btn:hover { background:var(--text-1);color:#fff; }
+.add-book-btn .plus { font-size:18px;line-height:1; }
+.add-modal-overlay { position:fixed;inset:0;background:rgba(26,25,22,0.55);backdrop-filter:blur(4px);z-index:1001;display:flex;align-items:center;justify-content:center;padding:24px;opacity:0;pointer-events:none;transition:opacity .2s; }
+.add-modal-overlay.open { opacity:1;pointer-events:all; }
+.add-modal { background:var(--surface);border-radius:16px;width:100%;max-width:500px;box-shadow:0 24px 64px rgba(0,0,0,0.18);transform:translateY(12px);transition:transform .2s; }
+.add-modal-overlay.open .add-modal { transform:translateY(0); }
+.add-modal-hdr { padding:22px 28px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between; }
+.add-modal-hdr h3 { font-family:'DM Serif Display',serif;font-size:20px; }
+.add-modal-body { padding:22px 28px 28px;display:flex;flex-direction:column;gap:14px; }
+.form-row { display:grid;grid-template-columns:1fr 1fr;gap:12px; }
+.form-group { display:flex;flex-direction:column;gap:5px; }
+.form-group label { font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--text-3); }
+.form-group input,.form-group select { font-family:'DM Sans',sans-serif;font-size:13px;color:var(--text-1);background:var(--bg);border:1px solid var(--border);border-radius:8px;padding:9px 12px;outline:none;transition:border-color .15s;width:100%; }
+.form-group input:focus,.form-group select:focus { border-color:var(--accent); }
+.star-picker { display:flex;gap:8px;padding:4px 0; }
+.star-pick { font-size:24px;cursor:pointer;color:var(--border-2);transition:color .1s;line-height:1;user-select:none; }
+.star-pick.on { color:var(--accent); }
+.form-actions { display:flex;gap:10px;margin-top:4px; }
+.btn-primary { flex:1;font-family:'DM Sans',sans-serif;font-size:13px;font-weight:600;background:var(--text-1);color:#fff;border:none;border-radius:8px;padding:12px;cursor:pointer;transition:opacity .15s; }
+.btn-primary:hover { opacity:0.85; }
+.btn-secondary { font-family:'DM Sans',sans-serif;font-size:13px;font-weight:500;background:none;color:var(--text-2);border:1px solid var(--border);border-radius:8px;padding:12px 20px;cursor:pointer;transition:all .15s; }
+.btn-secondary:hover { border-color:var(--border-2);color:var(--text-1); }
+.book-card.user-book { border-style:dashed; }
+
 /* RESPONSIVE */
 @media (max-width: 768px) {
   nav { padding: 0 20px; } .nav-logo { margin-right: 20px; }
@@ -119,10 +145,12 @@ nav { background: var(--surface); border-bottom: 1px solid var(--border); paddin
   <div class="nav-links">
     <a href="../index.html"            class="nav-link">Home</a>
     <a href="../salud/index.html"      class="nav-link">Salud</a>
+    <a href="../deporte/index.html"    class="nav-link">Deporte</a>
     <a href="../vlog/index.html"       class="nav-link">Vlog</a>
     <a href="../lecturas/index.html"   class="nav-link active">Lecturas</a>
     <a href="../finanzas/index.html"   class="nav-link">Finanzas</a>
     <a href="../desarrollo/index.html" class="nav-link">Desarrollo</a>
+    <a href="../escritos/index.html"   class="nav-link">Escritos</a>
   </div>
 </nav>
 
@@ -134,18 +162,23 @@ nav { background: var(--surface); border-bottom: 1px solid var(--border); paddin
       <h1 class="ph-title">Biblioteca<br><em>personal</em></h1>
       <p class="ph-sub">Registro de lecturas desde 2018. Biografías, economía, ciencia, filosofía. Clicar en cualquier libro para ver notas.</p>
     </div>
-    <div class="ph-meta">
-      <div>
-        <div class="ph-stat-val">171</div>
-        <div class="ph-stat-lbl">Libros leídos</div>
-      </div>
-      <div>
-        <div class="ph-stat-val">9</div>
-        <div class="ph-stat-lbl">Años de registro</div>
-      </div>
-      <div>
-        <div class="ph-stat-val">4.1★</div>
-        <div class="ph-stat-lbl">Rating medio</div>
+    <div style="display:flex;flex-direction:column;align-items:flex-end;gap:20px;">
+      <button class="add-book-btn" onclick="openAddModal()">
+        <span class="plus">+</span> Añadir libro
+      </button>
+      <div class="ph-meta">
+        <div>
+          <div class="ph-stat-val" id="stat-total">171</div>
+          <div class="ph-stat-lbl">Libros leídos</div>
+        </div>
+        <div>
+          <div class="ph-stat-val">9</div>
+          <div class="ph-stat-lbl">Años de registro</div>
+        </div>
+        <div>
+          <div class="ph-stat-val">4.1★</div>
+          <div class="ph-stat-lbl">Rating medio</div>
+        </div>
       </div>
     </div>
   </div>
@@ -180,6 +213,61 @@ nav { background: var(--surface); border-bottom: 1px solid var(--border); paddin
     <div class="modal-body">
       <div class="modal-notes-label">Notas de lectura</div>
       <div id="m-notes-content"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ADD BOOK MODAL -->
+<div class="add-modal-overlay" id="add-modal-overlay" onclick="if(event.target===this)closeAddModal()">
+  <div class="add-modal">
+    <div class="add-modal-hdr">
+      <h3>Añadir libro</h3>
+      <button class="modal-close" onclick="closeAddModal()">✕</button>
+    </div>
+    <div class="add-modal-body">
+      <div class="form-group">
+        <label>Título *</label>
+        <input type="text" id="add-title" placeholder="Título del libro" autocomplete="off">
+      </div>
+      <div class="form-group">
+        <label>Autor *</label>
+        <input type="text" id="add-author" placeholder="Nombre del autor" autocomplete="off">
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label>Año de lectura *</label>
+          <select id="add-year">
+            <option value="2026">2026</option>
+            <option value="2025">2025</option>
+            <option value="2024">2024</option>
+            <option value="2023">2023</option>
+            <option value="2022">2022</option>
+            <option value="2021">2021</option>
+            <option value="2020">2020</option>
+            <option value="2019">2019</option>
+            <option value="2018">2018</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Páginas</label>
+          <input type="number" id="add-pages" placeholder="0" min="0">
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Rating</label>
+        <div class="star-picker" id="star-picker">
+          <span class="star-pick" data-v="1" onclick="setRating(1)">★</span>
+          <span class="star-pick" data-v="2" onclick="setRating(2)">★</span>
+          <span class="star-pick" data-v="3" onclick="setRating(3)">★</span>
+          <span class="star-pick" data-v="4" onclick="setRating(4)">★</span>
+          <span class="star-pick" data-v="5" onclick="setRating(5)">★</span>
+        </div>
+      </div>
+      <div id="add-error" style="font-size:12px;color:#C0614A;display:none;"></div>
+      <div class="form-actions">
+        <button class="btn-secondary" onclick="closeAddModal()">Cancelar</button>
+        <button class="btn-primary" onclick="saveNewBook()">Guardar libro</button>
+      </div>
     </div>
   </div>
 </div>
@@ -373,21 +461,132 @@ function stars(r) {
   return s;
 }
 
+// ── MODAL CLOSE ───────────────────────────────────────────
+let currentBookIdx = null;
+function closeModal(e) {
+  if (e.target === document.getElementById('modal-overlay')) closeModalDirect();
+}
+function closeModalDirect() {
+  document.getElementById('modal-overlay').classList.remove('open');
+  document.body.style.overflow = '';
+}
+document.addEventListener('keydown', e => { if (e.key === 'Escape') { closeModalDirect(); closeAddModal(); } });
+
+// ── ADD BOOK ──────────────────────────────────────────────
+const USER_BOOKS_KEY = 'ao_user_books';
+let addRating = 0;
+
+function loadUserBooks() {
+  try { return JSON.parse(localStorage.getItem(USER_BOOKS_KEY) || '[]'); } catch(e) { return []; }
+}
+function saveUserBooks(books) {
+  localStorage.setItem(USER_BOOKS_KEY, JSON.stringify(books));
+}
+
+function getAllBooks() {
+  return [...BOOKS, ...loadUserBooks()];
+}
+
+function getAllYears() {
+  const base = ['2026','2025','2024','2023','2022','2021','2020','2019','2018'];
+  const userYears = loadUserBooks().map(b => b.year);
+  const all = [...new Set([...base, ...userYears])].sort((a,b) => b-a);
+  return all;
+}
+
+function setRating(val) {
+  addRating = val;
+  document.querySelectorAll('.star-pick').forEach(s => {
+    s.classList.toggle('on', parseInt(s.dataset.v) <= val);
+  });
+}
+
+function openAddModal() {
+  addRating = 0;
+  document.getElementById('add-title').value = '';
+  document.getElementById('add-author').value = '';
+  document.getElementById('add-year').value = new Date().getFullYear().toString();
+  document.getElementById('add-pages').value = '';
+  document.getElementById('add-error').style.display = 'none';
+  document.querySelectorAll('.star-pick').forEach(s => s.classList.remove('on'));
+  document.getElementById('add-modal-overlay').classList.add('open');
+  document.body.style.overflow = 'hidden';
+  setTimeout(() => document.getElementById('add-title').focus(), 100);
+}
+
+function closeAddModal() {
+  document.getElementById('add-modal-overlay').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+function saveNewBook() {
+  const title = document.getElementById('add-title').value.trim();
+  const author = document.getElementById('add-author').value.trim();
+  const year = document.getElementById('add-year').value;
+  const pages = parseInt(document.getElementById('add-pages').value) || 0;
+  const errEl = document.getElementById('add-error');
+
+  if (!title) { errEl.textContent = 'El título es obligatorio.'; errEl.style.display='block'; return; }
+  if (!author) { errEl.textContent = 'El autor es obligatorio.'; errEl.style.display='block'; return; }
+  errEl.style.display = 'none';
+
+  const newBook = { title, author, rating: addRating, year, pages, notes: '', _user: true };
+  const userBooks = loadUserBooks();
+  userBooks.unshift(newBook);
+  saveUserBooks(userBooks);
+
+  // Update year filter if new year
+  rebuildFilters();
+  updateStats();
+  closeAddModal();
+  render();
+
+  // Auto-switch to that year
+  const btns = document.querySelectorAll('.filter-btn');
+  btns.forEach(b => {
+    if (b.textContent.trim() === year) { filterYear(year, b); }
+  });
+}
+
+function rebuildFilters() {
+  const container = document.getElementById('filters');
+  const years = getAllYears();
+  let html = `<button class="filter-btn ${activeYear==='all'?'active':''}" onclick="filterYear('all', this)">Todos</button>`;
+  years.forEach(y => {
+    html += `<button class="filter-btn ${activeYear===y?'active':''}" onclick="filterYear('${y}', this)">${y}</button>`;
+  });
+  container.innerHTML = html;
+}
+
+function updateStats() {
+  const total = getAllBooks().length;
+  document.getElementById('stat-total').textContent = total;
+}
+
+// ── INIT ──────────────────────────────────────────────────
+// ── OVERRIDE render to include user books ──────────────────
 function render() {
   const notes = loadNotes();
+  const userBooks = loadUserBooks();
   const container = document.getElementById('books-container');
-  const yearsToShow = activeYear === 'all' ? YEARS : [activeYear];
+  const allYears = getAllYears();
+  const yearsToShow = activeYear === 'all' ? allYears : [activeYear];
   let html = '';
 
   yearsToShow.forEach(year => {
-    const books = BOOKS.filter(b => b.year === year);
+    const base = BOOKS.filter(b => b.year === year);
+    const user = userBooks.filter(b => b.year === year);
+    const books = [...user, ...base];
     if (!books.length) return;
     html += `<div class="year-section" id="year-${year}">
       <div class="sl">${year} <span class="sl-count">${books.length} libro${books.length !== 1 ? 's' : ''}</span></div>
       <div class="book-grid">`;
-    books.forEach((b, i) => {
+    books.forEach((b) => {
+      const isUser = !!b._user;
+      const allB = getAllBooks();
+      const idx = allB.findIndex(x => x.title === b.title && x.author === b.author && x.year === b.year);
       const hasNotes = !!(b.notes || notes[b.title]);
-      html += `<div class="book-card${hasNotes ? ' has-notes' : ''}" onclick="openModal(${BOOKS.indexOf(b)})">
+      html += `<div class="book-card${hasNotes ? ' has-notes' : ''}${isUser ? ' user-book' : ''}" onclick="openModal(${idx})">
         <div class="book-rating">${stars(b.rating)}</div>
         <div class="book-title">${b.title}</div>
         <div class="book-author">${b.author}</div>
@@ -399,18 +598,11 @@ function render() {
   container.innerHTML = html;
 }
 
-function filterYear(year, btn) {
-  activeYear = year;
-  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-  btn.classList.add('active');
-  render();
-}
-
-// ── MODAL ─────────────────────────────────────────────────
-let currentBookIdx = null;
-
+// ── OVERRIDE openModal to use getAllBooks ──────────────────
 function openModal(idx) {
-  const b = BOOKS[idx];
+  const allB = getAllBooks();
+  const b = allB[idx];
+  if (!b) return;
   const notes = loadNotes();
   const bookNotes = b.notes || notes[b.title] || '';
   currentBookIdx = idx;
@@ -422,16 +614,22 @@ function openModal(idx) {
   let meta = `<span class="modal-tag">📅 ${b.year}</span>`;
   if (b.pages) meta += `<span class="modal-tag">📄 ${b.pages} pág.</span>`;
   if (b.rating) meta += `<span class="modal-tag">${b.rating}/5 ★</span>`;
+  if (b._user) meta += `<span class="modal-tag" style="background:var(--accent-bg);color:var(--accent);border-color:var(--accent-border)">✎ Añadido por ti</span>`;
   document.getElementById('m-meta').innerHTML = meta;
+
+  // Delete button for user books
+  const deleteBtn = b._user
+    ? `<button class="modal-add-btn" style="color:#C0614A;border-color:#f0b0a0;background:#fdf0ee;margin-top:8px" onclick="deleteUserBook(${idx})">🗑 Eliminar libro</button>`
+    : '';
 
   if (bookNotes) {
     document.getElementById('m-notes-content').innerHTML =
       `<div class="modal-notes">${bookNotes}</div>
-       <button class="modal-add-btn" onclick="editNotes(${idx})">✎ Editar notas</button>`;
+       <button class="modal-add-btn" onclick="editNotes(${idx})">✎ Editar notas</button>${deleteBtn}`;
   } else {
     document.getElementById('m-notes-content').innerHTML =
-      `<div class="modal-no-notes">Aún no hay notas para este libro. Puedes añadirlas directamente aquí — se guardan en tu navegador.</div>
-       <button class="modal-add-btn" onclick="editNotes(${idx})">+ Añadir notas</button>`;
+      `<div class="modal-no-notes">Aún no hay notas para este libro.</div>
+       <button class="modal-add-btn" onclick="editNotes(${idx})">+ Añadir notas</button>${deleteBtn}`;
   }
 
   document.getElementById('modal-overlay').classList.add('open');
@@ -439,10 +637,10 @@ function openModal(idx) {
 }
 
 function editNotes(idx) {
-  const b = BOOKS[idx];
+  const allB = getAllBooks();
+  const b = allB[idx];
   const notes = loadNotes();
   const current = b.notes || notes[b.title] || '';
-
   document.getElementById('m-notes-content').innerHTML =
     `<textarea id="notes-editor" style="width:100%;min-height:180px;font-family:'DM Sans',sans-serif;font-size:13px;line-height:1.7;border:1px solid var(--border);border-radius:8px;padding:12px;resize:vertical;color:var(--text-1);background:var(--bg);outline:none;" placeholder="Escribe tus notas, frases destacadas, reflexiones...">${current}</textarea>
      <div style="display:flex;gap:8px;margin-top:12px;">
@@ -453,23 +651,30 @@ function editNotes(idx) {
 }
 
 function saveNoteUI(idx) {
-  const b = BOOKS[idx];
+  const allB = getAllBooks();
+  const b = allB[idx];
   const text = document.getElementById('notes-editor').value.trim();
   saveNote(b.title, text);
   openModal(idx);
   render();
 }
 
-function closeModal(e) {
-  if (e.target === document.getElementById('modal-overlay')) closeModalDirect();
+function deleteUserBook(idx) {
+  const allB = getAllBooks();
+  const b = allB[idx];
+  if (!b._user) return;
+  if (!confirm(`¿Eliminar "${b.title}"?`)) return;
+  const userBooks = loadUserBooks().filter(x => !(x.title === b.title && x.author === b.author && x.year === b.year));
+  saveUserBooks(userBooks);
+  closeModalDirect();
+  rebuildFilters();
+  updateStats();
+  render();
 }
-function closeModalDirect() {
-  document.getElementById('modal-overlay').classList.remove('open');
-  document.body.style.overflow = '';
-}
-document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModalDirect(); });
 
 // ── INIT ──────────────────────────────────────────────────
+rebuildFilters();
+updateStats();
 render();
 </script>
 </body>
