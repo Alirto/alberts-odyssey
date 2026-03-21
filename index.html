@@ -230,6 +230,9 @@
       <div class="num" id="globalScore">0%</div>
       <div class="lbl">global</div>
     </div>
+    <button onclick="buildEditPanel()" style="background:#1A1916;color:#fff;border:none;border-radius:8px;padding:9px 18px;font-size:12px;font-weight:600;font-family:'DM Sans',sans-serif;cursor:pointer;letter-spacing:0.3px;display:flex;align-items:center;gap:7px;transition:background 0.15s;" onmouseover="this.style.background='#3D3C39'" onmouseout="this.style.background='#1A1916'">
+      ✎ Actualizar hitos
+    </button>
   </div>
 </div>
 
@@ -307,9 +310,9 @@ const PILLARS = [
       {
         name:'SMART · Mantener mín. 80% de comidas con proteína + verdura + CH de calidad, con cooking batch 2×/semana · 6 Abr → 27 Jul 2026',
         milestones:[
-          { title:'Primera compra en Madrid sin ultraprocesados ni azúcar añadido', status:'active', date:'21 Abr 2026' },
+          { title:'Primera compra en Madrid sin ultraprocesados ni azúcar añadido', status:'active', date:'7 Abr 2026' },
           { title:'Incorporar suplementación base: whey, vitamina D3+K2, omega-3', status:'pending', date:'Abr 2026' },
-          { title:'2 semanas consecutivas de cooking batch activo (dom + mié)', status:'pending', date:'21 Abr 2026' },
+          { title:'2 semanas consecutivas de cooking batch activo (dom + mié)', status:'pending', date:'7 Abr 2026' },
           { title:'8 semanas consecutivas con cooking batch y protocolo de comidas activo', status:'pending', date:'18 May 2026' },
         ]
       },
@@ -443,6 +446,174 @@ const PHASES = [
   { period:'Sep 2028 – Mar 2029', name:'Maestría', status:'future', desc:'Todos los pilares en verde. Sistema autónomo. Visión clara del empresario que quieres ser.', pillars:[{id:'salud',focus:'Óptimo'},{id:'profesional',focus:'Referente sectorial'},{id:'finanzas',focus:'Libertad financiera'},{id:'social',focus:'Estabilidad total'}], milestones:['Todos los pilares por encima del 80%','Base para primer proyecto propio','Relación estable y con futuro claro','Sistema de vida que no depende de la disciplina'] }
 ];
 
+// ── PERSISTENCIA localStorage ──
+const STORAGE_KEY = 'ao_milestones_v1';
+
+function saveStates() {
+  const data = {};
+  PILLARS.forEach(p => {
+    p.objectives.forEach((obj, oi) => {
+      obj.milestones.forEach((m, mi) => {
+        data[`${p.id}_${oi}_${mi}`] = m.status;
+      });
+    });
+  });
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+}
+
+function loadStates() {
+  try {
+    const raw = localStorage.getItem(STORAGE_KEY);
+    if (!raw) return;
+    const data = JSON.parse(raw);
+    PILLARS.forEach(p => {
+      p.objectives.forEach((obj, oi) => {
+        obj.milestones.forEach((m, mi) => {
+          const key = `${p.id}_${oi}_${mi}`;
+          if (data[key]) m.status = data[key];
+        });
+      });
+    });
+  } catch(e) {}
+}
+
+// ── PANEL DE EDICIÓN ──
+function buildEditPanel() {
+  const existing = document.getElementById('editOverlay');
+  if (existing) { existing.remove(); }
+
+  const overlay = document.createElement('div');
+  overlay.id = 'editOverlay';
+  overlay.style.cssText = `
+    position:fixed; inset:0; background:rgba(26,25,22,0.5); z-index:1000;
+    display:flex; align-items:flex-start; justify-content:flex-end;
+    padding:16px; backdrop-filter:blur(4px);
+  `;
+
+  const panel = document.createElement('div');
+  panel.style.cssText = `
+    background:#FFFFFF; border:1px solid #E8E6E0; border-radius:16px;
+    width:560px; max-height:calc(100vh - 32px); overflow-y:auto;
+    box-shadow:0 24px 64px rgba(0,0,0,0.15); display:flex; flex-direction:column;
+  `;
+
+  // Header
+  const hdr = document.createElement('div');
+  hdr.style.cssText = `
+    padding:20px 24px 16px; border-bottom:1px solid #E8E6E0;
+    display:flex; align-items:center; justify-content:space-between;
+    position:sticky; top:0; background:#fff; z-index:1; border-radius:16px 16px 0 0;
+  `;
+  hdr.innerHTML = `
+    <div>
+      <div style="font-family:'DM Serif Display',serif;font-size:20px;letter-spacing:-0.3px;">Actualizar Hitos</div>
+      <div style="font-size:12px;color:#6B6860;margin-top:2px;">Los cambios se guardan automáticamente</div>
+    </div>
+    <button onclick="closeEditPanel()" style="background:none;border:1px solid #E8E6E0;border-radius:8px;padding:8px 12px;cursor:pointer;font-size:13px;color:#6B6860;font-family:'DM Sans',sans-serif;">✕ Cerrar</button>
+  `;
+  panel.appendChild(hdr);
+
+  // Body
+  const body = document.createElement('div');
+  body.style.cssText = 'padding:16px 24px 24px; display:flex; flex-direction:column; gap:20px;';
+
+  PILLARS.forEach((p, pi) => {
+    const section = document.createElement('div');
+    
+    // Pillar header
+    const ph = document.createElement('div');
+    ph.style.cssText = `display:flex;align-items:center;gap:10px;padding:10px 0 8px;border-bottom:2px solid ${p.color};margin-bottom:12px;`;
+    ph.innerHTML = `
+      <div style="width:28px;height:28px;border-radius:7px;background:${p.bg};display:flex;align-items:center;justify-content:center;font-size:14px;">${p.icon}</div>
+      <span style="font-weight:600;font-size:14px;letter-spacing:0.2px;">${p.name}</span>
+    `;
+    section.appendChild(ph);
+
+    p.objectives.forEach((obj, oi) => {
+      const objDiv = document.createElement('div');
+      objDiv.style.cssText = 'margin-bottom:12px;';
+      
+      const objTitle = document.createElement('div');
+      objTitle.style.cssText = 'font-size:11px;font-weight:600;color:#A8A49C;letter-spacing:1px;text-transform:uppercase;margin-bottom:8px;padding:0 2px;';
+      // Short name: take first 60 chars
+      objTitle.textContent = obj.name.length > 70 ? obj.name.substring(0,70)+'…' : obj.name;
+      objDiv.appendChild(objTitle);
+
+      obj.milestones.forEach((m, mi) => {
+        const row = document.createElement('div');
+        row.style.cssText = `
+          display:flex;align-items:center;gap:10px;padding:10px 12px;
+          border:1px solid #E8E6E0;border-radius:10px;margin-bottom:6px;
+          cursor:pointer;transition:all 0.15s;background:#FAFAF8;
+        `;
+        row.dataset.pillar = pi;
+        row.dataset.obj = oi;
+        row.dataset.ms = mi;
+
+        const statusColors = { done:'#2D6A4F', active:'#3D405B', pending:'#A8A49C' };
+        const statusBg = { done:'#EAF3EE', active:'#ECEDF3', pending:'#F5F4F0' };
+        const statusLabel = { done:'✓ Completado', active:'→ En curso', pending:'· Pendiente' };
+
+        row.innerHTML = `
+          <div class="edit-dot" style="width:10px;height:10px;border-radius:50%;background:${statusColors[m.status]};flex-shrink:0;transition:background 0.2s;"></div>
+          <div style="flex:1;font-size:13px;line-height:1.35;">${m.title}</div>
+          <div style="font-size:10px;color:#A8A49C;white-space:nowrap;">${m.date}</div>
+          <div class="edit-badge" style="font-size:10.5px;font-weight:600;padding:3px 9px;border-radius:20px;white-space:nowrap;background:${statusBg[m.status]};color:${statusColors[m.status]};">${statusLabel[m.status]}</div>
+        `;
+
+        // Cycle through statuses on click
+        const statuses = ['pending','active','done'];
+        row.addEventListener('click', () => {
+          const cur = PILLARS[pi].objectives[oi].milestones[mi].status;
+          const next = statuses[(statuses.indexOf(cur)+1) % statuses.length];
+          PILLARS[pi].objectives[oi].milestones[mi].status = next;
+          // Update dot and badge
+          row.querySelector('.edit-dot').style.background = statusColors[next];
+          row.querySelector('.edit-badge').style.background = statusBg[next];
+          row.querySelector('.edit-badge').style.color = statusColors[next];
+          row.querySelector('.edit-badge').textContent = statusLabel[next];
+          // Save & refresh main UI
+          saveStates();
+          refreshUI();
+        });
+
+        row.addEventListener('mouseenter', () => { row.style.borderColor = p.color; row.style.background = p.bg; });
+        row.addEventListener('mouseleave', () => { row.style.borderColor = '#E8E6E0'; row.style.background = '#FAFAF8'; });
+
+        objDiv.appendChild(row);
+      });
+
+      section.appendChild(objDiv);
+    });
+
+    body.appendChild(section);
+  });
+
+  panel.appendChild(body);
+  overlay.appendChild(panel);
+
+  // Close on overlay click
+  overlay.addEventListener('click', e => { if (e.target === overlay) closeEditPanel(); });
+
+  document.body.appendChild(overlay);
+}
+
+function closeEditPanel() {
+  const el = document.getElementById('editOverlay');
+  if (el) el.remove();
+}
+
+function refreshUI() {
+  renderPillars();
+  renderNextActions();
+  checkBalance();
+  setDynamic();
+  setTimeout(drawRadar, 100);
+  // If detail panel open, refresh it
+  if (activeId) { openDetail(activeId); }
+}
+
+// ── FUNCTIONS ──
 const calcObjPct = obj => {
   const t=obj.milestones.length, d=obj.milestones.filter(m=>m.status==='done').length, a=obj.milestones.filter(m=>m.status==='active').length;
   return Math.round((d+a*0.5)/t*100);
@@ -546,7 +717,9 @@ function checkBalance() {
   const vals=PILLARS.map(p=>({name:p.name,pct:calcPillarPct(p)}));
   const avg=vals.reduce((a,b)=>a+b.pct,0)/vals.length;
   const lags=vals.filter(v=>v.pct<avg-20);
-  if(lags.length){document.getElementById('balanceAlert').classList.add('visible');document.getElementById('balanceAlertText').textContent='Desequilibrio detectado: '+lags.map(l=>l.name+' ('+l.pct+'%)').join(', ')+' por debajo del promedio ('+Math.round(avg)+'%). Error estratégico — requiere atención inmediata.';}
+  const el=document.getElementById('balanceAlert');
+  if(lags.length){el.classList.add('visible');document.getElementById('balanceAlertText').textContent='Desequilibrio detectado: '+lags.map(l=>l.name+' ('+l.pct+'%)').join(', ')+' por debajo del promedio ('+Math.round(avg)+'%). Error estratégico — requiere atención inmediata.';}
+  else { el.classList.remove('visible'); }
 }
 
 function setDynamic() {
@@ -558,6 +731,7 @@ function setDynamic() {
 }
 
 window.addEventListener('DOMContentLoaded',()=>{
+  loadStates();
   setDynamic();
   renderTimeline();
   renderPillars();
