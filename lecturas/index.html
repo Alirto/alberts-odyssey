@@ -659,7 +659,10 @@ function renderFrases() {
         + '<div class="frase-author">— ' + f.author.replace(/</g,'&lt;') + '</div>'
         + (f.source ? '<div class="frase-source">📖 ' + f.source.replace(/</g,'&lt;') + '</div>' : '')
         + '</div>'
-        + '<button class="frase-del-btn" onclick="deleteFrase(' + realIdx + ')" title="Eliminar">×</button>'
+        + '<div style="display:flex;gap:2px;flex-shrink:0;margin-top:2px;">'
+        + '<button class="frase-edit-btn" onclick="editFrase(' + realIdx + ')" title="Editar">✎</button>'
+        + '<button class="frase-del-btn" style="position:static;font-size:15px;" onclick="deleteFrase(' + realIdx + ')" title="Eliminar">×</button>'
+        + '</div>'
         + '</div>'
         + '</div>';
     });
@@ -684,10 +687,16 @@ function deleteFrase(idx) {
 }
 
 function openAddFraseModal() {
+  fraseEditIdx = -1;
   document.getElementById('frase-text').value = '';
   document.getElementById('frase-author').value = '';
   document.getElementById('frase-source').value = '';
   document.getElementById('frase-error').style.display = 'none';
+  // Reset modal title and button
+  var hdr = document.querySelector('.add-frase-modal .add-modal-hdr h3');
+  if (hdr) hdr.textContent = 'Añadir frase';
+  var btn = document.querySelector('.add-frase-modal .btn-primary');
+  if (btn) btn.textContent = 'Guardar frase';
   document.getElementById('add-frase-overlay').classList.add('open');
   document.body.style.overflow = 'hidden';
   setTimeout(function() { document.getElementById('frase-text').focus(); }, 100);
@@ -696,6 +705,27 @@ function openAddFraseModal() {
 function closeAddFraseModal() {
   document.getElementById('add-frase-overlay').classList.remove('open');
   document.body.style.overflow = '';
+}
+
+var fraseEditIdx = -1;
+
+function editFrase(idx) {
+  var list = loadFrases();
+  var f = list[idx];
+  if (!f) return;
+  fraseEditIdx = idx;
+  document.getElementById('frase-text').value = f.text;
+  document.getElementById('frase-author').value = f.author;
+  document.getElementById('frase-source').value = f.source || '';
+  document.getElementById('frase-error').style.display = 'none';
+  // Change modal title and button
+  var hdr = document.querySelector('.add-frase-modal .add-modal-hdr h3');
+  if (hdr) hdr.textContent = 'Editar frase';
+  var btn = document.querySelector('.add-frase-modal .btn-primary');
+  if (btn) btn.textContent = 'Guardar cambios';
+  document.getElementById('add-frase-overlay').classList.add('open');
+  document.body.style.overflow = 'hidden';
+  setTimeout(function() { document.getElementById('frase-text').focus(); }, 100);
 }
 
 function saveFrase() {
@@ -707,7 +737,14 @@ function saveFrase() {
   if (!author) { errEl.textContent = 'El autor es obligatorio.'; errEl.style.display = 'block'; return; }
   errEl.style.display = 'none';
   var list = loadFrases();
-  list.unshift({ text: text, author: author, source: source, addedAt: new Date().toISOString() });
+  if (fraseEditIdx >= 0) {
+    // Edit mode
+    list[fraseEditIdx] = { text: text, author: author, source: source, addedAt: list[fraseEditIdx].addedAt, editedAt: new Date().toISOString() };
+    fraseEditIdx = -1;
+  } else {
+    // New frase
+    list.unshift({ text: text, author: author, source: source, addedAt: new Date().toISOString() });
+  }
   storeFrases(list);
   updateFrasesStat();
   closeAddFraseModal();
