@@ -154,6 +154,69 @@
   .na-meta { font-size: 11.5px; color: var(--text-muted); margin-top: 2px; }
   .no-active { font-size: 13px; color: var(--text-muted); padding: 12px 0; font-style: italic; }
 
+
+  /* ── WEEKLY REVIEW ── */
+  .wr-section { margin-top: 48px; border-top: 1px solid var(--border); padding-top: 48px; }
+  .wr-header { display: flex; align-items: flex-end; justify-content: space-between; margin-bottom: 28px; flex-wrap: wrap; gap: 16px; }
+  .wr-title { font-family: 'DM Serif Display', serif; font-size: 22px; letter-spacing: -0.3px; }
+  .wr-sub { font-size: 12px; color: var(--text-muted); margin-top: 4px; }
+  .wr-new-btn { background: var(--text-primary); color: #fff; border: none; border-radius: 8px; padding: 9px 18px; font-size: 12px; font-weight: 600; font-family: 'DM Sans', sans-serif; cursor: pointer; display: flex; align-items: center; gap: 7px; transition: background .15s; white-space: nowrap; }
+  .wr-new-btn:hover { background: #3D3C39; }
+  .wr-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 14px; }
+  .wr-card { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; overflow: hidden; cursor: pointer; transition: all .2s; }
+  .wr-card:hover { border-color: #D0CEC8; transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,0.06); }
+  .wr-card-top { padding: 18px 20px 14px; display: flex; align-items: flex-start; gap: 14px; }
+  .wr-date-box { background: var(--bg); border: 1px solid var(--border); border-radius: 8px; padding: 8px 10px; text-align: center; flex-shrink: 0; min-width: 48px; }
+  .wr-date-day { font-family: 'DM Serif Display', serif; font-size: 22px; line-height: 1; }
+  .wr-date-mon { font-size: 9px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--text-muted); margin-top: 2px; }
+  .wr-card-meta { flex: 1; }
+  .wr-card-week { font-size: 11px; font-weight: 600; color: var(--text-muted); margin-bottom: 4px; letter-spacing: 0.5px; }
+  .wr-card-title { font-size: 14px; font-weight: 600; line-height: 1.3; margin-bottom: 6px; }
+  .wr-card-preview { font-size: 12px; color: var(--text-secondary); line-height: 1.55; overflow: hidden; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; }
+  .wr-card-bottom { padding: 10px 20px 14px; display: flex; gap: 6px; flex-wrap: wrap; border-top: 1px solid var(--border); background: #FAFAF8; }
+  .wr-pill { font-size: 10px; font-weight: 600; padding: 2px 8px; border-radius: 20px; background: var(--bg); border: 1px solid var(--border); color: var(--text-secondary); }
+  .wr-empty { background: var(--surface); border: 1px dashed var(--border); border-radius: 12px; padding: 40px 24px; text-align: center; color: var(--text-muted); font-size: 13px; line-height: 1.7; }
+  /* Modal */
+  .wr-overlay { position: fixed; inset: 0; background: rgba(26,25,22,0.5); z-index: 1000; display: none; align-items: flex-start; justify-content: flex-end; padding: 16px; backdrop-filter: blur(4px); }
+  .wr-overlay.open { display: flex; }
+  .wr-panel { background: #FFFFFF; border: 1px solid #E8E6E0; border-radius: 16px; width: 580px; max-height: calc(100vh - 32px); overflow-y: auto; box-shadow: 0 24px 64px rgba(0,0,0,0.15); display: flex; flex-direction: column; }
+  .wr-panel-hdr { padding: 20px 24px 16px; border-bottom: 1px solid #E8E6E0; display: flex; align-items: center; justify-content: space-between; position: sticky; top: 0; background: #fff; z-index: 1; border-radius: 16px 16px 0 0; }
+  .wr-panel-title { font-family: 'DM Serif Display', serif; font-size: 20px; letter-spacing: -0.3px; }
+  .wr-panel-sub { font-size: 12px; color: #6B6860; margin-top: 2px; }
+  .wr-panel-close { background: none; border: 1px solid #E8E6E0; border-radius: 8px; padding: 8px 12px; cursor: pointer; font-size: 13px; color: #6B6860; font-family: 'DM Sans', sans-serif; transition: all .15s; }
+  .wr-panel-close:hover { background: #F5F4F0; color: #1A1916; }
+  .wr-panel-body { padding: 20px 24px 28px; display: flex; flex-direction: column; gap: 18px; }
+  .wr-field { display: flex; flex-direction: column; gap: 6px; }
+  .wr-label { font-size: 11px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: #A8A49C; display: flex; align-items: center; gap: 8px; }
+  .wr-label-icon { font-size: 14px; }
+  .wr-input { font-family: 'DM Sans', sans-serif; font-size: 13px; color: #1A1916; background: #F5F4F0; border: 1px solid #E8E6E0; border-radius: 8px; padding: 9px 12px; outline: none; transition: border-color .15s; width: 100%; }
+  .wr-input:focus { border-color: #1A1916; background: #fff; }
+  .wr-textarea { font-family: 'DM Sans', sans-serif; font-size: 13px; color: #1A1916; background: #F5F4F0; border: 1px solid #E8E6E0; border-radius: 8px; padding: 9px 12px; outline: none; transition: border-color .15s; width: 100%; resize: vertical; min-height: 68px; line-height: 1.6; }
+  .wr-textarea:focus { border-color: #1A1916; background: #fff; }
+  .wr-date-row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  .wr-actions { display: flex; gap: 10px; padding-top: 4px; }
+  .wr-btn-save { flex: 1; background: #1A1916; color: #fff; border: none; border-radius: 8px; padding: 11px 20px; font-size: 13px; font-weight: 600; font-family: 'DM Sans', sans-serif; cursor: pointer; transition: opacity .15s; }
+  .wr-btn-save:hover { opacity: .85; }
+  .wr-btn-cancel { background: none; border: 1px solid #E8E6E0; border-radius: 8px; padding: 11px 18px; font-size: 13px; font-weight: 500; color: #6B6860; font-family: 'DM Sans', sans-serif; cursor: pointer; transition: all .15s; }
+  .wr-btn-cancel:hover { border-color: #D0CEC8; color: #1A1916; }
+  .wr-divider { font-size: 9px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: #A8A49C; padding-bottom: 8px; border-bottom: 1px solid #E8E6E0; margin-top: 4px; }
+  /* Read modal */
+  .wr-read-overlay { position: fixed; inset: 0; background: rgba(26,25,22,0.5); z-index: 1000; display: none; align-items: center; justify-content: center; padding: 24px; backdrop-filter: blur(4px); }
+  .wr-read-overlay.open { display: flex; }
+  .wr-read-panel { background: #FFFFFF; border: 1px solid #E8E6E0; border-radius: 16px; width: 680px; max-height: calc(100vh - 48px); overflow-y: auto; box-shadow: 0 24px 64px rgba(0,0,0,0.15); }
+  .wr-read-hdr { padding: 24px 28px 20px; border-bottom: 1px solid #E8E6E0; display: flex; align-items: flex-start; justify-content: space-between; gap: 16px; }
+  .wr-read-date { font-size: 12px; font-weight: 600; color: #A8A49C; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 6px; }
+  .wr-read-title { font-family: 'DM Serif Display', serif; font-size: 24px; letter-spacing: -0.3px; }
+  .wr-read-actions { display: flex; gap: 8px; flex-shrink: 0; }
+  .wr-read-btn { background: none; border: 1px solid #E8E6E0; border-radius: 8px; padding: 7px 12px; cursor: pointer; font-size: 12px; color: #6B6860; font-family: 'DM Sans', sans-serif; transition: all .15s; }
+  .wr-read-btn:hover { background: #F5F4F0; color: #1A1916; }
+  .wr-read-btn.del:hover { border-color: #F5C6BC; color: #C0614A; background: #FCEEE9; }
+  .wr-read-body { padding: 24px 28px 28px; display: flex; flex-direction: column; gap: 20px; }
+  .wr-read-section { }
+  .wr-read-section-lbl { font-size: 10px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: #A8A49C; margin-bottom: 8px; display: flex; align-items: center; gap: 7px; }
+  .wr-read-section-val { font-size: 13.5px; color: #1A1916; line-height: 1.7; white-space: pre-wrap; }
+  .wr-read-section-empty { font-size: 13px; color: #A8A49C; font-style: italic; }
+
   /* RESPONSIVE */
   @media (max-width: 1100px) {
     .pillars-grid { grid-template-columns: repeat(3,1fr); }
@@ -289,6 +352,19 @@
       <h3>Próximos Hitos Activos</h3>
       <div id="nextActions"></div>
     </div>
+  </div>
+
+
+  <!-- WEEKLY REVIEW -->
+  <div class="wr-section">
+    <div class="wr-header">
+      <div>
+        <div class="wr-title">Weekly Review</div>
+        <div class="wr-sub">Seguimiento semanal · Cada domingo · 7 pilares</div>
+      </div>
+      <button class="wr-new-btn" onclick="wrOpenNew()">+ Nueva semana</button>
+    </div>
+    <div id="wrGrid"></div>
   </div>
 
 </main>
@@ -730,6 +806,181 @@ function setDynamic() {
   document.getElementById('globalScore').textContent=calcGlobal()+'%';
 }
 
+
+// ── WEEKLY REVIEW ────────────────────────────────────────
+var WR_KEY = 'ao_weekly_v1';
+var wrCurrentReadId = null;
+
+function wrLoad() { try { return JSON.parse(localStorage.getItem(WR_KEY) || '[]'); } catch(e) { return []; } }
+function wrSaveAll(d) { localStorage.setItem(WR_KEY, JSON.stringify(d)); }
+
+var MESES_CORTOS = ['Ene','Feb','Mar','Abr','May','Jun','Jul','Ago','Sep','Oct','Nov','Dic'];
+var MESES_LARGOS = ['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'];
+
+function wrRender() {
+  var entries = wrLoad().slice().sort(function(a,b){ return b.date.localeCompare(a.date); });
+  var grid = document.getElementById('wrGrid');
+  if (!entries.length) {
+    grid.innerHTML = '<div class="wr-empty">Sin entradas aún.<br>Cada domingo añade tu review semanal para llevar el seguimiento de los 7 pilares.</div>';
+    return;
+  }
+  grid.innerHTML = '<div class="wr-grid">' + entries.map(function(e) {
+    var d = new Date(e.date + 'T12:00:00');
+    var day = d.getDate();
+    var mon = MESES_CORTOS[d.getMonth()];
+    var pills = [];
+    if (e.peso) pills.push('⚖️ ' + e.peso);
+    if (e.deporte) pills.push('🏋️ Deporte');
+    if (e.nutricion) pills.push('🥗 Nutrición');
+    if (e.trabajo) pills.push('💼 Gobelas');
+    if (e.finanzas) pills.push('💰 Finanzas');
+    if (e.desarrollo) pills.push('📚 Desarrollo');
+    if (e.social) pills.push('❤️ Social');
+    if (e.hitos) pills.push('🎯 Hitos');
+    var preview = e.deporte || e.trabajo || e.nutricion || e.social || '';
+    var pillsHTML = pills.slice(0,4).map(function(p) { return '<span class="wr-pill">' + p + '</span>'; }).join('');
+    return '<div class="wr-card" onclick="wrOpenRead(this.dataset.id)" data-id="' + e.id + '">'
+      + '<div class="wr-card-top">'
+      + '<div class="wr-date-box"><div class="wr-date-day">' + day + '</div><div class="wr-date-mon">' + mon + '</div></div>'
+      + '<div class="wr-card-meta">'
+      + '<div class="wr-card-week">Semana ' + (e.weekNum || '—') + ' · ' + d.getFullYear() + '</div>'
+      + '<div class="wr-card-title">' + (e.title || 'Weekly Review') + '</div>'
+      + (preview ? '<div class="wr-card-preview">' + preview.substring(0,100) + '</div>' : '')
+      + '</div></div>'
+      + (pillsHTML ? '<div class="wr-card-bottom">' + pillsHTML + '</div>' : '')
+      + '</div>';
+  }).join('') + '</div>';
+}
+
+function wrOpenNew() {
+  document.getElementById('wrEditId').value = '';
+  document.getElementById('wrModalTitle').textContent = 'Nueva semana';
+  // Set today as default
+  var now = new Date();
+  document.getElementById('wrDate').value = now.toISOString().split('T')[0];
+  // Auto week number
+  var start = new Date('2026-03-10');
+  var diff = Math.floor((now - start) / (7 * 24 * 60 * 60 * 1000)) + 1;
+  document.getElementById('wrWeekNum').value = Math.max(1, diff);
+  // Clear fields
+  ['wrPeso','wrDeporte','wrNutricion','wrTrabajo','wrFinanzas','wrDesarrollo','wrSocial','wrHitos'].forEach(function(id) {
+    document.getElementById(id).value = '';
+  });
+  document.getElementById('wrOverlay').classList.add('open');
+}
+
+function wrCloseNew() {
+  document.getElementById('wrOverlay').classList.remove('open');
+}
+
+function wrOverlayClick(e) {
+  if (e.target === document.getElementById('wrOverlay')) wrCloseNew();
+}
+
+function wrSave() {
+  var date = document.getElementById('wrDate').value;
+  if (!date) { alert('Elige una fecha para la semana.'); return; }
+  var editId = document.getElementById('wrEditId').value;
+  var entry = {
+    id: editId || 'wr_' + Date.now(),
+    date: date,
+    weekNum: document.getElementById('wrWeekNum').value,
+    title: wrBuildTitle(date),
+    peso: document.getElementById('wrPeso').value.trim(),
+    deporte: document.getElementById('wrDeporte').value.trim(),
+    nutricion: document.getElementById('wrNutricion').value.trim(),
+    trabajo: document.getElementById('wrTrabajo').value.trim(),
+    finanzas: document.getElementById('wrFinanzas').value.trim(),
+    desarrollo: document.getElementById('wrDesarrollo').value.trim(),
+    social: document.getElementById('wrSocial').value.trim(),
+    hitos: document.getElementById('wrHitos').value.trim(),
+    savedAt: new Date().toISOString()
+  };
+  var entries = wrLoad();
+  if (editId) {
+    var idx = entries.findIndex(function(e) { return e.id === editId; });
+    if (idx >= 0) entries[idx] = entry; else entries.push(entry);
+  } else {
+    entries.push(entry);
+  }
+  wrSaveAll(entries);
+  wrCloseNew();
+  wrRender();
+  // Feedback
+  var btn = document.querySelector('.wr-btn-save');
+  var orig = btn.textContent;
+  btn.textContent = '✓ Guardado';
+  setTimeout(function() { btn.textContent = orig; }, 1500);
+}
+
+function wrBuildTitle(dateStr) {
+  var d = new Date(dateStr + 'T12:00:00');
+  return 'Review — ' + MESES_LARGOS[d.getMonth()] + ' ' + d.getDate();
+}
+
+function wrOpenRead(id) {
+  var entries = wrLoad();
+  var e = entries.find(function(x) { return x.id === id; });
+  if (!e) return;
+  wrCurrentReadId = id;
+  var d = new Date(e.date + 'T12:00:00');
+  document.getElementById('wrReadDate').textContent = 'Semana ' + (e.weekNum || '—') + ' · ' + d.toLocaleDateString('es-ES', { day: 'numeric', month: 'long', year: 'numeric' });
+  document.getElementById('wrReadTitle').textContent = e.title || 'Weekly Review';
+  var sections = [
+    { icon: '⚖️', label: 'Peso', val: e.peso },
+    { icon: '🏋️', label: 'Deporte', val: e.deporte },
+    { icon: '🥗', label: 'Nutrición', val: e.nutricion },
+    { icon: '💼', label: 'Gobelas · Trabajo', val: e.trabajo },
+    { icon: '💰', label: 'Finanzas', val: e.finanzas },
+    { icon: '📚', label: 'Lecturas & Desarrollo', val: e.desarrollo },
+    { icon: '❤️', label: 'Social', val: e.social },
+    { icon: '🎯', label: 'Hitos', val: e.hitos },
+  ].filter(function(s) { return s.val; });
+  document.getElementById('wrReadBody').innerHTML = sections.map(function(s) {
+    return '<div class="wr-read-section">'
+      + '<div class="wr-read-section-lbl">' + s.icon + ' ' + s.label + '</div>'
+      + '<div class="wr-read-section-val">' + s.val.replace(/</g,'&lt;').replace(/>/g,'&gt;') + '</div>'
+      + '</div>';
+  }).join('') || '<div class="wr-read-section-empty">Sin contenido en esta entrada.</div>';
+  document.getElementById('wrReadOverlay').classList.add('open');
+}
+
+function wrCloseRead() {
+  document.getElementById('wrReadOverlay').classList.remove('open');
+  wrCurrentReadId = null;
+}
+
+function wrReadOverlayClick(e) {
+  if (e.target === document.getElementById('wrReadOverlay')) wrCloseRead();
+}
+
+function wrEditEntry(id) {
+  var entries = wrLoad();
+  var e = entries.find(function(x) { return x.id === id; });
+  if (!e) return;
+  wrCloseRead();
+  document.getElementById('wrEditId').value = e.id;
+  document.getElementById('wrModalTitle').textContent = 'Editar semana';
+  document.getElementById('wrDate').value = e.date;
+  document.getElementById('wrWeekNum').value = e.weekNum || '';
+  document.getElementById('wrPeso').value = e.peso || '';
+  document.getElementById('wrDeporte').value = e.deporte || '';
+  document.getElementById('wrNutricion').value = e.nutricion || '';
+  document.getElementById('wrTrabajo').value = e.trabajo || '';
+  document.getElementById('wrFinanzas').value = e.finanzas || '';
+  document.getElementById('wrDesarrollo').value = e.desarrollo || '';
+  document.getElementById('wrSocial').value = e.social || '';
+  document.getElementById('wrHitos').value = e.hitos || '';
+  document.getElementById('wrOverlay').classList.add('open');
+}
+
+function wrDeleteEntry(id) {
+  if (!confirm('¿Eliminar esta entrada?')) return;
+  wrSaveAll(wrLoad().filter(function(e) { return e.id !== id; }));
+  wrCloseRead();
+  wrRender();
+}
+
 window.addEventListener('DOMContentLoaded',()=>{
   loadStates();
   setDynamic();
@@ -738,7 +989,102 @@ window.addEventListener('DOMContentLoaded',()=>{
   renderNextActions();
   checkBalance();
   setTimeout(drawRadar,200);
+  wrRender();
 });
 </script>
+
+<!-- WR NEW/EDIT MODAL -->
+<div class="wr-overlay" id="wrOverlay" onclick="wrOverlayClick(event)">
+  <div class="wr-panel">
+    <div class="wr-panel-hdr">
+      <div>
+        <div class="wr-panel-title" id="wrModalTitle">Nueva semana</div>
+        <div class="wr-panel-sub">Responde a los pilares con lo que hubo esta semana</div>
+      </div>
+      <button class="wr-panel-close" onclick="wrCloseNew()">✕ Cerrar</button>
+    </div>
+    <div class="wr-panel-body">
+      <input type="hidden" id="wrEditId">
+      <div class="wr-date-row">
+        <div class="wr-field">
+          <label class="wr-label">Fecha</label>
+          <input type="date" class="wr-input" id="wrDate">
+        </div>
+        <div class="wr-field">
+          <label class="wr-label">Semana nº</label>
+          <input type="number" class="wr-input" id="wrWeekNum" placeholder="Ej: 12" min="1" max="52">
+        </div>
+      </div>
+
+      <div class="wr-divider">Salud</div>
+      <div class="wr-field">
+        <label class="wr-label"><span class="wr-label-icon">⚖️</span>Peso — registro semanal</label>
+        <input type="text" class="wr-input" id="wrPeso" placeholder="Ej: 87.2 kg">
+      </div>
+      <div class="wr-field">
+        <label class="wr-label"><span class="wr-label-icon">🏋️</span>Deporte — sesiones y notas</label>
+        <textarea class="wr-textarea" id="wrDeporte" placeholder="¿Cuántas sesiones? ¿Calidad del entreno?"></textarea>
+      </div>
+      <div class="wr-field">
+        <label class="wr-label"><span class="wr-label-icon">🥗</span>Nutrición</label>
+        <textarea class="wr-textarea" id="wrNutricion" placeholder="¿Se han cumplido los principios? ¿Algo a corregir?"></textarea>
+      </div>
+
+      <div class="wr-divider">Trabajo</div>
+      <div class="wr-field">
+        <label class="wr-label"><span class="wr-label-icon">💼</span>Gobelas · Avances y riesgos</label>
+        <textarea class="wr-textarea" id="wrTrabajo" placeholder="¿Qué ha avanzado? ¿Riesgos o desvíos detectados?"></textarea>
+      </div>
+
+      <div class="wr-divider">Finanzas</div>
+      <div class="wr-field">
+        <label class="wr-label"><span class="wr-label-icon">💰</span>Presupuesto y aportación</label>
+        <textarea class="wr-textarea" id="wrFinanzas" placeholder="¿Se ha respetado el presupuesto? ¿Aportación automática activa?"></textarea>
+      </div>
+
+      <div class="wr-divider">Desarrollo</div>
+      <div class="wr-field">
+        <label class="wr-label"><span class="wr-label-icon">📚</span>Lecturas & Desarrollo</label>
+        <textarea class="wr-textarea" id="wrDesarrollo" placeholder="¿Páginas leídas? ¿Progreso en francés o IA?"></textarea>
+      </div>
+
+      <div class="wr-divider">Social</div>
+      <div class="wr-field">
+        <label class="wr-label"><span class="wr-label-icon">❤️</span>Relación, familia y amigos</label>
+        <textarea class="wr-textarea" id="wrSocial" placeholder="¿Llamada con la novia? ¿Calidad? ¿Contacto con familia y amigos?"></textarea>
+      </div>
+
+      <div class="wr-divider">Hitos</div>
+      <div class="wr-field">
+        <label class="wr-label"><span class="wr-label-icon">🎯</span>Hitos — revisión y riesgos</label>
+        <textarea class="wr-textarea" id="wrHitos" placeholder="¿Algún hito completado esta semana? ¿Alguno en riesgo?"></textarea>
+      </div>
+
+      <div class="wr-actions">
+        <button class="wr-btn-cancel" onclick="wrCloseNew()">Cancelar</button>
+        <button class="wr-btn-save" onclick="wrSave()">Guardar semana →</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- WR READ MODAL -->
+<div class="wr-read-overlay" id="wrReadOverlay" onclick="wrReadOverlayClick(event)">
+  <div class="wr-read-panel">
+    <div class="wr-read-hdr">
+      <div>
+        <div class="wr-read-date" id="wrReadDate"></div>
+        <div class="wr-read-title" id="wrReadTitle"></div>
+      </div>
+      <div class="wr-read-actions">
+        <button class="wr-read-btn" onclick="wrEditEntry(wrCurrentReadId)">✎ Editar</button>
+        <button class="wr-read-btn del" onclick="wrDeleteEntry(wrCurrentReadId)">× Eliminar</button>
+        <button class="wr-read-btn" onclick="wrCloseRead()">✕ Cerrar</button>
+      </div>
+    </div>
+    <div class="wr-read-body" id="wrReadBody"></div>
+  </div>
+</div>
+
 </body>
 </html>
