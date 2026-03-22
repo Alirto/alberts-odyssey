@@ -135,6 +135,43 @@ nav { background: var(--surface); border-bottom: 1px solid var(--border); paddin
   .chart-body canvas { max-height: 240px; }
 }
 ::-webkit-scrollbar { width: 5px; } ::-webkit-scrollbar-track { background: transparent; } ::-webkit-scrollbar-thumb { background: rgba(0,0,0,.12); border-radius: 3px; }
+
+/* ─── MODAL ACTUALIZACIÓN ─── */
+.modal-overlay { position: fixed; inset: 0; background: rgba(26,25,22,0.55); z-index: 1000; display: none; align-items: flex-start; justify-content: flex-end; padding: 16px; backdrop-filter: blur(4px); }
+.modal-overlay.open { display: flex; }
+.modal-panel { background: var(--surface); border: 1px solid var(--border); border-radius: 16px; width: 520px; max-height: calc(100vh - 32px); overflow-y: auto; box-shadow: 0 24px 64px rgba(0,0,0,0.15); display: flex; flex-direction: column; }
+.modal-hdr { padding: 20px 24px 16px; border-bottom: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; position: sticky; top: 0; background: var(--surface); z-index: 1; border-radius: 16px 16px 0 0; }
+.modal-hdr-title { font-family: 'DM Serif Display', serif; font-size: 20px; letter-spacing: -0.3px; }
+.modal-hdr-sub { font-size: 12px; color: var(--text-2); margin-top: 2px; }
+.modal-close { background: none; border: 1px solid var(--border); border-radius: 8px; padding: 7px 12px; cursor: pointer; font-size: 13px; color: var(--text-2); font-family: 'DM Sans', sans-serif; transition: all .15s; }
+.modal-close:hover { background: var(--bg); color: var(--text-1); }
+.modal-body { padding: 20px 24px 24px; display: flex; flex-direction: column; gap: 14px; }
+.modal-section-label { font-size: 9px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--text-3); margin-top: 4px; padding-bottom: 8px; border-bottom: 1px solid var(--border); }
+.modal-row { display: flex; flex-direction: column; gap: 5px; }
+.modal-row label { font-size: 11px; font-weight: 600; color: var(--text-2); display: flex; align-items: center; gap: 6px; }
+.modal-row label span { font-size: 10px; font-weight: 400; color: var(--text-3); }
+.modal-input { font-family: 'DM Sans', sans-serif; font-size: 13px; color: var(--text-1); background: var(--bg); border: 1px solid var(--border); border-radius: 8px; padding: 9px 12px; outline: none; transition: border-color .15s; width: 100%; }
+.modal-input:focus { border-color: var(--green); background: var(--surface); }
+.modal-date-row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.modal-total-preview { background: var(--green-bg); border: 1px solid var(--green-border); border-radius: 10px; padding: 14px 16px; display: flex; align-items: center; justify-content: space-between; }
+.modal-total-lbl { font-size: 12px; font-weight: 600; color: var(--green); }
+.modal-total-val { font-family: 'DM Serif Display', serif; font-size: 24px; letter-spacing: -0.5px; color: var(--green); }
+.modal-actions { display: flex; gap: 10px; padding-top: 4px; }
+.modal-btn-save { flex: 1; background: var(--text-1); color: #fff; border: none; border-radius: 8px; padding: 11px 20px; font-size: 13px; font-weight: 600; font-family: 'DM Sans', sans-serif; cursor: pointer; transition: opacity .15s; }
+.modal-btn-save:hover { opacity: .85; }
+.modal-btn-cancel { background: none; border: 1px solid var(--border); border-radius: 8px; padding: 11px 18px; font-size: 13px; font-weight: 500; color: var(--text-2); font-family: 'DM Sans', sans-serif; cursor: pointer; transition: all .15s; }
+.modal-btn-cancel:hover { border-color: var(--border-2); color: var(--text-1); }
+.modal-history { background: var(--bg); border-radius: 10px; padding: 12px 14px; }
+.modal-history-title { font-size: 10px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--text-3); margin-bottom: 10px; display: flex; align-items: center; justify-content: space-between; }
+.modal-history-row { display: flex; align-items: center; justify-content: space-between; padding: 7px 0; border-bottom: 1px solid var(--border); font-size: 12px; }
+.modal-history-row:last-child { border-bottom: none; }
+.modal-history-date { color: var(--text-2); font-weight: 500; }
+.modal-history-val { font-family: 'DM Serif Display', serif; font-size: 15px; color: var(--text-1); }
+.modal-history-del { background: none; border: none; cursor: pointer; color: var(--text-3); font-size: 13px; padding: 2px 6px; border-radius: 4px; transition: color .15s; font-family: 'DM Sans', sans-serif; }
+.modal-history-del:hover { color: var(--red); }
+.update-btn { background: var(--text-1); color: #fff; border: none; border-radius: 8px; padding: 9px 18px; font-size: 12px; font-weight: 600; font-family: 'DM Sans', sans-serif; cursor: pointer; transition: opacity .15s; display: flex; align-items: center; gap: 7px; white-space: nowrap; }
+.update-btn:hover { opacity: .85; }
+
 </style>
 </head>
 <body>
@@ -144,10 +181,12 @@ nav { background: var(--surface); border-bottom: 1px solid var(--border); paddin
   <div class="nav-links">
     <a href="../index.html"            class="nav-link">Home</a>
     <a href="../salud/index.html"      class="nav-link">Salud</a>
+    <a href="../deporte/index.html"    class="nav-link">Deporte</a>
     <a href="../vlog/index.html"       class="nav-link">Vlog</a>
     <a href="../lecturas/index.html"   class="nav-link">Lecturas</a>
     <a href="../finanzas/index.html"   class="nav-link active">Finanzas</a>
     <a href="../desarrollo/index.html" class="nav-link">Desarrollo</a>
+    <a href="../escritos/index.html"   class="nav-link">Escritos</a>
   </div>
 </nav>
 
@@ -159,6 +198,8 @@ nav { background: var(--surface); border-bottom: 1px solid var(--border); paddin
       <h1 class="ph-title">Patrimonio<br><em>&amp; Control</em></h1>
       <p class="ph-sub">Control por bloques, no por tickets. Tres números al mes: lo que entra, lo que sale fijo, lo que queda. El resto es tuyo.</p>
     </div>
+    <div style="display:flex;flex-direction:column;align-items:flex-end;gap:16px;flex-shrink:0">
+    <button class="update-btn" onclick="openModal()">✎ Actualizar mes</button>
     <div class="ph-meta">
       <div class="ph-stat">
         <div class="ph-stat-val" id="stat-actual">66.147 €</div>
@@ -172,6 +213,7 @@ nav { background: var(--surface); border-bottom: 1px solid var(--border); paddin
         <div class="ph-stat-val">0 €</div>
         <div class="ph-stat-lbl">Deuda</div>
       </div>
+    </div>
     </div>
   </div>
 
@@ -188,7 +230,7 @@ nav { background: var(--surface); border-bottom: 1px solid var(--border); paddin
   <div style="display:grid;grid-template-columns:1fr 320px;gap:16px;margin-bottom:16px;align-items:start">
     <div class="pat-card total" style="padding:28px 32px">
       <div class="pat-label">Patrimonio neto total</div>
-      <div class="pat-val total-val" style="font-size:42px;margin-bottom:10px">66.147 €</div>
+      <div class="pat-val total-val" style="font-size:42px;margin-bottom:10px" id="val-total">66.147 €</div>
       <div class="pat-sub" style="margin-bottom:16px">Conversión USD→EUR al tipo 1 USD = 0,87 EUR · Sin deuda · Actualizado Mar 2026</div>
       <div style="display:flex;gap:10px;flex-wrap:wrap">
         <div class="pat-badge badge-ok">✓ Sin deuda</div>
@@ -208,7 +250,7 @@ nav { background: var(--surface); border-bottom: 1px solid var(--border); paddin
 
     <div class="pat-card" style="border-left:3px solid #C0614A">
       <div class="pat-label">Acciones · Robinhood</div>
-      <div class="pat-val">22.133 €</div>
+      <div class="pat-val" id="val-rh-acciones">22.133 €</div>
       <div style="font-size:11px;color:var(--text-3);margin-bottom:6px">25.440 USD · tipo 0,87</div>
       <div class="pat-sub">NVDA, TSLA, AAPL, GOOGL, MSFT, SUPV, GGAL + otros. Operado activamente.</div>
       <div class="pat-badge badge-neutral" style="margin-top:8px">USD · Riesgo divisa</div>
@@ -216,7 +258,7 @@ nav { background: var(--surface); border-bottom: 1px solid var(--border); paddin
 
     <div class="pat-card" style="border-left:3px solid var(--gold)">
       <div class="pat-label">Cash remunerado · Robinhood</div>
-      <div class="pat-val">32.704 €</div>
+      <div class="pat-val" id="val-rh-cash">32.704 €</div>
       <div style="font-size:11px;color:var(--text-3);margin-bottom:6px">37.591 USD · tipo 0,87 · 3,5% anual</div>
       <div class="pat-sub">Cuenta remunerada en USD. Genera intereses. Decisión de destino pendiente para Jun 2026.</div>
       <div class="pat-badge badge-warn" style="margin-top:8px">⚡ Decisión Jun 2026</div>
@@ -224,7 +266,7 @@ nav { background: var(--surface); border-bottom: 1px solid var(--border); paddin
 
     <div class="pat-card" style="border-left:3px solid #3D405B">
       <div class="pat-label">Acciones · Banco Santander</div>
-      <div class="pat-val">7.655 €</div>
+      <div class="pat-val" id="val-san-acciones">7.655 €</div>
       <div style="font-size:11px;color:var(--text-3);margin-bottom:6px">Posiciones en euros</div>
       <div class="pat-sub">Cartera en Santander. Sin riesgo de divisa. En proceso de revisión.</div>
       <div class="pat-badge badge-neutral" style="margin-top:8px">EUR</div>
@@ -232,7 +274,7 @@ nav { background: var(--surface); border-bottom: 1px solid var(--border); paddin
 
     <div class="pat-card">
       <div class="pat-label">Cuenta corriente · Santander</div>
-      <div class="pat-val">1.704 €</div>
+      <div class="pat-val" id="val-san-cuenta">1.704 €</div>
       <div style="font-size:11px;color:var(--text-3);margin-bottom:6px">Liquidez operativa EUR</div>
       <div class="pat-sub">Cuenta operativa para gastos corrientes en España.</div>
       <div class="pat-badge badge-ok" style="margin-top:8px">Operativa</div>
@@ -240,7 +282,7 @@ nav { background: var(--surface); border-bottom: 1px solid var(--border); paddin
 
     <div class="pat-card">
       <div class="pat-label">Cuenta corriente · Wells Fargo</div>
-      <div class="pat-val">1.951 €</div>
+      <div class="pat-val" id="val-wells">1.951 €</div>
       <div style="font-size:11px;color:var(--text-3);margin-bottom:6px">~2.243 USD · tipo 0,87</div>
       <div class="pat-sub">Cuenta residual de la etapa en Miami. Evaluar si mantener o cerrar.</div>
       <div class="pat-badge badge-warn" style="margin-top:8px">Cuenta USA pendiente</div>
@@ -632,6 +674,356 @@ donutData.forEach(d => {
   `;
   legend.appendChild(row);
 });
+
+
+// ── SISTEMA ACTUALIZACIÓN MENSUAL ──────────────────────────────
+var FIN_KEY = 'ao_finanzas_v1';
+
+function loadUserData() {
+  try { return JSON.parse(localStorage.getItem(FIN_KEY) || '[]'); } catch(e) { return []; }
+}
+function saveUserData(d) { localStorage.setItem(FIN_KEY, JSON.stringify(d)); }
+
+// Merge base rawData with user localStorage entries
+function getMergedRawData() {
+  var merged = {};
+  // Copy base data
+  [2023,2024,2025,2026].forEach(function(yr) {
+    merged[yr] = rawData[yr] ? rawData[yr].slice() : [];
+  });
+  // Apply user overrides
+  loadUserData().forEach(function(entry) {
+    var yr = entry.year;
+    var mo = entry.month; // 0-indexed
+    if (!merged[yr]) { merged[yr] = []; }
+    // Extend array if needed
+    while (merged[yr].length <= mo) { merged[yr].push(null); }
+    merged[yr][mo] = entry.total;
+  });
+  return merged;
+}
+
+// Get latest entry for display
+function getLatestEntry() {
+  var ud = loadUserData();
+  if (!ud.length) return null;
+  return ud[ud.length - 1];
+}
+
+// Format number as EUR
+function fmt(n) {
+  return new Intl.NumberFormat('es-ES', { style: 'currency', currency: 'EUR', maximumFractionDigits: 0 }).format(n);
+}
+
+// Update all header stats and card values from latest user entry
+function refreshDashboard() {
+  var latest = getLatestEntry();
+  var merged = getMergedRawData();
+
+  // Rebuild full chart data
+  var newFull = buildFullFromMerged(merged);
+
+  // Refresh patrimonio chart
+  if (chart) {
+    chart.data.labels = newFull.labels;
+    chart.data.datasets[0].data = newFull.values;
+    chart.update();
+  }
+
+  if (!latest) return;
+
+  // Update header stats
+  var total = latest.total;
+  var meses_es = ['Ene','Feb','Mar','Abr','May','Jun','Jul','Ago','Sep','Oct','Nov','Dic'];
+  var mesLabel = meses_es[latest.month] + ' ' + latest.year;
+
+  var statActual = document.getElementById('stat-actual');
+  if (statActual) statActual.textContent = fmt(total);
+
+  // Update growth vs Jan 2023 base
+  var base = rawData[2023][0]; // 34734.49
+  var growth = Math.round(((total - base) / base) * 100);
+  var statCrx = document.getElementById('stat-crecimiento');
+  if (statCrx) statCrx.textContent = (growth >= 0 ? '+' : '') + growth + '%';
+
+  // Update total card
+  var valTotal = document.getElementById('val-total');
+  if (valTotal) valTotal.textContent = fmt(total);
+
+  // Update desglose cards
+  var fields = [
+    { id: 'val-rh-acciones', key: 'rhAcciones' },
+    { id: 'val-rh-cash',     key: 'rhCash' },
+    { id: 'val-san-acciones',key: 'sanAcciones' },
+    { id: 'val-san-cuenta',  key: 'sanCuenta' },
+    { id: 'val-wells',       key: 'wells' },
+  ];
+  fields.forEach(function(f) {
+    var el = document.getElementById(f.id);
+    if (el && latest[f.key] !== undefined) el.textContent = fmt(latest[f.key]);
+  });
+
+  // Update Indexa card
+  if (latest.indexa > 0) {
+    var indexaVal = document.querySelector('.cust-val');
+    if (indexaVal && indexaVal.textContent === 'En configuración') {
+      indexaVal.textContent = fmt(latest.indexa);
+      indexaVal.style.color = 'var(--green)';
+    }
+  }
+
+  // Rebuild donut with latest values
+  refreshDonut(latest);
+}
+
+function buildFullFromMerged(merged) {
+  var labels = [], values = [], years = [];
+  var yrs = Object.keys(merged).map(Number).sort();
+  yrs.forEach(function(yr) {
+    merged[yr].forEach(function(v, i) {
+      if (v !== null && v !== undefined) {
+        labels.push(MESES[i] + ' ' + String(yr).slice(2));
+        values.push(v);
+        years.push(yr);
+      }
+    });
+  });
+  return { labels: labels, values: values, years: years };
+}
+
+function refreshDonut(latest) {
+  var newDonut = [
+    { label: 'Acciones Robinhood', value: latest.rhAcciones || 0, color: '#C0614A' },
+    { label: 'Cash Robinhood 3,5%', value: latest.rhCash || 0, color: '#9A7D2E' },
+    { label: 'Acciones Santander', value: latest.sanAcciones || 0, color: '#3D405B' },
+    { label: 'Cuenta Santander', value: latest.sanCuenta || 0, color: '#A8A49C' },
+    { label: 'Wells Fargo', value: latest.wells || 0, color: '#D0CEC8' },
+    { label: 'Indexa Capital', value: latest.indexa || 0, color: '#2D6A4F' },
+  ].filter(function(d) { return d.value > 0; });
+
+  var dChart = Chart.getChart('donutChart');
+  if (dChart) {
+    dChart.data.labels = newDonut.map(function(d) { return d.label; });
+    dChart.data.datasets[0].data = newDonut.map(function(d) { return d.value; });
+    dChart.data.datasets[0].backgroundColor = newDonut.map(function(d) { return d.color; });
+    dChart.update();
+  }
+
+  // Rebuild legend
+  var newTotal = newDonut.reduce(function(s,d) { return s+d.value; }, 0);
+  var legend = document.getElementById('donut-legend');
+  if (legend) {
+    legend.innerHTML = '';
+    newDonut.forEach(function(d) {
+      var pct = ((d.value/newTotal)*100).toFixed(1);
+      var row = document.createElement('div');
+      row.style.cssText = 'display:flex;align-items:center;justify-content:space-between;gap:8px;font-size:11px;';
+      row.innerHTML = '<div style="display:flex;align-items:center;gap:7px;color:#6B6860"><div style="width:8px;height:8px;border-radius:50%;background:' + d.color + ';flex-shrink:0"></div>' + d.label + '</div><div style="font-weight:600;color:#1A1916;white-space:nowrap">' + pct + '%</div>';
+      legend.appendChild(row);
+    });
+  }
+}
+
+// ── MODAL ──
+function openModal() {
+  // Set current month/year as default
+  var now = new Date();
+  document.getElementById('m-mes').value = now.getMonth();
+  document.getElementById('m-anio').value = now.getFullYear();
+  // Pre-fill with latest values if exist
+  var latest = getLatestEntry();
+  if (latest) {
+    document.getElementById('m-rh-acc').value = latest.rhAcciones || '';
+    document.getElementById('m-rh-cash').value = latest.rhCash || '';
+    document.getElementById('m-san-acc').value = latest.sanAcciones || '';
+    document.getElementById('m-san-cta').value = latest.sanCuenta || '';
+    document.getElementById('m-wells').value = latest.wells || '';
+    document.getElementById('m-indexa').value = latest.indexa || '';
+  }
+  updatePreview();
+  renderHistory();
+  document.getElementById('modalOverlay').classList.add('open');
+}
+
+function closeModal() {
+  document.getElementById('modalOverlay').classList.remove('open');
+}
+
+function handleOverlayClick(e) {
+  if (e.target === document.getElementById('modalOverlay')) closeModal();
+}
+
+function getInputVal(id) {
+  var v = parseFloat(document.getElementById(id).value);
+  return isNaN(v) ? 0 : v;
+}
+
+function updatePreview() {
+  var total = getInputVal('m-rh-acc') + getInputVal('m-rh-cash') +
+              getInputVal('m-san-acc') + getInputVal('m-san-cta') +
+              getInputVal('m-wells') + getInputVal('m-indexa');
+  document.getElementById('m-total-preview').textContent = fmt(total);
+}
+
+function saveMonth() {
+  var mes = parseInt(document.getElementById('m-mes').value);
+  var anio = parseInt(document.getElementById('m-anio').value);
+  var entry = {
+    year: anio,
+    month: mes,
+    rhAcciones: getInputVal('m-rh-acc'),
+    rhCash: getInputVal('m-rh-cash'),
+    sanAcciones: getInputVal('m-san-acc'),
+    sanCuenta: getInputVal('m-san-cta'),
+    wells: getInputVal('m-wells'),
+    indexa: getInputVal('m-indexa'),
+    total: getInputVal('m-rh-acc') + getInputVal('m-rh-cash') +
+           getInputVal('m-san-acc') + getInputVal('m-san-cta') +
+           getInputVal('m-wells') + getInputVal('m-indexa'),
+    savedAt: new Date().toISOString()
+  };
+  if (entry.total === 0) {
+    alert('Introduce al menos un valor antes de guardar.');
+    return;
+  }
+  var data = loadUserData();
+  // Replace if same month/year
+  var idx = data.findIndex(function(d) { return d.year === anio && d.month === mes; });
+  if (idx >= 0) data[idx] = entry; else data.push(entry);
+  data.sort(function(a,b) { return a.year !== b.year ? a.year-b.year : a.month-b.month; });
+  saveUserData(data);
+  renderHistory();
+  refreshDashboard();
+  // Visual feedback
+  var btn = document.querySelector('.modal-btn-save');
+  btn.textContent = '✓ Guardado';
+  btn.style.background = 'var(--green)';
+  setTimeout(function() {
+    btn.textContent = 'Guardar y actualizar →';
+    btn.style.background = '';
+  }, 1800);
+}
+
+function deleteEntry(year, month) {
+  if (!confirm('¿Eliminar este registro?')) return;
+  var data = loadUserData().filter(function(d) { return !(d.year === year && d.month === month); });
+  saveUserData(data);
+  renderHistory();
+  refreshDashboard();
+}
+
+function renderHistory() {
+  var data = loadUserData();
+  var list = document.getElementById('m-history-list');
+  var count = document.getElementById('m-hist-count');
+  if (count) count.textContent = data.length + ' registro' + (data.length !== 1 ? 's' : '');
+  if (!data.length) {
+    list.innerHTML = '<div style="font-size:12px;color:var(--text-3);font-style:italic">Sin registros guardados aún.</div>';
+    return;
+  }
+  var meses_es = ['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'];
+  list.innerHTML = data.slice().reverse().map(function(d) {
+    return '<div class="modal-history-row">'
+      + '<span class="modal-history-date">' + meses_es[d.month] + ' ' + d.year + '</span>'
+      + '<span class="modal-history-val">' + fmt(d.total) + '</span>'
+      + '<button class="modal-history-del" onclick="deleteEntry(' + d.year + ',' + d.month + ')">×</button>'
+      + '</div>';
+  }).join('');
+}
+
+// ── INIT EXTENDED ──
+document.addEventListener('DOMContentLoaded', function() {
+  refreshDashboard();
+});
+
 </script>
+
+<!-- MODAL ACTUALIZACIÓN MENSUAL -->
+<div class="modal-overlay" id="modalOverlay" onclick="handleOverlayClick(event)">
+  <div class="modal-panel">
+    <div class="modal-hdr">
+      <div>
+        <div class="modal-hdr-title">Actualizar mes</div>
+        <div class="modal-hdr-sub">Los cambios se guardan en tu navegador y se reflejan en todos los gráficos</div>
+      </div>
+      <button class="modal-close" onclick="closeModal()">✕ Cerrar</button>
+    </div>
+    <div class="modal-body">
+
+      <div class="modal-date-row">
+        <div class="modal-row">
+          <label>Mes</label>
+          <select class="modal-input" id="m-mes">
+            <option value="0">Enero</option><option value="1">Febrero</option>
+            <option value="2">Marzo</option><option value="3">Abril</option>
+            <option value="4">Mayo</option><option value="5">Junio</option>
+            <option value="6">Julio</option><option value="7">Agosto</option>
+            <option value="8">Septiembre</option><option value="9">Octubre</option>
+            <option value="10">Noviembre</option><option value="11">Diciembre</option>
+          </select>
+        </div>
+        <div class="modal-row">
+          <label>Año</label>
+          <select class="modal-input" id="m-anio">
+            <option value="2025">2025</option>
+            <option value="2026" selected>2026</option>
+            <option value="2027">2027</option>
+            <option value="2028">2028</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="modal-section-label">Robinhood</div>
+      <div class="modal-row">
+        <label>Acciones <span>(NVDA, TSLA, AAPL...)</span></label>
+        <input type="number" class="modal-input" id="m-rh-acc" placeholder="Ej: 22133" step="1" min="0" oninput="updatePreview()">
+      </div>
+      <div class="modal-row">
+        <label>Cash remunerado <span>(3,5% anual)</span></label>
+        <input type="number" class="modal-input" id="m-rh-cash" placeholder="Ej: 32704" step="1" min="0" oninput="updatePreview()">
+      </div>
+
+      <div class="modal-section-label">Santander</div>
+      <div class="modal-row">
+        <label>Acciones <span>(posiciones en EUR)</span></label>
+        <input type="number" class="modal-input" id="m-san-acc" placeholder="Ej: 7655" step="1" min="0" oninput="updatePreview()">
+      </div>
+      <div class="modal-row">
+        <label>Cuenta corriente <span>(liquidez operativa)</span></label>
+        <input type="number" class="modal-input" id="m-san-cta" placeholder="Ej: 1704" step="1" min="0" oninput="updatePreview()">
+      </div>
+
+      <div class="modal-section-label">Otros</div>
+      <div class="modal-row">
+        <label>Wells Fargo <span>(USD residual)</span></label>
+        <input type="number" class="modal-input" id="m-wells" placeholder="Ej: 1951" step="1" min="0" oninput="updatePreview()">
+      </div>
+      <div class="modal-row">
+        <label>Indexa Capital <span>(fondos indexados)</span></label>
+        <input type="number" class="modal-input" id="m-indexa" placeholder="Ej: 2000" step="1" min="0" oninput="updatePreview()">
+      </div>
+
+      <div class="modal-total-preview">
+        <div class="modal-total-lbl">Total calculado</div>
+        <div class="modal-total-val" id="m-total-preview">0 €</div>
+      </div>
+
+      <div class="modal-actions">
+        <button class="modal-btn-cancel" onclick="closeModal()">Cancelar</button>
+        <button class="modal-btn-save" onclick="saveMonth()">Guardar y actualizar →</button>
+      </div>
+
+      <div class="modal-history">
+        <div class="modal-history-title">
+          <span>Historial de actualizaciones</span>
+          <span id="m-hist-count" style="font-weight:400;text-transform:none;letter-spacing:0"></span>
+        </div>
+        <div id="m-history-list"><div style="font-size:12px;color:var(--text-3);font-style:italic">Sin registros guardados aún.</div></div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
 </body>
 </html>
