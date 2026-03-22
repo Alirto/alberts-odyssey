@@ -157,6 +157,38 @@ nav { background: var(--surface); border-bottom: 1px solid var(--border); paddin
 .add-pending-modal { background:var(--surface);border-radius:16px;width:100%;max-width:480px;box-shadow:0 24px 64px rgba(0,0,0,0.18);transform:translateY(12px);transition:transform .2s; }
 .add-pending-overlay.open .add-pending-modal { transform:translateY(0); }
 
+
+/* ─── FRASES CÉLEBRES ─── */
+.frases-section { margin-bottom: 52px; }
+.frases-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 24px; flex-wrap: wrap; gap: 12px; }
+.frases-search { font-family: 'DM Sans', sans-serif; font-size: 13px; color: var(--text-1); background: var(--surface); border: 1px solid var(--border); border-radius: 20px; padding: 8px 16px; outline: none; transition: border-color .15s; width: 220px; }
+.frases-search:focus { border-color: var(--accent); }
+.frases-masonry { columns: 3; column-gap: 14px; }
+@media (max-width: 900px) { .frases-masonry { columns: 2; } }
+@media (max-width: 580px) { .frases-masonry { columns: 1; } }
+.frase-card {
+  break-inside: avoid; background: var(--surface); border: 1px solid var(--border);
+  border-radius: 12px; padding: 20px 22px; margin-bottom: 14px;
+  display: flex; flex-direction: column; gap: 12px; position: relative;
+  transition: all .18s;
+}
+.frase-card:hover { border-color: var(--border-2); box-shadow: 0 4px 16px rgba(0,0,0,0.06); }
+.frase-card::before { content: '"'; position: absolute; top: 12px; left: 16px; font-family: 'DM Serif Display', serif; font-size: 36px; line-height: 1; color: var(--accent); opacity: 0.18; pointer-events: none; }
+.frase-text { font-family: 'DM Serif Display', serif; font-size: 15px; line-height: 1.6; color: var(--text-1); padding-left: 14px; font-style: italic; }
+.frase-meta { display: flex; align-items: flex-start; justify-content: space-between; gap: 10px; }
+.frase-attribution { display: flex; flex-direction: column; gap: 3px; }
+.frase-author { font-size: 12px; font-weight: 600; color: var(--accent); }
+.frase-source { font-size: 11px; color: var(--text-3); }
+.frase-del-btn { background: none; border: none; color: var(--border-2); font-size: 15px; cursor: pointer; padding: 2px 5px; border-radius: 4px; transition: color .15s; font-family: 'DM Sans', sans-serif; flex-shrink: 0; margin-top: 1px; }
+.frase-del-btn:hover { color: #C0614A; }
+.frases-empty { background: var(--surface); border: 1px dashed var(--border); border-radius: 12px; padding: 40px 24px; text-align: center; color: var(--text-3); font-size: 13px; line-height: 1.7; }
+.frases-count { font-size: 11px; font-weight: 600; color: var(--accent); background: var(--accent-bg); padding: 2px 10px; border-radius: 20px; border: 1px solid var(--accent-border); }
+/* Add frase modal */
+.add-frase-overlay { position:fixed;inset:0;background:rgba(26,25,22,0.55);backdrop-filter:blur(4px);z-index:1001;display:flex;align-items:center;justify-content:center;padding:24px;opacity:0;pointer-events:none;transition:opacity .2s; }
+.add-frase-overlay.open { opacity:1;pointer-events:all; }
+.add-frase-modal { background:var(--surface);border-radius:16px;width:100%;max-width:520px;box-shadow:0 24px 64px rgba(0,0,0,0.18);transform:translateY(12px);transition:transform .2s; }
+.add-frase-overlay.open .add-frase-modal { transform:translateY(0); }
+
 ::-webkit-scrollbar { width: 5px; } ::-webkit-scrollbar-track { background: transparent; } ::-webkit-scrollbar-thumb { background: rgba(0,0,0,.12); border-radius: 3px; }
 </style>
 </head>
@@ -183,9 +215,14 @@ nav { background: var(--surface); border-bottom: 1px solid var(--border); paddin
       <p class="ph-sub">Registro de lecturas desde 2018. Biografías, economía, ciencia, filosofía. Clicar en cualquier libro para ver notas.</p>
     </div>
     <div style="display:flex;flex-direction:column;align-items:flex-end;gap:20px;">
-      <button class="add-book-btn" onclick="openAddModal()">
-        <span class="plus">+</span> Añadir libro
-      </button>
+      <div style="display:flex;gap:10px;flex-wrap:wrap;justify-content:flex-end;">
+        <button class="add-book-btn" id="mainAddBtn" onclick="openAddModal()">
+          <span class="plus">+</span> Añadir libro
+        </button>
+        <button class="add-book-btn" onclick="openAddFraseModal()" style="border-color:var(--accent);color:var(--accent);">
+          <span class="plus" style="color:var(--accent)">✦</span> Añadir frase
+        </button>
+      </div>
       <div class="ph-meta">
         <div>
           <div class="ph-stat-val" id="stat-total">171</div>
@@ -203,6 +240,10 @@ nav { background: var(--surface); border-bottom: 1px solid var(--border); paddin
           <div class="ph-stat-val" id="stat-pending" style="color:var(--accent)">0</div>
           <div class="ph-stat-lbl">Pendientes</div>
         </div>
+        <div>
+          <div class="ph-stat-val" id="stat-frases" style="color:var(--accent)">0</div>
+          <div class="ph-stat-lbl">Frases</div>
+        </div>
       </div>
     </div>
   </div>
@@ -211,14 +252,7 @@ nav { background: var(--surface); border-bottom: 1px solid var(--border); paddin
   <div class="filters" id="filters">
     <button class="filter-btn active" onclick="filterYear('all', this)">Todos</button>
     <button class="filter-btn" onclick="filterYear('pending', this)">📖 Pendientes</button>
-    <button class="filter-btn" onclick="filterYear('2026', this)">2026</button>
-    <button class="filter-btn" onclick="filterYear('2025', this)">2025</button>
-    <button class="filter-btn" onclick="filterYear('2023', this)">2023</button>
-    <button class="filter-btn" onclick="filterYear('2022', this)">2022</button>
-    <button class="filter-btn" onclick="filterYear('2021', this)">2021</button>
-    <button class="filter-btn" onclick="filterYear('2020', this)">2020</button>
-    <button class="filter-btn" onclick="filterYear('2019', this)">2019</button>
-    <button class="filter-btn" onclick="filterYear('2018', this)">2018</button>
+    <button class="filter-btn" onclick="filterYear('frases', this)">✦ Frases</button>
   </div>
 
   <div id="books-container"></div>
@@ -495,7 +529,7 @@ function closeModalDirect() {
   document.getElementById('modal-overlay').classList.remove('open');
   document.body.style.overflow = '';
 }
-document.addEventListener('keydown', e => { if (e.key === 'Escape') { closeModalDirect(); closeAddModal(); closeAddPendingModal(); } });
+document.addEventListener('keydown', e => { if (e.key === 'Escape') { closeModalDirect(); closeAddModal(); closeAddPendingModal(); closeAddFraseModal(); } });
 
 // ── ADD BOOK ──────────────────────────────────────────────
 const USER_BOOKS_KEY = 'ao_user_books';
@@ -566,21 +600,13 @@ function saveNewBook() {
   closeAddModal();
   render();
 
-  // Auto-switch to that year
-  const btns = document.querySelectorAll('.filter-btn');
-  btns.forEach(b => {
-    if (b.textContent.trim() === year) { filterYear(year, b); }
-  });
+  // Switch to Todos to show the new book
+  filterYear('all', document.querySelector('.filter-btn'));
 }
 
 function rebuildFilters() {
   const container = document.getElementById('filters');
-  const years = getAllYears();
-  let html = `<button class="filter-btn ${activeYear==='all'?'active':''}" onclick="filterYear('all', this)">Todos</button><button class="filter-btn ${activeYear==='pending'?'active':''}" onclick="filterYear('pending', this)">📖 Pendientes</button>`;
-  years.forEach(y => {
-    html += `<button class="filter-btn ${activeYear===y?'active':''}" onclick="filterYear('${y}', this)">${y}</button>`;
-  });
-  container.innerHTML = html;
+  container.innerHTML = `<button class="filter-btn ${activeYear==='all'?'active':''}" onclick="filterYear('all', this)">Todos</button><button class="filter-btn ${activeYear==='pending'?'active':''}" onclick="filterYear('pending', this)">📖 Pendientes</button><button class="filter-btn ${activeYear==='frases'?'active':''}" onclick="filterYear('frases', this)">✦ Frases</button>`;
 }
 
 function updateStats() {
@@ -589,22 +615,124 @@ function updateStats() {
 }
 
 
+
+// ── FRASES CÉLEBRES ──────────────────────────────────────
+var FRASES_KEY = 'ao_frases_v1';
+var frasesSearchTerm = '';
+
+function loadFrases() { try { return JSON.parse(localStorage.getItem(FRASES_KEY) || '[]'); } catch(e) { return []; } }
+function storeFrases(list) { localStorage.setItem(FRASES_KEY, JSON.stringify(list)); }
+
+function updateFrasesStat() {
+  var el = document.getElementById('stat-frases');
+  if (el) el.textContent = loadFrases().length;
+}
+
+function renderFrases() {
+  var list = loadFrases();
+  var container = document.getElementById('books-container');
+  var term = frasesSearchTerm.toLowerCase();
+  var filtered = term ? list.filter(function(f) {
+    return f.text.toLowerCase().includes(term) ||
+           f.author.toLowerCase().includes(term) ||
+           (f.source || '').toLowerCase().includes(term);
+  }) : list;
+
+  var html = '<div class="frases-section">'
+    + '<div class="frases-header">'
+    + '<div class="sl" style="flex:1;margin:0">Frases <span class="frases-count">' + list.length + ' frase' + (list.length !== 1 ? 's' : '') + '</span></div>'
+    + '<input type="text" class="frases-search" placeholder="Buscar..." value="' + frasesSearchTerm.replace(/"/g,'&quot;') + '" oninput="frasesSearch(this.value)">'
+    + '</div>';
+
+  if (!list.length) {
+    html += '<div class="frases-empty">Sin frases añadidas aún.<br>Pulsa "+ Añadir libro" para guardar una frase que te haya impactado.</div>';
+  } else if (!filtered.length) {
+    html += '<div class="frases-empty">Sin resultados para "' + frasesSearchTerm.replace(/</g,'&lt;') + '".</div>';
+  } else {
+    html += '<div class="frases-masonry">';
+    filtered.forEach(function(f, i) {
+      var realIdx = list.indexOf(f);
+      html += '<div class="frase-card">'
+        + '<div class="frase-text">' + f.text.replace(/</g,'&lt;').replace(/\n/g,'<br>') + '</div>'
+        + '<div class="frase-meta">'
+        + '<div class="frase-attribution">'
+        + '<div class="frase-author">— ' + f.author.replace(/</g,'&lt;') + '</div>'
+        + (f.source ? '<div class="frase-source">📖 ' + f.source.replace(/</g,'&lt;') + '</div>' : '')
+        + '</div>'
+        + '<button class="frase-del-btn" onclick="deleteFrase(' + realIdx + ')" title="Eliminar">×</button>'
+        + '</div>'
+        + '</div>';
+    });
+    html += '</div>';
+  }
+  html += '</div>';
+  container.innerHTML = html;
+}
+
+function frasesSearch(val) {
+  frasesSearchTerm = val;
+  renderFrases();
+}
+
+function deleteFrase(idx) {
+  if (!confirm('¿Eliminar esta frase?')) return;
+  var list = loadFrases();
+  list.splice(idx, 1);
+  storeFrases(list);
+  updateFrasesStat();
+  renderFrases();
+}
+
+function openAddFraseModal() {
+  document.getElementById('frase-text').value = '';
+  document.getElementById('frase-author').value = '';
+  document.getElementById('frase-source').value = '';
+  document.getElementById('frase-error').style.display = 'none';
+  document.getElementById('add-frase-overlay').classList.add('open');
+  document.body.style.overflow = 'hidden';
+  setTimeout(function() { document.getElementById('frase-text').focus(); }, 100);
+}
+
+function closeAddFraseModal() {
+  document.getElementById('add-frase-overlay').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+function saveFrase() {
+  var text = document.getElementById('frase-text').value.trim();
+  var author = document.getElementById('frase-author').value.trim();
+  var source = document.getElementById('frase-source').value.trim();
+  var errEl = document.getElementById('frase-error');
+  if (!text) { errEl.textContent = 'La frase es obligatoria.'; errEl.style.display = 'block'; return; }
+  if (!author) { errEl.textContent = 'El autor es obligatorio.'; errEl.style.display = 'block'; return; }
+  errEl.style.display = 'none';
+  var list = loadFrases();
+  list.unshift({ text: text, author: author, source: source, addedAt: new Date().toISOString() });
+  storeFrases(list);
+  updateFrasesStat();
+  closeAddFraseModal();
+  if (activeYear === 'frases') renderFrases();
+}
+
 // ── FILTER YEAR ───────────────────────────────────────────
 function filterYear(yr, btn) {
   activeYear = yr;
   document.querySelectorAll('.filter-btn').forEach(function(b) { b.classList.remove('active'); });
   if (btn) btn.classList.add('active');
   // Swap add button behavior
-  var addBtn = document.querySelector('.add-book-btn');
-  if (addBtn) {
+  var mainBtn = document.getElementById('mainAddBtn');
+  if (mainBtn) {
     if (yr === 'pending') {
-      addBtn.setAttribute('onclick', 'openAddPendingModal()');
+      mainBtn.setAttribute('onclick', 'openAddPendingModal()');
+      mainBtn.innerHTML = '<span class="plus">+</span> Añadir pendiente';
     } else {
-      addBtn.setAttribute('onclick', 'openAddModal()');
+      mainBtn.setAttribute('onclick', 'openAddModal()');
+      mainBtn.innerHTML = '<span class="plus">+</span> Añadir libro';
     }
   }
   if (yr === 'pending') { renderPending(); return; }
-  render();
+  if (yr === 'frases') { renderFrases(); return; }
+  render(); // 'all' only
 }
 
 // ── PENDIENTES ────────────────────────────────────────────
@@ -793,8 +921,39 @@ function deleteUserBook(idx) {
 rebuildFilters();
 updateStats();
 updatePendingStat();
+updateFrasesStat();
 render();
 </script>
+
+
+<!-- ADD FRASE MODAL -->
+<div class="add-frase-overlay" id="add-frase-overlay" onclick="if(event.target===this)closeAddFraseModal()">
+  <div class="add-frase-modal">
+    <div class="add-modal-hdr">
+      <h3>Añadir frase</h3>
+      <button class="modal-close" onclick="closeAddFraseModal()">✕</button>
+    </div>
+    <div class="add-modal-body">
+      <div class="form-group">
+        <label>Frase *</label>
+        <textarea id="frase-text" placeholder="Escribe la frase aquí..." style="font-family:'DM Sans',sans-serif;font-size:13px;color:var(--text-1);background:var(--bg);border:1px solid var(--border);border-radius:8px;padding:9px 12px;outline:none;resize:vertical;min-height:90px;width:100%;line-height:1.6;transition:border-color .15s;" onfocus="this.style.borderColor='var(--accent)'" onblur="this.style.borderColor='var(--border)'"></textarea>
+      </div>
+      <div class="form-group">
+        <label>Autor *</label>
+        <input type="text" id="frase-author" placeholder="Ej: Steve Jobs" autocomplete="off">
+      </div>
+      <div class="form-group">
+        <label>Fuente (opcional)</label>
+        <input type="text" id="frase-source" placeholder="Ej: Shoe Dog, conferencia TED..." autocomplete="off">
+      </div>
+      <div id="frase-error" style="font-size:12px;color:#C0614A;display:none;"></div>
+      <div class="form-actions">
+        <button class="btn-secondary" onclick="closeAddFraseModal()">Cancelar</button>
+        <button class="btn-primary" onclick="saveFrase()">Guardar frase</button>
+      </div>
+    </div>
+  </div>
+</div>
 
 <!-- ADD PENDING MODAL -->
 <div class="add-pending-overlay" id="add-pending-overlay" onclick="if(event.target===this)closeAddPendingModal()">
