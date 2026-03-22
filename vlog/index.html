@@ -161,6 +161,31 @@ nav{background:var(--surface);border-bottom:1px solid var(--border);padding:0 48
 .vadd button:hover{background:var(--green);color:#fff;}
 @media(max-width:768px){nav{padding:0 20px;}.nav-logo{margin-right:20px;}.page{padding:24px 20px;}.page-hdr{padding:32px 0;}.cal-grid{grid-template-columns:1fr;}#node-panel{width:100%;}}
 ::-webkit-scrollbar{width:5px;}::-webkit-scrollbar-track{background:transparent;}::-webkit-scrollbar-thumb{background:rgba(0,0,0,.12);border-radius:3px;}
+
+/* ─── PAÍSES MODAL ─── */
+.paises-overlay { position:fixed;inset:0;background:rgba(26,25,22,0.55);backdrop-filter:blur(4px);z-index:2000;display:none;align-items:flex-start;justify-content:flex-end;padding:16px; }
+.paises-overlay.open { display:flex; }
+.paises-panel { background:#FFFFFF;border:1px solid #E8E6E0;border-radius:16px;width:420px;max-height:calc(100vh - 32px);overflow:hidden;box-shadow:0 24px 64px rgba(0,0,0,0.15);display:flex;flex-direction:column; }
+.paises-hdr { padding:18px 20px 14px;border-bottom:1px solid #E8E6E0;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;background:#fff;z-index:1;border-radius:16px 16px 0 0; }
+.paises-hdr-title { font-family:'DM Serif Display',serif;font-size:19px;letter-spacing:-0.3px; }
+.paises-hdr-sub { font-size:11px;color:#A8A49C;margin-top:2px; }
+.paises-close { background:none;border:1px solid #E8E6E0;border-radius:8px;padding:7px 11px;cursor:pointer;font-size:13px;color:#6B6860;font-family:'DM Sans',sans-serif;transition:all .15s; }
+.paises-close:hover { background:#F5F4F0; }
+.paises-search-wrap { padding:12px 20px;border-bottom:1px solid #E8E6E0; }
+.paises-search { font-family:'DM Sans',sans-serif;font-size:13px;width:100%;background:#F5F4F0;border:1px solid #E8E6E0;border-radius:8px;padding:8px 14px;outline:none;transition:border-color .15s; }
+.paises-search:focus { border-color:#8B6914; }
+.paises-stats { padding:8px 20px;font-size:11px;color:#A8A49C;border-bottom:1px solid #E8E6E0;display:flex;gap:16px; }
+.paises-stats span { font-weight:600;color:#8B6914; }
+.paises-list { overflow-y:auto;flex:1;padding:8px 0; }
+.pais-row { display:flex;align-items:center;justify-content:space-between;padding:8px 20px;transition:background .1s; }
+.pais-row:hover { background:#F5F4F0; }
+.pais-name { font-size:13px;font-weight:500;color:#1A1916; }
+.pais-toggle { display:flex;gap:4px; }
+.pais-btn { font-size:10px;font-weight:600;padding:3px 9px;border-radius:20px;border:1px solid #E8E6E0;background:none;color:#A8A49C;cursor:pointer;font-family:'DM Sans',sans-serif;transition:all .15s;white-space:nowrap; }
+.pais-btn:hover { border-color:#D0CEC8;color:#6B6860; }
+.pais-btn.visitado.active { background:#8B6914;color:#fff;border-color:#8B6914; }
+.pais-btn.residencia.active { background:#5C3D0A;color:#fff;border-color:#5C3D0A; }
+
 </style>
 </head>
 <body>
@@ -201,6 +226,7 @@ nav{background:var(--surface);border-bottom:1px solid var(--border);padding:0 48
           </div>
           <div style="display:flex;align-items:center;gap:6px;border-left:1px solid var(--border);padding-left:12px">
             <button onclick="openAddCity()" style="font-family:'DM Sans',sans-serif;font-size:12px;font-weight:600;background:var(--text-1);color:#fff;border:none;border-radius:6px;padding:7px 14px;cursor:pointer">+ Ciudad</button>
+            <button onclick="openPaisesModal()" style="font-family:'DM Sans',sans-serif;font-size:12px;font-weight:600;background:var(--bg);color:var(--text-1);border:1px solid var(--border);border-radius:6px;padding:7px 14px;cursor:pointer;">🗺 Países</button>
             <button onclick="zoomIn()" style="width:28px;height:28px;border:1px solid var(--border);border-radius:6px;background:var(--bg);cursor:pointer;font-size:16px;display:flex;align-items:center;justify-content:center;color:var(--text-2)">+</button>
             <button onclick="zoomOut()" style="width:28px;height:28px;border:1px solid var(--border);border-radius:6px;background:var(--bg);cursor:pointer;font-size:16px;display:flex;align-items:center;justify-content:center;color:var(--text-2)">−</button>
             <button onclick="zoomReset()" style="width:28px;height:28px;border:1px solid var(--border);border-radius:6px;background:var(--bg);cursor:pointer;font-size:13px;display:flex;align-items:center;justify-content:center;color:var(--text-2)">↺</button>
@@ -422,23 +448,114 @@ const HC_C=[
   {id:'hc_valletta',name:'La Valeta',country:'Malta',lon:14.51,lat:35.90,home:false,badge:'Visitada',note:'La isla fortaleza en el centro del Mediterráneo.',visits:['Visitada']},
 ];
 let curCid=null,cityEd=false,pV=[];
-const COUNTRY_MAP={'España':'Spain','Francia':'France','Alemania':'Germany','Italia':'Italy','Portugal':'Portugal','Reino Unido':'United Kingdom','Irlanda':'Ireland','Países Bajos':'Netherlands','Bélgica':'Belgium','Suiza':'Switzerland','Austria':'Austria','Dinamarca':'Denmark','Suecia':'Sweden','Noruega':'Norway','Finlandia':'Finland','Polonia':'Poland','Rep. Checa':'Czechia','Hungría':'Hungary','Rumanía':'Romania','Bulgaria':'Bulgaria','Grecia':'Greece','Croacia':'Croatia','Eslovenia':'Slovenia','Serbia':'Serbia','Ucrania':'Ukraine','Eslovaquia':'Slovakia','Malta':'Malta','Chipre':'Cyprus','Luxemburgo':'Luxembourg','Andorra':'Andorra','EE.UU.':'United States of America','Canadá':'Canada','México':'Mexico','Argentina':'Argentina','Brasil':'Brazil','Chile':'Chile','Colombia':'Colombia','Perú':'Peru','Uruguay':'Uruguay','Venezuela':'Venezuela','Cuba':'Cuba','Japón':'Japan','China':'China','India':'India','Rusia':'Russia','Australia':'Australia','Nueva Zelanda':'New Zealand','Sudáfrica':'South Africa','Marruecos':'Morocco','Egipto':'Egypt','Turquía':'Turkey','Israel':'Israel','Emiratos Árabes':'United Arab Emirates','Tailandia':'Thailand','Indonesia':'Indonesia','Singapur':'Singapore','Vietnam':'Vietnam','Filipinas':'Philippines','Corea del Sur':'South Korea'};
-function toTopoName(n){return COUNTRY_MAP[n]||n;}
-function buildVcHc(){const cities=allCi();const vc=new Set();const hc=new Set();cities.forEach(c=>{const t=toTopoName(c.country||'');if(!t)return;if(c.home||c.badge==='Origen'||c.badge==='Base'||c.badge==='Base actual')hc.add(t);else vc.add(t);});return{vc,hc};}
-let{vc:vC,hc:hC}=buildVcHc();
-function allCi(){const u=ld(CK,[]),m=[...HC_C];u.forEach(x=>{const i=m.findIndex(c=>c.id===x.id);if(i>=0)m[i]=x;else m.push(x);});return m;}
+let vC=new Set(['Spain','Portugal','France','United Kingdom','Ireland','Germany','Austria','Switzerland','Belgium','Netherlands','Italy','Slovenia','Croatia','Hungary','Czechia','Denmark','Greece','Malta','Luxembourg','Andorra','United States of America','Argentina']);
+let hC=new Set(['Spain']);
 
-function refreshMapColors(){
-  const rebuilt=buildVcHc();vC=rebuilt.vc;hC=rebuilt.hc;
-  d3.selectAll('path.country').attr('class',d=>{
-    const n=i2n[+d.id]||'';
-    if(hC.has(n))return 'country home-country';
-    if(vC.has(n))return 'country visited';
+// ── PAÍSES MANAGER ───────────────────────────────────────
+var PAISES_KEY = 'ao_countries_v1';
+var ALL_COUNTRIES = ["Afghanistan", "Albania", "Algeria", "Angola", "Antarctica", "Argentina", "Armenia", "Australia", "Austria", "Azerbaijan", "Bahamas", "Bangladesh", "Belarus", "Belgium", "Benin", "Bolivia", "Bosnia and Herzegovina", "Botswana", "Brazil", "Bulgaria", "Burkina Faso", "Cambodia", "Cameroon", "Canada", "Central African Republic", "Chad", "Chile", "China", "Colombia", "Congo", "Costa Rica", "Croatia", "Cuba", "Czechia", "Denmark", "Dominican Republic", "Ecuador", "Egypt", "El Salvador", "Eritrea", "Estonia", "Ethiopia", "Finland", "France", "Gabon", "Germany", "Ghana", "Greece", "Guatemala", "Guinea", "Haiti", "Honduras", "Hungary", "Iceland", "India", "Indonesia", "Iran", "Iraq", "Ireland", "Israel", "Italy", "Ivory Coast", "Jamaica", "Japan", "Jordan", "Kazakhstan", "Kenya", "Kosovo", "Kuwait", "Laos", "Latvia", "Lebanon", "Libya", "Lithuania", "Luxembourg", "Macedonia", "Madagascar", "Malawi", "Malaysia", "Mali", "Malta", "Mauritania", "Mexico", "Moldova", "Mongolia", "Montenegro", "Morocco", "Mozambique", "Myanmar", "Namibia", "Nepal", "Netherlands", "New Zealand", "Nicaragua", "Niger", "Nigeria", "North Korea", "Norway", "Oman", "Pakistan", "Panama", "Papua New Guinea", "Paraguay", "Peru", "Philippines", "Poland", "Portugal", "Puerto Rico", "Qatar", "Romania", "Russia", "Rwanda", "Saudi Arabia", "Senegal", "Serbia", "Sierra Leone", "Slovakia", "Slovenia", "Somalia", "South Africa", "South Korea", "South Sudan", "Spain", "Sri Lanka", "Sudan", "Sweden", "Switzerland", "Syria", "Taiwan", "Tanzania", "Thailand", "Tunisia", "Turkey", "Turkmenistan", "Uganda", "Ukraine", "United Arab Emirates", "United Kingdom", "United States of America", "Uruguay", "Uzbekistan", "Venezuela", "Vietnam", "Yemen", "Zambia", "Zimbabwe"];
+
+// Initial visited countries (from original hardcoded vC + hC)
+var INITIAL_VISITED = ['Spain','Portugal','France','United Kingdom','Ireland','Germany','Austria','Switzerland','Belgium','Netherlands','Italy','Slovenia','Croatia','Hungary','Czechia','Denmark','Greece','Malta','Luxembourg','Andorra','United States of America','Argentina'];
+var INITIAL_HOME = ['Spain'];
+
+function loadPaises() {
+  try {
+    var raw = localStorage.getItem(PAISES_KEY);
+    if (raw) return JSON.parse(raw);
+    // First load: seed with hardcoded data
+    var seed = {};
+    INITIAL_VISITED.forEach(function(c) { seed[c] = INITIAL_HOME.includes(c) ? 'residencia' : 'visitado'; });
+    return seed;
+  } catch(e) { return {}; }
+}
+
+function savePaises(data) {
+  localStorage.setItem(PAISES_KEY, JSON.stringify(data));
+}
+
+function getPaisesStats(data) {
+  var v=0, r=0;
+  Object.values(data).forEach(function(s) { if(s==='visitado')v++; else if(s==='residencia')r++; });
+  return {v,r};
+}
+
+function openPaisesModal() {
+  renderPaisesList('');
+  document.getElementById('paisesOverlay').classList.add('open');
+  document.getElementById('paisesSearch').value = '';
+  setTimeout(function(){document.getElementById('paisesSearch').focus();},100);
+}
+
+function closePaisesModal() {
+  document.getElementById('paisesOverlay').classList.remove('open');
+  // Rebuild vC/hC from localStorage and refresh map
+  refreshMapFromPaises();
+}
+
+function renderPaisesList(term) {
+  var data = loadPaises();
+  var stats = getPaisesStats(data);
+  document.getElementById('paises-stat-v').textContent = stats.v;
+  document.getElementById('paises-stat-r').textContent = stats.r;
+  var list = document.getElementById('paisesList');
+  var filtered = term ? ALL_COUNTRIES.filter(function(c){return c.toLowerCase().includes(term.toLowerCase());}) : ALL_COUNTRIES;
+  // Sort: marked first, then alphabetical
+  filtered.sort(function(a,b){
+    var sa=data[a]||'', sb=data[b]||'';
+    if(sa && !sb) return -1; if(!sa && sb) return 1; return a.localeCompare(b);
+  });
+  list.innerHTML = filtered.map(function(c){
+    var status = data[c] || '';
+    return '<div class="pais-row">'
+      + '<div class="pais-name">' + c + '</div>'
+      + '<div class="pais-toggle">'
+      + '<button class="pais-btn visitado' + (status==='visitado'?' active':'') + '" onclick="togglePais(\''+c+'\',\'visitado\')">Visitado</button>'
+      + '<button class="pais-btn residencia' + (status==='residencia'?' active':'') + '" onclick="togglePais(\''+c+'\',\'residencia\')">Residencia</button>'
+      + '</div></div>';
+  }).join('');
+}
+
+function togglePais(country, type) {
+  var data = loadPaises();
+  if(data[country] === type) {
+    delete data[country]; // toggle off
+  } else {
+    data[country] = type;
+  }
+  savePaises(data);
+  renderPaisesList(document.getElementById('paisesSearch').value);
+}
+
+function refreshMapFromPaises() {
+  var data = loadPaises();
+  vC = new Set();
+  hC = new Set();
+  Object.entries(data).forEach(function(entry){
+    if(entry[1]==='visitado') vC.add(entry[0]);
+    else if(entry[1]==='residencia') hC.add(entry[0]);
+  });
+  // Redraw country classes
+  d3.selectAll('path.country').attr('class',function(d){
+    var n = i2n[+d.id] || '';
+    if(hC.has(n)) return 'country home-country';
+    if(vC.has(n)) return 'country visited';
     return 'country';
   });
 }
 
-function svCi(c){const u=ld(CK,[]),i=u.findIndex(x=>x.id===c.id);if(i>=0)u[i]=c;else u.push(c);sv_(CK,u);refreshMapColors();}
+// Initialize vC and hC from localStorage on load
+(function initPaises(){
+  var data = loadPaises();
+  // Override the hardcoded vC/hC
+  Object.entries(data).forEach(function(entry){
+    if(entry[1]==='visitado') vC.add(entry[0]);
+    else if(entry[1]==='residencia') hC.add(entry[0]);
+  });
+})();
+
+function allCi(){const u=ld(CK,[]),m=[...HC_C];u.forEach(x=>{const i=m.findIndex(c=>c.id===x.id);if(i>=0)m[i]=x;else m.push(x);});return m;}
+function svCi(c){const u=ld(CK,[]),i=u.findIndex(x=>x.id===c.id);if(i>=0)u[i]=c;else u.push(c);sv_(CK,u);}
 function openAddCity(){cityEd=false;curCid=null;pV=[];document.getElementById('mt-city').textContent='Añadir ciudad';document.getElementById('c-savebtn').textContent='Guardar ciudad';['c-name','c-ctry','c-lon','c-lat','c-note'].forEach(id=>document.getElementById(id).value='');document.getElementById('c-badge').value='Visitada';document.getElementById('c-err').style.display='none';rV();document.getElementById('m-city').classList.add('open');document.body.style.overflow='hidden';setTimeout(()=>document.getElementById('c-name').focus(),100);}
 function editCurrentCity(){if(!curCid)return;const c=allCi().find(x=>x.id===curCid);if(!c)return;cityEd=true;pV=[...(c.visits||[])];document.getElementById('mt-city').textContent='Editar ciudad';document.getElementById('c-savebtn').textContent='Guardar cambios';document.getElementById('c-name').value=c.name;document.getElementById('c-ctry').value=c.country;document.getElementById('c-lon').value=c.lon;document.getElementById('c-lat').value=c.lat;document.getElementById('c-note').value=c.note||'';document.getElementById('c-badge').value=c.badge||'Visitada';document.getElementById('c-err').style.display='none';rV();document.getElementById('m-city').classList.add('open');document.body.style.overflow='hidden';}
 function cC(){document.getElementById('m-city').classList.remove('open');document.body.style.overflow='';}
@@ -503,5 +620,27 @@ window.addEventListener('resize',nResize);nResize();
 document.addEventListener('keydown',e=>{if(e.key==='Escape'){closeNP();cN();cD();cC();}});
 renderDiary();
 </script>
+
+<!-- PAÍSES MODAL -->
+<div class="paises-overlay" id="paisesOverlay" onclick="if(event.target===this)closePaisesModal()">
+  <div class="paises-panel">
+    <div class="paises-hdr">
+      <div>
+        <div class="paises-hdr-title">Marcar países</div>
+        <div class="paises-hdr-sub">Los colores se actualizan al cerrar</div>
+      </div>
+      <button class="paises-close" onclick="closePaisesModal()">✕ Cerrar</button>
+    </div>
+    <div class="paises-search-wrap">
+      <input type="text" class="paises-search" id="paisesSearch" placeholder="Buscar país..." oninput="renderPaisesList(this.value)">
+    </div>
+    <div class="paises-stats" id="paisesStats">
+      <div>Visitados: <span id="paises-stat-v">0</span></div>
+      <div>Residencia: <span id="paises-stat-r">0</span></div>
+    </div>
+    <div class="paises-list" id="paisesList"></div>
+  </div>
+</div>
+
 </body>
 </html>
