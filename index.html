@@ -233,9 +233,82 @@
     .detail-body { grid-template-columns: 1fr; }
     .bottom-row { grid-template-columns: 1fr; }
   }
+
+  /* ── LOGIN SCREEN ── */
+  #loginScreen {
+    position: fixed; inset: 0; background: var(--bg);
+    display: flex; align-items: center; justify-content: center;
+    z-index: 9999; font-family: 'DM Sans', sans-serif;
+  }
+  #loginScreen.hidden { display: none; }
+  .login-card {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: 16px; padding: 48px 40px; width: 380px;
+    box-shadow: 0 8px 40px rgba(0,0,0,0.08);
+    display: flex; flex-direction: column; align-items: center; gap: 0;
+  }
+  .login-logo {
+    font-family: 'DM Serif Display', serif; font-size: 28px;
+    letter-spacing: -0.5px; margin-bottom: 6px; text-align: center;
+  }
+  .login-logo em { font-style: italic; color: var(--text-secondary); }
+  .login-sub {
+    font-size: 13px; color: var(--text-muted); margin-bottom: 36px;
+    text-align: center;
+  }
+  .login-label {
+    font-size: 10px; font-weight: 700; letter-spacing: 1.5px;
+    text-transform: uppercase; color: var(--text-muted);
+    margin-bottom: 8px; width: 100%;
+  }
+  .login-input {
+    font-family: 'DM Sans', sans-serif; font-size: 14px;
+    color: var(--text-primary); background: var(--bg);
+    border: 1px solid var(--border); border-radius: 10px;
+    padding: 12px 16px; outline: none; width: 100%;
+    transition: border-color .15s, background .15s;
+    margin-bottom: 20px; letter-spacing: 2px;
+  }
+  .login-input:focus { border-color: var(--text-primary); background: var(--surface); }
+  .login-btn {
+    width: 100%; background: var(--text-primary); color: #fff;
+    border: none; border-radius: 10px; padding: 13px;
+    font-size: 13px; font-weight: 600; font-family: 'DM Sans', sans-serif;
+    cursor: pointer; transition: opacity .15s; letter-spacing: 0.3px;
+  }
+  .login-btn:hover { opacity: .85; }
+  .login-error {
+    font-size: 12px; color: #C0614A; margin-top: 12px;
+    text-align: center; min-height: 18px;
+  }
+  .login-hint {
+    font-size: 11px; color: var(--text-muted); margin-top: 24px;
+    text-align: center; line-height: 1.6;
+  }
+
 </style>
 </head>
 <body>
+
+<!-- LOGIN SCREEN -->
+<div id="loginScreen">
+  <div class="login-card">
+    <div class="login-logo">Albert's <em>Odyssey</em></div>
+    <div class="login-sub">Sistema de vida personal · Acceso privado</div>
+    <div class="login-label">Contraseña</div>
+    <input
+      type="password"
+      class="login-input"
+      id="loginInput"
+      placeholder="••••••••••"
+      onkeydown="if(event.key==='Enter') loginSubmit()"
+      autocomplete="current-password"
+    >
+    <button class="login-btn" onclick="loginSubmit()">Entrar →</button>
+    <div class="login-error" id="loginError"></div>
+    <div class="login-hint">La sesión se mantiene activa en este navegador.</div>
+  </div>
+</div>
 
 <!-- NAV -->
 <nav>
@@ -980,6 +1053,82 @@ function wrDeleteEntry(id) {
   wrCloseRead();
   wrRender();
 }
+
+
+// ── SISTEMA DE LOGIN ─────────────────────────────────────
+// Hash SHA-256 de la contraseña usando Web Crypto API
+// Contraseña actual: cambiar el hash abajo para actualizar
+
+// Para generar un nuevo hash:
+// 1. Abre consola del navegador
+// 2. Ejecuta: crypto.subtle.digest('SHA-256', new TextEncoder().encode('tu_contraseña')).then(b => console.log(Array.from(new Uint8Array(b)).map(x=>x.toString(16).padStart(2,'0')).join('')))
+// 3. Copia el resultado y reemplaza PWD_HASH
+
+var PWD_HASH = 'd54123de468bd42ea00dafbd777f85fe5fa1ff6404d9838c007953c25c92a1c5'; // PLACEHOLDER - se reemplaza abajo
+var SESSION_KEY = 'ao_session_v1';
+var SESSION_TTL = 7 * 24 * 60 * 60 * 1000; // 7 días
+
+async function hashPassword(pwd) {
+  var buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(pwd));
+  return Array.from(new Uint8Array(buf)).map(function(x) {
+    return x.toString(16).padStart(2, '0');
+  }).join('');
+}
+
+function checkSession() {
+  try {
+    var raw = localStorage.getItem(SESSION_KEY);
+    if (!raw) return false;
+    var s = JSON.parse(raw);
+    if (Date.now() - s.ts > SESSION_TTL) {
+      localStorage.removeItem(SESSION_KEY);
+      return false;
+    }
+    return s.ok === true;
+  } catch(e) { return false; }
+}
+
+function saveSession() {
+  localStorage.setItem(SESSION_KEY, JSON.stringify({ ok: true, ts: Date.now() }));
+}
+
+function showApp() {
+  document.getElementById('loginScreen').classList.add('hidden');
+  document.body.style.overflow = '';
+}
+
+async function loginSubmit() {
+  var pwd = document.getElementById('loginInput').value;
+  var err = document.getElementById('loginError');
+  var btn = document.querySelector('.login-btn');
+  if (!pwd) { err.textContent = 'Introduce la contraseña.'; return; }
+  btn.textContent = '...';
+  btn.disabled = true;
+  var hash = await hashPassword(pwd);
+  btn.textContent = 'Entrar →';
+  btn.disabled = false;
+  if (hash === PWD_HASH) {
+    saveSession();
+    showApp();
+  } else {
+    err.textContent = 'Contraseña incorrecta.';
+    document.getElementById('loginInput').value = '';
+    document.getElementById('loginInput').focus();
+  }
+}
+
+// Init login check
+(function() {
+  if (checkSession()) {
+    // Already authenticated - hide login immediately
+    document.addEventListener('DOMContentLoaded', function() {
+      showApp();
+    });
+  } else {
+    // Block scrolling until logged in
+    document.body.style.overflow = 'hidden';
+  }
+})();
 
 window.addEventListener('DOMContentLoaded',()=>{
   loadStates();
