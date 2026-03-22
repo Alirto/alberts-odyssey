@@ -422,10 +422,23 @@ const HC_C=[
   {id:'hc_valletta',name:'La Valeta',country:'Malta',lon:14.51,lat:35.90,home:false,badge:'Visitada',note:'La isla fortaleza en el centro del Mediterráneo.',visits:['Visitada']},
 ];
 let curCid=null,cityEd=false,pV=[];
-const vC=new Set(['Spain','Portugal','France','United Kingdom','Ireland','Germany','Austria','Switzerland','Belgium','Netherlands','Italy','Slovenia','Croatia','Hungary','Czech Republic','Denmark','Greece','Malta','Luxembourg','Andorra','United States of America','Argentina']);
-const hC=new Set(['Spain']);
+const COUNTRY_MAP={'España':'Spain','Francia':'France','Alemania':'Germany','Italia':'Italy','Portugal':'Portugal','Reino Unido':'United Kingdom','Irlanda':'Ireland','Países Bajos':'Netherlands','Bélgica':'Belgium','Suiza':'Switzerland','Austria':'Austria','Dinamarca':'Denmark','Suecia':'Sweden','Noruega':'Norway','Finlandia':'Finland','Polonia':'Poland','Rep. Checa':'Czechia','Hungría':'Hungary','Rumanía':'Romania','Bulgaria':'Bulgaria','Grecia':'Greece','Croacia':'Croatia','Eslovenia':'Slovenia','Serbia':'Serbia','Ucrania':'Ukraine','Eslovaquia':'Slovakia','Malta':'Malta','Chipre':'Cyprus','Luxemburgo':'Luxembourg','Andorra':'Andorra','EE.UU.':'United States of America','Canadá':'Canada','México':'Mexico','Argentina':'Argentina','Brasil':'Brazil','Chile':'Chile','Colombia':'Colombia','Perú':'Peru','Uruguay':'Uruguay','Venezuela':'Venezuela','Cuba':'Cuba','Japón':'Japan','China':'China','India':'India','Rusia':'Russia','Australia':'Australia','Nueva Zelanda':'New Zealand','Sudáfrica':'South Africa','Marruecos':'Morocco','Egipto':'Egypt','Turquía':'Turkey','Israel':'Israel','Emiratos Árabes':'United Arab Emirates','Tailandia':'Thailand','Indonesia':'Indonesia','Singapur':'Singapore','Vietnam':'Vietnam','Filipinas':'Philippines','Corea del Sur':'South Korea'};
+function toTopoName(n){return COUNTRY_MAP[n]||n;}
+function buildVcHc(){const cities=allCi();const vc=new Set();const hc=new Set();cities.forEach(c=>{const t=toTopoName(c.country||'');if(!t)return;if(c.home||c.badge==='Origen'||c.badge==='Base'||c.badge==='Base actual')hc.add(t);else vc.add(t);});return{vc,hc};}
+let{vc:vC,hc:hC}=buildVcHc();
 function allCi(){const u=ld(CK,[]),m=[...HC_C];u.forEach(x=>{const i=m.findIndex(c=>c.id===x.id);if(i>=0)m[i]=x;else m.push(x);});return m;}
-function svCi(c){const u=ld(CK,[]),i=u.findIndex(x=>x.id===c.id);if(i>=0)u[i]=c;else u.push(c);sv_(CK,u);}
+
+function refreshMapColors(){
+  const rebuilt=buildVcHc();vC=rebuilt.vc;hC=rebuilt.hc;
+  d3.selectAll('path.country').attr('class',d=>{
+    const n=i2n[+d.id]||'';
+    if(hC.has(n))return 'country home-country';
+    if(vC.has(n))return 'country visited';
+    return 'country';
+  });
+}
+
+function svCi(c){const u=ld(CK,[]),i=u.findIndex(x=>x.id===c.id);if(i>=0)u[i]=c;else u.push(c);sv_(CK,u);refreshMapColors();}
 function openAddCity(){cityEd=false;curCid=null;pV=[];document.getElementById('mt-city').textContent='Añadir ciudad';document.getElementById('c-savebtn').textContent='Guardar ciudad';['c-name','c-ctry','c-lon','c-lat','c-note'].forEach(id=>document.getElementById(id).value='');document.getElementById('c-badge').value='Visitada';document.getElementById('c-err').style.display='none';rV();document.getElementById('m-city').classList.add('open');document.body.style.overflow='hidden';setTimeout(()=>document.getElementById('c-name').focus(),100);}
 function editCurrentCity(){if(!curCid)return;const c=allCi().find(x=>x.id===curCid);if(!c)return;cityEd=true;pV=[...(c.visits||[])];document.getElementById('mt-city').textContent='Editar ciudad';document.getElementById('c-savebtn').textContent='Guardar cambios';document.getElementById('c-name').value=c.name;document.getElementById('c-ctry').value=c.country;document.getElementById('c-lon').value=c.lon;document.getElementById('c-lat').value=c.lat;document.getElementById('c-note').value=c.note||'';document.getElementById('c-badge').value=c.badge||'Visitada';document.getElementById('c-err').style.display='none';rV();document.getElementById('m-city').classList.add('open');document.body.style.overflow='hidden';}
 function cC(){document.getElementById('m-city').classList.remove('open');document.body.style.overflow='';}
