@@ -12,8 +12,6 @@
     --text-primary: #1A1916; --text-secondary: #6B6860; --text-muted: #A8A49C;
   }
   body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--text-primary); min-height: 100vh; }
-
-  /* ── NAV ── */
   nav { background: var(--surface); border-bottom: 1px solid var(--border); padding: 0 48px; display: flex; align-items: center; height: 56px; position: sticky; top: 0; z-index: 200; }
   .nav-logo { font-family: 'DM Serif Display', serif; font-size: 18px; letter-spacing: -0.3px; color: var(--text-primary); text-decoration: none; margin-right: 36px; white-space: nowrap; flex-shrink: 0; }
   .nav-logo span { font-style: italic; color: var(--text-secondary); }
@@ -21,11 +19,8 @@
   .nav-link { font-size: 12px; font-weight: 500; color: var(--text-secondary); padding: 0 16px; text-decoration: none; height: 56px; display: flex; align-items: center; white-space: nowrap; border-bottom: 2px solid transparent; margin-bottom: -1px; transition: color .15s, border-color .15s; }
   .nav-link:hover { color: var(--text-primary); }
   .nav-link.active { color: var(--text-primary); border-bottom-color: var(--text-primary); font-weight: 600; }
-
-  /* ── HERO ── */
   .hero-wrap { max-width: 1280px; margin: 0 auto; padding: 0 48px; }
   .hero { padding: 72px 0 64px; border-bottom: 1px solid var(--border); display: flex; align-items: flex-end; justify-content: space-between; gap: 48px; flex-wrap: wrap; }
-  .hero-left {}
   .hero-eyebrow { font-size: 11px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; color: var(--text-muted); margin-bottom: 18px; display: flex; align-items: center; gap: 12px; }
   .hero-eyebrow::before { content: ''; width: 28px; height: 1px; background: var(--text-muted); }
   .hero-title { font-family: 'DM Serif Display', serif; font-size: clamp(52px, 7vw, 80px); line-height: 1.0; letter-spacing: -2px; margin-bottom: 20px; }
@@ -34,64 +29,78 @@
   .hero-right { display: flex; gap: 40px; flex-shrink: 0; }
   .hero-stat-val { font-family: 'DM Serif Display', serif; font-size: 32px; line-height: 1; letter-spacing: -0.5px; }
   .hero-stat-lbl { font-size: 11px; color: var(--text-muted); font-weight: 500; margin-top: 4px; }
-
-  /* ── SECTION STRIP ── */
   .section-strip { border-bottom: 1px solid var(--border); padding: 0 48px; display: flex; overflow-x: auto; background: var(--surface); }
   .section-strip a { font-size: 12px; font-weight: 500; color: var(--text-secondary); padding: 14px 18px; text-decoration: none; white-space: nowrap; border-bottom: 2px solid transparent; margin-bottom: -1px; transition: color .15s, border-color .15s; display: flex; align-items: center; gap: 7px; }
   .section-strip a:hover { color: var(--text-primary); }
-
-  /* ── HEADER (dashboard) ── */
+  /* SYNC */
+  .sync-bar { background: var(--surface); border-bottom: 1px solid var(--border); padding: 10px 48px; display: flex; align-items: center; justify-content: flex-end; gap: 10px; }
+  .sync-btn { font-family: 'DM Sans', sans-serif; font-size: 11px; font-weight: 600; padding: 6px 14px; border-radius: 6px; cursor: pointer; transition: all .15s; display: flex; align-items: center; gap: 6px; }
+  .sync-btn-export { background: var(--bg); color: var(--text-secondary); border: 1px solid var(--border); }
+  .sync-btn-export:hover { border-color: var(--text-primary); color: var(--text-primary); }
+  .sync-btn-import { background: var(--text-primary); color: #fff; border: 1px solid var(--text-primary); }
+  .sync-btn-import:hover { opacity: .85; }
+  .sync-label { font-size: 11px; color: var(--text-muted); }
+  .sync-overlay { position: fixed; inset: 0; background: rgba(26,25,22,0.55); backdrop-filter: blur(4px); z-index: 2000; display: none; align-items: center; justify-content: center; padding: 24px; }
+  .sync-overlay.open { display: flex; }
+  .sync-modal { background: #fff; border: 1px solid #E8E6E0; border-radius: 16px; width: 100%; max-width: 520px; box-shadow: 0 24px 64px rgba(0,0,0,0.15); }
+  .sync-modal-hdr { padding: 20px 24px 16px; border-bottom: 1px solid #E8E6E0; display: flex; align-items: center; justify-content: space-between; }
+  .sync-modal-title { font-family: 'DM Serif Display', serif; font-size: 20px; }
+  .sync-modal-sub { font-size: 12px; color: #A8A49C; margin-top: 2px; }
+  .sync-modal-close { background: none; border: 1px solid #E8E6E0; border-radius: 8px; padding: 7px 11px; cursor: pointer; font-size: 13px; color: #6B6860; font-family: 'DM Sans', sans-serif; }
+  .sync-modal-close:hover { background: #F5F4F0; }
+  .sync-modal-body { padding: 20px 24px 24px; display: flex; flex-direction: column; gap: 14px; }
+  .sync-textarea { font-family: 'Courier New', monospace; font-size: 11px; color: #1A1916; background: #F5F4F0; border: 1px solid #E8E6E0; border-radius: 8px; padding: 12px; width: 100%; min-height: 120px; resize: vertical; outline: none; line-height: 1.5; }
+  .sync-textarea:focus { border-color: #1A1916; }
+  .sync-info { font-size: 12px; color: #6B6860; line-height: 1.6; background: #F5F4F0; border-radius: 8px; padding: 10px 14px; }
+  .sync-modal-actions { display: flex; gap: 8px; }
+  .sync-btn-primary { flex: 1; background: #1A1916; color: #fff; border: none; border-radius: 8px; padding: 11px; font-size: 13px; font-weight: 600; font-family: 'DM Sans', sans-serif; cursor: pointer; transition: opacity .15s; }
+  .sync-btn-primary:hover { opacity: .85; }
+  .sync-btn-secondary { background: none; border: 1px solid #E8E6E0; border-radius: 8px; padding: 11px 16px; font-size: 13px; color: #6B6860; font-family: 'DM Sans', sans-serif; cursor: pointer; }
+  .sync-btn-secondary:hover { border-color: #D0CEC8; color: #1A1916; }
+  .sync-success { font-size: 12px; color: #2D6A4F; background: #EAF3EE; border-radius: 6px; padding: 8px 12px; display: none; }
+  .sync-error { font-size: 12px; color: #C0614A; background: #FCEEE9; border-radius: 6px; padding: 8px 12px; display: none; }
   .dash-header { background: var(--surface); border-bottom: 1px solid var(--border); padding: 28px 48px; display: flex; align-items: center; justify-content: space-between; }
   .dash-meta { display: flex; align-items: center; gap: 32px; }
   .year-label { font-size: 12px; font-weight: 500; letter-spacing: 2px; text-transform: uppercase; color: var(--text-muted); }
   .global-score { display: flex; align-items: baseline; gap: 6px; }
   .global-score .num { font-family: 'DM Serif Display', serif; font-size: 32px; line-height: 1; }
   .global-score .lbl { font-size: 12px; color: var(--text-muted); }
-
-  /* TIMELINE */
   .timeline-section { background: var(--surface); border-bottom: 1px solid var(--border); padding: 40px 48px 0; }
   .timeline-top { display: flex; align-items: flex-end; justify-content: space-between; margin-bottom: 32px; }
   .tl-heading { font-family: 'DM Serif Display', serif; font-size: 13px; font-style: italic; color: var(--text-muted); margin-bottom: 4px; }
-  .tl-title   { font-family: 'DM Serif Display', serif; font-size: 28px; letter-spacing: -0.5px; line-height: 1; }
+  .tl-title { font-family: 'DM Serif Display', serif; font-size: 28px; letter-spacing: -0.5px; line-height: 1; }
   .tl-horizon { font-size: 11px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; color: var(--text-muted); text-align: right; }
   .phases-strip { display: grid; grid-template-columns: repeat(6, 1fr); }
   .phase-col { position: relative; }
   .phase-inner { border-top: 2px solid var(--border); border-right: 1px solid var(--border); padding: 20px 18px 24px; height: 100%; position: relative; }
   .phase-col:last-child .phase-inner { border-right: none; }
-  .phase-col.past    .phase-inner { border-top-color: #C0BDB6; background: #FAFAF8; }
+  .phase-col.past .phase-inner { border-top-color: #C0BDB6; background: #FAFAF8; }
   .phase-col.current .phase-inner { border-top-color: var(--text-primary); background: #F8F7F3; }
-  .phase-col.future  .phase-inner { border-top-color: var(--border); }
+  .phase-col.future .phase-inner { border-top-color: var(--border); }
   .phase-col.current .phase-inner::before { content: 'AHORA'; position: absolute; top: -10px; left: 18px; font-size: 9px; font-weight: 700; letter-spacing: 2px; color: var(--text-primary); background: var(--surface); padding: 0 5px; }
   .phase-period { font-size: 10px; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 6px; color: var(--text-muted); }
   .phase-col.current .phase-period { color: var(--text-primary); }
-  .phase-col.past    .phase-period { color: #C0BDB6; }
+  .phase-col.past .phase-period { color: #C0BDB6; }
   .phase-name { font-family: 'DM Serif Display', serif; font-size: 15px; line-height: 1.2; margin-bottom: 8px; }
-  .phase-col.past   .phase-name { color: var(--text-muted); }
+  .phase-col.past .phase-name { color: var(--text-muted); }
   .phase-col.future .phase-name { color: var(--text-secondary); }
   .phase-desc { font-size: 11px; color: var(--text-muted); line-height: 1.5; margin-bottom: 12px; }
   .phase-pillars { display: flex; flex-wrap: wrap; gap: 4px; margin-bottom: 12px; }
   .phase-pill { font-size: 10px; font-weight: 600; padding: 2px 7px; border-radius: 20px; }
   .phase-milestones { display: flex; flex-direction: column; gap: 5px; }
   .phase-milestone { display: flex; align-items: flex-start; gap: 7px; font-size: 10.5px; line-height: 1.35; color: var(--text-secondary); }
-  .phase-col.past   .phase-milestone,
-  .phase-col.future .phase-milestone { color: var(--text-muted); }
+  .phase-col.past .phase-milestone, .phase-col.future .phase-milestone { color: var(--text-muted); }
   .phase-ms-dot { width: 5px; height: 5px; border-radius: 50%; flex-shrink: 0; margin-top: 4px; }
   .tl-bar-wrap { position: relative; padding: 20px 0 28px; }
   .tl-bar-label { font-size: 10px; font-weight: 600; letter-spacing: 1px; color: var(--text-muted); margin-bottom: 8px; }
   .tl-bar-track { height: 2px; background: var(--border); border-radius: 1px; overflow: hidden; }
-  .tl-bar-fill  { height: 100%; background: var(--text-primary); width: 0%; transition: width 1.2s cubic-bezier(0.4,0,0.2,1); }
-
-  /* MAIN */
+  .tl-bar-fill { height: 100%; background: var(--text-primary); width: 0%; transition: width 1.2s cubic-bezier(0.4,0,0.2,1); }
   main { max-width: 1280px; margin: 0 auto; padding: 48px; }
-
-  /* NOTICES */
   .notice { border-radius: 8px; padding: 14px 20px; display: flex; align-items: flex-start; gap: 12px; margin-bottom: 24px; font-size: 13px; line-height: 1.5; }
   .notice .icon { font-size: 15px; flex-shrink: 0; margin-top: 1px; }
-  .notice-dayone  { background: #F0F4FF; border: 1px solid #C8D4F5; border-left: 3px solid #3D405B; color: #3D405B; }
+  .notice-dayone { background: #F0F4FF; border: 1px solid #C8D4F5; border-left: 3px solid #3D405B; color: #3D405B; }
   .notice-warning { background: #FFF8EC; border: 1px solid #F2CC8F; border-left: 3px solid #C9A227; color: #7A6010; display: none; }
   .notice-warning.visible { display: flex; }
-
-  /* PILLARS */
   .pillars-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 16px; margin-bottom: 48px; }
   .pillar-card { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 24px 20px 20px; cursor: pointer; transition: all 0.2s; position: relative; overflow: hidden; }
   .pillar-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: var(--pillar-color); opacity: 0; transition: opacity 0.2s; }
@@ -100,14 +109,12 @@
   .pillar-card.active { border-color: var(--pillar-color); box-shadow: 0 0 0 1px var(--pillar-color); }
   .p-icon { width: 36px; height: 36px; border-radius: 8px; background: var(--pillar-bg); display: flex; align-items: center; justify-content: center; font-size: 18px; margin-bottom: 16px; }
   .p-name { font-size: 11px; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase; color: var(--text-muted); margin-bottom: 8px; }
-  .p-pct  { font-family: 'DM Serif Display', serif; font-size: 36px; line-height: 1; margin-bottom: 16px; }
+  .p-pct { font-family: 'DM Serif Display', serif; font-size: 36px; line-height: 1; margin-bottom: 16px; }
   .p-pct span { font-family: 'DM Sans', sans-serif; font-size: 14px; font-weight: 400; color: var(--text-muted); }
-  .p-bar-bg   { height: 4px; background: var(--border); border-radius: 2px; overflow: hidden; margin-bottom: 12px; }
+  .p-bar-bg { height: 4px; background: var(--border); border-radius: 2px; overflow: hidden; margin-bottom: 12px; }
   .p-bar-fill { height: 100%; border-radius: 2px; transition: width 1s cubic-bezier(0.4,0,0.2,1); }
   .p-stats { display: flex; justify-content: space-between; font-size: 11.5px; color: var(--text-muted); }
   .p-stats strong { color: var(--text-secondary); font-weight: 500; }
-
-  /* DETAIL */
   .detail-panel { background: var(--surface); border: 1px solid var(--border); border-radius: 16px; overflow: hidden; display: none; animation: up 0.25s ease; margin-bottom: 48px; }
   .detail-panel.visible { display: block; }
   @keyframes up { from { opacity:0; transform:translateY(12px); } to { opacity:1; transform:translateY(0); } }
@@ -124,25 +131,23 @@
   .obj-name { font-weight: 600; font-size: 14px; }
   .obj-badge { font-size: 11px; font-weight: 600; padding: 3px 10px; border-radius: 20px; background: var(--pillar-bg); color: var(--pillar-color); }
   .obj-meta { padding: 14px 20px 10px; display: flex; align-items: center; gap: 12px; }
-  .obj-bar-bg   { flex: 1; height: 6px; background: var(--border); border-radius: 3px; overflow: hidden; }
+  .obj-bar-bg { flex: 1; height: 6px; background: var(--border); border-radius: 3px; overflow: hidden; }
   .obj-bar-fill { height: 100%; border-radius: 3px; transition: width 0.8s cubic-bezier(0.4,0,0.2,1); }
   .obj-pct { font-size: 12px; font-weight: 600; color: var(--pillar-color); white-space: nowrap; }
   .ms-list { padding: 4px 20px 16px; }
   .ms-item { display: flex; align-items: flex-start; gap: 12px; padding: 10px 0; border-bottom: 1px solid var(--border); }
   .ms-item:last-child { border-bottom: none; }
   .ms-check { width: 18px; height: 18px; border-radius: 50%; border: 2px solid var(--border); flex-shrink: 0; margin-top: 1px; display: flex; align-items: center; justify-content: center; font-size: 10px; }
-  .ms-item.done   .ms-check { background: var(--pillar-color); border-color: var(--pillar-color); color: #fff; }
+  .ms-item.done .ms-check { background: var(--pillar-color); border-color: var(--pillar-color); color: #fff; }
   .ms-item.active .ms-check { border-color: var(--pillar-color); box-shadow: 0 0 0 3px var(--pillar-bg); }
   .ms-content { flex: 1; }
   .ms-title { font-size: 13.5px; font-weight: 500; line-height: 1.3; }
   .ms-item.done .ms-title { color: var(--text-muted); text-decoration: line-through; text-decoration-color: var(--text-muted); }
   .ms-date { font-size: 11px; color: var(--text-muted); margin-top: 3px; }
   .ms-status { font-size: 10.5px; font-weight: 600; padding: 2px 8px; border-radius: 20px; flex-shrink: 0; margin-top: 2px; }
-  .ms-item.done    .ms-status { background: #EAF3EE; color: #2D6A4F; }
-  .ms-item.active  .ms-status { background: #EEF2FF; color: #3D405B; }
+  .ms-item.done .ms-status { background: #EAF3EE; color: #2D6A4F; }
+  .ms-item.active .ms-status { background: #EEF2FF; color: #3D405B; }
   .ms-item.pending .ms-status { background: #F5F4F0; color: var(--text-muted); }
-
-  /* BOTTOM */
   .bottom-row { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
   .summary-card { background: var(--surface); border: 1px solid var(--border); border-radius: 16px; padding: 28px 32px; }
   .summary-card h3 { font-family: 'DM Serif Display', serif; font-size: 18px; margin-bottom: 20px; }
@@ -153,9 +158,6 @@
   .na-text { font-size: 13.5px; line-height: 1.4; }
   .na-meta { font-size: 11.5px; color: var(--text-muted); margin-top: 2px; }
   .no-active { font-size: 13px; color: var(--text-muted); padding: 12px 0; font-style: italic; }
-
-
-  /* ── WEEKLY REVIEW ── */
   .wr-section { margin-top: 48px; border-top: 1px solid var(--border); padding-top: 48px; }
   .wr-header { display: flex; align-items: flex-end; justify-content: space-between; margin-bottom: 28px; flex-wrap: wrap; gap: 16px; }
   .wr-title { font-family: 'DM Serif Display', serif; font-size: 22px; letter-spacing: -0.3px; }
@@ -176,7 +178,6 @@
   .wr-card-bottom { padding: 10px 20px 14px; display: flex; gap: 6px; flex-wrap: wrap; border-top: 1px solid var(--border); background: #FAFAF8; }
   .wr-pill { font-size: 10px; font-weight: 600; padding: 2px 8px; border-radius: 20px; background: var(--bg); border: 1px solid var(--border); color: var(--text-secondary); }
   .wr-empty { background: var(--surface); border: 1px dashed var(--border); border-radius: 12px; padding: 40px 24px; text-align: center; color: var(--text-muted); font-size: 13px; line-height: 1.7; }
-  /* Modal */
   .wr-overlay { position: fixed; inset: 0; background: rgba(26,25,22,0.5); z-index: 1000; display: none; align-items: flex-start; justify-content: flex-end; padding: 16px; backdrop-filter: blur(4px); }
   .wr-overlay.open { display: flex; }
   .wr-panel { background: #FFFFFF; border: 1px solid #E8E6E0; border-radius: 16px; width: 580px; max-height: calc(100vh - 32px); overflow-y: auto; box-shadow: 0 24px 64px rgba(0,0,0,0.15); display: flex; flex-direction: column; }
@@ -200,7 +201,6 @@
   .wr-btn-cancel { background: none; border: 1px solid #E8E6E0; border-radius: 8px; padding: 11px 18px; font-size: 13px; font-weight: 500; color: #6B6860; font-family: 'DM Sans', sans-serif; cursor: pointer; transition: all .15s; }
   .wr-btn-cancel:hover { border-color: #D0CEC8; color: #1A1916; }
   .wr-divider { font-size: 9px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: #A8A49C; padding-bottom: 8px; border-bottom: 1px solid #E8E6E0; margin-top: 4px; }
-  /* Read modal */
   .wr-read-overlay { position: fixed; inset: 0; background: rgba(26,25,22,0.5); z-index: 1000; display: none; align-items: center; justify-content: center; padding: 24px; backdrop-filter: blur(4px); }
   .wr-read-overlay.open { display: flex; }
   .wr-read-panel { background: #FFFFFF; border: 1px solid #E8E6E0; border-radius: 16px; width: 680px; max-height: calc(100vh - 48px); overflow-y: auto; box-shadow: 0 24px 64px rgba(0,0,0,0.15); }
@@ -212,118 +212,52 @@
   .wr-read-btn:hover { background: #F5F4F0; color: #1A1916; }
   .wr-read-btn.del:hover { border-color: #F5C6BC; color: #C0614A; background: #FCEEE9; }
   .wr-read-body { padding: 24px 28px 28px; display: flex; flex-direction: column; gap: 20px; }
-  .wr-read-section { }
   .wr-read-section-lbl { font-size: 10px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: #A8A49C; margin-bottom: 8px; display: flex; align-items: center; gap: 7px; }
   .wr-read-section-val { font-size: 13.5px; color: #1A1916; line-height: 1.7; white-space: pre-wrap; }
   .wr-read-section-empty { font-size: 13px; color: #A8A49C; font-style: italic; }
-
-  /* RESPONSIVE */
-  @media (max-width: 1100px) {
-    .pillars-grid { grid-template-columns: repeat(3,1fr); }
-    .phases-strip { grid-template-columns: repeat(3,1fr); }
-  }
-  @media (max-width: 768px) {
-    nav, .section-strip, .hero-wrap { padding-left: 20px; padding-right: 20px; }
-    .nav-logo { margin-right: 20px; }
-    .hero { padding: 40px 0 36px; }
-    .dash-header, .timeline-section { padding-left: 24px; padding-right: 24px; }
-    main { padding: 24px; }
-    .pillars-grid { grid-template-columns: repeat(2,1fr); }
-    .phases-strip { grid-template-columns: repeat(2,1fr); }
-    .detail-body { grid-template-columns: 1fr; }
-    .bottom-row { grid-template-columns: 1fr; }
-  }
-
-  /* ── LOGIN SCREEN ── */
-  #loginScreen {
-    position: fixed; inset: 0; background: var(--bg);
-    display: flex; align-items: center; justify-content: center;
-    z-index: 9999; font-family: 'DM Sans', sans-serif;
-  }
+  @media (max-width: 1100px) { .pillars-grid { grid-template-columns: repeat(3,1fr); } .phases-strip { grid-template-columns: repeat(3,1fr); } }
+  @media (max-width: 768px) { nav, .section-strip, .hero-wrap { padding-left: 20px; padding-right: 20px; } .nav-logo { margin-right: 20px; } .hero { padding: 40px 0 36px; } .dash-header, .timeline-section { padding-left: 24px; padding-right: 24px; } main { padding: 24px; } .pillars-grid { grid-template-columns: repeat(2,1fr); } .phases-strip { grid-template-columns: repeat(2,1fr); } .detail-body { grid-template-columns: 1fr; } .bottom-row { grid-template-columns: 1fr; } .sync-bar { padding: 10px 20px; } }
+  #loginScreen { position: fixed; inset: 0; background: var(--bg); display: flex; align-items: center; justify-content: center; z-index: 9999; font-family: 'DM Sans', sans-serif; }
   #loginScreen.hidden { display: none; }
-  .login-card {
-    background: var(--surface); border: 1px solid var(--border);
-    border-radius: 16px; padding: 48px 40px; width: 380px;
-    box-shadow: 0 8px 40px rgba(0,0,0,0.08);
-    display: flex; flex-direction: column; align-items: center; gap: 0;
-  }
-  .login-logo {
-    font-family: 'DM Serif Display', serif; font-size: 28px;
-    letter-spacing: -0.5px; margin-bottom: 6px; text-align: center;
-  }
+  .login-card { background: var(--surface); border: 1px solid var(--border); border-radius: 16px; padding: 48px 40px; width: 380px; box-shadow: 0 8px 40px rgba(0,0,0,0.08); display: flex; flex-direction: column; align-items: center; gap: 0; }
+  .login-logo { font-family: 'DM Serif Display', serif; font-size: 28px; letter-spacing: -0.5px; margin-bottom: 6px; text-align: center; }
   .login-logo em { font-style: italic; color: var(--text-secondary); }
-  .login-sub {
-    font-size: 13px; color: var(--text-muted); margin-bottom: 36px;
-    text-align: center;
-  }
-  .login-label {
-    font-size: 10px; font-weight: 700; letter-spacing: 1.5px;
-    text-transform: uppercase; color: var(--text-muted);
-    margin-bottom: 8px; width: 100%;
-  }
-  .login-input {
-    font-family: 'DM Sans', sans-serif; font-size: 14px;
-    color: var(--text-primary); background: var(--bg);
-    border: 1px solid var(--border); border-radius: 10px;
-    padding: 12px 16px; outline: none; width: 100%;
-    transition: border-color .15s, background .15s;
-    margin-bottom: 20px; letter-spacing: 2px;
-  }
+  .login-sub { font-size: 13px; color: var(--text-muted); margin-bottom: 36px; text-align: center; }
+  .login-label { font-size: 10px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--text-muted); margin-bottom: 8px; width: 100%; }
+  .login-input { font-family: 'DM Sans', sans-serif; font-size: 14px; color: var(--text-primary); background: var(--bg); border: 1px solid var(--border); border-radius: 10px; padding: 12px 16px; outline: none; width: 100%; transition: border-color .15s, background .15s; margin-bottom: 20px; letter-spacing: 2px; }
   .login-input:focus { border-color: var(--text-primary); background: var(--surface); }
-  .login-btn {
-    width: 100%; background: var(--text-primary); color: #fff;
-    border: none; border-radius: 10px; padding: 13px;
-    font-size: 13px; font-weight: 600; font-family: 'DM Sans', sans-serif;
-    cursor: pointer; transition: opacity .15s; letter-spacing: 0.3px;
-  }
+  .login-btn { width: 100%; background: var(--text-primary); color: #fff; border: none; border-radius: 10px; padding: 13px; font-size: 13px; font-weight: 600; font-family: 'DM Sans', sans-serif; cursor: pointer; transition: opacity .15s; letter-spacing: 0.3px; }
   .login-btn:hover { opacity: .85; }
-  .login-error {
-    font-size: 12px; color: #C0614A; margin-top: 12px;
-    text-align: center; min-height: 18px;
-  }
-  .login-hint {
-    font-size: 11px; color: var(--text-muted); margin-top: 24px;
-    text-align: center; line-height: 1.6;
-  }
-
+  .login-error { font-size: 12px; color: #C0614A; margin-top: 12px; text-align: center; min-height: 18px; }
+  .login-hint { font-size: 11px; color: var(--text-muted); margin-top: 24px; text-align: center; line-height: 1.6; }
 </style>
 </head>
 <body>
 
-<!-- LOGIN SCREEN -->
 <div id="loginScreen">
   <div class="login-card">
     <div class="login-logo">Albert's <em>Odyssey</em></div>
     <div class="login-sub">Sistema de vida personal · Acceso privado</div>
     <div class="login-label">Contraseña</div>
-    <input
-      type="password"
-      class="login-input"
-      id="loginInput"
-      placeholder="••••••••••"
-      onkeydown="if(event.key==='Enter') loginSubmit()"
-      autocomplete="current-password"
-    >
+    <input type="password" class="login-input" id="loginInput" placeholder="••••••••••" onkeydown="if(event.key==='Enter') loginSubmit()" autocomplete="current-password">
     <button class="login-btn" onclick="loginSubmit()">Entrar →</button>
     <div class="login-error" id="loginError"></div>
     <div class="login-hint">La sesión se mantiene activa en este navegador.</div>
   </div>
 </div>
 
-<!-- NAV -->
 <nav>
   <a href="index.html" class="nav-logo">Albert's <span>Odyssey</span></a>
   <div class="nav-links">
-    <a href="index.html"            class="nav-link active">Home</a>
-    <a href="salud/index.html"      class="nav-link">Salud</a>
-    <a href="vlog/index.html"       class="nav-link">Vlog</a>
-    <a href="lecturas/index.html"   class="nav-link">Lecturas</a>
-    <a href="finanzas/index.html"   class="nav-link">Finanzas</a>
+    <a href="index.html" class="nav-link active">Home</a>
+    <a href="salud/index.html" class="nav-link">Salud</a>
+    <a href="vlog/index.html" class="nav-link">Vlog</a>
+    <a href="lecturas/index.html" class="nav-link">Lecturas</a>
+    <a href="finanzas/index.html" class="nav-link">Finanzas</a>
     <a href="desarrollo/index.html" class="nav-link">Desarrollo</a>
   </div>
 </nav>
 
-<!-- HERO -->
 <div class="hero-wrap">
   <div class="hero">
     <div class="hero-left">
@@ -332,23 +266,13 @@
       <p class="hero-sub">Un sistema completo para construir la mejor versión de mí mismo. Salud, desarrollo, finanzas, relaciones y propósito.</p>
     </div>
     <div class="hero-right">
-      <div>
-        <div class="hero-stat-val" id="heroDia">Día 1</div>
-        <div class="hero-stat-lbl">Inicio del sistema</div>
-      </div>
-      <div>
-        <div class="hero-stat-val">6</div>
-        <div class="hero-stat-lbl">Fases · 3 años</div>
-      </div>
-      <div>
-        <div class="hero-stat-val">5</div>
-        <div class="hero-stat-lbl">Pilares activos</div>
-      </div>
+      <div><div class="hero-stat-val" id="heroDia">Día 1</div><div class="hero-stat-lbl">Inicio del sistema</div></div>
+      <div><div class="hero-stat-val">6</div><div class="hero-stat-lbl">Fases · 3 años</div></div>
+      <div><div class="hero-stat-val">5</div><div class="hero-stat-lbl">Pilares activos</div></div>
     </div>
   </div>
 </div>
 
-<!-- SECTION STRIP -->
 <div class="section-strip">
   <a href="salud/index.html">🫀 Salud</a>
   <a href="vlog/index.html">✍️ Vlog</a>
@@ -357,28 +281,25 @@
   <a href="desarrollo/index.html">🧠 Desarrollo</a>
 </div>
 
-<!-- DASHBOARD HEADER -->
+<!-- SYNC BAR -->
+<div class="sync-bar">
+  <span class="sync-label">Sincronizar entre dispositivos:</span>
+  <button class="sync-btn sync-btn-export" onclick="syncExport()">↑ Exportar datos</button>
+  <button class="sync-btn sync-btn-import" onclick="syncImport()">↓ Importar datos</button>
+</div>
+
 <div class="dash-header">
   <div style="font-family:'DM Serif Display',serif;font-size:20px;letter-spacing:-0.3px;">Panel de Control</div>
   <div class="dash-meta">
     <div class="year-label" id="dayLabel">10 Mar 2026 · Día 1</div>
-    <div class="global-score">
-      <div class="num" id="globalScore">0%</div>
-      <div class="lbl">global</div>
-    </div>
-    <button onclick="buildEditPanel()" style="background:#1A1916;color:#fff;border:none;border-radius:8px;padding:9px 18px;font-size:12px;font-weight:600;font-family:'DM Sans',sans-serif;cursor:pointer;letter-spacing:0.3px;display:flex;align-items:center;gap:7px;transition:background 0.15s;" onmouseover="this.style.background='#3D3C39'" onmouseout="this.style.background='#1A1916'">
-      ✎ Actualizar hitos
-    </button>
+    <div class="global-score"><div class="num" id="globalScore">0%</div><div class="lbl">global</div></div>
+    <button onclick="buildEditPanel()" style="background:#1A1916;color:#fff;border:none;border-radius:8px;padding:9px 18px;font-size:12px;font-weight:600;font-family:'DM Sans',sans-serif;cursor:pointer;letter-spacing:0.3px;display:flex;align-items:center;gap:7px;transition:background 0.15s;" onmouseover="this.style.background='#3D3C39'" onmouseout="this.style.background='#1A1916'">✎ Actualizar hitos</button>
   </div>
 </div>
 
-<!-- TIMELINE -->
 <section class="timeline-section">
   <div class="timeline-top">
-    <div>
-      <div class="tl-heading">Hoja de ruta maestra</div>
-      <div class="tl-title">Los próximos 3 años</div>
-    </div>
+    <div><div class="tl-heading">Hoja de ruta maestra</div><div class="tl-title">Los próximos 3 años</div></div>
     <div class="tl-horizon">Horizonte Mar 2026 – Mar 2029 · 6 fases</div>
   </div>
   <div class="phases-strip" id="phasesStrip"></div>
@@ -389,826 +310,98 @@
 </section>
 
 <main>
-
-  <div class="notice notice-dayone">
-    <div class="icon">◎</div>
-    <div><strong>Día 1 — 10 de marzo de 2026.</strong> Incorporación a Portland el 6 de abril. 16 días para preparar el terreno. Proyecto Gobelas desde el primer día. Activa los hitos de estas semanas antes de llegar a Madrid.</div>
-  </div>
-
-  <div class="notice notice-warning" id="balanceAlert">
-    <div class="icon">⚠</div>
-    <div id="balanceAlertText"></div>
-  </div>
-
+  <div class="notice notice-dayone"><div class="icon">◎</div><div><strong>Día 1 — 10 de marzo de 2026.</strong> Incorporación a Portland el 6 de abril. 16 días para preparar el terreno. Proyecto Gobelas desde el primer día. Activa los hitos de estas semanas antes de llegar a Madrid.</div></div>
+  <div class="notice notice-warning" id="balanceAlert"><div class="icon">⚠</div><div id="balanceAlertText"></div></div>
   <div class="pillars-grid" id="pillarsGrid"></div>
-
   <div class="detail-panel" id="detailPanel">
     <div class="detail-hdr" id="detailHdr">
       <div class="detail-hdr-left">
         <div class="detail-ico" id="detailIco"></div>
-        <div>
-          <div class="detail-ttl" id="detailTtl"></div>
-          <div class="detail-sub" id="detailSub"></div>
-        </div>
+        <div><div class="detail-ttl" id="detailTtl"></div><div class="detail-sub" id="detailSub"></div></div>
       </div>
       <button class="detail-cls" onclick="closeDetail()">Cerrar ✕</button>
     </div>
     <div class="detail-body" id="detailBody"></div>
   </div>
-
   <div class="bottom-row">
-    <div class="summary-card">
-      <h3>Equilibrio de Pilares</h3>
-      <div class="radar-wrap"><canvas id="radarChart" width="460" height="400"></canvas></div>
-    </div>
-    <div class="summary-card">
-      <h3>Próximos Hitos Activos</h3>
-      <div id="nextActions"></div>
-    </div>
+    <div class="summary-card"><h3>Equilibrio de Pilares</h3><div class="radar-wrap"><canvas id="radarChart" width="460" height="400"></canvas></div></div>
+    <div class="summary-card"><h3>Próximos Hitos Activos</h3><div id="nextActions"></div></div>
   </div>
-
-
-  <!-- WEEKLY REVIEW -->
   <div class="wr-section">
     <div class="wr-header">
-      <div>
-        <div class="wr-title">Weekly Review</div>
-        <div class="wr-sub">Seguimiento semanal · Cada domingo · 7 pilares</div>
-      </div>
+      <div><div class="wr-title">Weekly Review</div><div class="wr-sub">Seguimiento semanal · Cada domingo · 7 pilares</div></div>
       <button class="wr-new-btn" onclick="wrOpenNew()">+ Nueva semana</button>
     </div>
     <div id="wrGrid"></div>
   </div>
-
 </main>
 
-<script>
-const PILLARS = [
-  {
-    id:'salud', name:'Salud', icon:'◎', color:'#2D6A4F', bg:'#EAF3EE',
-    objectives:[
-      {
-        name:'SMART · Completar mín. 3 sesiones de fuerza/semana durante 16 semanas consecutivas (Upper/Lower) · 6 Abr → 27 Jul 2026',
-        milestones:[
-          { title:'Elegir y fijar gimnasio en Madrid antes de la incorporación', status:'active', date:'Antes 6 Abr' },
-          { title:'Completar las primeras 4 semanas sin saltarse ningún día de entreno', status:'pending', date:'20 Abr 2026' },
-          { title:'Completar 8 semanas consecutivas de entrenamiento Upper/Lower', status:'pending', date:'18 May 2026' },
-          { title:'16 semanas consecutivas completadas — hábito instalado', status:'pending', date:'13 Jul 2026' },
-        ]
-      },
-      {
-        name:'SMART · Mantener mín. 80% de comidas con proteína + verdura + CH de calidad, con cooking batch 2×/semana · 6 Abr → 27 Jul 2026',
-        milestones:[
-          { title:'Primera compra en Madrid sin ultraprocesados ni azúcar añadido', status:'active', date:'7 Abr 2026' },
-          { title:'Incorporar suplementación base: whey, vitamina D3+K2, omega-3', status:'pending', date:'Abr 2026' },
-          { title:'2 semanas consecutivas de cooking batch activo (dom + mié)', status:'pending', date:'7 Abr 2026' },
-          { title:'8 semanas consecutivas con cooking batch y protocolo de comidas activo', status:'pending', date:'18 May 2026' },
-        ]
-      },
-      {
-        name:'Resultados medibles de composición corporal',
-        milestones:[
-          { title:'Peso por debajo de 85kg', status:'pending', date:'Jun 2026' },
-          { title:'Llegar a 81kg con % grasa saludable', status:'pending', date:'Sep 2026' },
-          { title:'3 meses consecutivos sin semana de cero entrenamientos', status:'pending', date:'Jul 2026' },
-        ]
-      }
-    ]
-  },
-  {
-    id:'social', name:'Social', icon:'◈', color:'#C0614A', bg:'#FCEEE9',
-    objectives:[
-      {
-        name:'SMART · Establecer 1 cita virtual semanal con plan diferente y entretenido, y vernos en persona 2 veces con fecha cerrada · 6 Abr → 30 Sep 2026',
-        milestones:[
-          { title:'Acordar con tu novia el formato de la cita virtual semanal (día, plan, dinámica)', status:'active', date:'Antes 6 Abr' },
-          { title:'Cerrar fecha y vuelos del primer encuentro en persona', status:'pending', date:'Abr 2026' },
-          { title:'Cerrar fecha y vuelos del segundo encuentro en persona', status:'pending', date:'Jun 2026' },
-          { title:'Primer encuentro en persona realizado', status:'pending', date:'Sep 2026' },
-          { title:'Segundo encuentro en persona realizado', status:'pending', date:'Sep 2026' },
-        ]
-      },
-      {
-        name:'SMART · Establecer 1 actividad social recurrente en Madrid y realizar 1 actividad social diferente al mes · Antes 30 Sep 2026',
-        milestones:[
-          { title:'Identificar y apuntarse a 1 actividad social recurrente en Madrid', status:'pending', date:'Abr 2026' },
-          { title:'Primera actividad social diferente realizada (trekking, conferencia, evento...)', status:'pending', date:'Abr 2026' },
-          { title:'Segunda actividad social diferente realizada', status:'pending', date:'May 2026' },
-          { title:'Tercera actividad social diferente realizada', status:'pending', date:'Jun 2026' },
-          { title:'Actividad recurrente consolidada — asistencia mín. 3 de cada 4 semanas', status:'pending', date:'Sep 2026' },
-        ]
-      },
-      {
-        name:'SMART · Contacto activo con mín. 3 amigos de Sevilla al mes y visita cada 6-8 semanas · 6 Abr → 30 Sep 2026',
-        milestones:[
-          { title:'Primera visita a Sevilla desde Madrid con fecha cerrada', status:'pending', date:'May 2026' },
-          { title:'Contacto activo mantenido con mínimo 3 amigos cercanos cada mes', status:'pending', date:'Continuo' },
-          { title:'Segunda visita a Sevilla o encuentro familiar', status:'pending', date:'Jul 2026' },
-        ]
-      }
-    ]
-  },
-  {
-    id:'profesional', name:'Profesional', icon:'◧', color:'#3D405B', bg:'#ECEDF3',
-    objectives:[
-      {
-        name:'SMART · Gestionar de forma autónoma las 4 dimensiones de Gobelas (legal, técnica, financiera, comercial) y elaborar el reporting completo sin supervisión · Antes 30 Sep 2026',
-        milestones:[
-          { title:'Leer y entender toda la documentación legal existente (UTE, contratos, acuerdos)', status:'active', date:'Abr 2026' },
-          { title:'Mapear todos los actores del proyecto: roles, responsabilidades y relaciones', status:'pending', date:'Abr 2026' },
-          { title:'Dominar el modelo financiero: cash flow, costes, presupuesto y monitoring bancario', status:'pending', date:'Abr 2026' },
-          { title:'Conocer el estado técnico y urbanístico: licencias, normativa, hitos de obra', status:'pending', date:'May 2026' },
-          { title:'Elaborar el primer reporting periódico completo de forma autónoma', status:'pending', date:'Jun 2026' },
-          { title:'Gestionar el flujo documental sin supervisión de Annie', status:'pending', date:'Sep 2026' },
-        ]
-      },
-      {
-        name:'SMART · Identificar e implementar al menos 2 mejoras concretas de proceso, herramienta o sistema en el equipo de Portland · Antes 30 Sep 2026',
-        milestones:[
-          { title:'Identificar 3 áreas de mejora concretas en procesos, herramientas o sistemas del equipo', status:'pending', date:'May 2026' },
-          { title:'Proponer la primera mejora con argumentación y plan de implementación', status:'pending', date:'Jun 2026' },
-          { title:'Primera mejora implementada y en uso por el equipo', status:'pending', date:'Jul 2026' },
-          { title:'Segunda mejora implementada y en uso por el equipo', status:'pending', date:'Sep 2026' },
-        ]
-      }
-    ]
-  },
-  {
-    id:'desarrollo', name:'Desarrollo', icon:'◉', color:'#9A7D2E', bg:'#FDF8EC',
-    objectives:[
-      {
-        name:'SMART · Completar 1 curso estructurado de IA e implementar 3 herramientas en el flujo de trabajo real de Gobelas o Portland · Antes 30 Sep 2026',
-        milestones:[
-          { title:'Elegir y comenzar un curso estructurado de IA (no YouTube random)', status:'pending', date:'Abr 2026' },
-          { title:'Identificar 3 procesos de Gobelas o Portland donde aplicar IA', status:'pending', date:'May 2026' },
-          { title:'Completar el curso estructurado de IA', status:'pending', date:'Jun 2026' },
-          { title:'Primera herramienta de IA implementada en flujo de trabajo real', status:'pending', date:'Jun 2026' },
-          { title:'Segunda herramienta de IA implementada en flujo de trabajo real', status:'pending', date:'Jul 2026' },
-          { title:'Tercera herramienta de IA implementada en flujo de trabajo real', status:'pending', date:'Sep 2026' },
-        ]
-      },
-      {
-        name:'SMART · Leer mínimo 6 libros de no ficción con lista definida de antemano · 6 Abr → 30 Sep 2026',
-        milestones:[
-          { title:'Definir lista de 6 libros para Mar–Sep 2026 (no ficción, economía, real estate, biografías)', status:'active', date:'Antes 6 Abr' },
-          { title:'Primer libro leído', status:'pending', date:'Abr 2026' },
-          { title:'Tercer libro leído', status:'pending', date:'Jun 2026' },
-          { title:'Sexto libro leído', status:'pending', date:'Sep 2026' },
-        ]
-      }
-    ]
-  },
-  {
-    id:'finanzas', name:'Finanzas', icon:'◐', color:'#2E6653', bg:'#EFF5F2',
-    objectives:[
-      {
-        name:'SMART · Ejecutar presupuesto mensual real con aportación fija automatizada de mín. 300€/mes a cartera · 6 Abr → 30 Sep 2026',
-        milestones:[
-          { title:'Definir presupuesto mensual real para Madrid (alquiler, fijos, variable, inversión)', status:'active', date:'Antes 6 Abr' },
-          { title:'Firmar contrato de alquiler en Madrid', status:'pending', date:'Antes 30 Abr 2026' },
-          { title:'Configurar transferencia automática mensual de mínimo 300€ a cartera', status:'pending', date:'Abr 2026' },
-          { title:'Primer mes con presupuesto ejecutado según lo planificado', status:'pending', date:'Abr 2026' },
-          { title:'3 meses consecutivos con aportación automática realizada', status:'pending', date:'Jun 2026' },
-          { title:'6 meses consecutivos con aportación automática realizada', status:'pending', date:'Sep 2026' },
-        ]
-      },
-      {
-        name:'SMART · Tomar decisión documentada sobre los 30k€ en liquidez e incorporar fondo indexado global como núcleo de cartera · Antes 30 Jun 2026',
-        milestones:[
-          { title:'Auditar cartera actual: concentración, riesgo y rentabilidad histórica', status:'active', date:'Mar 2026' },
-          { title:'Decidir destino de los 30k€ en liquidez con criterio documentado', status:'pending', date:'Abr 2026' },
-          { title:'Ejecutar la decisión sobre los 30k€', status:'pending', date:'Abr 2026' },
-          { title:'Incorporar fondo indexado global como núcleo de la cartera', status:'pending', date:'Jun 2026' },
-          { title:'Cartera con máximo 40% en acciones individuales', status:'pending', date:'Dic 2026' },
-        ]
-      }
-    ]
-  }
-];
-
-const PHASES = [
-  { period:'6 Abr – Sep 2026', name:'Cimientos', status:'current', desc:'Incorporación a Portland el 6 Abr. Arrancar Gobelas, reactivar el cuerpo, automatizar las finanzas.', pillars:[{id:'salud',focus:'Reactivación física'},{id:'profesional',focus:'Arranque en Portland'},{id:'finanzas',focus:'Presupuesto Madrid'}], milestones:['Incorporación a Portland — 6 Abr','Estructura legal de Gobelas dominada','Presupuesto Madrid con 2.000€ definido','Protocolo entrenamiento activo'] },
-  { period:'Sep 2026 – Mar 2027', name:'Tracción', status:'future', desc:'Los hábitos consolidan. Escalar en Portland. Avanzar en francés e IA.', pillars:[{id:'profesional',focus:'Referente interno'},{id:'desarrollo',focus:'IA aplicada'},{id:'social',focus:'Red Madrid sólida'}], milestones:['81kg alcanzados','Referente financiero en Portland','Francés A2 operativo','Plan de relación a distancia revisado'] },
-  { period:'Mar – Sep 2027', name:'Consolidación', status:'future', desc:'Solidificar resultados. Primeros 100k€. Visión del paso siguiente en la carrera.', pillars:[{id:'finanzas',focus:'100k€ patrimonio'},{id:'profesional',focus:'Visión post-Portland'},{id:'salud',focus:'Forma estable'}], milestones:['100k€ de patrimonio neto','Cartera diversificada activa','Forma física mantenida 12 meses','Francés B1 en camino'] },
-  { period:'Sep 2027 – Mar 2028', name:'Expansión', status:'future', desc:'Operar desde posición de fuerza. Abrir nuevos frentes con criterio.', pillars:[{id:'profesional',focus:'Siguiente nivel'},{id:'desarrollo',focus:'Francés arranca'},{id:'social',focus:'Relación resuelta'}], milestones:['Decisión sobre futuro en Portland','Francés B1 certificado','Situación con novia definida','Nuevos proyectos propios iniciados'] },
-  { period:'Mar – Sep 2028', name:'Autonomía', status:'future', desc:'Sistema financiero autónomo. Carrera con dirección propia. Base para emprender.', pillars:[{id:'finanzas',focus:'Ingresos pasivos'},{id:'profesional',focus:'Bases empresariales'},{id:'salud',focus:'Hábitos automáticos'}], milestones:['Primer ingreso pasivo real','Plan empresarial inmobiliario esbozado','Hábitos de salud en piloto automático','Patrimonio por encima de 130k€'] },
-  { period:'Sep 2028 – Mar 2029', name:'Maestría', status:'future', desc:'Todos los pilares en verde. Sistema autónomo. Visión clara del empresario que quieres ser.', pillars:[{id:'salud',focus:'Óptimo'},{id:'profesional',focus:'Referente sectorial'},{id:'finanzas',focus:'Libertad financiera'},{id:'social',focus:'Estabilidad total'}], milestones:['Todos los pilares por encima del 80%','Base para primer proyecto propio','Relación estable y con futuro claro','Sistema de vida que no depende de la disciplina'] }
-];
-
-// ── PERSISTENCIA localStorage ──
-const STORAGE_KEY = 'ao_milestones_v1';
-
-function saveStates() {
-  const data = {};
-  PILLARS.forEach(p => {
-    p.objectives.forEach((obj, oi) => {
-      obj.milestones.forEach((m, mi) => {
-        data[`${p.id}_${oi}_${mi}`] = m.status;
-      });
-    });
-  });
-  localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
-}
-
-function loadStates() {
-  try {
-    const raw = localStorage.getItem(STORAGE_KEY);
-    if (!raw) return;
-    const data = JSON.parse(raw);
-    PILLARS.forEach(p => {
-      p.objectives.forEach((obj, oi) => {
-        obj.milestones.forEach((m, mi) => {
-          const key = `${p.id}_${oi}_${mi}`;
-          if (data[key]) m.status = data[key];
-        });
-      });
-    });
-  } catch(e) {}
-}
-
-// ── PANEL DE EDICIÓN ──
-function buildEditPanel() {
-  const existing = document.getElementById('editOverlay');
-  if (existing) { existing.remove(); }
-
-  const overlay = document.createElement('div');
-  overlay.id = 'editOverlay';
-  overlay.style.cssText = `
-    position:fixed; inset:0; background:rgba(26,25,22,0.5); z-index:1000;
-    display:flex; align-items:flex-start; justify-content:flex-end;
-    padding:16px; backdrop-filter:blur(4px);
-  `;
-
-  const panel = document.createElement('div');
-  panel.style.cssText = `
-    background:#FFFFFF; border:1px solid #E8E6E0; border-radius:16px;
-    width:560px; max-height:calc(100vh - 32px); overflow-y:auto;
-    box-shadow:0 24px 64px rgba(0,0,0,0.15); display:flex; flex-direction:column;
-  `;
-
-  // Header
-  const hdr = document.createElement('div');
-  hdr.style.cssText = `
-    padding:20px 24px 16px; border-bottom:1px solid #E8E6E0;
-    display:flex; align-items:center; justify-content:space-between;
-    position:sticky; top:0; background:#fff; z-index:1; border-radius:16px 16px 0 0;
-  `;
-  hdr.innerHTML = `
-    <div>
-      <div style="font-family:'DM Serif Display',serif;font-size:20px;letter-spacing:-0.3px;">Actualizar Hitos</div>
-      <div style="font-size:12px;color:#6B6860;margin-top:2px;">Los cambios se guardan automáticamente</div>
+<!-- SYNC EXPORT MODAL -->
+<div class="sync-overlay" id="syncExportOverlay" onclick="if(event.target===this)closeSyncExport()">
+  <div class="sync-modal">
+    <div class="sync-modal-hdr">
+      <div><div class="sync-modal-title">Exportar datos</div><div class="sync-modal-sub">Copia este código y pégalo en otro dispositivo</div></div>
+      <button class="sync-modal-close" onclick="closeSyncExport()">✕</button>
     </div>
-    <button onclick="closeEditPanel()" style="background:none;border:1px solid #E8E6E0;border-radius:8px;padding:8px 12px;cursor:pointer;font-size:13px;color:#6B6860;font-family:'DM Sans',sans-serif;">✕ Cerrar</button>
-  `;
-  panel.appendChild(hdr);
+    <div class="sync-modal-body">
+      <div class="sync-info">Pulsa "Copiar" o selecciona todo el texto (Cmd+A) y cópialo. Luego abre la web en el otro dispositivo, pulsa "Importar datos" y pégalo.</div>
+      <textarea class="sync-textarea" id="syncExportText" readonly></textarea>
+      <div class="sync-success" id="syncExportSuccess">✓ Copiado al portapapeles</div>
+      <div class="sync-modal-actions">
+        <button class="sync-btn-primary" onclick="syncCopyToClipboard()">Copiar al portapapeles</button>
+        <button class="sync-btn-secondary" onclick="closeSyncExport()">Cerrar</button>
+      </div>
+    </div>
+  </div>
+</div>
 
-  // Body
-  const body = document.createElement('div');
-  body.style.cssText = 'padding:16px 24px 24px; display:flex; flex-direction:column; gap:20px;';
-
-  PILLARS.forEach((p, pi) => {
-    const section = document.createElement('div');
-    
-    // Pillar header
-    const ph = document.createElement('div');
-    ph.style.cssText = `display:flex;align-items:center;gap:10px;padding:10px 0 8px;border-bottom:2px solid ${p.color};margin-bottom:12px;`;
-    ph.innerHTML = `
-      <div style="width:28px;height:28px;border-radius:7px;background:${p.bg};display:flex;align-items:center;justify-content:center;font-size:14px;">${p.icon}</div>
-      <span style="font-weight:600;font-size:14px;letter-spacing:0.2px;">${p.name}</span>
-    `;
-    section.appendChild(ph);
-
-    p.objectives.forEach((obj, oi) => {
-      const objDiv = document.createElement('div');
-      objDiv.style.cssText = 'margin-bottom:12px;';
-      
-      const objTitle = document.createElement('div');
-      objTitle.style.cssText = 'font-size:11px;font-weight:600;color:#A8A49C;letter-spacing:1px;text-transform:uppercase;margin-bottom:8px;padding:0 2px;';
-      // Short name: take first 60 chars
-      objTitle.textContent = obj.name.length > 70 ? obj.name.substring(0,70)+'…' : obj.name;
-      objDiv.appendChild(objTitle);
-
-      obj.milestones.forEach((m, mi) => {
-        const row = document.createElement('div');
-        row.style.cssText = `
-          display:flex;align-items:center;gap:10px;padding:10px 12px;
-          border:1px solid #E8E6E0;border-radius:10px;margin-bottom:6px;
-          cursor:pointer;transition:all 0.15s;background:#FAFAF8;
-        `;
-        row.dataset.pillar = pi;
-        row.dataset.obj = oi;
-        row.dataset.ms = mi;
-
-        const statusColors = { done:'#2D6A4F', active:'#3D405B', pending:'#A8A49C' };
-        const statusBg = { done:'#EAF3EE', active:'#ECEDF3', pending:'#F5F4F0' };
-        const statusLabel = { done:'✓ Completado', active:'→ En curso', pending:'· Pendiente' };
-
-        row.innerHTML = `
-          <div class="edit-dot" style="width:10px;height:10px;border-radius:50%;background:${statusColors[m.status]};flex-shrink:0;transition:background 0.2s;"></div>
-          <div style="flex:1;font-size:13px;line-height:1.35;">${m.title}</div>
-          <div style="font-size:10px;color:#A8A49C;white-space:nowrap;">${m.date}</div>
-          <div class="edit-badge" style="font-size:10.5px;font-weight:600;padding:3px 9px;border-radius:20px;white-space:nowrap;background:${statusBg[m.status]};color:${statusColors[m.status]};">${statusLabel[m.status]}</div>
-        `;
-
-        // Cycle through statuses on click
-        const statuses = ['pending','active','done'];
-        row.addEventListener('click', () => {
-          const cur = PILLARS[pi].objectives[oi].milestones[mi].status;
-          const next = statuses[(statuses.indexOf(cur)+1) % statuses.length];
-          PILLARS[pi].objectives[oi].milestones[mi].status = next;
-          // Update dot and badge
-          row.querySelector('.edit-dot').style.background = statusColors[next];
-          row.querySelector('.edit-badge').style.background = statusBg[next];
-          row.querySelector('.edit-badge').style.color = statusColors[next];
-          row.querySelector('.edit-badge').textContent = statusLabel[next];
-          // Save & refresh main UI
-          saveStates();
-          refreshUI();
-        });
-
-        row.addEventListener('mouseenter', () => { row.style.borderColor = p.color; row.style.background = p.bg; });
-        row.addEventListener('mouseleave', () => { row.style.borderColor = '#E8E6E0'; row.style.background = '#FAFAF8'; });
-
-        objDiv.appendChild(row);
-      });
-
-      section.appendChild(objDiv);
-    });
-
-    body.appendChild(section);
-  });
-
-  panel.appendChild(body);
-  overlay.appendChild(panel);
-
-  // Close on overlay click
-  overlay.addEventListener('click', e => { if (e.target === overlay) closeEditPanel(); });
-
-  document.body.appendChild(overlay);
-}
-
-function closeEditPanel() {
-  const el = document.getElementById('editOverlay');
-  if (el) el.remove();
-}
-
-function refreshUI() {
-  renderPillars();
-  renderNextActions();
-  checkBalance();
-  setDynamic();
-  setTimeout(drawRadar, 100);
-  // If detail panel open, refresh it
-  if (activeId) { openDetail(activeId); }
-}
-
-// ── FUNCTIONS ──
-const calcObjPct = obj => {
-  const t=obj.milestones.length, d=obj.milestones.filter(m=>m.status==='done').length, a=obj.milestones.filter(m=>m.status==='active').length;
-  return Math.round((d+a*0.5)/t*100);
-};
-const calcPillarPct = p => { const v=p.objectives.map(calcObjPct); return Math.round(v.reduce((a,b)=>a+b,0)/v.length); };
-const calcGlobal = () => { const v=PILLARS.map(calcPillarPct); return Math.round(v.reduce((a,b)=>a+b,0)/v.length); };
-
-function renderTimeline() {
-  const strip=document.getElementById('phasesStrip'); strip.innerHTML='';
-  PHASES.forEach(phase => {
-    const col=document.createElement('div'); col.className='phase-col '+phase.status;
-    const pillsHTML=phase.pillars.map(pp=>{const p=PILLARS.find(x=>x.id===pp.id);return p?`<span class="phase-pill" style="background:${p.bg};color:${p.color}">${pp.focus}</span>`:''}).join('');
-    const dotColor=phase.status==='current'?'#1A1916':'#D0CEC8';
-    const msHTML=phase.milestones.map(m=>`<div class="phase-milestone"><div class="phase-ms-dot" style="background:${dotColor}"></div><span>${m}</span></div>`).join('');
-    col.innerHTML=`<div class="phase-inner"><div class="phase-period">${phase.period}</div><div class="phase-name">${phase.name}</div><div class="phase-desc">${phase.desc}</div><div class="phase-pillars">${pillsHTML}</div><div class="phase-milestones">${msHTML}</div></div>`;
-    strip.appendChild(col);
-  });
-  setTimeout(()=>{document.getElementById('tlFill').style.width='0%';},200);
-}
-
-function renderPillars() {
-  const grid=document.getElementById('pillarsGrid'); grid.innerHTML='';
-  PILLARS.forEach(p=>{
-    const pct=calcPillarPct(p), total=p.objectives.reduce((a,o)=>a+o.milestones.length,0), done=p.objectives.reduce((a,o)=>a+o.milestones.filter(m=>m.status==='done').length,0);
-    const card=document.createElement('div'); card.className='pillar-card'; card.id='card-'+p.id;
-    card.style.setProperty('--pillar-color',p.color); card.style.setProperty('--pillar-bg',p.bg);
-    card.onclick=()=>openDetail(p.id);
-    card.innerHTML=`<div class="p-icon">${p.icon}</div><div class="p-name">${p.name}</div><div class="p-pct">${pct}<span>%</span></div><div class="p-bar-bg"><div class="p-bar-fill" style="width:0%;background:${p.color}" data-t="${pct}"></div></div><div class="p-stats"><span><strong>${done}</strong>/${total} hitos</span><span>${p.objectives.length} objetivos</span></div>`;
-    grid.appendChild(card);
-  });
-  setTimeout(()=>{document.querySelectorAll('.p-bar-fill').forEach(el=>{el.style.width=el.dataset.t+'%';});},100);
-}
-
-let activeId=null;
-function openDetail(id) {
-  const p=PILLARS.find(x=>x.id===id); if(!p) return;
-  if(activeId===id){closeDetail();return;} activeId=id;
-  document.querySelectorAll('.pillar-card').forEach(c=>c.classList.remove('active'));
-  document.getElementById('card-'+id).classList.add('active');
-  document.getElementById('detailHdr').style.background=p.bg+'66';
-  document.getElementById('detailIco').style.background=p.color;
-  document.getElementById('detailIco').textContent=p.icon;
-  document.getElementById('detailTtl').textContent=p.name;
-  document.getElementById('detailSub').textContent=p.objectives.length+' objetivos · '+p.objectives.reduce((a,o)=>a+o.milestones.length,0)+' hitos totales';
-  const body=document.getElementById('detailBody'); body.innerHTML='';
-  body.style.setProperty('--pillar-color',p.color); body.style.setProperty('--pillar-bg',p.bg);
-  p.objectives.forEach(obj=>{
-    const pct=calcObjPct(obj), block=document.createElement('div'); block.className='obj-block';
-    block.style.setProperty('--pillar-color',p.color); block.style.setProperty('--pillar-bg',p.bg);
-    const msHTML=obj.milestones.map(m=>{
-      const lbl=m.status==='done'?'✓ Completado':m.status==='active'?'→ En curso':'· Pendiente';
-      return `<div class="ms-item ${m.status}"><div class="ms-check">${m.status==='done'?'✓':''}</div><div class="ms-content"><div class="ms-title">${m.title}</div><div class="ms-date">${m.date}</div></div><div class="ms-status">${lbl}</div></div>`;
-    }).join('');
-    block.innerHTML=`<div class="obj-hdr"><div class="obj-name">${obj.name}</div><div class="obj-badge">${pct}%</div></div><div class="obj-meta"><div class="obj-bar-bg"><div class="obj-bar-fill" style="width:0%" data-t="${pct}"></div></div><div class="obj-pct">${pct}%</div></div><div class="ms-list">${msHTML}</div>`;
-    body.appendChild(block);
-  });
-  document.getElementById('detailPanel').classList.add('visible');
-  setTimeout(()=>{body.querySelectorAll('.obj-bar-fill').forEach(el=>{el.style.background=p.color;el.style.transition='width 0.8s cubic-bezier(0.4,0,0.2,1)';el.style.width=el.dataset.t+'%';});},50);
-  document.getElementById('detailPanel').scrollIntoView({behavior:'smooth',block:'nearest'});
-}
-function closeDetail() {
-  document.getElementById('detailPanel').classList.remove('visible');
-  document.querySelectorAll('.pillar-card').forEach(c=>c.classList.remove('active'));
-  activeId=null;
-}
-
-function drawRadar() {
-  const canvas=document.getElementById('radarChart'), ctx=canvas.getContext('2d');
-  const W=canvas.width,H=canvas.height,cx=W/2,cy=H/2,R=Math.min(W,H)/2-64;
-  ctx.clearRect(0,0,W,H);
-  const vals=PILLARS.map(p=>calcPillarPct(p)/100), N=PILLARS.length, step=(Math.PI*2)/N, start=-Math.PI/2;
-  const pt=(i,r)=>({x:cx+Math.cos(start+i*step)*r, y:cy+Math.sin(start+i*step)*r});
-  [0.25,0.5,0.75,1.0].forEach(l=>{
-    ctx.beginPath(); for(let i=0;i<N;i++){const p=pt(i,R*l);i===0?ctx.moveTo(p.x,p.y):ctx.lineTo(p.x,p.y);} ctx.closePath();
-    ctx.strokeStyle=l===1.0?'#C8C5BE':'#E2DFD8'; ctx.lineWidth=l===1.0?1.5:1; ctx.stroke();
-    const lp=pt(2,R*l); ctx.font='500 9px DM Sans'; ctx.fillStyle='#C0BDB6'; ctx.textAlign='center'; ctx.textBaseline='middle'; ctx.fillText(Math.round(l*100)+'%',lp.x+10,lp.y);
-  });
-  for(let i=0;i<N;i++){const p=pt(i,R);ctx.beginPath();ctx.moveTo(cx,cy);ctx.lineTo(p.x,p.y);ctx.strokeStyle='#E2DFD8';ctx.lineWidth=1;ctx.stroke();}
-  ctx.beginPath(); vals.forEach((v,i)=>{const p=pt(i,R*Math.max(v,0.06));i===0?ctx.moveTo(p.x,p.y):ctx.lineTo(p.x,p.y);}); ctx.closePath();
-  ctx.fillStyle='rgba(26,25,22,0.07)'; ctx.fill(); ctx.strokeStyle='#1A1916'; ctx.lineWidth=2; ctx.stroke();
-  vals.forEach((v,i)=>{const p=pt(i,R*Math.max(v,0.06));ctx.beginPath();ctx.arc(p.x,p.y,5,0,Math.PI*2);ctx.fillStyle=PILLARS[i].color;ctx.fill();ctx.strokeStyle='#fff';ctx.lineWidth=1.5;ctx.stroke();});
-  ctx.font='600 12px DM Sans'; ctx.textAlign='center'; ctx.textBaseline='middle';
-  PILLARS.forEach((p,i)=>{const pos=pt(i,R+36);ctx.fillStyle=p.color;ctx.fillText(p.name.toUpperCase(),pos.x,pos.y);});
-  ctx.font='600 11px DM Sans';
-  vals.forEach((v,i)=>{const p=pt(i,R*Math.max(v,0.06)),angle=start+i*step,lx=p.x+Math.cos(angle)*18,ly=p.y+Math.sin(angle)*18;ctx.fillStyle=PILLARS[i].color;ctx.textAlign='center';ctx.textBaseline='middle';ctx.fillText(Math.round(v*100)+'%',lx,ly);});
-}
-
-function renderNextActions() {
-  const container=document.getElementById('nextActions'); container.innerHTML='';
-  const active=[];
-  PILLARS.forEach(p=>p.objectives.forEach(obj=>obj.milestones.filter(m=>m.status==='active').forEach(m=>active.push({p,m}))));
-  if(!active.length){container.innerHTML='<div class="no-active">Sin hitos activos aún.</div>';return;}
-  active.slice(0,6).forEach(({p,m})=>{
-    const div=document.createElement('div'); div.className='next-action';
-    div.innerHTML=`<div class="na-dot" style="background:${p.color}"></div><div><div class="na-text">${m.title}</div><div class="na-meta">${p.name} · ${m.date}</div></div>`;
-    container.appendChild(div);
-  });
-}
-
-function checkBalance() {
-  const vals=PILLARS.map(p=>({name:p.name,pct:calcPillarPct(p)}));
-  const avg=vals.reduce((a,b)=>a+b.pct,0)/vals.length;
-  const lags=vals.filter(v=>v.pct<avg-20);
-  const el=document.getElementById('balanceAlert');
-  if(lags.length){el.classList.add('visible');document.getElementById('balanceAlertText').textContent='Desequilibrio detectado: '+lags.map(l=>l.name+' ('+l.pct+'%)').join(', ')+' por debajo del promedio ('+Math.round(avg)+'%). Error estratégico — requiere atención inmediata.';}
-  else { el.classList.remove('visible'); }
-}
-
-function setDynamic() {
-  const start=new Date('2026-03-10'), now=new Date();
-  const days=Math.floor((now-start)/(1000*60*60*24))+1;
-  document.getElementById('heroDia').textContent='Día '+days;
-  document.getElementById('dayLabel').textContent=now.toLocaleDateString('es-ES',{day:'numeric',month:'short',year:'numeric'})+' · Día '+days;
-  document.getElementById('globalScore').textContent=calcGlobal()+'%';
-}
-
-
-// ── WEEKLY REVIEW ────────────────────────────────────────
-var WR_KEY = 'ao_weekly_v1';
-var wrCurrentReadId = null;
-
-function wrLoad() { try { return JSON.parse(localStorage.getItem(WR_KEY) || '[]'); } catch(e) { return []; } }
-function wrSaveAll(d) { localStorage.setItem(WR_KEY, JSON.stringify(d)); }
-
-var MESES_CORTOS = ['Ene','Feb','Mar','Abr','May','Jun','Jul','Ago','Sep','Oct','Nov','Dic'];
-var MESES_LARGOS = ['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'];
-
-function wrRender() {
-  var entries = wrLoad().slice().sort(function(a,b){ return b.date.localeCompare(a.date); });
-  var grid = document.getElementById('wrGrid');
-  if (!entries.length) {
-    grid.innerHTML = '<div class="wr-empty">Sin entradas aún.<br>Cada domingo añade tu review semanal para llevar el seguimiento de los 7 pilares.</div>';
-    return;
-  }
-  grid.innerHTML = '<div class="wr-grid">' + entries.map(function(e) {
-    var d = new Date(e.date + 'T12:00:00');
-    var day = d.getDate();
-    var mon = MESES_CORTOS[d.getMonth()];
-    var pills = [];
-    if (e.peso) pills.push('⚖️ ' + e.peso);
-    if (e.deporte) pills.push('🏋️ Deporte');
-    if (e.nutricion) pills.push('🥗 Nutrición');
-    if (e.trabajo) pills.push('💼 Gobelas');
-    if (e.finanzas) pills.push('💰 Finanzas');
-    if (e.desarrollo) pills.push('📚 Desarrollo');
-    if (e.social) pills.push('❤️ Social');
-    if (e.hitos) pills.push('🎯 Hitos');
-    var preview = e.deporte || e.trabajo || e.nutricion || e.social || '';
-    var pillsHTML = pills.slice(0,4).map(function(p) { return '<span class="wr-pill">' + p + '</span>'; }).join('');
-    return '<div class="wr-card" onclick="wrOpenRead(this.dataset.id)" data-id="' + e.id + '">'
-      + '<div class="wr-card-top">'
-      + '<div class="wr-date-box"><div class="wr-date-day">' + day + '</div><div class="wr-date-mon">' + mon + '</div></div>'
-      + '<div class="wr-card-meta">'
-      + '<div class="wr-card-week">Semana ' + (e.weekNum || '—') + ' · ' + d.getFullYear() + '</div>'
-      + '<div class="wr-card-title">' + (e.title || 'Weekly Review') + '</div>'
-      + (preview ? '<div class="wr-card-preview">' + preview.substring(0,100) + '</div>' : '')
-      + '</div></div>'
-      + (pillsHTML ? '<div class="wr-card-bottom">' + pillsHTML + '</div>' : '')
-      + '</div>';
-  }).join('') + '</div>';
-}
-
-function wrOpenNew() {
-  document.getElementById('wrEditId').value = '';
-  document.getElementById('wrModalTitle').textContent = 'Nueva semana';
-  // Set today as default
-  var now = new Date();
-  document.getElementById('wrDate').value = now.toISOString().split('T')[0];
-  // Auto week number
-  var start = new Date('2026-03-10');
-  var diff = Math.floor((now - start) / (7 * 24 * 60 * 60 * 1000)) + 1;
-  document.getElementById('wrWeekNum').value = Math.max(1, diff);
-  // Clear fields
-  ['wrPeso','wrDeporte','wrNutricion','wrTrabajo','wrFinanzas','wrDesarrollo','wrSocial','wrHitos'].forEach(function(id) {
-    document.getElementById(id).value = '';
-  });
-  document.getElementById('wrOverlay').classList.add('open');
-}
-
-function wrCloseNew() {
-  document.getElementById('wrOverlay').classList.remove('open');
-}
-
-function wrOverlayClick(e) {
-  if (e.target === document.getElementById('wrOverlay')) wrCloseNew();
-}
-
-function wrSave() {
-  var date = document.getElementById('wrDate').value;
-  if (!date) { alert('Elige una fecha para la semana.'); return; }
-  var editId = document.getElementById('wrEditId').value;
-  var entry = {
-    id: editId || 'wr_' + Date.now(),
-    date: date,
-    weekNum: document.getElementById('wrWeekNum').value,
-    title: wrBuildTitle(date),
-    peso: document.getElementById('wrPeso').value.trim(),
-    deporte: document.getElementById('wrDeporte').value.trim(),
-    nutricion: document.getElementById('wrNutricion').value.trim(),
-    trabajo: document.getElementById('wrTrabajo').value.trim(),
-    finanzas: document.getElementById('wrFinanzas').value.trim(),
-    desarrollo: document.getElementById('wrDesarrollo').value.trim(),
-    social: document.getElementById('wrSocial').value.trim(),
-    hitos: document.getElementById('wrHitos').value.trim(),
-    savedAt: new Date().toISOString()
-  };
-  var entries = wrLoad();
-  if (editId) {
-    var idx = entries.findIndex(function(e) { return e.id === editId; });
-    if (idx >= 0) entries[idx] = entry; else entries.push(entry);
-  } else {
-    entries.push(entry);
-  }
-  wrSaveAll(entries);
-  wrCloseNew();
-  wrRender();
-  // Feedback
-  var btn = document.querySelector('.wr-btn-save');
-  var orig = btn.textContent;
-  btn.textContent = '✓ Guardado';
-  setTimeout(function() { btn.textContent = orig; }, 1500);
-}
-
-function wrBuildTitle(dateStr) {
-  var d = new Date(dateStr + 'T12:00:00');
-  return 'Review — ' + MESES_LARGOS[d.getMonth()] + ' ' + d.getDate();
-}
-
-function wrOpenRead(id) {
-  var entries = wrLoad();
-  var e = entries.find(function(x) { return x.id === id; });
-  if (!e) return;
-  wrCurrentReadId = id;
-  var d = new Date(e.date + 'T12:00:00');
-  document.getElementById('wrReadDate').textContent = 'Semana ' + (e.weekNum || '—') + ' · ' + d.toLocaleDateString('es-ES', { day: 'numeric', month: 'long', year: 'numeric' });
-  document.getElementById('wrReadTitle').textContent = e.title || 'Weekly Review';
-  var sections = [
-    { icon: '⚖️', label: 'Peso', val: e.peso },
-    { icon: '🏋️', label: 'Deporte', val: e.deporte },
-    { icon: '🥗', label: 'Nutrición', val: e.nutricion },
-    { icon: '💼', label: 'Gobelas · Trabajo', val: e.trabajo },
-    { icon: '💰', label: 'Finanzas', val: e.finanzas },
-    { icon: '📚', label: 'Lecturas & Desarrollo', val: e.desarrollo },
-    { icon: '❤️', label: 'Social', val: e.social },
-    { icon: '🎯', label: 'Hitos', val: e.hitos },
-  ].filter(function(s) { return s.val; });
-  document.getElementById('wrReadBody').innerHTML = sections.map(function(s) {
-    return '<div class="wr-read-section">'
-      + '<div class="wr-read-section-lbl">' + s.icon + ' ' + s.label + '</div>'
-      + '<div class="wr-read-section-val">' + s.val.replace(/</g,'&lt;').replace(/>/g,'&gt;') + '</div>'
-      + '</div>';
-  }).join('') || '<div class="wr-read-section-empty">Sin contenido en esta entrada.</div>';
-  document.getElementById('wrReadOverlay').classList.add('open');
-}
-
-function wrCloseRead() {
-  document.getElementById('wrReadOverlay').classList.remove('open');
-  wrCurrentReadId = null;
-}
-
-function wrReadOverlayClick(e) {
-  if (e.target === document.getElementById('wrReadOverlay')) wrCloseRead();
-}
-
-function wrEditEntry(id) {
-  var entries = wrLoad();
-  var e = entries.find(function(x) { return x.id === id; });
-  if (!e) return;
-  wrCloseRead();
-  document.getElementById('wrEditId').value = e.id;
-  document.getElementById('wrModalTitle').textContent = 'Editar semana';
-  document.getElementById('wrDate').value = e.date;
-  document.getElementById('wrWeekNum').value = e.weekNum || '';
-  document.getElementById('wrPeso').value = e.peso || '';
-  document.getElementById('wrDeporte').value = e.deporte || '';
-  document.getElementById('wrNutricion').value = e.nutricion || '';
-  document.getElementById('wrTrabajo').value = e.trabajo || '';
-  document.getElementById('wrFinanzas').value = e.finanzas || '';
-  document.getElementById('wrDesarrollo').value = e.desarrollo || '';
-  document.getElementById('wrSocial').value = e.social || '';
-  document.getElementById('wrHitos').value = e.hitos || '';
-  document.getElementById('wrOverlay').classList.add('open');
-}
-
-function wrDeleteEntry(id) {
-  if (!confirm('¿Eliminar esta entrada?')) return;
-  wrSaveAll(wrLoad().filter(function(e) { return e.id !== id; }));
-  wrCloseRead();
-  wrRender();
-}
-
-
-// ── SISTEMA DE LOGIN ─────────────────────────────────────
-// Hash SHA-256 de la contraseña usando Web Crypto API
-// Contraseña actual: cambiar el hash abajo para actualizar
-
-// Para generar un nuevo hash:
-// 1. Abre consola del navegador
-// 2. Ejecuta: crypto.subtle.digest('SHA-256', new TextEncoder().encode('tu_contraseña')).then(b => console.log(Array.from(new Uint8Array(b)).map(x=>x.toString(16).padStart(2,'0')).join('')))
-// 3. Copia el resultado y reemplaza PWD_HASH
-
-var PWD_HASH = 'd54123de468bd42ea00dafbd777f85fe5fa1ff6404d9838c007953c25c92a1c5'; // PLACEHOLDER - se reemplaza abajo
-var SESSION_KEY = 'ao_session_v1';
-var SESSION_TTL = 7 * 24 * 60 * 60 * 1000; // 7 días
-
-async function hashPassword(pwd) {
-  var buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(pwd));
-  return Array.from(new Uint8Array(buf)).map(function(x) {
-    return x.toString(16).padStart(2, '0');
-  }).join('');
-}
-
-function checkSession() {
-  try {
-    var raw = localStorage.getItem(SESSION_KEY);
-    if (!raw) return false;
-    var s = JSON.parse(raw);
-    if (Date.now() - s.ts > SESSION_TTL) {
-      localStorage.removeItem(SESSION_KEY);
-      return false;
-    }
-    return s.ok === true;
-  } catch(e) { return false; }
-}
-
-function saveSession() {
-  localStorage.setItem(SESSION_KEY, JSON.stringify({ ok: true, ts: Date.now() }));
-}
-
-function showApp() {
-  document.getElementById('loginScreen').classList.add('hidden');
-  document.body.style.overflow = '';
-}
-
-async function loginSubmit() {
-  var pwd = document.getElementById('loginInput').value;
-  var err = document.getElementById('loginError');
-  var btn = document.querySelector('.login-btn');
-  if (!pwd) { err.textContent = 'Introduce la contraseña.'; return; }
-  btn.textContent = '...';
-  btn.disabled = true;
-  var hash = await hashPassword(pwd);
-  btn.textContent = 'Entrar →';
-  btn.disabled = false;
-  if (hash === PWD_HASH) {
-    saveSession();
-    showApp();
-  } else {
-    err.textContent = 'Contraseña incorrecta.';
-    document.getElementById('loginInput').value = '';
-    document.getElementById('loginInput').focus();
-  }
-}
-
-// Init login check
-(function() {
-  if (checkSession()) {
-    // Already authenticated - hide login immediately
-    document.addEventListener('DOMContentLoaded', function() {
-      showApp();
-    });
-  } else {
-    // Block scrolling until logged in
-    document.body.style.overflow = 'hidden';
-  }
-})();
-
-window.addEventListener('DOMContentLoaded',()=>{
-  loadStates();
-  setDynamic();
-  renderTimeline();
-  renderPillars();
-  renderNextActions();
-  checkBalance();
-  setTimeout(drawRadar,200);
-  wrRender();
-});
-</script>
+<!-- SYNC IMPORT MODAL -->
+<div class="sync-overlay" id="syncImportOverlay" onclick="if(event.target===this)closeSyncImport()">
+  <div class="sync-modal">
+    <div class="sync-modal-hdr">
+      <div><div class="sync-modal-title">Importar datos</div><div class="sync-modal-sub">Pega aquí el código exportado desde otro dispositivo</div></div>
+      <button class="sync-modal-close" onclick="closeSyncImport()">✕</button>
+    </div>
+    <div class="sync-modal-body">
+      <div class="sync-info">⚠️ Esto sobrescribirá los datos actuales de este navegador con los del otro dispositivo.</div>
+      <textarea class="sync-textarea" id="syncImportText" placeholder="Pega aquí el código exportado..."></textarea>
+      <div class="sync-success" id="syncImportSuccess">✓ Datos importados. Recargando la página...</div>
+      <div class="sync-error" id="syncImportError">✗ Código inválido. Asegúrate de copiar el código completo.</div>
+      <div class="sync-modal-actions">
+        <button class="sync-btn-primary" onclick="syncDoImport()">Importar y aplicar</button>
+        <button class="sync-btn-secondary" onclick="closeSyncImport()">Cancelar</button>
+      </div>
+    </div>
+  </div>
+</div>
 
 <!-- WR NEW/EDIT MODAL -->
 <div class="wr-overlay" id="wrOverlay" onclick="wrOverlayClick(event)">
   <div class="wr-panel">
     <div class="wr-panel-hdr">
-      <div>
-        <div class="wr-panel-title" id="wrModalTitle">Nueva semana</div>
-        <div class="wr-panel-sub">Responde a los pilares con lo que hubo esta semana</div>
-      </div>
+      <div><div class="wr-panel-title" id="wrModalTitle">Nueva semana</div><div class="wr-panel-sub">Responde a los pilares con lo que hubo esta semana</div></div>
       <button class="wr-panel-close" onclick="wrCloseNew()">✕ Cerrar</button>
     </div>
     <div class="wr-panel-body">
       <input type="hidden" id="wrEditId">
       <div class="wr-date-row">
-        <div class="wr-field">
-          <label class="wr-label">Fecha</label>
-          <input type="date" class="wr-input" id="wrDate">
-        </div>
-        <div class="wr-field">
-          <label class="wr-label">Semana nº</label>
-          <input type="number" class="wr-input" id="wrWeekNum" placeholder="Ej: 12" min="1" max="52">
-        </div>
+        <div class="wr-field"><label class="wr-label">Fecha</label><input type="date" class="wr-input" id="wrDate"></div>
+        <div class="wr-field"><label class="wr-label">Semana nº</label><input type="number" class="wr-input" id="wrWeekNum" placeholder="Ej: 12" min="1" max="52"></div>
       </div>
-
       <div class="wr-divider">Salud</div>
-      <div class="wr-field">
-        <label class="wr-label"><span class="wr-label-icon">⚖️</span>Peso — registro semanal</label>
-        <input type="text" class="wr-input" id="wrPeso" placeholder="Ej: 87.2 kg">
-      </div>
-      <div class="wr-field">
-        <label class="wr-label"><span class="wr-label-icon">🏋️</span>Deporte — sesiones y notas</label>
-        <textarea class="wr-textarea" id="wrDeporte" placeholder="¿Cuántas sesiones? ¿Calidad del entreno?"></textarea>
-      </div>
-      <div class="wr-field">
-        <label class="wr-label"><span class="wr-label-icon">🥗</span>Nutrición</label>
-        <textarea class="wr-textarea" id="wrNutricion" placeholder="¿Se han cumplido los principios? ¿Algo a corregir?"></textarea>
-      </div>
-
+      <div class="wr-field"><label class="wr-label"><span class="wr-label-icon">⚖️</span>Peso — registro semanal</label><input type="text" class="wr-input" id="wrPeso" placeholder="Ej: 87.2 kg"></div>
+      <div class="wr-field"><label class="wr-label"><span class="wr-label-icon">🏋️</span>Deporte — sesiones y notas</label><textarea class="wr-textarea" id="wrDeporte" placeholder="¿Cuántas sesiones? ¿Calidad del entreno?"></textarea></div>
+      <div class="wr-field"><label class="wr-label"><span class="wr-label-icon">🥗</span>Nutrición</label><textarea class="wr-textarea" id="wrNutricion" placeholder="¿Se han cumplido los principios? ¿Algo a corregir?"></textarea></div>
       <div class="wr-divider">Trabajo</div>
-      <div class="wr-field">
-        <label class="wr-label"><span class="wr-label-icon">💼</span>Gobelas · Avances y riesgos</label>
-        <textarea class="wr-textarea" id="wrTrabajo" placeholder="¿Qué ha avanzado? ¿Riesgos o desvíos detectados?"></textarea>
-      </div>
-
+      <div class="wr-field"><label class="wr-label"><span class="wr-label-icon">💼</span>Gobelas · Avances y riesgos</label><textarea class="wr-textarea" id="wrTrabajo" placeholder="¿Qué ha avanzado? ¿Riesgos o desvíos detectados?"></textarea></div>
       <div class="wr-divider">Finanzas</div>
-      <div class="wr-field">
-        <label class="wr-label"><span class="wr-label-icon">💰</span>Presupuesto y aportación</label>
-        <textarea class="wr-textarea" id="wrFinanzas" placeholder="¿Se ha respetado el presupuesto? ¿Aportación automática activa?"></textarea>
-      </div>
-
+      <div class="wr-field"><label class="wr-label"><span class="wr-label-icon">💰</span>Presupuesto y aportación</label><textarea class="wr-textarea" id="wrFinanzas" placeholder="¿Se ha respetado el presupuesto? ¿Aportación automática activa?"></textarea></div>
       <div class="wr-divider">Desarrollo</div>
-      <div class="wr-field">
-        <label class="wr-label"><span class="wr-label-icon">📚</span>Lecturas & Desarrollo</label>
-        <textarea class="wr-textarea" id="wrDesarrollo" placeholder="¿Páginas leídas? ¿Progreso en francés o IA?"></textarea>
-      </div>
-
+      <div class="wr-field"><label class="wr-label"><span class="wr-label-icon">📚</span>Lecturas & Desarrollo</label><textarea class="wr-textarea" id="wrDesarrollo" placeholder="¿Páginas leídas? ¿Progreso en francés o IA?"></textarea></div>
       <div class="wr-divider">Social</div>
-      <div class="wr-field">
-        <label class="wr-label"><span class="wr-label-icon">❤️</span>Relación, familia y amigos</label>
-        <textarea class="wr-textarea" id="wrSocial" placeholder="¿Llamada con la novia? ¿Calidad? ¿Contacto con familia y amigos?"></textarea>
-      </div>
-
+      <div class="wr-field"><label class="wr-label"><span class="wr-label-icon">❤️</span>Relación, familia y amigos</label><textarea class="wr-textarea" id="wrSocial" placeholder="¿Llamada con la novia? ¿Calidad? ¿Contacto con familia y amigos?"></textarea></div>
       <div class="wr-divider">Hitos</div>
-      <div class="wr-field">
-        <label class="wr-label"><span class="wr-label-icon">🎯</span>Hitos — revisión y riesgos</label>
-        <textarea class="wr-textarea" id="wrHitos" placeholder="¿Algún hito completado esta semana? ¿Alguno en riesgo?"></textarea>
-      </div>
-
+      <div class="wr-field"><label class="wr-label"><span class="wr-label-icon">🎯</span>Hitos — revisión y riesgos</label><textarea class="wr-textarea" id="wrHitos" placeholder="¿Algún hito completado esta semana? ¿Alguno en riesgo?"></textarea></div>
       <div class="wr-actions">
         <button class="wr-btn-cancel" onclick="wrCloseNew()">Cancelar</button>
         <button class="wr-btn-save" onclick="wrSave()">Guardar semana →</button>
@@ -1221,10 +414,7 @@ window.addEventListener('DOMContentLoaded',()=>{
 <div class="wr-read-overlay" id="wrReadOverlay" onclick="wrReadOverlayClick(event)">
   <div class="wr-read-panel">
     <div class="wr-read-hdr">
-      <div>
-        <div class="wr-read-date" id="wrReadDate"></div>
-        <div class="wr-read-title" id="wrReadTitle"></div>
-      </div>
+      <div><div class="wr-read-date" id="wrReadDate"></div><div class="wr-read-title" id="wrReadTitle"></div></div>
       <div class="wr-read-actions">
         <button class="wr-read-btn" onclick="wrEditEntry(wrCurrentReadId)">✎ Editar</button>
         <button class="wr-read-btn del" onclick="wrDeleteEntry(wrCurrentReadId)">× Eliminar</button>
@@ -1235,5 +425,93 @@ window.addEventListener('DOMContentLoaded',()=>{
   </div>
 </div>
 
+<script>
+const PILLARS = [
+  {id:'salud',name:'Salud',icon:'◎',color:'#2D6A4F',bg:'#EAF3EE',objectives:[{name:'SMART · Completar mín. 3 sesiones de fuerza/semana durante 16 semanas consecutivas (Upper/Lower) · 6 Abr → 27 Jul 2026',milestones:[{title:'Elegir y fijar gimnasio en Madrid antes de la incorporación',status:'active',date:'Antes 6 Abr'},{title:'Completar las primeras 4 semanas sin saltarse ningún día de entreno',status:'pending',date:'20 Abr 2026'},{title:'Completar 8 semanas consecutivas de entrenamiento Upper/Lower',status:'pending',date:'18 May 2026'},{title:'16 semanas consecutivas completadas — hábito instalado',status:'pending',date:'13 Jul 2026'}]},{name:'SMART · Mantener mín. 80% de comidas con proteína + verdura + CH de calidad, con cooking batch 2×/semana · 6 Abr → 27 Jul 2026',milestones:[{title:'Primera compra en Madrid sin ultraprocesados ni azúcar añadido',status:'active',date:'7 Abr 2026'},{title:'Incorporar suplementación base: whey, vitamina D3+K2, omega-3',status:'pending',date:'Abr 2026'},{title:'2 semanas consecutivas de cooking batch activo (dom + mié)',status:'pending',date:'7 Abr 2026'},{title:'8 semanas consecutivas con cooking batch y protocolo de comidas activo',status:'pending',date:'18 May 2026'}]},{name:'Resultados medibles de composición corporal',milestones:[{title:'Peso por debajo de 85kg',status:'pending',date:'Jun 2026'},{title:'Llegar a 81kg con % grasa saludable',status:'pending',date:'Sep 2026'},{title:'3 meses consecutivos sin semana de cero entrenamientos',status:'pending',date:'Jul 2026'}]}]},
+  {id:'social',name:'Social',icon:'◈',color:'#C0614A',bg:'#FCEEE9',objectives:[{name:'SMART · Establecer 1 cita virtual semanal con plan diferente y entretenido, y vernos en persona 2 veces con fecha cerrada · 6 Abr → 30 Sep 2026',milestones:[{title:'Acordar con tu novia el formato de la cita virtual semanal (día, plan, dinámica)',status:'active',date:'Antes 6 Abr'},{title:'Cerrar fecha y vuelos del primer encuentro en persona',status:'pending',date:'Abr 2026'},{title:'Cerrar fecha y vuelos del segundo encuentro en persona',status:'pending',date:'Jun 2026'},{title:'Primer encuentro en persona realizado',status:'pending',date:'Sep 2026'},{title:'Segundo encuentro en persona realizado',status:'pending',date:'Sep 2026'}]},{name:'SMART · Establecer 1 actividad social recurrente en Madrid y realizar 1 actividad social diferente al mes · Antes 30 Sep 2026',milestones:[{title:'Identificar y apuntarse a 1 actividad social recurrente en Madrid',status:'pending',date:'Abr 2026'},{title:'Primera actividad social diferente realizada (trekking, conferencia, evento...)',status:'pending',date:'Abr 2026'},{title:'Segunda actividad social diferente realizada',status:'pending',date:'May 2026'},{title:'Tercera actividad social diferente realizada',status:'pending',date:'Jun 2026'},{title:'Actividad recurrente consolidada — asistencia mín. 3 de cada 4 semanas',status:'pending',date:'Sep 2026'}]},{name:'SMART · Contacto activo con mín. 3 amigos de Sevilla al mes y visita cada 6-8 semanas · 6 Abr → 30 Sep 2026',milestones:[{title:'Primera visita a Sevilla desde Madrid con fecha cerrada',status:'pending',date:'May 2026'},{title:'Contacto activo mantenido con mínimo 3 amigos cercanos cada mes',status:'pending',date:'Continuo'},{title:'Segunda visita a Sevilla o encuentro familiar',status:'pending',date:'Jul 2026'}]}]},
+  {id:'profesional',name:'Profesional',icon:'◧',color:'#3D405B',bg:'#ECEDF3',objectives:[{name:'SMART · Gestionar de forma autónoma las 4 dimensiones de Gobelas (legal, técnica, financiera, comercial) y elaborar el reporting completo sin supervisión · Antes 30 Sep 2026',milestones:[{title:'Leer y entender toda la documentación legal existente (UTE, contratos, acuerdos)',status:'active',date:'Abr 2026'},{title:'Mapear todos los actores del proyecto: roles, responsabilidades y relaciones',status:'pending',date:'Abr 2026'},{title:'Dominar el modelo financiero: cash flow, costes, presupuesto y monitoring bancario',status:'pending',date:'Abr 2026'},{title:'Conocer el estado técnico y urbanístico: licencias, normativa, hitos de obra',status:'pending',date:'May 2026'},{title:'Elaborar el primer reporting periódico completo de forma autónoma',status:'pending',date:'Jun 2026'},{title:'Gestionar el flujo documental sin supervisión de Annie',status:'pending',date:'Sep 2026'}]},{name:'SMART · Identificar e implementar al menos 2 mejoras concretas de proceso, herramienta o sistema en el equipo de Portland · Antes 30 Sep 2026',milestones:[{title:'Identificar 3 áreas de mejora concretas en procesos, herramientas o sistemas del equipo',status:'pending',date:'May 2026'},{title:'Proponer la primera mejora con argumentación y plan de implementación',status:'pending',date:'Jun 2026'},{title:'Primera mejora implementada y en uso por el equipo',status:'pending',date:'Jul 2026'},{title:'Segunda mejora implementada y en uso por el equipo',status:'pending',date:'Sep 2026'}]}]},
+  {id:'desarrollo',name:'Desarrollo',icon:'◉',color:'#9A7D2E',bg:'#FDF8EC',objectives:[{name:'SMART · Completar 1 curso estructurado de IA e implementar 3 herramientas en el flujo de trabajo real de Gobelas o Portland · Antes 30 Sep 2026',milestones:[{title:'Elegir y comenzar un curso estructurado de IA (no YouTube random)',status:'pending',date:'Abr 2026'},{title:'Identificar 3 procesos de Gobelas o Portland donde aplicar IA',status:'pending',date:'May 2026'},{title:'Completar el curso estructurado de IA',status:'pending',date:'Jun 2026'},{title:'Primera herramienta de IA implementada en flujo de trabajo real',status:'pending',date:'Jun 2026'},{title:'Segunda herramienta de IA implementada en flujo de trabajo real',status:'pending',date:'Jul 2026'},{title:'Tercera herramienta de IA implementada en flujo de trabajo real',status:'pending',date:'Sep 2026'}]},{name:'SMART · Leer mínimo 6 libros de no ficción con lista definida de antemano · 6 Abr → 30 Sep 2026',milestones:[{title:'Definir lista de 6 libros para Mar–Sep 2026 (no ficción, economía, real estate, biografías)',status:'active',date:'Antes 6 Abr'},{title:'Primer libro leído',status:'pending',date:'Abr 2026'},{title:'Tercer libro leído',status:'pending',date:'Jun 2026'},{title:'Sexto libro leído',status:'pending',date:'Sep 2026'}]}]},
+  {id:'finanzas',name:'Finanzas',icon:'◐',color:'#2E6653',bg:'#EFF5F2',objectives:[{name:'SMART · Ejecutar presupuesto mensual real con aportación fija automatizada de mín. 300€/mes a cartera · 6 Abr → 30 Sep 2026',milestones:[{title:'Definir presupuesto mensual real para Madrid (alquiler, fijos, variable, inversión)',status:'active',date:'Antes 6 Abr'},{title:'Firmar contrato de alquiler en Madrid',status:'pending',date:'Antes 30 Abr 2026'},{title:'Configurar transferencia automática mensual de mínimo 300€ a cartera',status:'pending',date:'Abr 2026'},{title:'Primer mes con presupuesto ejecutado según lo planificado',status:'pending',date:'Abr 2026'},{title:'3 meses consecutivos con aportación automática realizada',status:'pending',date:'Jun 2026'},{title:'6 meses consecutivos con aportación automática realizada',status:'pending',date:'Sep 2026'}]},{name:'SMART · Tomar decisión documentada sobre los 30k€ en liquidez e incorporar fondo indexado global como núcleo de cartera · Antes 30 Jun 2026',milestones:[{title:'Auditar cartera actual: concentración, riesgo y rentabilidad histórica',status:'active',date:'Mar 2026'},{title:'Decidir destino de los 30k€ en liquidez con criterio documentado',status:'pending',date:'Abr 2026'},{title:'Ejecutar la decisión sobre los 30k€',status:'pending',date:'Abr 2026'},{title:'Incorporar fondo indexado global como núcleo de la cartera',status:'pending',date:'Jun 2026'},{title:'Cartera con máximo 40% en acciones individuales',status:'pending',date:'Dic 2026'}]}]}
+];
+
+const PHASES=[{period:'6 Abr – Sep 2026',name:'Cimientos',status:'current',desc:'Incorporación a Portland el 6 Abr. Arrancar Gobelas, reactivar el cuerpo, automatizar las finanzas.',pillars:[{id:'salud',focus:'Reactivación física'},{id:'profesional',focus:'Arranque en Portland'},{id:'finanzas',focus:'Presupuesto Madrid'}],milestones:['Incorporación a Portland — 6 Abr','Estructura legal de Gobelas dominada','Presupuesto Madrid con 2.000€ definido','Protocolo entrenamiento activo']},{period:'Sep 2026 – Mar 2027',name:'Tracción',status:'future',desc:'Los hábitos consolidan. Escalar en Portland. Avanzar en francés e IA.',pillars:[{id:'profesional',focus:'Referente interno'},{id:'desarrollo',focus:'IA aplicada'},{id:'social',focus:'Red Madrid sólida'}],milestones:['81kg alcanzados','Referente financiero en Portland','Francés A2 operativo','Plan de relación a distancia revisado']},{period:'Mar – Sep 2027',name:'Consolidación',status:'future',desc:'Solidificar resultados. Primeros 100k€. Visión del paso siguiente en la carrera.',pillars:[{id:'finanzas',focus:'100k€ patrimonio'},{id:'profesional',focus:'Visión post-Portland'},{id:'salud',focus:'Forma estable'}],milestones:['100k€ de patrimonio neto','Cartera diversificada activa','Forma física mantenida 12 meses','Francés B1 en camino']},{period:'Sep 2027 – Mar 2028',name:'Expansión',status:'future',desc:'Operar desde posición de fuerza. Abrir nuevos frentes con criterio.',pillars:[{id:'profesional',focus:'Siguiente nivel'},{id:'desarrollo',focus:'Francés arranca'},{id:'social',focus:'Relación resuelta'}],milestones:['Decisión sobre futuro en Portland','Francés B1 certificado','Situación con novia definida','Nuevos proyectos propios iniciados']},{period:'Mar – Sep 2028',name:'Autonomía',status:'future',desc:'Sistema financiero autónomo. Carrera con dirección propia. Base para emprender.',pillars:[{id:'finanzas',focus:'Ingresos pasivos'},{id:'profesional',focus:'Bases empresariales'},{id:'salud',focus:'Hábitos automáticos'}],milestones:['Primer ingreso pasivo real','Plan empresarial inmobiliario esbozado','Hábitos de salud en piloto automático','Patrimonio por encima de 130k€']},{period:'Sep 2028 – Mar 2029',name:'Maestría',status:'future',desc:'Todos los pilares en verde. Sistema autónomo. Visión clara del empresario que quieres ser.',pillars:[{id:'salud',focus:'Óptimo'},{id:'profesional',focus:'Referente sectorial'},{id:'finanzas',focus:'Libertad financiera'},{id:'social',focus:'Estabilidad total'}],milestones:['Todos los pilares por encima del 80%','Base para primer proyecto propio','Relación estable y con futuro claro','Sistema de vida que no depende de la disciplina']}];
+
+const STORAGE_KEY='ao_milestones_v1';
+function saveStates(){const data={};PILLARS.forEach(p=>{p.objectives.forEach((obj,oi)=>{obj.milestones.forEach((m,mi)=>{data[`${p.id}_${oi}_${mi}`]=m.status;});});});localStorage.setItem(STORAGE_KEY,JSON.stringify(data));}
+function loadStates(){try{const raw=localStorage.getItem(STORAGE_KEY);if(!raw)return;const data=JSON.parse(raw);PILLARS.forEach(p=>{p.objectives.forEach((obj,oi)=>{obj.milestones.forEach((m,mi)=>{const key=`${p.id}_${oi}_${mi}`;if(data[key])m.status=data[key];});});});}catch(e){}}
+
+function buildEditPanel(){const existing=document.getElementById('editOverlay');if(existing){existing.remove();}const overlay=document.createElement('div');overlay.id='editOverlay';overlay.style.cssText='position:fixed;inset:0;background:rgba(26,25,22,0.5);z-index:1000;display:flex;align-items:flex-start;justify-content:flex-end;padding:16px;backdrop-filter:blur(4px);';const panel=document.createElement('div');panel.style.cssText='background:#FFFFFF;border:1px solid #E8E6E0;border-radius:16px;width:560px;max-height:calc(100vh - 32px);overflow-y:auto;box-shadow:0 24px 64px rgba(0,0,0,0.15);display:flex;flex-direction:column;';const hdr=document.createElement('div');hdr.style.cssText='padding:20px 24px 16px;border-bottom:1px solid #E8E6E0;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;background:#fff;z-index:1;border-radius:16px 16px 0 0;';hdr.innerHTML=`<div><div style="font-family:'DM Serif Display',serif;font-size:20px;letter-spacing:-0.3px;">Actualizar Hitos</div><div style="font-size:12px;color:#6B6860;margin-top:2px;">Los cambios se guardan automáticamente</div></div><button onclick="closeEditPanel()" style="background:none;border:1px solid #E8E6E0;border-radius:8px;padding:8px 12px;cursor:pointer;font-size:13px;color:#6B6860;font-family:'DM Sans',sans-serif;">✕ Cerrar</button>`;panel.appendChild(hdr);const body=document.createElement('div');body.style.cssText='padding:16px 24px 24px;display:flex;flex-direction:column;gap:20px;';PILLARS.forEach((p,pi)=>{const section=document.createElement('div');const ph=document.createElement('div');ph.style.cssText=`display:flex;align-items:center;gap:10px;padding:10px 0 8px;border-bottom:2px solid ${p.color};margin-bottom:12px;`;ph.innerHTML=`<div style="width:28px;height:28px;border-radius:7px;background:${p.bg};display:flex;align-items:center;justify-content:center;font-size:14px;">${p.icon}</div><span style="font-weight:600;font-size:14px;letter-spacing:0.2px;">${p.name}</span>`;section.appendChild(ph);p.objectives.forEach((obj,oi)=>{const objDiv=document.createElement('div');objDiv.style.cssText='margin-bottom:12px;';const objTitle=document.createElement('div');objTitle.style.cssText='font-size:11px;font-weight:600;color:#A8A49C;letter-spacing:1px;text-transform:uppercase;margin-bottom:8px;padding:0 2px;';objTitle.textContent=obj.name.length>70?obj.name.substring(0,70)+'…':obj.name;objDiv.appendChild(objTitle);obj.milestones.forEach((m,mi)=>{const row=document.createElement('div');row.style.cssText='display:flex;align-items:center;gap:10px;padding:10px 12px;border:1px solid #E8E6E0;border-radius:10px;margin-bottom:6px;cursor:pointer;transition:all 0.15s;background:#FAFAF8;';const statusColors={done:'#2D6A4F',active:'#3D405B',pending:'#A8A49C'};const statusBg={done:'#EAF3EE',active:'#ECEDF3',pending:'#F5F4F0'};const statusLabel={done:'✓ Completado',active:'→ En curso',pending:'· Pendiente'};row.innerHTML=`<div class="edit-dot" style="width:10px;height:10px;border-radius:50%;background:${statusColors[m.status]};flex-shrink:0;transition:background 0.2s;"></div><div style="flex:1;font-size:13px;line-height:1.35;">${m.title}</div><div style="font-size:10px;color:#A8A49C;white-space:nowrap;">${m.date}</div><div class="edit-badge" style="font-size:10.5px;font-weight:600;padding:3px 9px;border-radius:20px;white-space:nowrap;background:${statusBg[m.status]};color:${statusColors[m.status]};">${statusLabel[m.status]}</div>`;const statuses=['pending','active','done'];row.addEventListener('click',()=>{const cur=PILLARS[pi].objectives[oi].milestones[mi].status;const next=statuses[(statuses.indexOf(cur)+1)%statuses.length];PILLARS[pi].objectives[oi].milestones[mi].status=next;row.querySelector('.edit-dot').style.background=statusColors[next];row.querySelector('.edit-badge').style.background=statusBg[next];row.querySelector('.edit-badge').style.color=statusColors[next];row.querySelector('.edit-badge').textContent=statusLabel[next];saveStates();refreshUI();});row.addEventListener('mouseenter',()=>{row.style.borderColor=p.color;row.style.background=p.bg;});row.addEventListener('mouseleave',()=>{row.style.borderColor='#E8E6E0';row.style.background='#FAFAF8';});objDiv.appendChild(row);});section.appendChild(objDiv);});body.appendChild(section);});panel.appendChild(body);overlay.appendChild(panel);overlay.addEventListener('click',e=>{if(e.target===overlay)closeEditPanel();});document.body.appendChild(overlay);}
+function closeEditPanel(){const el=document.getElementById('editOverlay');if(el)el.remove();}
+function refreshUI(){renderPillars();renderNextActions();checkBalance();setDynamic();setTimeout(drawRadar,100);if(activeId){openDetail(activeId);}}
+
+const calcObjPct=obj=>{const t=obj.milestones.length,d=obj.milestones.filter(m=>m.status==='done').length,a=obj.milestones.filter(m=>m.status==='active').length;return Math.round((d+a*0.5)/t*100);};
+const calcPillarPct=p=>{const v=p.objectives.map(calcObjPct);return Math.round(v.reduce((a,b)=>a+b,0)/v.length);};
+const calcGlobal=()=>{const v=PILLARS.map(calcPillarPct);return Math.round(v.reduce((a,b)=>a+b,0)/v.length);};
+
+function renderTimeline(){const strip=document.getElementById('phasesStrip');strip.innerHTML='';PHASES.forEach(phase=>{const col=document.createElement('div');col.className='phase-col '+phase.status;const pillsHTML=phase.pillars.map(pp=>{const p=PILLARS.find(x=>x.id===pp.id);return p?`<span class="phase-pill" style="background:${p.bg};color:${p.color}">${pp.focus}</span>`:''}).join('');const dotColor=phase.status==='current'?'#1A1916':'#D0CEC8';const msHTML=phase.milestones.map(m=>`<div class="phase-milestone"><div class="phase-ms-dot" style="background:${dotColor}"></div><span>${m}</span></div>`).join('');col.innerHTML=`<div class="phase-inner"><div class="phase-period">${phase.period}</div><div class="phase-name">${phase.name}</div><div class="phase-desc">${phase.desc}</div><div class="phase-pillars">${pillsHTML}</div><div class="phase-milestones">${msHTML}</div></div>`;strip.appendChild(col);});setTimeout(()=>{document.getElementById('tlFill').style.width='0%';},200);}
+
+function renderPillars(){const grid=document.getElementById('pillarsGrid');grid.innerHTML='';PILLARS.forEach(p=>{const pct=calcPillarPct(p),total=p.objectives.reduce((a,o)=>a+o.milestones.length,0),done=p.objectives.reduce((a,o)=>a+o.milestones.filter(m=>m.status==='done').length,0);const card=document.createElement('div');card.className='pillar-card';card.id='card-'+p.id;card.style.setProperty('--pillar-color',p.color);card.style.setProperty('--pillar-bg',p.bg);card.onclick=()=>openDetail(p.id);card.innerHTML=`<div class="p-icon">${p.icon}</div><div class="p-name">${p.name}</div><div class="p-pct">${pct}<span>%</span></div><div class="p-bar-bg"><div class="p-bar-fill" style="width:0%;background:${p.color}" data-t="${pct}"></div></div><div class="p-stats"><span><strong>${done}</strong>/${total} hitos</span><span>${p.objectives.length} objetivos</span></div>`;grid.appendChild(card);});setTimeout(()=>{document.querySelectorAll('.p-bar-fill').forEach(el=>{el.style.width=el.dataset.t+'%';});},100);}
+
+let activeId=null;
+function openDetail(id){const p=PILLARS.find(x=>x.id===id);if(!p)return;if(activeId===id){closeDetail();return;}activeId=id;document.querySelectorAll('.pillar-card').forEach(c=>c.classList.remove('active'));document.getElementById('card-'+id).classList.add('active');document.getElementById('detailHdr').style.background=p.bg+'66';document.getElementById('detailIco').style.background=p.color;document.getElementById('detailIco').textContent=p.icon;document.getElementById('detailTtl').textContent=p.name;document.getElementById('detailSub').textContent=p.objectives.length+' objetivos · '+p.objectives.reduce((a,o)=>a+o.milestones.length,0)+' hitos totales';const body=document.getElementById('detailBody');body.innerHTML='';body.style.setProperty('--pillar-color',p.color);body.style.setProperty('--pillar-bg',p.bg);p.objectives.forEach(obj=>{const pct=calcObjPct(obj),block=document.createElement('div');block.className='obj-block';block.style.setProperty('--pillar-color',p.color);block.style.setProperty('--pillar-bg',p.bg);const msHTML=obj.milestones.map(m=>{const lbl=m.status==='done'?'✓ Completado':m.status==='active'?'→ En curso':'· Pendiente';return `<div class="ms-item ${m.status}"><div class="ms-check">${m.status==='done'?'✓':''}</div><div class="ms-content"><div class="ms-title">${m.title}</div><div class="ms-date">${m.date}</div></div><div class="ms-status">${lbl}</div></div>`;}).join('');block.innerHTML=`<div class="obj-hdr"><div class="obj-name">${obj.name}</div><div class="obj-badge">${pct}%</div></div><div class="obj-meta"><div class="obj-bar-bg"><div class="obj-bar-fill" style="width:0%" data-t="${pct}"></div></div><div class="obj-pct">${pct}%</div></div><div class="ms-list">${msHTML}</div>`;body.appendChild(block);});document.getElementById('detailPanel').classList.add('visible');setTimeout(()=>{body.querySelectorAll('.obj-bar-fill').forEach(el=>{el.style.background=p.color;el.style.transition='width 0.8s cubic-bezier(0.4,0,0.2,1)';el.style.width=el.dataset.t+'%';});},50);document.getElementById('detailPanel').scrollIntoView({behavior:'smooth',block:'nearest'});}
+function closeDetail(){document.getElementById('detailPanel').classList.remove('visible');document.querySelectorAll('.pillar-card').forEach(c=>c.classList.remove('active'));activeId=null;}
+
+function drawRadar(){const canvas=document.getElementById('radarChart'),ctx=canvas.getContext('2d');const W=canvas.width,H=canvas.height,cx=W/2,cy=H/2,R=Math.min(W,H)/2-64;ctx.clearRect(0,0,W,H);const vals=PILLARS.map(p=>calcPillarPct(p)/100),N=PILLARS.length,step=(Math.PI*2)/N,start=-Math.PI/2;const pt=(i,r)=>({x:cx+Math.cos(start+i*step)*r,y:cy+Math.sin(start+i*step)*r});[0.25,0.5,0.75,1.0].forEach(l=>{ctx.beginPath();for(let i=0;i<N;i++){const p=pt(i,R*l);i===0?ctx.moveTo(p.x,p.y):ctx.lineTo(p.x,p.y);}ctx.closePath();ctx.strokeStyle=l===1.0?'#C8C5BE':'#E2DFD8';ctx.lineWidth=l===1.0?1.5:1;ctx.stroke();const lp=pt(2,R*l);ctx.font='500 9px DM Sans';ctx.fillStyle='#C0BDB6';ctx.textAlign='center';ctx.textBaseline='middle';ctx.fillText(Math.round(l*100)+'%',lp.x+10,lp.y);});for(let i=0;i<N;i++){const p=pt(i,R);ctx.beginPath();ctx.moveTo(cx,cy);ctx.lineTo(p.x,p.y);ctx.strokeStyle='#E2DFD8';ctx.lineWidth=1;ctx.stroke();}ctx.beginPath();vals.forEach((v,i)=>{const p=pt(i,R*Math.max(v,0.06));i===0?ctx.moveTo(p.x,p.y):ctx.lineTo(p.x,p.y);});ctx.closePath();ctx.fillStyle='rgba(26,25,22,0.07)';ctx.fill();ctx.strokeStyle='#1A1916';ctx.lineWidth=2;ctx.stroke();vals.forEach((v,i)=>{const p=pt(i,R*Math.max(v,0.06));ctx.beginPath();ctx.arc(p.x,p.y,5,0,Math.PI*2);ctx.fillStyle=PILLARS[i].color;ctx.fill();ctx.strokeStyle='#fff';ctx.lineWidth=1.5;ctx.stroke();});ctx.font='600 12px DM Sans';ctx.textAlign='center';ctx.textBaseline='middle';PILLARS.forEach((p,i)=>{const pos=pt(i,R+36);ctx.fillStyle=p.color;ctx.fillText(p.name.toUpperCase(),pos.x,pos.y);});ctx.font='600 11px DM Sans';vals.forEach((v,i)=>{const p=pt(i,R*Math.max(v,0.06)),angle=start+i*step,lx=p.x+Math.cos(angle)*18,ly=p.y+Math.sin(angle)*18;ctx.fillStyle=PILLARS[i].color;ctx.textAlign='center';ctx.textBaseline='middle';ctx.fillText(Math.round(v*100)+'%',lx,ly);});}
+
+function renderNextActions(){const container=document.getElementById('nextActions');container.innerHTML='';const active=[];PILLARS.forEach(p=>p.objectives.forEach(obj=>obj.milestones.filter(m=>m.status==='active').forEach(m=>active.push({p,m}))));if(!active.length){container.innerHTML='<div class="no-active">Sin hitos activos aún.</div>';return;}active.slice(0,6).forEach(({p,m})=>{const div=document.createElement('div');div.className='next-action';div.innerHTML=`<div class="na-dot" style="background:${p.color}"></div><div><div class="na-text">${m.title}</div><div class="na-meta">${p.name} · ${m.date}</div></div>`;container.appendChild(div);});}
+
+function checkBalance(){const vals=PILLARS.map(p=>({name:p.name,pct:calcPillarPct(p)}));const avg=vals.reduce((a,b)=>a+b.pct,0)/vals.length;const lags=vals.filter(v=>v.pct<avg-20);const el=document.getElementById('balanceAlert');if(lags.length){el.classList.add('visible');document.getElementById('balanceAlertText').textContent='Desequilibrio detectado: '+lags.map(l=>l.name+' ('+l.pct+'%)').join(', ')+' por debajo del promedio ('+Math.round(avg)+'%). Error estratégico — requiere atención inmediata.';}else{el.classList.remove('visible');}}
+
+function setDynamic(){const start=new Date('2026-03-10'),now=new Date();const days=Math.floor((now-start)/(1000*60*60*24))+1;document.getElementById('heroDia').textContent='Día '+days;document.getElementById('dayLabel').textContent=now.toLocaleDateString('es-ES',{day:'numeric',month:'short',year:'numeric'})+' · Día '+days;document.getElementById('globalScore').textContent=calcGlobal()+'%';}
+
+// ── SINCRONIZACIÓN ──────────────────────────────────────
+var SYNC_KEYS=['ao_milestones_v1','ao_weekly_v1','ao_peso_v1','ao_countries_v1','ao_finanzas_v1','ao_diary_v1','ao_cities_v1','ao_neural_v1','ao_frases_v1','ao_pending_books_v1','ao_book_notes','ao_user_books'];
+function syncExport(){var data={v:1,ts:Date.now(),d:{}};SYNC_KEYS.forEach(function(key){var val=localStorage.getItem(key);if(val)data.d[key]=val;});var json=JSON.stringify(data);document.getElementById('syncExportText').value=json;document.getElementById('syncExportSuccess').style.display='none';document.getElementById('syncExportOverlay').classList.add('open');setTimeout(function(){var ta=document.getElementById('syncExportText');ta.select();ta.setSelectionRange(0,99999);},100);}
+function closeSyncExport(){document.getElementById('syncExportOverlay').classList.remove('open');}
+function syncCopyToClipboard(){var text=document.getElementById('syncExportText').value;if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(text).then(function(){document.getElementById('syncExportSuccess').style.display='block';}).catch(function(){document.getElementById('syncExportText').select();document.execCommand('copy');document.getElementById('syncExportSuccess').style.display='block';});}else{document.getElementById('syncExportText').select();document.execCommand('copy');document.getElementById('syncExportSuccess').style.display='block';}}
+function syncImport(){document.getElementById('syncImportText').value='';document.getElementById('syncImportSuccess').style.display='none';document.getElementById('syncImportError').style.display='none';document.getElementById('syncImportOverlay').classList.add('open');setTimeout(function(){document.getElementById('syncImportText').focus();},100);}
+function closeSyncImport(){document.getElementById('syncImportOverlay').classList.remove('open');}
+function syncDoImport(){var raw=document.getElementById('syncImportText').value.trim();var errEl=document.getElementById('syncImportError');var okEl=document.getElementById('syncImportSuccess');errEl.style.display='none';okEl.style.display='none';try{var data=JSON.parse(raw);if(!data.v||!data.d)throw new Error('invalid');Object.entries(data.d).forEach(function(entry){localStorage.setItem(entry[0],entry[1]);});okEl.style.display='block';setTimeout(function(){location.reload();},1500);}catch(e){errEl.style.display='block';}}
+
+// ── WEEKLY REVIEW ────────────────────────────────────────
+var WR_KEY='ao_weekly_v1';var wrCurrentReadId=null;
+function wrLoad(){try{return JSON.parse(localStorage.getItem(WR_KEY)||'[]');}catch(e){return[];}}
+function wrSaveAll(d){localStorage.setItem(WR_KEY,JSON.stringify(d));}
+var MESES_CORTOS=['Ene','Feb','Mar','Abr','May','Jun','Jul','Ago','Sep','Oct','Nov','Dic'];
+var MESES_LARGOS=['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'];
+function wrRender(){var entries=wrLoad().slice().sort(function(a,b){return b.date.localeCompare(a.date);});var grid=document.getElementById('wrGrid');if(!entries.length){grid.innerHTML='<div class="wr-empty">Sin entradas aún.<br>Cada domingo añade tu review semanal para llevar el seguimiento de los 7 pilares.</div>';return;}grid.innerHTML='<div class="wr-grid">'+entries.map(function(e){var d=new Date(e.date+'T12:00:00');var day=d.getDate();var mon=MESES_CORTOS[d.getMonth()];var pills=[];if(e.peso)pills.push('⚖️ '+e.peso);if(e.deporte)pills.push('🏋️ Deporte');if(e.nutricion)pills.push('🥗 Nutrición');if(e.trabajo)pills.push('💼 Gobelas');if(e.finanzas)pills.push('💰 Finanzas');if(e.desarrollo)pills.push('📚 Desarrollo');if(e.social)pills.push('❤️ Social');if(e.hitos)pills.push('🎯 Hitos');var preview=e.deporte||e.trabajo||e.nutricion||e.social||'';var pillsHTML=pills.slice(0,4).map(function(p){return'<span class="wr-pill">'+p+'</span>';}).join('');return'<div class="wr-card" onclick="wrOpenRead(this.dataset.id)" data-id="'+e.id+'">'+'<div class="wr-card-top">'+'<div class="wr-date-box"><div class="wr-date-day">'+day+'</div><div class="wr-date-mon">'+mon+'</div></div>'+'<div class="wr-card-meta">'+'<div class="wr-card-week">Semana '+(e.weekNum||'—')+' · '+d.getFullYear()+'</div>'+'<div class="wr-card-title">'+(e.title||'Weekly Review')+'</div>'+(preview?'<div class="wr-card-preview">'+preview.substring(0,100)+'</div>':'')+'</div></div>'+(pillsHTML?'<div class="wr-card-bottom">'+pillsHTML+'</div>':'')+'</div>';}).join('')+'</div>';}
+function wrOpenNew(){document.getElementById('wrEditId').value='';document.getElementById('wrModalTitle').textContent='Nueva semana';var now=new Date();document.getElementById('wrDate').value=now.toISOString().split('T')[0];var start=new Date('2026-03-10');var diff=Math.floor((now-start)/(7*24*60*60*1000))+1;document.getElementById('wrWeekNum').value=Math.max(1,diff);['wrPeso','wrDeporte','wrNutricion','wrTrabajo','wrFinanzas','wrDesarrollo','wrSocial','wrHitos'].forEach(function(id){document.getElementById(id).value='';});document.getElementById('wrOverlay').classList.add('open');}
+function wrCloseNew(){document.getElementById('wrOverlay').classList.remove('open');}
+function wrOverlayClick(e){if(e.target===document.getElementById('wrOverlay'))wrCloseNew();}
+function wrSave(){var date=document.getElementById('wrDate').value;if(!date){alert('Elige una fecha para la semana.');return;}var editId=document.getElementById('wrEditId').value;var entry={id:editId||'wr_'+Date.now(),date:date,weekNum:document.getElementById('wrWeekNum').value,title:wrBuildTitle(date),peso:document.getElementById('wrPeso').value.trim(),deporte:document.getElementById('wrDeporte').value.trim(),nutricion:document.getElementById('wrNutricion').value.trim(),trabajo:document.getElementById('wrTrabajo').value.trim(),finanzas:document.getElementById('wrFinanzas').value.trim(),desarrollo:document.getElementById('wrDesarrollo').value.trim(),social:document.getElementById('wrSocial').value.trim(),hitos:document.getElementById('wrHitos').value.trim(),savedAt:new Date().toISOString()};var entries=wrLoad();if(editId){var idx=entries.findIndex(function(e){return e.id===editId;});if(idx>=0)entries[idx]=entry;else entries.push(entry);}else{entries.push(entry);}wrSaveAll(entries);wrCloseNew();wrRender();var btn=document.querySelector('.wr-btn-save');var orig=btn.textContent;btn.textContent='✓ Guardado';setTimeout(function(){btn.textContent=orig;},1500);}
+function wrBuildTitle(dateStr){var d=new Date(dateStr+'T12:00:00');return'Review — '+MESES_LARGOS[d.getMonth()]+' '+d.getDate();}
+function wrOpenRead(id){var entries=wrLoad();var e=entries.find(function(x){return x.id===id;});if(!e)return;wrCurrentReadId=id;var d=new Date(e.date+'T12:00:00');document.getElementById('wrReadDate').textContent='Semana '+(e.weekNum||'—')+' · '+d.toLocaleDateString('es-ES',{day:'numeric',month:'long',year:'numeric'});document.getElementById('wrReadTitle').textContent=e.title||'Weekly Review';var sections=[{icon:'⚖️',label:'Peso',val:e.peso},{icon:'🏋️',label:'Deporte',val:e.deporte},{icon:'🥗',label:'Nutrición',val:e.nutricion},{icon:'💼',label:'Gobelas · Trabajo',val:e.trabajo},{icon:'💰',label:'Finanzas',val:e.finanzas},{icon:'📚',label:'Lecturas & Desarrollo',val:e.desarrollo},{icon:'❤️',label:'Social',val:e.social},{icon:'🎯',label:'Hitos',val:e.hitos}].filter(function(s){return s.val;});document.getElementById('wrReadBody').innerHTML=sections.map(function(s){return'<div class="wr-read-section">'+'<div class="wr-read-section-lbl">'+s.icon+' '+s.label+'</div>'+'<div class="wr-read-section-val">'+s.val.replace(/</g,'&lt;').replace(/>/g,'&gt;')+'</div>'+'</div>';}).join('')||'<div class="wr-read-section-empty">Sin contenido en esta entrada.</div>';document.getElementById('wrReadOverlay').classList.add('open');}
+function wrCloseRead(){document.getElementById('wrReadOverlay').classList.remove('open');wrCurrentReadId=null;}
+function wrReadOverlayClick(e){if(e.target===document.getElementById('wrReadOverlay'))wrCloseRead();}
+function wrEditEntry(id){var entries=wrLoad();var e=entries.find(function(x){return x.id===id;});if(!e)return;wrCloseRead();document.getElementById('wrEditId').value=e.id;document.getElementById('wrModalTitle').textContent='Editar semana';document.getElementById('wrDate').value=e.date;document.getElementById('wrWeekNum').value=e.weekNum||'';document.getElementById('wrPeso').value=e.peso||'';document.getElementById('wrDeporte').value=e.deporte||'';document.getElementById('wrNutricion').value=e.nutricion||'';document.getElementById('wrTrabajo').value=e.trabajo||'';document.getElementById('wrFinanzas').value=e.finanzas||'';document.getElementById('wrDesarrollo').value=e.desarrollo||'';document.getElementById('wrSocial').value=e.social||'';document.getElementById('wrHitos').value=e.hitos||'';document.getElementById('wrOverlay').classList.add('open');}
+function wrDeleteEntry(id){if(!confirm('¿Eliminar esta entrada?'))return;wrSaveAll(wrLoad().filter(function(e){return e.id!==id;}));wrCloseRead();wrRender();}
+
+// ── LOGIN ────────────────────────────────────────────────
+var PWD_HASH='d54123de468bd42ea00dafbd777f85fe5fa1ff6404d9838c007953c25c92a1c5';
+var SESSION_KEY='ao_session_v1';
+var SESSION_TTL=7*24*60*60*1000;
+async function hashPassword(pwd){var buf=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(pwd));return Array.from(new Uint8Array(buf)).map(function(x){return x.toString(16).padStart(2,'0');}).join('');}
+function checkSession(){try{var raw=localStorage.getItem(SESSION_KEY);if(!raw)return false;var s=JSON.parse(raw);if(Date.now()-s.ts>SESSION_TTL){localStorage.removeItem(SESSION_KEY);return false;}return s.ok===true;}catch(e){return false;}}
+function saveSession(){localStorage.setItem(SESSION_KEY,JSON.stringify({ok:true,ts:Date.now()}));}
+function showApp(){document.getElementById('loginScreen').classList.add('hidden');document.body.style.overflow='';}
+async function loginSubmit(){var pwd=document.getElementById('loginInput').value;var err=document.getElementById('loginError');var btn=document.querySelector('.login-btn');if(!pwd){err.textContent='Introduce la contraseña.';return;}btn.textContent='...';btn.disabled=true;var hash=await hashPassword(pwd);btn.textContent='Entrar →';btn.disabled=false;if(hash===PWD_HASH){saveSession();showApp();}else{err.textContent='Contraseña incorrecta.';document.getElementById('loginInput').value='';document.getElementById('loginInput').focus();}}
+(function(){if(checkSession()){document.addEventListener('DOMContentLoaded',function(){showApp();});}else{document.body.style.overflow='hidden';}})();
+
+window.addEventListener('DOMContentLoaded',()=>{
+  loadStates();
+  setDynamic();
+  renderTimeline();
+  renderPillars();
+  renderNextActions();
+  checkBalance();
+  setTimeout(drawRadar,200);
+  wrRender();
+});
+</script>
 </body>
 </html>
