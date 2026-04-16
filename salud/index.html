@@ -14,8 +14,6 @@
 }
 html { scroll-behavior: smooth; }
 body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--text-1); min-height: 100vh; -webkit-font-smoothing: antialiased; }
-
-/* NAV */
 nav { background: var(--surface); border-bottom: 1px solid var(--border); padding: 0 48px; display: flex; align-items: center; height: 56px; position: sticky; top: 0; z-index: 100; }
 .nav-logo { font-family: 'DM Serif Display', serif; font-size: 18px; letter-spacing: -0.3px; color: var(--text-1); text-decoration: none; margin-right: 36px; white-space: nowrap; flex-shrink: 0; }
 .nav-logo span { font-style: italic; color: var(--text-2); }
@@ -23,11 +21,7 @@ nav { background: var(--surface); border-bottom: 1px solid var(--border); paddin
 .nav-link { font-size: 12px; font-weight: 500; color: var(--text-2); padding: 0 16px; text-decoration: none; height: 56px; display: flex; align-items: center; white-space: nowrap; border-bottom: 2px solid transparent; margin-bottom: -1px; transition: color .15s, border-color .15s; }
 .nav-link:hover { color: var(--text-1); }
 .nav-link.active { color: var(--text-1); border-bottom-color: var(--text-1); font-weight: 600; }
-
-/* PAGE */
 .page { max-width: 1280px; margin: 0 auto; padding: 48px; }
-
-/* HEADER */
 .page-hdr { padding: 48px 0 36px; border-bottom: 1px solid var(--border); margin-bottom: 0; display: flex; align-items: flex-start; gap: 24px; flex-wrap: wrap; justify-content: space-between; }
 .ph-left { display: flex; align-items: flex-start; gap: 20px; }
 .ph-icon { width: 52px; height: 52px; border-radius: 12px; background: var(--green-bg); display: flex; align-items: center; justify-content: center; font-size: 24px; border: 1px solid var(--border); flex-shrink: 0; }
@@ -37,31 +31,21 @@ nav { background: var(--surface); border-bottom: 1px solid var(--border); paddin
 .ph-stats { display: flex; gap: 24px; align-items: flex-end; flex-wrap: wrap; }
 .ph-stat-val { font-family: 'DM Serif Display', serif; font-size: 28px; line-height: 1; letter-spacing: -0.5px; color: var(--green); }
 .ph-stat-lbl { font-size: 11px; color: var(--text-3); font-weight: 500; margin-top: 3px; }
-
-/* MAIN TABS — level 1 */
 .main-tabs { display: flex; border-bottom: 1px solid var(--border); margin-bottom: 36px; overflow-x: auto; }
 .main-tab { font-size: 13px; font-weight: 500; color: var(--text-2); padding: 14px 22px; background: none; border: none; border-bottom: 2px solid transparent; margin-bottom: -1px; cursor: pointer; white-space: nowrap; transition: color .15s, border-color .15s; display: flex; align-items: center; gap: 7px; }
 .main-tab:hover { color: var(--text-1); }
 .main-tab.active { color: var(--text-1); border-bottom-color: var(--green); font-weight: 600; }
-
-/* SUB TABS — level 2 (nutrición) */
 .tabs-bar { display: flex; border-bottom: 1px solid var(--border); margin-bottom: 36px; overflow-x: auto; }
 .tab { font-size: 13px; font-weight: 500; color: var(--text-2); padding: 12px 20px; background: none; border: none; border-bottom: 2px solid transparent; margin-bottom: -1px; cursor: pointer; white-space: nowrap; transition: color .15s, border-color .15s; display: flex; align-items: center; gap: 7px; }
 .tab:hover { color: var(--text-1); }
 .tab.active { color: var(--text-1); border-bottom-color: var(--green); font-weight: 600; }
-
-/* PANELS */
 .panel { display: none; }
 .panel.active { display: block; }
 .tp { display: none; }
 .tp.active { display: block; }
-
-/* SECTION LABEL */
 .sl { font-size: 10px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; color: var(--text-3); margin: 32px 0 14px; display: flex; align-items: center; gap: 14px; }
 .sl::after { content: ''; flex: 1; height: 1px; background: var(--border); }
 .sl:first-child { margin-top: 0; }
-
-/* ─── NUTRICIÓN ─── */
 .ncard-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 10px; }
 .ncard { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 14px 16px; display: flex; flex-direction: column; gap: 9px; }
 .ncard-top { display: flex; align-items: center; gap: 10px; }
@@ -106,8 +90,6 @@ nav { background: var(--surface); border-bottom: 1px solid var(--border); paddin
 .elim { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 13px 15px; border-left: 3px solid; }
 .elim-t { font-size: 12px; font-weight: 600; margin-bottom: 3px; }
 .elim-b { font-size: 11px; color: var(--text-2); line-height: 1.5; }
-
-/* ─── DEPORTE ─── */
 .objetivo { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 24px 28px; margin-bottom: 32px; border-left: 3px solid var(--green); }
 .obj-label { font-size: 10px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--green); margin-bottom: 10px; }
 .obj-text { font-size: 14px; color: var(--text-1); line-height: 1.7; margin-bottom: 16px; }
@@ -129,9 +111,36 @@ nav { background: var(--surface); border-bottom: 1px solid var(--border); paddin
 .card-tag { font-size: 11px; font-weight: 600; padding: 3px 10px; border-radius: 20px; background: var(--green-bg); color: var(--green); border: 1px solid var(--green-border); }
 .card-arrow { font-size: 16px; color: var(--text-3); transition: transform .2s; }
 .content-card:hover .card-arrow { transform: translateX(4px); color: var(--text-1); }
-.content-card.soon { opacity: 0.55; cursor: default; pointer-events: none; }
-.content-card.soon:hover { transform: none; box-shadow: none; border-color: var(--border); }
-.soon-badge { font-size: 11px; font-weight: 600; padding: 3px 10px; border-radius: 20px; background: var(--bg); color: var(--text-3); border: 1px solid var(--border); }
+
+/* ─── CARDIO PROGRAM ─── */
+.cardio-section { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; overflow: hidden; margin-top: 32px; }
+.cardio-hdr { padding: 20px 24px; border-bottom: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; background: #FAFAF8; }
+.cardio-hdr-left { display: flex; align-items: center; gap: 14px; }
+.cardio-hdr-icon { width: 40px; height: 40px; border-radius: 10px; background: var(--green-bg); border: 1px solid var(--green-border); display: flex; align-items: center; justify-content: center; font-size: 18px; }
+.cardio-hdr-title { font-family: 'DM Serif Display', serif; font-size: 18px; letter-spacing: -0.3px; }
+.cardio-hdr-sub { font-size: 12px; color: var(--text-3); margin-top: 2px; }
+.cardio-stats { display: flex; gap: 20px; flex-shrink: 0; }
+.cardio-stat { text-align: right; }
+.cardio-stat-val { font-family: 'DM Serif Display', serif; font-size: 20px; color: var(--green); line-height: 1; }
+.cardio-stat-lbl { font-size: 10px; color: var(--text-3); font-weight: 500; margin-top: 2px; }
+.cardio-progress-bar { height: 3px; background: var(--border); position: relative; }
+.cardio-progress-fill { height: 100%; background: var(--green); width: 0%; transition: width 1s cubic-bezier(.4,0,.2,1); }
+.cardio-table { width: 100%; }
+.cardio-row { display: grid; grid-template-columns: 60px 70px 1fr 90px; align-items: center; padding: 10px 24px; border-bottom: 1px solid var(--border); transition: background .12s; }
+.cardio-row:last-child { border-bottom: none; }
+.cardio-row:hover { background: var(--bg); }
+.cardio-row.hdr { background: #FAFAF8; font-size: 10px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: var(--text-3); }
+.cardio-row.current { background: var(--green-bg); }
+.cardio-sem { font-size: 12px; font-weight: 600; color: var(--text-3); }
+.cardio-row.current .cardio-sem { color: var(--green); }
+.cardio-km { font-family: 'DM Serif Display', serif; font-size: 16px; color: var(--text-1); }
+.cardio-row.current .cardio-km { color: var(--green); }
+.cardio-desc { font-size: 12px; color: var(--text-2); line-height: 1.4; }
+.cardio-badge { font-size: 10px; font-weight: 600; padding: 2px 8px; border-radius: 20px; text-align: center; white-space: nowrap; }
+.badge-libre { background: #EEF2FF; color: #3D405B; border: 1px solid #C8D4F5; }
+.badge-ligero { background: var(--green-bg); color: var(--green); border: 1px solid var(--green-border); }
+.badge-mixto { background: #FFF8EC; color: #92700A; border: 1px solid #F2CC8F; }
+.cardio-current-badge { font-size: 9px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: var(--green); background: var(--green-bg); border: 1px solid var(--green-border); padding: 1px 6px; border-radius: 20px; margin-left: 6px; vertical-align: middle; }
 
 /* ─── TRACKER ─── */
 .upload-zone { background: var(--surface); border: 2px dashed var(--border-2); border-radius: 12px; padding: 36px 24px; text-align: center; cursor: pointer; transition: all .2s; margin-bottom: 24px; }
@@ -246,16 +255,29 @@ nav { background: var(--surface); border-bottom: 1px solid var(--border); paddin
 .ob-icon { font-size: 18px; }
 .ob-text { color: var(--green); font-weight: 500; }
 .ob-text strong { font-weight: 700; }
-@media (max-width: 600px) { .peso-hero { grid-template-columns: repeat(2,1fr); } .peso-row { grid-template-columns: 90px 70px 70px; } .peso-row .peso-note, .peso-row .peso-del-btn { display: none; } }
+
+@media (max-width: 600px) { .peso-hero { grid-template-columns: repeat(2,1fr); } .peso-row { grid-template-columns: 90px 70px 70px; } .peso-row .peso-note, .peso-row .peso-del-btn { display: none; } .cardio-row { grid-template-columns: 50px 60px 1fr; } .cardio-badge { display: none; } .cardio-stats { display: none; } }
 @media (max-width: 1100px) { .macros-strip { grid-template-columns: repeat(3,1fr); } }
 @media (max-width: 900px) { .charts-grid { grid-template-columns: 1fr; } .stats-strip { grid-template-columns: repeat(2,1fr); } }
-@media (max-width: 768px) {
-  nav { padding: 0 20px; } .nav-logo { margin-right: 20px; }
-  .page { padding: 24px 20px; }
-  .macros-strip { grid-template-columns: repeat(2,1fr); }
-  .ncard-grid, .macro-grid, .diag-grid, .princ-grid, .content-grid { grid-template-columns: 1fr; }
-}
+@media (max-width: 768px) { nav { padding: 0 20px; } .nav-logo { margin-right: 20px; } .page { padding: 24px 20px; } .macros-strip { grid-template-columns: repeat(2,1fr); } .ncard-grid, .macro-grid, .diag-grid, .princ-grid, .content-grid { grid-template-columns: 1fr; } }
 @media (max-width: 600px) { .act-row { grid-template-columns: 80px 1fr 70px; } .act-cal, .act-type { display: none; } }
+
+/* ─── CARDIO MODAL ─── */
+.cardio-modal-overlay { position: fixed; inset: 0; background: rgba(26,25,22,0.55); backdrop-filter: blur(4px); z-index: 2000; display: none; align-items: center; justify-content: center; padding: 24px; }
+.cardio-modal-overlay.open { display: flex; }
+.cardio-modal { background: #fff; border: 1px solid #E8E6E0; border-radius: 16px; width: 100%; max-width: 640px; max-height: calc(100vh - 48px); overflow: hidden; display: flex; flex-direction: column; box-shadow: 0 24px 64px rgba(0,0,0,0.15); }
+.cardio-modal-hdr { padding: 20px 24px; border-bottom: 1px solid #E8E6E0; display: flex; align-items: center; justify-content: space-between; background: #FAFAF8; flex-shrink: 0; }
+.cardio-modal-hdr-left { display: flex; align-items: center; gap: 12px; }
+.cardio-modal-hdr-icon { width: 36px; height: 36px; border-radius: 8px; background: var(--green-bg); border: 1px solid var(--green-border); display: flex; align-items: center; justify-content: center; font-size: 16px; }
+.cardio-modal-title { font-family: 'DM Serif Display', serif; font-size: 18px; letter-spacing: -0.3px; }
+.cardio-modal-sub { font-size: 11px; color: #A8A49C; margin-top: 2px; }
+.cardio-modal-close { background: none; border: 1px solid #E8E6E0; border-radius: 8px; padding: 7px 11px; cursor: pointer; font-size: 13px; color: #6B6860; font-family: 'DM Sans', sans-serif; transition: all .15s; }
+.cardio-modal-close:hover { background: #F5F4F0; }
+.cardio-modal-stats { display: flex; gap: 20px; padding: 12px 24px; border-bottom: 1px solid #E8E6E0; background: #fff; flex-shrink: 0; }
+.cardio-modal-stat-val { font-family: 'DM Serif Display', serif; font-size: 18px; color: var(--green); line-height: 1; }
+.cardio-modal-stat-lbl { font-size: 10px; color: #A8A49C; font-weight: 500; margin-top: 2px; }
+.cardio-modal-body { overflow-y: auto; flex: 1; }
+
 ::-webkit-scrollbar { width: 5px; height: 5px; }
 ::-webkit-scrollbar-track { background: transparent; }
 ::-webkit-scrollbar-thumb { background: rgba(0,0,0,.12); border-radius: 3px; }
@@ -277,7 +299,6 @@ nav { background: var(--surface); border-bottom: 1px solid var(--border); paddin
 
 <div class="page">
 
-  <!-- HEADER -->
   <div class="page-hdr">
     <div class="ph-left">
       <div class="ph-icon">🫀</div>
@@ -289,12 +310,11 @@ nav { background: var(--surface); border-bottom: 1px solid var(--border); paddin
     </div>
     <div class="ph-stats">
       <div><div class="ph-stat-val">88 → 80 kg</div><div class="ph-stat-lbl">Objetivo composición</div></div>
-      <div><div class="ph-stat-val">16 sem</div><div class="ph-stat-lbl">Programa activo</div></div>
-      <div><div class="ph-stat-val">6 Abr</div><div class="ph-stat-lbl">Inicio rutina</div></div>
+      <div><div class="ph-stat-val">16 sem</div><div class="ph-stat-lbl">Programa fuerza</div></div>
+      <div><div class="ph-stat-val">19 sem</div><div class="ph-stat-lbl">Programa cardio</div></div>
     </div>
   </div>
 
-  <!-- MAIN TABS -->
   <div class="main-tabs">
     <button class="main-tab active" onclick="switchPanel('nutricion')">🥗 Nutrición</button>
     <button class="main-tab" onclick="switchPanel('deporte')">🏋️ Deporte</button>
@@ -302,130 +322,40 @@ nav { background: var(--surface); border-bottom: 1px solid var(--border); paddin
     <button class="main-tab" onclick="switchPanel('peso')">⚖️ Tracker de Peso</button>
   </div>
 
-  <!-- ══════════════════════════════════════════════════
-       PANEL 1 — NUTRICIÓN
-  ══════════════════════════════════════════════════ -->
+  <!-- PANEL 1 — NUTRICIÓN -->
   <div class="panel active" id="panel-nutricion">
-
     <div class="tabs-bar">
       <button class="tab active" onclick="st('nutrientes')">🔬 Nutrientes</button>
       <button class="tab" onclick="st('dieta')">🍽️ Dieta</button>
     </div>
-
-    <!-- NUTRIENTES -->
     <div class="tp active" id="tp-nutrientes">
-
       <div class="sl">Vitaminas liposolubles — se almacenan en tejido graso e hígado</div>
       <div class="ncard-grid">
-        <div class="ncard">
-          <div class="ncard-top"><span class="ncard-icon">🥕</span><span class="ncard-name">Vitamina A</span><span class="ncard-dose" style="background:#FFF3E8;color:#C4621A;border:1px solid #FCDBB8">900 mcg/día</span></div>
-          <div class="ncard-why">Visión nocturna, sistema inmune y salud de la piel. Antioxidante celular. Con meses sin fruta ni verdura, la inmunidad es el primer sistema que cede.</div>
-          <div class="ncard-alerts">
-            <div class="nalert nalert-d">⚡ Déficit: visión nocturna reducida, infecciones frecuentes, anemia</div>
-            <div class="nalert nalert-w">⚠ Exceso solo por suplementación abusiva: pérdida de cabello, piel seca</div>
-          </div>
-          <div class="ncard-foods"><div class="nf">Zanahoria <span>1346 μg</span></div><div class="nf">Espinacas <span>771 μg</span></div><div class="nf">Melón <span>771 μg</span></div><div class="nf">Calabaza <span>707 μg</span></div><div class="nf">Yema huevo <span>570 μg</span></div></div>
-        </div>
-        <div class="ncard">
-          <div class="ncard-top"><span class="ncard-icon">☀️</span><span class="ncard-name">Vitamina D</span><span class="ncard-dose" style="background:#FFFBE8;color:#92700A;border:1px solid #F2CC8F">15 mcg/día</span></div>
-          <div class="ncard-why">Absorción de calcio, función inmune, rendimiento muscular. Trabajo de oficina en Madrid = exposición solar insuficiente garantizada. <strong>Suplementa: 2000–4000 UI/día con comida.</strong></div>
-          <div class="ncard-alerts">
-            <div class="nalert nalert-d">⚡ Déficit: debilidad muscular, recuperación comprometida, osteomalacia</div>
-            <div class="nalert nalert-w">⚠ Exceso: hipercalcemia, cálculos renales. Solo por sobredosis de suplemento</div>
-          </div>
-          <div class="ncard-foods"><div class="nf">Ac. hígado bacalao <span>252 mcg</span></div><div class="nf">Atún fresco <span>25 mcg</span></div><div class="nf">Sardinas lata <span>17 mcg</span></div><div class="nf">Salmón <span>5 mcg</span></div></div>
-        </div>
-        <div class="ncard">
-          <div class="ncard-top"><span class="ncard-icon">🌿</span><span class="ncard-name">Vitamina E</span><span class="ncard-dose" style="background:#EAF3EE;color:#2D6A4F;border:1px solid #C3DDD1">15 mg/día</span></div>
-          <div class="ncard-why">Antioxidante liposoluble potente. Protege células del daño oxidativo y refuerza el sistema inmune. Especialmente relevante en fases de entrenamiento intenso.</div>
-          <div class="ncard-alerts"><div class="nalert nalert-d">⚡ Déficit: menor producción de anticuerpos, recuperación más lenta</div></div>
-          <div class="ncard-foods"><div class="nf">Semillas girasol <span>52 mg</span></div><div class="nf">Almendras <span>26 mg</span></div><div class="nf">Avellanas <span>24 mg</span></div><div class="nf">Aceite oliva <span>14 mg</span></div><div class="nf">Aguacate <span>2.1 mg</span></div></div>
-        </div>
-        <div class="ncard">
-          <div class="ncard-top"><span class="ncard-icon">🫙</span><span class="ncard-name">Vitamina K</span><span class="ncard-dose" style="background:#EEF2FF;color:#3D405B;border:1px solid #C8D4F5">120 mcg/día</span></div>
-          <div class="ncard-why">Coagulación y metabolismo óseo. Con déficit de D —probable—, necesitas K2 para que el calcio llegue a los huesos en lugar de calcificar arterias.</div>
-          <div class="ncard-alerts"><div class="nalert nalert-d">⚡ Déficit: raro. Puede aparecer con uso prolongado de antibióticos</div></div>
-          <div class="ncard-foods"><div class="nf">Repollo verde <span>1060 μg</span></div><div class="nf">Col rizada <span>1054 μg</span></div><div class="nf">Espinacas <span>884 μg</span></div><div class="nf">Garbanzos <span>264 μg</span></div><div class="nf">Brócoli <span>154 μg</span></div></div>
-        </div>
+        <div class="ncard"><div class="ncard-top"><span class="ncard-icon">🥕</span><span class="ncard-name">Vitamina A</span><span class="ncard-dose" style="background:#FFF3E8;color:#C4621A;border:1px solid #FCDBB8">900 mcg/día</span></div><div class="ncard-why">Visión nocturna, sistema inmune y salud de la piel. Antioxidante celular. Con meses sin fruta ni verdura, la inmunidad es el primer sistema que cede.</div><div class="ncard-alerts"><div class="nalert nalert-d">⚡ Déficit: visión nocturna reducida, infecciones frecuentes, anemia</div><div class="nalert nalert-w">⚠ Exceso solo por suplementación abusiva: pérdida de cabello, piel seca</div></div><div class="ncard-foods"><div class="nf">Zanahoria <span>1346 μg</span></div><div class="nf">Espinacas <span>771 μg</span></div><div class="nf">Melón <span>771 μg</span></div><div class="nf">Calabaza <span>707 μg</span></div><div class="nf">Yema huevo <span>570 μg</span></div></div></div>
+        <div class="ncard"><div class="ncard-top"><span class="ncard-icon">☀️</span><span class="ncard-name">Vitamina D</span><span class="ncard-dose" style="background:#FFFBE8;color:#92700A;border:1px solid #F2CC8F">15 mcg/día</span></div><div class="ncard-why">Absorción de calcio, función inmune, rendimiento muscular. Trabajo de oficina en Madrid = exposición solar insuficiente garantizada. <strong>Suplementa: 2000–4000 UI/día con comida.</strong></div><div class="ncard-alerts"><div class="nalert nalert-d">⚡ Déficit: debilidad muscular, recuperación comprometida, osteomalacia</div><div class="nalert nalert-w">⚠ Exceso: hipercalcemia, cálculos renales. Solo por sobredosis de suplemento</div></div><div class="ncard-foods"><div class="nf">Ac. hígado bacalao <span>252 mcg</span></div><div class="nf">Atún fresco <span>25 mcg</span></div><div class="nf">Sardinas lata <span>17 mcg</span></div><div class="nf">Salmón <span>5 mcg</span></div></div></div>
+        <div class="ncard"><div class="ncard-top"><span class="ncard-icon">🌿</span><span class="ncard-name">Vitamina E</span><span class="ncard-dose" style="background:#EAF3EE;color:#2D6A4F;border:1px solid #C3DDD1">15 mg/día</span></div><div class="ncard-why">Antioxidante liposoluble potente. Protege células del daño oxidativo y refuerza el sistema inmune. Especialmente relevante en fases de entrenamiento intenso.</div><div class="ncard-alerts"><div class="nalert nalert-d">⚡ Déficit: menor producción de anticuerpos, recuperación más lenta</div></div><div class="ncard-foods"><div class="nf">Semillas girasol <span>52 mg</span></div><div class="nf">Almendras <span>26 mg</span></div><div class="nf">Avellanas <span>24 mg</span></div><div class="nf">Aceite oliva <span>14 mg</span></div><div class="nf">Aguacate <span>2.1 mg</span></div></div></div>
+        <div class="ncard"><div class="ncard-top"><span class="ncard-icon">🫙</span><span class="ncard-name">Vitamina K</span><span class="ncard-dose" style="background:#EEF2FF;color:#3D405B;border:1px solid #C8D4F5">120 mcg/día</span></div><div class="ncard-why">Coagulación y metabolismo óseo. Con déficit de D —probable—, necesitas K2 para que el calcio llegue a los huesos en lugar de calcificar arterias.</div><div class="ncard-alerts"><div class="nalert nalert-d">⚡ Déficit: raro. Puede aparecer con uso prolongado de antibióticos</div></div><div class="ncard-foods"><div class="nf">Repollo verde <span>1060 μg</span></div><div class="nf">Col rizada <span>1054 μg</span></div><div class="nf">Espinacas <span>884 μg</span></div><div class="nf">Garbanzos <span>264 μg</span></div><div class="nf">Brócoli <span>154 μg</span></div></div></div>
       </div>
-
       <div class="sl">Vitaminas hidrosolubles — no se almacenan, consumo diario necesario</div>
       <div class="ncard-grid">
-        <div class="ncard">
-          <div class="ncard-top"><span class="ncard-icon">🍊</span><span class="ncard-name">Vitamina C</span><span class="ncard-dose" style="background:#FCEEE9;color:#C0614A;border:1px solid #F5C6BC">90 mg/día</span></div>
-          <div class="ncard-why">Síntesis de colágeno (tendones al retomar entrenos), inmunidad, absorción de hierro. Sin fruta en tu dieta estás casi con certeza deficitario.</div>
-          <div class="ncard-alerts"><div class="nalert nalert-d">⚡ Déficit: fatiga, mayor riesgo de lesiones tendinosas, cicatrización lenta</div></div>
-          <div class="ncard-foods"><div class="nf">Guayaba <span>273 mg</span></div><div class="nf">Pimientos <span>131 mg</span></div><div class="nf">Kiwi <span>71 mg</span></div><div class="nf">Brócoli <span>65 mg</span></div><div class="nf">Fresas <span>60 mg</span></div><div class="nf">Naranja <span>50 mg</span></div></div>
-        </div>
-        <div class="ncard">
-          <div class="ncard-top"><span class="ncard-icon">🐟</span><span class="ncard-name">Vitamina B12</span><span class="ncard-dose" style="background:#EAF3EE;color:#2D6A4F;border:1px solid #C3DDD1">2.4 mcg/día</span></div>
-          <div class="ncard-why">Glóbulos rojos, síntesis de ADN, salud neurológica. Impacta en memoria y concentración. Su déficit es silencioso y se manifiesta meses después — crítico en un rol de alta carga analítica.</div>
-          <div class="ncard-alerts"><div class="nalert nalert-d">⚡ Déficit: anemia megaloblástica, deterioro neurológico, fatiga crónica</div></div>
-          <div class="ncard-foods"><div class="nf">Hígado res <span>100 μg</span></div><div class="nf">Mejillones <span>21 μg</span></div><div class="nf">Sardinas <span>12 μg</span></div><div class="nf">Atún <span>2.7 μg</span></div><div class="nf">Huevo <span>0.5 μg</span></div></div>
-        </div>
-        <div class="ncard">
-          <div class="ncard-top"><span class="ncard-icon">🧠</span><span class="ncard-name">Vitamina B6</span><span class="ncard-dose" style="background:#F5F0FF;color:#5B21B6;border:1px solid #DDD6FE">1.3–1.7 mg/día</span></div>
-          <div class="ncard-why">+100 reacciones enzimáticas. Metabolismo de proteínas, serotonina y dopamina. Con alta ingesta proteica —necesaria para tu objetivo— la demanda de B6 sube proporcionalmente.</div>
-          <div class="ncard-alerts"><div class="nalert nalert-d">⚡ Déficit: anemia, confusión, depresión, debilidad muscular</div></div>
-          <div class="ncard-foods"><div class="nf">Hígado res <span>0.9 mg</span></div><div class="nf">Nueces <span>0.7 mg</span></div><div class="nf">Salmón <span>0.6 mg</span></div><div class="nf">Garbanzos <span>0.6 mg</span></div><div class="nf">Plátano <span>0.4 mg</span></div></div>
-        </div>
-        <div class="ncard">
-          <div class="ncard-top"><span class="ncard-icon">🥬</span><span class="ncard-name">Ácido Fólico B9</span><span class="ncard-dose" style="background:#EAF3EE;color:#2D6A4F;border:1px solid #C3DDD1">400 mcg/día</span></div>
-          <div class="ncard-why">Síntesis de ADN, división celular, glóbulos rojos. Regula homocisteína (riesgo cardiovascular). Con carga física y laboral alta, la renovación celular sube y la demanda también.</div>
-          <div class="ncard-foods"><div class="nf">Soja <span>240 μg</span></div><div class="nf">Hígado <span>192 μg</span></div><div class="nf">Garbanzos <span>180 μg</span></div><div class="nf">Espinacas <span>140 μg</span></div><div class="nf">Aguacate <span>~80 μg</span></div></div>
-        </div>
-        <div class="ncard">
-          <div class="ncard-top"><span class="ncard-icon">⚡</span><span class="ncard-name">Vitamina B3 · Niacina</span><span class="ncard-dose" style="background:#FFF3E8;color:#C4621A;border:1px solid #FCDBB8">16 mg/día</span></div>
-          <div class="ncard-why">Producción de ATP y conversión de macronutrientes en energía. Ligada al rendimiento físico y mental. Fácilmente cubierta con carne, pescado y legumbres.</div>
-          <div class="ncard-foods"><div class="nf">Hígado <span>11.9 mg</span></div><div class="nf">Atún <span>11 mg</span></div><div class="nf">Cerdo magro <span>8.7 mg</span></div><div class="nf">Pollo <span>7.6 mg</span></div><div class="nf">Salmón <span>5.4 mg</span></div></div>
-        </div>
+        <div class="ncard"><div class="ncard-top"><span class="ncard-icon">🍊</span><span class="ncard-name">Vitamina C</span><span class="ncard-dose" style="background:#FCEEE9;color:#C0614A;border:1px solid #F5C6BC">90 mg/día</span></div><div class="ncard-why">Síntesis de colágeno (tendones al retomar entrenos), inmunidad, absorción de hierro. Sin fruta en tu dieta estás casi con certeza deficitario.</div><div class="ncard-alerts"><div class="nalert nalert-d">⚡ Déficit: fatiga, mayor riesgo de lesiones tendinosas, cicatrización lenta</div></div><div class="ncard-foods"><div class="nf">Guayaba <span>273 mg</span></div><div class="nf">Pimientos <span>131 mg</span></div><div class="nf">Kiwi <span>71 mg</span></div><div class="nf">Brócoli <span>65 mg</span></div><div class="nf">Fresas <span>60 mg</span></div><div class="nf">Naranja <span>50 mg</span></div></div></div>
+        <div class="ncard"><div class="ncard-top"><span class="ncard-icon">🐟</span><span class="ncard-name">Vitamina B12</span><span class="ncard-dose" style="background:#EAF3EE;color:#2D6A4F;border:1px solid #C3DDD1">2.4 mcg/día</span></div><div class="ncard-why">Glóbulos rojos, síntesis de ADN, salud neurológica. Impacta en memoria y concentración. Su déficit es silencioso y se manifiesta meses después.</div><div class="ncard-alerts"><div class="nalert nalert-d">⚡ Déficit: anemia megaloblástica, deterioro neurológico, fatiga crónica</div></div><div class="ncard-foods"><div class="nf">Hígado res <span>100 μg</span></div><div class="nf">Mejillones <span>21 μg</span></div><div class="nf">Sardinas <span>12 μg</span></div><div class="nf">Atún <span>2.7 μg</span></div><div class="nf">Huevo <span>0.5 μg</span></div></div></div>
+        <div class="ncard"><div class="ncard-top"><span class="ncard-icon">🧠</span><span class="ncard-name">Vitamina B6</span><span class="ncard-dose" style="background:#F5F0FF;color:#5B21B6;border:1px solid #DDD6FE">1.3–1.7 mg/día</span></div><div class="ncard-why">+100 reacciones enzimáticas. Metabolismo de proteínas, serotonina y dopamina. Con alta ingesta proteica, la demanda de B6 sube proporcionalmente.</div><div class="ncard-alerts"><div class="nalert nalert-d">⚡ Déficit: anemia, confusión, depresión, debilidad muscular</div></div><div class="ncard-foods"><div class="nf">Hígado res <span>0.9 mg</span></div><div class="nf">Nueces <span>0.7 mg</span></div><div class="nf">Salmón <span>0.6 mg</span></div><div class="nf">Garbanzos <span>0.6 mg</span></div><div class="nf">Plátano <span>0.4 mg</span></div></div></div>
+        <div class="ncard"><div class="ncard-top"><span class="ncard-icon">🥬</span><span class="ncard-name">Ácido Fólico B9</span><span class="ncard-dose" style="background:#EAF3EE;color:#2D6A4F;border:1px solid #C3DDD1">400 mcg/día</span></div><div class="ncard-why">Síntesis de ADN, división celular, glóbulos rojos. Regula homocisteína. Con carga física y laboral alta, la renovación celular sube y la demanda también.</div><div class="ncard-foods"><div class="nf">Soja <span>240 μg</span></div><div class="nf">Hígado <span>192 μg</span></div><div class="nf">Garbanzos <span>180 μg</span></div><div class="nf">Espinacas <span>140 μg</span></div><div class="nf">Aguacate <span>~80 μg</span></div></div></div>
+        <div class="ncard"><div class="ncard-top"><span class="ncard-icon">⚡</span><span class="ncard-name">Vitamina B3 · Niacina</span><span class="ncard-dose" style="background:#FFF3E8;color:#C4621A;border:1px solid #FCDBB8">16 mg/día</span></div><div class="ncard-why">Producción de ATP y conversión de macronutrientes en energía. Ligada al rendimiento físico y mental. Fácilmente cubierta con carne, pescado y legumbres.</div><div class="ncard-foods"><div class="nf">Hígado <span>11.9 mg</span></div><div class="nf">Atún <span>11 mg</span></div><div class="nf">Cerdo magro <span>8.7 mg</span></div><div class="nf">Pollo <span>7.6 mg</span></div><div class="nf">Salmón <span>5.4 mg</span></div></div></div>
       </div>
-
       <div class="sl">Minerales — macrominerales</div>
       <div class="ncard-grid">
-        <div class="ncard">
-          <div class="ncard-top"><span class="ncard-icon">🦴</span><span class="ncard-name">Calcio</span><span class="ncard-dose" style="background:#F5F0FF;color:#5B21B6;border:1px solid #DDD6FE">1000–1200 mg/día</span></div>
-          <div class="ncard-why">99% en huesos y dientes. Contracción muscular y transmisión nerviosa. Necesita vitamina D para ser absorbido — los dos van juntos siempre.</div>
-          <div class="ncard-alerts"><div class="nalert nalert-d">⚡ Déficit: calambres, fragilidad ósea, dificultad de concentración</div></div>
-          <div class="ncard-foods"><div class="nf">Queso Gruyère <span>560–850 mg</span></div><div class="nf">Yogur <span>415 mg</span></div><div class="nf">Sardinas lata <span>400 mg</span></div><div class="nf">Leche <span>300 mg</span></div><div class="nf">Almendras <span>240 mg</span></div></div>
-        </div>
-        <div class="ncard">
-          <div class="ncard-top"><span class="ncard-icon">😴</span><span class="ncard-name">Magnesio</span><span class="ncard-dose" style="background:#EAF3EE;color:#2D6A4F;border:1px solid #C3DDD1">400–420 mg/día</span></div>
-          <div class="ncard-why">+300 reacciones bioquímicas. Regula glucosa, ritmo cardíaco, contracción muscular y sueño. Reduce cortisol. El ojo que te vibra es síntoma clásico de déficit. <strong>Suplementa: glicinato 300–400 mg antes de dormir.</strong></div>
-          <div class="ncard-alerts"><div class="nalert nalert-d">⚡ Déficit: fasciculación ocular, calambres, fatiga, sueño fragmentado</div></div>
-          <div class="ncard-foods"><div class="nf">Almendras <span>250 mg</span></div><div class="nf">Chocolate negro <span>100 mg</span></div><div class="nf">Pan integral <span>91 mg</span></div><div class="nf">Lentejas <span>78 mg</span></div><div class="nf">Espinacas <span>50 mg</span></div></div>
-        </div>
-        <div class="ncard">
-          <div class="ncard-top"><span class="ncard-icon">🩸</span><span class="ncard-name">Hierro</span><span class="ncard-dose" style="background:#FEF3F2;color:#912018;border:1px solid #FECDCA">8 mg/día</span></div>
-          <div class="ncard-why">Transporta oxígeno a los músculos. Corriste una maratón en febrero: el hierro se destruye en cada zancada. Tu reserva puede estar baja. Combina fuentes hemo con vitamina C.</div>
-          <div class="ncard-alerts">
-            <div class="nalert nalert-d">⚡ Déficit: anemia ferropénica, fatiga crónica — frecuente en deportistas de resistencia</div>
-            <div class="nalert nalert-w">⚠ No suplementes sin analítica previa. El exceso daña hígado y corazón</div>
-          </div>
-          <div class="ncard-foods"><div class="nf">Berberechos <span>24 mg</span></div><div class="nf">Hígado res <span>8 mg</span></div><div class="nf">Lentejas <span>7.1 mg</span></div><div class="nf">Garbanzos <span>6.7 mg</span></div><div class="nf">Espinacas <span>4 mg</span></div></div>
-        </div>
-        <div class="ncard">
-          <div class="ncard-top"><span class="ncard-icon">🍌</span><span class="ncard-name">Potasio</span><span class="ncard-dose" style="background:#FFF8EC;color:#92400E;border:1px solid #F2CC8F">3400 mg/día</span></div>
-          <div class="ncard-why">Equilibrio hídrico, presión arterial y función cardíaca muscular. Se pierde con el sudor. Su fuente principal es fruta y verdura — otro motivo para incorporarlas ya.</div>
-          <div class="ncard-foods"><div class="nf">Espinaca cruda <span>529 mg</span></div><div class="nf">Aguacate <span>487 mg</span></div><div class="nf">Plátano <span>370 mg</span></div><div class="nf">Melón <span>310 mg</span></div><div class="nf">Kiwi <span>290 mg</span></div></div>
-        </div>
+        <div class="ncard"><div class="ncard-top"><span class="ncard-icon">🦴</span><span class="ncard-name">Calcio</span><span class="ncard-dose" style="background:#F5F0FF;color:#5B21B6;border:1px solid #DDD6FE">1000–1200 mg/día</span></div><div class="ncard-why">99% en huesos y dientes. Contracción muscular y transmisión nerviosa. Necesita vitamina D para ser absorbido — los dos van juntos siempre.</div><div class="ncard-alerts"><div class="nalert nalert-d">⚡ Déficit: calambres, fragilidad ósea, dificultad de concentración</div></div><div class="ncard-foods"><div class="nf">Queso Gruyère <span>560–850 mg</span></div><div class="nf">Yogur <span>415 mg</span></div><div class="nf">Sardinas lata <span>400 mg</span></div><div class="nf">Leche <span>300 mg</span></div><div class="nf">Almendras <span>240 mg</span></div></div></div>
+        <div class="ncard"><div class="ncard-top"><span class="ncard-icon">😴</span><span class="ncard-name">Magnesio</span><span class="ncard-dose" style="background:#EAF3EE;color:#2D6A4F;border:1px solid #C3DDD1">400–420 mg/día</span></div><div class="ncard-why">+300 reacciones bioquímicas. Regula glucosa, ritmo cardíaco, contracción muscular y sueño. Reduce cortisol. El ojo que te vibra es síntoma clásico de déficit. <strong>Suplementa: glicinato 300–400 mg antes de dormir.</strong></div><div class="ncard-alerts"><div class="nalert nalert-d">⚡ Déficit: fasciculación ocular, calambres, fatiga, sueño fragmentado</div></div><div class="ncard-foods"><div class="nf">Almendras <span>250 mg</span></div><div class="nf">Chocolate negro <span>100 mg</span></div><div class="nf">Pan integral <span>91 mg</span></div><div class="nf">Lentejas <span>78 mg</span></div><div class="nf">Espinacas <span>50 mg</span></div></div></div>
+        <div class="ncard"><div class="ncard-top"><span class="ncard-icon">🩸</span><span class="ncard-name">Hierro</span><span class="ncard-dose" style="background:#FEF3F2;color:#912018;border:1px solid #FECDCA">8 mg/día</span></div><div class="ncard-why">Transporta oxígeno a los músculos. Corriste una maratón en febrero: el hierro se destruye en cada zancada. Tu reserva puede estar baja. Combina fuentes hemo con vitamina C.</div><div class="ncard-alerts"><div class="nalert nalert-d">⚡ Déficit: anemia ferropénica, fatiga crónica — frecuente en deportistas de resistencia</div><div class="nalert nalert-w">⚠ No suplementes sin analítica previa. El exceso daña hígado y corazón</div></div><div class="ncard-foods"><div class="nf">Berberechos <span>24 mg</span></div><div class="nf">Hígado res <span>8 mg</span></div><div class="nf">Lentejas <span>7.1 mg</span></div><div class="nf">Garbanzos <span>6.7 mg</span></div><div class="nf">Espinacas <span>4 mg</span></div></div></div>
+        <div class="ncard"><div class="ncard-top"><span class="ncard-icon">🍌</span><span class="ncard-name">Potasio</span><span class="ncard-dose" style="background:#FFF8EC;color:#92400E;border:1px solid #F2CC8F">3400 mg/día</span></div><div class="ncard-why">Equilibrio hídrico, presión arterial y función cardíaca muscular. Se pierde con el sudor. Su fuente principal es fruta y verdura.</div><div class="ncard-foods"><div class="nf">Espinaca cruda <span>529 mg</span></div><div class="nf">Aguacate <span>487 mg</span></div><div class="nf">Plátano <span>370 mg</span></div><div class="nf">Melón <span>310 mg</span></div><div class="nf">Kiwi <span>290 mg</span></div></div></div>
       </div>
-
       <div class="sl">Minerales — oligominerales</div>
       <div class="ncard-grid">
-        <div class="ncard">
-          <div class="ncard-top"><span class="ncard-icon">💪</span><span class="ncard-name">Zinc</span><span class="ncard-dose" style="background:#EAF3EE;color:#2D6A4F;border:1px solid #C3DDD1">14 mg/día</span></div>
-          <div class="ncard-why">+300 enzimas. Sistema inmune, síntesis de proteínas y testosterona. Con objetivo de preservar músculo en déficit calórico, el zinc tiene un rol directo en la recuperación.</div>
-          <div class="ncard-foods"><div class="nf">Ostras crudas <span>59.2 mg</span></div><div class="nf">Carne res <span>8.5 mg</span></div><div class="nf">Almendras <span>5.0 mg</span></div><div class="nf">Lentejas <span>3.9 mg</span></div><div class="nf">Pollo <span>2.9 mg</span></div></div>
-        </div>
-        <div class="ncard">
-          <div class="ncard-top"><span class="ncard-icon">🌊</span><span class="ncard-name">Selenio</span><span class="ncard-dose" style="background:#EAF3EE;color:#2D6A4F;border:1px solid #C3DDD1">55 mcg/día</span></div>
-          <div class="ncard-why">Antioxidante. Regula metabolismo y función tiroidea (controla peso y energía). Suelos europeos son deficitarios. Una nuez de Brasil al día cubre la dosis. No más de dos o tres.</div>
-          <div class="ncard-alerts"><div class="nalert nalert-w">⚠ Selenosis por exceso. No superes 2–3 nueces de Brasil al día</div></div>
-          <div class="ncard-foods"><div class="nf">Nuez de Brasil <span>90 μg</span></div><div class="nf">Bacalao salado <span>148 μg</span></div><div class="nf">Sardina <span>59 μg</span></div><div class="nf">Mejillón <span>56 μg</span></div></div>
-        </div>
+        <div class="ncard"><div class="ncard-top"><span class="ncard-icon">💪</span><span class="ncard-name">Zinc</span><span class="ncard-dose" style="background:#EAF3EE;color:#2D6A4F;border:1px solid #C3DDD1">14 mg/día</span></div><div class="ncard-why">+300 enzimas. Sistema inmune, síntesis de proteínas y testosterona. Con objetivo de preservar músculo en déficit calórico, el zinc tiene un rol directo en la recuperación.</div><div class="ncard-foods"><div class="nf">Ostras crudas <span>59.2 mg</span></div><div class="nf">Carne res <span>8.5 mg</span></div><div class="nf">Almendras <span>5.0 mg</span></div><div class="nf">Lentejas <span>3.9 mg</span></div><div class="nf">Pollo <span>2.9 mg</span></div></div></div>
+        <div class="ncard"><div class="ncard-top"><span class="ncard-icon">🌊</span><span class="ncard-name">Selenio</span><span class="ncard-dose" style="background:#EAF3EE;color:#2D6A4F;border:1px solid #C3DDD1">55 mcg/día</span></div><div class="ncard-why">Antioxidante. Regula metabolismo y función tiroidea. Suelos europeos son deficitarios. Una nuez de Brasil al día cubre la dosis.</div><div class="ncard-alerts"><div class="nalert nalert-w">⚠ Selenosis por exceso. No superes 2–3 nueces de Brasil al día</div></div><div class="ncard-foods"><div class="nf">Nuez de Brasil <span>90 μg</span></div><div class="nf">Bacalao salado <span>148 μg</span></div><div class="nf">Sardina <span>59 μg</span></div><div class="nf">Mejillón <span>56 μg</span></div></div></div>
       </div>
-
       <div class="sl">Macros — objetivos diarios · 88 kg → 80 kg · actividad moderada-alta</div>
       <div class="macros-strip">
         <div class="mc"><div class="mc-lbl">Calorías</div><div class="mc-val">2200</div><div class="mc-sub">kcal/día · déficit ~300 kcal</div></div>
@@ -435,76 +365,52 @@ nav { background: var(--surface); border-bottom: 1px solid var(--border); paddin
         <div class="mc"><div class="mc-lbl">Agua</div><div class="mc-val">2.5–3L</div><div class="mc-sub">por día</div></div>
       </div>
       <div class="macro-grid">
-        <div class="mcard">
-          <div class="mcard-top"><span class="mcard-icon">🥚</span><span class="mcard-name">Proteínas</span><span class="mcard-badge" style="background:#FCEEE9;color:#C0614A;border:1px solid #F5C6BC">160–180g/día</span></div>
-          <div class="mcard-why">La recomendación oficial de 0.83g/kg es para sedentarios. Para perder 8 kg preservando músculo necesitas 1.8–2g/kg del peso objetivo (80 kg). Alta proteína: mayor saciedad y protección muscular en déficit calórico.</div>
-          <div class="ncard-foods"><div class="nf">Pechuga pollo <span>31g/100g</span></div><div class="nf">Atún lata <span>32g/100g</span></div><div class="nf">Sardinas <span>21g/100g</span></div><div class="nf">Lentejas <span>26g/100g</span></div><div class="nf">Huevos <span>13g/100g</span></div><div class="nf">Garbanzos <span>21g/100g</span></div></div>
-        </div>
-        <div class="mcard">
-          <div class="mcard-top"><span class="mcard-icon">🌾</span><span class="mcard-name">Carbohidratos</span><span class="mcard-badge" style="background:#FFF8EC;color:#92400E;border:1px solid #F2CC8F">220–260g · complejos</span></div>
-          <div class="mcard-why">El problema no son los carbohidratos, son los refinados y los dulces. Picos de glucosa, bajadas de energía, mayor almacenamiento de grasa. Reemplaza azúcares añadidos por fuentes de absorción lenta.</div>
-          <div class="ncard-foods"><div class="nf">Avena <span>12g/100g</span></div><div class="nf">Arroz integral <span>23.5g/100g</span></div><div class="nf">Lentejas <span>20g/100g</span></div><div class="nf">Patata cocida <span>17.6g/100g</span></div><div class="nf">Garbanzos <span>27.4g/100g</span></div></div>
-        </div>
-        <div class="mcard">
-          <div class="mcard-top"><span class="mcard-icon">🥑</span><span class="mcard-name">Grasas</span><span class="mcard-badge" style="background:#EAF3EE;color:#2D6A4F;border:1px solid #C3DDD1">25–30% calorías</span></div>
-          <div class="mcard-why">Las grasas insaturadas son antiinflamatorias, protegen el corazón y permiten absorber las vitaminas liposolubles A, D, E y K. El problema no son las grasas: son las trans y los ultraprocesados.</div>
-          <div class="ncard-foods"><div class="nf">Aceite oliva virgen <span>MUFA</span></div><div class="nf">Aguacate <span>MUFA</span></div><div class="nf">Salmón / Sardinas <span>Omega-3</span></div><div class="nf">Nueces <span>Omega-3/6</span></div><div class="nf">Almendras <span>MUFA + Vit E</span></div></div>
-        </div>
+        <div class="mcard"><div class="mcard-top"><span class="mcard-icon">🥚</span><span class="mcard-name">Proteínas</span><span class="mcard-badge" style="background:#FCEEE9;color:#C0614A;border:1px solid #F5C6BC">160–180g/día</span></div><div class="mcard-why">La recomendación oficial de 0.83g/kg es para sedentarios. Para perder 8 kg preservando músculo necesitas 1.8–2g/kg del peso objetivo (80 kg).</div><div class="ncard-foods"><div class="nf">Pechuga pollo <span>31g/100g</span></div><div class="nf">Atún lata <span>32g/100g</span></div><div class="nf">Sardinas <span>21g/100g</span></div><div class="nf">Lentejas <span>26g/100g</span></div><div class="nf">Huevos <span>13g/100g</span></div><div class="nf">Garbanzos <span>21g/100g</span></div></div></div>
+        <div class="mcard"><div class="mcard-top"><span class="mcard-icon">🌾</span><span class="mcard-name">Carbohidratos</span><span class="mcard-badge" style="background:#FFF8EC;color:#92400E;border:1px solid #F2CC8F">220–260g · complejos</span></div><div class="mcard-why">El problema no son los carbohidratos, son los refinados y los dulces. Picos de glucosa, bajadas de energía, mayor almacenamiento de grasa.</div><div class="ncard-foods"><div class="nf">Avena <span>12g/100g</span></div><div class="nf">Arroz integral <span>23.5g/100g</span></div><div class="nf">Lentejas <span>20g/100g</span></div><div class="nf">Patata cocida <span>17.6g/100g</span></div><div class="nf">Garbanzos <span>27.4g/100g</span></div></div></div>
+        <div class="mcard"><div class="mcard-top"><span class="mcard-icon">🥑</span><span class="mcard-name">Grasas</span><span class="mcard-badge" style="background:#EAF3EE;color:#2D6A4F;border:1px solid #C3DDD1">25–30% calorías</span></div><div class="mcard-why">Las grasas insaturadas son antiinflamatorias, protegen el corazón y permiten absorber las vitaminas liposolubles A, D, E y K.</div><div class="ncard-foods"><div class="nf">Aceite oliva virgen <span>MUFA</span></div><div class="nf">Aguacate <span>MUFA</span></div><div class="nf">Salmón / Sardinas <span>Omega-3</span></div><div class="nf">Nueces <span>Omega-3/6</span></div><div class="nf">Almendras <span>MUFA + Vit E</span></div></div></div>
       </div>
     </div>
-
-    <!-- DIETA -->
     <div class="tp" id="tp-dieta">
       <div class="sl">Diagnóstico</div>
       <div class="diag-grid">
-        <div class="diag-card" style="border-left-color:#3D405B">
-          <div class="diag-title">El problema no es el qué, es el patrón</div>
-          <div class="diag-body">Llevas meses sin fruta, sin verdura, con dulces y comida de baja calidad. Tres semanas de dieta limpia y notarás la diferencia en entrenamiento, concentración y estado de ánimo antes de que cualquier otro cambio tenga efecto.</div>
-        </div>
-        <div class="diag-card" style="border-left-color:#C9A227">
-          <div class="diag-title">⚠ Mudanza + trabajo nuevo = trampa</div>
-          <div class="diag-body">El cambio creará fricción real. El riesgo es usar la mudanza como excusa para seguir comiendo mal. Si no instalas el sistema antes de llegar a Madrid, en seis meses seguirás igual de peso y con mucho más estrés encima.</div>
-        </div>
+        <div class="diag-card" style="border-left-color:#3D405B"><div class="diag-title">El problema no es el qué, es el patrón</div><div class="diag-body">Llevas meses sin fruta, sin verdura, con dulces y comida de baja calidad. Tres semanas de dieta limpia y notarás la diferencia en entrenamiento, concentración y estado de ánimo antes de que cualquier otro cambio tenga efecto.</div></div>
+        <div class="diag-card" style="border-left-color:#C9A227"><div class="diag-title">⚠ Mudanza + trabajo nuevo = trampa</div><div class="diag-body">El cambio creará fricción real. El riesgo es usar la mudanza como excusa para seguir comiendo mal. Si no instalas el sistema antes de llegar a Madrid, en seis meses seguirás igual de peso y con mucho más estrés encima.</div></div>
       </div>
       <div class="sl">Suplementación mínima no negociable</div>
       <div class="suplem-grid">
-        <div class="suplem"><div class="suplem-name">Vitamina D3</div><div class="suplem-dose">2000–4000 UI/día · con comida</div><div class="suplem-why">Trabajo de oficina en Madrid. Exposición solar insuficiente garantizada. Impacta en músculo, inmunidad y estado de ánimo.</div></div>
+        <div class="suplem"><div class="suplem-name">Vitamina D3</div><div class="suplem-dose">2000–4000 UI/día · con comida</div><div class="suplem-why">Trabajo de oficina en Madrid. Exposición solar insuficiente garantizada.</div></div>
         <div class="suplem"><div class="suplem-name">Magnesio Glicinato</div><div class="suplem-dose">300–400 mg · antes de dormir</div><div class="suplem-why">El ojo que te vibra. Cortisol. Sueño. Rendimiento muscular. Empieza esta semana.</div></div>
-        <div class="suplem"><div class="suplem-name">Omega-3</div><div class="suplem-dose">1–2 g EPA+DHA · diario</div><div class="suplem-why">Antiinflamatorio. Protección cardiovascular. Función cognitiva. Especialmente importante si no comes pescado azul 3x/semana.</div></div>
+        <div class="suplem"><div class="suplem-name">Omega-3</div><div class="suplem-dose">1–2 g EPA+DHA · diario</div><div class="suplem-why">Antiinflamatorio. Protección cardiovascular. Función cognitiva.</div></div>
         <div class="suplem"><div class="suplem-name">Creatina Monohidrato</div><div class="suplem-dose">3–5 g/día · siempre</div><div class="suplem-why">El suplemento más respaldado por evidencia científica. Fuerza, recuperación muscular y función cerebral.</div></div>
       </div>
       <div class="sl">Principios no negociables</div>
       <div class="princ-grid">
-        <div class="princ"><span class="princ-icon">🥩</span><div><div class="princ-t">Proteína en cada comida</div><div class="princ-b">Sin excepción. Huevo, pollo, sardinas, lentejas, yogur griego. Saciedad y protección muscular en déficit calórico.</div></div></div>
-        <div class="princ"><span class="princ-icon">🥦</span><div><div class="princ-t">Verdura en almuerzo y cena</div><div class="princ-b">Mínimo 300 g al día. Espinacas, brócoli, pimientos, zanahoria. Es donde están todos los micronutrientes que llevas meses sin cubrir.</div></div></div>
-        <div class="princ"><span class="princ-icon">🍊</span><div><div class="princ-t">Fruta diaria sin excusas</div><div class="princ-b">2–3 piezas. Kiwi, naranja, plátano. Reemplaza los dulces con fruta cuando aparezca el antojo — es el mismo mecanismo, mejor combustible.</div></div></div>
-        <div class="princ"><span class="princ-icon">🐟</span><div><div class="princ-t">Pescado azul 3 veces por semana</div><div class="princ-b">Sardinas, salmón, atún, caballa. Un alimento que cubre Omega-3, D, B12, proteína y selenio de golpe.</div></div></div>
-        <div class="princ"><span class="princ-icon">🌾</span><div><div class="princ-t">Carbohidratos complejos, no refinados</div><div class="princ-b">Arroz integral, avena, patata, legumbres. El azúcar añadido es la causa directa del exceso de grasa y la falta de energía estable.</div></div></div>
-        <div class="princ"><span class="princ-icon">💧</span><div><div class="princ-t">Agua como primera bebida</div><div class="princ-b">2.5–3 litros. El café no hidrata. La deshidratación leve ya reduce el rendimiento cognitivo y físico.</div></div></div>
-        <div class="princ"><span class="princ-icon">⏰</span><div><div class="princ-t">No saltarte comidas por trabajo</div><div class="princ-b">Especialmente en los primeros meses en Madrid. El hambre acumulado lleva a peores decisiones alimentarias de forma automática.</div></div></div>
-        <div class="princ"><span class="princ-icon">🍳</span><div><div class="princ-t">Batch cooking dominical</div><div class="princ-b">Legumbres, arroz integral y proteína para 3–4 días. Elimina la decisión diaria y la fricción que te llevará a comer mal.</div></div></div>
+        <div class="princ"><span class="princ-icon">🥩</span><div><div class="princ-t">Proteína en cada comida</div><div class="princ-b">Sin excepción. Huevo, pollo, sardinas, lentejas, yogur griego.</div></div></div>
+        <div class="princ"><span class="princ-icon">🥦</span><div><div class="princ-t">Verdura en almuerzo y cena</div><div class="princ-b">Mínimo 300 g al día. Espinacas, brócoli, pimientos, zanahoria.</div></div></div>
+        <div class="princ"><span class="princ-icon">🍊</span><div><div class="princ-t">Fruta diaria sin excusas</div><div class="princ-b">2–3 piezas. Kiwi, naranja, plátano. Reemplaza los dulces con fruta.</div></div></div>
+        <div class="princ"><span class="princ-icon">🐟</span><div><div class="princ-t">Pescado azul 3 veces por semana</div><div class="princ-b">Sardinas, salmón, atún, caballa. Cubre Omega-3, D, B12, proteína y selenio de golpe.</div></div></div>
+        <div class="princ"><span class="princ-icon">🌾</span><div><div class="princ-t">Carbohidratos complejos, no refinados</div><div class="princ-b">Arroz integral, avena, patata, legumbres.</div></div></div>
+        <div class="princ"><span class="princ-icon">💧</span><div><div class="princ-t">Agua como primera bebida</div><div class="princ-b">2.5–3 litros. El café no hidrata.</div></div></div>
+        <div class="princ"><span class="princ-icon">⏰</span><div><div class="princ-t">No saltarte comidas por trabajo</div><div class="princ-b">El hambre acumulado lleva a peores decisiones alimentarias de forma automática.</div></div></div>
+        <div class="princ"><span class="princ-icon">🍳</span><div><div class="princ-t">Batch cooking dominical</div><div class="princ-b">Legumbres, arroz integral y proteína para 3–4 días. Elimina la decisión diaria.</div></div></div>
       </div>
       <div class="sl">Eliminar ahora mismo</div>
       <div class="elim-grid">
-        <div class="elim" style="border-left-color:#D92D20"><div class="elim-t">Dulces industriales</div><div class="elim-b">La causa directa de los kilos extra. Si necesitas dulce: fruta o chocolate negro 85%. Sin negociación.</div></div>
-        <div class="elim" style="border-left-color:#D92D20"><div class="elim-t">Carbohidratos refinados</div><div class="elim-b">Pan blanco, bollería, cereales azucarados. Picos de glucosa, inflamación, hambre a las dos horas.</div></div>
-        <div class="elim" style="border-left-color:#C9A227"><div class="elim-t">Comidas sin proteína ni verdura</div><div class="elim-b">Cada comida incompleta es una oportunidad perdida de cubrir lo que llevas meses sin cubrir.</div></div>
-        <div class="elim" style="border-left-color:#C9A227"><div class="elim-t">Cero suplementación</div><div class="elim-b">D3, Magnesio, Omega-3 y Creatina no son opcionales con tu perfil urbano y tu nivel de entrenamiento.</div></div>
+        <div class="elim" style="border-left-color:#D92D20"><div class="elim-t">Dulces industriales</div><div class="elim-b">Si necesitas dulce: fruta o chocolate negro 85%. Sin negociación.</div></div>
+        <div class="elim" style="border-left-color:#D92D20"><div class="elim-t">Carbohidratos refinados</div><div class="elim-b">Pan blanco, bollería, cereales azucarados. Picos de glucosa, inflamación.</div></div>
+        <div class="elim" style="border-left-color:#C9A227"><div class="elim-t">Comidas sin proteína ni verdura</div><div class="elim-b">Cada comida incompleta es una oportunidad perdida de cubrir los micronutrientes.</div></div>
+        <div class="elim" style="border-left-color:#C9A227"><div class="elim-t">Cero suplementación</div><div class="elim-b">D3, Magnesio, Omega-3 y Creatina no son opcionales con tu perfil.</div></div>
       </div>
     </div>
+  </div>
 
-  </div><!-- /panel-nutricion -->
-
-
-  <!-- ══════════════════════════════════════════════════
-       PANEL 2 — DEPORTE
-  ══════════════════════════════════════════════════ -->
+  <!-- PANEL 2 — DEPORTE -->
   <div class="panel" id="panel-deporte">
 
     <div class="sl">Objetivo activo</div>
     <div class="objetivo">
       <div class="obj-label">→ En curso · Fase 1 · Cimientos</div>
-      <div class="obj-text">Completar mínimo 3 sesiones de fuerza por semana durante 16 semanas consecutivas (Full Body). Incorporación a Portland el 6 de abril — el gimnasio se elige antes de llegar.</div>
+      <div class="obj-text">Completar mínimo 3 sesiones de fuerza por semana durante 16 semanas consecutivas (Full Body) + 1 sesión de cardio dominical progresiva de 19 semanas. Incorporación a Portland el 6 de abril — el gimnasio se elige antes de llegar.</div>
       <div class="obj-hitos">
         <div class="hito active"><div class="hito-dot"></div>Elegir gimnasio en Madrid antes del 6 Abr</div>
         <div class="hito pending"><div class="hito-dot"></div>4 semanas consecutivas completadas</div>
@@ -527,26 +433,69 @@ nav { background: var(--surface); border-bottom: 1px solid var(--border); paddin
           <div class="card-arrow">→</div>
         </div>
       </a>
-      <div class="content-card soon">
+      <div class="content-card" onclick="openCardioModal()" style="cursor:pointer">
         <div class="card-top">
           <div class="card-icon">🏃</div>
-          <div class="card-label">Cardio</div>
-          <div class="card-title">Protocolo de cardio</div>
-          <div class="card-desc">Zona 2 y actividad aeróbica complementaria al programa de fuerza. Fase 2 en adelante.</div>
+          <div class="card-label">Programa · Cardio dominical</div>
+          <div class="card-title">Carrera progresiva 19 semanas</div>
+          <div class="card-desc">1 sesión los domingos. Progresión de 5 km hasta 32 km. Preparación para maratón con picos controlados y semanas de recuperación integradas.</div>
         </div>
         <div class="card-bottom">
-          <div class="card-tags"><span class="soon-badge">Fase 2</span></div>
+          <div class="card-tags"><span class="card-tag">1×/semana</span><span class="card-tag">Domingo</span><span class="card-tag">19 semanas</span></div>
+          <div class="card-arrow">→</div>
+        </div>
+      </a>
+    </div>
+
+    <!-- CARDIO MODAL -->
+    <div class="cardio-modal-overlay" id="cardioModalOverlay" onclick="if(event.target===this)closeCardioModal()">
+      <div class="cardio-modal">
+        <div class="cardio-modal-hdr">
+          <div class="cardio-modal-hdr-left">
+            <div class="cardio-modal-hdr-icon">🏃</div>
+            <div>
+              <div class="cardio-modal-title">Carrera dominical — Programa progresivo</div>
+              <div class="cardio-modal-sub">1 sesión los domingos · 19 semanas · Objetivo: maratón</div>
+            </div>
+          </div>
+          <button class="cardio-modal-close" onclick="closeCardioModal()">✕ Cerrar</button>
+        </div>
+        <div class="cardio-modal-stats">
+          <div><div class="cardio-modal-stat-val">351 km</div><div class="cardio-modal-stat-lbl">Total programa</div></div>
+          <div><div class="cardio-modal-stat-val">32 km</div><div class="cardio-modal-stat-lbl">Semana pico</div></div>
+          <div><div class="cardio-modal-stat-val">19</div><div class="cardio-modal-stat-lbl">Semanas</div></div>
+        </div>
+        <div class="cardio-modal-body">
+          <div class="cardio-table">
+            <div class="cardio-row hdr"><span>Semana</span><span>Distancia</span><span>Descripción</span><span>Tipo</span></div>
+            <div class="cardio-row"><span class="cardio-sem">Sem 1</span><span class="cardio-km">5 km</span><span class="cardio-desc">5 km</span><span class="cardio-badge badge-libre">Libre</span></div>
+            <div class="cardio-row"><span class="cardio-sem">Sem 2</span><span class="cardio-km">8 km</span><span class="cardio-desc">8 km</span><span class="cardio-badge badge-libre">Libre</span></div>
+            <div class="cardio-row"><span class="cardio-sem">Sem 3</span><span class="cardio-km">10 km</span><span class="cardio-desc">10 km</span><span class="cardio-badge badge-libre">Libre</span></div>
+            <div class="cardio-row"><span class="cardio-sem">Sem 4</span><span class="cardio-km">12 km</span><span class="cardio-desc">12 km</span><span class="cardio-badge badge-libre">Libre</span></div>
+            <div class="cardio-row"><span class="cardio-sem">Sem 5</span><span class="cardio-km">12 km</span><span class="cardio-desc">12 km a paso ligero</span><span class="cardio-badge badge-ligero">Paso ligero</span></div>
+            <div class="cardio-row"><span class="cardio-sem">Sem 6</span><span class="cardio-km">15 km</span><span class="cardio-desc">15 km a paso ligero</span><span class="cardio-badge badge-ligero">Paso ligero</span></div>
+            <div class="cardio-row"><span class="cardio-sem">Sem 7</span><span class="cardio-km">21 km</span><span class="cardio-desc">21 km a paso ligero</span><span class="cardio-badge badge-ligero">Paso ligero</span></div>
+            <div class="cardio-row"><span class="cardio-sem">Sem 8</span><span class="cardio-km">16 km</span><span class="cardio-desc">16 km a paso ligero</span><span class="cardio-badge badge-ligero">Paso ligero</span></div>
+            <div class="cardio-row"><span class="cardio-sem">Sem 9</span><span class="cardio-km">25 km</span><span class="cardio-desc">25 km a paso ligero</span><span class="cardio-badge badge-ligero">Paso ligero</span></div>
+            <div class="cardio-row"><span class="cardio-sem">Sem 10</span><span class="cardio-km">17 km</span><span class="cardio-desc">17 km a paso ligero</span><span class="cardio-badge badge-ligero">Paso ligero</span></div>
+            <div class="cardio-row"><span class="cardio-sem">Sem 11</span><span class="cardio-km">30 km</span><span class="cardio-desc">30 km a paso ligero</span><span class="cardio-badge badge-ligero">Paso ligero</span></div>
+            <div class="cardio-row"><span class="cardio-sem">Sem 12</span><span class="cardio-km">20 km</span><span class="cardio-desc">20 km (15 km paso ligero + 5 km paso maratón)</span><span class="cardio-badge badge-mixto">Mixto</span></div>
+            <div class="cardio-row"><span class="cardio-sem">Sem 13</span><span class="cardio-km">32 km</span><span class="cardio-desc">32 km a paso ligero</span><span class="cardio-badge badge-ligero">Paso ligero</span></div>
+            <div class="cardio-row"><span class="cardio-sem">Sem 14</span><span class="cardio-km">21 km</span><span class="cardio-desc">21 km a paso ligero</span><span class="cardio-badge badge-ligero">Paso ligero</span></div>
+            <div class="cardio-row"><span class="cardio-sem">Sem 15</span><span class="cardio-km">32 km</span><span class="cardio-desc">32 km a paso ligero</span><span class="cardio-badge badge-ligero">Paso ligero</span></div>
+            <div class="cardio-row"><span class="cardio-sem">Sem 16</span><span class="cardio-km">20 km</span><span class="cardio-desc">20 km a paso ligero</span><span class="cardio-badge badge-ligero">Paso ligero</span></div>
+            <div class="cardio-row"><span class="cardio-sem">Sem 17</span><span class="cardio-km">25 km</span><span class="cardio-desc">25 km a paso ligero</span><span class="cardio-badge badge-ligero">Paso ligero</span></div>
+            <div class="cardio-row"><span class="cardio-sem">Sem 18</span><span class="cardio-km">20 km</span><span class="cardio-desc">20 km a paso ligero</span><span class="cardio-badge badge-ligero">Paso ligero</span></div>
+            <div class="cardio-row"><span class="cardio-sem">Sem 19</span><span class="cardio-km">10 km</span><span class="cardio-desc">10 km a paso ligero — tapering final</span><span class="cardio-badge badge-ligero">Paso ligero</span></div>
+          </div>
         </div>
       </div>
     </div>
 
     <!-- TRACKER GARMIN -->
-    <div class="sl">Seguimiento de actividad · Garmin</div>
-    <div class="garmin-how">
-      <strong>Cómo exportar desde Garmin Connect:</strong> garminconnect.com → Actividades → selecciona el rango → exportar CSV. El archivo se llama normalmente <em>Activities.csv</em>.
-    </div>
-    <div class="upload-zone" id="upload-zone" onclick="document.getElementById('file-input').click()"
-         ondragover="evDrag(event,'drag')" ondragleave="evDrag(event,'')" ondrop="dropFile(event)">
+    <div class="sl" style="margin-top:32px">Seguimiento de actividad · Garmin</div>
+    <div class="garmin-how"><strong>Cómo exportar desde Garmin Connect:</strong> garminconnect.com → Actividades → selecciona el rango → exportar CSV. El archivo se llama normalmente <em>Activities.csv</em>.</div>
+    <div class="upload-zone" id="upload-zone" onclick="document.getElementById('file-input').click()" ondragover="evDrag(event,'drag')" ondragleave="evDrag(event,'')" ondrop="dropFile(event)">
       <div class="upload-icon">📂</div>
       <div class="upload-title">Arrastra tu Activities.csv aquí</div>
       <div class="upload-sub">o haz clic para seleccionar el archivo<br>El archivo no se sube a ningún servidor — todo se procesa en tu navegador</div>
@@ -564,139 +513,40 @@ nav { background: var(--surface); border-bottom: 1px solid var(--border); paddin
       <div class="chart-box"><div class="chart-title">Calorías semanales (kcal)</div><div class="chart-wrap"><canvas id="chart-cal"></canvas></div></div>
     </div>
     <div class="act-log" id="act-log">
-      <div class="act-log-hdr">
-        <span class="act-log-title">Historial de actividades</span>
-        <span class="act-count" id="act-count" style="display:none"></span>
-      </div>
+      <div class="act-log-hdr"><span class="act-log-title">Historial de actividades</span><span class="act-count" id="act-count" style="display:none"></span></div>
       <div id="act-body"><div class="empty-state">Importa tu CSV de Garmin para ver el historial de actividades aquí.</div></div>
     </div>
+  </div>
 
-  </div><!-- /panel-deporte -->
-
-
-  <!-- ══════════════════════════════════════════════════
-       PANEL 3 — LISTA DE LA COMPRA
-  ══════════════════════════════════════════════════ -->
+  <!-- PANEL 3 — LISTA DE LA COMPRA -->
   <div class="panel" id="panel-lista">
     <div class="lista-wrap">
-
       <div class="progress-card">
-        <div class="progress-nums">
-          <div class="progress-big" id="progBig">0</div>
-          <div class="progress-lbl">completados</div>
-        </div>
+        <div class="progress-nums"><div class="progress-big" id="progBig">0</div><div class="progress-lbl">completados</div></div>
         <div class="progress-track"><div class="progress-fill" id="progFill"></div></div>
         <div class="progress-pct" id="progPct">0 / 0</div>
       </div>
-
-      <div class="lc-section" id="sec-0">
-        <div class="lc-sec-header" id="sh-0"><span class="lc-sec-emoji">🥩</span><span class="lc-sec-title">Proteínas</span><span class="lc-sec-count" id="cnt-0"></span></div>
-        <div class="lc-item" onclick="toggle(this)"><div class="checkbox"></div><span class="item-name">Pechuga de pollo</span><span class="item-qty">600–700 g</span></div>
-        <div class="lc-item" onclick="toggle(this)"><div class="checkbox"></div><span class="item-name">Salmón (fresco o congelado)</span><span class="item-qty">2 filetes</span></div>
-        <div class="lc-item" onclick="toggle(this)"><div class="checkbox"></div><span class="item-name">Sardinas en lata</span><span class="item-qty">3–4 latas</span></div>
-        <div class="lc-item" onclick="toggle(this)"><div class="checkbox"></div><span class="item-name">Atún en lata al natural</span><span class="item-qty">3 latas</span></div>
-        <div class="lc-item" onclick="toggle(this)"><div class="checkbox"></div><span class="item-name">Huevos</span><span class="item-qty">12 unidades</span></div>
-        <div class="lc-item" onclick="toggle(this)"><div class="checkbox"></div><span class="item-name">Yogur griego natural (sin azúcar)</span><span class="item-qty">4–6 unidades</span></div>
-        <div class="lc-item" onclick="toggle(this)"><div class="checkbox"></div><span class="item-name">Queso fresco o requesón</span><span class="item-qty">1 tarrina</span></div>
-        <div class="lc-item" onclick="toggle(this)"><div class="checkbox"></div><span class="item-name">Pavo o jamón york</span><span class="item-qty">150 g</span></div>
-      </div>
-
-      <div class="lc-section" id="sec-1">
-        <div class="lc-sec-header" id="sh-1"><span class="lc-sec-emoji">🌾</span><span class="lc-sec-title">Legumbres y Cereales</span><span class="lc-sec-count" id="cnt-1"></span></div>
-        <div class="lc-item" onclick="toggle(this)"><div class="checkbox"></div><span class="item-name">Lentejas (cocidas o secas)</span><span class="item-qty">500 g</span></div>
-        <div class="lc-item" onclick="toggle(this)"><div class="checkbox"></div><span class="item-name">Garbanzos cocidos (bote)</span><span class="item-qty">1 bote</span></div>
-        <div class="lc-item" onclick="toggle(this)"><div class="checkbox"></div><span class="item-name">Avena en copos</span><span class="item-qty">500 g</span></div>
-        <div class="lc-item" onclick="toggle(this)"><div class="checkbox"></div><span class="item-name">Arroz integral</span><span class="item-qty">500 g</span></div>
-        <div class="lc-item" onclick="toggle(this)"><div class="checkbox"></div><span class="item-name">Pan integral</span><span class="item-qty">1 barra o bolsa</span></div>
-        <div class="lc-item" onclick="toggle(this)"><div class="checkbox"></div><span class="item-name">Pasta integral</span><span class="item-qty">500 g</span></div>
-      </div>
-
-      <div class="lc-section" id="sec-2">
-        <div class="lc-sec-header" id="sh-2"><span class="lc-sec-emoji">🥦</span><span class="lc-sec-title">Verduras</span><span class="lc-sec-count" id="cnt-2"></span></div>
-        <div class="lc-item" onclick="toggle(this)"><div class="checkbox"></div><span class="item-name">Espinacas frescas (bolsa baby)</span><span class="item-qty">300 g</span></div>
-        <div class="lc-item" onclick="toggle(this)"><div class="checkbox"></div><span class="item-name">Brócoli</span><span class="item-qty">1 cabeza</span></div>
-        <div class="lc-item" onclick="toggle(this)"><div class="checkbox"></div><span class="item-name">Pimientos rojos y verdes</span><span class="item-qty">3–4 unidades</span></div>
-        <div class="lc-item" onclick="toggle(this)"><div class="checkbox"></div><span class="item-name">Zanahoria</span><span class="item-qty">500 g (bolsa)</span></div>
-        <div class="lc-item" onclick="toggle(this)"><div class="checkbox"></div><span class="item-name">Tomate</span><span class="item-qty">500 g</span></div>
-        <div class="lc-item" onclick="toggle(this)"><div class="checkbox"></div><span class="item-name">Pepino</span><span class="item-qty">1–2 unidades</span></div>
-        <div class="lc-item" onclick="toggle(this)"><div class="checkbox"></div><span class="item-name">Lechuga o rúcula</span><span class="item-qty">1 bolsa</span></div>
-        <div class="lc-item" onclick="toggle(this)"><div class="checkbox"></div><span class="item-name">Calabaza (para crema de cena)</span><span class="item-qty">½ unidad</span></div>
-      </div>
-
-      <div class="lc-section" id="sec-3">
-        <div class="lc-sec-header" id="sh-3"><span class="lc-sec-emoji">🍊</span><span class="lc-sec-title">Fruta</span><span class="lc-sec-count" id="cnt-3"></span></div>
-        <div class="lc-item" onclick="toggle(this)"><div class="checkbox"></div><span class="item-name">Kiwis</span><span class="item-qty">4–6 unidades</span></div>
-        <div class="lc-item" onclick="toggle(this)"><div class="checkbox"></div><span class="item-name">Naranjas</span><span class="item-qty">1 kg</span></div>
-        <div class="lc-item" onclick="toggle(this)"><div class="checkbox"></div><span class="item-name">Plátanos</span><span class="item-qty">6 unidades</span></div>
-        <div class="lc-item" onclick="toggle(this)"><div class="checkbox"></div><span class="item-name">Frutos rojos (bolsa congelada)</span><span class="item-qty">1 bolsa</span></div>
-        <div class="lc-item" onclick="toggle(this)"><div class="checkbox"></div><span class="item-name">Manzanas o peras</span><span class="item-qty">3–4 unidades</span></div>
-      </div>
-
-      <div class="lc-section" id="sec-4">
-        <div class="lc-sec-header" id="sh-4"><span class="lc-sec-emoji">🥑</span><span class="lc-sec-title">Grasas y Frutos Secos</span><span class="lc-sec-count" id="cnt-4"></span></div>
-        <div class="lc-item" onclick="toggle(this)"><div class="checkbox"></div><span class="item-name">Aguacates</span><span class="item-qty">2–3 unidades</span></div>
-        <div class="lc-item" onclick="toggle(this)"><div class="checkbox"></div><span class="item-name">Aceite de oliva virgen extra</span><span class="item-qty">si no tienes</span></div>
-        <div class="lc-item" onclick="toggle(this)"><div class="checkbox"></div><span class="item-name">Almendras crudas sin sal</span><span class="item-qty">150 g</span></div>
-        <div class="lc-item" onclick="toggle(this)"><div class="checkbox"></div><span class="item-name">Nueces (+ 1 nuez de Brasil/día)</span><span class="item-qty">100 g</span></div>
-      </div>
-
-      <div class="lc-section" id="sec-5">
-        <div class="lc-sec-header" id="sh-5"><span class="lc-sec-emoji">🥛</span><span class="lc-sec-title">Lácteos / Extras</span><span class="lc-sec-count" id="cnt-5"></span></div>
-        <div class="lc-item" onclick="toggle(this)"><div class="checkbox"></div><span class="item-name">Leche o bebida vegetal sin azúcar</span><span class="item-qty">1 L</span></div>
-        <div class="lc-item" onclick="toggle(this)"><div class="checkbox"></div><span class="item-name">Chocolate negro 85%+</span><span class="item-qty">1 tableta</span></div>
-      </div>
-
-      <div class="lc-section" id="sec-6">
-        <div class="lc-sec-header" id="sh-6"><span class="lc-sec-emoji">💊</span><span class="lc-sec-title">Suplementación — 1 vez al mes</span><span class="lc-sec-count" id="cnt-6"></span></div>
-        <div class="lc-item" onclick="toggle(this)"><div class="checkbox"></div><span class="item-name">Vitamina D3 2000–4000 UI</span><span class="item-qty">mensual</span></div>
-        <div class="lc-item" onclick="toggle(this)"><div class="checkbox"></div><span class="item-name">Magnesio glicinato 300–400 mg</span><span class="item-qty">mensual</span></div>
-        <div class="lc-item" onclick="toggle(this)"><div class="checkbox"></div><span class="item-name">Omega-3 EPA+DHA 1–2 g</span><span class="item-qty">mensual</span></div>
-        <div class="lc-item" onclick="toggle(this)"><div class="checkbox"></div><span class="item-name">Creatina monohidrato 3–5 g/día</span><span class="item-qty">mensual</span></div>
-      </div>
-
-      <div class="reset-wrap">
-        <button class="reset-btn" onclick="resetAll()">↺ Reiniciar lista</button>
-      </div>
-
+      <div class="lc-section" id="sec-0"><div class="lc-sec-header" id="sh-0"><span class="lc-sec-emoji">🥩</span><span class="lc-sec-title">Proteínas</span><span class="lc-sec-count" id="cnt-0"></span></div><div class="lc-item" onclick="toggle(this)"><div class="checkbox"></div><span class="item-name">Pechuga de pollo</span><span class="item-qty">600–700 g</span></div><div class="lc-item" onclick="toggle(this)"><div class="checkbox"></div><span class="item-name">Salmón (fresco o congelado)</span><span class="item-qty">2 filetes</span></div><div class="lc-item" onclick="toggle(this)"><div class="checkbox"></div><span class="item-name">Sardinas en lata</span><span class="item-qty">3–4 latas</span></div><div class="lc-item" onclick="toggle(this)"><div class="checkbox"></div><span class="item-name">Atún en lata al natural</span><span class="item-qty">3 latas</span></div><div class="lc-item" onclick="toggle(this)"><div class="checkbox"></div><span class="item-name">Huevos</span><span class="item-qty">12 unidades</span></div><div class="lc-item" onclick="toggle(this)"><div class="checkbox"></div><span class="item-name">Yogur griego natural (sin azúcar)</span><span class="item-qty">4–6 unidades</span></div><div class="lc-item" onclick="toggle(this)"><div class="checkbox"></div><span class="item-name">Queso fresco o requesón</span><span class="item-qty">1 tarrina</span></div><div class="lc-item" onclick="toggle(this)"><div class="checkbox"></div><span class="item-name">Pavo o jamón york</span><span class="item-qty">150 g</span></div></div>
+      <div class="lc-section" id="sec-1"><div class="lc-sec-header" id="sh-1"><span class="lc-sec-emoji">🌾</span><span class="lc-sec-title">Legumbres y Cereales</span><span class="lc-sec-count" id="cnt-1"></span></div><div class="lc-item" onclick="toggle(this)"><div class="checkbox"></div><span class="item-name">Lentejas (cocidas o secas)</span><span class="item-qty">500 g</span></div><div class="lc-item" onclick="toggle(this)"><div class="checkbox"></div><span class="item-name">Garbanzos cocidos (bote)</span><span class="item-qty">1 bote</span></div><div class="lc-item" onclick="toggle(this)"><div class="checkbox"></div><span class="item-name">Avena en copos</span><span class="item-qty">500 g</span></div><div class="lc-item" onclick="toggle(this)"><div class="checkbox"></div><span class="item-name">Arroz integral</span><span class="item-qty">500 g</span></div><div class="lc-item" onclick="toggle(this)"><div class="checkbox"></div><span class="item-name">Pan integral</span><span class="item-qty">1 barra o bolsa</span></div><div class="lc-item" onclick="toggle(this)"><div class="checkbox"></div><span class="item-name">Pasta integral</span><span class="item-qty">500 g</span></div></div>
+      <div class="lc-section" id="sec-2"><div class="lc-sec-header" id="sh-2"><span class="lc-sec-emoji">🥦</span><span class="lc-sec-title">Verduras</span><span class="lc-sec-count" id="cnt-2"></span></div><div class="lc-item" onclick="toggle(this)"><div class="checkbox"></div><span class="item-name">Espinacas frescas (bolsa baby)</span><span class="item-qty">300 g</span></div><div class="lc-item" onclick="toggle(this)"><div class="checkbox"></div><span class="item-name">Brócoli</span><span class="item-qty">1 cabeza</span></div><div class="lc-item" onclick="toggle(this)"><div class="checkbox"></div><span class="item-name">Pimientos rojos y verdes</span><span class="item-qty">3–4 unidades</span></div><div class="lc-item" onclick="toggle(this)"><div class="checkbox"></div><span class="item-name">Zanahoria</span><span class="item-qty">500 g (bolsa)</span></div><div class="lc-item" onclick="toggle(this)"><div class="checkbox"></div><span class="item-name">Tomate</span><span class="item-qty">500 g</span></div><div class="lc-item" onclick="toggle(this)"><div class="checkbox"></div><span class="item-name">Pepino</span><span class="item-qty">1–2 unidades</span></div><div class="lc-item" onclick="toggle(this)"><div class="checkbox"></div><span class="item-name">Lechuga o rúcula</span><span class="item-qty">1 bolsa</span></div><div class="lc-item" onclick="toggle(this)"><div class="checkbox"></div><span class="item-name">Calabaza (para crema de cena)</span><span class="item-qty">½ unidad</span></div></div>
+      <div class="lc-section" id="sec-3"><div class="lc-sec-header" id="sh-3"><span class="lc-sec-emoji">🍊</span><span class="lc-sec-title">Fruta</span><span class="lc-sec-count" id="cnt-3"></span></div><div class="lc-item" onclick="toggle(this)"><div class="checkbox"></div><span class="item-name">Kiwis</span><span class="item-qty">4–6 unidades</span></div><div class="lc-item" onclick="toggle(this)"><div class="checkbox"></div><span class="item-name">Naranjas</span><span class="item-qty">1 kg</span></div><div class="lc-item" onclick="toggle(this)"><div class="checkbox"></div><span class="item-name">Plátanos</span><span class="item-qty">6 unidades</span></div><div class="lc-item" onclick="toggle(this)"><div class="checkbox"></div><span class="item-name">Frutos rojos (bolsa congelada)</span><span class="item-qty">1 bolsa</span></div><div class="lc-item" onclick="toggle(this)"><div class="checkbox"></div><span class="item-name">Manzanas o peras</span><span class="item-qty">3–4 unidades</span></div></div>
+      <div class="lc-section" id="sec-4"><div class="lc-sec-header" id="sh-4"><span class="lc-sec-emoji">🥑</span><span class="lc-sec-title">Grasas y Frutos Secos</span><span class="lc-sec-count" id="cnt-4"></span></div><div class="lc-item" onclick="toggle(this)"><div class="checkbox"></div><span class="item-name">Aguacates</span><span class="item-qty">2–3 unidades</span></div><div class="lc-item" onclick="toggle(this)"><div class="checkbox"></div><span class="item-name">Aceite de oliva virgen extra</span><span class="item-qty">si no tienes</span></div><div class="lc-item" onclick="toggle(this)"><div class="checkbox"></div><span class="item-name">Almendras crudas sin sal</span><span class="item-qty">150 g</span></div><div class="lc-item" onclick="toggle(this)"><div class="checkbox"></div><span class="item-name">Nueces (+ 1 nuez de Brasil/día)</span><span class="item-qty">100 g</span></div></div>
+      <div class="lc-section" id="sec-5"><div class="lc-sec-header" id="sh-5"><span class="lc-sec-emoji">🥛</span><span class="lc-sec-title">Lácteos / Extras</span><span class="lc-sec-count" id="cnt-5"></span></div><div class="lc-item" onclick="toggle(this)"><div class="checkbox"></div><span class="item-name">Leche o bebida vegetal sin azúcar</span><span class="item-qty">1 L</span></div><div class="lc-item" onclick="toggle(this)"><div class="checkbox"></div><span class="item-name">Chocolate negro 85%+</span><span class="item-qty">1 tableta</span></div></div>
+      <div class="lc-section" id="sec-6"><div class="lc-sec-header" id="sh-6"><span class="lc-sec-emoji">💊</span><span class="lc-sec-title">Suplementación — 1 vez al mes</span><span class="lc-sec-count" id="cnt-6"></span></div><div class="lc-item" onclick="toggle(this)"><div class="checkbox"></div><span class="item-name">Vitamina D3 2000–4000 UI</span><span class="item-qty">mensual</span></div><div class="lc-item" onclick="toggle(this)"><div class="checkbox"></div><span class="item-name">Magnesio glicinato 300–400 mg</span><span class="item-qty">mensual</span></div><div class="lc-item" onclick="toggle(this)"><div class="checkbox"></div><span class="item-name">Omega-3 EPA+DHA 1–2 g</span><span class="item-qty">mensual</span></div><div class="lc-item" onclick="toggle(this)"><div class="checkbox"></div><span class="item-name">Creatina monohidrato 3–5 g/día</span><span class="item-qty">mensual</span></div></div>
+      <div class="reset-wrap"><button class="reset-btn" onclick="resetAll()">↺ Reiniciar lista</button></div>
     </div>
-  </div><!-- /panel-lista -->
+  </div>
 
-  <!-- ══════════════════════════════════════════════════
-       PANEL 4 — TRACKER DE PESO
-  ══════════════════════════════════════════════════ -->
+  <!-- PANEL 4 — TRACKER DE PESO -->
   <div class="panel" id="panel-peso">
     <div class="peso-wrap">
-
-      <div class="objetivo-band">
-        <span class="ob-icon">🎯</span>
-        <span class="ob-text">Objetivo: <strong>88 kg → 80 kg</strong> · Ritmo recomendado: 0.3–0.5 kg/semana · Inicio: 6 Abr 2026</span>
-      </div>
-
-      <!-- STATS -->
+      <div class="objetivo-band"><span class="ob-icon">🎯</span><span class="ob-text">Objetivo: <strong>88 kg → 80 kg</strong> · Ritmo recomendado: 0.3–0.5 kg/semana · Inicio: 6 Abr 2026</span></div>
       <div class="peso-hero">
-        <div class="ph-cell">
-          <div class="ph-cell-lbl">Peso actual</div>
-          <div class="ph-cell-val" id="pw-actual">—</div>
-          <div class="ph-cell-sub">kg</div>
-        </div>
-        <div class="ph-cell">
-          <div class="ph-cell-lbl">Objetivo</div>
-          <div class="ph-cell-val gray">80</div>
-          <div class="ph-cell-sub">kg</div>
-        </div>
-        <div class="ph-cell">
-          <div class="ph-cell-lbl">Por perder</div>
-          <div class="ph-cell-val" id="pw-resta">—</div>
-          <div class="ph-cell-sub">kg restantes</div>
-        </div>
-        <div class="ph-cell">
-          <div class="ph-cell-lbl">Variación total</div>
-          <div class="ph-cell-val" id="pw-total">—</div>
-          <div class="ph-cell-sub" id="pw-total-sub">desde inicio</div>
-        </div>
+        <div class="ph-cell"><div class="ph-cell-lbl">Peso actual</div><div class="ph-cell-val" id="pw-actual">—</div><div class="ph-cell-sub">kg</div></div>
+        <div class="ph-cell"><div class="ph-cell-lbl">Objetivo</div><div class="ph-cell-val gray">80</div><div class="ph-cell-sub">kg</div></div>
+        <div class="ph-cell"><div class="ph-cell-lbl">Por perder</div><div class="ph-cell-val" id="pw-resta">—</div><div class="ph-cell-sub">kg restantes</div></div>
+        <div class="ph-cell"><div class="ph-cell-lbl">Variación total</div><div class="ph-cell-val" id="pw-total">—</div><div class="ph-cell-sub" id="pw-total-sub">desde inicio</div></div>
       </div>
-
-      <!-- GRÁFICA -->
       <div class="peso-chart-box">
         <div class="peso-chart-hdr">
           <div class="peso-chart-title">Evolución del peso</div>
@@ -707,51 +557,29 @@ nav { background: var(--surface); border-bottom: 1px solid var(--border); paddin
             <button class="pf-btn" onclick="pfFilter(16,this)">16 sem</button>
           </div>
         </div>
-        <div class="peso-chart-wrap">
-          <canvas id="peso-chart"></canvas>
-        </div>
+        <div class="peso-chart-wrap"><canvas id="peso-chart"></canvas></div>
       </div>
-
-      <!-- AÑADIR REGISTRO -->
       <div class="peso-add-card">
         <div class="peso-add-title">Añadir registro</div>
         <div class="peso-add-row">
-          <div class="peso-input-group">
-            <label>Fecha</label>
-            <input type="date" id="p-date">
-          </div>
-          <div class="peso-input-group">
-            <label>Peso (kg)</label>
-            <input type="number" id="p-kg" placeholder="Ej: 87.4" step="0.1" min="40" max="200">
-          </div>
-          <div class="peso-input-group" style="flex:1;min-width:160px">
-            <label>Nota (opcional)</label>
-            <input type="text" id="p-note" placeholder="Ej: Después de entreno" style="width:100%">
-          </div>
+          <div class="peso-input-group"><label>Fecha</label><input type="date" id="p-date"></div>
+          <div class="peso-input-group"><label>Peso (kg)</label><input type="number" id="p-kg" placeholder="Ej: 87.4" step="0.1" min="40" max="200"></div>
+          <div class="peso-input-group" style="flex:1;min-width:160px"><label>Nota (opcional)</label><input type="text" id="p-note" placeholder="Ej: Después de entreno" style="width:100%"></div>
           <button class="peso-add-btn" onclick="addPeso()">+ Añadir</button>
         </div>
         <div class="peso-add-err" id="p-err"></div>
       </div>
-
-      <!-- HISTORIAL -->
       <div class="peso-log">
-        <div class="peso-log-hdr">
-          <span class="peso-log-title">Historial de registros</span>
-          <span style="font-size:11px;color:var(--text-3)" id="pw-count"></span>
-        </div>
-        <div id="peso-log-body">
-          <div class="peso-empty">Añade tu primer registro de peso para empezar el seguimiento.</div>
-        </div>
+        <div class="peso-log-hdr"><span class="peso-log-title">Historial de registros</span><span style="font-size:11px;color:var(--text-3)" id="pw-count"></span></div>
+        <div id="peso-log-body"><div class="peso-empty">Añade tu primer registro de peso para empezar el seguimiento.</div></div>
       </div>
-
     </div>
-  </div><!-- /panel-peso -->
+  </div>
 
 </div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
 <script>
-// ── MAIN PANEL SWITCH ─────────────────────────────────────
 function switchPanel(id) {
   document.querySelectorAll('.panel').forEach(function(p) { p.classList.remove('active'); });
   document.querySelectorAll('.main-tab').forEach(function(t, i) {
@@ -760,455 +588,76 @@ function switchPanel(id) {
   });
   document.getElementById('panel-' + id).classList.add('active');
 }
-
-// ── NUTRICIÓN SUB-TABS ────────────────────────────────────
 function st(id) {
   var o = ['nutrientes','dieta'];
   document.querySelectorAll('.tab').forEach(function(t, i) { t.classList.toggle('active', o[i] === id); });
   document.querySelectorAll('.tp').forEach(function(p) { p.classList.toggle('active', p.id === 'tp-' + id); });
 }
-
-// ── LISTA DE LA COMPRA ────────────────────────────────────
 var lcTotal = 0, lcChecked = 0;
-
-function lcInit() {
-  lcTotal = document.querySelectorAll('.lc-item').length;
-  lcUpdateAll();
-}
-
-function toggle(el) {
-  el.classList.toggle('checked');
-  lcChecked = document.querySelectorAll('.lc-item.checked').length;
-  lcUpdateAll();
-  lcSave();
-}
-
+function lcInit() { lcTotal = document.querySelectorAll('.lc-item').length; lcUpdateAll(); }
+function toggle(el) { el.classList.toggle('checked'); lcChecked = document.querySelectorAll('.lc-item.checked').length; lcUpdateAll(); lcSave(); }
 function lcUpdateAll() {
   var pct = lcTotal > 0 ? Math.round((lcChecked / lcTotal) * 100) : 0;
   document.getElementById('progBig').textContent = lcChecked;
   document.getElementById('progFill').style.width = pct + '%';
   document.getElementById('progPct').textContent = lcChecked + ' / ' + lcTotal;
   var secs = document.querySelectorAll('.lc-section');
-  secs.forEach(function(sec, i) {
-    var t = sec.querySelectorAll('.lc-item').length;
-    var d = sec.querySelectorAll('.lc-item.checked').length;
-    var cnt = document.getElementById('cnt-' + i);
-    var sh  = document.getElementById('sh-' + i);
-    if (cnt) cnt.textContent = d + '/' + t;
-    if (sh) sh.classList.toggle('complete', d === t);
-  });
+  secs.forEach(function(sec, i) { var t = sec.querySelectorAll('.lc-item').length; var d = sec.querySelectorAll('.lc-item.checked').length; var cnt = document.getElementById('cnt-' + i); var sh = document.getElementById('sh-' + i); if (cnt) cnt.textContent = d + '/' + t; if (sh) sh.classList.toggle('complete', d === t); });
 }
+function lcSave() { var state = []; document.querySelectorAll('.lc-item').forEach(function(item) { state.push(item.classList.contains('checked') ? 1 : 0); }); try { localStorage.setItem('salud_lista_v1', JSON.stringify(state)); } catch(e) {} }
+function lcLoad() { try { var raw = localStorage.getItem('salud_lista_v1'); if (!raw) return; var state = JSON.parse(raw); document.querySelectorAll('.lc-item').forEach(function(item, i) { if (state[i]) item.classList.add('checked'); }); lcChecked = document.querySelectorAll('.lc-item.checked').length; } catch(e) {} }
+function resetAll() { document.querySelectorAll('.lc-item').forEach(function(el) { el.classList.remove('checked'); }); lcChecked = 0; lcUpdateAll(); try { localStorage.removeItem('salud_lista_v1'); } catch(e) {} }
 
-function lcSave() {
-  var state = [];
-  document.querySelectorAll('.lc-item').forEach(function(item) { state.push(item.classList.contains('checked') ? 1 : 0); });
-  try { localStorage.setItem('salud_lista_v1', JSON.stringify(state)); } catch(e) {}
-}
-
-function lcLoad() {
-  try {
-    var raw = localStorage.getItem('salud_lista_v1');
-    if (!raw) return;
-    var state = JSON.parse(raw);
-    document.querySelectorAll('.lc-item').forEach(function(item, i) { if (state[i]) item.classList.add('checked'); });
-    lcChecked = document.querySelectorAll('.lc-item.checked').length;
-  } catch(e) {}
-}
-
-function resetAll() {
-  document.querySelectorAll('.lc-item').forEach(function(el) { el.classList.remove('checked'); });
-  lcChecked = 0;
-  lcUpdateAll();
-  try { localStorage.removeItem('salud_lista_v1'); } catch(e) {}
-}
-
-// ── GARMIN TRACKER ────────────────────────────────────────
-function evDrag(e, cls) {
-  e.preventDefault();
-  document.getElementById('upload-zone').className = 'upload-zone' + (cls ? ' ' + cls : '');
-}
-function dropFile(e) {
-  e.preventDefault();
-  document.getElementById('upload-zone').className = 'upload-zone';
-  var f = e.dataTransfer.files[0];
-  if (f) parseCSV(f);
-}
-function loadFile(input) {
-  if (input.files[0]) parseCSV(input.files[0]);
-}
-
-function parseCSV(file) {
-  var reader = new FileReader();
-  reader.onload = function(e) {
-    var lines = e.target.result.split('\n').filter(function(l) { return l.trim(); });
-    if (lines.length < 2) { alert('El archivo no tiene datos válidos.'); return; }
-    var headers = lines[0].split(',').map(function(h) { return h.replace(/"/g,'').trim().toLowerCase(); });
-    var idx = {
-      date:     findCol(headers, ['date','fecha','activity date']),
-      name:     findCol(headers, ['activity name','activity type','nombre','título','title','name']),
-      type:     findCol(headers, ['activity type','type','tipo']),
-      duration: findCol(headers, ['elapsed time','time','duration','duración','moving time','tiempo']),
-      calories: findCol(headers, ['calories','calorías','kcal']),
-    };
-    var activities = [];
-    for (var i = 1; i < lines.length; i++) {
-      var cols = splitCSVLine(lines[i]);
-      if (cols.length < 3) continue;
-      var dateRaw = idx.date >= 0 ? cols[idx.date] : '';
-      var name    = idx.name >= 0 ? cols[idx.name] : (idx.type >= 0 ? cols[idx.type] : 'Actividad');
-      var type    = idx.type >= 0 ? cols[idx.type] : name;
-      var durRaw  = idx.duration >= 0 ? cols[idx.duration] : '0';
-      var calRaw  = idx.calories >= 0 ? cols[idx.calories] : '0';
-      var date = parseDate(dateRaw.replace(/"/g,'').trim());
-      if (!date) continue;
-      var dur = parseDuration(durRaw.replace(/"/g,'').trim());
-      var cal = parseInt(calRaw.replace(/"/g,'').replace(',','')) || 0;
-      activities.push({ date: date, name: name.replace(/"/g,'').trim(), type: type.replace(/"/g,'').trim(), dur: dur, cal: cal });
-    }
-    if (activities.length === 0) { alert('No se encontraron actividades válidas. Asegúrate de exportar desde Garmin Connect → Actividades → CSV.'); return; }
-    activities.sort(function(a, b) { return b.date - a.date; });
-    renderAll(activities);
-  };
-  reader.readAsText(file, 'UTF-8');
-}
-
-function findCol(headers, candidates) {
-  for (var j = 0; j < candidates.length; j++) {
-    var idx2 = headers.findIndex(function(h) { return h.includes(candidates[j]); });
-    if (idx2 >= 0) return idx2;
-  }
-  return -1;
-}
-
-function splitCSVLine(line) {
-  var res = []; var cur = ''; var inQ = false;
-  for (var i = 0; i < line.length; i++) {
-    var ch = line[i];
-    if (ch === '"') { inQ = !inQ; continue; }
-    if (ch === ',' && !inQ) { res.push(cur); cur = ''; continue; }
-    cur += ch;
-  }
-  res.push(cur);
-  return res;
-}
-
-function parseDate(s) {
-  if (!s) return null;
-  var d = new Date(s);
-  if (!isNaN(d)) return d;
-  var parts = s.split(/[\/\-]/);
-  if (parts.length === 3) {
-    var d2 = new Date(parts[2], parts[1]-1, parts[0]);
-    if (!isNaN(d2)) return d2;
-  }
-  return null;
-}
-
-function parseDuration(s) {
-  if (!s) return 0;
-  if (s.includes(':')) {
-    var p = s.split(':').map(Number);
-    if (p.length === 3) return p[0]*60 + p[1] + p[2]/60;
-    if (p.length === 2) return p[0] + p[1]/60;
-  }
-  var n = parseFloat(s);
-  if (!isNaN(n)) return n > 300 ? n / 60 : n;
-  return 0;
-}
-
+function evDrag(e, cls) { e.preventDefault(); document.getElementById('upload-zone').className = 'upload-zone' + (cls ? ' ' + cls : ''); }
+function dropFile(e) { e.preventDefault(); document.getElementById('upload-zone').className = 'upload-zone'; var f = e.dataTransfer.files[0]; if (f) parseCSV(f); }
+function loadFile(input) { if (input.files[0]) parseCSV(input.files[0]); }
+function parseCSV(file) { var reader = new FileReader(); reader.onload = function(e) { var lines = e.target.result.split('\n').filter(function(l) { return l.trim(); }); if (lines.length < 2) { alert('El archivo no tiene datos válidos.'); return; } var headers = lines[0].split(',').map(function(h) { return h.replace(/"/g,'').trim().toLowerCase(); }); var idx = { date: findCol(headers, ['date','fecha','activity date']), name: findCol(headers, ['activity name','activity type','nombre','título','title','name']), type: findCol(headers, ['activity type','type','tipo']), duration: findCol(headers, ['elapsed time','time','duration','duración','moving time','tiempo']), calories: findCol(headers, ['calories','calorías','kcal']), }; var activities = []; for (var i = 1; i < lines.length; i++) { var cols = splitCSVLine(lines[i]); if (cols.length < 3) continue; var dateRaw = idx.date >= 0 ? cols[idx.date] : ''; var name = idx.name >= 0 ? cols[idx.name] : (idx.type >= 0 ? cols[idx.type] : 'Actividad'); var type = idx.type >= 0 ? cols[idx.type] : name; var durRaw = idx.duration >= 0 ? cols[idx.duration] : '0'; var calRaw = idx.calories >= 0 ? cols[idx.calories] : '0'; var date = parseDate(dateRaw.replace(/"/g,'').trim()); if (!date) continue; var dur = parseDuration(durRaw.replace(/"/g,'').trim()); var cal = parseInt(calRaw.replace(/"/g,'').replace(',','')) || 0; activities.push({ date: date, name: name.replace(/"/g,'').trim(), type: type.replace(/"/g,'').trim(), dur: dur, cal: cal }); } if (activities.length === 0) { alert('No se encontraron actividades válidas.'); return; } activities.sort(function(a, b) { return b.date - a.date; }); renderAll(activities); }; reader.readAsText(file, 'UTF-8'); }
+function findCol(headers, candidates) { for (var j = 0; j < candidates.length; j++) { var idx2 = headers.findIndex(function(h) { return h.includes(candidates[j]); }); if (idx2 >= 0) return idx2; } return -1; }
+function splitCSVLine(line) { var res = []; var cur = ''; var inQ = false; for (var i = 0; i < line.length; i++) { var ch = line[i]; if (ch === '"') { inQ = !inQ; continue; } if (ch === ',' && !inQ) { res.push(cur); cur = ''; continue; } cur += ch; } res.push(cur); return res; }
+function parseDate(s) { if (!s) return null; var d = new Date(s); if (!isNaN(d)) return d; var parts = s.split(/[\/\-]/); if (parts.length === 3) { var d2 = new Date(parts[2], parts[1]-1, parts[0]); if (!isNaN(d2)) return d2; } return null; }
+function parseDuration(s) { if (!s) return 0; if (s.includes(':')) { var p = s.split(':').map(Number); if (p.length === 3) return p[0]*60 + p[1] + p[2]/60; if (p.length === 2) return p[0] + p[1]/60; } var n = parseFloat(s); if (!isNaN(n)) return n > 300 ? n / 60 : n; return 0; }
 var chartDur = null, chartCal = null;
+function renderAll(acts) { var totalDur = acts.reduce(function(s, a) { return s + a.dur; }, 0); var totalCal = acts.reduce(function(s, a) { return s + a.cal; }, 0); document.getElementById('s-count').textContent = acts.length; document.getElementById('s-dur').textContent = (totalDur / 60).toFixed(1) + 'h'; document.getElementById('s-cal').textContent = totalCal.toLocaleString(); document.getElementById('s-avg').textContent = Math.round(totalDur / acts.length) + ' min'; document.getElementById('stats-strip').style.display = 'grid'; var weeks = {}; acts.forEach(function(a) { var wk = getWeekKey(a.date); if (!weeks[wk]) weeks[wk] = { dur: 0, cal: 0, label: wk }; weeks[wk].dur += a.dur; weeks[wk].cal += a.cal; }); var sorted = Object.values(weeks).sort(function(a,b) { return a.label.localeCompare(b.label); }).slice(-16); var labels = sorted.map(function(w) { return w.label; }); var durData = sorted.map(function(w) { return Math.round(w.dur); }); var calData = sorted.map(function(w) { return w.cal; }); document.getElementById('charts-grid').style.display = 'grid'; var cfg = { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false } }, scales: { x: { grid: { color: '#E8E6E0' }, ticks: { font: { size: 10, family: 'DM Sans' }, color: '#A8A49C', maxRotation: 45 } }, y: { grid: { color: '#E8E6E0' }, ticks: { font: { size: 10, family: 'DM Sans' }, color: '#A8A49C' }, beginAtZero: true } } }; if (chartDur) chartDur.destroy(); if (chartCal) chartCal.destroy(); chartDur = new Chart(document.getElementById('chart-dur'), { type: 'bar', data: { labels: labels, datasets: [{ data: durData, backgroundColor: '#2D6A4F', borderRadius: 4, borderSkipped: false }] }, options: cfg }); chartCal = new Chart(document.getElementById('chart-cal'), { type: 'bar', data: { labels: labels, datasets: [{ data: calData, backgroundColor: '#8B6914', borderRadius: 4, borderSkipped: false }] }, options: cfg }); document.getElementById('act-count').textContent = acts.length + ' actividades'; document.getElementById('act-count').style.display = 'inline-block'; var typeColors = { 'running': '#C0614A', 'cycling': '#2D6080', 'swimming': '#3D405B', 'strength': '#2D6A4F', 'walking': '#9A7D2E', 'hiking': '#4A7C59' }; var rows = acts.slice(0, 50).map(function(a) { var dateStr = a.date.toLocaleDateString('es-ES', { day:'2-digit', month:'short', year:'2-digit' }); var durStr = a.dur >= 60 ? Math.floor(a.dur/60) + 'h ' + Math.round(a.dur%60) + 'min' : Math.round(a.dur) + ' min'; var typeKey = a.type.toLowerCase().split(' ')[0]; var color = typeColors[typeKey] || '#6B6860'; return '<div class="act-row"><span class="act-date">' + dateStr + '</span><span class="act-name">' + a.name + '</span><span class="act-dur">' + durStr + '</span><span class="act-cal">' + (a.cal ? a.cal.toLocaleString() + ' kcal' : '—') + '</span><span class="act-type"><span class="type-badge" style="background:' + color + '18;color:' + color + ';border:1px solid ' + color + '40">' + a.type + '</span></span></div>'; }).join(''); document.getElementById('act-body').innerHTML = '<div class="act-row hdr"><span>Fecha</span><span>Actividad</span><span style="text-align:right">Duración</span><span style="text-align:right">Calorías</span><span>Tipo</span></div>' + rows + (acts.length > 50 ? '<div style="padding:12px 18px;font-size:11px;color:var(--text-3);text-align:center">Mostrando las últimas 50 de ' + acts.length + ' actividades</div>' : ''); }
+function getWeekKey(date) { var d = new Date(date); d.setHours(0,0,0,0); d.setDate(d.getDate() - d.getDay() + 1); return d.toLocaleDateString('es-ES', { day:'2-digit', month:'short' }); }
 
-function renderAll(acts) {
-  var totalDur = acts.reduce(function(s, a) { return s + a.dur; }, 0);
-  var totalCal = acts.reduce(function(s, a) { return s + a.cal; }, 0);
-  document.getElementById('s-count').textContent = acts.length;
-  document.getElementById('s-dur').textContent   = (totalDur / 60).toFixed(1) + 'h';
-  document.getElementById('s-cal').textContent   = totalCal.toLocaleString();
-  document.getElementById('s-avg').textContent   = Math.round(totalDur / acts.length) + ' min';
-  document.getElementById('stats-strip').style.display = 'grid';
-
-  var weeks = {};
-  acts.forEach(function(a) {
-    var wk = getWeekKey(a.date);
-    if (!weeks[wk]) weeks[wk] = { dur: 0, cal: 0, label: wk };
-    weeks[wk].dur += a.dur;
-    weeks[wk].cal += a.cal;
-  });
-  var sorted = Object.values(weeks).sort(function(a,b) { return a.label.localeCompare(b.label); }).slice(-16);
-  var labels = sorted.map(function(w) { return w.label; });
-  var durData = sorted.map(function(w) { return Math.round(w.dur); });
-  var calData = sorted.map(function(w) { return w.cal; });
-
-  document.getElementById('charts-grid').style.display = 'grid';
-
-  var cfg = {
-    responsive: true, maintainAspectRatio: false,
-    plugins: { legend: { display: false } },
-    scales: {
-      x: { grid: { color: '#E8E6E0' }, ticks: { font: { size: 10, family: 'DM Sans' }, color: '#A8A49C', maxRotation: 45 } },
-      y: { grid: { color: '#E8E6E0' }, ticks: { font: { size: 10, family: 'DM Sans' }, color: '#A8A49C' }, beginAtZero: true }
-    }
-  };
-
-  if (chartDur) chartDur.destroy();
-  if (chartCal) chartCal.destroy();
-
-  chartDur = new Chart(document.getElementById('chart-dur'), {
-    type: 'bar', data: { labels: labels, datasets: [{ data: durData, backgroundColor: '#2D6A4F', borderRadius: 4, borderSkipped: false }] }, options: cfg
-  });
-  chartCal = new Chart(document.getElementById('chart-cal'), {
-    type: 'bar', data: { labels: labels, datasets: [{ data: calData, backgroundColor: '#8B6914', borderRadius: 4, borderSkipped: false }] }, options: cfg
-  });
-
-  document.getElementById('act-count').textContent = acts.length + ' actividades';
-  document.getElementById('act-count').style.display = 'inline-block';
-
-  var typeColors = { 'running': '#C0614A', 'cycling': '#2D6080', 'swimming': '#3D405B', 'strength': '#2D6A4F', 'walking': '#9A7D2E', 'hiking': '#4A7C59' };
-  var rows = acts.slice(0, 50).map(function(a) {
-    var dateStr = a.date.toLocaleDateString('es-ES', { day:'2-digit', month:'short', year:'2-digit' });
-    var durStr  = a.dur >= 60 ? Math.floor(a.dur/60) + 'h ' + Math.round(a.dur%60) + 'min' : Math.round(a.dur) + ' min';
-    var typeKey = a.type.toLowerCase().split(' ')[0];
-    var color   = typeColors[typeKey] || '#6B6860';
-    return '<div class="act-row"><span class="act-date">' + dateStr + '</span><span class="act-name">' + a.name + '</span><span class="act-dur">' + durStr + '</span><span class="act-cal">' + (a.cal ? a.cal.toLocaleString() + ' kcal' : '—') + '</span><span class="act-type"><span class="type-badge" style="background:' + color + '18;color:' + color + ';border:1px solid ' + color + '40">' + a.type + '</span></span></div>';
-  }).join('');
-
-  document.getElementById('act-body').innerHTML = '<div class="act-row hdr"><span>Fecha</span><span>Actividad</span><span style="text-align:right">Duración</span><span style="text-align:right">Calorías</span><span>Tipo</span></div>' + rows + (acts.length > 50 ? '<div style="padding:12px 18px;font-size:11px;color:var(--text-3);text-align:center">Mostrando las últimas 50 de ' + acts.length + ' actividades</div>' : '');
-}
-
-function getWeekKey(date) {
-  var d = new Date(date);
-  d.setHours(0,0,0,0);
-  d.setDate(d.getDate() - d.getDay() + 1);
-  return d.toLocaleDateString('es-ES', { day:'2-digit', month:'short' });
-}
-
-// ── TRACKER DE PESO ──────────────────────────────────────
 var PESO_KEY = 'ao_peso_v1';
 var pesoChart = null;
 var pesoFilter = 'all';
-
 function loadPesos() { try { return JSON.parse(localStorage.getItem(PESO_KEY) || '[]'); } catch(e) { return []; } }
 function savePesos(d) { localStorage.setItem(PESO_KEY, JSON.stringify(d)); }
+function addPeso() { var date = document.getElementById('p-date').value; var kg = parseFloat(document.getElementById('p-kg').value); var note = document.getElementById('p-note').value.trim(); var err = document.getElementById('p-err'); if (!date) { err.textContent = 'Elige una fecha.'; err.style.display = 'block'; return; } if (isNaN(kg) || kg < 40 || kg > 200) { err.textContent = 'Introduce un peso válido (40–200 kg).'; err.style.display = 'block'; return; } err.style.display = 'none'; var records = loadPesos(); var idx = records.findIndex(function(r) { return r.date === date; }); var entry = { date: date, kg: Math.round(kg * 10) / 10, note: note }; if (idx >= 0) records[idx] = entry; else records.push(entry); records.sort(function(a, b) { return a.date.localeCompare(b.date); }); savePesos(records); document.getElementById('p-kg').value = ''; document.getElementById('p-note').value = ''; renderPeso(); }
+function delPeso(date) { if (!confirm('¿Eliminar este registro?')) return; savePesos(loadPesos().filter(function(r) { return r.date !== date; })); renderPeso(); }
+function pfFilter(val, btn) { pesoFilter = val; document.querySelectorAll('.pf-btn').forEach(function(b) { b.classList.remove('active'); }); btn.classList.add('active'); renderPesoChart(loadPesos()); }
+function renderPeso() { var records = loadPesos(); renderPesoStats(records); renderPesoChart(records); renderPesoLog(records); }
+function renderPesoStats(records) { var OBJETIVO = 80; if (!records.length) { document.getElementById('pw-actual').textContent = '—'; document.getElementById('pw-actual').className = 'ph-cell-val gray'; document.getElementById('pw-resta').textContent = '—'; document.getElementById('pw-total').textContent = '—'; document.getElementById('pw-count').textContent = '0 registros'; return; } var last = records[records.length - 1]; var first = records[0]; var actual = last.kg; var resta = Math.round((actual - OBJETIVO) * 10) / 10; var diff = Math.round((actual - first.kg) * 10) / 10; var actEl = document.getElementById('pw-actual'); actEl.textContent = actual.toFixed(1); actEl.className = 'ph-cell-val ' + (actual <= OBJETIVO ? 'green' : ''); var restaEl = document.getElementById('pw-resta'); restaEl.textContent = resta > 0 ? resta.toFixed(1) : '✓ Alcanzado'; restaEl.className = 'ph-cell-val ' + (resta <= 0 ? 'green' : ''); var totalEl = document.getElementById('pw-total'); var sign = diff < 0 ? '' : (diff > 0 ? '+' : ''); totalEl.textContent = sign + diff.toFixed(1); totalEl.className = 'ph-cell-val ' + (diff < 0 ? 'green' : diff > 0 ? 'red' : 'gray'); document.getElementById('pw-total-sub').textContent = 'desde ' + fmtDate(first.date); document.getElementById('pw-count').textContent = records.length + ' registro' + (records.length !== 1 ? 's' : ''); }
+function renderPesoChart(records) { var filtered = records; if (pesoFilter !== 'all' && records.length) { var cutoff = new Date(); cutoff.setDate(cutoff.getDate() - pesoFilter * 7); var cutStr = cutoff.toISOString().split('T')[0]; filtered = records.filter(function(r) { return r.date >= cutStr; }); } var labels = filtered.map(function(r) { return fmtDate(r.date); }); var data = filtered.map(function(r) { return r.kg; }); var OBJETIVO = 80; var ctx = document.getElementById('peso-chart').getContext('2d'); if (pesoChart) pesoChart.destroy(); if (!filtered.length) { pesoChart = null; ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height); return; } var allVals = data.concat([OBJETIVO]); var minV = Math.floor(Math.min.apply(null, allVals)) - 1; var maxV = Math.ceil(Math.max.apply(null, allVals)) + 1; pesoChart = new Chart(ctx, { type: 'line', data: { labels: labels, datasets: [{ label: 'Peso (kg)', data: data, borderColor: '#2D6A4F', backgroundColor: 'rgba(45,106,79,0.08)', borderWidth: 2.5, pointBackgroundColor: '#2D6A4F', pointRadius: 5, pointHoverRadius: 7, fill: true, tension: 0.3 }, { label: 'Objetivo 80 kg', data: labels.map(function() { return OBJETIVO; }), borderColor: '#C0614A', borderWidth: 1.5, borderDash: [5, 4], pointRadius: 0, fill: false, tension: 0 }] }, options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: true, position: 'bottom', labels: { font: { size: 11, family: 'DM Sans' }, color: '#6B6860', boxWidth: 12, padding: 16 } }, tooltip: { callbacks: { label: function(ctx) { if (ctx.datasetIndex === 1) return 'Objetivo: 80 kg'; return 'Peso: ' + ctx.parsed.y.toFixed(1) + ' kg'; } } } }, scales: { x: { grid: { color: '#E8E6E0' }, ticks: { font: { size: 10, family: 'DM Sans' }, color: '#A8A49C', maxRotation: 45, maxTicksLimit: 12 } }, y: { min: minV, max: maxV, grid: { color: '#E8E6E0' }, ticks: { font: { size: 10, family: 'DM Sans' }, color: '#A8A49C', callback: function(v) { return v + ' kg'; } } } } } }); }
+function renderPesoLog(records) { var body = document.getElementById('peso-log-body'); if (!records.length) { body.innerHTML = '<div class="peso-empty">Añade tu primer registro de peso para empezar el seguimiento.</div>'; return; } var sorted = records.slice().sort(function(a, b) { return b.date.localeCompare(a.date); }); var rows = sorted.map(function(r, i) { var origIdx = records.findIndex(function(x) { return x.date === r.date; }); var prev = origIdx > 0 ? records[origIdx - 1] : null; var diff = prev ? Math.round((r.kg - prev.kg) * 10) / 10 : null; var deltaHtml = ''; if (diff === null) { deltaHtml = '<span class="peso-delta-zero">—</span>'; } else if (diff < 0) { deltaHtml = '<span class="peso-delta-pos">' + diff.toFixed(1) + ' kg ↓</span>'; } else if (diff > 0) { deltaHtml = '<span class="peso-delta-neg">+' + diff.toFixed(1) + ' kg ↑</span>'; } else { deltaHtml = '<span class="peso-delta-zero">= sin cambio</span>'; } return '<div class="peso-row"><span class="peso-date">' + fmtDateLong(r.date) + '</span><span class="peso-kg">' + r.kg.toFixed(1) + ' kg</span><span>' + deltaHtml + '</span><span class="peso-note">' + (r.note || '<span style="color:var(--text-3);font-style:italic">—</span>') + '</span><button class="peso-del-btn" onclick="delPeso(\'' + r.date + '\')" title="Eliminar">×</button></div>'; }).join(''); body.innerHTML = '<div class="peso-row hdr"><span>Fecha</span><span>Peso</span><span>Variación</span><span>Nota</span><span></span></div>' + rows; }
+function fmtDate(dateStr) { var d = new Date(dateStr + 'T12:00:00'); return d.toLocaleDateString('es-ES', { day: '2-digit', month: 'short' }); }
+function fmtDateLong(dateStr) { var d = new Date(dateStr + 'T12:00:00'); return d.toLocaleDateString('es-ES', { day: '2-digit', month: 'short', year: '2-digit' }); }
 
-function addPeso() {
-  var date = document.getElementById('p-date').value;
-  var kg   = parseFloat(document.getElementById('p-kg').value);
-  var note = document.getElementById('p-note').value.trim();
-  var err  = document.getElementById('p-err');
-  if (!date) { err.textContent = 'Elige una fecha.'; err.style.display = 'block'; return; }
-  if (isNaN(kg) || kg < 40 || kg > 200) { err.textContent = 'Introduce un peso válido (40–200 kg).'; err.style.display = 'block'; return; }
-  err.style.display = 'none';
-  var records = loadPesos();
-  // Replace if same date
-  var idx = records.findIndex(function(r) { return r.date === date; });
-  var entry = { date: date, kg: Math.round(kg * 10) / 10, note: note };
-  if (idx >= 0) records[idx] = entry; else records.push(entry);
-  records.sort(function(a, b) { return a.date.localeCompare(b.date); });
-  savePesos(records);
-  document.getElementById('p-kg').value = '';
-  document.getElementById('p-note').value = '';
-  renderPeso();
+function openCardioModal() {
+  document.getElementById('cardioModalOverlay').classList.add('open');
+  document.body.style.overflow = 'hidden';
 }
-
-function delPeso(date) {
-  if (!confirm('¿Eliminar este registro?')) return;
-  savePesos(loadPesos().filter(function(r) { return r.date !== date; }));
-  renderPeso();
+function closeCardioModal() {
+  document.getElementById('cardioModalOverlay').classList.remove('open');
+  document.body.style.overflow = '';
 }
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') closeCardioModal();
+});
 
-function pfFilter(val, btn) {
-  pesoFilter = val;
-  document.querySelectorAll('.pf-btn').forEach(function(b) { b.classList.remove('active'); });
-  btn.classList.add('active');
-  renderPesoChart(loadPesos());
-}
-
-function renderPeso() {
-  var records = loadPesos();
-  renderPesoStats(records);
-  renderPesoChart(records);
-  renderPesoLog(records);
-}
-
-function renderPesoStats(records) {
-  var OBJETIVO = 80;
-  if (!records.length) {
-    document.getElementById('pw-actual').textContent = '—';
-    document.getElementById('pw-actual').className = 'ph-cell-val gray';
-    document.getElementById('pw-resta').textContent = '—';
-    document.getElementById('pw-total').textContent = '—';
-    document.getElementById('pw-count').textContent = '0 registros';
-    return;
-  }
-  var last = records[records.length - 1];
-  var first = records[0];
-  var actual = last.kg;
-  var resta = Math.round((actual - OBJETIVO) * 10) / 10;
-  var diff = Math.round((actual - first.kg) * 10) / 10;
-
-  var actEl = document.getElementById('pw-actual');
-  actEl.textContent = actual.toFixed(1);
-  actEl.className = 'ph-cell-val ' + (actual <= OBJETIVO ? 'green' : '');
-
-  var restaEl = document.getElementById('pw-resta');
-  restaEl.textContent = resta > 0 ? resta.toFixed(1) : '✓ Alcanzado';
-  restaEl.className = 'ph-cell-val ' + (resta <= 0 ? 'green' : '');
-
-  var totalEl = document.getElementById('pw-total');
-  var sign = diff < 0 ? '' : (diff > 0 ? '+' : '');
-  totalEl.textContent = sign + diff.toFixed(1);
-  totalEl.className = 'ph-cell-val ' + (diff < 0 ? 'green' : diff > 0 ? 'red' : 'gray');
-
-  var subEl = document.getElementById('pw-total-sub');
-  subEl.textContent = 'desde ' + fmtDate(first.date);
-
-  document.getElementById('pw-count').textContent = records.length + ' registro' + (records.length !== 1 ? 's' : '');
-}
-
-function renderPesoChart(records) {
-  var filtered = records;
-  if (pesoFilter !== 'all' && records.length) {
-    var cutoff = new Date();
-    cutoff.setDate(cutoff.getDate() - pesoFilter * 7);
-    var cutStr = cutoff.toISOString().split('T')[0];
-    filtered = records.filter(function(r) { return r.date >= cutStr; });
-  }
-
-  var labels = filtered.map(function(r) { return fmtDate(r.date); });
-  var data   = filtered.map(function(r) { return r.kg; });
-  var OBJETIVO = 80;
-
-  var ctx = document.getElementById('peso-chart').getContext('2d');
-  if (pesoChart) pesoChart.destroy();
-
-  if (!filtered.length) {
-    pesoChart = null;
-    ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
-    return;
-  }
-
-  // Determine y-axis range
-  var allVals = data.concat([OBJETIVO]);
-  var minV = Math.floor(Math.min.apply(null, allVals)) - 1;
-  var maxV = Math.ceil(Math.max.apply(null, allVals)) + 1;
-
-  pesoChart = new Chart(ctx, {
-    type: 'line',
-    data: {
-      labels: labels,
-      datasets: [
-        {
-          label: 'Peso (kg)',
-          data: data,
-          borderColor: '#2D6A4F',
-          backgroundColor: 'rgba(45,106,79,0.08)',
-          borderWidth: 2.5,
-          pointBackgroundColor: '#2D6A4F',
-          pointRadius: 5,
-          pointHoverRadius: 7,
-          fill: true,
-          tension: 0.3,
-        },
-        {
-          label: 'Objetivo 80 kg',
-          data: labels.map(function() { return OBJETIVO; }),
-          borderColor: '#C0614A',
-          borderWidth: 1.5,
-          borderDash: [5, 4],
-          pointRadius: 0,
-          fill: false,
-          tension: 0,
-        }
-      ]
-    },
-    options: {
-      responsive: true,
-      maintainAspectRatio: false,
-      plugins: {
-        legend: {
-          display: true,
-          position: 'bottom',
-          labels: { font: { size: 11, family: 'DM Sans' }, color: '#6B6860', boxWidth: 12, padding: 16 }
-        },
-        tooltip: {
-          callbacks: {
-            label: function(ctx) {
-              if (ctx.datasetIndex === 1) return 'Objetivo: 80 kg';
-              return 'Peso: ' + ctx.parsed.y.toFixed(1) + ' kg';
-            }
-          }
-        }
-      },
-      scales: {
-        x: {
-          grid: { color: '#E8E6E0' },
-          ticks: { font: { size: 10, family: 'DM Sans' }, color: '#A8A49C', maxRotation: 45, maxTicksLimit: 12 }
-        },
-        y: {
-          min: minV,
-          max: maxV,
-          grid: { color: '#E8E6E0' },
-          ticks: {
-            font: { size: 10, family: 'DM Sans' },
-            color: '#A8A49C',
-            callback: function(v) { return v + ' kg'; }
-          }
-        }
-      }
-    }
-  });
-}
-
-function renderPesoLog(records) {
-  var body = document.getElementById('peso-log-body');
-  if (!records.length) {
-    body.innerHTML = '<div class="peso-empty">Añade tu primer registro de peso para empezar el seguimiento.</div>';
-    return;
-  }
-  var sorted = records.slice().sort(function(a, b) { return b.date.localeCompare(a.date); });
-  var rows = sorted.map(function(r, i) {
-    // Find prev in original sorted-by-date list
-    var origIdx = records.findIndex(function(x) { return x.date === r.date; });
-    var prev = origIdx > 0 ? records[origIdx - 1] : null;
-    var diff = prev ? Math.round((r.kg - prev.kg) * 10) / 10 : null;
-    var deltaHtml = '';
-    if (diff === null) {
-      deltaHtml = '<span class="peso-delta-zero">—</span>';
-    } else if (diff < 0) {
-      deltaHtml = '<span class="peso-delta-pos">' + diff.toFixed(1) + ' kg ↓</span>';
-    } else if (diff > 0) {
-      deltaHtml = '<span class="peso-delta-neg">+' + diff.toFixed(1) + ' kg ↑</span>';
-    } else {
-      deltaHtml = '<span class="peso-delta-zero">= sin cambio</span>';
-    }
-    return '<div class="peso-row">'
-      + '<span class="peso-date">' + fmtDateLong(r.date) + '</span>'
-      + '<span class="peso-kg">' + r.kg.toFixed(1) + ' kg</span>'
-      + '<span>' + deltaHtml + '</span>'
-      + '<span class="peso-note">' + (r.note || '<span style="color:var(--text-3);font-style:italic">—</span>') + '</span>'
-      + '<button class="peso-del-btn" onclick="delPeso(\'' + r.date + '\')" title="Eliminar">×</button>'
-      + '</div>';
-  }).join('');
-  body.innerHTML = '<div class="peso-row hdr"><span>Fecha</span><span>Peso</span><span>Variación</span><span>Nota</span><span></span></div>' + rows;
-}
-
-function fmtDate(dateStr) {
-  var d = new Date(dateStr + 'T12:00:00');
-  return d.toLocaleDateString('es-ES', { day: '2-digit', month: 'short' });
-}
-function fmtDateLong(dateStr) {
-  var d = new Date(dateStr + 'T12:00:00');
-  return d.toLocaleDateString('es-ES', { day: '2-digit', month: 'short', year: '2-digit' });
-}
-
-// ── INIT ─────────────────────────────────────────────────
 document.addEventListener('DOMContentLoaded', function() {
   lcInit();
   lcLoad();
   lcUpdateAll();
-  // Set today as default date for peso input
   document.getElementById('p-date').value = new Date().toISOString().split('T')[0];
   renderPeso();
+  // Animate cardio progress bar (0% — user marks manually which week they're on)
+  setTimeout(function() {
+    var fill = document.getElementById('cardio-fill');
+    if (fill) fill.style.width = '0%';
+  }, 300);
 });
 </script>
 </body>
