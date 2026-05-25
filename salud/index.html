@@ -318,7 +318,6 @@ nav { background: var(--surface); border-bottom: 1px solid var(--border); paddin
   <div class="main-tabs">
     <button class="main-tab active" onclick="switchPanel('nutricion')">🥗 Nutrición</button>
     <button class="main-tab" onclick="switchPanel('deporte')">🏋️ Deporte</button>
-    <button class="main-tab" onclick="switchPanel('lista')">🛒 Lista de la Compra</button>
     <button class="main-tab" onclick="switchPanel('peso')">⚖️ Tracker de Peso</button>
   </div>
 
@@ -371,36 +370,179 @@ nav { background: var(--surface); border-bottom: 1px solid var(--border); paddin
       </div>
     </div>
     <div class="tp" id="tp-dieta">
+      <!-- CSS extra para plan de comidas (inline, scoped) -->
+      <style>
+        .pm-card { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 18px 20px; }
+        .pm-card.bar-green { border-left: 3px solid var(--green); }
+        .pm-card.bar-yellow { border-left: 3px solid #C9A227; }
+        .pm-card.bar-red { border-left: 3px solid #B5564A; }
+        .pm-card.green-bg { background: var(--green-bg); border-color: var(--green-border); }
+        .pm-title { font-size: 13.5px; font-weight: 600; margin-bottom: 5px; }
+        .pm-meta { font-size: 10px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: var(--green); margin-bottom: 6px; }
+        .pm-text { font-size: 12px; color: var(--text-2); line-height: 1.6; }
+        .pm-grid-2 { display: grid; grid-template-columns: repeat(2,1fr); gap: 10px; margin-bottom: 4px; }
+        .pm-grid-4 { display: grid; grid-template-columns: repeat(4,1fr); gap: 10px; margin-bottom: 4px; }
+        @media(max-width:900px) { .pm-grid-4 { grid-template-columns: repeat(2,1fr); } }
+        @media(max-width:600px) { .pm-grid-2, .pm-grid-4 { grid-template-columns: 1fr; } }
+        .day-row { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 18px 22px; margin-bottom: 10px; display: grid; grid-template-columns: 120px 1fr; gap: 18px; }
+        @media(max-width:640px) { .day-row { grid-template-columns: 1fr; gap: 12px; } }
+        .day-name { font-family: 'DM Serif Display', serif; font-size: 18px; letter-spacing: -0.3px; }
+        .day-type { font-size: 9px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--text-3); margin-top: 3px; }
+        .day-badge { display: inline-block; margin-top: 7px; font-size: 9px; font-weight: 700; padding: 3px 9px; border-radius: 11px; background: var(--green-bg); color: var(--green); border: 1px solid var(--green-border); letter-spacing: 0.3px; }
+        .meals { display: flex; flex-direction: column; gap: 10px; }
+        .meal { display: flex; gap: 12px; align-items: flex-start; }
+        .meal-tag { font-size: 9px; letter-spacing: 0.8px; text-transform: uppercase; font-weight: 700; padding: 4px 0; width: 72px; text-align: center; border-radius: 5px; flex-shrink: 0; margin-top: 1px; }
+        .tag-d { background: #FBF1DC; color: #B08923; }
+        .tag-c { background: #FEF3F2; color: #B5663A; }
+        .tag-n { background: var(--green-bg); color: var(--green); }
+        .meal-name { font-size: 13px; font-weight: 600; margin-bottom: 2px; color: var(--text-1); }
+        .meal-detail { font-size: 11.5px; color: var(--text-2); line-height: 1.5; }
+        .shop-col h3 { font-size: 10px; letter-spacing: 1.5px; text-transform: uppercase; color: #B5564A; font-weight: 700; margin-bottom: 10px; padding-bottom: 6px; border-bottom: 1px solid var(--border); }
+        .shop-col ul { list-style: none; }
+        .shop-col li { font-size: 12px; color: var(--text-2); padding: 3px 0; display: flex; align-items: center; gap: 8px; }
+        .shop-col li::before { content: ''; width: 4px; height: 4px; border-radius: 50%; background: var(--green); flex-shrink: 0; }
+        .pm-callout { background: #FEF3F2; border: 1px solid #F5C6BC; border-radius: 10px; padding: 20px 24px; margin-top: 8px; }
+        .pm-callout h2 { font-family: 'DM Serif Display', serif; font-size: 17px; color: #A24F2E; margin-bottom: 6px; }
+        .pm-callout p { font-size: 12.5px; color: var(--text-2); line-height: 1.65; }
+        .pm-header { margin-bottom: 24px; }
+        .pm-header p { font-size: 13px; color: var(--text-2); line-height: 1.65; max-width: 620px; }
+      </style>
+
+      <div class="pm-header">
+        <p>El gimnasio funciona porque está todo decidido de antemano. Este plan aplica la misma lógica: cocinas una vez el domingo, el resto de la semana solo ensamblas. Cero decisiones con hambre. Aplica de lunes a viernes más la cena del domingo. Duración: 3–4 semanas estrictas.</p>
+      </div>
+
       <div class="sl">Diagnóstico</div>
-      <div class="diag-grid">
-        <div class="diag-card" style="border-left-color:#3D405B"><div class="diag-title">El problema no es el qué, es el patrón</div><div class="diag-body">Llevas meses sin fruta, sin verdura, con dulces y comida de baja calidad. Tres semanas de dieta limpia y notarás la diferencia en entrenamiento, concentración y estado de ánimo antes de que cualquier otro cambio tenga efecto.</div></div>
-        <div class="diag-card" style="border-left-color:#C9A227"><div class="diag-title">⚠ Mudanza + trabajo nuevo = trampa</div><div class="diag-body">El cambio creará fricción real. El riesgo es usar la mudanza como excusa para seguir comiendo mal. Si no instalas el sistema antes de llegar a Madrid, en seis meses seguirás igual de peso y con mucho más estrés encima.</div></div>
+      <div class="pm-grid-2">
+        <div class="pm-card bar-green">
+          <div class="pm-title">El problema no es el qué, es el patrón</div>
+          <div class="pm-text">Sabes perfectamente qué deberías comer. El fallo es decidirlo en el momento, con hambre o cansancio. Este plan elimina la decisión: cada comida ya está escrita. No improvisas, no negocias contigo mismo.</div>
+        </div>
+        <div class="pm-card bar-yellow">
+          <div class="pm-title">⚠ 6 semanas de estancamiento</div>
+          <div class="pm-text">El peso lleva plano entre 87 y 87.6 kg porque no estás en déficit real. El deporte no da licencia ilimitada para comer. Tres semanas estrictas y la báscula vuelve a moverse.</div>
+        </div>
       </div>
-      <div class="sl">Suplementación mínima no negociable</div>
-      <div class="suplem-grid">
-        <div class="suplem"><div class="suplem-name">Vitamina D3</div><div class="suplem-dose">2000–4000 UI/día · con comida</div><div class="suplem-why">Trabajo de oficina en Madrid. Exposición solar insuficiente garantizada.</div></div>
-        <div class="suplem"><div class="suplem-name">Magnesio Glicinato</div><div class="suplem-dose">300–400 mg · antes de dormir</div><div class="suplem-why">El ojo que te vibra. Cortisol. Sueño. Rendimiento muscular. Empieza esta semana.</div></div>
-        <div class="suplem"><div class="suplem-name">Omega-3</div><div class="suplem-dose">1–2 g EPA+DHA · diario</div><div class="suplem-why">Antiinflamatorio. Protección cardiovascular. Función cognitiva.</div></div>
-        <div class="suplem"><div class="suplem-name">Creatina Monohidrato</div><div class="suplem-dose">3–5 g/día · siempre</div><div class="suplem-why">El suplemento más respaldado por evidencia científica. Fuerza, recuperación muscular y función cerebral.</div></div>
+
+      <div class="sl">El domingo se cocina · 90 minutos</div>
+      <div class="pm-grid-4">
+        <div class="pm-card green-bg">
+          <div class="pm-title">Pollo al horno</div>
+          <div class="pm-meta">Proteína · base de 3 comidas</div>
+          <div class="pm-text">6 pechugas o contramuslos. Especias, limón, sal. 40 min a 200°.</div>
+        </div>
+        <div class="pm-card green-bg">
+          <div class="pm-title">Ternera o salmón</div>
+          <div class="pm-meta">Proteína · cubre 2 comidas</div>
+          <div class="pm-text">Salmón al horno con el pollo, o carne picada de ternera a la plancha.</div>
+        </div>
+        <div class="pm-card green-bg">
+          <div class="pm-title">Arroz y patata</div>
+          <div class="pm-meta">Carbohidrato · toda la semana</div>
+          <div class="pm-text">Una olla de arroz integral. Patatas cocidas o al horno, en raciones.</div>
+        </div>
+        <div class="pm-card green-bg">
+          <div class="pm-title">Verdura asada</div>
+          <div class="pm-meta">Verdura · toda la semana</div>
+          <div class="pm-text">Bandeja grande: brócoli, pimiento, calabacín, cebolla. Al horno a la vez.</div>
+        </div>
       </div>
+
+      <div class="sl">La semana, comida a comida</div>
+
+      <div class="day-row">
+        <div><div class="day-name">Lunes</div><div class="day-type">Full Body A</div><div class="day-badge">Día de entreno</div></div>
+        <div class="meals">
+          <div class="meal"><div class="meal-tag tag-d">Desayuno</div><div><div class="meal-name">Yogur griego natural + fruta + avena</div><div class="meal-detail">Opcional y ligero. Si entrenas por la tarde, te da energía sin pesar.</div></div></div>
+          <div class="meal"><div class="meal-tag tag-c">Comida</div><div><div class="meal-name">Pollo + arroz integral + verdura asada</div><div class="meal-detail">Del batch del domingo. Ensamblas y al táper. Ración generosa de verdura.</div></div></div>
+          <div class="meal"><div class="meal-tag tag-n">Cena</div><div><div class="meal-name">Salmón + verdura salteada</div><div class="meal-detail">Post-entreno: prioriza proteína. Cena ligera, sin carbohidrato pesado.</div></div></div>
+        </div>
+      </div>
+
+      <div class="day-row">
+        <div><div class="day-name">Martes</div><div class="day-type">Descanso</div></div>
+        <div class="meals">
+          <div class="meal"><div class="meal-tag tag-d">Desayuno</div><div><div class="meal-name">Tostada integral + huevo + aguacate</div><div class="meal-detail">O lo saltas. Si desayunas, que sea esto — nunca bollería.</div></div></div>
+          <div class="meal"><div class="meal-tag tag-c">Comida</div><div><div class="meal-name">Ternera + patata + verdura asada</div><div class="meal-detail">Día sin entreno: algo menos de carbohidrato que un día de gym.</div></div></div>
+          <div class="meal"><div class="meal-tag tag-n">Cena</div><div><div class="meal-name">Tortilla francesa de 3 huevos + ensalada</div><div class="meal-detail">Rápida, sin tocar el batch. Cena ligera de día de descanso.</div></div></div>
+        </div>
+      </div>
+
+      <div class="day-row">
+        <div><div class="day-name">Miércoles</div><div class="day-type">Full Body B</div><div class="day-badge">Día de entreno</div></div>
+        <div class="meals">
+          <div class="meal"><div class="meal-tag tag-d">Desayuno</div><div><div class="meal-name">Yogur griego + fruta + avena</div><div class="meal-detail">Igual que el lunes. Repetir es bueno — elimina decisiones.</div></div></div>
+          <div class="meal"><div class="meal-tag tag-c">Comida</div><div><div class="meal-name">Pollo + arroz integral + verdura asada</div><div class="meal-detail">Del batch. Día de entreno: ración completa de carbohidrato.</div></div></div>
+          <div class="meal"><div class="meal-tag tag-n">Cena</div><div><div class="meal-name">Pollo + verdura salteada</div><div class="meal-detail">Post-entreno. Termina el pollo del batch si queda.</div></div></div>
+        </div>
+      </div>
+
+      <div class="day-row">
+        <div><div class="day-name">Jueves</div><div class="day-type">Descanso</div></div>
+        <div class="meals">
+          <div class="meal"><div class="meal-tag tag-d">Desayuno</div><div><div class="meal-name">Tostada integral + huevo + aguacate</div><div class="meal-detail">O lo saltas. Tú decides según cómo te sientas.</div></div></div>
+          <div class="meal"><div class="meal-tag tag-c">Comida</div><div><div class="meal-name">Precocinado saludable Mercadona + verdura extra</div><div class="meal-detail">Día comodín. Compra un plato saludable, pero añádele verdura aparte.</div></div></div>
+          <div class="meal"><div class="meal-tag tag-n">Cena</div><div><div class="meal-name">Crema de verduras + huevos cocidos</div><div class="meal-detail">Ligera. La crema puede ser comprada — búscala sin nata.</div></div></div>
+        </div>
+      </div>
+
+      <div class="day-row">
+        <div><div class="day-name">Viernes</div><div class="day-type">Full Body C</div><div class="day-badge">Día de entreno</div></div>
+        <div class="meals">
+          <div class="meal"><div class="meal-tag tag-d">Desayuno</div><div><div class="meal-name">Yogur griego + fruta + avena</div><div class="meal-detail">Última carga de la semana. Mantén el patrón.</div></div></div>
+          <div class="meal"><div class="meal-tag tag-c">Comida</div><div><div class="meal-name">Lo que quede del batch + verdura</div><div class="meal-detail">Viernes vacía la nevera. Combina lo que sobre — pollo, arroz, ternera.</div></div></div>
+          <div class="meal"><div class="meal-tag tag-n">Cena</div><div><div class="meal-name">Cena libre — con cabeza</div><div class="meal-detail">Sales, cenas fuera, disfrutas. No es barra libre, pero aquí está el margen.</div></div></div>
+        </div>
+      </div>
+
+      <div class="day-row">
+        <div><div class="day-name">Domingo</div><div class="day-type">Solo cena</div></div>
+        <div class="meals">
+          <div class="meal"><div class="meal-tag tag-n">Cena</div><div><div class="meal-name">Ligera — tras cocinar el batch</div><div class="meal-detail">Mientras cocinas para la semana, cena algo simple: huevos, ensalada o una porción de lo que acabas de preparar. Arrancas la semana en orden.</div></div></div>
+        </div>
+      </div>
+
       <div class="sl">Principios no negociables</div>
-      <div class="princ-grid">
-        <div class="princ"><span class="princ-icon">🥩</span><div><div class="princ-t">Proteína en cada comida</div><div class="princ-b">Sin excepción. Huevo, pollo, sardinas, lentejas, yogur griego.</div></div></div>
-        <div class="princ"><span class="princ-icon">🥦</span><div><div class="princ-t">Verdura en almuerzo y cena</div><div class="princ-b">Mínimo 300 g al día. Espinacas, brócoli, pimientos, zanahoria.</div></div></div>
-        <div class="princ"><span class="princ-icon">🍊</span><div><div class="princ-t">Fruta diaria sin excusas</div><div class="princ-b">2–3 piezas. Kiwi, naranja, plátano. Reemplaza los dulces con fruta.</div></div></div>
-        <div class="princ"><span class="princ-icon">🐟</span><div><div class="princ-t">Pescado azul 3 veces por semana</div><div class="princ-b">Sardinas, salmón, atún, caballa. Cubre Omega-3, D, B12, proteína y selenio de golpe.</div></div></div>
-        <div class="princ"><span class="princ-icon">🌾</span><div><div class="princ-t">Carbohidratos complejos, no refinados</div><div class="princ-b">Arroz integral, avena, patata, legumbres.</div></div></div>
-        <div class="princ"><span class="princ-icon">💧</span><div><div class="princ-t">Agua como primera bebida</div><div class="princ-b">2.5–3 litros. El café no hidrata.</div></div></div>
-        <div class="princ"><span class="princ-icon">⏰</span><div><div class="princ-t">No saltarte comidas por trabajo</div><div class="princ-b">El hambre acumulado lleva a peores decisiones alimentarias de forma automática.</div></div></div>
-        <div class="princ"><span class="princ-icon">🍳</span><div><div class="princ-t">Batch cooking dominical</div><div class="princ-b">Legumbres, arroz integral y proteína para 3–4 días. Elimina la decisión diaria.</div></div></div>
+      <div class="pm-grid-4">
+        <div class="pm-card bar-green"><div class="pm-title">Verdura en comida y cena</div><div class="pm-text">Sin excepción. Es el déficit que llevas 6 semanas fallando. Cada plato principal lleva verdura.</div></div>
+        <div class="pm-card bar-green"><div class="pm-title">Proteína en cada comida</div><div class="pm-text">Pollo, ternera, salmón, huevos. Con tu carga de gimnasio, protege el músculo en déficit.</div></div>
+        <div class="pm-card bar-green"><div class="pm-title">Carbohidrato complejo</div><div class="pm-text">Arroz integral, avena, patata. Más ración los días de entreno, menos los de descanso.</div></div>
+        <div class="pm-card bar-green"><div class="pm-title">El domingo se cocina</div><div class="pm-text">El batch del domingo no es opcional. Es la pieza que sostiene todo el sistema.</div></div>
       </div>
-      <div class="sl">Eliminar ahora mismo</div>
-      <div class="elim-grid">
-        <div class="elim" style="border-left-color:#D92D20"><div class="elim-t">Dulces industriales</div><div class="elim-b">Si necesitas dulce: fruta o chocolate negro 85%. Sin negociación.</div></div>
-        <div class="elim" style="border-left-color:#D92D20"><div class="elim-t">Carbohidratos refinados</div><div class="elim-b">Pan blanco, bollería, cereales azucarados. Picos de glucosa, inflamación.</div></div>
-        <div class="elim" style="border-left-color:#C9A227"><div class="elim-t">Comidas sin proteína ni verdura</div><div class="elim-b">Cada comida incompleta es una oportunidad perdida de cubrir los micronutrientes.</div></div>
-        <div class="elim" style="border-left-color:#C9A227"><div class="elim-t">Cero suplementación</div><div class="elim-b">D3, Magnesio, Omega-3 y Creatina no son opcionales con tu perfil.</div></div>
+
+      <div class="sl">Eliminar de lunes a viernes</div>
+      <div class="pm-grid-4" style="margin-bottom:20px">
+        <div class="pm-card bar-red"><div class="pm-title">Dulces y bollería</div><div class="pm-text">Cero croissants, alfajores, chuches entre semana. Si necesitas dulce: fruta o chocolate negro 85%.</div></div>
+        <div class="pm-card bar-red"><div class="pm-title">Alcohol</div><div class="pm-text">Cero alcohol L-V. Las 6 cervezas de una semana normal son azúcar líquido que frena el déficit.</div></div>
+        <div class="pm-card bar-red"><div class="pm-title">Carbohidratos refinados</div><div class="pm-text">Pan blanco, bollería, cereales azucarados. Picos de glucosa e inflamación.</div></div>
+        <div class="pm-card bar-red"><div class="pm-title">Comidas incompletas</div><div class="pm-text">Cada comida sin proteína ni verdura es una oportunidad perdida. El plan no las contempla.</div></div>
       </div>
+
+      <div class="sl">Lista de la compra · una vez por semana</div>
+      <div class="pm-grid-4" style="margin-bottom:20px">
+        <div class="shop-col">
+          <h3>Proteína</h3>
+          <ul><li>Pechuga / contramuslo pollo</li><li>Salmón fresco</li><li>Carne picada ternera</li><li>Huevos (docena)</li><li>Yogur griego natural</li></ul>
+        </div>
+        <div class="shop-col">
+          <h3>Carbohidrato</h3>
+          <ul><li>Arroz integral</li><li>Patatas</li><li>Pan integral</li><li>Avena</li></ul>
+        </div>
+        <div class="shop-col">
+          <h3>Verdura y fruta</h3>
+          <ul><li>Brócoli</li><li>Pimiento, calabacín, cebolla</li><li>Ensalada variada</li><li>Aguacate</li><li>Fruta de temporada</li></ul>
+        </div>
+        <div class="shop-col">
+          <h3>Comodín</h3>
+          <ul><li>Precocinado saludable (1-2)</li><li>Crema de verduras sin nata</li><li>Especias, limón, aceite oliva</li></ul>
+        </div>
+      </div>
+
+      <div class="pm-callout">
+        <h2>Esto es temporal — y por eso funciona</h2>
+        <p>Son <strong>3–4 semanas estrictas</strong>, no una condena de por vida. El objetivo es romper el estancamiento de 87 kg, llegar a un punto de control y demostrarte que puedes. Después se relaja a algo más flexible. Un plan estricto con fecha de fin se sostiene; uno indefinido, no. <strong>Empieza este domingo con el batch cooking.</strong></p>
+      </div>
+
     </div>
   </div>
 
@@ -494,25 +636,6 @@ nav { background: var(--surface); border-bottom: 1px solid var(--border); paddin
   </div>
   </div>
 
-  <!-- PANEL 3 — LISTA DE LA COMPRA -->
-  <div class="panel" id="panel-lista">
-    <div class="lista-wrap">
-      <div class="progress-card">
-        <div class="progress-nums"><div class="progress-big" id="progBig">0</div><div class="progress-lbl">completados</div></div>
-        <div class="progress-track"><div class="progress-fill" id="progFill"></div></div>
-        <div class="progress-pct" id="progPct">0 / 0</div>
-      </div>
-      <div class="lc-section" id="sec-0"><div class="lc-sec-header" id="sh-0"><span class="lc-sec-emoji">🥩</span><span class="lc-sec-title">Proteínas</span><span class="lc-sec-count" id="cnt-0"></span></div><div class="lc-item" onclick="toggle(this)"><div class="checkbox"></div><span class="item-name">Pechuga de pollo</span><span class="item-qty">600–700 g</span></div><div class="lc-item" onclick="toggle(this)"><div class="checkbox"></div><span class="item-name">Salmón (fresco o congelado)</span><span class="item-qty">2 filetes</span></div><div class="lc-item" onclick="toggle(this)"><div class="checkbox"></div><span class="item-name">Sardinas en lata</span><span class="item-qty">3–4 latas</span></div><div class="lc-item" onclick="toggle(this)"><div class="checkbox"></div><span class="item-name">Atún en lata al natural</span><span class="item-qty">3 latas</span></div><div class="lc-item" onclick="toggle(this)"><div class="checkbox"></div><span class="item-name">Huevos</span><span class="item-qty">12 unidades</span></div><div class="lc-item" onclick="toggle(this)"><div class="checkbox"></div><span class="item-name">Yogur griego natural (sin azúcar)</span><span class="item-qty">4–6 unidades</span></div><div class="lc-item" onclick="toggle(this)"><div class="checkbox"></div><span class="item-name">Queso fresco o requesón</span><span class="item-qty">1 tarrina</span></div><div class="lc-item" onclick="toggle(this)"><div class="checkbox"></div><span class="item-name">Pavo o jamón york</span><span class="item-qty">150 g</span></div></div>
-      <div class="lc-section" id="sec-1"><div class="lc-sec-header" id="sh-1"><span class="lc-sec-emoji">🌾</span><span class="lc-sec-title">Legumbres y Cereales</span><span class="lc-sec-count" id="cnt-1"></span></div><div class="lc-item" onclick="toggle(this)"><div class="checkbox"></div><span class="item-name">Lentejas (cocidas o secas)</span><span class="item-qty">500 g</span></div><div class="lc-item" onclick="toggle(this)"><div class="checkbox"></div><span class="item-name">Garbanzos cocidos (bote)</span><span class="item-qty">1 bote</span></div><div class="lc-item" onclick="toggle(this)"><div class="checkbox"></div><span class="item-name">Avena en copos</span><span class="item-qty">500 g</span></div><div class="lc-item" onclick="toggle(this)"><div class="checkbox"></div><span class="item-name">Arroz integral</span><span class="item-qty">500 g</span></div><div class="lc-item" onclick="toggle(this)"><div class="checkbox"></div><span class="item-name">Pan integral</span><span class="item-qty">1 barra o bolsa</span></div><div class="lc-item" onclick="toggle(this)"><div class="checkbox"></div><span class="item-name">Pasta integral</span><span class="item-qty">500 g</span></div></div>
-      <div class="lc-section" id="sec-2"><div class="lc-sec-header" id="sh-2"><span class="lc-sec-emoji">🥦</span><span class="lc-sec-title">Verduras</span><span class="lc-sec-count" id="cnt-2"></span></div><div class="lc-item" onclick="toggle(this)"><div class="checkbox"></div><span class="item-name">Espinacas frescas (bolsa baby)</span><span class="item-qty">300 g</span></div><div class="lc-item" onclick="toggle(this)"><div class="checkbox"></div><span class="item-name">Brócoli</span><span class="item-qty">1 cabeza</span></div><div class="lc-item" onclick="toggle(this)"><div class="checkbox"></div><span class="item-name">Pimientos rojos y verdes</span><span class="item-qty">3–4 unidades</span></div><div class="lc-item" onclick="toggle(this)"><div class="checkbox"></div><span class="item-name">Zanahoria</span><span class="item-qty">500 g (bolsa)</span></div><div class="lc-item" onclick="toggle(this)"><div class="checkbox"></div><span class="item-name">Tomate</span><span class="item-qty">500 g</span></div><div class="lc-item" onclick="toggle(this)"><div class="checkbox"></div><span class="item-name">Pepino</span><span class="item-qty">1–2 unidades</span></div><div class="lc-item" onclick="toggle(this)"><div class="checkbox"></div><span class="item-name">Lechuga o rúcula</span><span class="item-qty">1 bolsa</span></div><div class="lc-item" onclick="toggle(this)"><div class="checkbox"></div><span class="item-name">Calabaza (para crema de cena)</span><span class="item-qty">½ unidad</span></div></div>
-      <div class="lc-section" id="sec-3"><div class="lc-sec-header" id="sh-3"><span class="lc-sec-emoji">🍊</span><span class="lc-sec-title">Fruta</span><span class="lc-sec-count" id="cnt-3"></span></div><div class="lc-item" onclick="toggle(this)"><div class="checkbox"></div><span class="item-name">Kiwis</span><span class="item-qty">4–6 unidades</span></div><div class="lc-item" onclick="toggle(this)"><div class="checkbox"></div><span class="item-name">Naranjas</span><span class="item-qty">1 kg</span></div><div class="lc-item" onclick="toggle(this)"><div class="checkbox"></div><span class="item-name">Plátanos</span><span class="item-qty">6 unidades</span></div><div class="lc-item" onclick="toggle(this)"><div class="checkbox"></div><span class="item-name">Frutos rojos (bolsa congelada)</span><span class="item-qty">1 bolsa</span></div><div class="lc-item" onclick="toggle(this)"><div class="checkbox"></div><span class="item-name">Manzanas o peras</span><span class="item-qty">3–4 unidades</span></div></div>
-      <div class="lc-section" id="sec-4"><div class="lc-sec-header" id="sh-4"><span class="lc-sec-emoji">🥑</span><span class="lc-sec-title">Grasas y Frutos Secos</span><span class="lc-sec-count" id="cnt-4"></span></div><div class="lc-item" onclick="toggle(this)"><div class="checkbox"></div><span class="item-name">Aguacates</span><span class="item-qty">2–3 unidades</span></div><div class="lc-item" onclick="toggle(this)"><div class="checkbox"></div><span class="item-name">Aceite de oliva virgen extra</span><span class="item-qty">si no tienes</span></div><div class="lc-item" onclick="toggle(this)"><div class="checkbox"></div><span class="item-name">Almendras crudas sin sal</span><span class="item-qty">150 g</span></div><div class="lc-item" onclick="toggle(this)"><div class="checkbox"></div><span class="item-name">Nueces (+ 1 nuez de Brasil/día)</span><span class="item-qty">100 g</span></div></div>
-      <div class="lc-section" id="sec-5"><div class="lc-sec-header" id="sh-5"><span class="lc-sec-emoji">🥛</span><span class="lc-sec-title">Lácteos / Extras</span><span class="lc-sec-count" id="cnt-5"></span></div><div class="lc-item" onclick="toggle(this)"><div class="checkbox"></div><span class="item-name">Leche o bebida vegetal sin azúcar</span><span class="item-qty">1 L</span></div><div class="lc-item" onclick="toggle(this)"><div class="checkbox"></div><span class="item-name">Chocolate negro 85%+</span><span class="item-qty">1 tableta</span></div></div>
-      <div class="lc-section" id="sec-6"><div class="lc-sec-header" id="sh-6"><span class="lc-sec-emoji">💊</span><span class="lc-sec-title">Suplementación — 1 vez al mes</span><span class="lc-sec-count" id="cnt-6"></span></div><div class="lc-item" onclick="toggle(this)"><div class="checkbox"></div><span class="item-name">Vitamina D3 2000–4000 UI</span><span class="item-qty">mensual</span></div><div class="lc-item" onclick="toggle(this)"><div class="checkbox"></div><span class="item-name">Magnesio glicinato 300–400 mg</span><span class="item-qty">mensual</span></div><div class="lc-item" onclick="toggle(this)"><div class="checkbox"></div><span class="item-name">Omega-3 EPA+DHA 1–2 g</span><span class="item-qty">mensual</span></div><div class="lc-item" onclick="toggle(this)"><div class="checkbox"></div><span class="item-name">Creatina monohidrato 3–5 g/día</span><span class="item-qty">mensual</span></div></div>
-      <div class="reset-wrap"><button class="reset-btn" onclick="resetAll()">↺ Reiniciar lista</button></div>
-    </div>
-  </div>
-
   <!-- PANEL 4 — TRACKER DE PESO -->
   <div class="panel" id="panel-peso">
     <div class="peso-wrap">
@@ -559,7 +682,7 @@ nav { background: var(--surface); border-bottom: 1px solid var(--border); paddin
 function switchPanel(id) {
   document.querySelectorAll('.panel').forEach(function(p) { p.classList.remove('active'); });
   document.querySelectorAll('.main-tab').forEach(function(t, i) {
-    var ids = ['nutricion','deporte','lista','peso'];
+    var ids = ['nutricion','deporte','peso'];
     t.classList.toggle('active', ids[i] === id);
   });
   document.getElementById('panel-' + id).classList.add('active');
