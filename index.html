@@ -32,34 +32,40 @@
   .section-strip { border-bottom: 1px solid var(--border); padding: 0 48px; display: flex; overflow-x: auto; background: var(--surface); }
   .section-strip a { font-size: 12px; font-weight: 500; color: var(--text-secondary); padding: 14px 18px; text-decoration: none; white-space: nowrap; border-bottom: 2px solid transparent; margin-bottom: -1px; transition: color .15s, border-color .15s; display: flex; align-items: center; gap: 7px; }
   .section-strip a:hover { color: var(--text-primary); }
-  /* SYNC */
-  .sync-bar { background: var(--surface); border-bottom: 1px solid var(--border); padding: 10px 48px; display: flex; align-items: center; justify-content: flex-end; gap: 10px; }
+  /* GITHUB SYNC */
+  .sync-bar { background: var(--surface); border-bottom: 1px solid var(--border); padding: 8px 48px; display: flex; align-items: center; justify-content: flex-end; gap: 8px; }
   .sync-btn { font-family: 'DM Sans', sans-serif; font-size: 11px; font-weight: 600; padding: 6px 14px; border-radius: 6px; cursor: pointer; transition: all .15s; display: flex; align-items: center; gap: 6px; }
-  .sync-btn-export { background: var(--bg); color: var(--text-secondary); border: 1px solid var(--border); }
-  .sync-btn-export:hover { border-color: var(--text-primary); color: var(--text-primary); }
-  .sync-btn-import { background: var(--text-primary); color: #fff; border: 1px solid var(--text-primary); }
-  .sync-btn-import:hover { opacity: .85; }
-  .sync-label { font-size: 11px; color: var(--text-muted); }
+  .sync-btn-up { background: var(--bg); color: var(--text-secondary); border: 1px solid var(--border); }
+  .sync-btn-up:hover { border-color: #2D6A4F; color: #2D6A4F; }
+  .sync-btn-down { background: var(--text-primary); color: #fff; border: 1px solid var(--text-primary); }
+  .sync-btn-down:hover { opacity: .85; }
+  .sync-btn-cfg { background: none; border: 1px solid var(--border); color: var(--text-muted); border-radius: 6px; padding: 5px 10px; font-size: 11px; cursor: pointer; font-family: 'DM Sans', sans-serif; transition: all .15s; }
+  .sync-btn-cfg:hover { border-color: var(--text-primary); color: var(--text-primary); }
+  .sync-status { font-size: 11px; color: var(--text-muted); margin-right: 4px; }
+  .sync-status.ok { color: #2D6A4F; }
+  .sync-status.err { color: #C0614A; }
   .sync-overlay { position: fixed; inset: 0; background: rgba(26,25,22,0.55); backdrop-filter: blur(4px); z-index: 2000; display: none; align-items: center; justify-content: center; padding: 24px; }
   .sync-overlay.open { display: flex; }
-  .sync-modal { background: #fff; border: 1px solid #E8E6E0; border-radius: 16px; width: 100%; max-width: 520px; box-shadow: 0 24px 64px rgba(0,0,0,0.15); }
+  .sync-modal { background: #fff; border: 1px solid #E8E6E0; border-radius: 16px; width: 100%; max-width: 480px; box-shadow: 0 24px 64px rgba(0,0,0,0.15); }
   .sync-modal-hdr { padding: 20px 24px 16px; border-bottom: 1px solid #E8E6E0; display: flex; align-items: center; justify-content: space-between; }
   .sync-modal-title { font-family: 'DM Serif Display', serif; font-size: 20px; }
   .sync-modal-sub { font-size: 12px; color: #A8A49C; margin-top: 2px; }
   .sync-modal-close { background: none; border: 1px solid #E8E6E0; border-radius: 8px; padding: 7px 11px; cursor: pointer; font-size: 13px; color: #6B6860; font-family: 'DM Sans', sans-serif; }
   .sync-modal-close:hover { background: #F5F4F0; }
   .sync-modal-body { padding: 20px 24px 24px; display: flex; flex-direction: column; gap: 14px; }
-  .sync-textarea { font-family: 'Courier New', monospace; font-size: 11px; color: #1A1916; background: #F5F4F0; border: 1px solid #E8E6E0; border-radius: 8px; padding: 12px; width: 100%; min-height: 120px; resize: vertical; outline: none; line-height: 1.5; }
-  .sync-textarea:focus { border-color: #1A1916; }
+  .sync-field { display: flex; flex-direction: column; gap: 6px; }
+  .sync-field label { font-size: 10px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: #A8A49C; }
+  .sync-input { font-family: 'DM Sans', sans-serif; font-size: 13px; color: #1A1916; background: #F5F4F0; border: 1px solid #E8E6E0; border-radius: 8px; padding: 10px 12px; width: 100%; outline: none; transition: border-color .15s; }
+  .sync-input:focus { border-color: #1A1916; background: #fff; }
   .sync-info { font-size: 12px; color: #6B6860; line-height: 1.6; background: #F5F4F0; border-radius: 8px; padding: 10px 14px; }
   .sync-modal-actions { display: flex; gap: 8px; }
   .sync-btn-primary { flex: 1; background: #1A1916; color: #fff; border: none; border-radius: 8px; padding: 11px; font-size: 13px; font-weight: 600; font-family: 'DM Sans', sans-serif; cursor: pointer; transition: opacity .15s; }
   .sync-btn-primary:hover { opacity: .85; }
   .sync-btn-secondary { background: none; border: 1px solid #E8E6E0; border-radius: 8px; padding: 11px 16px; font-size: 13px; color: #6B6860; font-family: 'DM Sans', sans-serif; cursor: pointer; }
   .sync-btn-secondary:hover { border-color: #D0CEC8; color: #1A1916; }
-  .sync-success { font-size: 12px; color: #2D6A4F; background: #EAF3EE; border-radius: 6px; padding: 8px 12px; display: none; }
-  .sync-error { font-size: 12px; color: #C0614A; background: #FCEEE9; border-radius: 6px; padding: 8px 12px; display: none; }
-  .dash-header { background: var(--surface); border-bottom: 1px solid var(--border); padding: 28px 48px; display: flex; align-items: center; justify-content: space-between; }
+  .sync-msg-ok { font-size: 12px; color: #2D6A4F; background: #EAF3EE; border-radius: 6px; padding: 8px 12px; display: none; }
+  .sync-msg-err { font-size: 12px; color: #C0614A; background: #FCEEE9; border-radius: 6px; padding: 8px 12px; display: none; }
+    .dash-header { background: var(--surface); border-bottom: 1px solid var(--border); padding: 28px 48px; display: flex; align-items: center; justify-content: space-between; }
   .dash-meta { display: flex; align-items: center; gap: 32px; }
   .year-label { font-size: 12px; font-weight: 500; letter-spacing: 2px; text-transform: uppercase; color: var(--text-muted); }
   .global-score { display: flex; align-items: baseline; gap: 6px; }
@@ -281,11 +287,12 @@
   <a href="desarrollo/index.html">🧠 Desarrollo</a>
 </div>
 
-<!-- SYNC BAR -->
+<!-- GITHUB SYNC BAR -->
 <div class="sync-bar">
-  <span class="sync-label">Sincronizar entre dispositivos:</span>
-  <button class="sync-btn sync-btn-export" onclick="syncExport()">↑ Exportar datos</button>
-  <button class="sync-btn sync-btn-import" onclick="syncImport()">↓ Importar datos</button>
+  <span class="sync-status" id="syncStatus">GitHub Sync</span>
+  <button class="sync-btn-cfg" onclick="ghSyncConfig()">⚙ Configurar</button>
+  <button class="sync-btn sync-btn-up" onclick="ghSyncUpload()">↑ Subir datos</button>
+  <button class="sync-btn sync-btn-down" onclick="ghSyncDownload()">↓ Bajar datos</button>
 </div>
 
 <div class="dash-header">
@@ -336,40 +343,32 @@
   </div>
 </main>
 
-<!-- SYNC EXPORT MODAL -->
-<div class="sync-overlay" id="syncExportOverlay" onclick="if(event.target===this)closeSyncExport()">
+<!-- GITHUB SYNC CONFIG MODAL -->
+<div class="sync-overlay" id="ghSyncOverlay" onclick="if(event.target===this)ghSyncCloseConfig()">
   <div class="sync-modal">
     <div class="sync-modal-hdr">
-      <div><div class="sync-modal-title">Exportar datos</div><div class="sync-modal-sub">Copia este código y pégalo en otro dispositivo</div></div>
-      <button class="sync-modal-close" onclick="closeSyncExport()">✕</button>
+      <div><div class="sync-modal-title">GitHub Sync</div><div class="sync-modal-sub">Sincronización automática entre dispositivos</div></div>
+      <button class="sync-modal-close" onclick="ghSyncCloseConfig()">✕</button>
     </div>
     <div class="sync-modal-body">
-      <div class="sync-info">Pulsa "Copiar" o selecciona todo el texto (Cmd+A) y cópialo. Luego abre la web en el otro dispositivo, pulsa "Importar datos" y pégalo.</div>
-      <textarea class="sync-textarea" id="syncExportText" readonly></textarea>
-      <div class="sync-success" id="syncExportSuccess">✓ Copiado al portapapeles</div>
-      <div class="sync-modal-actions">
-        <button class="sync-btn-primary" onclick="syncCopyToClipboard()">Copiar al portapapeles</button>
-        <button class="sync-btn-secondary" onclick="closeSyncExport()">Cerrar</button>
+      <div class="sync-info">
+        Necesitas un <strong>Personal Access Token</strong> de GitHub con permiso <code>repo</code>.<br>
+        Créalo en: <strong>github.com → Settings → Developer settings → Personal access tokens → Tokens (classic)</strong><br>
+        El token se guarda solo en este navegador y nunca se sube a ningún servidor.
       </div>
-    </div>
-  </div>
-</div>
-
-<!-- SYNC IMPORT MODAL -->
-<div class="sync-overlay" id="syncImportOverlay" onclick="if(event.target===this)closeSyncImport()">
-  <div class="sync-modal">
-    <div class="sync-modal-hdr">
-      <div><div class="sync-modal-title">Importar datos</div><div class="sync-modal-sub">Pega aquí el código exportado desde otro dispositivo</div></div>
-      <button class="sync-modal-close" onclick="closeSyncImport()">✕</button>
-    </div>
-    <div class="sync-modal-body">
-      <div class="sync-info">⚠️ Esto sobrescribirá los datos actuales de este navegador con los del otro dispositivo.</div>
-      <textarea class="sync-textarea" id="syncImportText" placeholder="Pega aquí el código exportado..."></textarea>
-      <div class="sync-success" id="syncImportSuccess">✓ Datos importados. Recargando la página...</div>
-      <div class="sync-error" id="syncImportError">✗ Código inválido. Asegúrate de copiar el código completo.</div>
+      <div class="sync-field">
+        <label>Token de GitHub</label>
+        <input type="password" class="sync-input" id="ghToken" placeholder="ghp_xxxxxxxxxxxxxxxxxxxx">
+      </div>
+      <div class="sync-field">
+        <label>Repositorio (usuario/repo)</label>
+        <input type="text" class="sync-input" id="ghRepo" placeholder="alirto/alberts-odyssey">
+      </div>
+      <div class="sync-msg-ok" id="ghConfigOk">✓ Configuración guardada</div>
+      <div class="sync-msg-err" id="ghConfigErr"></div>
       <div class="sync-modal-actions">
-        <button class="sync-btn-primary" onclick="syncDoImport()">Importar y aplicar</button>
-        <button class="sync-btn-secondary" onclick="closeSyncImport()">Cancelar</button>
+        <button class="sync-btn-primary" onclick="ghSyncSaveConfig()">Guardar configuración</button>
+        <button class="sync-btn-secondary" onclick="ghSyncCloseConfig()">Cancelar</button>
       </div>
     </div>
   </div>
@@ -464,14 +463,27 @@ function checkBalance(){const vals=PILLARS.map(p=>({name:p.name,pct:calcPillarPc
 
 function setDynamic(){const start=new Date('2026-03-10'),now=new Date();const days=Math.floor((now-start)/(1000*60*60*24))+1;document.getElementById('heroDia').textContent='Día '+days;document.getElementById('dayLabel').textContent=now.toLocaleDateString('es-ES',{day:'numeric',month:'short',year:'numeric'})+' · Día '+days;document.getElementById('globalScore').textContent=calcGlobal()+'%';}
 
-// ── SINCRONIZACIÓN ──────────────────────────────────────
-var SYNC_KEYS=['ao_milestones_v1','ao_weekly_v1','ao_peso_v1','ao_countries_v1','ao_finanzas_v1','ao_diary_v1','ao_cities_v1','ao_neural_v1','ao_frases_v1','ao_pending_books_v1','ao_book_notes','ao_user_books'];
-function syncExport(){var data={v:1,ts:Date.now(),d:{}};SYNC_KEYS.forEach(function(key){var val=localStorage.getItem(key);if(val)data.d[key]=val;});var json=JSON.stringify(data);document.getElementById('syncExportText').value=json;document.getElementById('syncExportSuccess').style.display='none';document.getElementById('syncExportOverlay').classList.add('open');setTimeout(function(){var ta=document.getElementById('syncExportText');ta.select();ta.setSelectionRange(0,99999);},100);}
-function closeSyncExport(){document.getElementById('syncExportOverlay').classList.remove('open');}
-function syncCopyToClipboard(){var text=document.getElementById('syncExportText').value;if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(text).then(function(){document.getElementById('syncExportSuccess').style.display='block';}).catch(function(){document.getElementById('syncExportText').select();document.execCommand('copy');document.getElementById('syncExportSuccess').style.display='block';});}else{document.getElementById('syncExportText').select();document.execCommand('copy');document.getElementById('syncExportSuccess').style.display='block';}}
-function syncImport(){document.getElementById('syncImportText').value='';document.getElementById('syncImportSuccess').style.display='none';document.getElementById('syncImportError').style.display='none';document.getElementById('syncImportOverlay').classList.add('open');setTimeout(function(){document.getElementById('syncImportText').focus();},100);}
-function closeSyncImport(){document.getElementById('syncImportOverlay').classList.remove('open');}
-function syncDoImport(){var raw=document.getElementById('syncImportText').value.trim();var errEl=document.getElementById('syncImportError');var okEl=document.getElementById('syncImportSuccess');errEl.style.display='none';okEl.style.display='none';try{var data=JSON.parse(raw);if(!data.v||!data.d)throw new Error('invalid');Object.entries(data.d).forEach(function(entry){localStorage.setItem(entry[0],entry[1]);});okEl.style.display='block';setTimeout(function(){location.reload();},1500);}catch(e){errEl.style.display='block';}}
+// ── GITHUB SYNC ─────────────────────────────────────────
+var SYNC_KEYS=['ao_milestones_v1','ao_weekly_v1','ao_peso_v1','ao_countries_v1','ao_finanzas_v1','ao_diary_v1','ao_cities_v1','ao_neural_v1','ao_frases_v1','ao_pending_books_v1','ao_book_notes','ao_user_books','ao_session_v1'];
+var GH_TOKEN_KEY='ao_gh_token';
+var GH_REPO_KEY='ao_gh_repo';
+var GH_FILE='data/sync.json';
+
+function ghGetConfig(){return{token:localStorage.getItem(GH_TOKEN_KEY)||'',repo:localStorage.getItem(GH_REPO_KEY)||'alirto/alberts-odyssey'};}
+
+function ghSyncConfig(){var cfg=ghGetConfig();document.getElementById('ghToken').value=cfg.token;document.getElementById('ghRepo').value=cfg.repo;document.getElementById('ghConfigOk').style.display='none';document.getElementById('ghConfigErr').style.display='none';document.getElementById('ghSyncOverlay').classList.add('open');}
+function ghSyncCloseConfig(){document.getElementById('ghSyncOverlay').classList.remove('open');}
+function ghSyncSaveConfig(){var token=document.getElementById('ghToken').value.trim();var repo=document.getElementById('ghRepo').value.trim();var errEl=document.getElementById('ghConfigErr');var okEl=document.getElementById('ghConfigOk');errEl.style.display='none';okEl.style.display='none';if(!token||!repo){errEl.textContent='Rellena el token y el repositorio.';errEl.style.display='block';return;}localStorage.setItem(GH_TOKEN_KEY,token);localStorage.setItem(GH_REPO_KEY,repo);okEl.style.display='block';setTimeout(function(){ghSyncCloseConfig();setSyncStatus('Configurado ✓','ok');},1000);}
+
+function setSyncStatus(msg,cls){var el=document.getElementById('syncStatus');el.textContent=msg;el.className='sync-status'+(cls?' '+cls:'');}
+
+function ghCollectData(){var data={v:2,ts:Date.now(),d:{}};SYNC_KEYS.forEach(function(key){var val=localStorage.getItem(key);if(val)data.d[key]=val;});return data;}
+
+async function ghGetFileSha(cfg){try{var res=await fetch('https://api.github.com/repos/'+cfg.repo+'/contents/'+GH_FILE,{headers:{'Authorization':'token '+cfg.token,'Accept':'application/vnd.github.v3+json'}});if(res.status===404)return null;if(!res.ok)return null;var json=await res.json();return json.sha||null;}catch(e){return null;}}
+
+async function ghSyncUpload(){var cfg=ghGetConfig();if(!cfg.token){ghSyncConfig();return;}setSyncStatus('Subiendo...','');var data=ghCollectData();var content=btoa(unescape(encodeURIComponent(JSON.stringify(data,null,2))));var sha=await ghGetFileSha(cfg);var body={message:'Sync: '+new Date().toISOString(),content:content};if(sha)body.committer={name:'Albert Sync',email:'sync@alberts-odyssey.local'};if(sha)body.sha=sha;try{var res=await fetch('https://api.github.com/repos/'+cfg.repo+'/contents/'+GH_FILE,{method:'PUT',headers:{'Authorization':'token '+cfg.token,'Accept':'application/vnd.github.v3+json','Content-Type':'application/json'},body:JSON.stringify(body)});if(res.ok){setSyncStatus('↑ Subido '+new Date().toLocaleTimeString('es-ES',{hour:'2-digit',minute:'2-digit'}),'ok');}else{var err=await res.json();setSyncStatus('Error: '+((err&&err.message)||res.status),'err');}}catch(e){setSyncStatus('Error de red','err');}}
+
+async function ghSyncDownload(){var cfg=ghGetConfig();if(!cfg.token){ghSyncConfig();return;}setSyncStatus('Bajando...','');try{var res=await fetch('https://api.github.com/repos/'+cfg.repo+'/contents/'+GH_FILE,{headers:{'Authorization':'token '+cfg.token,'Accept':'application/vnd.github.v3+json'}});if(res.status===404){setSyncStatus('Sin datos en GitHub aún','err');return;}if(!res.ok){setSyncStatus('Error '+res.status,'err');return;}var json=await res.json();var raw=decodeURIComponent(escape(atob(json.content.replace(/\n/g,''))));var data=JSON.parse(raw);if(!data.v||!data.d){setSyncStatus('Archivo inválido','err');return;}Object.entries(data.d).forEach(function(entry){localStorage.setItem(entry[0],entry[1]);});setSyncStatus('↓ Datos restaurados','ok');setTimeout(function(){location.reload();},800);}catch(e){setSyncStatus('Error: '+e.message,'err');}}
 
 // ── WEEKLY REVIEW ────────────────────────────────────────
 var WR_KEY='ao_weekly_v1';var wrCurrentReadId=null;
