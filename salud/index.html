@@ -4,426 +4,332 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Salud — Albert's Odyssey</title>
-<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..600;1,9..144,300..600&family=DM+Sans:ital,opsz,wght@0,9..40,300..600;1,9..40,300..600&display=swap" rel="stylesheet">
 <style>
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-:root {
-  --bg: #F5F4F0; --surface: #FFFFFF; --border: #E8E6E0; --border-2: #D0CEC8;
-  --text-1: #1A1916; --text-2: #6B6860; --text-3: #A8A49C;
-  --green: #2D6A4F; --green-bg: #EAF3EE; --green-border: #C3DDD1;
-}
-html { scroll-behavior: smooth; }
-body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--text-1); min-height: 100vh; -webkit-font-smoothing: antialiased; }
-nav { background: var(--surface); border-bottom: 1px solid var(--border); padding: 0 48px; display: flex; align-items: center; height: 56px; position: sticky; top: 0; z-index: 100; }
-.nav-logo { font-family: 'DM Serif Display', serif; font-size: 18px; letter-spacing: -0.3px; color: var(--text-1); text-decoration: none; margin-right: 36px; white-space: nowrap; flex-shrink: 0; }
-.nav-logo span { font-style: italic; color: var(--text-2); }
-.nav-links { display: flex; align-items: stretch; flex: 1; overflow-x: auto; }
-.nav-link { font-size: 12px; font-weight: 500; color: var(--text-2); padding: 0 16px; text-decoration: none; height: 56px; display: flex; align-items: center; white-space: nowrap; border-bottom: 2px solid transparent; margin-bottom: -1px; transition: color .15s, border-color .15s; }
-.nav-link:hover { color: var(--text-1); }
-.nav-link.active { color: var(--text-1); border-bottom-color: var(--text-1); font-weight: 600; }
-.page { max-width: 1280px; margin: 0 auto; padding: 48px; }
-.page-hdr { padding: 48px 0 36px; border-bottom: 1px solid var(--border); margin-bottom: 0; display: flex; align-items: flex-start; gap: 24px; flex-wrap: wrap; justify-content: space-between; }
-.ph-left { display: flex; align-items: flex-start; gap: 20px; }
-.ph-icon { width: 52px; height: 52px; border-radius: 12px; background: var(--green-bg); display: flex; align-items: center; justify-content: center; font-size: 24px; border: 1px solid var(--border); flex-shrink: 0; }
-.ph-eyebrow { font-size: 11px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; color: var(--text-3); margin-bottom: 6px; }
-.ph-title { font-family: 'DM Serif Display', serif; font-size: 32px; letter-spacing: -0.5px; line-height: 1.1; margin-bottom: 8px; }
-.ph-sub { font-size: 13px; color: var(--text-2); line-height: 1.6; max-width: 500px; }
-.ph-stats { display: flex; gap: 24px; align-items: flex-end; flex-wrap: wrap; }
-.ph-stat-val { font-family: 'DM Serif Display', serif; font-size: 28px; line-height: 1; letter-spacing: -0.5px; color: var(--green); }
-.ph-stat-lbl { font-size: 11px; color: var(--text-3); font-weight: 500; margin-top: 3px; }
-.main-tabs { display: flex; border-bottom: 1px solid var(--border); margin-bottom: 36px; overflow-x: auto; }
-.main-tab { font-size: 13px; font-weight: 500; color: var(--text-2); padding: 14px 22px; background: none; border: none; border-bottom: 2px solid transparent; margin-bottom: -1px; cursor: pointer; white-space: nowrap; transition: color .15s, border-color .15s; display: flex; align-items: center; gap: 7px; }
-.main-tab:hover { color: var(--text-1); }
-.main-tab.active { color: var(--text-1); border-bottom-color: var(--green); font-weight: 600; }
-.tabs-bar { display: flex; border-bottom: 1px solid var(--border); margin-bottom: 36px; overflow-x: auto; }
-.tab { font-size: 13px; font-weight: 500; color: var(--text-2); padding: 12px 20px; background: none; border: none; border-bottom: 2px solid transparent; margin-bottom: -1px; cursor: pointer; white-space: nowrap; transition: color .15s, border-color .15s; display: flex; align-items: center; gap: 7px; }
-.tab:hover { color: var(--text-1); }
-.tab.active { color: var(--text-1); border-bottom-color: var(--green); font-weight: 600; }
-.panel { display: none; }
-.panel.active { display: block; }
-.tp { display: none; }
-.tp.active { display: block; }
-.sl { font-size: 10px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; color: var(--text-3); margin: 32px 0 14px; display: flex; align-items: center; gap: 14px; }
-.sl::after { content: ''; flex: 1; height: 1px; background: var(--border); }
-.sl:first-child { margin-top: 0; }
-.ncard-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 10px; }
-.ncard { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 14px 16px; display: flex; flex-direction: column; gap: 9px; }
-.ncard-top { display: flex; align-items: center; gap: 10px; }
-.ncard-icon { font-size: 15px; flex-shrink: 0; }
-.ncard-name { font-size: 13px; font-weight: 600; flex: 1; }
-.ncard-dose { font-size: 10px; font-weight: 600; padding: 2px 8px; border-radius: 20px; flex-shrink: 0; white-space: nowrap; }
-.ncard-why { font-size: 12px; color: var(--text-2); line-height: 1.6; }
-.ncard-alerts { display: flex; flex-direction: column; gap: 4px; }
-.nalert { font-size: 11px; padding: 5px 9px; border-radius: 6px; line-height: 1.5; }
-.nalert-d { background: #FEF3F2; border: 1px solid #FECDCA; border-left: 2px solid #D92D20; color: #912018; }
-.nalert-w { background: #FFF8EC; border: 1px solid #F2CC8F; border-left: 2px solid #C9A227; color: #7A6010; }
-.ncard-foods { display: flex; flex-wrap: wrap; gap: 5px; }
-.nf { font-size: 10px; font-weight: 500; padding: 2px 8px; background: var(--bg); border: 1px solid var(--border); border-radius: 20px; color: var(--text-2); display: flex; gap: 4px; align-items: center; }
-.nf span { color: var(--text-3); }
-.macros-strip { display: grid; grid-template-columns: repeat(5, 1fr); gap: 12px; margin-bottom: 24px; }
-.mc { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 16px; }
-.mc-lbl { font-size: 9px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--text-3); margin-bottom: 8px; }
-.mc-val { font-family: 'DM Serif Display', serif; font-size: 22px; line-height: 1; margin-bottom: 3px; }
-.mc-sub { font-size: 10px; color: var(--text-3); }
-.macro-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 10px; }
-.mcard { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 14px 16px; display: flex; flex-direction: column; gap: 9px; }
-.mcard-top { display: flex; align-items: center; gap: 10px; }
-.mcard-icon { font-size: 15px; }
-.mcard-name { font-size: 13px; font-weight: 600; flex: 1; }
-.mcard-badge { font-size: 10px; font-weight: 600; padding: 2px 8px; border-radius: 20px; white-space: nowrap; }
-.mcard-why { font-size: 12px; color: var(--text-2); line-height: 1.6; }
-.diag-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 10px; margin-bottom: 4px; }
-.diag-card { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 14px 16px; border-left: 3px solid; }
-.diag-title { font-size: 13px; font-weight: 600; margin-bottom: 5px; }
-.diag-body { font-size: 12px; color: var(--text-2); line-height: 1.65; }
-.suplem-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 8px; margin-bottom: 4px; }
-.suplem { background: var(--green-bg); border: 1px solid var(--green-border); border-radius: 10px; padding: 13px 15px; }
-.suplem-name { font-size: 12px; font-weight: 700; color: var(--green); margin-bottom: 2px; }
-.suplem-dose { font-size: 10px; font-weight: 600; color: var(--green); opacity: .75; margin-bottom: 5px; }
-.suplem-why { font-size: 11px; color: var(--text-2); line-height: 1.5; }
-.princ-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 8px; margin-bottom: 4px; }
-.princ { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 13px 15px; display: flex; gap: 11px; align-items: flex-start; }
-.princ-icon { font-size: 17px; flex-shrink: 0; margin-top: 1px; }
-.princ-t { font-size: 12px; font-weight: 600; margin-bottom: 3px; }
-.princ-b { font-size: 11px; color: var(--text-2); line-height: 1.55; }
-.elim-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 8px; }
-.elim { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 13px 15px; border-left: 3px solid; }
-.elim-t { font-size: 12px; font-weight: 600; margin-bottom: 3px; }
-.elim-b { font-size: 11px; color: var(--text-2); line-height: 1.5; }
-.objetivo { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 24px 28px; margin-bottom: 32px; border-left: 3px solid var(--green); }
-.obj-label { font-size: 10px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--green); margin-bottom: 10px; }
-.obj-text { font-size: 14px; color: var(--text-1); line-height: 1.7; margin-bottom: 16px; }
-.obj-hitos { display: flex; gap: 12px; flex-wrap: wrap; }
-.hito { display: flex; align-items: center; gap: 8px; font-size: 12px; color: var(--text-2); }
-.hito-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
-.hito.active .hito-dot { background: var(--green); box-shadow: 0 0 0 3px var(--green-bg); }
-.hito.pending .hito-dot { background: var(--border-2); }
-.content-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 16px; margin-bottom: 32px; }
-.content-card { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; overflow: hidden; text-decoration: none; color: inherit; transition: all .2s; display: flex; flex-direction: column; }
-.content-card:hover { border-color: var(--border-2); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,0.06); }
-.card-top { padding: 24px 24px 20px; flex: 1; }
-.card-icon { width: 44px; height: 44px; border-radius: 10px; background: var(--green-bg); border: 1px solid var(--green-border); display: flex; align-items: center; justify-content: center; font-size: 20px; margin-bottom: 16px; }
-.card-label { font-size: 10px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--text-3); margin-bottom: 8px; }
-.card-title { font-family: 'DM Serif Display', serif; font-size: 22px; letter-spacing: -0.3px; margin-bottom: 8px; line-height: 1.2; }
-.card-desc { font-size: 13px; color: var(--text-2); line-height: 1.65; }
-.card-bottom { padding: 16px 24px; border-top: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; background: #FAFAF8; }
-.card-tags { display: flex; gap: 6px; flex-wrap: wrap; }
-.card-tag { font-size: 11px; font-weight: 600; padding: 3px 10px; border-radius: 20px; background: var(--green-bg); color: var(--green); border: 1px solid var(--green-border); }
-.card-arrow { font-size: 16px; color: var(--text-3); transition: transform .2s; }
-.content-card:hover .card-arrow { transform: translateX(4px); color: var(--text-1); }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --paper: #F3F0E8; --paper-2: #E6E1D4;
+    --ink: #171611; --ink-2: #45423A; --ink-3: #625E55;
+    --rule: #C9C3B4; --rule-soft: #DDD8CB;
+    --now: #A86F1C;
+    --serif: 'Fraunces', Georgia, serif; --sans: 'DM Sans', system-ui, sans-serif;
+    --w: 1200px; --gutter: 40px;
+  }
+  html { scroll-behavior: smooth; }
+  body { font-family: var(--sans); background: var(--paper); color: var(--ink); min-height: 100vh; font-size: 15px; line-height: 1.5; -webkit-font-smoothing: antialiased; }
+  body.locked { overflow: hidden; }
+  a { color: inherit; }
+  button { font-family: inherit; color: inherit; background: none; border: none; cursor: pointer; }
+  .wrap { max-width: var(--w); margin: 0 auto; padding: 0 var(--gutter); }
+  .label { font-size: 12px; font-weight: 500; letter-spacing: .12em; text-transform: uppercase; color: var(--ink-3); }
+  .num { font-family: var(--serif); font-variation-settings: 'opsz' 144; font-weight: 400; letter-spacing: -0.02em; font-variant-numeric: tabular-nums; }
+  .meta { font-size: 13px; color: var(--ink-3); }
+  .meta b, .fig-lbl b { color: var(--ink); font-weight: 500; }
+  .attn { color: var(--now); font-weight: 500; }
+  .ptag { font-size: 11px; letter-spacing: .1em; text-transform: uppercase; font-weight: 600; color: var(--ink); }
+  .ptag.soft { color: var(--ink-3); }
+  .cap-btn { font-size: 11px; letter-spacing: .12em; text-transform: uppercase; font-weight: 600; color: var(--ink-3); padding: 6px 0; border-bottom: 1px solid transparent; transition: color .15s, border-color .15s; }
+  .cap-btn:hover, .cap-btn.active { color: var(--ink); border-bottom-color: var(--ink); }
+  .txt-btn { font-size: 14px; color: var(--ink-2); text-decoration: underline; text-decoration-color: var(--rule); text-underline-offset: 4px; transition: text-decoration-color .15s, color .15s; }
+  .txt-btn:hover { color: var(--ink); text-decoration-color: var(--ink); }
+  .line-btn { font-size: 14px; color: var(--ink); border: 1px solid var(--ink); padding: 8px 16px; transition: background .15s, color .15s; white-space: nowrap; background: transparent; }
+  .line-btn:hover { background: var(--ink); color: var(--paper); }
 
-/* ─── CARDIO PROGRAM ─── */
-.cardio-section { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; overflow: hidden; margin-top: 32px; }
-.cardio-hdr { padding: 20px 24px; border-bottom: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; background: #FAFAF8; }
-.cardio-hdr-left { display: flex; align-items: center; gap: 14px; }
-.cardio-hdr-icon { width: 40px; height: 40px; border-radius: 10px; background: var(--green-bg); border: 1px solid var(--green-border); display: flex; align-items: center; justify-content: center; font-size: 18px; }
-.cardio-hdr-title { font-family: 'DM Serif Display', serif; font-size: 18px; letter-spacing: -0.3px; }
-.cardio-hdr-sub { font-size: 12px; color: var(--text-3); margin-top: 2px; }
-.cardio-stats { display: flex; gap: 20px; flex-shrink: 0; }
-.cardio-stat { text-align: right; }
-.cardio-stat-val { font-family: 'DM Serif Display', serif; font-size: 20px; color: var(--green); line-height: 1; }
-.cardio-stat-lbl { font-size: 10px; color: var(--text-3); font-weight: 500; margin-top: 2px; }
-.cardio-progress-bar { height: 3px; background: var(--border); position: relative; }
-.cardio-progress-fill { height: 100%; background: var(--green); width: 0%; transition: width 1s cubic-bezier(.4,0,.2,1); }
-.cardio-table { width: 100%; }
-.cardio-row { display: grid; grid-template-columns: 60px 70px 1fr 90px; align-items: center; padding: 10px 24px; border-bottom: 1px solid var(--border); transition: background .12s; }
-.cardio-row:last-child { border-bottom: none; }
-.cardio-row:hover { background: var(--bg); }
-.cardio-row.hdr { background: #FAFAF8; font-size: 10px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: var(--text-3); }
-.cardio-row.current { background: var(--green-bg); }
-.cardio-sem { font-size: 12px; font-weight: 600; color: var(--text-3); }
-.cardio-row.current .cardio-sem { color: var(--green); }
-.cardio-km { font-family: 'DM Serif Display', serif; font-size: 16px; color: var(--text-1); }
-.cardio-row.current .cardio-km { color: var(--green); }
-.cardio-desc { font-size: 12px; color: var(--text-2); line-height: 1.4; }
-.cardio-badge { font-size: 10px; font-weight: 600; padding: 2px 8px; border-radius: 20px; text-align: center; white-space: nowrap; }
-.badge-libre { background: #EEF2FF; color: #3D405B; border: 1px solid #C8D4F5; }
-.badge-ligero { background: var(--green-bg); color: var(--green); border: 1px solid var(--green-border); }
-.badge-mixto { background: #FFF8EC; color: #92700A; border: 1px solid #F2CC8F; }
-.cardio-current-badge { font-size: 9px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: var(--green); background: var(--green-bg); border: 1px solid var(--green-border); padding: 1px 6px; border-radius: 20px; margin-left: 6px; vertical-align: middle; }
+  /* Top bar */
+  .top { border-bottom: 1px solid var(--rule); position: sticky; top: 0; background: rgba(243,240,232,.94); backdrop-filter: blur(8px); z-index: 100; }
+  .top .wrap { display: flex; align-items: center; height: 60px; gap: 36px; }
+  .brand { font-family: var(--serif); font-size: 21px; text-decoration: none; letter-spacing: -0.02em; white-space: nowrap; line-height: 1; }
+  .brand em { font-style: italic; font-weight: 300; }
+  .menu { display: flex; gap: 26px; }
+  .menu a { text-decoration: none; font-size: 14px; color: var(--ink-3); padding: 21px 0; border-bottom: 1px solid transparent; margin-bottom: -1px; transition: color .15s; }
+  .menu a:hover { color: var(--ink); }
+  .menu a.active { color: var(--ink); border-bottom-color: var(--ink); }
 
-/* ─── TRACKER ─── */
-.upload-zone { background: var(--surface); border: 2px dashed var(--border-2); border-radius: 12px; padding: 36px 24px; text-align: center; cursor: pointer; transition: all .2s; margin-bottom: 24px; }
-.upload-zone:hover, .upload-zone.drag { border-color: var(--green); background: var(--green-bg); }
-.upload-icon { font-size: 28px; margin-bottom: 10px; }
-.upload-title { font-size: 14px; font-weight: 600; margin-bottom: 4px; }
-.upload-sub { font-size: 12px; color: var(--text-3); line-height: 1.6; }
-.upload-btn { display: inline-block; margin-top: 14px; background: var(--text-1); color: #fff; font-size: 12px; font-weight: 600; padding: 8px 20px; border-radius: 8px; cursor: pointer; transition: opacity .15s; }
-.upload-btn:hover { opacity: .8; }
-#file-input { display: none; }
-.garmin-how { background: var(--bg); border: 1px solid var(--border); border-radius: 10px; padding: 14px 18px; margin-bottom: 28px; font-size: 12px; color: var(--text-2); line-height: 1.7; }
-.garmin-how strong { color: var(--text-1); }
-.stats-strip { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-bottom: 24px; }
-.stat-box { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 16px; }
-.stat-lbl { font-size: 9px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--text-3); margin-bottom: 6px; }
-.stat-val { font-family: 'DM Serif Display', serif; font-size: 24px; line-height: 1; color: var(--text-1); }
-.stat-sub { font-size: 10px; color: var(--text-3); margin-top: 3px; }
-.charts-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 24px; }
-.chart-box { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 20px; }
-.chart-title { font-size: 11px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; color: var(--text-3); margin-bottom: 16px; }
-.chart-wrap { position: relative; height: 180px; }
-.act-log { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; }
-.act-log-hdr { padding: 14px 18px; border-bottom: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; }
-.act-log-title { font-size: 11px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; color: var(--text-3); }
-.act-count { font-size: 11px; font-weight: 600; color: var(--green); background: var(--green-bg); padding: 2px 10px; border-radius: 20px; border: 1px solid var(--green-border); }
-.act-row { display: grid; grid-template-columns: 90px 1fr 80px 80px 70px; gap: 12px; align-items: center; padding: 11px 18px; border-bottom: 1px solid var(--border); font-size: 12px; }
-.act-row:last-child { border-bottom: none; }
-.act-row.hdr { background: #FAFAF8; font-size: 10px; font-weight: 700; letter-spacing: .05em; text-transform: uppercase; color: var(--text-3); }
-.act-date { color: var(--text-2); }
-.act-name { font-weight: 500; color: var(--text-1); }
-.act-dur { color: var(--text-2); text-align: right; }
-.act-cal { color: var(--text-2); text-align: right; }
-.type-badge { font-size: 10px; font-weight: 600; padding: 2px 8px; border-radius: 20px; }
-.empty-state { padding: 48px 24px; text-align: center; color: var(--text-3); font-size: 13px; line-height: 1.7; }
+  /* Masthead */
+  .masthead { padding: 48px 0 0; }
+  .dateline { font-size: 13px; color: var(--ink-3); padding-bottom: 18px; }
+  h1 { font-family: var(--serif); font-variation-settings: 'opsz' 144; font-weight: 400; font-size: 152px; line-height: .9; letter-spacing: -0.045em; padding-bottom: 36px; border-bottom: 1px solid var(--ink); }
+  .mast-row { display: grid; grid-template-columns: 8fr 4fr; gap: 64px; padding: 32px 0 48px; align-items: start; }
+  .deck { font-family: var(--serif); font-variation-settings: 'opsz' 34; font-size: 34px; line-height: 1.22; letter-spacing: -0.018em; font-weight: 300; }
+  .deck em { font-style: italic; }
+  .fig-num { font-size: 96px; line-height: .9; letter-spacing: -0.04em; }
+  .fig-num small { font-size: 32px; color: var(--ink-3); letter-spacing: 0; margin-left: 4px; }
+  .fig-lbl { font-size: 14px; color: var(--ink-3); margin-top: 16px; line-height: 1.5; max-width: 30ch; }
 
-/* ─── LISTA COMPRA ─── */
-.lista-wrap { max-width: 680px; }
-.progress-card { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 20px 24px; margin-bottom: 24px; display: flex; align-items: center; gap: 20px; }
-.progress-nums { flex-shrink: 0; }
-.progress-big { font-family: 'DM Serif Display', serif; font-size: 32px; line-height: 1; color: var(--green); }
-.progress-lbl { font-size: 11px; font-weight: 500; color: var(--text-3); margin-top: 3px; }
-.progress-track { flex: 1; height: 4px; background: var(--border); border-radius: 2px; overflow: hidden; }
-.progress-fill { height: 100%; background: var(--green); border-radius: 2px; width: 0%; transition: width 0.4s cubic-bezier(.4,0,.2,1); }
-.progress-pct { font-size: 13px; font-weight: 600; color: var(--text-2); white-space: nowrap; flex-shrink: 0; }
-.lc-section { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; margin-bottom: 12px; overflow: hidden; }
-.lc-sec-header { padding: 14px 20px; display: flex; align-items: center; gap: 12px; border-bottom: 1px solid var(--border); background: #FAFAF8; }
-.lc-sec-emoji { font-size: 16px; }
-.lc-sec-title { font-size: 11px; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase; color: var(--text-2); flex: 1; }
-.lc-sec-count { font-size: 11px; font-weight: 600; color: var(--text-3); }
-.lc-sec-header.complete .lc-sec-title { color: var(--green); }
-.lc-sec-header.complete .lc-sec-count { color: var(--green); }
-.lc-item { display: flex; align-items: center; gap: 14px; padding: 12px 20px; border-bottom: 1px solid var(--border); cursor: pointer; transition: background .15s; user-select: none; }
-.lc-item:last-child { border-bottom: none; }
-.lc-item:hover { background: var(--bg); }
-.lc-item.checked { opacity: 0.5; }
-.checkbox { width: 20px; height: 20px; border-radius: 50%; border: 2px solid var(--border-2); flex-shrink: 0; display: flex; align-items: center; justify-content: center; font-size: 10px; color: transparent; transition: all .2s; }
-.lc-item.checked .checkbox { background: var(--green); border-color: var(--green); color: white; }
-.lc-item.checked .checkbox::after { content: '✓'; font-size: 11px; font-weight: 700; }
-.item-name { font-size: 13.5px; font-weight: 500; color: var(--text-1); flex: 1; line-height: 1.3; }
-.lc-item.checked .item-name { text-decoration: line-through; color: var(--text-3); }
-.item-qty { font-size: 12px; color: var(--text-3); white-space: nowrap; flex-shrink: 0; }
-.lc-item.checked .item-qty { color: var(--border-2); }
-.reset-wrap { text-align: center; padding-top: 8px; }
-.reset-btn { background: none; border: 1px solid var(--border); border-radius: 8px; padding: 9px 20px; font-size: 13px; font-weight: 500; color: var(--text-2); cursor: pointer; font-family: 'DM Sans', sans-serif; transition: all .15s; }
-.reset-btn:hover { border-color: var(--border-2); color: var(--text-1); background: var(--surface); }
+  /* Tabs */
+  .main-tabs { display: flex; gap: 40px; border-top: 1px solid var(--ink); }
+  .main-tab { font-family: var(--serif); font-variation-settings: 'opsz' 20; font-size: 22px; letter-spacing: -0.01em; color: var(--ink-3); padding: 18px 0 16px; border-top: 2px solid transparent; margin-top: -1px; transition: color .15s; }
+  .main-tab:hover { color: var(--ink); }
+  .main-tab.active { color: var(--ink); border-top-color: var(--ink); }
+  .panel { display: none; padding: 40px 0 88px; }
+  .panel.active { display: block; }
+  .tabs-bar { display: flex; gap: 28px; margin-bottom: 8px; }
+  .tab { font-size: 11px; letter-spacing: .12em; text-transform: uppercase; font-weight: 600; color: var(--ink-3); padding: 6px 0; border-bottom: 1px solid transparent; }
+  .tab.active, .tab:hover { color: var(--ink); border-bottom-color: var(--ink); }
+  .tp { display: none; }
+  .tp.active { display: block; }
 
-/* ─── TRACKER DE PESO ─── */
-.peso-wrap { max-width: 780px; }
-.peso-hero { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 24px 28px; margin-bottom: 20px; display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
-.ph-cell { }
-.ph-cell-lbl { font-size: 9px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--text-3); margin-bottom: 6px; }
-.ph-cell-val { font-family: 'DM Serif Display', serif; font-size: 28px; line-height: 1; letter-spacing: -0.5px; }
-.ph-cell-sub { font-size: 11px; color: var(--text-3); margin-top: 4px; }
-.ph-cell-val.green { color: var(--green); }
-.ph-cell-val.red { color: #C0614A; }
-.ph-cell-val.gray { color: var(--text-3); }
-.peso-chart-box { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 20px 24px; margin-bottom: 20px; }
-.peso-chart-hdr { display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px; }
-.peso-chart-title { font-size: 11px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; color: var(--text-3); }
-.peso-chart-filters { display: flex; gap: 6px; }
-.pf-btn { font-size: 11px; font-weight: 600; padding: 4px 12px; border-radius: 20px; border: 1px solid var(--border); background: none; color: var(--text-2); cursor: pointer; font-family: 'DM Sans', sans-serif; transition: all .15s; }
-.pf-btn:hover { border-color: var(--border-2); color: var(--text-1); }
-.pf-btn.active { background: var(--green); color: #fff; border-color: var(--green); }
-.peso-chart-wrap { position: relative; height: 220px; }
-.peso-add-card { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 20px 24px; margin-bottom: 20px; }
-.peso-add-title { font-size: 11px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; color: var(--text-3); margin-bottom: 14px; }
-.peso-add-row { display: flex; gap: 10px; align-items: flex-end; flex-wrap: wrap; }
-.peso-input-group { display: flex; flex-direction: column; gap: 5px; }
-.peso-input-group label { font-size: 10px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: var(--text-3); }
-.peso-input-group input { font-family: 'DM Sans', sans-serif; font-size: 13px; color: var(--text-1); background: var(--bg); border: 1px solid var(--border); border-radius: 8px; padding: 9px 12px; outline: none; transition: border-color .15s; width: 140px; }
-.peso-input-group input:focus { border-color: var(--green); }
-.peso-input-group input[type="number"] { width: 110px; }
-.peso-add-btn { font-family: 'DM Sans', sans-serif; font-size: 13px; font-weight: 600; background: var(--text-1); color: #fff; border: none; border-radius: 8px; padding: 10px 20px; cursor: pointer; transition: opacity .15s; white-space: nowrap; }
-.peso-add-btn:hover { opacity: 0.85; }
-.peso-add-err { font-size: 12px; color: #C0614A; margin-top: 6px; display: none; width: 100%; }
-.peso-log { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; overflow: hidden; }
-.peso-log-hdr { padding: 14px 20px; border-bottom: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; background: #FAFAF8; }
-.peso-log-title { font-size: 11px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; color: var(--text-3); }
-.peso-row { display: grid; grid-template-columns: 110px 90px 90px 1fr 36px; gap: 12px; align-items: center; padding: 11px 20px; border-bottom: 1px solid var(--border); font-size: 13px; }
-.peso-row:last-child { border-bottom: none; }
-.peso-row.hdr { background: #FAFAF8; font-size: 10px; font-weight: 700; letter-spacing: .05em; text-transform: uppercase; color: var(--text-3); }
-.peso-date { color: var(--text-2); }
-.peso-kg { font-weight: 600; color: var(--text-1); font-family: 'DM Serif Display', serif; font-size: 16px; }
-.peso-delta-pos { color: var(--green); font-size: 12px; font-weight: 600; }
-.peso-delta-neg { color: #C0614A; font-size: 12px; font-weight: 600; }
-.peso-delta-zero { color: var(--text-3); font-size: 12px; }
-.peso-note { font-size: 12px; color: var(--text-2); overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }
-.peso-del-btn { background: none; border: none; cursor: pointer; color: var(--text-3); font-size: 14px; padding: 2px 4px; border-radius: 4px; transition: color .15s; font-family: 'DM Sans', sans-serif; }
-.peso-del-btn:hover { color: #C0614A; }
-.peso-empty { padding: 40px 24px; text-align: center; color: var(--text-3); font-size: 13px; line-height: 1.7; }
-.objetivo-band { background: var(--green-bg); border: 1px solid var(--green-border); border-radius: 10px; padding: 12px 16px; margin-bottom: 20px; display: flex; align-items: center; gap: 14px; font-size: 13px; }
-.ob-icon { font-size: 18px; }
-.ob-text { color: var(--green); font-weight: 500; }
-.ob-text strong { font-weight: 700; }
+  /* Groups and entries */
+  .grp { padding: 48px 0 8px; }
+  .grp .grp-hd { margin-top: 0; }
+  .grp-hd { margin-top: 56px; display: flex; align-items: baseline; gap: 18px; margin-bottom: 24px; }
+  .grp-num { font-family: var(--serif); font-size: 14px; color: var(--ink-3); font-variant-numeric: tabular-nums; }
+  .grp-ttl { font-family: var(--serif); font-variation-settings: 'opsz' 60; font-weight: 400; font-size: 34px; letter-spacing: -0.025em; line-height: 1; }
+  .grp-hd .meta { margin-left: auto; text-align: right; max-width: 40ch; }
+  .ent-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0 56px; border-top: 1px solid var(--ink); }
+  .ent { padding: 24px 0 26px; border-bottom: 1px solid var(--rule); }
+  .ent-hd { display: flex; align-items: baseline; justify-content: space-between; gap: 20px; }
+  .ent-hd h3 { font-family: var(--serif); font-variation-settings: 'opsz' 40; font-weight: 400; font-size: 26px; letter-spacing: -0.02em; line-height: 1; }
+  .ent-dose { font-family: var(--serif); font-size: 17px; color: var(--ink-2); font-variant-numeric: tabular-nums; white-space: nowrap; letter-spacing: -0.01em; }
+  .ent-why { font-size: 14.5px; color: var(--ink-2); line-height: 1.55; margin-top: 12px; max-width: 58ch; }
+  .ent-why strong { color: var(--ink); font-weight: 500; }
+  .ent-al { font-size: 13.5px; color: var(--ink-2); line-height: 1.5; margin-top: 10px; }
+  .ent-al .ptag { margin-right: 8px; }
+  .ent-foods { font-size: 13px; color: var(--ink-3); line-height: 1.7; margin-top: 12px; }
+  .ent-foods .ptag { margin-right: 8px; }
+  .ent-foods b { color: var(--ink); font-weight: 500; font-variant-numeric: tabular-nums; }
+  .ent-foods .sep { color: var(--rule); }
+  .figures { display: grid; grid-template-columns: repeat(3, 1fr); border-top: 1px solid var(--ink); margin-bottom: 32px; }
+  .figures.five { grid-template-columns: repeat(5, 1fr); }
+  .fig { padding: 18px 20px 20px 0; border-right: 1px solid var(--rule); }
+  .fig:last-child { border-right: none; }
+  .fig + .fig { padding-left: 20px; }
+  .figures .fig-num { font-size: 40px; line-height: 1; letter-spacing: -0.03em; }
+  .figures .fig-lbl { font-size: 13px; margin-top: 10px; max-width: none; }
 
-@media (max-width: 600px) { .peso-hero { grid-template-columns: repeat(2,1fr); } .peso-row { grid-template-columns: 90px 70px 70px; } .peso-row .peso-note, .peso-row .peso-del-btn { display: none; } .cardio-row { grid-template-columns: 50px 60px 1fr; } .cardio-badge { display: none; } .cardio-stats { display: none; } }
-@media (max-width: 1100px) { .macros-strip { grid-template-columns: repeat(3,1fr); } }
-@media (max-width: 900px) { .charts-grid { grid-template-columns: 1fr; } .stats-strip { grid-template-columns: repeat(2,1fr); } }
-@media (max-width: 768px) { nav { padding: 0 20px; } .nav-logo { margin-right: 20px; } .page { padding: 24px 20px; } .macros-strip { grid-template-columns: repeat(2,1fr); } .ncard-grid, .macro-grid, .diag-grid, .princ-grid, .content-grid { grid-template-columns: 1fr; } }
-@media (max-width: 600px) { .act-row { grid-template-columns: 80px 1fr 70px; } .act-cal, .act-type { display: none; } }
+  /* Dieta */
+  .pm-header p { margin-bottom: 0; }
+  .pm-header p { font-family: var(--serif); font-variation-settings: 'opsz' 22; font-size: 22px; line-height: 1.4; letter-spacing: -0.01em; max-width: 60ch; margin: 40px 0 8px; font-weight: 300; }
+  .pm-grid-2, .pm-grid-4 { display: grid; gap: 0 48px; border-top: 1px solid var(--ink); }
+  .pm-grid-2 { grid-template-columns: 1fr 1fr; }
+  .pm-grid-4 { grid-template-columns: repeat(4, 1fr); gap: 0 32px; }
+  .pm-card { padding: 20px 0 22px; border-bottom: 1px solid var(--rule); }
+  .pm-title { font-family: var(--serif); font-variation-settings: 'opsz' 20; font-size: 20px; letter-spacing: -0.01em; line-height: 1.25; }
+  .pm-meta { font-size: 11px; letter-spacing: .1em; text-transform: uppercase; font-weight: 600; color: var(--ink-3); margin: 8px 0 6px; }
+  .pm-text { font-size: 14px; color: var(--ink-2); line-height: 1.55; margin-top: 8px; }
+  .grp-hd + .day-row { border-top: 1px solid var(--ink); }
+  .day-row { display: grid; grid-template-columns: 180px 1fr; gap: 32px; padding: 24px 0; border-bottom: 1px solid var(--rule); }
+  .day-name { font-family: var(--serif); font-variation-settings: 'opsz' 40; font-size: 26px; letter-spacing: -0.02em; line-height: 1; }
+  .day-type { font-size: 12px; letter-spacing: .1em; text-transform: uppercase; color: var(--ink-3); margin-top: 8px; }
+  .day-badge { display: block; font-size: 12px; color: var(--ink); margin-top: 6px; }
+  .meals { display: flex; flex-direction: column; gap: 12px; }
+  .meal { display: grid; grid-template-columns: 96px 1fr; gap: 20px; align-items: baseline; }
+  .meal-tag { font-size: 11px; letter-spacing: .1em; text-transform: uppercase; font-weight: 600; color: var(--ink-3); }
+  .meal-name { font-size: 15px; font-weight: 500; line-height: 1.35; }
+  .meal-detail { font-size: 13.5px; color: var(--ink-2); line-height: 1.5; margin-top: 2px; }
+  .shop-col { padding: 18px 0 20px; border-bottom: 1px solid var(--rule); }
+  .shop-col h3 { font-size: 12px; letter-spacing: .12em; text-transform: uppercase; font-weight: 500; color: var(--ink-3); margin-bottom: 10px; }
+  .shop-col ul { list-style: none; }
+  .shop-col li { font-size: 14px; color: var(--ink); padding: 4px 0; }
+  .pm-callout { border-top: 1px solid var(--ink); margin-top: 48px; padding-top: 24px; }
+  .pm-callout h2 { font-family: var(--serif); font-variation-settings: 'opsz' 40; font-weight: 400; font-size: 30px; letter-spacing: -0.02em; margin-bottom: 12px; line-height: 1.1; }
+  .pm-callout p { font-size: 15px; color: var(--ink-2); line-height: 1.6; max-width: 66ch; }
+  .pm-callout strong { color: var(--ink); font-weight: 500; }
 
-/* ─── CARDIO MODAL ─── */
-.cardio-modal-overlay { position: fixed; inset: 0; background: rgba(26,25,22,0.55); backdrop-filter: blur(4px); z-index: 2000; display: none; align-items: center; justify-content: center; padding: 24px; }
-.cardio-modal-overlay.open { display: flex; }
-.cardio-modal { background: #fff; border: 1px solid #E8E6E0; border-radius: 16px; width: 100%; max-width: 640px; max-height: calc(100vh - 48px); overflow: hidden; display: flex; flex-direction: column; box-shadow: 0 24px 64px rgba(0,0,0,0.15); }
-.cardio-modal-hdr { padding: 20px 24px; border-bottom: 1px solid #E8E6E0; display: flex; align-items: center; justify-content: space-between; background: #FAFAF8; flex-shrink: 0; }
-.cardio-modal-hdr-left { display: flex; align-items: center; gap: 12px; }
-.cardio-modal-hdr-icon { width: 36px; height: 36px; border-radius: 8px; background: var(--green-bg); border: 1px solid var(--green-border); display: flex; align-items: center; justify-content: center; font-size: 16px; }
-.cardio-modal-title { font-family: 'DM Serif Display', serif; font-size: 18px; letter-spacing: -0.3px; }
-.cardio-modal-sub { font-size: 11px; color: #A8A49C; margin-top: 2px; }
-.cardio-modal-close { background: none; border: 1px solid #E8E6E0; border-radius: 8px; padding: 7px 11px; cursor: pointer; font-size: 13px; color: #6B6860; font-family: 'DM Sans', sans-serif; transition: all .15s; }
-.cardio-modal-close:hover { background: #F5F4F0; }
-.cardio-modal-stats { display: flex; gap: 20px; padding: 12px 24px; border-bottom: 1px solid #E8E6E0; background: #fff; flex-shrink: 0; }
-.cardio-modal-stat-val { font-family: 'DM Serif Display', serif; font-size: 18px; color: var(--green); line-height: 1; }
-.cardio-modal-stat-lbl { font-size: 10px; color: #A8A49C; font-weight: 500; margin-top: 2px; }
-.cardio-modal-body { overflow-y: auto; flex: 1; }
+  /* Deporte */
+  .objetivo { display: grid; align-items: start; grid-template-columns: 5fr 7fr; gap: 64px; border-top: 1px solid var(--ink); padding: 24px 0 0; margin-bottom: 8px; }
+  .obj-label { font-size: 11px; letter-spacing: .12em; text-transform: uppercase; font-weight: 600; color: var(--now); margin-bottom: 14px; }
+  .obj-text { font-family: var(--serif); font-variation-settings: 'opsz' 20; font-size: 20px; line-height: 1.4; letter-spacing: -0.005em; max-width: 40ch; }
+  .hito { display: grid; grid-template-columns: 16px 1fr; gap: 14px; align-items: baseline; padding: 13px 0; border-bottom: 1px solid var(--rule-soft); }
+  .hito .g { width: 10px; height: 10px; border-radius: 50%; border: 1px solid var(--ink-3); position: relative; top: 1px; }
+  .hito.active .g { border-color: var(--ink); box-shadow: inset 0 0 0 2px var(--paper), inset 0 0 0 10px var(--ink); }
+  .hito .title { font-family: var(--serif); font-variation-settings: 'opsz' 20; font-size: 17px; line-height: 1.35; }
+  .hito.pending .title { color: var(--ink-2); }
+  .content-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0 56px; border-top: 1px solid var(--ink); }
+  .content-card { display: block; padding: 24px 0 26px; border-bottom: 1px solid var(--rule); text-decoration: none; color: inherit; transition: background .15s; }
+  .content-card:hover { background: rgba(255,255,255,.35); }
+  .card-label { font-size: 11px; letter-spacing: .12em; text-transform: uppercase; font-weight: 600; color: var(--ink-3); }
+  .card-title { font-family: var(--serif); font-variation-settings: 'opsz' 40; font-size: 28px; letter-spacing: -0.02em; line-height: 1.1; margin: 10px 0 12px; }
+  .card-desc { font-size: 14.5px; color: var(--ink-2); line-height: 1.55; max-width: 50ch; }
+  .card-bottom { display: flex; justify-content: space-between; align-items: baseline; gap: 24px; margin-top: 18px; }
+  .card-tags { font-size: 13px; color: var(--ink-3); }
+  .card-tag + .card-tag::before { content: ' · '; }
+  .card-arrow { font-size: 11px; letter-spacing: .12em; text-transform: uppercase; font-weight: 600; color: var(--ink); border-bottom: 1px solid var(--ink); padding-bottom: 2px; }
 
-::-webkit-scrollbar { width: 5px; height: 5px; }
-::-webkit-scrollbar-track { background: transparent; }
-::-webkit-scrollbar-thumb { background: rgba(0,0,0,.12); border-radius: 3px; }
+  /* Overlays */
+  .cardio-modal-overlay { position: fixed; inset: 0; background: rgba(23,22,17,.42); backdrop-filter: blur(3px); z-index: 1000; display: none; align-items: center; justify-content: center; padding: 24px; }
+  .cardio-modal-overlay.open { display: flex; }
+  .cardio-modal { background: var(--paper); border: 1px solid var(--ink); width: 760px; max-width: 100%; max-height: calc(100vh - 48px); overflow-y: auto; display: flex; flex-direction: column; }
+  .cardio-modal-hdr { padding: 22px 28px 18px; border-bottom: 1px solid var(--ink); display: flex; align-items: flex-start; justify-content: space-between; gap: 16px; position: sticky; top: 0; background: var(--paper); z-index: 1; }
+  .cardio-modal-title { font-family: var(--serif); font-size: 24px; letter-spacing: -0.02em; line-height: 1; }
+  .cardio-modal-sub { font-size: 13px; color: var(--ink-3); margin-top: 6px; }
+  .cardio-modal-close { font-size: 14px; color: var(--ink-2); text-decoration: underline; text-decoration-color: var(--rule); text-underline-offset: 4px; }
+  .cardio-modal-stats { display: grid; grid-template-columns: repeat(3, 1fr); padding: 20px 28px 0; }
+  .cardio-modal-stats > div { padding: 0 20px 20px 0; border-right: 1px solid var(--rule); }
+  .cardio-modal-stats > div + div { padding-left: 20px; }
+  .cardio-modal-stats > div:last-child { border-right: none; }
+  .cardio-modal-stat-val { font-family: var(--serif); font-size: 32px; letter-spacing: -0.02em; line-height: 1; font-variant-numeric: tabular-nums; }
+  .cardio-modal-stat-lbl { font-size: 13px; color: var(--ink-3); margin-top: 8px; }
+  .cardio-modal-body { padding: 8px 28px 28px; }
+  .cardio-row { display: grid; grid-template-columns: 80px 80px 1fr 110px; gap: 16px; align-items: baseline; padding: 10px 0; border-bottom: 1px solid var(--rule-soft); }
+  .cardio-row.hdr { font-size: 11px; letter-spacing: .12em; text-transform: uppercase; color: var(--ink-3); font-weight: 500; border-bottom: 1px solid var(--ink); }
+  .cardio-sem { font-size: 13px; color: var(--ink-3); }
+  .cardio-km { font-family: var(--serif); font-size: 18px; font-variant-numeric: tabular-nums; letter-spacing: -0.01em; }
+  .cardio-desc { font-size: 14px; color: var(--ink-2); }
+  .cardio-badge { font-size: 11px; letter-spacing: .1em; text-transform: uppercase; font-weight: 600; color: var(--ink-3); text-align: right; }
+  .cardio-badge.badge-mixto { color: var(--ink); }
+
+  /* Peso */
+  .objetivo-band { font-size: 13px; color: var(--ink-3); padding-bottom: 20px; }
+  .objetivo-band b { color: var(--ink); font-weight: 500; }
+  .peso-hero { display: grid; grid-template-columns: repeat(4, 1fr); border-top: 1px solid var(--ink); margin-bottom: 48px; }
+  .ph-cell { padding: 18px 20px 22px 0; border-right: 1px solid var(--rule); }
+  .ph-cell + .ph-cell { padding-left: 20px; }
+  .ph-cell:last-child { border-right: none; }
+  .ph-cell-lbl { font-size: 12px; letter-spacing: .12em; text-transform: uppercase; color: var(--ink-3); font-weight: 500; margin-bottom: 12px; }
+  .ph-cell-val { font-family: var(--serif); font-variation-settings: 'opsz' 144; font-size: 44px; line-height: 1; letter-spacing: -0.03em; font-variant-numeric: tabular-nums; }
+  .ph-cell-val.gray { color: var(--ink-3); }
+  .ph-cell-val.red { color: var(--now); }
+  .ph-cell-sub { font-size: 13px; color: var(--ink-3); margin-top: 8px; }
+  .peso-chart-box { border-top: 1px solid var(--ink); padding-top: 16px; }
+  .peso-chart-hdr { display: flex; justify-content: space-between; align-items: baseline; gap: 24px; margin-bottom: 20px; }
+  .peso-chart-title { font-size: 12px; letter-spacing: .12em; text-transform: uppercase; color: var(--ink-3); font-weight: 500; }
+  .peso-chart-filters { display: flex; gap: 20px; }
+  .pf-btn { font-size: 11px; letter-spacing: .12em; text-transform: uppercase; font-weight: 600; color: var(--ink-3); padding: 4px 0; border-bottom: 1px solid transparent; }
+  .pf-btn.active, .pf-btn:hover { color: var(--ink); border-bottom-color: var(--ink); }
+  .peso-chart-wrap svg { width: 100%; height: auto; display: block; font-family: var(--sans); }
+  .weight-note { font-size: 13px; color: var(--ink-3); font-style: italic; margin-top: 12px; }
+  .peso-add-card { margin-top: 56px; border-top: 1px solid var(--ink); padding-top: 16px; }
+  .peso-add-title { font-size: 12px; letter-spacing: .12em; text-transform: uppercase; color: var(--ink-3); font-weight: 500; }
+  .peso-add-row { display: flex; gap: 32px; align-items: flex-end; flex-wrap: wrap; margin-top: 16px; }
+  .peso-input-group { display: flex; flex-direction: column; gap: 6px; }
+  .peso-input-group label { font-size: 11px; letter-spacing: .1em; text-transform: uppercase; color: var(--ink-3); font-weight: 500; }
+  .peso-input-group input { font-family: var(--sans); font-size: 15px; color: var(--ink); background: transparent; border: none; border-bottom: 1px solid var(--rule); padding: 8px 0; outline: none; min-width: 160px; border-radius: 0; }
+  .peso-input-group input:focus { border-bottom-color: var(--ink); }
+  .peso-add-btn { font-size: 14px; color: var(--ink); border: 1px solid var(--ink); padding: 8px 16px; background: transparent; transition: background .15s, color .15s; }
+  .peso-add-btn:hover { background: var(--ink); color: var(--paper); }
+  .peso-add-err { display: none; font-size: 13px; color: #A3442C; margin-top: 12px; }
+  .peso-log { margin-top: 56px; }
+  .peso-log-hdr { display: flex; justify-content: space-between; align-items: baseline; padding-bottom: 12px; border-bottom: 1px solid var(--ink); }
+  .peso-log-title { font-size: 12px; letter-spacing: .12em; text-transform: uppercase; color: var(--ink-3); font-weight: 500; }
+  .peso-log-hdr span:last-child { font-size: 13px !important; color: var(--ink-3) !important; }
+  .peso-row { display: grid; grid-template-columns: 150px 110px 150px 1fr auto; gap: 20px; align-items: baseline; padding: 12px 0; border-bottom: 1px solid var(--rule-soft); }
+  .peso-row.hdr { font-size: 11px; letter-spacing: .12em; text-transform: uppercase; color: var(--ink-3); font-weight: 500; padding: 10px 0; }
+  .peso-date { font-size: 14px; }
+  .peso-kg { font-family: var(--serif); font-size: 19px; font-variant-numeric: tabular-nums; letter-spacing: -0.01em; }
+  .peso-delta-pos { font-size: 13px; color: var(--ink); font-variant-numeric: tabular-nums; }
+  .peso-delta-neg { font-size: 13px; color: var(--now); font-weight: 500; font-variant-numeric: tabular-nums; }
+  .peso-delta-zero { font-size: 13px; color: var(--ink-3); }
+  .peso-note { font-size: 13.5px; color: var(--ink-2); font-style: italic; }
+  .peso-del-btn { font-size: 12px; color: var(--ink-3); text-decoration: underline; text-decoration-color: var(--rule); text-underline-offset: 3px; }
+  .peso-del-btn:hover { color: #A3442C; text-decoration-color: #A3442C; }
+  .peso-empty { font-size: 14px; color: var(--ink-3); font-style: italic; padding: 16px 0; }
+
+  /* Footer */
+  footer .wrap { border-top: 1px solid var(--ink); padding: 28px var(--gutter) 56px; display: flex; justify-content: space-between; gap: 32px; font-size: 13px; color: var(--ink-3); flex-wrap: wrap; }
+
+  /* Responsive */
+  @media (max-width: 1240px) { h1 { font-size: 11.5vw; } }
+  @media (max-width: 1000px) {
+    .ent-grid, .content-grid, .pm-grid-2 { grid-template-columns: 1fr; }
+    .pm-grid-4 { grid-template-columns: 1fr 1fr; }
+    .objetivo { grid-template-columns: 1fr; gap: 24px; }
+    .figures.five { grid-template-columns: repeat(3, 1fr); }
+    .figures.five .fig:nth-child(3) { border-right: none; }
+  }
+  @media (max-width: 900px) {
+    :root { --gutter: 24px; }
+    .menu { display: none; }
+    h1 { font-size: 13vw; padding-bottom: 20px; }
+    .mast-row { grid-template-columns: 1fr; gap: 36px; padding-bottom: 32px; }
+    .deck { font-size: 26px; }
+    .fig-num { font-size: 72px; }
+    .main-tabs { gap: 24px; }
+    .main-tab { font-size: 18px; }
+    .day-row { grid-template-columns: 1fr; gap: 14px; }
+    .peso-hero { grid-template-columns: 1fr 1fr; }
+    .ph-cell:nth-child(2) { border-right: none; }
+    .peso-row { grid-template-columns: 110px 90px 1fr; }
+    .peso-row .peso-note, .peso-row.hdr span:nth-child(4) { display: none; }
+    .cardio-row { grid-template-columns: 70px 70px 1fr; }
+    .cardio-badge, .cardio-row.hdr span:nth-child(4) { display: none; }
+  }
+  @media (max-width: 600px) {
+    .pm-grid-4, .figures.five { grid-template-columns: 1fr; }
+    .fig, .ph-cell { border-right: none; }
+    .meal { grid-template-columns: 1fr; gap: 4px; }
+  }
+
 </style>
 </head>
 <body>
 
-<nav>
-  <a href="../index.html" class="nav-logo">Albert's <span>Odyssey</span></a>
-  <div class="nav-links">
-    <a href="../index.html"            class="nav-link">Home</a>
-    <a href="../salud/index.html"      class="nav-link active">Salud</a>
-    <a href="../vlog/index.html"       class="nav-link">Vlog</a>
-    <a href="../lecturas/index.html"   class="nav-link">Lecturas</a>
-    <a href="../desarrollo/index.html" class="nav-link">Desarrollo</a>
+<header class="top">
+  <div class="wrap">
+    <a href="../index.html" class="brand">Albert's <em>Odyssey</em></a>
+    <nav class="menu">
+      <a href="../index.html">Inicio</a>
+      <a href="../salud/index.html" class="active">Salud</a>
+      <a href="../vlog/index.html">Vlog</a>
+      <a href="../lecturas/index.html">Lecturas</a>
+      <a href="../desarrollo/index.html">Desarrollo</a>
+    </nav>
   </div>
-</nav>
+</header>
 
-<div class="page">
-
-  <div class="page-hdr">
-    <div class="ph-left">
-      <div class="ph-icon">🫀</div>
+<section class="masthead">
+  <div class="wrap">
+    <div class="dateline">Pilar 01 · Nutrición, entrenamiento y peso</div>
+    <h1>Salud</h1>
+    <div class="mast-row">
+      <p class="deck">Nutrición, entrenamiento y gestión del estrés. <em>La base del sistema: sin energía no hay rendimiento en ningún otro pilar.</em></p>
       <div>
-        <div class="ph-eyebrow">Pilar 1</div>
-        <div class="ph-title">Salud</div>
-        <div class="ph-sub">Nutrición, entrenamiento y gestión del estrés. La base del sistema — sin energía no hay rendimiento en ningún otro pilar.</div>
+        <div class="fig-num num" id="heroKg">80<small>kg</small></div>
+        <div class="fig-lbl" id="heroKgLbl"></div>
       </div>
     </div>
-    <div class="ph-stats">
-      <div><div class="ph-stat-val">88 → 80 kg</div><div class="ph-stat-lbl">Objetivo composición</div></div>
-      <div><div class="ph-stat-val">16 sem</div><div class="ph-stat-lbl">Programa fuerza</div></div>
-      <div><div class="ph-stat-val">19 sem</div><div class="ph-stat-lbl">Programa cardio</div></div>
+    <div class="main-tabs">
+      <button class="main-tab active" onclick="switchPanel('nutricion')">Nutrición</button>
+      <button class="main-tab" onclick="switchPanel('deporte')">Deporte</button>
+      <button class="main-tab" onclick="switchPanel('peso')">Peso</button>
     </div>
   </div>
+</section>
 
-  <div class="main-tabs">
-    <button class="main-tab active" onclick="switchPanel('nutricion')">🥗 Nutrición</button>
-    <button class="main-tab" onclick="switchPanel('deporte')">🏋️ Deporte</button>
-    <button class="main-tab" onclick="switchPanel('peso')">⚖️ Tracker de Peso</button>
-  </div>
+<div class="wrap">
 
   <!-- PANEL 1 — NUTRICIÓN -->
   <div class="panel active" id="panel-nutricion">
     <div class="tabs-bar">
-      <button class="tab active" onclick="st('nutrientes')">🔬 Nutrientes</button>
-      <button class="tab" onclick="st('dieta')">🍽️ Dieta</button>
+      <button class="tab active" onclick="st('nutrientes')">Nutrientes</button>
+      <button class="tab" onclick="st('dieta')">Dieta</button>
     </div>
     <div class="tp active" id="tp-nutrientes">
-      <div class="sl">Vitaminas liposolubles — se almacenan en tejido graso e hígado</div>
-      <div class="ncard-grid">
-        <div class="ncard"><div class="ncard-top"><span class="ncard-icon">🥕</span><span class="ncard-name">Vitamina A</span><span class="ncard-dose" style="background:#FFF3E8;color:#C4621A;border:1px solid #FCDBB8">900 mcg/día</span></div><div class="ncard-why">Visión nocturna, sistema inmune y salud de la piel. Antioxidante celular. Con meses sin fruta ni verdura, la inmunidad es el primer sistema que cede.</div><div class="ncard-alerts"><div class="nalert nalert-d">⚡ Déficit: visión nocturna reducida, infecciones frecuentes, anemia</div><div class="nalert nalert-w">⚠ Exceso solo por suplementación abusiva: pérdida de cabello, piel seca</div></div><div class="ncard-foods"><div class="nf">Zanahoria <span>1346 μg</span></div><div class="nf">Espinacas <span>771 μg</span></div><div class="nf">Melón <span>771 μg</span></div><div class="nf">Calabaza <span>707 μg</span></div><div class="nf">Yema huevo <span>570 μg</span></div></div></div>
-        <div class="ncard"><div class="ncard-top"><span class="ncard-icon">☀️</span><span class="ncard-name">Vitamina D</span><span class="ncard-dose" style="background:#FFFBE8;color:#92700A;border:1px solid #F2CC8F">15 mcg/día</span></div><div class="ncard-why">Absorción de calcio, función inmune, rendimiento muscular. Trabajo de oficina en Madrid = exposición solar insuficiente garantizada. <strong>Suplementa: 2000–4000 UI/día con comida.</strong></div><div class="ncard-alerts"><div class="nalert nalert-d">⚡ Déficit: debilidad muscular, recuperación comprometida, osteomalacia</div><div class="nalert nalert-w">⚠ Exceso: hipercalcemia, cálculos renales. Solo por sobredosis de suplemento</div></div><div class="ncard-foods"><div class="nf">Ac. hígado bacalao <span>252 mcg</span></div><div class="nf">Atún fresco <span>25 mcg</span></div><div class="nf">Sardinas lata <span>17 mcg</span></div><div class="nf">Salmón <span>5 mcg</span></div></div></div>
-        <div class="ncard"><div class="ncard-top"><span class="ncard-icon">🌿</span><span class="ncard-name">Vitamina E</span><span class="ncard-dose" style="background:#EAF3EE;color:#2D6A4F;border:1px solid #C3DDD1">15 mg/día</span></div><div class="ncard-why">Antioxidante liposoluble potente. Protege células del daño oxidativo y refuerza el sistema inmune. Especialmente relevante en fases de entrenamiento intenso.</div><div class="ncard-alerts"><div class="nalert nalert-d">⚡ Déficit: menor producción de anticuerpos, recuperación más lenta</div></div><div class="ncard-foods"><div class="nf">Semillas girasol <span>52 mg</span></div><div class="nf">Almendras <span>26 mg</span></div><div class="nf">Avellanas <span>24 mg</span></div><div class="nf">Aceite oliva <span>14 mg</span></div><div class="nf">Aguacate <span>2.1 mg</span></div></div></div>
-        <div class="ncard"><div class="ncard-top"><span class="ncard-icon">🫙</span><span class="ncard-name">Vitamina K</span><span class="ncard-dose" style="background:#EEF2FF;color:#3D405B;border:1px solid #C8D4F5">120 mcg/día</span></div><div class="ncard-why">Coagulación y metabolismo óseo. Con déficit de D —probable—, necesitas K2 para que el calcio llegue a los huesos en lugar de calcificar arterias.</div><div class="ncard-alerts"><div class="nalert nalert-d">⚡ Déficit: raro. Puede aparecer con uso prolongado de antibióticos</div></div><div class="ncard-foods"><div class="nf">Repollo verde <span>1060 μg</span></div><div class="nf">Col rizada <span>1054 μg</span></div><div class="nf">Espinacas <span>884 μg</span></div><div class="nf">Garbanzos <span>264 μg</span></div><div class="nf">Brócoli <span>154 μg</span></div></div></div>
-      </div>
-      <div class="sl">Vitaminas hidrosolubles — no se almacenan, consumo diario necesario</div>
-      <div class="ncard-grid">
-        <div class="ncard"><div class="ncard-top"><span class="ncard-icon">🍊</span><span class="ncard-name">Vitamina C</span><span class="ncard-dose" style="background:#FCEEE9;color:#C0614A;border:1px solid #F5C6BC">90 mg/día</span></div><div class="ncard-why">Síntesis de colágeno (tendones al retomar entrenos), inmunidad, absorción de hierro. Sin fruta en tu dieta estás casi con certeza deficitario.</div><div class="ncard-alerts"><div class="nalert nalert-d">⚡ Déficit: fatiga, mayor riesgo de lesiones tendinosas, cicatrización lenta</div></div><div class="ncard-foods"><div class="nf">Guayaba <span>273 mg</span></div><div class="nf">Pimientos <span>131 mg</span></div><div class="nf">Kiwi <span>71 mg</span></div><div class="nf">Brócoli <span>65 mg</span></div><div class="nf">Fresas <span>60 mg</span></div><div class="nf">Naranja <span>50 mg</span></div></div></div>
-        <div class="ncard"><div class="ncard-top"><span class="ncard-icon">🐟</span><span class="ncard-name">Vitamina B12</span><span class="ncard-dose" style="background:#EAF3EE;color:#2D6A4F;border:1px solid #C3DDD1">2.4 mcg/día</span></div><div class="ncard-why">Glóbulos rojos, síntesis de ADN, salud neurológica. Impacta en memoria y concentración. Su déficit es silencioso y se manifiesta meses después.</div><div class="ncard-alerts"><div class="nalert nalert-d">⚡ Déficit: anemia megaloblástica, deterioro neurológico, fatiga crónica</div></div><div class="ncard-foods"><div class="nf">Hígado res <span>100 μg</span></div><div class="nf">Mejillones <span>21 μg</span></div><div class="nf">Sardinas <span>12 μg</span></div><div class="nf">Atún <span>2.7 μg</span></div><div class="nf">Huevo <span>0.5 μg</span></div></div></div>
-        <div class="ncard"><div class="ncard-top"><span class="ncard-icon">🧠</span><span class="ncard-name">Vitamina B6</span><span class="ncard-dose" style="background:#F5F0FF;color:#5B21B6;border:1px solid #DDD6FE">1.3–1.7 mg/día</span></div><div class="ncard-why">+100 reacciones enzimáticas. Metabolismo de proteínas, serotonina y dopamina. Con alta ingesta proteica, la demanda de B6 sube proporcionalmente.</div><div class="ncard-alerts"><div class="nalert nalert-d">⚡ Déficit: anemia, confusión, depresión, debilidad muscular</div></div><div class="ncard-foods"><div class="nf">Hígado res <span>0.9 mg</span></div><div class="nf">Nueces <span>0.7 mg</span></div><div class="nf">Salmón <span>0.6 mg</span></div><div class="nf">Garbanzos <span>0.6 mg</span></div><div class="nf">Plátano <span>0.4 mg</span></div></div></div>
-        <div class="ncard"><div class="ncard-top"><span class="ncard-icon">🥬</span><span class="ncard-name">Ácido Fólico B9</span><span class="ncard-dose" style="background:#EAF3EE;color:#2D6A4F;border:1px solid #C3DDD1">400 mcg/día</span></div><div class="ncard-why">Síntesis de ADN, división celular, glóbulos rojos. Regula homocisteína. Con carga física y laboral alta, la renovación celular sube y la demanda también.</div><div class="ncard-foods"><div class="nf">Soja <span>240 μg</span></div><div class="nf">Hígado <span>192 μg</span></div><div class="nf">Garbanzos <span>180 μg</span></div><div class="nf">Espinacas <span>140 μg</span></div><div class="nf">Aguacate <span>~80 μg</span></div></div></div>
-        <div class="ncard"><div class="ncard-top"><span class="ncard-icon">⚡</span><span class="ncard-name">Vitamina B3 · Niacina</span><span class="ncard-dose" style="background:#FFF3E8;color:#C4621A;border:1px solid #FCDBB8">16 mg/día</span></div><div class="ncard-why">Producción de ATP y conversión de macronutrientes en energía. Ligada al rendimiento físico y mental. Fácilmente cubierta con carne, pescado y legumbres.</div><div class="ncard-foods"><div class="nf">Hígado <span>11.9 mg</span></div><div class="nf">Atún <span>11 mg</span></div><div class="nf">Cerdo magro <span>8.7 mg</span></div><div class="nf">Pollo <span>7.6 mg</span></div><div class="nf">Salmón <span>5.4 mg</span></div></div></div>
-      </div>
-      <div class="sl">Minerales — macrominerales</div>
-      <div class="ncard-grid">
-        <div class="ncard"><div class="ncard-top"><span class="ncard-icon">🦴</span><span class="ncard-name">Calcio</span><span class="ncard-dose" style="background:#F5F0FF;color:#5B21B6;border:1px solid #DDD6FE">1000–1200 mg/día</span></div><div class="ncard-why">99% en huesos y dientes. Contracción muscular y transmisión nerviosa. Necesita vitamina D para ser absorbido — los dos van juntos siempre.</div><div class="ncard-alerts"><div class="nalert nalert-d">⚡ Déficit: calambres, fragilidad ósea, dificultad de concentración</div></div><div class="ncard-foods"><div class="nf">Queso Gruyère <span>560–850 mg</span></div><div class="nf">Yogur <span>415 mg</span></div><div class="nf">Sardinas lata <span>400 mg</span></div><div class="nf">Leche <span>300 mg</span></div><div class="nf">Almendras <span>240 mg</span></div></div></div>
-        <div class="ncard"><div class="ncard-top"><span class="ncard-icon">😴</span><span class="ncard-name">Magnesio</span><span class="ncard-dose" style="background:#EAF3EE;color:#2D6A4F;border:1px solid #C3DDD1">400–420 mg/día</span></div><div class="ncard-why">+300 reacciones bioquímicas. Regula glucosa, ritmo cardíaco, contracción muscular y sueño. Reduce cortisol. El ojo que te vibra es síntoma clásico de déficit. <strong>Suplementa: glicinato 300–400 mg antes de dormir.</strong></div><div class="ncard-alerts"><div class="nalert nalert-d">⚡ Déficit: fasciculación ocular, calambres, fatiga, sueño fragmentado</div></div><div class="ncard-foods"><div class="nf">Almendras <span>250 mg</span></div><div class="nf">Chocolate negro <span>100 mg</span></div><div class="nf">Pan integral <span>91 mg</span></div><div class="nf">Lentejas <span>78 mg</span></div><div class="nf">Espinacas <span>50 mg</span></div></div></div>
-        <div class="ncard"><div class="ncard-top"><span class="ncard-icon">🩸</span><span class="ncard-name">Hierro</span><span class="ncard-dose" style="background:#FEF3F2;color:#912018;border:1px solid #FECDCA">8 mg/día</span></div><div class="ncard-why">Transporta oxígeno a los músculos. Corriste una maratón en febrero: el hierro se destruye en cada zancada. Tu reserva puede estar baja. Combina fuentes hemo con vitamina C.</div><div class="ncard-alerts"><div class="nalert nalert-d">⚡ Déficit: anemia ferropénica, fatiga crónica — frecuente en deportistas de resistencia</div><div class="nalert nalert-w">⚠ No suplementes sin analítica previa. El exceso daña hígado y corazón</div></div><div class="ncard-foods"><div class="nf">Berberechos <span>24 mg</span></div><div class="nf">Hígado res <span>8 mg</span></div><div class="nf">Lentejas <span>7.1 mg</span></div><div class="nf">Garbanzos <span>6.7 mg</span></div><div class="nf">Espinacas <span>4 mg</span></div></div></div>
-        <div class="ncard"><div class="ncard-top"><span class="ncard-icon">🍌</span><span class="ncard-name">Potasio</span><span class="ncard-dose" style="background:#FFF8EC;color:#92400E;border:1px solid #F2CC8F">3400 mg/día</span></div><div class="ncard-why">Equilibrio hídrico, presión arterial y función cardíaca muscular. Se pierde con el sudor. Su fuente principal es fruta y verdura.</div><div class="ncard-foods"><div class="nf">Espinaca cruda <span>529 mg</span></div><div class="nf">Aguacate <span>487 mg</span></div><div class="nf">Plátano <span>370 mg</span></div><div class="nf">Melón <span>310 mg</span></div><div class="nf">Kiwi <span>290 mg</span></div></div></div>
-      </div>
-      <div class="sl">Minerales — oligominerales</div>
-      <div class="ncard-grid">
-        <div class="ncard"><div class="ncard-top"><span class="ncard-icon">💪</span><span class="ncard-name">Zinc</span><span class="ncard-dose" style="background:#EAF3EE;color:#2D6A4F;border:1px solid #C3DDD1">14 mg/día</span></div><div class="ncard-why">+300 enzimas. Sistema inmune, síntesis de proteínas y testosterona. Con objetivo de preservar músculo en déficit calórico, el zinc tiene un rol directo en la recuperación.</div><div class="ncard-foods"><div class="nf">Ostras crudas <span>59.2 mg</span></div><div class="nf">Carne res <span>8.5 mg</span></div><div class="nf">Almendras <span>5.0 mg</span></div><div class="nf">Lentejas <span>3.9 mg</span></div><div class="nf">Pollo <span>2.9 mg</span></div></div></div>
-        <div class="ncard"><div class="ncard-top"><span class="ncard-icon">🌊</span><span class="ncard-name">Selenio</span><span class="ncard-dose" style="background:#EAF3EE;color:#2D6A4F;border:1px solid #C3DDD1">55 mcg/día</span></div><div class="ncard-why">Antioxidante. Regula metabolismo y función tiroidea. Suelos europeos son deficitarios. Una nuez de Brasil al día cubre la dosis.</div><div class="ncard-alerts"><div class="nalert nalert-w">⚠ Selenosis por exceso. No superes 2–3 nueces de Brasil al día</div></div><div class="ncard-foods"><div class="nf">Nuez de Brasil <span>90 μg</span></div><div class="nf">Bacalao salado <span>148 μg</span></div><div class="nf">Sardina <span>59 μg</span></div><div class="nf">Mejillón <span>56 μg</span></div></div></div>
-      </div>
-      <div class="sl">Macros — objetivos diarios · 88 kg → 80 kg · actividad moderada-alta</div>
-      <div class="macros-strip">
-        <div class="mc"><div class="mc-lbl">Calorías</div><div class="mc-val">2200</div><div class="mc-sub">kcal/día · déficit ~300 kcal</div></div>
-        <div class="mc"><div class="mc-lbl">Proteína</div><div class="mc-val">160–180g</div><div class="mc-sub">~2g/kg peso objetivo</div></div>
-        <div class="mc"><div class="mc-lbl">Carbohidratos</div><div class="mc-val">220–260g</div><div class="mc-sub">complejos prioritarios</div></div>
-        <div class="mc"><div class="mc-lbl">Grasas</div><div class="mc-val">60–75g</div><div class="mc-sub">insaturadas prioritarias</div></div>
-        <div class="mc"><div class="mc-lbl">Agua</div><div class="mc-val">2.5–3L</div><div class="mc-sub">por día</div></div>
-      </div>
-      <div class="macro-grid">
-        <div class="mcard"><div class="mcard-top"><span class="mcard-icon">🥚</span><span class="mcard-name">Proteínas</span><span class="mcard-badge" style="background:#FCEEE9;color:#C0614A;border:1px solid #F5C6BC">160–180g/día</span></div><div class="mcard-why">La recomendación oficial de 0.83g/kg es para sedentarios. Para perder 8 kg preservando músculo necesitas 1.8–2g/kg del peso objetivo (80 kg).</div><div class="ncard-foods"><div class="nf">Pechuga pollo <span>31g/100g</span></div><div class="nf">Atún lata <span>32g/100g</span></div><div class="nf">Sardinas <span>21g/100g</span></div><div class="nf">Lentejas <span>26g/100g</span></div><div class="nf">Huevos <span>13g/100g</span></div><div class="nf">Garbanzos <span>21g/100g</span></div></div></div>
-        <div class="mcard"><div class="mcard-top"><span class="mcard-icon">🌾</span><span class="mcard-name">Carbohidratos</span><span class="mcard-badge" style="background:#FFF8EC;color:#92400E;border:1px solid #F2CC8F">220–260g · complejos</span></div><div class="mcard-why">El problema no son los carbohidratos, son los refinados y los dulces. Picos de glucosa, bajadas de energía, mayor almacenamiento de grasa.</div><div class="ncard-foods"><div class="nf">Avena <span>12g/100g</span></div><div class="nf">Arroz integral <span>23.5g/100g</span></div><div class="nf">Lentejas <span>20g/100g</span></div><div class="nf">Patata cocida <span>17.6g/100g</span></div><div class="nf">Garbanzos <span>27.4g/100g</span></div></div></div>
-        <div class="mcard"><div class="mcard-top"><span class="mcard-icon">🥑</span><span class="mcard-name">Grasas</span><span class="mcard-badge" style="background:#EAF3EE;color:#2D6A4F;border:1px solid #C3DDD1">25–30% calorías</span></div><div class="mcard-why">Las grasas insaturadas son antiinflamatorias, protegen el corazón y permiten absorber las vitaminas liposolubles A, D, E y K.</div><div class="ncard-foods"><div class="nf">Aceite oliva virgen <span>MUFA</span></div><div class="nf">Aguacate <span>MUFA</span></div><div class="nf">Salmón / Sardinas <span>Omega-3</span></div><div class="nf">Nueces <span>Omega-3/6</span></div><div class="nf">Almendras <span>MUFA + Vit E</span></div></div></div>
-      </div>
+<div class="grp"><div class="grp-hd"><span class="grp-num">01</span><h2 class="grp-ttl">Vitaminas liposolubles</h2><span class="meta">se almacenan en tejido graso e hígado</span></div>
+<div class="ent-grid"><div class="ent"><div class="ent-hd"><h3>Vitamina A</h3><span class="ent-dose">900 mcg/día</span></div><p class="ent-why">Visión nocturna, sistema inmune y salud de la piel. Antioxidante celular. Con meses sin fruta ni verdura, la inmunidad es el primer sistema que cede.</p><p class="ent-al"><span class="ptag">Déficit</span>visión nocturna reducida, infecciones frecuentes, anemia</p><p class="ent-al"><span class="ptag soft">Exceso solo por suplementación abusiva</span>pérdida de cabello, piel seca</p><p class="ent-foods"><span class="ptag soft">Fuentes</span>Zanahoria <b>1346 μg</b> <span class="sep">·</span> Espinacas <b>771 μg</b> <span class="sep">·</span> Melón <b>771 μg</b> <span class="sep">·</span> Calabaza <b>707 μg</b> <span class="sep">·</span> Yema huevo <b>570 μg</b></p></div><div class="ent"><div class="ent-hd"><h3>Vitamina D</h3><span class="ent-dose">15 mcg/día</span></div><p class="ent-why">Absorción de calcio, función inmune, rendimiento muscular. Trabajo de oficina en Madrid = exposición solar insuficiente garantizada. <strong>Suplementa: 2000–4000 UI/día con comida.</strong></p><p class="ent-al"><span class="ptag">Déficit</span>debilidad muscular, recuperación comprometida, osteomalacia</p><p class="ent-al"><span class="ptag soft">Exceso</span>hipercalcemia, cálculos renales. Solo por sobredosis de suplemento</p><p class="ent-foods"><span class="ptag soft">Fuentes</span>Ac. hígado bacalao <b>252 mcg</b> <span class="sep">·</span> Atún fresco <b>25 mcg</b> <span class="sep">·</span> Sardinas lata <b>17 mcg</b> <span class="sep">·</span> Salmón <b>5 mcg</b></p></div><div class="ent"><div class="ent-hd"><h3>Vitamina E</h3><span class="ent-dose">15 mg/día</span></div><p class="ent-why">Antioxidante liposoluble potente. Protege células del daño oxidativo y refuerza el sistema inmune. Especialmente relevante en fases de entrenamiento intenso.</p><p class="ent-al"><span class="ptag">Déficit</span>menor producción de anticuerpos, recuperación más lenta</p><p class="ent-foods"><span class="ptag soft">Fuentes</span>Semillas girasol <b>52 mg</b> <span class="sep">·</span> Almendras <b>26 mg</b> <span class="sep">·</span> Avellanas <b>24 mg</b> <span class="sep">·</span> Aceite oliva <b>14 mg</b> <span class="sep">·</span> Aguacate <b>2.1 mg</b></p></div><div class="ent"><div class="ent-hd"><h3>Vitamina K</h3><span class="ent-dose">120 mcg/día</span></div><p class="ent-why">Coagulación y metabolismo óseo. Con déficit de D —probable—, necesitas K2 para que el calcio llegue a los huesos en lugar de calcificar arterias.</p><p class="ent-al"><span class="ptag">Déficit</span>raro. Puede aparecer con uso prolongado de antibióticos</p><p class="ent-foods"><span class="ptag soft">Fuentes</span>Repollo verde <b>1060 μg</b> <span class="sep">·</span> Col rizada <b>1054 μg</b> <span class="sep">·</span> Espinacas <b>884 μg</b> <span class="sep">·</span> Garbanzos <b>264 μg</b> <span class="sep">·</span> Brócoli <b>154 μg</b></p></div></div></div>
+<div class="grp"><div class="grp-hd"><span class="grp-num">02</span><h2 class="grp-ttl">Vitaminas hidrosolubles</h2><span class="meta">no se almacenan, consumo diario necesario</span></div>
+<div class="ent-grid"><div class="ent"><div class="ent-hd"><h3>Vitamina C</h3><span class="ent-dose">90 mg/día</span></div><p class="ent-why">Síntesis de colágeno (tendones al retomar entrenos), inmunidad, absorción de hierro. Sin fruta en tu dieta estás casi con certeza deficitario.</p><p class="ent-al"><span class="ptag">Déficit</span>fatiga, mayor riesgo de lesiones tendinosas, cicatrización lenta</p><p class="ent-foods"><span class="ptag soft">Fuentes</span>Guayaba <b>273 mg</b> <span class="sep">·</span> Pimientos <b>131 mg</b> <span class="sep">·</span> Kiwi <b>71 mg</b> <span class="sep">·</span> Brócoli <b>65 mg</b> <span class="sep">·</span> Fresas <b>60 mg</b> <span class="sep">·</span> Naranja <b>50 mg</b></p></div><div class="ent"><div class="ent-hd"><h3>Vitamina B12</h3><span class="ent-dose">2.4 mcg/día</span></div><p class="ent-why">Glóbulos rojos, síntesis de ADN, salud neurológica. Impacta en memoria y concentración. Su déficit es silencioso y se manifiesta meses después.</p><p class="ent-al"><span class="ptag">Déficit</span>anemia megaloblástica, deterioro neurológico, fatiga crónica</p><p class="ent-foods"><span class="ptag soft">Fuentes</span>Hígado res <b>100 μg</b> <span class="sep">·</span> Mejillones <b>21 μg</b> <span class="sep">·</span> Sardinas <b>12 μg</b> <span class="sep">·</span> Atún <b>2.7 μg</b> <span class="sep">·</span> Huevo <b>0.5 μg</b></p></div><div class="ent"><div class="ent-hd"><h3>Vitamina B6</h3><span class="ent-dose">1.3–1.7 mg/día</span></div><p class="ent-why">+100 reacciones enzimáticas. Metabolismo de proteínas, serotonina y dopamina. Con alta ingesta proteica, la demanda de B6 sube proporcionalmente.</p><p class="ent-al"><span class="ptag">Déficit</span>anemia, confusión, depresión, debilidad muscular</p><p class="ent-foods"><span class="ptag soft">Fuentes</span>Hígado res <b>0.9 mg</b> <span class="sep">·</span> Nueces <b>0.7 mg</b> <span class="sep">·</span> Salmón <b>0.6 mg</b> <span class="sep">·</span> Garbanzos <b>0.6 mg</b> <span class="sep">·</span> Plátano <b>0.4 mg</b></p></div><div class="ent"><div class="ent-hd"><h3>Ácido Fólico B9</h3><span class="ent-dose">400 mcg/día</span></div><p class="ent-why">Síntesis de ADN, división celular, glóbulos rojos. Regula homocisteína. Con carga física y laboral alta, la renovación celular sube y la demanda también.</p><p class="ent-foods"><span class="ptag soft">Fuentes</span>Soja <b>240 μg</b> <span class="sep">·</span> Hígado <b>192 μg</b> <span class="sep">·</span> Garbanzos <b>180 μg</b> <span class="sep">·</span> Espinacas <b>140 μg</b> <span class="sep">·</span> Aguacate <b>~80 μg</b></p></div><div class="ent"><div class="ent-hd"><h3>Vitamina B3 · Niacina</h3><span class="ent-dose">16 mg/día</span></div><p class="ent-why">Producción de ATP y conversión de macronutrientes en energía. Ligada al rendimiento físico y mental. Fácilmente cubierta con carne, pescado y legumbres.</p><p class="ent-foods"><span class="ptag soft">Fuentes</span>Hígado <b>11.9 mg</b> <span class="sep">·</span> Atún <b>11 mg</b> <span class="sep">·</span> Cerdo magro <b>8.7 mg</b> <span class="sep">·</span> Pollo <b>7.6 mg</b> <span class="sep">·</span> Salmón <b>5.4 mg</b></p></div></div></div>
+<div class="grp"><div class="grp-hd"><span class="grp-num">03</span><h2 class="grp-ttl">Minerales</h2><span class="meta">macrominerales</span></div>
+<div class="ent-grid"><div class="ent"><div class="ent-hd"><h3>Calcio</h3><span class="ent-dose">1000–1200 mg/día</span></div><p class="ent-why">99% en huesos y dientes. Contracción muscular y transmisión nerviosa. Necesita vitamina D para ser absorbido — los dos van juntos siempre.</p><p class="ent-al"><span class="ptag">Déficit</span>calambres, fragilidad ósea, dificultad de concentración</p><p class="ent-foods"><span class="ptag soft">Fuentes</span>Queso Gruyère <b>560–850 mg</b> <span class="sep">·</span> Yogur <b>415 mg</b> <span class="sep">·</span> Sardinas lata <b>400 mg</b> <span class="sep">·</span> Leche <b>300 mg</b> <span class="sep">·</span> Almendras <b>240 mg</b></p></div><div class="ent"><div class="ent-hd"><h3>Magnesio</h3><span class="ent-dose">400–420 mg/día</span></div><p class="ent-why">+300 reacciones bioquímicas. Regula glucosa, ritmo cardíaco, contracción muscular y sueño. Reduce cortisol. El ojo que te vibra es síntoma clásico de déficit. <strong>Suplementa: glicinato 300–400 mg antes de dormir.</strong></p><p class="ent-al"><span class="ptag">Déficit</span>fasciculación ocular, calambres, fatiga, sueño fragmentado</p><p class="ent-foods"><span class="ptag soft">Fuentes</span>Almendras <b>250 mg</b> <span class="sep">·</span> Chocolate negro <b>100 mg</b> <span class="sep">·</span> Pan integral <b>91 mg</b> <span class="sep">·</span> Lentejas <b>78 mg</b> <span class="sep">·</span> Espinacas <b>50 mg</b></p></div><div class="ent"><div class="ent-hd"><h3>Hierro</h3><span class="ent-dose">8 mg/día</span></div><p class="ent-why">Transporta oxígeno a los músculos. Corriste una maratón en febrero: el hierro se destruye en cada zancada. Tu reserva puede estar baja. Combina fuentes hemo con vitamina C.</p><p class="ent-al"><span class="ptag">Déficit</span>anemia ferropénica, fatiga crónica — frecuente en deportistas de resistencia</p><p class="ent-al"><span class="ptag soft">No suplementes sin analítica previa.</span>El exceso daña hígado y corazón</p><p class="ent-foods"><span class="ptag soft">Fuentes</span>Berberechos <b>24 mg</b> <span class="sep">·</span> Hígado res <b>8 mg</b> <span class="sep">·</span> Lentejas <b>7.1 mg</b> <span class="sep">·</span> Garbanzos <b>6.7 mg</b> <span class="sep">·</span> Espinacas <b>4 mg</b></p></div><div class="ent"><div class="ent-hd"><h3>Potasio</h3><span class="ent-dose">3400 mg/día</span></div><p class="ent-why">Equilibrio hídrico, presión arterial y función cardíaca muscular. Se pierde con el sudor. Su fuente principal es fruta y verdura.</p><p class="ent-foods"><span class="ptag soft">Fuentes</span>Espinaca cruda <b>529 mg</b> <span class="sep">·</span> Aguacate <b>487 mg</b> <span class="sep">·</span> Plátano <b>370 mg</b> <span class="sep">·</span> Melón <b>310 mg</b> <span class="sep">·</span> Kiwi <b>290 mg</b></p></div></div></div>
+<div class="grp"><div class="grp-hd"><span class="grp-num">04</span><h2 class="grp-ttl">Minerales</h2><span class="meta">oligominerales</span></div>
+<div class="ent-grid"><div class="ent"><div class="ent-hd"><h3>Zinc</h3><span class="ent-dose">14 mg/día</span></div><p class="ent-why">+300 enzimas. Sistema inmune, síntesis de proteínas y testosterona. Con objetivo de preservar músculo en déficit calórico, el zinc tiene un rol directo en la recuperación.</p><p class="ent-foods"><span class="ptag soft">Fuentes</span>Ostras crudas <b>59.2 mg</b> <span class="sep">·</span> Carne res <b>8.5 mg</b> <span class="sep">·</span> Almendras <b>5.0 mg</b> <span class="sep">·</span> Lentejas <b>3.9 mg</b> <span class="sep">·</span> Pollo <b>2.9 mg</b></p></div><div class="ent"><div class="ent-hd"><h3>Selenio</h3><span class="ent-dose">55 mcg/día</span></div><p class="ent-why">Antioxidante. Regula metabolismo y función tiroidea. Suelos europeos son deficitarios. Una nuez de Brasil al día cubre la dosis.</p><p class="ent-al"><span class="ptag soft">Selenosis por exceso.</span>No superes 2–3 nueces de Brasil al día</p><p class="ent-foods"><span class="ptag soft">Fuentes</span>Nuez de Brasil <b>90 μg</b> <span class="sep">·</span> Bacalao salado <b>148 μg</b> <span class="sep">·</span> Sardina <b>59 μg</b> <span class="sep">·</span> Mejillón <b>56 μg</b></p></div></div></div>
+<div class="grp"><div class="grp-hd"><span class="grp-num">05</span><h2 class="grp-ttl">Macros</h2><span class="meta">objetivos diarios · 88 kg → 80 kg · actividad moderada-alta</span></div>
+<div class="figures five"><div class="fig"><div class="fig-num num">2200</div><div class="fig-lbl"><b>Calorías</b> · kcal/día · déficit ~300 kcal</div></div><div class="fig"><div class="fig-num num">160–180g</div><div class="fig-lbl"><b>Proteína</b> · ~2g/kg peso objetivo</div></div><div class="fig"><div class="fig-num num">220–260g</div><div class="fig-lbl"><b>Carbohidratos</b> · complejos prioritarios</div></div><div class="fig"><div class="fig-num num">60–75g</div><div class="fig-lbl"><b>Grasas</b> · insaturadas prioritarias</div></div><div class="fig"><div class="fig-num num">2.5–3L</div><div class="fig-lbl"><b>Agua</b> · por día</div></div></div>
+<div class="ent-grid"><div class="ent"><div class="ent-hd"><h3>Proteínas</h3><span class="ent-dose">160–180g/día</span></div><p class="ent-why">La recomendación oficial de 0.83g/kg es para sedentarios. Para perder 8 kg preservando músculo necesitas 1.8–2g/kg del peso objetivo (80 kg).</p><p class="ent-foods"><span class="ptag soft">Fuentes</span>Pechuga pollo <b>31g/100g</b> <span class="sep">·</span> Atún lata <b>32g/100g</b> <span class="sep">·</span> Sardinas <b>21g/100g</b> <span class="sep">·</span> Lentejas <b>26g/100g</b> <span class="sep">·</span> Huevos <b>13g/100g</b> <span class="sep">·</span> Garbanzos <b>21g/100g</b></p></div><div class="ent"><div class="ent-hd"><h3>Carbohidratos</h3><span class="ent-dose">220–260g · complejos</span></div><p class="ent-why">El problema no son los carbohidratos, son los refinados y los dulces. Picos de glucosa, bajadas de energía, mayor almacenamiento de grasa.</p><p class="ent-foods"><span class="ptag soft">Fuentes</span>Avena <b>12g/100g</b> <span class="sep">·</span> Arroz integral <b>23.5g/100g</b> <span class="sep">·</span> Lentejas <b>20g/100g</b> <span class="sep">·</span> Patata cocida <b>17.6g/100g</b> <span class="sep">·</span> Garbanzos <b>27.4g/100g</b></p></div><div class="ent"><div class="ent-hd"><h3>Grasas</h3><span class="ent-dose">25–30% calorías</span></div><p class="ent-why">Las grasas insaturadas son antiinflamatorias, protegen el corazón y permiten absorber las vitaminas liposolubles A, D, E y K.</p><p class="ent-foods"><span class="ptag soft">Fuentes</span>Aceite oliva virgen <b>MUFA</b> <span class="sep">·</span> Aguacate <b>MUFA</b> <span class="sep">·</span> Salmón / Sardinas <b>Omega-3</b> <span class="sep">·</span> Nueces <b>Omega-3/6</b> <span class="sep">·</span> Almendras <b>MUFA + Vit E</b></p></div></div></div>
     </div>
     <div class="tp" id="tp-dieta">
-      <!-- CSS extra para plan de comidas (inline, scoped) -->
-      <style>
-        .pm-card { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 18px 20px; }
-        .pm-card.bar-green { border-left: 3px solid var(--green); }
-        .pm-card.bar-yellow { border-left: 3px solid #C9A227; }
-        .pm-card.bar-red { border-left: 3px solid #B5564A; }
-        .pm-card.green-bg { background: var(--green-bg); border-color: var(--green-border); }
-        .pm-title { font-size: 13.5px; font-weight: 600; margin-bottom: 5px; }
-        .pm-meta { font-size: 10px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: var(--green); margin-bottom: 6px; }
-        .pm-text { font-size: 12px; color: var(--text-2); line-height: 1.6; }
-        .pm-grid-2 { display: grid; grid-template-columns: repeat(2,1fr); gap: 10px; margin-bottom: 4px; }
-        .pm-grid-4 { display: grid; grid-template-columns: repeat(4,1fr); gap: 10px; margin-bottom: 4px; }
-        @media(max-width:900px) { .pm-grid-4 { grid-template-columns: repeat(2,1fr); } }
-        @media(max-width:600px) { .pm-grid-2, .pm-grid-4 { grid-template-columns: 1fr; } }
-        .day-row { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 18px 22px; margin-bottom: 10px; display: grid; grid-template-columns: 120px 1fr; gap: 18px; }
-        @media(max-width:640px) { .day-row { grid-template-columns: 1fr; gap: 12px; } }
-        .day-name { font-family: 'DM Serif Display', serif; font-size: 18px; letter-spacing: -0.3px; }
-        .day-type { font-size: 9px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--text-3); margin-top: 3px; }
-        .day-badge { display: inline-block; margin-top: 7px; font-size: 9px; font-weight: 700; padding: 3px 9px; border-radius: 11px; background: var(--green-bg); color: var(--green); border: 1px solid var(--green-border); letter-spacing: 0.3px; }
-        .meals { display: flex; flex-direction: column; gap: 10px; }
-        .meal { display: flex; gap: 12px; align-items: flex-start; }
-        .meal-tag { font-size: 9px; letter-spacing: 0.8px; text-transform: uppercase; font-weight: 700; padding: 4px 0; width: 72px; text-align: center; border-radius: 5px; flex-shrink: 0; margin-top: 1px; }
-        .tag-d { background: #FBF1DC; color: #B08923; }
-        .tag-c { background: #FEF3F2; color: #B5663A; }
-        .tag-n { background: var(--green-bg); color: var(--green); }
-        .meal-name { font-size: 13px; font-weight: 600; margin-bottom: 2px; color: var(--text-1); }
-        .meal-detail { font-size: 11.5px; color: var(--text-2); line-height: 1.5; }
-        .shop-col h3 { font-size: 10px; letter-spacing: 1.5px; text-transform: uppercase; color: #B5564A; font-weight: 700; margin-bottom: 10px; padding-bottom: 6px; border-bottom: 1px solid var(--border); }
-        .shop-col ul { list-style: none; }
-        .shop-col li { font-size: 12px; color: var(--text-2); padding: 3px 0; display: flex; align-items: center; gap: 8px; }
-        .shop-col li::before { content: ''; width: 4px; height: 4px; border-radius: 50%; background: var(--green); flex-shrink: 0; }
-        .pm-callout { background: #FEF3F2; border: 1px solid #F5C6BC; border-radius: 10px; padding: 20px 24px; margin-top: 8px; }
-        .pm-callout h2 { font-family: 'DM Serif Display', serif; font-size: 17px; color: #A24F2E; margin-bottom: 6px; }
-        .pm-callout p { font-size: 12.5px; color: var(--text-2); line-height: 1.65; }
-        .pm-header { margin-bottom: 24px; }
-        .pm-header p { font-size: 13px; color: var(--text-2); line-height: 1.65; max-width: 620px; }
-      </style>
+      
+      
 
       <div class="pm-header">
         <p>El gimnasio funciona porque está todo decidido de antemano. Este plan aplica la misma lógica: cocinas una vez el domingo, el resto de la semana solo ensamblas. Cero decisiones con hambre. Aplica de lunes a viernes más la cena del domingo. Duración: 3–4 semanas estrictas.</p>
       </div>
 
-      <div class="sl">Diagnóstico</div>
+      <div class="grp-hd"><span class="grp-num">01</span><h2 class="grp-ttl">Diagnóstico</h2></div>
       <div class="pm-grid-2">
         <div class="pm-card bar-green">
           <div class="pm-title">El problema no es el qué, es el patrón</div>
           <div class="pm-text">Sabes perfectamente qué deberías comer. El fallo es decidirlo en el momento, con hambre o cansancio. Este plan elimina la decisión: cada comida ya está escrita. No improvisas, no negocias contigo mismo.</div>
         </div>
         <div class="pm-card bar-yellow">
-          <div class="pm-title">⚠ 6 semanas de estancamiento</div>
+          <div class="pm-title">6 semanas de estancamiento</div>
           <div class="pm-text">El peso lleva plano entre 87 y 87.6 kg porque no estás en déficit real. El deporte no da licencia ilimitada para comer. Tres semanas estrictas y la báscula vuelve a moverse.</div>
         </div>
       </div>
 
-      <div class="sl">El domingo se cocina · 90 minutos</div>
+      <div class="grp-hd"><span class="grp-num">02</span><h2 class="grp-ttl">El domingo se cocina</h2><span class="meta">90 minutos</span></div>
       <div class="pm-grid-4">
         <div class="pm-card green-bg">
           <div class="pm-title">Pollo al horno</div>
@@ -447,7 +353,7 @@ nav { background: var(--surface); border-bottom: 1px solid var(--border); paddin
         </div>
       </div>
 
-      <div class="sl">La semana, comida a comida</div>
+      <div class="grp-hd"><span class="grp-num">03</span><h2 class="grp-ttl">La semana, comida a comida</h2></div>
 
       <div class="day-row">
         <div><div class="day-name">Lunes</div><div class="day-type">Full Body A</div><div class="day-badge">Día de entreno</div></div>
@@ -501,7 +407,7 @@ nav { background: var(--surface); border-bottom: 1px solid var(--border); paddin
         </div>
       </div>
 
-      <div class="sl">Principios no negociables</div>
+      <div class="grp-hd"><span class="grp-num">04</span><h2 class="grp-ttl">Principios no negociables</h2></div>
       <div class="pm-grid-4">
         <div class="pm-card bar-green"><div class="pm-title">Verdura en comida y cena</div><div class="pm-text">Sin excepción. Es el déficit que llevas 6 semanas fallando. Cada plato principal lleva verdura.</div></div>
         <div class="pm-card bar-green"><div class="pm-title">Proteína en cada comida</div><div class="pm-text">Pollo, ternera, salmón, huevos. Con tu carga de gimnasio, protege el músculo en déficit.</div></div>
@@ -509,7 +415,7 @@ nav { background: var(--surface); border-bottom: 1px solid var(--border); paddin
         <div class="pm-card bar-green"><div class="pm-title">El domingo se cocina</div><div class="pm-text">El batch del domingo no es opcional. Es la pieza que sostiene todo el sistema.</div></div>
       </div>
 
-      <div class="sl">Eliminar de lunes a viernes</div>
+      <div class="grp-hd"><span class="grp-num">05</span><h2 class="grp-ttl">Eliminar de lunes a viernes</h2></div>
       <div class="pm-grid-4" style="margin-bottom:20px">
         <div class="pm-card bar-red"><div class="pm-title">Dulces y bollería</div><div class="pm-text">Cero croissants, alfajores, chuches entre semana. Si necesitas dulce: fruta o chocolate negro 85%.</div></div>
         <div class="pm-card bar-red"><div class="pm-title">Alcohol</div><div class="pm-text">Cero alcohol L-V. Las 6 cervezas de una semana normal son azúcar líquido que frena el déficit.</div></div>
@@ -517,7 +423,7 @@ nav { background: var(--surface); border-bottom: 1px solid var(--border); paddin
         <div class="pm-card bar-red"><div class="pm-title">Comidas incompletas</div><div class="pm-text">Cada comida sin proteína ni verdura es una oportunidad perdida. El plan no las contempla.</div></div>
       </div>
 
-      <div class="sl">Lista de la compra · una vez por semana</div>
+      <div class="grp-hd"><span class="grp-num">06</span><h2 class="grp-ttl">Lista de la compra</h2><span class="meta">una vez por semana</span></div>
       <div class="pm-grid-4" style="margin-bottom:20px">
         <div class="shop-col">
           <h3>Proteína</h3>
@@ -548,44 +454,42 @@ nav { background: var(--surface); border-bottom: 1px solid var(--border); paddin
   <!-- PANEL 2 — DEPORTE -->
   <div class="panel" id="panel-deporte">
 
-    <div class="sl">Objetivo activo</div>
+    <div class="grp-hd"><span class="grp-num">01</span><h2 class="grp-ttl">Objetivo activo</h2></div>
     <div class="objetivo">
-      <div class="obj-label">→ En curso · Fase 1 · Cimientos</div>
-      <div class="obj-text">Completar mínimo 3 sesiones de fuerza por semana durante 16 semanas consecutivas (Full Body) + 1 sesión de cardio dominical progresiva de 19 semanas. Incorporación a Portland el 6 de abril — el gimnasio se elige antes de llegar.</div>
+      <div class="obj-left"><div class="obj-label">En curso · Fase 01 · Cimientos</div>
+      <div class="obj-text">Completar mínimo 3 sesiones de fuerza por semana durante 16 semanas consecutivas (Full Body) + 1 sesión de cardio dominical progresiva de 19 semanas. Incorporación a Portland el 6 de abril — el gimnasio se elige antes de llegar.</div></div>
       <div class="obj-hitos">
-        <div class="hito active"><div class="hito-dot"></div>Elegir gimnasio en Madrid antes del 6 Abr</div>
-        <div class="hito pending"><div class="hito-dot"></div>4 semanas consecutivas completadas</div>
-        <div class="hito pending"><div class="hito-dot"></div>8 semanas consecutivas completadas</div>
-        <div class="hito pending"><div class="hito-dot"></div>16 semanas — hábito instalado</div>
+        <div class="hito active"><span class="g"></span><span class="title">Elegir gimnasio en Madrid antes del 6 Abr</span></div>
+        <div class="hito pending"><span class="g"></span><span class="title">4 semanas consecutivas completadas</span></div>
+        <div class="hito pending"><span class="g"></span><span class="title">8 semanas consecutivas completadas</span></div>
+        <div class="hito pending"><span class="g"></span><span class="title">16 semanas — hábito instalado</span></div>
       </div>
     </div>
 
-    <div class="sl">Programa</div>
+    <div class="grp-hd"><span class="grp-num">02</span><h2 class="grp-ttl">Programa</h2></div>
     <div class="content-grid">
       <a href="rutina.html" class="content-card">
         <div class="card-top">
-          <div class="card-icon">🏋️</div>
           <div class="card-label">Programa · Fase 1</div>
           <div class="card-title">Rutina Full Body 3×/semana</div>
           <div class="card-desc">16 semanas estructuradas en 4 fases. Lunes, miércoles y viernes. Hombro protegido. Progresión de carga semanal con descarga cada 4 semanas.</div>
         </div>
         <div class="card-bottom">
           <div class="card-tags"><span class="card-tag">Full Body</span><span class="card-tag">3×/semana</span><span class="card-tag">16 semanas</span></div>
-          <div class="card-arrow">→</div>
+          <div class="card-arrow">Abrir</div>
         </div>
       </a>
       <div class="content-card" onclick="openCardioModal()" style="cursor:pointer">
         <div class="card-top">
-          <div class="card-icon">🏃</div>
           <div class="card-label">Programa · Cardio dominical</div>
           <div class="card-title">Carrera progresiva 19 semanas</div>
           <div class="card-desc">1 sesión los domingos. Progresión de 5 km hasta 32 km. Preparación para maratón con picos controlados y semanas de recuperación integradas.</div>
         </div>
         <div class="card-bottom">
           <div class="card-tags"><span class="card-tag">1×/semana</span><span class="card-tag">Domingo</span><span class="card-tag">19 semanas</span></div>
-          <div class="card-arrow">→</div>
+          <div class="card-arrow">Abrir</div>
         </div>
-      </a>
+      </div>
     </div>
 
     <!-- CARDIO MODAL -->
@@ -593,13 +497,12 @@ nav { background: var(--surface); border-bottom: 1px solid var(--border); paddin
       <div class="cardio-modal">
         <div class="cardio-modal-hdr">
           <div class="cardio-modal-hdr-left">
-            <div class="cardio-modal-hdr-icon">🏃</div>
             <div>
-              <div class="cardio-modal-title">Carrera dominical — Programa progresivo</div>
+              <div class="cardio-modal-title">Carrera dominical, programa progresivo</div>
               <div class="cardio-modal-sub">1 sesión los domingos · 19 semanas · Objetivo: maratón</div>
             </div>
           </div>
-          <button class="cardio-modal-close" onclick="closeCardioModal()">✕ Cerrar</button>
+          <button class="cardio-modal-close" onclick="closeCardioModal()">Cerrar</button>
         </div>
         <div class="cardio-modal-stats">
           <div><div class="cardio-modal-stat-val">351 km</div><div class="cardio-modal-stat-lbl">Total programa</div></div>
@@ -633,12 +536,11 @@ nav { background: var(--surface); border-bottom: 1px solid var(--border); paddin
       </div>
     </div>
   </div>
-  </div>
 
-  <!-- PANEL 4 — TRACKER DE PESO -->
+  <!-- PANEL 3 — PESO -->
   <div class="panel" id="panel-peso">
     <div class="peso-wrap">
-      <div class="objetivo-band"><span class="ob-icon">🎯</span><span class="ob-text">Objetivo: <strong>88 kg → 80 kg</strong> · Ritmo recomendado: 0.3–0.5 kg/semana · Inicio: 6 Abr 2026</span></div>
+      <div class="objetivo-band"><span class="ob-text">Objetivo <b>de 88 a 80 kg</b> · ritmo recomendado 0,3 a 0,5 kg por semana · inicio 6 abr 2026</span></div>
       <div class="peso-hero">
         <div class="ph-cell"><div class="ph-cell-lbl">Peso actual</div><div class="ph-cell-val" id="pw-actual">—</div><div class="ph-cell-sub">kg</div></div>
         <div class="ph-cell"><div class="ph-cell-lbl">Objetivo</div><div class="ph-cell-val gray">80</div><div class="ph-cell-sub">kg</div></div>
@@ -655,7 +557,7 @@ nav { background: var(--surface); border-bottom: 1px solid var(--border); paddin
             <button class="pf-btn" onclick="pfFilter(16,this)">16 sem</button>
           </div>
         </div>
-        <div class="peso-chart-wrap"><canvas id="peso-chart"></canvas></div>
+        <div class="peso-chart-wrap" id="peso-chart"></div>
       </div>
       <div class="peso-add-card">
         <div class="peso-add-title">Añadir registro</div>
@@ -663,7 +565,7 @@ nav { background: var(--surface); border-bottom: 1px solid var(--border); paddin
           <div class="peso-input-group"><label>Fecha</label><input type="date" id="p-date"></div>
           <div class="peso-input-group"><label>Peso (kg)</label><input type="number" id="p-kg" placeholder="Ej: 87.4" step="0.1" min="40" max="200"></div>
           <div class="peso-input-group" style="flex:1;min-width:160px"><label>Nota (opcional)</label><input type="text" id="p-note" placeholder="Ej: Después de entreno" style="width:100%"></div>
-          <button class="peso-add-btn" onclick="addPeso()">+ Añadir</button>
+          <button class="peso-add-btn" onclick="addPeso()">Añadir</button>
         </div>
         <div class="peso-add-err" id="p-err"></div>
       </div>
@@ -676,7 +578,13 @@ nav { background: var(--surface); border-bottom: 1px solid var(--border); paddin
 
 </div>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<footer>
+  <div class="wrap">
+    <span>Albert's Odyssey · Salud · Pilar 01</span>
+    <span><a href="../index.html" class="txt-btn">Volver al inicio</a></span>
+  </div>
+</footer>
+
 <script>
 function switchPanel(id) {
   document.querySelectorAll('.panel').forEach(function(p) { p.classList.remove('active'); });
@@ -691,62 +599,43 @@ function st(id) {
   document.querySelectorAll('.tab').forEach(function(t, i) { t.classList.toggle('active', o[i] === id); });
   document.querySelectorAll('.tp').forEach(function(p) { p.classList.toggle('active', p.id === 'tp-' + id); });
 }
-var lcTotal = 0, lcChecked = 0;
-function lcInit() { lcTotal = document.querySelectorAll('.lc-item').length; lcUpdateAll(); }
-function toggle(el) { el.classList.toggle('checked'); lcChecked = document.querySelectorAll('.lc-item.checked').length; lcUpdateAll(); lcSave(); }
-function lcUpdateAll() {
-  var pct = lcTotal > 0 ? Math.round((lcChecked / lcTotal) * 100) : 0;
-  document.getElementById('progBig').textContent = lcChecked;
-  document.getElementById('progFill').style.width = pct + '%';
-  document.getElementById('progPct').textContent = lcChecked + ' / ' + lcTotal;
-  var secs = document.querySelectorAll('.lc-section');
-  secs.forEach(function(sec, i) { var t = sec.querySelectorAll('.lc-item').length; var d = sec.querySelectorAll('.lc-item.checked').length; var cnt = document.getElementById('cnt-' + i); var sh = document.getElementById('sh-' + i); if (cnt) cnt.textContent = d + '/' + t; if (sh) sh.classList.toggle('complete', d === t); });
-}
-function lcSave() { var state = []; document.querySelectorAll('.lc-item').forEach(function(item) { state.push(item.classList.contains('checked') ? 1 : 0); }); try { localStorage.setItem('salud_lista_v1', JSON.stringify(state)); } catch(e) {} }
-function lcLoad() { try { var raw = localStorage.getItem('salud_lista_v1'); if (!raw) return; var state = JSON.parse(raw); document.querySelectorAll('.lc-item').forEach(function(item, i) { if (state[i]) item.classList.add('checked'); }); lcChecked = document.querySelectorAll('.lc-item.checked').length; } catch(e) {} }
-function resetAll() { document.querySelectorAll('.lc-item').forEach(function(el) { el.classList.remove('checked'); }); lcChecked = 0; lcUpdateAll(); try { localStorage.removeItem('salud_lista_v1'); } catch(e) {} }
-
 function getWeekKey(date) { var d = new Date(date); d.setHours(0,0,0,0); d.setDate(d.getDate() - d.getDay() + 1); return d.toLocaleDateString('es-ES', { day:'2-digit', month:'short' }); }
 
 var PESO_KEY = 'ao_peso_v1';
-var pesoChart = null;
 var pesoFilter = 'all';
 function loadPesos() { try { return JSON.parse(localStorage.getItem(PESO_KEY) || '[]'); } catch(e) { return []; } }
 function savePesos(d) { localStorage.setItem(PESO_KEY, JSON.stringify(d)); }
-function addPeso() { var date = document.getElementById('p-date').value; var kg = parseFloat(document.getElementById('p-kg').value); var note = document.getElementById('p-note').value.trim(); var err = document.getElementById('p-err'); if (!date) { err.textContent = 'Elige una fecha.'; err.style.display = 'block'; return; } if (isNaN(kg) || kg < 40 || kg > 200) { err.textContent = 'Introduce un peso válido (40–200 kg).'; err.style.display = 'block'; return; } err.style.display = 'none'; var records = loadPesos(); var idx = records.findIndex(function(r) { return r.date === date; }); var entry = { date: date, kg: Math.round(kg * 10) / 10, note: note }; if (idx >= 0) records[idx] = entry; else records.push(entry); records.sort(function(a, b) { return a.date.localeCompare(b.date); }); savePesos(records); document.getElementById('p-kg').value = ''; document.getElementById('p-note').value = ''; renderPeso(); }
-function delPeso(date) { if (!confirm('¿Eliminar este registro?')) return; savePesos(loadPesos().filter(function(r) { return r.date !== date; })); renderPeso(); }
+function addPeso() { var date = document.getElementById('p-date').value; var kg = parseFloat(document.getElementById('p-kg').value); var note = document.getElementById('p-note').value.trim(); var err = document.getElementById('p-err'); if (!date) { err.textContent = 'Elige una fecha.'; err.style.display = 'block'; return; } if (isNaN(kg) || kg < 40 || kg > 200) { err.textContent = 'Introduce un peso válido (40–200 kg).'; err.style.display = 'block'; return; } err.style.display = 'none'; var records = loadPesos(); var idx = records.findIndex(function(r) { return r.date === date; }); var entry = { date: date, kg: Math.round(kg * 10) / 10, note: note }; if (idx >= 0) records[idx] = entry; else records.push(entry); records.sort(function(a, b) { return a.date.localeCompare(b.date); }); savePesos(records); document.getElementById('p-kg').value = ''; document.getElementById('p-note').value = ''; renderPeso(); renderHero(); }
+function delPeso(date) { if (!confirm('¿Eliminar este registro?')) return; savePesos(loadPesos().filter(function(r) { return r.date !== date; })); renderPeso(); renderHero(); }
 function pfFilter(val, btn) { pesoFilter = val; document.querySelectorAll('.pf-btn').forEach(function(b) { b.classList.remove('active'); }); btn.classList.add('active'); renderPesoChart(loadPesos()); }
 function renderPeso() { var records = loadPesos(); renderPesoStats(records); renderPesoChart(records); renderPesoLog(records); }
-function renderPesoStats(records) { var OBJETIVO = 80; if (!records.length) { document.getElementById('pw-actual').textContent = '—'; document.getElementById('pw-actual').className = 'ph-cell-val gray'; document.getElementById('pw-resta').textContent = '—'; document.getElementById('pw-total').textContent = '—'; document.getElementById('pw-count').textContent = '0 registros'; return; } var last = records[records.length - 1]; var first = records[0]; var actual = last.kg; var resta = Math.round((actual - OBJETIVO) * 10) / 10; var diff = Math.round((actual - first.kg) * 10) / 10; var actEl = document.getElementById('pw-actual'); actEl.textContent = actual.toFixed(1); actEl.className = 'ph-cell-val ' + (actual <= OBJETIVO ? 'green' : ''); var restaEl = document.getElementById('pw-resta'); restaEl.textContent = resta > 0 ? resta.toFixed(1) : '✓ Alcanzado'; restaEl.className = 'ph-cell-val ' + (resta <= 0 ? 'green' : ''); var totalEl = document.getElementById('pw-total'); var sign = diff < 0 ? '' : (diff > 0 ? '+' : ''); totalEl.textContent = sign + diff.toFixed(1); totalEl.className = 'ph-cell-val ' + (diff < 0 ? 'green' : diff > 0 ? 'red' : 'gray'); document.getElementById('pw-total-sub').textContent = 'desde ' + fmtDate(first.date); document.getElementById('pw-count').textContent = records.length + ' registro' + (records.length !== 1 ? 's' : ''); }
-function renderPesoChart(records) { var filtered = records; if (pesoFilter !== 'all' && records.length) { var cutoff = new Date(); cutoff.setDate(cutoff.getDate() - pesoFilter * 7); var cutStr = cutoff.toISOString().split('T')[0]; filtered = records.filter(function(r) { return r.date >= cutStr; }); } var labels = filtered.map(function(r) { return fmtDate(r.date); }); var data = filtered.map(function(r) { return r.kg; }); var OBJETIVO = 80; var ctx = document.getElementById('peso-chart').getContext('2d'); if (pesoChart) pesoChart.destroy(); if (!filtered.length) { pesoChart = null; ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height); return; } var allVals = data.concat([OBJETIVO]); var minV = Math.floor(Math.min.apply(null, allVals)) - 1; var maxV = Math.ceil(Math.max.apply(null, allVals)) + 1; pesoChart = new Chart(ctx, { type: 'line', data: { labels: labels, datasets: [{ label: 'Peso (kg)', data: data, borderColor: '#2D6A4F', backgroundColor: 'rgba(45,106,79,0.08)', borderWidth: 2.5, pointBackgroundColor: '#2D6A4F', pointRadius: 5, pointHoverRadius: 7, fill: true, tension: 0.3 }, { label: 'Objetivo 80 kg', data: labels.map(function() { return OBJETIVO; }), borderColor: '#C0614A', borderWidth: 1.5, borderDash: [5, 4], pointRadius: 0, fill: false, tension: 0 }] }, options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: true, position: 'bottom', labels: { font: { size: 11, family: 'DM Sans' }, color: '#6B6860', boxWidth: 12, padding: 16 } }, tooltip: { callbacks: { label: function(ctx) { if (ctx.datasetIndex === 1) return 'Objetivo: 80 kg'; return 'Peso: ' + ctx.parsed.y.toFixed(1) + ' kg'; } } } }, scales: { x: { grid: { color: '#E8E6E0' }, ticks: { font: { size: 10, family: 'DM Sans' }, color: '#A8A49C', maxRotation: 45, maxTicksLimit: 12 } }, y: { min: minV, max: maxV, grid: { color: '#E8E6E0' }, ticks: { font: { size: 10, family: 'DM Sans' }, color: '#A8A49C', callback: function(v) { return v + ' kg'; } } } } } }); }
-function renderPesoLog(records) { var body = document.getElementById('peso-log-body'); if (!records.length) { body.innerHTML = '<div class="peso-empty">Añade tu primer registro de peso para empezar el seguimiento.</div>'; return; } var sorted = records.slice().sort(function(a, b) { return b.date.localeCompare(a.date); }); var rows = sorted.map(function(r, i) { var origIdx = records.findIndex(function(x) { return x.date === r.date; }); var prev = origIdx > 0 ? records[origIdx - 1] : null; var diff = prev ? Math.round((r.kg - prev.kg) * 10) / 10 : null; var deltaHtml = ''; if (diff === null) { deltaHtml = '<span class="peso-delta-zero">—</span>'; } else if (diff < 0) { deltaHtml = '<span class="peso-delta-pos">' + diff.toFixed(1) + ' kg ↓</span>'; } else if (diff > 0) { deltaHtml = '<span class="peso-delta-neg">+' + diff.toFixed(1) + ' kg ↑</span>'; } else { deltaHtml = '<span class="peso-delta-zero">= sin cambio</span>'; } return '<div class="peso-row"><span class="peso-date">' + fmtDateLong(r.date) + '</span><span class="peso-kg">' + r.kg.toFixed(1) + ' kg</span><span>' + deltaHtml + '</span><span class="peso-note">' + (r.note || '<span style="color:var(--text-3);font-style:italic">—</span>') + '</span><button class="peso-del-btn" onclick="delPeso(\'' + r.date + '\')" title="Eliminar">×</button></div>'; }).join(''); body.innerHTML = '<div class="peso-row hdr"><span>Fecha</span><span>Peso</span><span>Variación</span><span>Nota</span><span></span></div>' + rows; }
-function fmtDate(dateStr) { var d = new Date(dateStr + 'T12:00:00'); return d.toLocaleDateString('es-ES', { day: '2-digit', month: 'short' }); }
-function fmtDateLong(dateStr) { var d = new Date(dateStr + 'T12:00:00'); return d.toLocaleDateString('es-ES', { day: '2-digit', month: 'short', year: '2-digit' }); }
+function renderPesoStats(records) { var OBJETIVO = 80; if (!records.length) { document.getElementById('pw-actual').textContent = '—'; document.getElementById('pw-actual').className = 'ph-cell-val gray'; document.getElementById('pw-resta').textContent = '—'; document.getElementById('pw-total').textContent = '—'; document.getElementById('pw-count').textContent = '0 registros'; return; } var last = records[records.length - 1]; var first = records[0]; var actual = last.kg; var resta = Math.round((actual - OBJETIVO) * 10) / 10; var diff = Math.round((actual - first.kg) * 10) / 10; var actEl = document.getElementById('pw-actual'); actEl.textContent = actual.toFixed(1).replace('.', ','); actEl.className = 'ph-cell-val ' + (actual <= OBJETIVO ? 'green' : ''); var restaEl = document.getElementById('pw-resta'); restaEl.textContent = resta > 0 ? resta.toFixed(1).replace('.', ',') : 'Alcanzado'; restaEl.className = 'ph-cell-val ' + (resta <= 0 ? 'green' : ''); var totalEl = document.getElementById('pw-total'); var sign = diff < 0 ? '' : (diff > 0 ? '+' : ''); totalEl.textContent = sign + diff.toFixed(1).replace('.', ','); totalEl.className = 'ph-cell-val ' + (diff < 0 ? 'green' : diff > 0 ? 'red' : 'gray'); document.getElementById('pw-total-sub').textContent = 'desde ' + fmtDate(first.date); document.getElementById('pw-count').textContent = records.length + ' registro' + (records.length !== 1 ? 's' : ''); }
+function renderPesoChart(records) { var filtered = records; if (pesoFilter !== 'all' && records.length) { var cutoff = new Date(); cutoff.setDate(cutoff.getDate() - pesoFilter * 7); var cutStr = cutoff.toISOString().split('T')[0]; filtered = records.filter(function(r) { return r.date >= cutStr; }); } var el = document.getElementById('peso-chart'); var OBJETIVO = 80; if (!filtered.length) { el.innerHTML = '<div class="peso-empty">Sin registros en este periodo.</div>'; return; } var W = 1120, H = 300, padT = 18, padB = 28, padL = 4, padR = 48; var kgs = filtered.map(function(r) { return r.kg; }); var lo = Math.min(OBJETIVO, Math.floor(Math.min.apply(null, kgs))), hi = Math.ceil(Math.max.apply(null, kgs)) + 1; var t0 = new Date(filtered[0].date).getTime(), t1 = new Date(filtered[filtered.length - 1].date).getTime(); var x = function(d) { return padL + ((new Date(d).getTime() - t0) / ((t1 - t0) || 1)) * (W - padL - padR); }; var y = function(v) { return padT + (1 - (v - lo) / (hi - lo)) * (H - padT - padB); }; var grid = ''; for (var v = lo + 1; v <= hi; v += 1) { var yy = y(v).toFixed(1); grid += '<line x1="' + padL + '" x2="' + (W - padR) + '" y1="' + yy + '" y2="' + yy + '" stroke="#DDD8CB" stroke-width="1"/><text x="' + (W - padR + 10) + '" y="' + (+yy + 4).toFixed(1) + '" font-size="12" fill="#625E55">' + v + '</text>'; } var yB = y(lo).toFixed(1); var path = filtered.map(function(r, i) { return (i ? 'L' : 'M') + x(r.date).toFixed(1) + ' ' + y(r.kg).toFixed(1); }).join(' '); var dots = filtered.map(function(r) { return '<circle cx="' + x(r.date).toFixed(1) + '" cy="' + y(r.kg).toFixed(1) + '" r="3.5" fill="#F3F0E8" stroke="#171611" stroke-width="1.5"><title>' + fmtDateLong(r.date) + ' · ' + r.kg.toFixed(1).replace('.', ',') + ' kg' + (r.note ? ' · ' + r.note.replace(/</g, '') : '') + '</title></circle>'; }).join(''); var ticks = ''; var n = filtered.length; var idxs = n > 6 ? [0, Math.floor((n - 1) / 3), Math.floor(2 * (n - 1) / 3), n - 1] : filtered.map(function(_, i) { return i; }); idxs.forEach(function(i, k) { var anchor = k === 0 ? 'start' : (k === idxs.length - 1 ? 'end' : 'middle'); ticks += '<text x="' + x(filtered[i].date).toFixed(1) + '" y="' + (H - 6) + '" font-size="12" fill="#625E55" text-anchor="' + anchor + '">' + fmtDateLong(filtered[i].date) + '</text>'; }); el.innerHTML = '<svg viewBox="0 0 ' + W + ' ' + H + '" xmlns="http://www.w3.org/2000/svg" aria-label="Evolución del peso">' + grid + '<line x1="' + padL + '" x2="' + (W - padR) + '" y1="' + yB + '" y2="' + yB + '" stroke="#171611" stroke-width="1"/><text x="' + (W - padR + 10) + '" y="' + (+yB + 4).toFixed(1) + '" font-size="12" fill="#171611" font-weight="500">' + lo + '</text><path d="' + path + '" fill="none" stroke="#171611" stroke-width="1.75" stroke-linejoin="round" stroke-linecap="round"/>' + dots + ticks + '</svg><div class="weight-note">La línea base es el objetivo de ' + OBJETIVO + ' kg.</div>'; }
+function renderPesoLog(records) { var body = document.getElementById('peso-log-body'); if (!records.length) { body.innerHTML = '<div class="peso-empty">Añade tu primer registro de peso para empezar el seguimiento.</div>'; return; } var sorted = records.slice().sort(function(a, b) { return b.date.localeCompare(a.date); }); var rows = sorted.map(function(r, i) { var origIdx = records.findIndex(function(x) { return x.date === r.date; }); var prev = origIdx > 0 ? records[origIdx - 1] : null; var diff = prev ? Math.round((r.kg - prev.kg) * 10) / 10 : null; var deltaHtml = ''; if (diff === null) { deltaHtml = '<span class="peso-delta-zero">primer registro</span>'; } else if (diff < 0) { deltaHtml = '<span class="peso-delta-pos">' + diff.toFixed(1).replace('.', ',') + ' kg</span>'; } else if (diff > 0) { deltaHtml = '<span class="peso-delta-neg">+' + diff.toFixed(1).replace('.', ',') + ' kg</span>'; } else { deltaHtml = '<span class="peso-delta-zero">sin cambio</span>'; } return '<div class="peso-row"><span class="peso-date">' + fmtDateLong(r.date) + '</span><span class="peso-kg">' + r.kg.toFixed(1).replace('.', ',') + ' kg</span><span>' + deltaHtml + '</span><span class="peso-note">' + (r.note || '') + '</span><button class="peso-del-btn" onclick="delPeso(\'' + r.date + '\')" title="Eliminar">Eliminar</button></div>'; }).join(''); body.innerHTML = '<div class="peso-row hdr"><span>Fecha</span><span>Peso</span><span>Variación</span><span>Nota</span><span></span></div>' + rows; }
+var MESES=['ene','feb','mar','abr','may','jun','jul','ago','sep','oct','nov','dic'];
+function fmtDate(dateStr) { var d = new Date(dateStr + 'T12:00:00'); return d.getDate() + ' ' + MESES[d.getMonth()]; }
+function fmtDateLong(dateStr) { var d = new Date(dateStr + 'T12:00:00'); return d.getDate() + ' ' + MESES[d.getMonth()] + ' ' + d.getFullYear(); }
 
 function openCardioModal() {
   document.getElementById('cardioModalOverlay').classList.add('open');
-  document.body.style.overflow = 'hidden';
+  document.body.classList.add('locked');
 }
 function closeCardioModal() {
   document.getElementById('cardioModalOverlay').classList.remove('open');
-  document.body.style.overflow = '';
+  document.body.classList.remove('locked');
 }
 document.addEventListener('keydown', function(e) {
   if (e.key === 'Escape') closeCardioModal();
 });
 
 document.addEventListener('DOMContentLoaded', function() {
-  lcInit();
-  lcLoad();
-  lcUpdateAll();
   document.getElementById('p-date').value = new Date().toISOString().split('T')[0];
   renderPeso();
-  // Animate cardio progress bar (0% — user marks manually which week they're on)
-  setTimeout(function() {
-    var fill = document.getElementById('cardio-fill');
-    if (fill) fill.style.width = '0%';
-  }, 300);
+  var h = location.hash.replace('#', ''); if (['nutricion','deporte','peso'].indexOf(h) >= 0) switchPanel(h); if (h === 'dieta') { switchPanel('nutricion'); st('dieta'); } if (h === 'cardio') { switchPanel('deporte'); openCardioModal(); }
+  renderHero();
 });
+
+function renderHero() { var records = loadPesos(); var el = document.getElementById('heroKg'); var lbl = document.getElementById('heroKgLbl'); if (!records.length) { el.innerHTML = '80<small>kg</small>'; lbl.innerHTML = 'Peso objetivo. Aún no hay registros en el tracker; el programa es de <b>16 semanas</b> de fuerza y <b>19</b> de cardio.'; return; } var last = records[records.length - 1]; el.innerHTML = last.kg.toFixed(1).replace('.', ',') + '<small>kg</small>'; var resta = Math.round((last.kg - 80) * 10) / 10; lbl.innerHTML = 'Peso el ' + fmtDateLong(last.date) + '. ' + (resta > 0 ? '<b>' + resta.toFixed(1).replace('.', ',') + ' kg</b> por encima del objetivo de 80 kg. ' : 'Objetivo de 80 kg alcanzado. ') + 'Programa de <b>16 semanas</b> de fuerza y <b>19</b> de carrera dominical.'; }
 </script>
 </body>
 </html>
