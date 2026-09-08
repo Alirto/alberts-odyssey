@@ -230,7 +230,12 @@
   }
   @media (max-width: 900px) {
     :root { --gutter: 24px; }
-    .menu { display: none; }
+    .top .wrap { flex-wrap: wrap; height: auto; gap: 0 20px; }
+    .brand { display: flex; align-items: center; height: 52px; }
+    .top-right { height: 52px; }
+    .menu { display: flex; order: 3; flex-basis: 100%; gap: 22px; overflow-x: auto; border-top: 1px solid var(--rule-soft); scrollbar-width: none; }
+    .menu::-webkit-scrollbar { display: none; }
+    .menu a { padding: 13px 0; white-space: nowrap; }
     h1 { font-size: 13vw; padding-bottom: 20px; }
     .mast-row { grid-template-columns: 1fr; gap: 36px; padding-bottom: 32px; }
     .deck { font-size: 26px; }
@@ -258,7 +263,7 @@
   .masthead .figures { margin-bottom: 0; }
   .masthead .fig-num small { font-size: 18px; color: var(--ink-3); letter-spacing: .02em; margin-left: 8px; font-family: var(--sans); font-variation-settings: normal; }
   .top-right { margin-left: auto; }
-  .page { padding: 8px 0 88px; }
+  .page { padding: 8px var(--gutter) 88px; }
   .notice { font-size: 14.5px; color: var(--ink-2); line-height: 1.6; max-width: 72ch; padding: 18px 0; border-bottom: 1px solid var(--rule-soft); }
   .notice strong { color: var(--ink); font-weight: 500; }
   .notice.notice-warn strong { color: var(--now); }

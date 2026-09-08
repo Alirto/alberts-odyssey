@@ -188,12 +188,19 @@
   }
   @media (max-width: 900px) {
     :root { --gutter: 24px; }
-    .menu { display: none; }
+    .top .wrap { flex-wrap: wrap; height: auto; gap: 0 20px; }
+    .brand { display: flex; align-items: center; height: 52px; }
+    .top-right { height: 52px; }
+    .menu { display: flex; order: 3; flex-basis: 100%; gap: 22px; overflow-x: auto; border-top: 1px solid var(--rule-soft); scrollbar-width: none; }
+    .menu::-webkit-scrollbar { display: none; }
+    .menu a { padding: 13px 0; white-space: nowrap; }
     h1 { font-size: 13vw; padding-bottom: 20px; }
     .mast-row { grid-template-columns: 1fr; gap: 36px; padding-bottom: 32px; }
     .deck { font-size: 26px; }
     .fig-num { font-size: 72px; }
     .main-tabs { gap: 24px; }
+    .ent-hd { grid-template-columns: 30px 1fr; row-gap: 6px; }
+    .ent-dose { grid-column: 2; white-space: normal; }
     .main-tab { font-size: 18px; }
     .day-row { grid-template-columns: 1fr; gap: 14px; }
     .cardio-row { grid-template-columns: 70px 70px 1fr; }

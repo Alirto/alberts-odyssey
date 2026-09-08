@@ -319,7 +319,12 @@
   }
   @media (max-width: 900px) {
     :root { --gutter: 24px; }
-    .menu { display: none; }
+    .top .wrap { flex-wrap: wrap; height: auto; gap: 0 20px; }
+    .brand { display: flex; align-items: center; height: 52px; }
+    .top-right { height: 52px; }
+    .menu { display: flex; order: 3; flex-basis: 100%; gap: 22px; overflow-x: auto; border-top: 1px solid var(--rule-soft); scrollbar-width: none; }
+    .menu::-webkit-scrollbar { display: none; }
+    .menu a { padding: 13px 0; white-space: nowrap; }
     .brand .full { opacity: 1; transform: none; }
     h1 { font-size: 13vw; padding-bottom: 20px; }
     h2 { font-size: 40px; }
@@ -338,7 +343,9 @@
   @media (max-width: 600px) {
     .row-2 { grid-template-columns: 1fr; }
     .sync-actions { grid-template-columns: 1fr; }
-    .top .wrap { gap: 16px; }
+    .top .wrap { gap: 0 16px; }
+    .brand .full { display: none; }
+    .top-right .cap-btn { font-size: 10.5px; letter-spacing: .1em; }
     .top-right { gap: 14px; }
     .strip { grid-template-columns: repeat(2, 1fr); }
   }

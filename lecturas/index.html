@@ -75,7 +75,7 @@
   .sec-num { font-family: var(--serif); font-size: 14px; color: var(--ink-3); font-variant-numeric: tabular-nums; }
   h2, .grp-ttl { font-family: var(--serif); font-variation-settings: 'opsz' 60; font-weight: 400; font-size: 34px; letter-spacing: -0.025em; line-height: 1; }
   .sec-meta { margin-left: auto; text-align: right; display: flex; align-items: baseline; gap: 22px; flex-wrap: wrap; justify-content: flex-end; }
-  .page { padding: 8px 0 88px; }
+  .page { padding: 8px var(--gutter) 88px; }
 
   /* Overlays */
   .overlay { position: fixed; inset: 0; background: rgba(23,22,17,.42); backdrop-filter: blur(3px); z-index: 1000; display: none; align-items: center; justify-content: center; padding: 24px; }
@@ -102,7 +102,12 @@
 
   @media (max-width: 900px) {
     :root { --gutter: 24px; }
-    .menu { display: none; }
+    .top .wrap { flex-wrap: wrap; height: auto; gap: 0 20px; }
+    .brand { display: flex; align-items: center; height: 52px; }
+    .top-right { height: 52px; }
+    .menu { display: flex; order: 3; flex-basis: 100%; gap: 22px; overflow-x: auto; border-top: 1px solid var(--rule-soft); scrollbar-width: none; }
+    .menu::-webkit-scrollbar { display: none; }
+    .menu a { padding: 13px 0; white-space: nowrap; }
     h1 { padding-bottom: 20px; }
     .mast-row { grid-template-columns: 1fr; gap: 36px; padding-bottom: 32px; }
     .deck { font-size: 26px; }
