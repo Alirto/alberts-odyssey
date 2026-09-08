@@ -171,23 +171,21 @@
   .pd-body .note { margin-top: 20px; }
   @media (max-width: 1100px) { .strip { grid-template-columns: repeat(3, 1fr); row-gap: 32px; } .today { display: none; } }
   @media (max-width: 600px) { .strip { grid-template-columns: 1fr 1fr; } }
-  /* 02 Pillars */
-  .pil-grid { display: grid; grid-template-columns: 3fr 9fr; gap: 64px; align-items: start; }
-  .pil-intro h2 { margin-bottom: 20px; }
-  .pil-intro p { font-size: 14px; color: var(--ink-2); line-height: 1.55; max-width: 28ch; }
-  .pillar-list { border-top: 1px solid var(--ink); }
-  .pillar-card { display: grid; grid-template-columns: 36px 250px 1fr 56px; align-items: center; gap: 24px; padding: 20px 0; border-bottom: 1px solid var(--rule); cursor: pointer; transition: background .15s; position: relative; }
-  .pillar-card:hover { background: rgba(255,255,255,.35); }
-  .pillar-card.active { background: rgba(255,255,255,.55); }
-  .pillar-card.active::before { content: ''; position: absolute; left: -16px; top: 0; bottom: 0; width: 2px; background: var(--pillar-color); }
-  .pr-idx { font-family: var(--serif); font-size: 14px; color: var(--ink-3); font-variant-numeric: tabular-nums; }
-  .pr-name { font-family: var(--serif); font-variation-settings: 'opsz' 40; font-size: 24px; letter-spacing: -0.015em; line-height: 1; }
-  .pr-name u { text-decoration: underline; text-decoration-color: var(--rule); text-decoration-thickness: 1px; text-underline-offset: 5px; transition: text-decoration-color .15s; }
-  .pillar-card:hover .pr-name u { text-decoration-color: var(--ink); }
-  .pr-sub { display: block; font-family: var(--sans); font-size: 13px; color: var(--ink-3); margin-top: 8px; letter-spacing: 0; }
-  .pr-bar { height: 10px; background: var(--paper-2); position: relative; }
-  .pr-bar i { position: absolute; left: 0; top: 0; height: 10px; width: 0; transition: width 1s cubic-bezier(.4,0,.2,1); }
-  .pr-pct { font-family: var(--serif); font-variation-settings: 'opsz' 20; font-size: 20px; line-height: 1; text-align: right; font-variant-numeric: tabular-nums; letter-spacing: -0.01em; }
+  /* 02 Pillars: tarjetas en una franja */
+  .pillar-list { display: grid; grid-template-columns: repeat(5, 1fr); gap: 16px; }
+  .pillar-card { border: 1px solid var(--ink); padding: 18px 20px 16px; cursor: pointer; display: flex; flex-direction: column; transition: background .15s; }
+  .pillar-card:hover { background: rgba(255,255,255,.45); }
+  .pillar-card.active { background: rgba(255,255,255,.7); }
+  .pc-top { display: flex; justify-content: space-between; align-items: baseline; }
+  .pr-idx { font-family: var(--serif); font-size: 13px; color: var(--ink-3); font-variant-numeric: tabular-nums; }
+  .pr-pct { font-family: var(--serif); font-variation-settings: 'opsz' 40; font-size: 26px; line-height: 1; font-variant-numeric: tabular-nums; letter-spacing: -0.02em; }
+  .pr-name { font-family: var(--serif); font-variation-settings: 'opsz' 40; font-size: 24px; letter-spacing: -0.015em; line-height: 1; margin-top: 14px; }
+  .pr-sub { font-size: 12.5px; color: var(--ink-3); margin-top: 8px; line-height: 1.4; flex: 1; }
+  .pr-bar { height: 3px; background: var(--paper-2); position: relative; margin-top: 16px; }
+  .pr-bar i { position: absolute; left: 0; top: 0; height: 3px; width: 0; transition: width 1s cubic-bezier(.4,0,.2,1); }
+  .detail-panel { margin-top: 24px; border-top: 1px solid var(--ink); }
+  @media (max-width: 1000px) { .pillar-list { grid-template-columns: repeat(3, 1fr); } }
+  @media (max-width: 600px) { .pillar-list { grid-template-columns: 1fr 1fr; } }
 
   /* Detail */
   .detail-panel { display: none; border-bottom: 1px solid var(--rule); animation: fade .25s ease; }
@@ -311,8 +309,6 @@
   @media (max-width: 1240px) { h1 { font-size: 11.5vw; } }
   @media (max-width: 1100px) {
     .road { grid-template-columns: 1fr; gap: 40px; }
-    .pil-grid { grid-template-columns: 1fr; gap: 24px; }
-    .pil-intro p { max-width: 60ch; }
     .strip { grid-template-columns: repeat(3, 1fr); row-gap: 28px; }
     .today { display: none; }
   }
@@ -327,8 +323,6 @@
     .fig-num { font-size: 72px; }
     .now-grid { grid-template-columns: 1fr; gap: 40px; }
     .detail-body { grid-template-columns: 1fr; }
-    .pillar-card { grid-template-columns: 28px 1fr 56px; gap: 12px 16px; }
-    .pillar-card .pr-bar { grid-column: 1 / -1; }
     .wr-row { grid-template-columns: 110px 1fr; }
     .wr-feat { grid-template-columns: 1fr; gap: 20px; }
     .nx { grid-template-columns: 34px 1fr; }
@@ -407,23 +401,19 @@
 <section class="block" id="pilares">
   <div class="wrap">
     <span class="sec-num">02</span>
-    <div class="pil-grid">
-      <div class="pil-intro">
-        <h2>Pilares</h2>
-        <p id="pilIntro">Cinco frentes con <b id="objCount">0</b> objetivos SMART.</p>
-      </div>
-      <div>
-        <div class="pillar-list" id="pillarsGrid"></div>
-        <div class="detail-panel" id="detailPanel">
-          <div class="detail-hdr" id="detailHdr">
-            <div><div class="detail-ttl" id="detailTtl"></div><div class="detail-sub" id="detailSub"></div></div>
-            <button class="txt-btn" onclick="closeDetail()">Cerrar</button>
-          </div>
-          <div class="detail-body" id="detailBody"></div>
-        </div>
-        <div class="note warn" id="balanceAlert"><span id="balanceAlertText"></span></div>
-      </div>
+    <div class="sec-head">
+      <h2>Pilares</h2>
+      <div class="sec-meta meta" id="pilIntro"></div>
     </div>
+    <div class="pillar-list" id="pillarsGrid"></div>
+    <div class="detail-panel" id="detailPanel">
+      <div class="detail-hdr" id="detailHdr">
+        <div><div class="detail-ttl" id="detailTtl"></div><div class="detail-sub" id="detailSub"></div></div>
+        <button class="txt-btn" onclick="closeDetail()">Cerrar</button>
+      </div>
+      <div class="detail-body" id="detailBody"></div>
+    </div>
+    <div class="note warn" id="balanceAlert"><span id="balanceAlertText"></span></div>
   </div>
 </section>
 
@@ -714,8 +704,8 @@ function renderPillars(){
     const card=document.createElement('div');card.className='pillar-card'+(activeId===p.id?' active':'');card.id='card-'+p.id;
     card.style.setProperty('--pillar-color',p.color);
     card.onclick=()=>openDetail(p.id);
-    const sub=p.objectives.length?`${done} de ${total} hitos hechos · ${act} en curso · ${p.objectives.length} objetivos`:'Sin objetivos en esta fase';
-    card.innerHTML=`<div class="pr-idx">${pad2(i+1)}</div><div class="pr-name"><u>${p.name}</u><span class="pr-sub">${sub}</span></div><div class="pr-bar"><i style="background:${p.color}" data-t="${pct}"></i></div><div class="pr-pct">${pct}%</div>`;
+    const sub=p.objectives.length?`${done} de ${total} hitos · ${act} en curso`:'Sin objetivos';
+    card.innerHTML=`<div class="pc-top"><span class="pr-idx">${pad2(i+1)}</span><span class="pr-pct">${pct}%</span></div><div class="pr-name">${p.name}</div><div class="pr-sub">${sub}</div><div class="pr-bar"><i style="background:${p.color}" data-t="${pct}"></i></div>`;
     grid.appendChild(card);
   });
   const ph=phaseById(CUR);document.getElementById('pilIntro').innerHTML=phaseDesigned(CUR)?`Cinco frentes con <b>${totalObj}</b> objetivos SMART para la fase ${pad2(phaseIndex(CUR)+1)}, ${esc(ph.name)}. El porcentaje pondera cada objetivo por igual y cuenta los hitos en curso a la mitad.`:`La fase ${pad2(phaseIndex(CUR)+1)}, ${esc(ph.name)}, todavía no tiene objetivos SMART. <button class="txt-btn" onclick="openPhaseEditor('${CUR}')">Diseñar la fase</button>`;
