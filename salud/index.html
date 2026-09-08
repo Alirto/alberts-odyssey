@@ -521,8 +521,6 @@ document.addEventListener('keydown', function(e) {
 });
 
 document.addEventListener('DOMContentLoaded', function() {
-  document.getElementById('p-date').value = new Date().toISOString().split('T')[0];
-  renderPeso();
   var h = location.hash.replace('#', ''); if (['nutricion','deporte'].indexOf(h) >= 0) switchPanel(h); if (h === 'dieta') { switchPanel('nutricion'); st('dieta'); } if (h === 'cardio') { switchPanel('deporte'); openCardioModal(); }
 });
 
