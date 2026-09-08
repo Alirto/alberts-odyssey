@@ -62,7 +62,12 @@
   .dateline { font-size: 13px; color: var(--ink-3); padding-bottom: 18px; }
   h1 { font-family: var(--serif); font-variation-settings: 'opsz' 144; font-weight: 400; font-size: 152px; line-height: .9; letter-spacing: -0.045em; padding-bottom: 36px; border-bottom: 1px solid var(--ink); white-space: nowrap; }
   h1 em { font-style: italic; font-weight: 300; color: var(--ink-2); }
-  .mast-row { display: grid; grid-template-columns: 8fr 4fr; gap: 64px; padding: 32px 0 72px; align-items: start; }
+  .mast-row { display: grid; grid-template-columns: 8fr 4fr; gap: 64px; padding: 32px 0 40px; align-items: start; }
+  .mast-prog { padding: 0 0 56px; }
+  .mast-prog-hd { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 10px; }
+  .mast-prog-pct { font-size: 20px; letter-spacing: -0.01em; }
+  .mast-prog-bar { height: 4px; background: var(--paper-2); position: relative; }
+  .mast-prog-bar i { position: absolute; left: 0; top: 0; height: 4px; width: 0; background: var(--ink); transition: width 1.2s cubic-bezier(.4,0,.2,1); }
   .deck { font-family: var(--serif); font-variation-settings: 'opsz' 34; font-size: 34px; line-height: 1.22; letter-spacing: -0.018em; color: var(--ink); font-weight: 300; }
   .deck em { font-style: italic; }
   .fig-num { font-size: 96px; line-height: .9; letter-spacing: -0.04em; }
@@ -382,6 +387,10 @@
         <div class="fig-num num" id="figHitos">0<small>/0</small></div>
         <div class="fig-lbl" id="figLbl"></div>
       </div>
+    </div>
+    <div class="mast-prog">
+      <div class="mast-prog-hd"><span class="label" id="progLbl">Avance global de la fase</span><span class="mast-prog-pct num" id="progPct">0%</span></div>
+      <div class="mast-prog-bar"><i id="progFill"></i></div>
     </div>
   </div>
 </section>
@@ -783,6 +792,7 @@ function setDynamic(){
   document.getElementById('dayLabel').textContent=dateStr.charAt(0).toUpperCase()+dateStr.slice(1)+' · Día '+days+' · Fase '+pad2(ci+1)+' de '+pad2(PHASES.length)+', '+ph.name;
   const s=phaseStats(CUR);
   document.getElementById('figHitos').innerHTML=s.done+'<small>/'+s.total+'</small>';
+  document.getElementById('progLbl').textContent='Avance global de la fase '+pad2(ci+1)+', '+ph.name+(s.total?' · '+s.done+' hitos hechos y '+s.act+' en curso de '+s.total:'');document.getElementById('progPct').textContent=s.pct+'%';setTimeout(function(){document.getElementById('progFill').style.width=s.pct+'%';},150);
   document.getElementById('figLbl').innerHTML=s.total?('Hitos completados de la fase '+pad2(ci+1)+', '+esc(ph.name)+'. Cuenta solo los marcados como hechos; <b>'+s.act+'</b> más están en curso y el avance ponderado es del <b>'+s.pct+'%</b>.'):('La fase '+pad2(ci+1)+', '+esc(ph.name)+', aún no tiene objetivos diseñados.');
 }
 
