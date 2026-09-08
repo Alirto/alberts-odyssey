@@ -306,6 +306,22 @@
   .prog-badge { font-size: 13px; color: var(--ink); }
   .prog-table + .notice { margin-top: 32px; border-top: 1px solid var(--ink); border-bottom: none; padding-top: 24px; }
 
+
+  /* tarjetas de sesión */
+  .tcards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+  .tcard { border: 1px solid var(--ink); padding: 26px 28px 22px; cursor: pointer; display: flex; flex-direction: column; transition: background .15s; }
+  .tcard:hover { background: rgba(255,255,255,.45); }
+  .tcard-day { font-size: 12px; letter-spacing: .12em; text-transform: uppercase; color: var(--ink-3); font-weight: 500; }
+  .tcard-title { font-family: var(--serif); font-variation-settings: 'opsz' 60; font-size: 40px; letter-spacing: -0.03em; line-height: 1; margin: 12px 0 10px; }
+  .tcard-meta { font-size: 13px; color: var(--ink-3); padding-bottom: 18px; border-bottom: 1px solid var(--rule); }
+  .tcard-blocks { list-style: none; margin: 6px 0 22px; flex: 1; }
+  .tcard-blocks li { display: flex; justify-content: space-between; gap: 16px; font-size: 14px; padding: 9px 0; border-bottom: 1px solid var(--rule-soft); }
+  .tcard-blocks li:last-child { border-bottom: none; }
+  .tcard-foot { display: flex; justify-content: flex-end; }
+  .tcard-foot .cap-btn { color: var(--ink); border-bottom-color: var(--ink); }
+  .cardio-modal.wide { width: 880px; }
+  .sess-overlay .session-body { display: flex; flex-direction: column; gap: 28px; padding-top: 8px; }
+  @media (max-width: 1000px) { .tcards { grid-template-columns: 1fr; } }
   @media (max-width: 1000px) {
     .session { grid-template-columns: 1fr; gap: 24px; }
     .rest-grid, .principles-grid { grid-template-columns: 1fr 1fr; }
@@ -364,262 +380,7 @@
 
   <div class="grp-hd"><span class="grp-num">01</span><h2 class="grp-ttl">Distribución semanal</h2></div>
 
-  <div class="week-grid">
-
-    <!-- LUNES — FULL BODY A -->
-    <div class="session">
-      <div class="session-hdr">
-        <div class="session-day">Lunes</div>
-        <div class="session-title">Full Body A</div>
-        <div class="session-meta">
-          <span>55–65 min</span>
-          <span>Empuje + Tirón</span>
-        </div>
-      </div>
-      <div class="session-body">
-
-        <div class="block">
-          <div class="block-label">Calentamiento en circuito — 3 rondas · 45 seg entre rondas</div>
-          <div class="ex">
-            <div><div class="ex-name">Jump squat (sin peso)</div><div class="ex-detail">×10 · Activa sistema nervioso, potencia de pierna para correr</div></div>
-            <div class="ex-tag tag-warmup">Activación</div>
-          </div>
-          <div class="ex">
-            <div><div class="ex-name">Remo con banda</div><div class="ex-detail">×15 · Activa manguito rotador antes del press, protege hombro</div></div>
-            <div class="ex-tag tag-warmup">Hombro</div>
-          </div>
-          <div class="ex">
-            <div><div class="ex-name">Hip hinge con palo</div><div class="ex-detail">×10 · Activa cadena posterior antes de sentadilla</div></div>
-            <div class="ex-tag tag-warmup">Movilidad</div>
-          </div>
-          <div class="ex">
-            <div><div class="ex-name">Mountain climbers</div><div class="ex-detail">×20 · Eleva FC, activa core estabilizador</div></div>
-            <div class="ex-tag tag-warmup">Core</div>
-          </div>
-        </div>
-
-        <div class="block">
-          <div class="block-label">Bloque principal</div>
-          <div class="ex">
-            <div><div class="ex-name">Sentadilla con barra</div><div class="ex-detail">4×4–6 · 2 min descanso · Bajas reps, más carga — desarrollar fuerza real</div></div>
-            <div class="ex-tag tag-primary">Principal</div>
-          </div>
-          <div class="ex">
-            <div><div class="ex-name">Press banca con barra</div><div class="ex-detail">4×4–6 · 2 min descanso · Pausa 1 seg en pecho — más control y activación</div></div>
-            <div class="ex-tag tag-primary">Principal</div>
-          </div>
-          <div class="ex">
-            <div><div class="ex-name">Remo con barra (pronado)</div><div class="ex-detail">4×6–8 · 90 seg descanso · Equilibra press, fortalece espalda alta</div></div>
-            <div class="ex-tag tag-primary">Principal</div>
-          </div>
-        </div>
-
-        <div class="block">
-          <div class="block-label">Bloque funcional + Accesorios</div>
-          <div class="ex">
-            <div><div class="ex-name">Turkish get-up (KB)</div><div class="ex-detail">3×3 por lado · 60 seg descanso · Estabilidad total, coordinación — útil para cualquier deporte</div></div>
-            <div class="ex-tag tag-functional">Funcional</div>
-          </div>
-          <div class="ex">
-            <div><div class="ex-name">Superserie: Curl bíceps + Tríceps polea</div><div class="ex-detail">3×10–12 c/u · 45 seg descanso · Sin descanso entre los dos ejercicios</div></div>
-            <div class="ex-tag tag-secondary">Superserie</div>
-          </div>
-          <div class="ex">
-            <div><div class="ex-name">Elevaciones laterales mancuerna</div><div class="ex-detail">3×15–20 · 45 seg descanso · Peso ligero, codo ligeramente flexionado</div></div>
-            <div class="ex-tag tag-shoulder">Hombro</div>
-          </div>
-        </div>
-
-        <div class="block">
-          <div class="block-label">Core</div>
-          <div class="ex">
-            <div><div class="ex-name">Plancha frontal + Rueda abdominal</div><div class="ex-detail">3×30 seg + 3×8 · 30 seg descanso · Antiextensión — estabilidad en carrera</div></div>
-            <div class="ex-tag tag-core">Core</div>
-          </div>
-        </div>
-
-      </div>
-    </div>
-
-    <!-- MIÉRCOLES — FULL BODY B -->
-    <div class="session">
-      <div class="session-hdr">
-        <div class="session-day">Miércoles</div>
-        <div class="session-title">Full Body B</div>
-        <div class="session-meta">
-          <span>55–65 min</span>
-          <span>Bisagra + Vertical</span>
-        </div>
-      </div>
-      <div class="session-body">
-
-        <div class="block">
-          <div class="block-label">Calentamiento en circuito — 3 rondas · 45 seg entre rondas</div>
-          <div class="ex">
-            <div><div class="ex-name">Puente de glúteo con banda</div><div class="ex-detail">×15 · Activa glúteos antes del peso muerto — reduce riesgo lumbar</div></div>
-            <div class="ex-tag tag-warmup">Activación</div>
-          </div>
-          <div class="ex">
-            <div><div class="ex-name">Face pull con goma</div><div class="ex-detail">×15 · Protege hombro posterior antes del jalón</div></div>
-            <div class="ex-tag tag-warmup">Hombro</div>
-          </div>
-          <div class="ex">
-            <div><div class="ex-name">Inchworm</div><div class="ex-detail">×6 · Movilidad de cadena posterior completa — útil para trekking y correr</div></div>
-            <div class="ex-tag tag-warmup">Movilidad</div>
-          </div>
-          <div class="ex">
-            <div><div class="ex-name">Saltos laterales</div><div class="ex-detail">×10 por lado · Activa estabilizadores de tobillo y rodilla — previene lesiones en carrera</div></div>
-            <div class="ex-tag tag-warmup">Activación</div>
-          </div>
-        </div>
-
-        <div class="block">
-          <div class="block-label">Bloque principal</div>
-          <div class="ex">
-            <div><div class="ex-name">Peso muerto convencional</div><div class="ex-detail">4×3–5 · 3 min descanso · El ejercicio más funcional del gimnasio · Objetivo: acercarse a 150 kg progresivamente</div></div>
-            <div class="ex-tag tag-primary">Principal</div>
-          </div>
-          <div class="ex">
-            <div><div class="ex-name">Jalón al pecho (agarre neutro)</div><div class="ex-detail">4×6–8 · 90 seg descanso · Sustituye dominadas para proteger hombro · Clave en natación</div></div>
-            <div class="ex-tag tag-primary">Principal</div>
-          </div>
-          <div class="ex">
-            <div><div class="ex-name">Press inclinado con mancuernas</div><div class="ex-detail">4×8–10 · 90 seg descanso · Menos estrés en hombro que barra · Mayor rango de movimiento</div></div>
-            <div class="ex-tag tag-primary">Principal</div>
-          </div>
-        </div>
-
-        <div class="block">
-          <div class="block-label">Bloque funcional + Accesorios</div>
-          <div class="ex">
-            <div><div class="ex-name">KB Swing</div><div class="ex-detail">4×15 · 60 seg descanso · Potencia de cadera explosiva — transferible a correr y trekking cuesta arriba</div></div>
-            <div class="ex-tag tag-functional">Funcional</div>
-          </div>
-          <div class="ex">
-            <div><div class="ex-name">Rest-pause: Extensiones tríceps polea</div><div class="ex-detail">1×15 + 15 seg pausa + 8 · 60 seg descanso · Equivale a 2 series en 1 — ahorra tiempo</div></div>
-            <div class="ex-tag tag-secondary">Rest-pause</div>
-          </div>
-          <div class="ex">
-            <div><div class="ex-name">Curl femoral en máquina</div><div class="ex-detail">3×12–15 · 45 seg descanso · Complementa peso muerto, equilibra cuádriceps — previene lesiones en carrera</div></div>
-            <div class="ex-tag tag-secondary">Accesorio</div>
-          </div>
-        </div>
-
-        <div class="block">
-          <div class="block-label">Core</div>
-          <div class="ex">
-            <div><div class="ex-name">Dead bug</div><div class="ex-detail">3×8 por lado · 30 seg descanso · Antiextensión lumbar — estabilidad en movimiento, útil para correr</div></div>
-            <div class="ex-tag tag-core">Core</div>
-          </div>
-          <div class="ex">
-            <div><div class="ex-name">Pallof press en polea</div><div class="ex-detail">3×10 por lado · 30 seg descanso · Resistencia rotacional — estabiliza columna en trekking con mochila</div></div>
-            <div class="ex-tag tag-core">Core</div>
-          </div>
-        </div>
-
-      </div>
-    </div>
-
-    <!-- VIERNES — FULL BODY C -->
-    <div class="session">
-      <div class="session-hdr">
-        <div class="session-day">Viernes</div>
-        <div class="session-title">Full Body C</div>
-        <div class="session-meta">
-          <span>55–65 min</span>
-          <span>Volumen + Finisher</span>
-        </div>
-      </div>
-      <div class="session-body">
-
-        <div class="block">
-          <div class="block-label">Calentamiento en circuito — 3 rondas · 45 seg entre rondas</div>
-          <div class="ex">
-            <div><div class="ex-name">Sentadilla goblet KB</div><div class="ex-detail">×10 · Activa pierna con movilidad de cadera</div></div>
-            <div class="ex-tag tag-warmup">Activación</div>
-          </div>
-          <div class="ex">
-            <div><div class="ex-name">Rotación torácica en suelo</div><div class="ex-detail">×8 por lado · Movilidad de columna — previene compensaciones en carrera larga</div></div>
-            <div class="ex-tag tag-warmup">Movilidad</div>
-          </div>
-          <div class="ex">
-            <div><div class="ex-name">Skipping en el sitio</div><div class="ex-detail">×20 seg · Activa patrón de carrera, eleva FC</div></div>
-            <div class="ex-tag tag-warmup">Activación</div>
-          </div>
-          <div class="ex">
-            <div><div class="ex-name">Step-up con rodilla alta</div><div class="ex-detail">×8 por lado · Activa glúteo y estabilizadores — patrón de trekking</div></div>
-            <div class="ex-tag tag-warmup">Funcional</div>
-          </div>
-        </div>
-
-        <div class="block">
-          <div class="block-label">Bloque principal</div>
-          <div class="ex">
-            <div><div class="ex-name">Prensa de pierna</div><div class="ex-detail">4×10–12 · 90 seg descanso · Volumen de pierna sin desgaste del SNC — permite entrenar más duro el finisher después</div></div>
-            <div class="ex-tag tag-primary">Principal</div>
-          </div>
-          <div class="ex">
-            <div><div class="ex-name">Remo en polea baja (agarre neutro)</div><div class="ex-detail">4×10–12 · 90 seg descanso · Volumen de espalda — acumula trabajo que A y B no completan</div></div>
-            <div class="ex-tag tag-primary">Principal</div>
-          </div>
-          <div class="ex">
-            <div><div class="ex-name">Dips en paralelas — drop set</div><div class="ex-detail">Serie máx → -20% → máx · 2 min descanso · Si molesta hombro sustituir por fondos en banco</div></div>
-            <div class="ex-tag tag-primary">Drop set</div>
-          </div>
-        </div>
-
-        <div class="block">
-          <div class="block-label">Bloque funcional</div>
-          <div class="ex">
-            <div><div class="ex-name">Zancadas caminando con mancuernas</div><div class="ex-detail">3×12 por pierna · 45 seg descanso · Patrón de trekking directo — estabilidad unilateral con carga</div></div>
-            <div class="ex-tag tag-functional">Funcional</div>
-          </div>
-          <div class="ex">
-            <div><div class="ex-name">Superserie: Face pull alto + Curl bíceps</div><div class="ex-detail">3×20 + 3×12 · 45 seg descanso · Salud hombro + trabajo de brazos eficiente</div></div>
-            <div class="ex-tag tag-shoulder">Hombro</div>
-          </div>
-        </div>
-
-        <div class="block">
-          <div class="block-label">Finisher metabólico — 4 rondas · 75 seg entre rondas</div>
-          <table class="finisher-table">
-            <thead>
-              <tr>
-                <th>Ejercicio</th>
-                <th>Reps</th>
-                <th>Por qué</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>KB swing</td>
-                <td>12</td>
-                <td>Potencia de cadera explosiva</td>
-              </tr>
-              <tr>
-                <td>Sentadillas goblet</td>
-                <td>10</td>
-                <td>Resistencia muscular de pierna</td>
-              </tr>
-              <tr>
-                <td>Remo con goma</td>
-                <td>8</td>
-                <td>Resistencia de espalda</td>
-              </tr>
-              <tr>
-                <td>Burpees</td>
-                <td>6</td>
-                <td>Cardiovascular total — transfiere a cualquier deporte</td>
-              </tr>
-            </tbody>
-          </table>
-          <div class="finisher-note">Sin descanso entre ejercicios · 75 seg entre rondas · 4 rondas totales</div>
-        </div>
-
-      </div>
-    </div>
-
-  </div>
+  <div class="tcards"><div class="tcard" onclick="openSess('a')" id="card-a"><div class="tcard-day">Lunes</div><div class="tcard-title">Full Body A</div><div class="tcard-meta">55–65 min · Empuje + Tirón</div><ul class="tcard-blocks"><li><span>Calentamiento en circuito</span><span class="meta">4 ejercicios</span></li><li><span>Bloque principal</span><span class="meta">3 ejercicios</span></li><li><span>Bloque funcional + Accesorios</span><span class="meta">3 ejercicios</span></li><li><span>Core</span><span class="meta">1 ejercicio</span></li></ul><div class="tcard-foot"><span class="cap-btn">Abrir sesión</span></div></div><div class="tcard" onclick="openSess('b')" id="card-b"><div class="tcard-day">Miércoles</div><div class="tcard-title">Full Body B</div><div class="tcard-meta">55–65 min · Bisagra + Vertical</div><ul class="tcard-blocks"><li><span>Calentamiento en circuito</span><span class="meta">4 ejercicios</span></li><li><span>Bloque principal</span><span class="meta">3 ejercicios</span></li><li><span>Bloque funcional + Accesorios</span><span class="meta">3 ejercicios</span></li><li><span>Core</span><span class="meta">2 ejercicios</span></li></ul><div class="tcard-foot"><span class="cap-btn">Abrir sesión</span></div></div><div class="tcard" onclick="openSess('c')" id="card-c"><div class="tcard-day">Viernes</div><div class="tcard-title">Full Body C</div><div class="tcard-meta">55–65 min · Volumen + Finisher</div><ul class="tcard-blocks"><li><span>Calentamiento en circuito</span><span class="meta">4 ejercicios</span></li><li><span>Bloque principal</span><span class="meta">3 ejercicios</span></li><li><span>Bloque funcional</span><span class="meta">2 ejercicios</span></li><li><span>Finisher metabólico</span><span class="meta">4 ejercicios</span></li></ul><div class="tcard-foot"><span class="cap-btn">Abrir sesión</span></div></div></div>
 
   <!-- DÍAS DE DESCANSO -->
   <div class="grp-hd"><span class="grp-num">02</span><h2 class="grp-ttl">Días de descanso activo</h2></div>
@@ -721,6 +482,231 @@
     <span><a href="index.html#deporte" class="txt-btn">Volver a Deporte</a></span>
   </div>
 </footer>
+
+<div class="cardio-modal-overlay sess-overlay" id="sess-a" onclick="if(event.target===this)closeSess()"><div class="cardio-modal wide"><div class="cardio-modal-hdr"><div><div class="cardio-modal-sub">Lunes · 55–65 min · Empuje + Tirón</div><div class="cardio-modal-title">Full Body A</div></div><button class="cardio-modal-close" onclick="closeSess()">Cerrar</button></div><div class="cardio-modal-body"><div class="session-body">
+
+        <div class="block">
+          <div class="block-label">Calentamiento en circuito — 3 rondas · 45 seg entre rondas</div>
+          <div class="ex">
+            <div><div class="ex-name">Jump squat (sin peso)</div><div class="ex-detail">×10 · Activa sistema nervioso, potencia de pierna para correr</div></div>
+            <div class="ex-tag tag-warmup">Activación</div>
+          </div>
+          <div class="ex">
+            <div><div class="ex-name">Remo con banda</div><div class="ex-detail">×15 · Activa manguito rotador antes del press, protege hombro</div></div>
+            <div class="ex-tag tag-warmup">Hombro</div>
+          </div>
+          <div class="ex">
+            <div><div class="ex-name">Hip hinge con palo</div><div class="ex-detail">×10 · Activa cadena posterior antes de sentadilla</div></div>
+            <div class="ex-tag tag-warmup">Movilidad</div>
+          </div>
+          <div class="ex">
+            <div><div class="ex-name">Mountain climbers</div><div class="ex-detail">×20 · Eleva FC, activa core estabilizador</div></div>
+            <div class="ex-tag tag-warmup">Core</div>
+          </div>
+        </div>
+
+        <div class="block">
+          <div class="block-label">Bloque principal</div>
+          <div class="ex">
+            <div><div class="ex-name">Sentadilla con barra</div><div class="ex-detail">4×4–6 · 2 min descanso · Bajas reps, más carga — desarrollar fuerza real</div></div>
+            <div class="ex-tag tag-primary">Principal</div>
+          </div>
+          <div class="ex">
+            <div><div class="ex-name">Press banca con barra</div><div class="ex-detail">4×4–6 · 2 min descanso · Pausa 1 seg en pecho — más control y activación</div></div>
+            <div class="ex-tag tag-primary">Principal</div>
+          </div>
+          <div class="ex">
+            <div><div class="ex-name">Remo con barra (pronado)</div><div class="ex-detail">4×6–8 · 90 seg descanso · Equilibra press, fortalece espalda alta</div></div>
+            <div class="ex-tag tag-primary">Principal</div>
+          </div>
+        </div>
+
+        <div class="block">
+          <div class="block-label">Bloque funcional + Accesorios</div>
+          <div class="ex">
+            <div><div class="ex-name">Turkish get-up (KB)</div><div class="ex-detail">3×3 por lado · 60 seg descanso · Estabilidad total, coordinación — útil para cualquier deporte</div></div>
+            <div class="ex-tag tag-functional">Funcional</div>
+          </div>
+          <div class="ex">
+            <div><div class="ex-name">Superserie: Curl bíceps + Tríceps polea</div><div class="ex-detail">3×10–12 c/u · 45 seg descanso · Sin descanso entre los dos ejercicios</div></div>
+            <div class="ex-tag tag-secondary">Superserie</div>
+          </div>
+          <div class="ex">
+            <div><div class="ex-name">Elevaciones laterales mancuerna</div><div class="ex-detail">3×15–20 · 45 seg descanso · Peso ligero, codo ligeramente flexionado</div></div>
+            <div class="ex-tag tag-shoulder">Hombro</div>
+          </div>
+        </div>
+
+        <div class="block">
+          <div class="block-label">Core</div>
+          <div class="ex">
+            <div><div class="ex-name">Plancha frontal + Rueda abdominal</div><div class="ex-detail">3×30 seg + 3×8 · 30 seg descanso · Antiextensión — estabilidad en carrera</div></div>
+            <div class="ex-tag tag-core">Core</div>
+          </div>
+        </div>
+
+      </div></div></div></div>
+<div class="cardio-modal-overlay sess-overlay" id="sess-b" onclick="if(event.target===this)closeSess()"><div class="cardio-modal wide"><div class="cardio-modal-hdr"><div><div class="cardio-modal-sub">Miércoles · 55–65 min · Bisagra + Vertical</div><div class="cardio-modal-title">Full Body B</div></div><button class="cardio-modal-close" onclick="closeSess()">Cerrar</button></div><div class="cardio-modal-body"><div class="session-body">
+
+        <div class="block">
+          <div class="block-label">Calentamiento en circuito — 3 rondas · 45 seg entre rondas</div>
+          <div class="ex">
+            <div><div class="ex-name">Puente de glúteo con banda</div><div class="ex-detail">×15 · Activa glúteos antes del peso muerto — reduce riesgo lumbar</div></div>
+            <div class="ex-tag tag-warmup">Activación</div>
+          </div>
+          <div class="ex">
+            <div><div class="ex-name">Face pull con goma</div><div class="ex-detail">×15 · Protege hombro posterior antes del jalón</div></div>
+            <div class="ex-tag tag-warmup">Hombro</div>
+          </div>
+          <div class="ex">
+            <div><div class="ex-name">Inchworm</div><div class="ex-detail">×6 · Movilidad de cadena posterior completa — útil para trekking y correr</div></div>
+            <div class="ex-tag tag-warmup">Movilidad</div>
+          </div>
+          <div class="ex">
+            <div><div class="ex-name">Saltos laterales</div><div class="ex-detail">×10 por lado · Activa estabilizadores de tobillo y rodilla — previene lesiones en carrera</div></div>
+            <div class="ex-tag tag-warmup">Activación</div>
+          </div>
+        </div>
+
+        <div class="block">
+          <div class="block-label">Bloque principal</div>
+          <div class="ex">
+            <div><div class="ex-name">Peso muerto convencional</div><div class="ex-detail">4×3–5 · 3 min descanso · El ejercicio más funcional del gimnasio · Objetivo: acercarse a 150 kg progresivamente</div></div>
+            <div class="ex-tag tag-primary">Principal</div>
+          </div>
+          <div class="ex">
+            <div><div class="ex-name">Jalón al pecho (agarre neutro)</div><div class="ex-detail">4×6–8 · 90 seg descanso · Sustituye dominadas para proteger hombro · Clave en natación</div></div>
+            <div class="ex-tag tag-primary">Principal</div>
+          </div>
+          <div class="ex">
+            <div><div class="ex-name">Press inclinado con mancuernas</div><div class="ex-detail">4×8–10 · 90 seg descanso · Menos estrés en hombro que barra · Mayor rango de movimiento</div></div>
+            <div class="ex-tag tag-primary">Principal</div>
+          </div>
+        </div>
+
+        <div class="block">
+          <div class="block-label">Bloque funcional + Accesorios</div>
+          <div class="ex">
+            <div><div class="ex-name">KB Swing</div><div class="ex-detail">4×15 · 60 seg descanso · Potencia de cadera explosiva — transferible a correr y trekking cuesta arriba</div></div>
+            <div class="ex-tag tag-functional">Funcional</div>
+          </div>
+          <div class="ex">
+            <div><div class="ex-name">Rest-pause: Extensiones tríceps polea</div><div class="ex-detail">1×15 + 15 seg pausa + 8 · 60 seg descanso · Equivale a 2 series en 1 — ahorra tiempo</div></div>
+            <div class="ex-tag tag-secondary">Rest-pause</div>
+          </div>
+          <div class="ex">
+            <div><div class="ex-name">Curl femoral en máquina</div><div class="ex-detail">3×12–15 · 45 seg descanso · Complementa peso muerto, equilibra cuádriceps — previene lesiones en carrera</div></div>
+            <div class="ex-tag tag-secondary">Accesorio</div>
+          </div>
+        </div>
+
+        <div class="block">
+          <div class="block-label">Core</div>
+          <div class="ex">
+            <div><div class="ex-name">Dead bug</div><div class="ex-detail">3×8 por lado · 30 seg descanso · Antiextensión lumbar — estabilidad en movimiento, útil para correr</div></div>
+            <div class="ex-tag tag-core">Core</div>
+          </div>
+          <div class="ex">
+            <div><div class="ex-name">Pallof press en polea</div><div class="ex-detail">3×10 por lado · 30 seg descanso · Resistencia rotacional — estabiliza columna en trekking con mochila</div></div>
+            <div class="ex-tag tag-core">Core</div>
+          </div>
+        </div>
+
+      </div></div></div></div>
+<div class="cardio-modal-overlay sess-overlay" id="sess-c" onclick="if(event.target===this)closeSess()"><div class="cardio-modal wide"><div class="cardio-modal-hdr"><div><div class="cardio-modal-sub">Viernes · 55–65 min · Volumen + Finisher</div><div class="cardio-modal-title">Full Body C</div></div><button class="cardio-modal-close" onclick="closeSess()">Cerrar</button></div><div class="cardio-modal-body"><div class="session-body">
+
+        <div class="block">
+          <div class="block-label">Calentamiento en circuito — 3 rondas · 45 seg entre rondas</div>
+          <div class="ex">
+            <div><div class="ex-name">Sentadilla goblet KB</div><div class="ex-detail">×10 · Activa pierna con movilidad de cadera</div></div>
+            <div class="ex-tag tag-warmup">Activación</div>
+          </div>
+          <div class="ex">
+            <div><div class="ex-name">Rotación torácica en suelo</div><div class="ex-detail">×8 por lado · Movilidad de columna — previene compensaciones en carrera larga</div></div>
+            <div class="ex-tag tag-warmup">Movilidad</div>
+          </div>
+          <div class="ex">
+            <div><div class="ex-name">Skipping en el sitio</div><div class="ex-detail">×20 seg · Activa patrón de carrera, eleva FC</div></div>
+            <div class="ex-tag tag-warmup">Activación</div>
+          </div>
+          <div class="ex">
+            <div><div class="ex-name">Step-up con rodilla alta</div><div class="ex-detail">×8 por lado · Activa glúteo y estabilizadores — patrón de trekking</div></div>
+            <div class="ex-tag tag-warmup">Funcional</div>
+          </div>
+        </div>
+
+        <div class="block">
+          <div class="block-label">Bloque principal</div>
+          <div class="ex">
+            <div><div class="ex-name">Prensa de pierna</div><div class="ex-detail">4×10–12 · 90 seg descanso · Volumen de pierna sin desgaste del SNC — permite entrenar más duro el finisher después</div></div>
+            <div class="ex-tag tag-primary">Principal</div>
+          </div>
+          <div class="ex">
+            <div><div class="ex-name">Remo en polea baja (agarre neutro)</div><div class="ex-detail">4×10–12 · 90 seg descanso · Volumen de espalda — acumula trabajo que A y B no completan</div></div>
+            <div class="ex-tag tag-primary">Principal</div>
+          </div>
+          <div class="ex">
+            <div><div class="ex-name">Dips en paralelas — drop set</div><div class="ex-detail">Serie máx → -20% → máx · 2 min descanso · Si molesta hombro sustituir por fondos en banco</div></div>
+            <div class="ex-tag tag-primary">Drop set</div>
+          </div>
+        </div>
+
+        <div class="block">
+          <div class="block-label">Bloque funcional</div>
+          <div class="ex">
+            <div><div class="ex-name">Zancadas caminando con mancuernas</div><div class="ex-detail">3×12 por pierna · 45 seg descanso · Patrón de trekking directo — estabilidad unilateral con carga</div></div>
+            <div class="ex-tag tag-functional">Funcional</div>
+          </div>
+          <div class="ex">
+            <div><div class="ex-name">Superserie: Face pull alto + Curl bíceps</div><div class="ex-detail">3×20 + 3×12 · 45 seg descanso · Salud hombro + trabajo de brazos eficiente</div></div>
+            <div class="ex-tag tag-shoulder">Hombro</div>
+          </div>
+        </div>
+
+        <div class="block">
+          <div class="block-label">Finisher metabólico — 4 rondas · 75 seg entre rondas</div>
+          <table class="finisher-table">
+            <thead>
+              <tr>
+                <th>Ejercicio</th>
+                <th>Reps</th>
+                <th>Por qué</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>KB swing</td>
+                <td>12</td>
+                <td>Potencia de cadera explosiva</td>
+              </tr>
+              <tr>
+                <td>Sentadillas goblet</td>
+                <td>10</td>
+                <td>Resistencia muscular de pierna</td>
+              </tr>
+              <tr>
+                <td>Remo con goma</td>
+                <td>8</td>
+                <td>Resistencia de espalda</td>
+              </tr>
+              <tr>
+                <td>Burpees</td>
+                <td>6</td>
+                <td>Cardiovascular total — transfiere a cualquier deporte</td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="finisher-note">Sin descanso entre ejercicios · 75 seg entre rondas · 4 rondas totales</div>
+        </div>
+
+      </div></div></div></div>
+
+<script>
+function openSess(k){closeSess();var el=document.getElementById('sess-'+k);if(!el)return;el.classList.add('open');document.body.classList.add('locked');history.replaceState(null,'','#'+k);}
+function closeSess(){document.querySelectorAll('.sess-overlay.open').forEach(function(o){o.classList.remove('open');});document.body.classList.remove('locked');}
+document.addEventListener('keydown',function(e){if(e.key==='Escape')closeSess();});
+document.addEventListener('DOMContentLoaded',function(){var h=location.hash.replace('#','');if(['a','b','c'].indexOf(h)>=0)openSess(h);});
+</script>
 
 </body>
 </html>
