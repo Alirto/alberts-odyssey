@@ -3,140 +3,366 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Rutina Deportiva — Albert's Odyssey</title>
-<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<title>Rutina de fuerza — Albert's Odyssey</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..600;1,9..144,300..600&family=DM+Sans:ital,opsz,wght@0,9..40,300..600;1,9..40,300..600&display=swap" rel="stylesheet">
 <style>
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-:root {
-  --bg: #F5F4F0; --surface: #FFFFFF; --border: #E8E6E0; --border-2: #D0CEC8;
-  --text-1: #1A1916; --text-2: #6B6860; --text-3: #A8A49C;
-  --green: #2D6A4F; --green-bg: #EAF3EE;
-}
-body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--text-1); min-height: 100vh; -webkit-font-smoothing: antialiased; }
-nav { background: var(--surface); border-bottom: 1px solid var(--border); padding: 0 48px; display: flex; align-items: center; height: 56px; position: sticky; top: 0; z-index: 100; }
-.nav-logo { font-family: 'DM Serif Display', serif; font-size: 18px; letter-spacing: -0.3px; color: var(--text-1); text-decoration: none; margin-right: 36px; white-space: nowrap; flex-shrink: 0; }
-.nav-logo span { font-style: italic; color: var(--text-2); }
-.nav-links { display: flex; align-items: stretch; flex: 1; overflow-x: auto; }
-.nav-link { font-size: 12px; font-weight: 500; color: var(--text-2); padding: 0 16px; text-decoration: none; height: 56px; display: flex; align-items: center; white-space: nowrap; border-bottom: 2px solid transparent; margin-bottom: -1px; transition: color .15s, border-color .15s; }
-.nav-link:hover { color: var(--text-1); }
-.nav-link.active { color: var(--text-1); border-bottom-color: var(--text-1); font-weight: 600; }
-.page { max-width: 1280px; margin: 0 auto; padding: 48px; }
-.page-hdr { padding: 48px 0 36px; border-bottom: 1px solid var(--border); margin-bottom: 40px; display: flex; align-items: flex-start; justify-content: space-between; gap: 24px; flex-wrap: wrap; }
-.ph-left { display: flex; align-items: flex-start; gap: 20px; }
-.ph-icon { width: 52px; height: 52px; border-radius: 12px; background: var(--green-bg); display: flex; align-items: center; justify-content: center; font-size: 24px; border: 1px solid var(--border); flex-shrink: 0; }
-.ph-eyebrow { font-size: 11px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; color: var(--text-3); margin-bottom: 6px; }
-.ph-title { font-family: 'DM Serif Display', serif; font-size: 32px; letter-spacing: -0.5px; line-height: 1.1; margin-bottom: 8px; }
-.ph-sub { font-size: 13px; color: var(--text-2); line-height: 1.6; }
-.ph-stats { display: flex; gap: 32px; align-items: flex-end; flex-wrap: wrap; }
-.ph-stat { text-align: right; }
-.ph-stat-val { font-family: 'DM Serif Display', serif; font-size: 28px; line-height: 1; letter-spacing: -0.5px; color: var(--green); }
-.ph-stat-lbl { font-size: 11px; color: var(--text-3); font-weight: 500; margin-top: 3px; }
-.notice { border-radius: 8px; padding: 14px 20px; display: flex; align-items: flex-start; gap: 12px; margin-bottom: 24px; font-size: 13px; line-height: 1.6; }
-.notice-icon { font-size: 14px; flex-shrink: 0; margin-top: 1px; }
-.notice-warn { background: #FFF8EC; border: 1px solid #F2CC8F; border-left: 3px solid #C9A227; color: #7A6010; }
-.notice-info { background: var(--green-bg); border: 1px solid #C3DDD1; border-left: 3px solid var(--green); color: #1D4A35; }
-.sl { font-size: 11px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; color: var(--text-3); margin: 40px 0 20px; display: flex; align-items: center; gap: 14px; }
-.sl::after { content: ''; flex: 1; height: 1px; background: var(--border); }
-.week-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-bottom: 40px; }
-.session { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; overflow: hidden; }
-.session-hdr { padding: 20px 24px 16px; border-bottom: 1px solid var(--border); background: #FAFAF8; }
-.session-day { font-size: 10px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--text-3); margin-bottom: 6px; }
-.session-title { font-family: 'DM Serif Display', serif; font-size: 20px; letter-spacing: -0.3px; margin-bottom: 4px; }
-.session-meta { font-size: 12px; color: var(--text-2); display: flex; gap: 14px; flex-wrap: wrap; }
-.session-body { padding: 20px 24px; }
-.block { margin-bottom: 20px; }
-.block:last-child { margin-bottom: 0; }
-.block-label { font-size: 10px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--text-3); margin-bottom: 10px; padding-bottom: 6px; border-bottom: 1px solid var(--border); }
-.ex { display: grid; grid-template-columns: 1fr auto; gap: 8px; align-items: start; padding: 10px 0; border-bottom: 1px solid var(--border); }
-.ex:last-child { border-bottom: none; }
-.ex-name { font-size: 13.5px; font-weight: 600; color: var(--text-1); margin-bottom: 3px; }
-.ex-detail { font-size: 12px; color: var(--text-2); line-height: 1.5; }
-.ex-tag { font-size: 11px; font-weight: 600; padding: 3px 10px; border-radius: 20px; white-space: nowrap; align-self: start; margin-top: 2px; }
-.tag-primary   { background: var(--green-bg); color: var(--green); border: 1px solid #C3DDD1; }
-.tag-secondary { background: #F0F0F8; color: #3D405B; border: 1px solid #C8D4F5; }
-.tag-finisher  { background: #FEF3F2; color: #C0614A; border: 1px solid #F5C6BC; }
-.tag-warmup    { background: var(--bg); color: var(--text-3); border: 1px solid var(--border); }
-.tag-shoulder  { background: #FFF8EC; color: #92400E; border: 1px solid #F2CC8F; }
-.tag-functional { background: #F0F0F8; color: #3D405B; border: 1px solid #C8D4F5; }
-.tag-core      { background: #EEF2FF; color: #3D405B; border: 1px solid #C8D4F5; }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --paper: #F3F0E8; --paper-2: #E6E1D4;
+    --ink: #171611; --ink-2: #45423A; --ink-3: #625E55;
+    --rule: #C9C3B4; --rule-soft: #DDD8CB;
+    --now: #A86F1C;
+    --serif: 'Fraunces', Georgia, serif; --sans: 'DM Sans', system-ui, sans-serif;
+    --w: 1200px; --gutter: 40px;
+  }
+  html { scroll-behavior: smooth; }
+  body { font-family: var(--sans); background: var(--paper); color: var(--ink); min-height: 100vh; font-size: 15px; line-height: 1.5; -webkit-font-smoothing: antialiased; }
+  body.locked { overflow: hidden; }
+  a { color: inherit; }
+  button { font-family: inherit; color: inherit; background: none; border: none; cursor: pointer; }
+  .wrap { max-width: var(--w); margin: 0 auto; padding: 0 var(--gutter); }
+  .label { font-size: 12px; font-weight: 500; letter-spacing: .12em; text-transform: uppercase; color: var(--ink-3); }
+  .num { font-family: var(--serif); font-variation-settings: 'opsz' 144; font-weight: 400; letter-spacing: -0.02em; font-variant-numeric: tabular-nums; }
+  .meta { font-size: 13px; color: var(--ink-3); }
+  .meta b, .fig-lbl b { color: var(--ink); font-weight: 500; }
+  .attn { color: var(--now); font-weight: 500; }
+  .ptag { font-size: 11px; letter-spacing: .1em; text-transform: uppercase; font-weight: 600; color: var(--ink); }
+  .ptag.soft { color: var(--ink-3); }
+  .cap-btn { font-size: 11px; letter-spacing: .12em; text-transform: uppercase; font-weight: 600; color: var(--ink-3); padding: 6px 0; border-bottom: 1px solid transparent; transition: color .15s, border-color .15s; }
+  .cap-btn:hover, .cap-btn.active { color: var(--ink); border-bottom-color: var(--ink); }
+  .txt-btn { font-size: 14px; color: var(--ink-2); text-decoration: underline; text-decoration-color: var(--rule); text-underline-offset: 4px; transition: text-decoration-color .15s, color .15s; }
+  .txt-btn:hover { color: var(--ink); text-decoration-color: var(--ink); }
+  .line-btn { font-size: 14px; color: var(--ink); border: 1px solid var(--ink); padding: 8px 16px; transition: background .15s, color .15s; white-space: nowrap; background: transparent; }
+  .line-btn:hover { background: var(--ink); color: var(--paper); }
 
-/* Finisher table */
-.finisher-table { width: 100%; border-collapse: collapse; margin-top: 4px; }
-.finisher-table th { font-size: 10px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: var(--text-3); text-align: left; padding: 6px 8px; border-bottom: 1px solid var(--border); }
-.finisher-table td { font-size: 12px; padding: 8px 8px; border-bottom: 1px solid var(--border); color: var(--text-2); vertical-align: top; }
-.finisher-table td:first-child { font-weight: 600; color: var(--text-1); }
-.finisher-table tr:last-child td { border-bottom: none; }
-.finisher-note { font-size: 11px; color: var(--text-3); margin-top: 8px; font-style: italic; }
+  /* Top bar */
+  .top { border-bottom: 1px solid var(--rule); position: sticky; top: 0; background: rgba(243,240,232,.94); backdrop-filter: blur(8px); z-index: 100; }
+  .top .wrap { display: flex; align-items: center; height: 60px; gap: 36px; }
+  .brand { font-family: var(--serif); font-size: 21px; text-decoration: none; letter-spacing: -0.02em; white-space: nowrap; line-height: 1; }
+  .brand em { font-style: italic; font-weight: 300; }
+  .menu { display: flex; gap: 26px; }
+  .menu a { text-decoration: none; font-size: 14px; color: var(--ink-3); padding: 21px 0; border-bottom: 1px solid transparent; margin-bottom: -1px; transition: color .15s; }
+  .menu a:hover { color: var(--ink); }
+  .menu a.active { color: var(--ink); border-bottom-color: var(--ink); }
 
-.rest-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin-bottom: 40px; }
-.rest-card { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 20px; }
-.rest-day { font-size: 10px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--text-3); margin-bottom: 8px; }
-.rest-title { font-family: 'DM Serif Display', serif; font-size: 16px; margin-bottom: 6px; color: var(--text-2); }
-.rest-desc { font-size: 12px; color: var(--text-3); line-height: 1.6; }
-.principles-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 12px; margin-bottom: 40px; }
-.principle { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 18px 20px; border-left: 3px solid; }
-.pr-title { font-size: 13.5px; font-weight: 600; margin-bottom: 5px; }
-.pr-body { font-size: 12.5px; color: var(--text-2); line-height: 1.65; }
-.prog-table { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; overflow: hidden; margin-bottom: 40px; }
-.prog-table-hdr { padding: 16px 24px; border-bottom: 1px solid var(--border); background: #FAFAF8; display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; gap: 12px; }
-.prog-table-hdr span { font-size: 10px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--text-3); }
-.prog-row { padding: 14px 24px; border-bottom: 1px solid var(--border); display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; gap: 12px; align-items: center; }
-.prog-row:last-child { border-bottom: none; }
-.prog-row:hover { background: var(--bg); }
-.prog-phase { font-size: 13px; font-weight: 600; }
-.prog-weeks { font-size: 12px; color: var(--text-2); }
-.prog-focus { font-size: 12px; color: var(--text-2); }
-.prog-badge { font-size: 11px; font-weight: 600; padding: 3px 10px; border-radius: 20px; display: inline-block; }
+  /* Masthead */
+  .masthead { padding: 48px 0 0; }
+  .dateline { font-size: 13px; color: var(--ink-3); padding-bottom: 18px; }
+  h1 { font-family: var(--serif); font-variation-settings: 'opsz' 144; font-weight: 400; font-size: 152px; line-height: .9; letter-spacing: -0.045em; padding-bottom: 36px; border-bottom: 1px solid var(--ink); }
+  .mast-row { display: grid; grid-template-columns: 8fr 4fr; gap: 64px; padding: 32px 0 48px; align-items: start; }
+  .deck { font-family: var(--serif); font-variation-settings: 'opsz' 34; font-size: 34px; line-height: 1.22; letter-spacing: -0.018em; font-weight: 300; }
+  .deck em { font-style: italic; }
+  .fig-num { font-size: 96px; line-height: .9; letter-spacing: -0.04em; }
+  .fig-num small { font-size: 32px; color: var(--ink-3); letter-spacing: 0; margin-left: 4px; }
+  .fig-lbl { font-size: 14px; color: var(--ink-3); margin-top: 16px; line-height: 1.5; max-width: 30ch; }
 
-@media (max-width: 1100px) { .week-grid { grid-template-columns: 1fr; } .rest-grid { grid-template-columns: repeat(2,1fr); } }
-@media (max-width: 768px) { nav { padding: 0 20px; } .nav-logo { margin-right: 20px; } .page { padding: 24px 20px; } .page-hdr { padding: 32px 0 24px; } .rest-grid { grid-template-columns: repeat(2,1fr); } .prog-table-hdr, .prog-row { grid-template-columns: 1fr 1fr; } }
-::-webkit-scrollbar { width: 5px; height: 5px; }
-::-webkit-scrollbar-track { background: transparent; }
-::-webkit-scrollbar-thumb { background: rgba(0,0,0,.12); border-radius: 3px; }
+  /* Tabs */
+  .main-tabs { display: flex; gap: 40px; border-top: 1px solid var(--ink); }
+  .main-tab { font-family: var(--serif); font-variation-settings: 'opsz' 20; font-size: 22px; letter-spacing: -0.01em; color: var(--ink-3); padding: 18px 0 16px; border-top: 2px solid transparent; margin-top: -1px; transition: color .15s; }
+  .main-tab:hover { color: var(--ink); }
+  .main-tab.active { color: var(--ink); border-top-color: var(--ink); }
+  .panel { display: none; padding: 40px 0 88px; }
+  .panel.active { display: block; }
+  .tabs-bar { display: flex; gap: 28px; margin-bottom: 8px; }
+  .tab { font-size: 11px; letter-spacing: .12em; text-transform: uppercase; font-weight: 600; color: var(--ink-3); padding: 6px 0; border-bottom: 1px solid transparent; }
+  .tab.active, .tab:hover { color: var(--ink); border-bottom-color: var(--ink); }
+  .tp { display: none; }
+  .tp.active { display: block; }
+
+  /* Groups and entries */
+  .grp { padding: 48px 0 8px; }
+  .grp-hd { display: flex; align-items: baseline; gap: 18px; margin-bottom: 24px; }
+  .grp-num { font-family: var(--serif); font-size: 14px; color: var(--ink-3); font-variant-numeric: tabular-nums; }
+  .grp-ttl { font-family: var(--serif); font-variation-settings: 'opsz' 60; font-weight: 400; font-size: 34px; letter-spacing: -0.025em; line-height: 1; }
+  .grp-hd .meta { margin-left: auto; text-align: right; max-width: 40ch; }
+  .ent-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0 56px; border-top: 1px solid var(--ink); }
+  .ent { padding: 24px 0 26px; border-bottom: 1px solid var(--rule); }
+  .ent-hd { display: flex; align-items: baseline; justify-content: space-between; gap: 20px; }
+  .ent-hd h3 { font-family: var(--serif); font-variation-settings: 'opsz' 40; font-weight: 400; font-size: 26px; letter-spacing: -0.02em; line-height: 1; }
+  .ent-dose { font-family: var(--serif); font-size: 17px; color: var(--ink-2); font-variant-numeric: tabular-nums; white-space: nowrap; letter-spacing: -0.01em; }
+  .ent-why { font-size: 14.5px; color: var(--ink-2); line-height: 1.55; margin-top: 12px; max-width: 58ch; }
+  .ent-why strong { color: var(--ink); font-weight: 500; }
+  .ent-al { font-size: 13.5px; color: var(--ink-2); line-height: 1.5; margin-top: 10px; }
+  .ent-al .ptag { margin-right: 8px; }
+  .ent-foods { font-size: 13px; color: var(--ink-3); line-height: 1.7; margin-top: 12px; }
+  .ent-foods .ptag { margin-right: 8px; }
+  .ent-foods b { color: var(--ink); font-weight: 500; font-variant-numeric: tabular-nums; }
+  .ent-foods .sep { color: var(--rule); }
+  .figures { display: grid; grid-template-columns: repeat(3, 1fr); border-top: 1px solid var(--ink); margin-bottom: 32px; }
+  .figures.five { grid-template-columns: repeat(5, 1fr); }
+  .fig { padding: 18px 20px 20px 0; border-right: 1px solid var(--rule); }
+  .fig:last-child { border-right: none; }
+  .fig + .fig { padding-left: 20px; }
+  .figures .fig-num { font-size: 40px; line-height: 1; letter-spacing: -0.03em; }
+  .figures .fig-lbl { font-size: 13px; margin-top: 10px; max-width: none; }
+
+  /* Dieta */
+  .pm-header p { font-family: var(--serif); font-variation-settings: 'opsz' 22; font-size: 22px; line-height: 1.4; letter-spacing: -0.01em; max-width: 60ch; margin: 40px 0 8px; font-weight: 300; }
+  .pm-grid-2, .pm-grid-4 { display: grid; gap: 0 48px; border-top: 1px solid var(--ink); }
+  .pm-grid-2 { grid-template-columns: 1fr 1fr; }
+  .pm-grid-4 { grid-template-columns: repeat(4, 1fr); gap: 0 32px; }
+  .pm-card { padding: 20px 0 22px; border-bottom: 1px solid var(--rule); }
+  .pm-title { font-family: var(--serif); font-variation-settings: 'opsz' 20; font-size: 20px; letter-spacing: -0.01em; line-height: 1.25; }
+  .pm-meta { font-size: 11px; letter-spacing: .1em; text-transform: uppercase; font-weight: 600; color: var(--ink-3); margin: 8px 0 6px; }
+  .pm-text { font-size: 14px; color: var(--ink-2); line-height: 1.55; margin-top: 8px; }
+  .grp-hd + .day-row { border-top: 1px solid var(--ink); }
+  .day-row { display: grid; grid-template-columns: 180px 1fr; gap: 32px; padding: 24px 0; border-bottom: 1px solid var(--rule); }
+  .day-name { font-family: var(--serif); font-variation-settings: 'opsz' 40; font-size: 26px; letter-spacing: -0.02em; line-height: 1; }
+  .day-type { font-size: 12px; letter-spacing: .1em; text-transform: uppercase; color: var(--ink-3); margin-top: 8px; }
+  .day-badge { display: block; font-size: 12px; color: var(--ink); margin-top: 6px; }
+  .meals { display: flex; flex-direction: column; gap: 12px; }
+  .meal { display: grid; grid-template-columns: 96px 1fr; gap: 20px; align-items: baseline; }
+  .meal-tag { font-size: 11px; letter-spacing: .1em; text-transform: uppercase; font-weight: 600; color: var(--ink-3); }
+  .meal-name { font-size: 15px; font-weight: 500; line-height: 1.35; }
+  .meal-detail { font-size: 13.5px; color: var(--ink-2); line-height: 1.5; margin-top: 2px; }
+  .shop-col { padding: 18px 0 20px; border-bottom: 1px solid var(--rule); }
+  .shop-col h3 { font-size: 12px; letter-spacing: .12em; text-transform: uppercase; font-weight: 500; color: var(--ink-3); margin-bottom: 10px; }
+  .shop-col ul { list-style: none; }
+  .shop-col li { font-size: 14px; color: var(--ink); padding: 4px 0; }
+  .pm-callout { border-top: 1px solid var(--ink); margin-top: 48px; padding-top: 24px; }
+  .pm-callout h2 { font-family: var(--serif); font-variation-settings: 'opsz' 40; font-weight: 400; font-size: 30px; letter-spacing: -0.02em; margin-bottom: 12px; line-height: 1.1; }
+  .pm-callout p { font-size: 15px; color: var(--ink-2); line-height: 1.6; max-width: 66ch; }
+  .pm-callout strong { color: var(--ink); font-weight: 500; }
+
+  /* Deporte */
+  .objetivo { display: grid; grid-template-columns: 5fr 7fr; gap: 64px; border-top: 1px solid var(--ink); padding: 24px 0 0; margin-bottom: 8px; }
+  .obj-label { font-size: 11px; letter-spacing: .12em; text-transform: uppercase; font-weight: 600; color: var(--now); margin-bottom: 14px; }
+  .obj-text { font-family: var(--serif); font-variation-settings: 'opsz' 20; font-size: 20px; line-height: 1.4; letter-spacing: -0.005em; max-width: 40ch; }
+  .obj-hitos { }
+  .hito { display: grid; grid-template-columns: 16px 1fr; gap: 14px; align-items: baseline; padding: 13px 0; border-bottom: 1px solid var(--rule-soft); }
+  .hito .g { width: 10px; height: 10px; border-radius: 50%; border: 1px solid var(--ink-3); position: relative; top: 1px; }
+  .hito.active .g { border-color: var(--ink); box-shadow: inset 0 0 0 2px var(--paper), inset 0 0 0 10px var(--ink); }
+  .hito .title { font-family: var(--serif); font-variation-settings: 'opsz' 20; font-size: 17px; line-height: 1.35; }
+  .hito.pending .title { color: var(--ink-2); }
+  .content-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0 56px; border-top: 1px solid var(--ink); }
+  .content-card { display: block; padding: 24px 0 26px; border-bottom: 1px solid var(--rule); text-decoration: none; color: inherit; transition: background .15s; }
+  .content-card:hover { background: rgba(255,255,255,.35); }
+  .card-label { font-size: 11px; letter-spacing: .12em; text-transform: uppercase; font-weight: 600; color: var(--ink-3); }
+  .card-title { font-family: var(--serif); font-variation-settings: 'opsz' 40; font-size: 28px; letter-spacing: -0.02em; line-height: 1.1; margin: 10px 0 12px; }
+  .card-desc { font-size: 14.5px; color: var(--ink-2); line-height: 1.55; max-width: 50ch; }
+  .card-bottom { display: flex; justify-content: space-between; align-items: baseline; gap: 24px; margin-top: 18px; }
+  .card-tags { font-size: 13px; color: var(--ink-3); }
+  .card-tag + .card-tag::before { content: ' · '; }
+  .card-arrow { font-size: 11px; letter-spacing: .12em; text-transform: uppercase; font-weight: 600; color: var(--ink); border-bottom: 1px solid var(--ink); padding-bottom: 2px; }
+
+  /* Overlays */
+  .cardio-modal-overlay { position: fixed; inset: 0; background: rgba(23,22,17,.42); backdrop-filter: blur(3px); z-index: 1000; display: none; align-items: center; justify-content: center; padding: 24px; }
+  .cardio-modal-overlay.open { display: flex; }
+  .cardio-modal { background: var(--paper); border: 1px solid var(--ink); width: 760px; max-width: 100%; max-height: calc(100vh - 48px); overflow-y: auto; display: flex; flex-direction: column; }
+  .cardio-modal-hdr { padding: 22px 28px 18px; border-bottom: 1px solid var(--ink); display: flex; align-items: flex-start; justify-content: space-between; gap: 16px; position: sticky; top: 0; background: var(--paper); z-index: 1; }
+  .cardio-modal-title { font-family: var(--serif); font-size: 24px; letter-spacing: -0.02em; line-height: 1; }
+  .cardio-modal-sub { font-size: 13px; color: var(--ink-3); margin-top: 6px; }
+  .cardio-modal-close { font-size: 14px; color: var(--ink-2); text-decoration: underline; text-decoration-color: var(--rule); text-underline-offset: 4px; }
+  .cardio-modal-stats { display: grid; grid-template-columns: repeat(3, 1fr); padding: 20px 28px 0; }
+  .cardio-modal-stats > div { padding: 0 20px 20px 0; border-right: 1px solid var(--rule); }
+  .cardio-modal-stats > div + div { padding-left: 20px; }
+  .cardio-modal-stats > div:last-child { border-right: none; }
+  .cardio-modal-stat-val { font-family: var(--serif); font-size: 32px; letter-spacing: -0.02em; line-height: 1; font-variant-numeric: tabular-nums; }
+  .cardio-modal-stat-lbl { font-size: 13px; color: var(--ink-3); margin-top: 8px; }
+  .cardio-modal-body { padding: 8px 28px 28px; }
+  .cardio-row { display: grid; grid-template-columns: 80px 80px 1fr 110px; gap: 16px; align-items: baseline; padding: 10px 0; border-bottom: 1px solid var(--rule-soft); }
+  .cardio-row.hdr { font-size: 11px; letter-spacing: .12em; text-transform: uppercase; color: var(--ink-3); font-weight: 500; border-bottom: 1px solid var(--ink); }
+  .cardio-sem { font-size: 13px; color: var(--ink-3); }
+  .cardio-km { font-family: var(--serif); font-size: 18px; font-variant-numeric: tabular-nums; letter-spacing: -0.01em; }
+  .cardio-desc { font-size: 14px; color: var(--ink-2); }
+  .cardio-badge { font-size: 11px; letter-spacing: .1em; text-transform: uppercase; font-weight: 600; color: var(--ink-3); text-align: right; }
+  .cardio-badge.badge-mixto { color: var(--ink); }
+
+  /* Peso */
+  .objetivo-band { font-size: 13px; color: var(--ink-3); padding-bottom: 20px; }
+  .objetivo-band b { color: var(--ink); font-weight: 500; }
+  .peso-hero { display: grid; grid-template-columns: repeat(4, 1fr); border-top: 1px solid var(--ink); margin-bottom: 48px; }
+  .ph-cell { padding: 18px 20px 22px 0; border-right: 1px solid var(--rule); }
+  .ph-cell + .ph-cell { padding-left: 20px; }
+  .ph-cell:last-child { border-right: none; }
+  .ph-cell-lbl { font-size: 12px; letter-spacing: .12em; text-transform: uppercase; color: var(--ink-3); font-weight: 500; margin-bottom: 12px; }
+  .ph-cell-val { font-family: var(--serif); font-variation-settings: 'opsz' 144; font-size: 44px; line-height: 1; letter-spacing: -0.03em; font-variant-numeric: tabular-nums; }
+  .ph-cell-val.gray { color: var(--ink-3); }
+  .ph-cell-val.red { color: var(--now); }
+  .ph-cell-sub { font-size: 13px; color: var(--ink-3); margin-top: 8px; }
+  .peso-chart-box { border-top: 1px solid var(--ink); padding-top: 16px; }
+  .peso-chart-hdr { display: flex; justify-content: space-between; align-items: baseline; gap: 24px; margin-bottom: 20px; }
+  .peso-chart-title { font-size: 12px; letter-spacing: .12em; text-transform: uppercase; color: var(--ink-3); font-weight: 500; }
+  .peso-chart-filters { display: flex; gap: 20px; }
+  .pf-btn { font-size: 11px; letter-spacing: .12em; text-transform: uppercase; font-weight: 600; color: var(--ink-3); padding: 4px 0; border-bottom: 1px solid transparent; }
+  .pf-btn.active, .pf-btn:hover { color: var(--ink); border-bottom-color: var(--ink); }
+  .peso-chart-wrap svg { width: 100%; height: auto; display: block; font-family: var(--sans); }
+  .weight-note { font-size: 13px; color: var(--ink-3); font-style: italic; margin-top: 12px; }
+  .peso-add-card { margin-top: 56px; border-top: 1px solid var(--ink); padding-top: 16px; }
+  .peso-add-title { font-size: 12px; letter-spacing: .12em; text-transform: uppercase; color: var(--ink-3); font-weight: 500; }
+  .peso-add-row { display: flex; gap: 32px; align-items: flex-end; flex-wrap: wrap; margin-top: 16px; }
+  .peso-input-group { display: flex; flex-direction: column; gap: 6px; }
+  .peso-input-group label { font-size: 11px; letter-spacing: .1em; text-transform: uppercase; color: var(--ink-3); font-weight: 500; }
+  .peso-input-group input { font-family: var(--sans); font-size: 15px; color: var(--ink); background: transparent; border: none; border-bottom: 1px solid var(--rule); padding: 8px 0; outline: none; min-width: 160px; border-radius: 0; }
+  .peso-input-group input:focus { border-bottom-color: var(--ink); }
+  .peso-add-btn { font-size: 14px; color: var(--ink); border: 1px solid var(--ink); padding: 8px 16px; background: transparent; transition: background .15s, color .15s; }
+  .peso-add-btn:hover { background: var(--ink); color: var(--paper); }
+  .peso-add-err { display: none; font-size: 13px; color: #A3442C; margin-top: 12px; }
+  .peso-log { margin-top: 56px; }
+  .peso-log-hdr { display: flex; justify-content: space-between; align-items: baseline; padding-bottom: 12px; border-bottom: 1px solid var(--ink); }
+  .peso-log-title { font-size: 12px; letter-spacing: .12em; text-transform: uppercase; color: var(--ink-3); font-weight: 500; }
+  .peso-log-hdr span:last-child { font-size: 13px !important; color: var(--ink-3) !important; }
+  .peso-row { display: grid; grid-template-columns: 150px 110px 150px 1fr auto; gap: 20px; align-items: baseline; padding: 12px 0; border-bottom: 1px solid var(--rule-soft); }
+  .peso-row.hdr { font-size: 11px; letter-spacing: .12em; text-transform: uppercase; color: var(--ink-3); font-weight: 500; padding: 10px 0; }
+  .peso-date { font-size: 14px; }
+  .peso-kg { font-family: var(--serif); font-size: 19px; font-variant-numeric: tabular-nums; letter-spacing: -0.01em; }
+  .peso-delta-pos { font-size: 13px; color: var(--ink); font-variant-numeric: tabular-nums; }
+  .peso-delta-neg { font-size: 13px; color: var(--now); font-weight: 500; font-variant-numeric: tabular-nums; }
+  .peso-delta-zero { font-size: 13px; color: var(--ink-3); }
+  .peso-note { font-size: 13.5px; color: var(--ink-2); font-style: italic; }
+  .peso-del-btn { font-size: 12px; color: var(--ink-3); text-decoration: underline; text-decoration-color: var(--rule); text-underline-offset: 3px; }
+  .peso-del-btn:hover { color: #A3442C; text-decoration-color: #A3442C; }
+  .peso-empty { font-size: 14px; color: var(--ink-3); font-style: italic; padding: 16px 0; }
+
+  /* Footer */
+  footer .wrap { border-top: 1px solid var(--ink); padding: 28px var(--gutter) 56px; display: flex; justify-content: space-between; gap: 32px; font-size: 13px; color: var(--ink-3); flex-wrap: wrap; }
+
+  /* Responsive */
+  @media (max-width: 1240px) { h1 { font-size: 11.5vw; } }
+  @media (max-width: 1000px) {
+    .ent-grid, .content-grid, .pm-grid-2 { grid-template-columns: 1fr; }
+    .pm-grid-4 { grid-template-columns: 1fr 1fr; }
+    .objetivo { grid-template-columns: 1fr; gap: 24px; }
+    .figures.five { grid-template-columns: repeat(3, 1fr); }
+    .figures.five .fig:nth-child(3) { border-right: none; }
+  }
+  @media (max-width: 900px) {
+    :root { --gutter: 24px; }
+    .menu { display: none; }
+    h1 { font-size: 13vw; padding-bottom: 20px; }
+    .mast-row { grid-template-columns: 1fr; gap: 36px; padding-bottom: 32px; }
+    .deck { font-size: 26px; }
+    .fig-num { font-size: 72px; }
+    .main-tabs { gap: 24px; }
+    .main-tab { font-size: 18px; }
+    .day-row { grid-template-columns: 1fr; gap: 14px; }
+    .peso-hero { grid-template-columns: 1fr 1fr; }
+    .ph-cell:nth-child(2) { border-right: none; }
+    .peso-row { grid-template-columns: 110px 90px 1fr; }
+    .peso-row .peso-note, .peso-row.hdr span:nth-child(4) { display: none; }
+    .cardio-row { grid-template-columns: 70px 70px 1fr; }
+    .cardio-badge, .cardio-row.hdr span:nth-child(4) { display: none; }
+  }
+  @media (max-width: 600px) {
+    .pm-grid-4, .figures.five { grid-template-columns: 1fr; }
+    .fig, .ph-cell { border-right: none; }
+    .meal { grid-template-columns: 1fr; gap: 4px; }
+  }
+
+  /* ── Rutina de fuerza ─────────────────────────────────────── */
+  h1 { font-size: clamp(64px, 10.4vw, 136px); }
+  .mast-row { display: block; padding: 32px 0 40px; }
+  .deck { max-width: 34ch; }
+  .masthead .figures { margin-bottom: 0; }
+  .masthead .fig-num small { font-size: 18px; color: var(--ink-3); letter-spacing: .02em; margin-left: 8px; font-family: var(--sans); font-variation-settings: normal; }
+  .top-right { margin-left: auto; }
+  .page { padding: 8px 0 88px; }
+  .notice { font-size: 14.5px; color: var(--ink-2); line-height: 1.6; max-width: 72ch; padding: 18px 0; border-bottom: 1px solid var(--rule-soft); }
+  .notice strong { color: var(--ink); font-weight: 500; }
+  .notice.notice-warn strong { color: var(--now); }
+  .grp-hd { margin-top: 64px; }
+  .grp-hd + .notice { margin-top: -16px; }
+
+  .week-grid { border-top: 1px solid var(--ink); }
+  .session { display: grid; grid-template-columns: 3fr 9fr; gap: 64px; padding: 32px 0 40px; border-bottom: 1px solid var(--rule); }
+  .session-day { font-size: 12px; letter-spacing: .12em; text-transform: uppercase; color: var(--ink-3); font-weight: 500; }
+  .session-title { font-family: var(--serif); font-variation-settings: 'opsz' 60; font-size: 40px; letter-spacing: -0.03em; line-height: 1; margin: 12px 0 16px; }
+  .session-meta { display: flex; flex-direction: column; gap: 4px; font-size: 13px; color: var(--ink-3); }
+  .session-body { display: flex; flex-direction: column; gap: 28px; }
+  .block-label { font-size: 12px; letter-spacing: .12em; text-transform: uppercase; color: var(--ink); font-weight: 500; padding-bottom: 10px; border-bottom: 1px solid var(--ink); }
+  .ex { display: grid; grid-template-columns: 1fr auto; gap: 24px; align-items: baseline; padding: 11px 0; border-bottom: 1px solid var(--rule-soft); }
+  .ex-name { font-size: 15px; font-weight: 500; line-height: 1.35; }
+  .ex-detail { font-size: 13.5px; color: var(--ink-2); line-height: 1.5; margin-top: 2px; }
+  .ex-tag { font-size: 11px; letter-spacing: .1em; text-transform: uppercase; font-weight: 600; color: var(--ink-3); white-space: nowrap; }
+  .ex-tag.tag-primary { color: var(--ink); }
+  .ex-tag.tag-shoulder { color: var(--now); }
+  .finisher-table { width: 100%; border-collapse: collapse; margin-top: 4px; }
+  .finisher-table th { text-align: left; font-size: 11px; letter-spacing: .12em; text-transform: uppercase; color: var(--ink-3); font-weight: 500; padding: 10px 0; border-bottom: 1px solid var(--rule); }
+  .finisher-table td { font-size: 14px; padding: 10px 16px 10px 0; border-bottom: 1px solid var(--rule-soft); vertical-align: baseline; color: var(--ink-2); }
+  .finisher-table td:first-child { color: var(--ink); font-weight: 500; }
+  .finisher-table td:nth-child(2) { font-family: var(--serif); font-size: 18px; font-variant-numeric: tabular-nums; color: var(--ink); }
+  .finisher-note { font-size: 13px; color: var(--ink-3); font-style: italic; margin-top: 12px; }
+
+  .rest-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0 32px; border-top: 1px solid var(--ink); }
+  .rest-card { padding: 20px 0 24px; border-bottom: 1px solid var(--rule); }
+  .rest-day { font-size: 12px; letter-spacing: .12em; text-transform: uppercase; color: var(--ink-3); font-weight: 500; }
+  .rest-title { font-family: var(--serif); font-variation-settings: 'opsz' 20; font-size: 22px; letter-spacing: -0.01em; line-height: 1.2; margin: 10px 0 8px; }
+  .rest-desc { font-size: 14px; color: var(--ink-2); line-height: 1.55; }
+
+  .principles-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0 40px; border-top: 1px solid var(--ink); }
+  .principle { padding: 20px 0 24px; border-bottom: 1px solid var(--rule); }
+  .pr-title { font-family: var(--serif); font-variation-settings: 'opsz' 20; font-size: 22px; letter-spacing: -0.01em; line-height: 1.2; }
+  .pr-body { font-size: 14px; color: var(--ink-2); line-height: 1.55; margin-top: 8px; }
+
+  .prog-table { border-top: 1px solid var(--ink); }
+  .prog-table-hdr, .prog-row { display: grid; grid-template-columns: 200px 110px 1fr 260px; gap: 24px; align-items: baseline; padding: 14px 0; border-bottom: 1px solid var(--rule); }
+  .prog-table-hdr { font-size: 11px; letter-spacing: .12em; text-transform: uppercase; color: var(--ink-3); font-weight: 500; padding: 12px 0 10px; border-bottom-color: var(--rule); }
+  .prog-row { padding: 20px 0; }
+  .prog-phase { font-family: var(--serif); font-variation-settings: 'opsz' 20; font-size: 22px; letter-spacing: -0.01em; }
+  .prog-weeks { font-family: var(--serif); font-size: 20px; font-variant-numeric: tabular-nums; color: var(--ink-2); }
+  .prog-focus { font-size: 14px; color: var(--ink-2); line-height: 1.55; }
+  .prog-badge { font-size: 13px; color: var(--ink); }
+  .prog-table + .notice { margin-top: 32px; border-top: 1px solid var(--ink); border-bottom: none; padding-top: 24px; }
+
+  @media (max-width: 1000px) {
+    .session { grid-template-columns: 1fr; gap: 24px; }
+    .rest-grid, .principles-grid { grid-template-columns: 1fr 1fr; }
+    .prog-table-hdr { display: none; }
+    .prog-row { grid-template-columns: 1fr 1fr; }
+    .prog-focus, .prog-row > div:last-child { grid-column: 1 / -1; }
+  }
+  @media (max-width: 600px) {
+    .rest-grid, .principles-grid { grid-template-columns: 1fr; }
+    .ex { grid-template-columns: 1fr; gap: 4px; }
+    .masthead .figures { grid-template-columns: 1fr; }
+  }
+
 </style>
 </head>
 <body>
 
-<nav>
-  <a href="../index.html" class="nav-logo">Albert's <span>Odyssey</span></a>
-  <div class="nav-links">
-    <a href="../index.html"            class="nav-link">Home</a>
-    <a href="../salud/index.html"      class="nav-link active">Salud</a>
-    <a href="../vlog/index.html"       class="nav-link">Vlog</a>
-    <a href="../lecturas/index.html"   class="nav-link">Lecturas</a>
-    <a href="../desarrollo/index.html" class="nav-link">Desarrollo</a>
+<header class="top">
+  <div class="wrap">
+    <a href="../index.html" class="brand">Albert's <em>Odyssey</em></a>
+    <nav class="menu">
+      <a href="../index.html">Inicio</a>
+      <a href="../salud/index.html" class="active">Salud</a>
+      <a href="../vlog/index.html">Vlog</a>
+      <a href="../lecturas/index.html">Lecturas</a>
+      <a href="../desarrollo/index.html">Desarrollo</a>
+    </nav>
+    <div class="top-right"><a href="index.html#deporte" class="cap-btn">Volver a Deporte</a></div>
   </div>
-</nav>
+</header>
 
-<div class="page">
-
-  <div class="page-hdr">
-    <div class="ph-left">
-      <div class="ph-icon">🏋️</div>
-      <div>
-        <div class="ph-eyebrow">Salud · Deporte</div>
-        <div class="ph-title">Rutina de Fuerza</div>
-        <div class="ph-sub">Full Body 3×/semana · 16 semanas · Fase 2<br>Hombro con carga controlada · Déficit calórico activo · Orientado al deporte funcional</div>
-      </div>
+<section class="masthead">
+  <div class="wrap">
+    <div class="dateline">Salud · Deporte · Programa de fuerza, fase 2</div>
+    <h1>Rutina de fuerza</h1>
+    <div class="mast-row">
+      <p class="deck">Full Body tres veces por semana durante 16 semanas. <em>Hombro con carga controlada, déficit calórico activo, orientado al deporte funcional.</em></p>
     </div>
-    <div class="ph-stats">
-      <div class="ph-stat"><div class="ph-stat-val">3×</div><div class="ph-stat-lbl">Sesiones / semana</div></div>
-      <div class="ph-stat"><div class="ph-stat-val">55–65'</div><div class="ph-stat-lbl">Duración sesión</div></div>
-      <div class="ph-stat"><div class="ph-stat-val">16 sem</div><div class="ph-stat-lbl">Horizonte fase 2</div></div>
+    <div class="figures">
+      <div class="fig"><div class="fig-num num">3<small>por semana</small></div><div class="fig-lbl">Sesiones: lunes, miércoles y viernes</div></div>
+      <div class="fig"><div class="fig-num num">55<small>a 65 min</small></div><div class="fig-lbl">Duración de cada sesión</div></div>
+      <div class="fig"><div class="fig-num num">16<small>semanas</small></div><div class="fig-lbl">Horizonte de la fase 2, con descarga cada cuatro semanas</div></div>
     </div>
   </div>
+</section>
+
+<div class="wrap page">
 
   <div class="notice notice-warn">
-    <div class="notice-icon">⚠</div>
-    <div><strong>Hombros:</strong> Nada de press militar pesado ni elevaciones frontales con carga alta. Todos los movimientos de hombro son con mancuernas ligeras y rango controlado. Si hay dolor (no molestia, sino dolor), para el ejercicio y sustituye.</div>
+    <div><strong>Hombros.</strong> Nada de press militar pesado ni elevaciones frontales con carga alta. Todos los movimientos de hombro son con mancuernas ligeras y rango controlado. Si hay dolor (no molestia, sino dolor), para el ejercicio y sustituye.</div>
   </div>
 
   <div class="notice notice-info">
-    <div class="notice-icon">◎</div>
-    <div><strong>Fase 2 — orientación funcional y deportiva:</strong> Calentamientos en circuito con ejercicios que transfieren directamente a carrera, natación y trekking. Bloques funcionales con movimientos complejos (turkish get-up, KB swing, dead bug). Finisher metabólico intensificado. Objetivo: fuerza + resistencia + prevención de lesiones para deporte.</div>
+    <div><strong>Fase 2, orientación funcional y deportiva.</strong> Calentamientos en circuito con ejercicios que transfieren directamente a carrera, natación y trekking. Bloques funcionales con movimientos complejos (turkish get-up, KB swing, dead bug). Finisher metabólico intensificado. Objetivo: fuerza + resistencia + prevención de lesiones para deporte.</div>
   </div>
 
-  <div class="sl">Distribución semanal</div>
+  <div class="grp-hd"><span class="grp-num">01</span><h2 class="grp-ttl">Distribución semanal</h2></div>
 
   <div class="week-grid">
 
@@ -146,8 +372,8 @@ nav { background: var(--surface); border-bottom: 1px solid var(--border); paddin
         <div class="session-day">Lunes</div>
         <div class="session-title">Full Body A</div>
         <div class="session-meta">
-          <span>⏱ 55–65 min</span>
-          <span>🎯 Empuje + Tirón</span>
+          <span>55–65 min</span>
+          <span>Empuje + Tirón</span>
         </div>
       </div>
       <div class="session-body">
@@ -200,7 +426,7 @@ nav { background: var(--surface); border-bottom: 1px solid var(--border); paddin
           </div>
           <div class="ex">
             <div><div class="ex-name">Elevaciones laterales mancuerna</div><div class="ex-detail">3×15–20 · 45 seg descanso · Peso ligero, codo ligeramente flexionado</div></div>
-            <div class="ex-tag tag-shoulder">Hombro ⚠</div>
+            <div class="ex-tag tag-shoulder">Hombro</div>
           </div>
         </div>
 
@@ -221,8 +447,8 @@ nav { background: var(--surface); border-bottom: 1px solid var(--border); paddin
         <div class="session-day">Miércoles</div>
         <div class="session-title">Full Body B</div>
         <div class="session-meta">
-          <span>⏱ 55–65 min</span>
-          <span>🎯 Bisagra + Vertical</span>
+          <span>55–65 min</span>
+          <span>Bisagra + Vertical</span>
         </div>
       </div>
       <div class="session-body">
@@ -300,8 +526,8 @@ nav { background: var(--surface); border-bottom: 1px solid var(--border); paddin
         <div class="session-day">Viernes</div>
         <div class="session-title">Full Body C</div>
         <div class="session-meta">
-          <span>⏱ 55–65 min</span>
-          <span>🎯 Volumen + Finisher</span>
+          <span>55–65 min</span>
+          <span>Volumen + Finisher</span>
         </div>
       </div>
       <div class="session-body">
@@ -350,7 +576,7 @@ nav { background: var(--surface); border-bottom: 1px solid var(--border); paddin
           </div>
           <div class="ex">
             <div><div class="ex-name">Superserie: Face pull alto + Curl bíceps</div><div class="ex-detail">3×20 + 3×12 · 45 seg descanso · Salud hombro + trabajo de brazos eficiente</div></div>
-            <div class="ex-tag tag-shoulder">Hombro ⚠</div>
+            <div class="ex-tag tag-shoulder">Hombro</div>
           </div>
         </div>
 
@@ -396,7 +622,7 @@ nav { background: var(--surface); border-bottom: 1px solid var(--border); paddin
   </div>
 
   <!-- DÍAS DE DESCANSO -->
-  <div class="sl">Días de descanso activo</div>
+  <div class="grp-hd"><span class="grp-num">02</span><h2 class="grp-ttl">Días de descanso activo</h2></div>
   <div class="rest-grid">
     <div class="rest-card">
       <div class="rest-day">Martes</div>
@@ -421,36 +647,36 @@ nav { background: var(--surface); border-bottom: 1px solid var(--border); paddin
   </div>
 
   <!-- PRINCIPIOS -->
-  <div class="sl">Principios de ejecución</div>
+  <div class="grp-hd"><span class="grp-num">03</span><h2 class="grp-ttl">Principios de ejecución</h2></div>
   <div class="principles-grid">
-    <div class="principle" style="border-left-color:#2D6A4F">
+    <div class="principle">
       <div class="pr-title">Progresión semanal</div>
       <div class="pr-body">Si completas todas las series en el rango alto de reps con buena técnica, añade 2.5 kg la semana siguiente en tren inferior y 1.25–2.5 kg en superior.</div>
     </div>
-    <div class="principle" style="border-left-color:#3D405B">
+    <div class="principle">
       <div class="pr-title">RPE, no ego</div>
       <div class="pr-body">RPE 7–8 significa que podrías hacer 2–3 reps más. Nunca al fallo en ejercicios principales. En déficit calórico, entrenar al fallo destruye la recuperación.</div>
     </div>
-    <div class="principle" style="border-left-color:#C9A227">
+    <div class="principle">
       <div class="pr-title">Hombro: señal de alarma</div>
       <div class="pr-body">Molestia leve → reduce carga. Dolor agudo o que irradia → para el ejercicio ese día. No seas héroe. Un hombro roto te saca 8 semanas del programa.</div>
     </div>
-    <div class="principle" style="border-left-color:#C0614A">
+    <div class="principle">
       <div class="pr-title">Semana de descarga (cada 4)</div>
       <div class="pr-body">Semanas 4, 8, 12, 16: reduce la carga un 40–50%. Mismos ejercicios, menos peso. No es pereza, es parte del programa.</div>
     </div>
-    <div class="principle" style="border-left-color:#2E6653">
+    <div class="principle">
       <div class="pr-title">Proteína antes de entrenar</div>
       <div class="pr-body">Si entrenas por la mañana, toma al menos 20–30g de proteína antes. Si entrenas por la tarde, la comida previa ya cubre. No entrenes en ayunas con esta frecuencia.</div>
     </div>
-    <div class="principle" style="border-left-color:#9A7D2E">
+    <div class="principle">
       <div class="pr-title">Si pierdes un día</div>
       <div class="pr-body">No lo recuperes. Continúa con la siguiente sesión en el próximo día disponible. El objetivo es la consistencia a 16 semanas, no la perfección de cada semana.</div>
     </div>
   </div>
 
   <!-- PROGRESIÓN POR FASES -->
-  <div class="sl">Progresión por fases — 16 semanas</div>
+  <div class="grp-hd"><span class="grp-num">04</span><h2 class="grp-ttl">Progresión por fases</h2><span class="meta">16 semanas</span></div>
   <div class="prog-table">
     <div class="prog-table-hdr">
       <span>Fase</span><span>Semanas</span><span>Enfoque</span><span>Volumen / Intensidad</span>
@@ -459,33 +685,42 @@ nav { background: var(--surface); border-bottom: 1px solid var(--border); paddin
       <div class="prog-phase">Adaptación</div>
       <div class="prog-weeks">1–4</div>
       <div class="prog-focus">Técnica en ejercicios nuevos. Dominar circuitos de calentamiento.</div>
-      <div><span class="prog-badge" style="background:#EAF3EE;color:#2D6A4F">3 series · RPE 6–7</span></div>
+      <div><span class="prog-badge">3 series · RPE 6–7</span></div>
     </div>
     <div class="prog-row">
       <div class="prog-phase">Construcción</div>
       <div class="prog-weeks">5–8</div>
       <div class="prog-focus">Subir carga progresivamente. Técnica asentada. Finisher completo.</div>
-      <div><span class="prog-badge" style="background:#EEF2FF;color:#3D405B">4 series · RPE 7–8</span></div>
+      <div><span class="prog-badge">4 series · RPE 7–8</span></div>
     </div>
     <div class="prog-row">
       <div class="prog-phase">Intensificación</div>
       <div class="prog-weeks">9–12</div>
       <div class="prog-focus">Máxima carga del ciclo. Drop sets y rest-pause a pleno rendimiento.</div>
-      <div><span class="prog-badge" style="background:#FDF8EC;color:#9A7D2E">4 series · RPE 8–8.5</span></div>
+      <div><span class="prog-badge">4 series · RPE 8–8.5</span></div>
     </div>
     <div class="prog-row">
       <div class="prog-phase">Consolidación</div>
       <div class="prog-weeks">13–16</div>
       <div class="prog-focus">Mantener fuerza, reducir volumen. Resultados visibles.</div>
-      <div><span class="prog-badge" style="background:#FCEEE9;color:#C0614A">3 series · RPE 7.5 + descarga sem 16</span></div>
+      <div><span class="prog-badge">3 series · RPE 7.5 + descarga sem 16</span></div>
     </div>
   </div>
 
-  <div class="notice notice-info" style="margin-bottom:0">
-    <div class="notice-icon">◎</div>
+  <div class="notice notice-info">
     <div><strong>Revisión obligatoria en semana 8.</strong> Evalúa progreso en fuerza, composición corporal y nivel de fatiga. Si la carga laboral en Portland es muy alta las primeras semanas, reduce a 2 sesiones temporalmente — pero no a cero. 2 sesiones mantiene, 0 sesiones retrocede.</div>
   </div>
 
+
+
 </div>
+
+<footer>
+  <div class="wrap">
+    <span>Albert's Odyssey · Salud · Rutina de fuerza</span>
+    <span><a href="index.html#deporte" class="txt-btn">Volver a Deporte</a></span>
+  </div>
+</footer>
+
 </body>
 </html>
