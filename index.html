@@ -652,9 +652,9 @@ function renderNextActions(){
 }
 
 function parseKg(v){if(v===undefined||v===null)return null;const m=String(v).match(/^\s*(\d+(?:[.,]\d+)?)/);return m?parseFloat(m[1].replace(',','.')):null;}
+/* el peso de la Home sale solo del campo Peso de las revisiones semanales */
 function weightPoints(){
   const map={};
-  try{(JSON.parse(localStorage.getItem('ao_peso_v1')||'[]')).forEach(e=>{const kg=parseKg(e.kg);if(e.date&&kg)map[e.date]=kg;});}catch(e){}
   wrLoad().forEach(e=>{const kg=parseKg(e.peso);if(e.date&&kg)map[e.date]=kg;});
   return Object.keys(map).sort().map(d=>({d,kg:map[d]}));
 }
