@@ -4,265 +4,251 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Lecturas — Albert's Odyssey</title>
-<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..600;1,9..144,300..600&family=DM+Sans:ital,opsz,wght@0,9..40,300..600;1,9..40,300..600&display=swap" rel="stylesheet">
 <style>
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-:root {
-  --bg: #F5F4F0; --surface: #FFFFFF; --border: #E8E6E0; --border-2: #D0CEC8;
-  --text-1: #1A1916; --text-2: #6B6860; --text-3: #A8A49C;
-  --accent: #8B6914; --accent-bg: #F7F0E0; --accent-border: #D4B96A;
-}
-body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--text-1); min-height: 100vh; -webkit-font-smoothing: antialiased; }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --paper: #F3F0E8; --paper-2: #E6E1D4;
+    --ink: #171611; --ink-2: #45423A; --ink-3: #625E55;
+    --rule: #C9C3B4; --rule-soft: #DDD8CB;
+    --now: #A86F1C;
+    --serif: 'Fraunces', Georgia, serif; --sans: 'DM Sans', system-ui, sans-serif;
+    --w: 1200px; --gutter: 40px;
+    /* alias de la paleta antigua para el marcado heredado */
+    --bg: var(--paper); --surface: var(--paper); --border: var(--rule); --border-2: var(--rule);
+    --text-1: var(--ink); --text-2: var(--ink-2); --text-3: var(--ink-3);
+    --accent: var(--now); --accent-bg: transparent; --accent-border: var(--now);
+    --green: var(--ink); --green-bg: transparent; --green-border: var(--rule); --gold: var(--now); --gold-bg: transparent;
+  }
+  html { scroll-behavior: smooth; }
+  body { font-family: var(--sans); background: var(--paper); color: var(--ink); min-height: 100vh; font-size: 15px; line-height: 1.5; -webkit-font-smoothing: antialiased; }
+  body.locked { overflow: hidden; }
+  a { color: inherit; }
+  button { font-family: inherit; color: inherit; background: none; border: none; cursor: pointer; }
+  input, select, textarea { font-family: var(--sans); }
+  .wrap { max-width: var(--w); margin: 0 auto; padding: 0 var(--gutter); }
+  .label { font-size: 12px; font-weight: 500; letter-spacing: .12em; text-transform: uppercase; color: var(--ink-3); }
+  .num { font-family: var(--serif); font-variation-settings: 'opsz' 144; font-weight: 400; letter-spacing: -0.02em; font-variant-numeric: tabular-nums; }
+  .meta { font-size: 13px; color: var(--ink-3); }
+  .meta b, .fig-lbl b { color: var(--ink); font-weight: 500; }
+  .attn { color: var(--now); font-weight: 500; }
+  .ptag { font-size: 11px; letter-spacing: .1em; text-transform: uppercase; font-weight: 600; color: var(--ink); }
+  .ptag.soft { color: var(--ink-3); }
+  .cap-btn { font-size: 11px; letter-spacing: .12em; text-transform: uppercase; font-weight: 600; color: var(--ink-3); padding: 6px 0; border-bottom: 1px solid transparent; transition: color .15s, border-color .15s; text-decoration: none; white-space: nowrap; }
+  .cap-btn:hover, .cap-btn.active { color: var(--ink); border-bottom-color: var(--ink); }
+  .cap-btn.strong { color: var(--ink); border-bottom-color: var(--ink); }
+  .txt-btn { font-size: 14px; color: var(--ink-2); text-decoration: underline; text-decoration-color: var(--rule); text-underline-offset: 4px; transition: text-decoration-color .15s, color .15s; }
+  .txt-btn:hover { color: var(--ink); text-decoration-color: var(--ink); }
+  .txt-btn.del { color: #A3442C; }
+  .line-btn { font-size: 14px; color: var(--ink); border: 1px solid var(--ink); padding: 8px 16px; transition: background .15s, color .15s; white-space: nowrap; background: transparent; }
+  .line-btn:hover { background: var(--ink); color: var(--paper); }
 
-/* NAV */
-nav { background: var(--surface); border-bottom: 1px solid var(--border); padding: 0 48px; display: flex; align-items: center; height: 56px; position: sticky; top: 0; z-index: 100; }
-.nav-logo { font-family: 'DM Serif Display', serif; font-size: 18px; letter-spacing: -0.3px; color: var(--text-1); text-decoration: none; margin-right: 36px; white-space: nowrap; flex-shrink: 0; }
-.nav-logo span { font-style: italic; color: var(--text-2); }
-.nav-links { display: flex; align-items: stretch; flex: 1; overflow-x: auto; }
-.nav-link { font-size: 12px; font-weight: 500; color: var(--text-2); padding: 0 16px; text-decoration: none; height: 56px; display: flex; align-items: center; white-space: nowrap; border-bottom: 2px solid transparent; margin-bottom: -1px; transition: color .15s, border-color .15s; }
-.nav-link:hover { color: var(--text-1); }
-.nav-link.active { color: var(--text-1); border-bottom-color: var(--text-1); font-weight: 600; }
+  /* Top bar */
+  .top { border-bottom: 1px solid var(--rule); position: sticky; top: 0; background: rgba(243,240,232,.94); backdrop-filter: blur(8px); z-index: 100; }
+  .top .wrap { display: flex; align-items: center; height: 60px; gap: 36px; }
+  .brand { font-family: var(--serif); font-size: 21px; text-decoration: none; letter-spacing: -0.02em; white-space: nowrap; line-height: 1; }
+  .brand em { font-style: italic; font-weight: 300; }
+  .menu { display: flex; gap: 26px; }
+  .menu a { text-decoration: none; font-size: 14px; color: var(--ink-3); padding: 21px 0; border-bottom: 1px solid transparent; margin-bottom: -1px; transition: color .15s; }
+  .menu a:hover { color: var(--ink); }
+  .menu a.active { color: var(--ink); border-bottom-color: var(--ink); }
+  .top-right { margin-left: auto; display: flex; align-items: center; gap: 28px; }
 
-/* PAGE */
-.page { max-width: 1280px; margin: 0 auto; padding: 48px; }
+  /* Masthead */
+  .masthead { padding: 48px 0 0; }
+  .dateline { font-size: 13px; color: var(--ink-3); padding-bottom: 18px; }
+  h1 { font-family: var(--serif); font-variation-settings: 'opsz' 144; font-weight: 400; font-size: clamp(64px, 10.4vw, 152px); line-height: .9; letter-spacing: -0.045em; padding-bottom: 36px; border-bottom: 1px solid var(--ink); }
+  h1 em { font-style: italic; font-weight: 300; color: var(--ink-2); }
+  .mast-row { display: grid; grid-template-columns: 8fr 4fr; gap: 64px; padding: 32px 0 48px; align-items: start; }
+  .mast-row.single { display: block; }
+  .deck { font-family: var(--serif); font-variation-settings: 'opsz' 34; font-size: 34px; line-height: 1.22; letter-spacing: -0.018em; font-weight: 300; max-width: 30ch; }
+  .deck em { font-style: italic; }
+  .fig-num { font-size: 96px; line-height: .9; letter-spacing: -0.04em; }
+  .fig-num small { font-size: 32px; color: var(--ink-3); letter-spacing: -0.01em; margin-left: 4px; }
+  .fig-lbl { font-size: 14px; color: var(--ink-3); margin-top: 16px; line-height: 1.5; max-width: 30ch; }
 
-/* HEADER */
-.page-hdr { padding: 48px 0; border-bottom: 1px solid var(--border); margin-bottom: 48px; display: flex; align-items: flex-end; justify-content: space-between; gap: 24px; flex-wrap: wrap; }
-.ph-eyebrow { font-size: 11px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; color: var(--text-3); margin-bottom: 12px; }
-.ph-title { font-family: 'DM Serif Display', serif; font-size: 48px; letter-spacing: -1px; line-height: 1.0; margin-bottom: 12px; }
-.ph-title em { font-style: italic; color: var(--text-2); }
-.ph-sub { font-size: 14px; color: var(--text-2); line-height: 1.7; max-width: 480px; font-weight: 300; }
-.ph-meta { display: flex; gap: 32px; flex-shrink: 0; }
-.ph-stat-val { font-family: 'DM Serif Display', serif; font-size: 28px; line-height: 1; letter-spacing: -0.5px; color: var(--accent); }
-.ph-stat-lbl { font-size: 11px; color: var(--text-3); font-weight: 500; margin-top: 3px; }
+  /* Sections */
+  .sec-head { display: flex; align-items: baseline; gap: 18px; margin: 64px 0 28px; flex-wrap: wrap; }
+  .sec-head:first-child { margin-top: 8px; }
+  .sec-num { font-family: var(--serif); font-size: 14px; color: var(--ink-3); font-variant-numeric: tabular-nums; }
+  h2, .grp-ttl { font-family: var(--serif); font-variation-settings: 'opsz' 60; font-weight: 400; font-size: 34px; letter-spacing: -0.025em; line-height: 1; }
+  .sec-meta { margin-left: auto; text-align: right; display: flex; align-items: baseline; gap: 22px; flex-wrap: wrap; justify-content: flex-end; }
+  .page { padding: 8px 0 88px; }
 
-/* FILTERS */
-.filters { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 36px; }
-.filter-btn { font-size: 12px; font-weight: 600; padding: 6px 16px; border-radius: 20px; border: 1px solid var(--border); background: var(--surface); color: var(--text-2); cursor: pointer; transition: all .15s; }
-.filter-btn:hover { border-color: var(--border-2); color: var(--text-1); }
-.filter-btn.active { background: var(--text-1); color: #fff; border-color: var(--text-1); }
+  /* Overlays */
+  .overlay { position: fixed; inset: 0; background: rgba(23,22,17,.42); backdrop-filter: blur(3px); z-index: 1000; display: none; align-items: center; justify-content: center; padding: 24px; }
+  .overlay.open { display: flex; }
+  .overlay.side { align-items: flex-start; justify-content: flex-end; padding: 12px; }
+  .sheet { background: var(--paper); border: 1px solid var(--ink); width: 600px; max-width: 100%; max-height: calc(100vh - 24px); overflow-y: auto; display: flex; flex-direction: column; }
+  .sheet.narrow { width: 480px; }
+  .sheet.wide { width: 760px; }
+  .sheet-hdr { padding: 22px 28px 18px; border-bottom: 1px solid var(--ink); display: flex; align-items: flex-start; justify-content: space-between; gap: 16px; position: sticky; top: 0; background: var(--paper); z-index: 1; }
+  .sheet-ttl { font-family: var(--serif); font-size: 24px; letter-spacing: -0.02em; line-height: 1.1; }
+  .sheet-sub { font-size: 13px; color: var(--ink-3); margin-top: 6px; }
+  .sheet-body { padding: 24px 28px 32px; display: flex; flex-direction: column; gap: 18px; }
+  .field, .fg, .form-group { display: flex; flex-direction: column; gap: 6px; }
+  .field label, .fg label, .form-group label { font-size: 12px; letter-spacing: .1em; text-transform: uppercase; color: var(--ink-3); font-weight: 500; }
+  .input, .textarea, .fg input, .fg select, .fg textarea, .form-group input, .form-group select, .form-group textarea { font-family: var(--sans); font-size: 15px; color: var(--ink); background: transparent; border: none; border-bottom: 1px solid var(--rule); padding: 8px 0; width: 100%; outline: none; transition: border-color .15s; border-radius: 0; }
+  .input:focus, .textarea:focus, .fg input:focus, .fg select:focus, .fg textarea:focus, .form-group input:focus, .form-group textarea:focus, .form-group select:focus { border-bottom-color: var(--ink); }
+  .textarea, .fg textarea, .form-group textarea { resize: vertical; min-height: 64px; line-height: 1.55; }
+  .row-2, .frow, .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+  .actions, .factions, .form-actions { display: flex; gap: 20px; align-items: center; padding-top: 8px; }
+  .msg, .ferr { font-size: 13px; display: none; color: #A3442C; }
 
-/* SECTION LABEL */
-.sl { font-size: 11px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; color: var(--text-3); margin: 0 0 20px; display: flex; align-items: center; gap: 14px; }
-.sl::after { content: ''; flex: 1; height: 1px; background: var(--border); }
-.sl-count { font-size: 11px; font-weight: 600; color: var(--accent); background: var(--accent-bg); padding: 2px 10px; border-radius: 20px; border: 1px solid var(--accent-border); letter-spacing: 0; text-transform: none; }
+  /* Footer */
+  footer .wrap { border-top: 1px solid var(--ink); padding: 28px var(--gutter) 56px; display: flex; justify-content: space-between; gap: 32px; font-size: 13px; color: var(--ink-3); flex-wrap: wrap; margin-top: 24px; }
 
-/* YEAR SECTION */
-.year-section { margin-bottom: 52px; }
+  @media (max-width: 900px) {
+    :root { --gutter: 24px; }
+    .menu { display: none; }
+    h1 { padding-bottom: 20px; }
+    .mast-row { grid-template-columns: 1fr; gap: 36px; padding-bottom: 32px; }
+    .deck { font-size: 26px; }
+    .fig-num { font-size: 72px; }
+    .row-2, .frow, .form-row { grid-template-columns: 1fr; }
+    .sec-meta { margin-left: 0; text-align: left; justify-content: flex-start; }
+  }
 
-/* BOOK GRID */
-.book-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 12px; }
+  /* ── Lecturas ───────────────────────────────────────────── */
+  .toolbar { display: flex; align-items: baseline; justify-content: space-between; gap: 32px; border-top: 1px solid var(--ink); flex-wrap: wrap; }
+  .filters { display: flex; gap: 36px; }
+  .filter-btn { font-family: var(--serif); font-variation-settings: 'opsz' 20; font-size: 22px; letter-spacing: -0.01em; color: var(--ink-3); padding: 18px 0 16px; border-top: 2px solid transparent; margin-top: -1px; transition: color .15s; }
+  .filter-btn:hover { color: var(--ink); }
+  .filter-btn.active { color: var(--ink); border-top-color: var(--ink); }
+  .toolbar-actions { display: flex; gap: 28px; align-items: baseline; }
+  .add-book-btn { font-size: 11px; letter-spacing: .12em; text-transform: uppercase; font-weight: 600; color: var(--ink); border-bottom: 1px solid var(--ink); padding: 6px 0; white-space: nowrap; }
+  .add-book-btn:hover { color: var(--ink-3); border-bottom-color: var(--ink-3); }
+  #books-container { padding-top: 16px; }
 
-/* BOOK CARD */
-.book-card {
-  background: var(--surface); border: 1px solid var(--border); border-radius: 10px;
-  padding: 18px 16px; cursor: pointer; transition: all .18s;
-  display: flex; flex-direction: column; gap: 8px; position: relative;
-}
-.book-card:hover { border-color: var(--border-2); transform: translateY(-2px); box-shadow: 0 6px 20px rgba(0,0,0,0.07); }
-.book-card.has-notes::after { content: '✎'; position: absolute; top: 10px; right: 12px; font-size: 11px; color: var(--accent); opacity: 0.7; }
+  .year-section { margin-top: 48px; }
+  .sl { display: flex; align-items: baseline; gap: 18px; margin-bottom: 20px; font-family: var(--serif); font-variation-settings: 'opsz' 60; font-weight: 400; font-size: 34px; letter-spacing: -0.025em; line-height: 1; }
+  .sl-count, .frases-count { font-family: var(--sans); font-size: 13px; color: var(--ink-3); letter-spacing: 0; }
+  .book-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0 32px; border-top: 1px solid var(--ink); }
+  .book-card { padding: 18px 0 20px; border-bottom: 1px solid var(--rule); cursor: pointer; transition: background .15s; display: flex; flex-direction: column; gap: 6px; }
+  .book-card:hover { background: rgba(255,255,255,.4); }
+  .book-rating { font-size: 12px; letter-spacing: .1em; }
+  .star.full { color: var(--ink); } .star.empty { color: var(--rule); }
+  .book-title { font-family: var(--serif); font-variation-settings: 'opsz' 20; font-size: 19px; line-height: 1.25; letter-spacing: -0.01em; }
+  .book-author { font-size: 13px; color: var(--ink-3); }
+  .book-card.has-notes .book-author::after { content: ' · notas'; color: var(--now); font-weight: 500; }
+  .book-card.user-book .book-title { font-style: italic; }
 
-.book-rating { display: flex; gap: 2px; }
-.star { font-size: 11px; }
-.star.full { color: var(--accent); }
-.star.empty { color: var(--border-2); }
+  .frases-section { margin-top: 40px; }
+  .frases-header { display: flex; align-items: baseline; justify-content: space-between; gap: 32px; margin-bottom: 20px; flex-wrap: wrap; }
+  .frases-header .sl { margin: 0; }
+  .frases-search { font-size: 15px; background: transparent; border: none; border-bottom: 1px solid var(--rule); padding: 8px 0; outline: none; min-width: 260px; }
+  .frases-search:focus { border-bottom-color: var(--ink); }
+  .frases-masonry { display: grid; grid-template-columns: 1fr 1fr; gap: 0 56px; border-top: 1px solid var(--ink); }
+  .frase-card { padding: 26px 0 28px; border-bottom: 1px solid var(--rule); }
+  .frase-text { font-family: var(--serif); font-variation-settings: 'opsz' 22; font-size: 22px; line-height: 1.4; letter-spacing: -0.01em; font-style: italic; font-weight: 300; }
+  .frase-meta { display: flex; justify-content: space-between; align-items: baseline; gap: 24px; margin-top: 14px; }
+  .frase-author { font-size: 13px; color: var(--ink); font-weight: 500; }
+  .frase-source { font-size: 13px; color: var(--ink-3); margin-top: 2px; }
+  .frase-edit-btn, .frase-del-btn { font-size: 12px; color: var(--ink-3); text-decoration: underline; text-decoration-color: var(--rule); text-underline-offset: 3px; white-space: nowrap; }
+  .frase-edit-btn:hover { color: var(--ink); } .frase-del-btn:hover { color: #A3442C; }
+  .frases-empty, .pending-empty { font-size: 14px; color: var(--ink-3); font-style: italic; padding: 24px 0; border-top: 1px solid var(--ink); }
 
-.book-title { font-family: 'DM Serif Display', serif; font-size: 15px; line-height: 1.3; color: var(--text-1); flex: 1; }
-.book-author { font-size: 11px; color: var(--text-3); font-weight: 500; line-height: 1.4; }
+  .pending-section { margin-top: 40px; }
+  .pending-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0 40px; border-top: 1px solid var(--ink); }
+  .pending-card { position: relative; padding: 20px 0 22px; border-bottom: 1px solid var(--rule); }
+  .pending-badge { font-size: 11px; letter-spacing: .1em; text-transform: uppercase; font-weight: 600; color: var(--ink-3); }
+  .pending-title { font-family: var(--serif); font-variation-settings: 'opsz' 20; font-size: 21px; line-height: 1.25; letter-spacing: -0.01em; margin: 8px 0 4px; }
+  .pending-author { font-size: 13px; color: var(--ink-3); }
+  .pending-note { font-size: 13.5px; color: var(--ink-2); font-style: italic; margin-top: 8px; }
+  .pending-del-btn { position: absolute; top: 20px; right: 0; font-size: 12px; color: var(--ink-3); text-decoration: underline; text-decoration-color: var(--rule); text-underline-offset: 3px; }
+  .pending-del-btn:hover { color: #A3442C; }
 
-/* MODAL */
-.modal-overlay {
-  position: fixed; inset: 0; background: rgba(26,25,22,0.55); backdrop-filter: blur(4px);
-  z-index: 1000; display: flex; align-items: center; justify-content: center; padding: 24px;
-  opacity: 0; pointer-events: none; transition: opacity .2s;
-}
-.modal-overlay.open { opacity: 1; pointer-events: all; }
-.modal {
-  background: var(--surface); border-radius: 16px; width: 100%; max-width: 600px;
-  max-height: 80vh; overflow-y: auto; box-shadow: 0 24px 64px rgba(0,0,0,0.18);
-  transform: translateY(12px); transition: transform .2s;
-}
-.modal-overlay.open .modal { transform: translateY(0); }
+  /* hojas */
+  .modal-overlay, .add-modal-overlay, .add-frase-overlay, .add-pending-overlay { position: fixed; inset: 0; background: rgba(23,22,17,.42); backdrop-filter: blur(3px); z-index: 1000; display: none; align-items: center; justify-content: center; padding: 24px; }
+  .modal-overlay.open, .add-modal-overlay.open, .add-frase-overlay.open, .add-pending-overlay.open { display: flex; }
+  .modal, .add-modal, .add-frase-modal, .add-pending-modal { background: var(--paper); border: 1px solid var(--ink); width: 640px; max-width: 100%; max-height: calc(100vh - 48px); overflow-y: auto; display: flex; flex-direction: column; }
+  .modal-hdr, .add-modal-hdr { padding: 24px 28px 20px; border-bottom: 1px solid var(--ink); position: relative; display: flex; flex-direction: column; gap: 6px; }
+  .add-modal-hdr { flex-direction: row; align-items: center; justify-content: space-between; }
+  .add-modal-hdr h3 { font-family: var(--serif); font-size: 24px; letter-spacing: -0.02em; font-weight: 400; }
+  .modal-close { font-size: 14px; color: var(--ink-2); text-decoration: underline; text-decoration-color: var(--rule); text-underline-offset: 4px; }
+  .modal-hdr .modal-close { position: absolute; top: 26px; right: 28px; }
+  .modal-close:hover { color: var(--ink); text-decoration-color: var(--ink); }
+  .modal-rating { font-size: 13px; letter-spacing: .1em; }
+  .modal-title { font-family: var(--serif); font-variation-settings: 'opsz' 40; font-size: 30px; letter-spacing: -0.02em; line-height: 1.1; padding-right: 70px; }
+  .modal-author { font-size: 14px; color: var(--ink-2); }
+  .modal-meta { display: flex; gap: 18px; flex-wrap: wrap; margin-top: 6px; }
+  .modal-tag { font-size: 12px; color: var(--ink-3); letter-spacing: .02em; }
+  .modal-body, .add-modal-body { padding: 24px 28px 32px; display: flex; flex-direction: column; gap: 18px; }
+  .modal-notes-label { font-size: 12px; letter-spacing: .12em; text-transform: uppercase; color: var(--ink-3); font-weight: 500; }
+  .modal-notes { font-size: 15px; line-height: 1.7; color: var(--ink-2); white-space: pre-wrap; }
+  .modal-no-notes { font-size: 14px; color: var(--ink-3); font-style: italic; }
+  .modal-add-btn { align-self: flex-start; font-size: 14px; color: var(--ink-2); text-decoration: underline; text-decoration-color: var(--rule); text-underline-offset: 4px; margin-right: 20px; }
+  .modal-add-btn:hover { color: var(--ink); text-decoration-color: var(--ink); }
+  .star-picker { display: flex; gap: 6px; font-size: 22px; }
+  .star-pick { cursor: pointer; color: var(--rule); transition: color .1s; }
+  .star-pick.on { color: var(--ink); }
+  .btn-primary { font-size: 14px; color: var(--ink); border: 1px solid var(--ink); padding: 8px 16px; background: transparent; transition: background .15s, color .15s; }
+  .btn-primary:hover { background: var(--ink); color: var(--paper); }
+  .btn-secondary { font-size: 14px; color: var(--ink-2); text-decoration: underline; text-decoration-color: var(--rule); text-underline-offset: 4px; }
 
-.modal-hdr { padding: 28px 28px 0; border-bottom: 1px solid var(--border); padding-bottom: 20px; }
-.modal-close { float: right; background: none; border: none; font-size: 20px; cursor: pointer; color: var(--text-3); line-height: 1; margin-left: 12px; transition: color .15s; }
-.modal-close:hover { color: var(--text-1); }
-.modal-rating { display: flex; gap: 3px; margin-bottom: 10px; }
-.modal-rating .star { font-size: 14px; }
-.modal-title { font-family: 'DM Serif Display', serif; font-size: 22px; line-height: 1.25; margin-bottom: 6px; }
-.modal-author { font-size: 13px; color: var(--text-2); }
-.modal-meta { display: flex; gap: 16px; margin-top: 14px; flex-wrap: wrap; }
-.modal-tag { font-size: 11px; font-weight: 600; padding: 3px 10px; border-radius: 20px; background: var(--bg); color: var(--text-2); border: 1px solid var(--border); }
+  @media (max-width: 1000px) { .book-grid { grid-template-columns: 1fr 1fr; } .pending-grid { grid-template-columns: 1fr 1fr; } .frases-masonry { grid-template-columns: 1fr; } }
+  @media (max-width: 600px) { .book-grid, .pending-grid { grid-template-columns: 1fr; } .filters { gap: 20px; } .filter-btn { font-size: 18px; } }
 
-.modal-body { padding: 24px 28px 28px; }
-.modal-notes-label { font-size: 10px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--text-3); margin-bottom: 12px; }
-.modal-notes { font-size: 14px; color: var(--text-2); line-height: 1.75; white-space: pre-wrap; }
-.modal-no-notes { font-size: 13px; color: var(--text-3); font-style: italic; line-height: 1.6; }
-.modal-add-btn { margin-top: 16px; display: inline-flex; align-items: center; gap: 6px; font-size: 12px; font-weight: 600; color: var(--accent); border: 1px solid var(--accent-border); background: var(--accent-bg); padding: 7px 16px; border-radius: 8px; cursor: pointer; transition: all .15s; }
-.modal-add-btn:hover { background: var(--accent); color: #fff; }
-
-/* ADD BOOK */
-.add-book-btn { display:flex;align-items:center;gap:8px;font-size:13px;font-weight:600;color:var(--text-1);background:var(--surface);border:1.5px solid var(--text-1);border-radius:8px;padding:9px 20px;cursor:pointer;transition:all .15s;font-family:'DM Sans',sans-serif; }
-.add-book-btn:hover { background:var(--text-1);color:#fff; }
-.add-book-btn .plus { font-size:18px;line-height:1; }
-.add-modal-overlay { position:fixed;inset:0;background:rgba(26,25,22,0.55);backdrop-filter:blur(4px);z-index:1001;display:flex;align-items:center;justify-content:center;padding:24px;opacity:0;pointer-events:none;transition:opacity .2s; }
-.add-modal-overlay.open { opacity:1;pointer-events:all; }
-.add-modal { background:var(--surface);border-radius:16px;width:100%;max-width:500px;box-shadow:0 24px 64px rgba(0,0,0,0.18);transform:translateY(12px);transition:transform .2s; }
-.add-modal-overlay.open .add-modal { transform:translateY(0); }
-.add-modal-hdr { padding:22px 28px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between; }
-.add-modal-hdr h3 { font-family:'DM Serif Display',serif;font-size:20px; }
-.add-modal-body { padding:22px 28px 28px;display:flex;flex-direction:column;gap:14px; }
-.form-row { display:grid;grid-template-columns:1fr 1fr;gap:12px; }
-.form-group { display:flex;flex-direction:column;gap:5px; }
-.form-group label { font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--text-3); }
-.form-group input,.form-group select { font-family:'DM Sans',sans-serif;font-size:13px;color:var(--text-1);background:var(--bg);border:1px solid var(--border);border-radius:8px;padding:9px 12px;outline:none;transition:border-color .15s;width:100%; }
-.form-group input:focus,.form-group select:focus { border-color:var(--accent); }
-.star-picker { display:flex;gap:8px;padding:4px 0; }
-.star-pick { font-size:24px;cursor:pointer;color:var(--border-2);transition:color .1s;line-height:1;user-select:none; }
-.star-pick.on { color:var(--accent); }
-.form-actions { display:flex;gap:10px;margin-top:4px; }
-.btn-primary { flex:1;font-family:'DM Sans',sans-serif;font-size:13px;font-weight:600;background:var(--text-1);color:#fff;border:none;border-radius:8px;padding:12px;cursor:pointer;transition:opacity .15s; }
-.btn-primary:hover { opacity:0.85; }
-.btn-secondary { font-family:'DM Sans',sans-serif;font-size:13px;font-weight:500;background:none;color:var(--text-2);border:1px solid var(--border);border-radius:8px;padding:12px 20px;cursor:pointer;transition:all .15s; }
-.btn-secondary:hover { border-color:var(--border-2);color:var(--text-1); }
-.book-card.user-book { border-style:dashed; }
-
-/* RESPONSIVE */
-@media (max-width: 768px) {
-  nav { padding: 0 20px; } .nav-logo { margin-right: 20px; }
-  .page { padding: 24px 20px; }
-  .page-hdr { padding: 32px 0; }
-  .book-grid { grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 10px; }
-  .ph-meta { gap: 20px; }
-}
-
-/* ─── PENDIENTES ─── */
-.pending-section { margin-bottom: 52px; }
-.pending-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 12px; }
-.pending-card {
-  background: var(--surface); border: 1px dashed var(--border-2); border-radius: 10px;
-  padding: 18px 16px; transition: all .18s;
-  display: flex; flex-direction: column; gap: 8px; position: relative;
-}
-.pending-card:hover { border-color: var(--accent); border-style: solid; transform: translateY(-2px); box-shadow: 0 6px 20px rgba(0,0,0,0.07); }
-.pending-badge { font-size: 9px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--accent); background: var(--accent-bg); border: 1px solid var(--accent-border); padding: 2px 7px; border-radius: 20px; display: inline-block; width: fit-content; }
-.pending-title { font-family: 'DM Serif Display', serif; font-size: 15px; line-height: 1.3; color: var(--text-1); flex: 1; }
-.pending-author { font-size: 11px; color: var(--text-3); font-weight: 500; line-height: 1.4; }
-.pending-note { font-size: 11px; color: var(--text-2); line-height: 1.5; font-style: italic; margin-top: 2px; }
-.pending-del-btn { position: absolute; top: 9px; right: 10px; background: none; border: none; color: var(--border-2); font-size: 16px; cursor: pointer; padding: 2px 5px; border-radius: 4px; transition: color .15s; font-family: 'DM Sans', sans-serif; line-height: 1; }
-.pending-del-btn:hover { color: #C0614A; }
-.pending-empty { background: var(--surface); border: 1px dashed var(--border); border-radius: 10px; padding: 36px 24px; text-align: center; color: var(--text-3); font-size: 13px; line-height: 1.7; }
-.add-pending-overlay { position:fixed;inset:0;background:rgba(26,25,22,0.55);backdrop-filter:blur(4px);z-index:1001;display:flex;align-items:center;justify-content:center;padding:24px;opacity:0;pointer-events:none;transition:opacity .2s; }
-.add-pending-overlay.open { opacity:1;pointer-events:all; }
-.add-pending-modal { background:var(--surface);border-radius:16px;width:100%;max-width:480px;box-shadow:0 24px 64px rgba(0,0,0,0.18);transform:translateY(12px);transition:transform .2s; }
-.add-pending-overlay.open .add-pending-modal { transform:translateY(0); }
-
-
-/* ─── FRASES CÉLEBRES ─── */
-.frases-section { margin-bottom: 52px; }
-.frases-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 24px; flex-wrap: wrap; gap: 12px; }
-.frases-search { font-family: 'DM Sans', sans-serif; font-size: 13px; color: var(--text-1); background: var(--surface); border: 1px solid var(--border); border-radius: 20px; padding: 8px 16px; outline: none; transition: border-color .15s; width: 220px; }
-.frases-search:focus { border-color: var(--accent); }
-.frases-masonry { columns: 3; column-gap: 14px; }
-@media (max-width: 900px) { .frases-masonry { columns: 2; } }
-@media (max-width: 580px) { .frases-masonry { columns: 1; } }
-.frase-card {
-  break-inside: avoid; background: var(--surface); border: 1px solid var(--border);
-  border-radius: 12px; padding: 20px 22px; margin-bottom: 14px;
-  display: flex; flex-direction: column; gap: 12px; position: relative;
-  transition: all .18s;
-}
-.frase-card:hover { border-color: var(--border-2); box-shadow: 0 4px 16px rgba(0,0,0,0.06); }
-.frase-card::before { content: '"'; position: absolute; top: 12px; left: 16px; font-family: 'DM Serif Display', serif; font-size: 36px; line-height: 1; color: var(--accent); opacity: 0.18; pointer-events: none; }
-.frase-text { font-family: 'DM Serif Display', serif; font-size: 15px; line-height: 1.6; color: var(--text-1); padding-left: 14px; font-style: italic; }
-.frase-meta { display: flex; align-items: flex-start; justify-content: space-between; gap: 10px; }
-.frase-attribution { display: flex; flex-direction: column; gap: 3px; }
-.frase-author { font-size: 12px; font-weight: 600; color: var(--accent); }
-.frase-source { font-size: 11px; color: var(--text-3); }
-.frase-del-btn { background: none; border: none; color: var(--border-2); font-size: 15px; cursor: pointer; padding: 2px 5px; border-radius: 4px; transition: color .15s; font-family: 'DM Sans', sans-serif; flex-shrink: 0; margin-top: 1px; }
-.frase-del-btn:hover { color: #C0614A; }
-.frases-empty { background: var(--surface); border: 1px dashed var(--border); border-radius: 12px; padding: 40px 24px; text-align: center; color: var(--text-3); font-size: 13px; line-height: 1.7; }
-.frases-count { font-size: 11px; font-weight: 600; color: var(--accent); background: var(--accent-bg); padding: 2px 10px; border-radius: 20px; border: 1px solid var(--accent-border); }
-/* Add frase modal */
-.add-frase-overlay { position:fixed;inset:0;background:rgba(26,25,22,0.55);backdrop-filter:blur(4px);z-index:1001;display:flex;align-items:center;justify-content:center;padding:24px;opacity:0;pointer-events:none;transition:opacity .2s; }
-.add-frase-overlay.open { opacity:1;pointer-events:all; }
-.add-frase-modal { background:var(--surface);border-radius:16px;width:100%;max-width:520px;box-shadow:0 24px 64px rgba(0,0,0,0.18);transform:translateY(12px);transition:transform .2s; }
-.add-frase-overlay.open .add-frase-modal { transform:translateY(0); }
-
-::-webkit-scrollbar { width: 5px; } ::-webkit-scrollbar-track { background: transparent; } ::-webkit-scrollbar-thumb { background: rgba(0,0,0,.12); border-radius: 3px; }
 </style>
 </head>
 <body>
 
-<nav>
-  <a href="../index.html" class="nav-logo">Albert's <span>Odyssey</span></a>
-  <div class="nav-links">
-    <a href="../index.html"            class="nav-link">Home</a>
-    <a href="../salud/index.html"      class="nav-link">Salud</a>
-    <a href="../vlog/index.html"       class="nav-link">Vlog</a>
-    <a href="../lecturas/index.html"   class="nav-link active">Lecturas</a>
-    <a href="../desarrollo/index.html" class="nav-link">Desarrollo</a>
+<header class="top">
+  <div class="wrap">
+    <a href="../index.html" class="brand">Albert's <em>Odyssey</em></a>
+    <nav class="menu">
+      <a href="../index.html">Inicio</a>
+      <a href="../salud/index.html">Salud</a>
+      <a href="../vlog/index.html">Vlog</a>
+      <a href="../lecturas/index.html" class="active">Lecturas</a>
+    </nav>
+    
   </div>
-</nav>
+</header>
 
-<div class="page">
-
-  <div class="page-hdr">
-    <div>
-      <div class="ph-eyebrow">Desarrollo Personal · Lecturas</div>
-      <h1 class="ph-title">Biblioteca<br><em>personal</em></h1>
-      <p class="ph-sub">Registro de lecturas desde 2018. Biografías, economía, ciencia, filosofía. Clicar en cualquier libro para ver notas.</p>
-    </div>
-    <div style="display:flex;flex-direction:column;align-items:flex-end;gap:20px;">
-      <div style="display:flex;gap:10px;flex-wrap:wrap;justify-content:flex-end;">
-        <button class="add-book-btn" id="mainAddBtn" onclick="openAddModal()">
-          <span class="plus">+</span> Añadir libro
-        </button>
-        <button class="add-book-btn" onclick="openAddFraseModal()" style="border-color:var(--accent);color:var(--accent);">
-          <span class="plus" style="color:var(--accent)">✦</span> Añadir frase
-        </button>
+<section class="masthead">
+  <div class="wrap">
+    <div class="dateline">Lecturas · Registro desde 2018</div>
+    <h1>Biblioteca</h1>
+    <div class="mast-row">
+      <p class="deck">Registro de lecturas desde 2018. <em>Biografías, economía, ciencia, filosofía.</em> Pulsa un libro para leer las notas.</p>
+      <div>
+        <div class="fig-num num" id="stat-total">171</div>
+        <div class="fig-lbl">Libros leídos en <b>9</b> años de registro, con una nota media de <b>4,1</b> sobre 5. <b id="stat-pending">0</b> pendientes y <b id="stat-frases">0</b> frases guardadas.</div>
       </div>
-      <div class="ph-meta">
-        <div>
-          <div class="ph-stat-val" id="stat-total">171</div>
-          <div class="ph-stat-lbl">Libros leídos</div>
-        </div>
-        <div>
-          <div class="ph-stat-val">9</div>
-          <div class="ph-stat-lbl">Años de registro</div>
-        </div>
-        <div>
-          <div class="ph-stat-val">4.1★</div>
-          <div class="ph-stat-lbl">Rating medio</div>
-        </div>
-        <div>
-          <div class="ph-stat-val" id="stat-pending" style="color:var(--accent)">0</div>
-          <div class="ph-stat-lbl">Pendientes</div>
-        </div>
-        <div>
-          <div class="ph-stat-val" id="stat-frases" style="color:var(--accent)">0</div>
-          <div class="ph-stat-lbl">Frases</div>
-        </div>
+    </div>
+    <div class="toolbar">
+      <div class="filters" id="filters">
+        <button class="filter-btn active" onclick="filterYear('all', this)">Todos</button>
+        <button class="filter-btn" onclick="filterYear('pending', this)">Pendientes</button>
+        <button class="filter-btn" onclick="filterYear('frases', this)">Frases</button>
+      </div>
+      <div class="toolbar-actions">
+        <button class="add-book-btn" id="mainAddBtn" onclick="openAddModal()">Añadir libro</button>
+        <button class="add-book-btn" onclick="openAddFraseModal()">Añadir frase</button>
       </div>
     </div>
   </div>
+</section>
 
-  <!-- FILTERS -->
-  <div class="filters" id="filters">
-    <button class="filter-btn active" onclick="filterYear('all', this)">Todos</button>
-    <button class="filter-btn" onclick="filterYear('pending', this)">📖 Pendientes</button>
-    <button class="filter-btn" onclick="filterYear('frases', this)">✦ Frases</button>
-  </div>
-
+<div class="wrap page">
   <div id="books-container"></div>
-
 </div>
+
+<footer>
+  <div class="wrap">
+    <span>Albert's Odyssey · Lecturas</span>
+    <span><a href="../index.html" class="txt-btn">Volver al inicio</a></span>
+  </div>
+</footer>
 
 <!-- MODAL -->
 <div class="modal-overlay" id="modal-overlay" onclick="closeModal(event)">
   <div class="modal" id="modal">
     <div class="modal-hdr">
-      <button class="modal-close" onclick="closeModalDirect()">✕</button>
+      <button class="modal-close" onclick="closeModalDirect()">Cerrar</button>
       <div class="modal-rating" id="m-rating"></div>
       <div class="modal-title" id="m-title"></div>
       <div class="modal-author" id="m-author"></div>
@@ -275,12 +261,13 @@ nav { background: var(--surface); border-bottom: 1px solid var(--border); paddin
   </div>
 </div>
 
+
 <!-- ADD BOOK MODAL -->
 <div class="add-modal-overlay" id="add-modal-overlay" onclick="if(event.target===this)closeAddModal()">
   <div class="add-modal">
     <div class="add-modal-hdr">
       <h3>Añadir libro</h3>
-      <button class="modal-close" onclick="closeAddModal()">✕</button>
+      <button class="modal-close" onclick="closeAddModal()">Cerrar</button>
     </div>
     <div class="add-modal-body">
       <div class="form-group">
@@ -329,6 +316,58 @@ nav { background: var(--surface); border-bottom: 1px solid var(--border); paddin
     </div>
   </div>
 </div>
+
+
+<div class="add-frase-overlay" id="add-frase-overlay" onclick="if(event.target===this)closeAddFraseModal()">
+  <div class="add-frase-modal">
+    <div class="add-modal-hdr">
+      <h3>Añadir frase</h3>
+      <button class="modal-close" onclick="closeAddFraseModal()">Cerrar</button>
+    </div>
+    <div class="add-modal-body">
+      <div class="form-group">
+        <label>Frase *</label>
+        <textarea id="frase-text" placeholder="Escribe la frase aquí..." style="font-family:'DM Sans',sans-serif;font-size:13px;color:var(--text-1);background:var(--bg);border:1px solid var(--border);border-radius:8px;padding:9px 12px;outline:none;resize:vertical;min-height:90px;width:100%;line-height:1.6;transition:border-color .15s;" onfocus="this.style.borderColor='var(--accent)'" onblur="this.style.borderColor='var(--border)'"></textarea>
+      </div>
+      <div class="form-group">
+        <label>Autor *</label>
+        <input type="text" id="frase-author" placeholder="Ej: Steve Jobs" autocomplete="off">
+      </div>
+      <div class="form-group">
+        <label>Fuente (opcional)</label>
+        <input type="text" id="frase-source" placeholder="Ej: Shoe Dog, conferencia TED..." autocomplete="off">
+      </div>
+      <div id="frase-error" style="font-size:12px;color:#C0614A;display:none;"></div>
+      <div class="form-actions">
+        <button class="btn-secondary" onclick="closeAddFraseModal()">Cancelar</button>
+        <button class="btn-primary" onclick="saveFrase()">Guardar frase</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- ADD PENDING MODAL -->
+<div class="add-pending-overlay" id="add-pending-overlay" onclick="if(event.target===this)closeAddPendingModal()">
+  <div class="add-pending-modal">
+    <div class="add-modal-hdr">
+      <h3>Añadir pendiente</h3>
+      <button class="modal-close" onclick="closeAddPendingModal()">Cerrar</button>
+    </div>
+    <div class="add-modal-body">
+      <div class="form-group"><label>Título *</label><input type="text" id="pend-title" placeholder="Título del libro" autocomplete="off"></div>
+      <div class="form-group"><label>Autor *</label><input type="text" id="pend-author" placeholder="Nombre del autor" autocomplete="off"></div>
+      <div class="form-group"><label>Nota (opcional)</label><input type="text" id="pend-note" placeholder="Ej: Recomendado por..." autocomplete="off"></div>
+      <div id="pend-error" style="font-size:12px;color:#C0614A;display:none;"></div>
+      <div class="form-actions">
+        <button class="btn-secondary" onclick="closeAddPendingModal()">Cancelar</button>
+        <button class="btn-primary" onclick="savePendingBook()">Añadir a pendientes</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
 
 <script>
 // ── BOOK DATA ─────────────────────────────────────────────
@@ -605,7 +644,7 @@ function saveNewBook() {
 
 function rebuildFilters() {
   const container = document.getElementById('filters');
-  container.innerHTML = `<button class="filter-btn ${activeYear==='all'?'active':''}" onclick="filterYear('all', this)">Todos</button><button class="filter-btn ${activeYear==='pending'?'active':''}" onclick="filterYear('pending', this)">📖 Pendientes</button><button class="filter-btn ${activeYear==='frases'?'active':''}" onclick="filterYear('frases', this)">✦ Frases</button>`;
+  container.innerHTML = `<button class="filter-btn ${activeYear==='all'?'active':''}" onclick="filterYear('all', this)">Todos</button><button class="filter-btn ${activeYear==='pending'?'active':''}" onclick="filterYear('pending', this)">Pendientes</button><button class="filter-btn ${activeYear==='frases'?'active':''}" onclick="filterYear('frases', this)">Frases</button>`;
 }
 
 function updateStats() {
@@ -653,7 +692,7 @@ function renderFrases() {
     + '</div>';
 
   if (!list.length) {
-    html += '<div class="frases-empty">Sin frases añadidas aún.<br>Pulsa "+ Añadir libro" para guardar una frase que te haya impactado.</div>';
+    html += '<div class="frases-empty">Sin frases añadidas aún.<br>Pulsa "Añadir frase" para guardar una frase que te haya impactado.</div>';
   } else if (!filtered.length) {
     html += '<div class="frases-empty">Sin resultados para "' + frasesSearchTerm.replace(/</g,'&lt;') + '".</div>';
   } else {
@@ -664,12 +703,12 @@ function renderFrases() {
         + '<div class="frase-text">' + f.text.replace(/</g,'&lt;').replace(/\n/g,'<br>') + '</div>'
         + '<div class="frase-meta">'
         + '<div class="frase-attribution">'
-        + '<div class="frase-author">— ' + f.author.replace(/</g,'&lt;') + '</div>'
-        + (f.source ? '<div class="frase-source">📖 ' + f.source.replace(/</g,'&lt;') + '</div>' : '')
+        + '<div class="frase-author">' + f.author.replace(/</g,'&lt;') + '</div>'
+        + (f.source ? '<div class="frase-source">' + f.source.replace(/</g,'&lt;') + '</div>' : '')
         + '</div>'
-        + '<div style="display:flex;gap:2px;flex-shrink:0;margin-top:2px;">'
-        + '<button class="frase-edit-btn" onclick="editFrase(' + realIdx + ')" title="Editar">✎</button>'
-        + '<button class="frase-del-btn" style="position:static;font-size:15px;" onclick="deleteFrase(' + realIdx + ')" title="Eliminar">×</button>'
+        + '<div style="display:flex;gap:16px;flex-shrink:0;">'
+        + '<button class="frase-edit-btn" onclick="editFrase(' + realIdx + ')" title="Editar">Editar</button>'
+        + '<button class="frase-del-btn" onclick="deleteFrase(' + realIdx + ')" title="Eliminar">Eliminar</button>'
         + '</div>'
         + '</div>'
         + '</div>';
@@ -769,10 +808,10 @@ function filterYear(yr, btn) {
   if (mainBtn) {
     if (yr === 'pending') {
       mainBtn.setAttribute('onclick', 'openAddPendingModal()');
-      mainBtn.innerHTML = '<span class="plus">+</span> Añadir pendiente';
+      mainBtn.textContent = 'Añadir pendiente';
     } else {
       mainBtn.setAttribute('onclick', 'openAddModal()');
-      mainBtn.innerHTML = '<span class="plus">+</span> Añadir libro';
+      mainBtn.textContent = 'Añadir libro';
     }
   }
   if (yr === 'pending') { renderPending(); return; }
@@ -803,7 +842,7 @@ function renderPending() {
   var list = loadPending();
   var container = document.getElementById('books-container');
   if (!list.length) {
-    container.innerHTML = '<div class="pending-section"><div class="pending-empty">Sin libros pendientes aún.<br>Pulsa "+ Añadir libro" para añadir los próximos libros que quieres leer.</div></div>';
+    container.innerHTML = '<div class="pending-section"><div class="pending-empty">Sin libros pendientes aún.<br>Pulsa "Añadir pendiente" para anotar los próximos libros que quieres leer.</div></div>';
     return;
   }
   var html = '<div class="pending-section">'
@@ -811,7 +850,7 @@ function renderPending() {
     + '<div class="pending-grid">';
   list.forEach(function(b, i) {
     html += '<div class="pending-card">'
-      + '<button class="pending-del-btn" onclick="deletePendingBook(' + i + ');event.stopPropagation();">×</button>'
+      + '<button class="pending-del-btn" onclick="deletePendingBook(' + i + ');event.stopPropagation();">Eliminar</button>'
       + '<div class="pending-badge">Por leer</div>'
       + '<div class="pending-title">' + b.title.replace(/</g,'&lt;') + '</div>'
       + '<div class="pending-author">' + b.author.replace(/</g,'&lt;') + '</div>'
@@ -910,25 +949,25 @@ function openModal(idx) {
   document.getElementById('m-title').textContent = b.title;
   document.getElementById('m-author').textContent = b.author;
 
-  let meta = `<span class="modal-tag">📅 ${b.year}</span>`;
-  if (b.pages) meta += `<span class="modal-tag">📄 ${b.pages} pág.</span>`;
-  if (b.rating) meta += `<span class="modal-tag">${b.rating}/5 ★</span>`;
-  if (b._user) meta += `<span class="modal-tag" style="background:var(--accent-bg);color:var(--accent);border-color:var(--accent-border)">✎ Añadido por ti</span>`;
+  let meta = `<span class="modal-tag">Leído en ${b.year}</span>`;
+  if (b.pages) meta += `<span class="modal-tag">${b.pages} páginas</span>`;
+  if (b.rating) meta += `<span class="modal-tag">${b.rating} de 5</span>`;
+  if (b._user) meta += `<span class="modal-tag" style="color:var(--now)">Añadido por ti</span>`;
   document.getElementById('m-meta').innerHTML = meta;
 
   // Delete button for user books
   const deleteBtn = b._user
-    ? `<button class="modal-add-btn" style="color:#C0614A;border-color:#f0b0a0;background:#fdf0ee;margin-top:8px" onclick="deleteUserBook(${idx})">🗑 Eliminar libro</button>`
+    ? `<button class="modal-add-btn" style="color:#A3442C" onclick="deleteUserBook(${idx})">Eliminar libro</button>`
     : '';
 
   if (bookNotes) {
     document.getElementById('m-notes-content').innerHTML =
       `<div class="modal-notes">${bookNotes}</div>
-       <button class="modal-add-btn" onclick="editNotes(${idx})">✎ Editar notas</button>${deleteBtn}`;
+       <button class="modal-add-btn" onclick="editNotes(${idx})">Editar notas</button>${deleteBtn}`;
   } else {
     document.getElementById('m-notes-content').innerHTML =
       `<div class="modal-no-notes">Aún no hay notas para este libro.</div>
-       <button class="modal-add-btn" onclick="editNotes(${idx})">+ Añadir notas</button>${deleteBtn}`;
+       <button class="modal-add-btn" onclick="editNotes(${idx})">Añadir notas</button>${deleteBtn}`;
   }
 
   document.getElementById('modal-overlay').classList.add('open');
@@ -941,9 +980,9 @@ function editNotes(idx) {
   const notes = loadNotes();
   const current = b.notes || notes[b.title] || '';
   document.getElementById('m-notes-content').innerHTML =
-    `<textarea id="notes-editor" style="width:100%;min-height:180px;font-family:'DM Sans',sans-serif;font-size:13px;line-height:1.7;border:1px solid var(--border);border-radius:8px;padding:12px;resize:vertical;color:var(--text-1);background:var(--bg);outline:none;" placeholder="Escribe tus notas, frases destacadas, reflexiones...">${current}</textarea>
-     <div style="display:flex;gap:8px;margin-top:12px;">
-       <button class="modal-add-btn" onclick="saveNoteUI(${idx})" style="background:var(--text-1);color:#fff;border-color:var(--text-1)">Guardar</button>
+    `<textarea id="notes-editor" style="width:100%;min-height:180px;font-family:var(--sans);font-size:15px;line-height:1.7;border:none;border-bottom:1px solid var(--rule);padding:8px 0;resize:vertical;color:var(--ink);background:transparent;outline:none;" placeholder="Escribe tus notas, frases destacadas, reflexiones...">${current}</textarea>
+     <div style="display:flex;gap:20px;margin-top:12px;">
+       <button class="modal-add-btn" onclick="saveNoteUI(${idx})" style="color:var(--ink);text-decoration-color:var(--ink)">Guardar</button>
        <button class="modal-add-btn" onclick="openModal(${idx})">Cancelar</button>
      </div>`;
   document.getElementById('notes-editor').focus();
@@ -977,57 +1016,7 @@ updateStats();
 updatePendingStat();
 updateFrasesStat();
 render();
+(function(){var h=location.hash.replace('#','');if(h==='pendientes'){filterYear('pending',document.querySelectorAll('.filter-btn')[1]);}else if(h==='frases'){filterYear('frases',document.querySelectorAll('.filter-btn')[2]);}})();
 </script>
-
-
-<!-- ADD FRASE MODAL -->
-<div class="add-frase-overlay" id="add-frase-overlay" onclick="if(event.target===this)closeAddFraseModal()">
-  <div class="add-frase-modal">
-    <div class="add-modal-hdr">
-      <h3>Añadir frase</h3>
-      <button class="modal-close" onclick="closeAddFraseModal()">✕</button>
-    </div>
-    <div class="add-modal-body">
-      <div class="form-group">
-        <label>Frase *</label>
-        <textarea id="frase-text" placeholder="Escribe la frase aquí..." style="font-family:'DM Sans',sans-serif;font-size:13px;color:var(--text-1);background:var(--bg);border:1px solid var(--border);border-radius:8px;padding:9px 12px;outline:none;resize:vertical;min-height:90px;width:100%;line-height:1.6;transition:border-color .15s;" onfocus="this.style.borderColor='var(--accent)'" onblur="this.style.borderColor='var(--border)'"></textarea>
-      </div>
-      <div class="form-group">
-        <label>Autor *</label>
-        <input type="text" id="frase-author" placeholder="Ej: Steve Jobs" autocomplete="off">
-      </div>
-      <div class="form-group">
-        <label>Fuente (opcional)</label>
-        <input type="text" id="frase-source" placeholder="Ej: Shoe Dog, conferencia TED..." autocomplete="off">
-      </div>
-      <div id="frase-error" style="font-size:12px;color:#C0614A;display:none;"></div>
-      <div class="form-actions">
-        <button class="btn-secondary" onclick="closeAddFraseModal()">Cancelar</button>
-        <button class="btn-primary" onclick="saveFrase()">Guardar frase</button>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- ADD PENDING MODAL -->
-<div class="add-pending-overlay" id="add-pending-overlay" onclick="if(event.target===this)closeAddPendingModal()">
-  <div class="add-pending-modal">
-    <div class="add-modal-hdr">
-      <h3>Añadir pendiente</h3>
-      <button class="modal-close" onclick="closeAddPendingModal()">✕</button>
-    </div>
-    <div class="add-modal-body">
-      <div class="form-group"><label>Título *</label><input type="text" id="pend-title" placeholder="Título del libro" autocomplete="off"></div>
-      <div class="form-group"><label>Autor *</label><input type="text" id="pend-author" placeholder="Nombre del autor" autocomplete="off"></div>
-      <div class="form-group"><label>Nota (opcional)</label><input type="text" id="pend-note" placeholder="Ej: Recomendado por..." autocomplete="off"></div>
-      <div id="pend-error" style="font-size:12px;color:#C0614A;display:none;"></div>
-      <div class="form-actions">
-        <button class="btn-secondary" onclick="closeAddPendingModal()">Cancelar</button>
-        <button class="btn-primary" onclick="savePendingBook()">Añadir a pendientes</button>
-      </div>
-    </div>
-  </div>
-</div>
-
 </body>
 </html>
