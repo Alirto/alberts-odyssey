@@ -425,10 +425,19 @@
 <div class="overlay center" id="ghSyncOverlay" onclick="if(event.target===this)ghSyncCloseConfig()">
   <div class="sheet narrow">
     <div class="sheet-hdr">
-      <div><div class="sheet-ttl">Sincronizar</div><div class="sheet-sub">Copia de tus datos en GitHub para usarlos en otros dispositivos</div></div>
+      <div><div class="sheet-ttl">Sincronizar</div><div class="sheet-sub">Mueve tus datos entre dispositivos por archivo o mediante GitHub</div></div>
       <button class="txt-btn" onclick="ghSyncCloseConfig()">Cerrar</button>
     </div>
     <div class="sheet-body">
+      <div class="sync-actions">
+        <button class="sync-action" onclick="exportData()"><b>Exportar</b><span>Descarga un archivo con todos los datos de este navegador.</span></button>
+        <button class="sync-action" onclick="document.getElementById('importFile').click()"><b>Importar</b><span>Carga en este navegador un archivo exportado en otro dispositivo.</span></button>
+        <input type="file" id="importFile" accept="application/json,.json" style="display:none" onchange="importData(this)">
+      </div>
+      <div class="info">El archivo exportado contiene hitos, revisiones, ciudades, países, libros, frases y notas. Al importar se sustituyen los datos de este navegador por los del archivo. Es la forma de mover la información entre ordenadores y móvil sin contraseñas.</div>
+      <div class="msg ok" id="ioOk"></div>
+      <div class="msg err" id="ioErr"></div>
+      <span class="label" style="margin-top:8px">Copia en GitHub</span>
       <div class="sync-actions">
         <button class="sync-action" onclick="ghSyncUpload()"><b>Subir</b><span>Guarda en GitHub el estado actual de este navegador.</span></button>
         <button class="sync-action" onclick="ghSyncDownload()"><b>Bajar</b><span>Sustituye los datos locales por la última copia guardada.</span></button>
@@ -719,6 +728,11 @@ async function ghGetFileSha(cfg){try{var res=await fetch('https://api.github.com
 async function ghSyncUpload(){var cfg=ghGetConfig();if(!cfg.token){setSyncStatus('Configura el token antes de subir','err');return;}setSyncStatus('Subiendo...','');var data=ghCollectData();var content=btoa(unescape(encodeURIComponent(JSON.stringify(data,null,2))));var sha=await ghGetFileSha(cfg);var body={message:'Sync: '+new Date().toISOString(),content:content};if(sha)body.committer={name:'Albert Sync',email:'sync@alberts-odyssey.local'};if(sha)body.sha=sha;try{var res=await fetch('https://api.github.com/repos/'+cfg.repo+'/contents/'+GH_FILE,{method:'PUT',headers:{'Authorization':'token '+cfg.token,'Accept':'application/vnd.github.v3+json','Content-Type':'application/json'},body:JSON.stringify(body)});if(res.ok){setSyncStatus('Subido a GitHub a las '+new Date().toLocaleTimeString('es-ES',{hour:'2-digit',minute:'2-digit'}),'ok');ghSyncCloseConfig();}else{var err=await res.json();setSyncStatus('Error: '+((err&&err.message)||res.status),'err');}}catch(e){setSyncStatus('Error de red','err');}}
 async function ghSyncDownload(){var cfg=ghGetConfig();if(!cfg.token){setSyncStatus('Configura el token antes de bajar','err');return;}setSyncStatus('Bajando...','');try{var res=await fetch('https://api.github.com/repos/'+cfg.repo+'/contents/'+GH_FILE,{headers:{'Authorization':'token '+cfg.token,'Accept':'application/vnd.github.v3+json'}});if(res.status===404){setSyncStatus('Sin datos en GitHub aún','err');return;}if(!res.ok){setSyncStatus('Error '+res.status,'err');return;}var json=await res.json();var raw=decodeURIComponent(escape(atob(json.content.replace(/\n/g,''))));var data=JSON.parse(raw);if(!data.v||!data.d){setSyncStatus('Archivo inválido','err');return;}Object.entries(data.d).forEach(function(entry){localStorage.setItem(entry[0],entry[1]);});setSyncStatus('Datos restaurados','ok');setTimeout(function(){location.reload();},800);}catch(e){setSyncStatus('Error: '+e.message,'err');}}
 
+// ── EXPORTAR / IMPORTAR POR ARCHIVO ─────────────────────
+function allDataKeys(){var ks=new Set(SYNC_KEYS);for(var i=0;i<localStorage.length;i++){var k=localStorage.key(i);if(k&&k.indexOf('ao_')===0&&k!==GH_TOKEN_KEY&&k!==GH_REPO_KEY)ks.add(k);}return Array.from(ks);}
+function exportData(){var data={v:2,ts:Date.now(),d:{}};allDataKeys().forEach(function(k){var v=localStorage.getItem(k);if(v!==null)data.d[k]=v;});var blob=new Blob([JSON.stringify(data,null,2)],{type:'application/json'});var a=document.createElement('a');var d=new Date();a.href=URL.createObjectURL(blob);a.download='alberts-odyssey-datos-'+d.getFullYear()+'-'+pad2(d.getMonth()+1)+'-'+pad2(d.getDate())+'.json';document.body.appendChild(a);a.click();setTimeout(function(){URL.revokeObjectURL(a.href);a.remove();},500);var ok=document.getElementById('ioOk');ok.textContent='Archivo exportado con '+Object.keys(data.d).length+' bloques de datos.';ok.style.display='block';document.getElementById('ioErr').style.display='none';}
+function importData(input){var f=input.files&&input.files[0];if(!f)return;var ok=document.getElementById('ioOk'),err=document.getElementById('ioErr');ok.style.display='none';err.style.display='none';var r=new FileReader();r.onload=function(){try{var data=JSON.parse(r.result);if(!data||!data.d||typeof data.d!=='object')throw new Error('El archivo no tiene el formato esperado.');var n=Object.keys(data.d).length;if(!n)throw new Error('El archivo no contiene datos.');if(!confirm('Se van a sustituir los datos de este navegador por los del archivo ('+n+' bloques). ¿Continuar?')){input.value='';return;}Object.keys(data.d).forEach(function(k){if(k.indexOf('ao_')===0&&k!==GH_TOKEN_KEY&&k!==GH_REPO_KEY)localStorage.setItem(k,data.d[k]);});ok.textContent='Datos importados. La página se recargará.';ok.style.display='block';setTimeout(function(){location.reload();},900);}catch(e){err.textContent='No se pudo importar: '+e.message;err.style.display='block';}input.value='';};r.readAsText(f);}
+
 // ── WEEKLY REVIEW ────────────────────────────────────────
 var WR_KEY='ao_weekly_v1';var wrCurrentReadId=null;var wrShowAll=false;var WR_LIMIT=5;
 function wrToggleAll(){wrShowAll=!wrShowAll;wrRender();}
@@ -774,6 +788,7 @@ window.addEventListener('DOMContentLoaded',()=>{
   wrRender();
   const title=document.getElementById('mastTitle'),bar=document.getElementById('topbar');
   if('IntersectionObserver' in window){new IntersectionObserver(en=>{bar.classList.toggle('scrolled',!en[0].isIntersecting);},{threshold:0}).observe(title);}
+  if(location.hash==='#sincronizar')ghSyncConfig();
 });
 </script>
 </body>
