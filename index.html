@@ -152,6 +152,29 @@
   .ar-obj .obj-name { margin-bottom: 4px; }
   .ar-obj .hito .title { font-size: 15px; }
   @media (max-width: 700px) { .ed-ms-row { grid-template-columns: 1fr; gap: 6px; } }
+  /* Hoja de ruta compacta */
+  .seg { cursor: pointer; }
+  .plist { border-top: 1px solid var(--ink); }
+  .prow { border-bottom: 1px solid var(--rule); }
+  .prow.past { opacity: .7; }
+  .prow-hd { display: grid; grid-template-columns: 36px 260px 1fr; gap: 24px; padding: 18px 0; align-items: start; }
+  .prow-hd .idx { font-family: var(--serif); font-size: 14px; color: var(--ink-3); font-variant-numeric: tabular-nums; padding-top: 6px; }
+  .prow-name { text-align: left; display: flex; flex-direction: column; gap: 6px; }
+  .prow-name .nm { font-family: var(--serif); font-variation-settings: 'opsz' 40; font-size: 28px; letter-spacing: -0.02em; line-height: 1; text-decoration: underline; text-decoration-color: transparent; text-underline-offset: 5px; transition: text-decoration-color .15s; }
+  .prow-name:hover .nm { text-decoration-color: var(--rule); }
+  .prow-name .rng { font-size: 13px; color: var(--ink-3); }
+  .prow-mid { display: flex; flex-direction: column; gap: 6px; padding-top: 4px; }
+  .prow-desc { font-size: 14.5px; color: var(--ink-2); line-height: 1.5; max-width: 66ch; }
+  .prow-acts { display: flex; gap: 22px; flex-wrap: wrap; margin-top: 6px; }
+  .cap-btn.soft { color: var(--ink-3); }
+  .prow .when-open { display: none; } .prow.open .when-open { display: inline; } .prow.open .when-closed { display: none; }
+  .prow-body { display: none; padding: 0 0 26px 344px; }
+  .prow.open .prow-body { display: block; }
+  .prow-body .label { display: block; margin-bottom: 6px; }
+  .prow-body .hito { padding: 10px 0; }
+  .prow-body .hito .title { font-size: 16px; }
+  .prow-body .note { margin-top: 20px; }
+  @media (max-width: 900px) { .prow-hd { grid-template-columns: 28px 1fr; } .prow-mid { grid-column: 1 / -1; } .prow-body { padding-left: 0; } }
   /* 02 Pillars */
   .pil-grid { display: grid; grid-template-columns: 3fr 9fr; gap: 64px; align-items: start; }
   .pil-intro h2 { margin-bottom: 20px; }
@@ -381,14 +404,7 @@
       <div class="sec-meta meta">Seis fases de seis meses, de marzo de 2026 a marzo de 2029</div>
     </div>
     <div class="strip" id="strip"></div>
-    <div class="road">
-      <div class="cur" id="curPhase"></div>
-      <div>
-        <div class="next-list" id="pastPhases" style="display:none"></div>
-        <div class="next-list" id="nextPhases"></div>
-        <div class="next-foot"><button class="txt-btn" id="phasesToggle" onclick="togglePhases()">Ver los hitos de las fases siguientes</button></div>
-      </div>
-    </div>
+    <div class="plist" id="phaseList"></div>
   </div>
 </section>
 
@@ -665,31 +681,27 @@ function closeEditPanel(){const el=document.getElementById('editOverlay');if(el)
 function refreshUI(){reloadModel();renderTimeline();renderPillars();renderNextActions();checkBalance();setDynamic();if(activeId){const id=activeId;activeId=null;openDetail(id);}}
 
 // ── HOJA DE RUTA ─────────────────────────────────────────
-function togglePhases(){const el=document.getElementById('nextPhases');el.classList.toggle('expanded');document.getElementById('phasesToggle').textContent=el.classList.contains('expanded')?'Ocultar los hitos de las fases siguientes':'Ver los hitos de las fases siguientes';}
+let openPhases=new Set();
+function togglePhaseRow(id){if(openPhases.has(id))openPhases.delete(id);else openPhases.add(id);const row=document.getElementById('prow-'+id);if(row)row.classList.toggle('open',openPhases.has(id));}
 function renderTimeline(){
-  const ci=phaseIndex(CUR),cur=PHASES[ci],now=new Date();
+  const ci=phaseIndex(CUR),now=new Date(),st=loadPhaseStore();const manual=st.current&&st.current!==autoPhaseId();
   const strip=document.getElementById('strip');
-  strip.innerHTML=PHASES.map((ph,i)=>{const s=new Date(ph.start+'T00:00:00'),e=new Date(ph.end+'T23:59:59');const fill=Math.max(0,Math.min(1,(now-s)/(e-s)));const state=phaseState(ph.id);const isToday=now>=s&&now<=e;return `<div class="seg${state==='current'?' current':''}">${isToday?`<div class="today" style="left:${(fill*100).toFixed(1)}%"><span>Hoy</span><i></i></div>`:''}<div class="seg-bar"><i data-t="${(fill*100).toFixed(1)}"></i></div><div class="seg-lbl"><b>${pad2(i+1)}</b><span>${fmtRange(ph)}</span></div><span class="seg-name">${esc(ph.name)}</span></div>`;}).join('');
+  strip.innerHTML=PHASES.map((ph,i)=>{const s=new Date(ph.start+'T00:00:00'),e=new Date(ph.end+'T23:59:59');const fill=Math.max(0,Math.min(1,(now-s)/(e-s)));const state=phaseState(ph.id);const isToday=now>=s&&now<=e;return `<div class="seg${state==='current'?' current':''}" onclick="togglePhaseRow('${ph.id}')">${isToday?`<div class="today" style="left:${(fill*100).toFixed(1)}%"><span>Hoy</span><i></i></div>`:''}<div class="seg-bar"><i data-t="${(fill*100).toFixed(1)}"></i></div><div class="seg-lbl"><b>${pad2(i+1)}</b><span>${fmtRange(ph)}</span></div><span class="seg-name">${esc(ph.name)}</span></div>`;}).join('');
   setTimeout(()=>{strip.querySelectorAll('.seg-bar i').forEach(el=>{el.style.width=el.dataset.t+'%';});},200);
-  const st=loadPhaseStore();const manual=st.current&&st.current!==autoPhaseId();
-  const focus=cur.pillars.map(pp=>`${pillarTag(pp.id)}${esc(pp.focus)}`).join(' &nbsp;·&nbsp; ');
-  const stats=phaseStats(CUR);
-  document.getElementById('curPhase').innerHTML=
-    `<span class="label">Fase ${pad2(ci+1)} en curso · ${fmtRange(cur)}${manual?' · activada a mano':''}</span>
-     <h3>${esc(cur.name)}</h3>
-     <p>${esc(cur.desc)}</p>
-     <p class="focus">${focus}</p>
-     <div class="hitos"><span class="label">Hitos de la fase</span>${cur.milestones.map(m=>`<div class="hito"><span class="g"></span><div class="title">${esc(fmtFree(m))}</div><div class="m"></div></div>`).join('')}</div>
-     <div class="ph-actions"><button class="cap-btn strong" onclick="openPhaseEditor('${CUR}')">${phaseDesigned(CUR)?'Editar objetivos':'Diseñar la fase'}</button><button class="cap-btn" onclick="openArchive('${CUR}')">Balance y retrospectiva</button>${manual?`<button class="cap-btn" onclick="setCurrentPhase(null)">Volver a la fase por fecha</button>`:''}</div>
-     ${ci===0?`<div class="note"><b>Nota de inicio, 10 mar 2026.</b> ${esc(START_NOTE)}</div>`:''}`;
-  const past=PHASES.filter(ph=>phaseState(ph.id)==='past');
-  const pastEl=document.getElementById('pastPhases');
-  pastEl.innerHTML=past.length?'<span class="label">Fases cerradas</span>'+past.map(ph=>{const s=phaseStats(ph.id),retro=(st[ph.id]&&st[ph.id].retro)||'';return `<div class="nx past"><span class="idx">${pad2(phaseIndex(ph.id)+1)}</span><span class="range">${fmtRange(ph)}</span><div><div class="name">${esc(ph.name)}</div><div class="one">${s.total?`<b>${s.done}</b> de ${s.total} hitos completados · avance ponderado <b>${s.pct}%</b>`:'Sin objetivos registrados'}${retro?' · con retrospectiva':' · <span class="attn">sin retrospectiva</span>'}</div><div class="nx-act"><button class="cap-btn" onclick="openArchive('${ph.id}')">Ver balance</button></div></div></div>`;}).join(''):'';
-  pastEl.style.display=past.length?'block':'none';
-  const list=document.getElementById('nextPhases');
-  const future=PHASES.filter(ph=>phaseState(ph.id)==='future');
-  list.innerHTML='<span class="label">Lo que viene</span>'+future.map(ph=>{const d=phaseDesigned(ph.id),s=d?phaseStats(ph.id):null;return `<div class="nx"><span class="idx">${pad2(phaseIndex(ph.id)+1)}</span><span class="range">${fmtRange(ph)}</span><div><div class="name">${esc(ph.name)}</div><div class="one">${esc(ph.desc)}</div>${d?`<div class="one"><b>${s.objectives}</b> objetivos y <b>${s.total}</b> hitos diseñados</div>`:''}<div class="sub">${ph.milestones.map(m=>`<div class="hito"><span class="g"></span><div class="title">${esc(fmtFree(m))}</div><div class="m"></div></div>`).join('')}</div><div class="nx-act"><button class="cap-btn${d?'':' strong'}" onclick="openPhaseEditor('${ph.id}')">${d?'Editar diseño':'Diseñar esta fase'}</button>${phaseIndex(ph.id)===ci+1?`<button class="cap-btn" onclick="setCurrentPhase('${ph.id}')">Activar ahora</button>`:''}</div></div></div>`;}).join('');
-  document.getElementById('phasesToggle').style.display=future.length?'inline':'none';
+  const list=document.getElementById('phaseList');
+  list.innerHTML=PHASES.map((ph,i)=>{
+    const state=phaseState(ph.id),designed=phaseDesigned(ph.id),s=phaseStats(ph.id),retro=(st[ph.id]&&st[ph.id].retro)||'';
+    let status='';
+    if(state==='current')status=`<span class="attn">En curso</span>${manual?' · activada a mano':''}${s.total?` · ${s.done} de ${s.total} hitos · ${s.pct}%`:' · sin objetivos'}`;
+    else if(state==='past')status=`Cerrada${s.total?` · ${s.done} de ${s.total} hitos · ${s.pct}%`:''}${retro?' · con retrospectiva':''}`;
+    else status=designed?`Diseñada · ${s.objectives} objetivos y ${s.total} hitos`:'Sin diseñar';
+    const acts=[];
+    if(state==='past'){acts.push(`<button class="cap-btn" onclick="openArchive('${ph.id}')">Ver balance</button>`);}
+    else if(state==='current'){acts.push(`<button class="cap-btn strong" onclick="openPhaseEditor('${ph.id}')">${designed?'Editar objetivos':'Diseñar la fase'}</button>`);acts.push(`<button class="cap-btn" onclick="openArchive('${ph.id}')">Balance y retrospectiva</button>`);if(manual)acts.push(`<button class="cap-btn" onclick="setCurrentPhase(null)">Volver a la fase por fecha</button>`);}
+    else{acts.push(`<button class="cap-btn${designed?'':' strong'}" onclick="openPhaseEditor('${ph.id}')">${designed?'Editar diseño':'Diseñar esta fase'}</button>`);if(i===ci+1)acts.push(`<button class="cap-btn" onclick="setCurrentPhase('${ph.id}')">Activar ahora</button>`);}
+    const body=`<div class="prow-body"><span class="label">Hitos de la fase</span>${ph.milestones.map(m=>`<div class="hito"><span class="g"></span><div class="title">${esc(fmtFree(m))}</div><div class="m"></div></div>`).join('')}${i===0?`<div class="note"><b>Nota de inicio, 10 mar 2026.</b> ${esc(START_NOTE)}</div>`:''}</div>`;
+    return `<div class="prow ${state}${openPhases.has(ph.id)?' open':''}" id="prow-${ph.id}"><div class="prow-hd"><span class="idx">${pad2(i+1)}</span><button class="prow-name" onclick="togglePhaseRow('${ph.id}')"><span class="nm">${esc(ph.name)}</span><span class="rng">${fmtRange(ph)}</span></button><div class="prow-mid"><div class="prow-status meta">${status}</div><div class="prow-desc">${esc(ph.desc)}</div><div class="prow-acts">${acts.join('')}<button class="cap-btn soft" onclick="togglePhaseRow('${ph.id}')"><span class="when-closed">Detalle</span><span class="when-open">Plegar</span></button></div></div></div>${body}</div>`;
+  }).join('');
 }
 function setCurrentPhase(id){const st=loadPhaseStore();if(id){if(!confirm('La Home pasará a mostrar la fase '+phaseById(id).name+' como activa. Las anteriores quedan en el archivo. ¿Continuar?'))return;st.current=id;}else{delete st.current;}savePhaseStore(st);closeDetail();refreshUI();}
 
@@ -904,7 +916,7 @@ window.addEventListener('DOMContentLoaded',()=>{
   const title=document.getElementById('mastTitle'),bar=document.getElementById('topbar');
   if('IntersectionObserver' in window){new IntersectionObserver(en=>{bar.classList.toggle('scrolled',!en[0].isIntersecting);},{threshold:0}).observe(title);}
   if(location.hash==='#sincronizar')ghSyncConfig();
-  var hm=location.hash.match(/^#(disenar|balance)-(f[1-6])$/);if(hm){if(hm[1]==='disenar')openPhaseEditor(hm[2]);else openArchive(hm[2]);}
+  var hm=location.hash.match(/^#(disenar|balance|fase)-(f[1-6])$/);if(hm){if(hm[1]==='disenar')openPhaseEditor(hm[2]);else if(hm[1]==='balance')openArchive(hm[2]);else togglePhaseRow(hm[2]);}
 });
 </script>
 </body>
