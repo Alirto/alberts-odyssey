@@ -13,6 +13,7 @@
     --paper: #F3F0E8; --paper-2: #E6E1D4;
     --ink: #171611; --ink-2: #45423A; --ink-3: #625E55;
     --rule: #C9C3B4; --rule-soft: #DDD8CB;
+    --acc: #2D6A4F;
     --now: #A86F1C;
     --serif: 'Fraunces', Georgia, serif; --sans: 'DM Sans', system-ui, sans-serif;
     --w: 1200px; --gutter: 40px;
@@ -340,6 +341,21 @@
     .masthead .figures { grid-template-columns: 1fr; }
   }
 
+  /* ── Color e iconos ─────────────────────────────────────── */
+  .ico { display: inline-block; width: 1em; height: 1em; vertical-align: -0.12em; }
+  .ico svg { width: 100%; height: 100%; display: block; }
+  .dl-ico { display: flex; align-items: center; gap: 9px; }
+  .dl-ico .ico { width: 16px; height: 16px; color: var(--acc); flex-shrink: 0; }
+  .grp-ico, .sec-ico { width: 26px; height: 26px; color: var(--ink-2); align-self: center; flex-shrink: 0; }
+  .grp-ico svg, .sec-ico svg { width: 26px; height: 26px; display: block; }
+  .tab-ico { display: inline-block; width: 20px; height: 20px; color: var(--ink-3); vertical-align: -0.2em; margin-right: 9px; transition: color .15s; }
+  .tab-ico svg { width: 20px; height: 20px; display: block; }
+  .tcard { border-color: color-mix(in srgb, var(--acc) 55%, var(--paper)); background: color-mix(in srgb, var(--acc) 7%, var(--paper)); }
+  .tcard:hover { background: color-mix(in srgb, var(--acc) 13%, var(--paper)); }
+  .tcard-top { display: flex; justify-content: space-between; align-items: center; }
+  .tcard-day { color: var(--acc); }
+  .tc-ico { width: 22px; height: 22px; color: var(--acc); }
+  .tc-ico svg { width: 22px; height: 22px; display: block; }
 </style>
 </head>
 <body>
@@ -359,7 +375,7 @@
 
 <section class="masthead">
   <div class="wrap">
-    <div class="dateline">Salud · Deporte · Programa de fuerza, fase 2</div>
+    <div class="dateline dl-ico"><span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2.5" y="9.5" width="3" height="5" rx=".5"/><rect x="18.5" y="9.5" width="3" height="5" rx=".5"/><rect x="5.5" y="7.5" width="3" height="9" rx=".5"/><rect x="15.5" y="7.5" width="3" height="9" rx=".5"/><path d="M8.5 12h7"/></svg></span><span>Salud · Deporte · Programa de fuerza, fase 2</span></div>
     <h1>Rutina de fuerza</h1>
     <div class="mast-row">
       <p class="deck">Full Body tres veces por semana durante 16 semanas. <em>Hombro con carga controlada, déficit calórico activo, orientado al deporte funcional.</em></p>
@@ -382,12 +398,12 @@
     <div><strong>Fase 2, orientación funcional y deportiva.</strong> Calentamientos en circuito con ejercicios que transfieren directamente a carrera, natación y trekking. Bloques funcionales con movimientos complejos (turkish get-up, KB swing, dead bug). Finisher metabólico intensificado. Objetivo: fuerza + resistencia + prevención de lesiones para deporte.</div>
   </div>
 
-  <div class="grp-hd"><span class="grp-num">01</span><h2 class="grp-ttl">Distribución semanal</h2></div>
+  <div class="grp-hd"><span class="grp-num">01</span><span class="grp-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="5" width="17" height="15.5" rx="1"/><path d="M3.5 10h17M8 3v4M16 3v4"/><path d="M8 14h2M14 14h2M8 17h2"/></svg></span><h2 class="grp-ttl">Distribución semanal</h2></div>
 
-  <div class="tcards"><div class="tcard" onclick="openSess('a')" id="card-a"><div class="tcard-day">Lunes</div><div class="tcard-title">Full Body A</div><div class="tcard-meta">55–65 min · Empuje + Tirón</div><ul class="tcard-blocks"><li><span>Calentamiento en circuito</span><span class="meta">4 ejercicios</span></li><li><span>Bloque principal</span><span class="meta">3 ejercicios</span></li><li><span>Bloque funcional + Accesorios</span><span class="meta">3 ejercicios</span></li><li><span>Core</span><span class="meta">1 ejercicio</span></li></ul><div class="tcard-foot"><span class="cap-btn">Abrir sesión</span></div></div><div class="tcard" onclick="openSess('b')" id="card-b"><div class="tcard-day">Miércoles</div><div class="tcard-title">Full Body B</div><div class="tcard-meta">55–65 min · Bisagra + Vertical</div><ul class="tcard-blocks"><li><span>Calentamiento en circuito</span><span class="meta">4 ejercicios</span></li><li><span>Bloque principal</span><span class="meta">3 ejercicios</span></li><li><span>Bloque funcional + Accesorios</span><span class="meta">3 ejercicios</span></li><li><span>Core</span><span class="meta">2 ejercicios</span></li></ul><div class="tcard-foot"><span class="cap-btn">Abrir sesión</span></div></div><div class="tcard" onclick="openSess('c')" id="card-c"><div class="tcard-day">Viernes</div><div class="tcard-title">Full Body C</div><div class="tcard-meta">55–65 min · Volumen + Finisher</div><ul class="tcard-blocks"><li><span>Calentamiento en circuito</span><span class="meta">4 ejercicios</span></li><li><span>Bloque principal</span><span class="meta">3 ejercicios</span></li><li><span>Bloque funcional</span><span class="meta">2 ejercicios</span></li><li><span>Finisher metabólico</span><span class="meta">4 ejercicios</span></li></ul><div class="tcard-foot"><span class="cap-btn">Abrir sesión</span></div></div></div>
+  <div class="tcards"><div class="tcard" onclick="openSess('a')" id="card-a"><div class="tcard-top"><div class="tcard-day">Lunes</div><span class="tc-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2.5" y="9.5" width="3" height="5" rx=".5"/><rect x="18.5" y="9.5" width="3" height="5" rx=".5"/><rect x="5.5" y="7.5" width="3" height="9" rx=".5"/><rect x="15.5" y="7.5" width="3" height="9" rx=".5"/><path d="M8.5 12h7"/></svg></span></div><div class="tcard-title">Full Body A</div><div class="tcard-meta">55–65 min · Empuje + Tirón</div><ul class="tcard-blocks"><li><span>Calentamiento en circuito</span><span class="meta">4 ejercicios</span></li><li><span>Bloque principal</span><span class="meta">3 ejercicios</span></li><li><span>Bloque funcional + Accesorios</span><span class="meta">3 ejercicios</span></li><li><span>Core</span><span class="meta">1 ejercicio</span></li></ul><div class="tcard-foot"><span class="cap-btn">Abrir sesión</span></div></div><div class="tcard" onclick="openSess('b')" id="card-b"><div class="tcard-top"><div class="tcard-day">Miércoles</div><span class="tc-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2.5" y="9.5" width="3" height="5" rx=".5"/><rect x="18.5" y="9.5" width="3" height="5" rx=".5"/><rect x="5.5" y="7.5" width="3" height="9" rx=".5"/><rect x="15.5" y="7.5" width="3" height="9" rx=".5"/><path d="M8.5 12h7"/></svg></span></div><div class="tcard-title">Full Body B</div><div class="tcard-meta">55–65 min · Bisagra + Vertical</div><ul class="tcard-blocks"><li><span>Calentamiento en circuito</span><span class="meta">4 ejercicios</span></li><li><span>Bloque principal</span><span class="meta">3 ejercicios</span></li><li><span>Bloque funcional + Accesorios</span><span class="meta">3 ejercicios</span></li><li><span>Core</span><span class="meta">2 ejercicios</span></li></ul><div class="tcard-foot"><span class="cap-btn">Abrir sesión</span></div></div><div class="tcard" onclick="openSess('c')" id="card-c"><div class="tcard-top"><div class="tcard-day">Viernes</div><span class="tc-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2.5" y="9.5" width="3" height="5" rx=".5"/><rect x="18.5" y="9.5" width="3" height="5" rx=".5"/><rect x="5.5" y="7.5" width="3" height="9" rx=".5"/><rect x="15.5" y="7.5" width="3" height="9" rx=".5"/><path d="M8.5 12h7"/></svg></span></div><div class="tcard-title">Full Body C</div><div class="tcard-meta">55–65 min · Volumen + Finisher</div><ul class="tcard-blocks"><li><span>Calentamiento en circuito</span><span class="meta">4 ejercicios</span></li><li><span>Bloque principal</span><span class="meta">3 ejercicios</span></li><li><span>Bloque funcional</span><span class="meta">2 ejercicios</span></li><li><span>Finisher metabólico</span><span class="meta">4 ejercicios</span></li></ul><div class="tcard-foot"><span class="cap-btn">Abrir sesión</span></div></div></div>
 
   <!-- DÍAS DE DESCANSO -->
-  <div class="grp-hd"><span class="grp-num">02</span><h2 class="grp-ttl">Días de descanso activo</h2></div>
+  <div class="grp-hd"><span class="grp-num">02</span><span class="grp-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 3v2.5M12 18.5V21M3 12h2.5M18.5 12H21M5.6 5.6l1.8 1.8M16.6 16.6l1.8 1.8M5.6 18.4l1.8-1.8M16.6 7.4l1.8-1.8"/></svg></span><h2 class="grp-ttl">Días de descanso activo</h2></div>
   <div class="rest-grid">
     <div class="rest-card">
       <div class="rest-day">Martes</div>
@@ -412,7 +428,7 @@
   </div>
 
   <!-- PRINCIPIOS -->
-  <div class="grp-hd"><span class="grp-num">03</span><h2 class="grp-ttl">Principios de ejecución</h2></div>
+  <div class="grp-hd"><span class="grp-num">03</span><span class="grp-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3.5l7 3v5.5c0 4.2-3 7.4-7 8.5-4-1.1-7-4.3-7-8.5V6.5l7-3z"/><path d="M9 12l2 2 4-4"/></svg></span><h2 class="grp-ttl">Principios de ejecución</h2></div>
   <div class="principles-grid">
     <div class="principle">
       <div class="pr-title">Progresión semanal</div>
@@ -441,7 +457,7 @@
   </div>
 
   <!-- PROGRESIÓN POR FASES -->
-  <div class="grp-hd"><span class="grp-num">04</span><h2 class="grp-ttl">Progresión por fases</h2><span class="meta">16 semanas</span></div>
+  <div class="grp-hd"><span class="grp-num">04</span><span class="grp-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5h16"/><path d="M4 15.5l5-5 4 3 7-7"/><path d="M15.5 6.5H20V11"/></svg></span><h2 class="grp-ttl">Progresión por fases</h2><span class="meta">16 semanas</span></div>
   <div class="prog-table">
     <div class="prog-table-hdr">
       <span>Fase</span><span>Semanas</span><span>Enfoque</span><span>Volumen / Intensidad</span>

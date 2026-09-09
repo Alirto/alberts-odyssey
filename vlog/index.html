@@ -15,6 +15,7 @@
     --paper: #F3F0E8; --paper-2: #E6E1D4;
     --ink: #171611; --ink-2: #45423A; --ink-3: #625E55;
     --rule: #C9C3B4; --rule-soft: #DDD8CB;
+    --acc: #8B6914;
     --now: #A86F1C;
     --serif: 'Fraunces', Georgia, serif; --sans: 'DM Sans', system-ui, sans-serif;
     --w: 1200px; --gutter: 40px;
@@ -227,6 +228,15 @@
   .pais-btn.residencia.active { color: var(--ink); border-bottom-color: var(--ink); }
   @media (max-width: 900px) { #node-panel { width: 100%; top: 60px; } .canvas-wrap { height: 460px; } }
 
+  /* ── Color e iconos ─────────────────────────────────────── */
+  .ico { display: inline-block; width: 1em; height: 1em; vertical-align: -0.12em; }
+  .ico svg { width: 100%; height: 100%; display: block; }
+  .dl-ico { display: flex; align-items: center; gap: 9px; }
+  .dl-ico .ico { width: 16px; height: 16px; color: var(--acc); flex-shrink: 0; }
+  .grp-ico, .sec-ico { width: 26px; height: 26px; color: var(--ink-2); align-self: center; flex-shrink: 0; }
+  .grp-ico svg, .sec-ico svg { width: 26px; height: 26px; display: block; }
+  .tab-ico { display: inline-block; width: 20px; height: 20px; color: var(--ink-3); vertical-align: -0.2em; margin-right: 9px; transition: color .15s; }
+  .tab-ico svg { width: 20px; height: 20px; display: block; }
 </style>
 </head>
 <body>
@@ -246,7 +256,7 @@
 
 <section class="masthead">
   <div class="wrap">
-    <div class="dateline">Vlog · Viajes e ideas</div>
+    <div class="dateline dl-ico"><span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.5"/><path d="M3.5 12h17M12 3.5c3 3 3 14 0 17M12 3.5c-3 3-3 14 0 17"/></svg></span><span>Vlog · Viajes e ideas</span></div>
     <h1>Viajes <em>e ideas</em></h1>
     <div class="mast-row">
       <p class="deck">Las ciudades que he pisado y el mapa de ideas que conecta <em>todo lo que pienso.</em></p>
@@ -262,6 +272,7 @@
 
   <div class="sec-head">
     <span class="sec-num">01</span>
+    <span class="sec-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.5"/><path d="M3.5 12h17M12 3.5c3 3 3 14 0 17M12 3.5c-3 3-3 14 0 17"/></svg></span>
     <h2>Mapa de viajes</h2>
     <div class="sec-meta">
       <div class="map-legend">
@@ -299,6 +310,7 @@
 
   <div class="sec-head">
     <span class="sec-num">02</span>
+    <span class="sec-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="6" r="2.5"/><circle cx="18" cy="8" r="2.5"/><circle cx="12" cy="18" r="2.5"/><path d="M8.5 6.4 15.5 7.6M7.1 8.2l3.7 7.5M16.9 10.2l-3.7 5.6"/></svg></span>
     <h2>Mapa de ideas</h2>
     <div class="sec-meta meta">Pensamiento conectado · pulsa un nodo para leer o escribir, o una categoría para filtrar</div>
   </div>
