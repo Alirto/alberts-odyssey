@@ -380,23 +380,11 @@
     .strip { grid-template-columns: repeat(2, 1fr); }
   }
 </style>
+<style>body.auth-pending>*:not(#loginScreen){visibility:hidden}</style>
+<script>setTimeout(function(){if(document.body&&document.body.classList.contains('auth-pending')&&!document.getElementById('loginScreen')){var d=document.createElement('div');d.id='loginScreen';d.style.cssText='position:fixed;inset:0;display:flex;align-items:center;justify-content:center;padding:24px;font:15px/1.5 system-ui,sans-serif;color:#45423A;text-align:center;background:#F3F0E8';d.textContent='No se ha podido cargar el acceso. Comprueba la conexión y recarga la página.';document.body.appendChild(d);}},8000);</script>
 </head>
-<body>
+<body class="auth-pending">
 
-<div id="loginScreen">
-  <div class="login">
-    <div class="dateline">Sistema de vida personal · Acceso privado</div>
-    <div class="login-logo">Albert's <em>Odyssey</em></div>
-    <div class="login-sub">Introduce la contraseña para continuar.</div>
-    <div class="field">
-      <label for="loginInput">Contraseña</label>
-      <input type="password" class="input" id="loginInput" placeholder="••••••••••" onkeydown="if(event.key==='Enter') loginSubmit()" autocomplete="current-password">
-    </div>
-    <div class="login-error" id="loginError"></div>
-    <div class="actions"><button class="line-btn login-btn" onclick="loginSubmit()">Entrar</button></div>
-    <div class="login-hint">La sesión se mantiene activa en este navegador durante siete días.</div>
-  </div>
-</div>
 
 <header class="top" id="topbar">
   <div class="wrap">
@@ -496,7 +484,7 @@
 <footer>
   <div class="wrap">
     <span>Albert's Odyssey · Sistema de vida personal · Desde el 10 de marzo de 2026</span>
-    <span class="sync-status" id="syncStatus">Sin sincronizar en esta sesión</span>
+    <span class="sync-status" id="syncStatus">Conectando con la nube…</span>
   </div>
 </footer>
 
@@ -530,7 +518,7 @@
 <div class="overlay center" id="ghSyncOverlay" onclick="if(event.target===this)ghSyncCloseConfig()">
   <div class="sheet narrow">
     <div class="sheet-hdr">
-      <div><div class="sheet-ttl">Sincronizar</div><div class="sheet-sub">Mueve tus datos entre dispositivos por archivo o mediante GitHub</div></div>
+      <div><div class="sheet-ttl">Sincronizar</div><div class="sheet-sub">Copia de seguridad por archivo y estado de la cuenta</div></div>
       <button class="txt-btn" onclick="ghSyncCloseConfig()">Cerrar</button>
     </div>
     <div class="sheet-body">
@@ -539,30 +527,14 @@
         <button class="sync-action" onclick="document.getElementById('importFile').click()"><b>Importar</b><span>Carga en este navegador un archivo exportado en otro dispositivo.</span></button>
         <input type="file" id="importFile" accept="application/json,.json" style="display:none" onchange="importData(this)">
       </div>
-      <div class="info">El archivo exportado contiene hitos, revisiones, ciudades, países, libros, frases y notas. Al importar se sustituyen los datos de este navegador por los del archivo. Es la forma de mover la información entre ordenadores y móvil sin contraseñas.</div>
+      <div class="info">El archivo exportado contiene hitos, revisiones, ciudades, países, libros, frases y notas. Al importar se sustituyen los datos de este navegador por los del archivo. Con la sesión iniciada no hace falta para el día a día: sirve como copia de seguridad.</div>
       <div class="msg ok" id="ioOk"></div>
       <div class="msg err" id="ioErr"></div>
-      <span class="label" style="margin-top:8px">Copia en GitHub</span>
+      <span class="label" style="margin-top:8px">Cuenta y nube</span>
+      <div class="info">Has entrado como <strong id="acctEmail"></strong>. Todo lo que guardas en cualquier dispositivo se sincroniza solo con la nube; el archivo es una copia de seguridad.</div>
       <div class="sync-actions">
-        <button class="sync-action" onclick="ghSyncUpload()"><b>Subir</b><span>Guarda en GitHub el estado actual de este navegador.</span></button>
-        <button class="sync-action" onclick="ghSyncDownload()"><b>Bajar</b><span>Sustituye los datos locales por la última copia guardada.</span></button>
-      </div>
-      <div class="info">
-        Necesitas un <strong>Personal Access Token</strong> de GitHub con permiso <code>repo</code>. Se crea en github.com, Settings, Developer settings, Personal access tokens, Tokens (classic). El token se guarda solo en este navegador.
-      </div>
-      <div class="field">
-        <label for="ghToken">Token de GitHub</label>
-        <input type="password" class="input" id="ghToken" placeholder="ghp_xxxxxxxxxxxxxxxxxxxx">
-      </div>
-      <div class="field">
-        <label for="ghRepo">Repositorio (usuario/repo)</label>
-        <input type="text" class="input" id="ghRepo" placeholder="alirto/alberts-odyssey">
-      </div>
-      <div class="msg ok" id="ghConfigOk">Configuración guardada</div>
-      <div class="msg err" id="ghConfigErr"></div>
-      <div class="actions">
-        <button class="line-btn" onclick="ghSyncSaveConfig()">Guardar configuración</button>
-        <button class="txt-btn" onclick="ghSyncCloseConfig()">Cancelar</button>
+        <button class="sync-action" onclick="aoCloud.forceUpload()"><b>Forzar subida</b><span>Sube a la nube todos los datos de este navegador, sustituyendo los de allí.</span></button>
+        <button class="sync-action" onclick="aoCloud.signOut()"><b>Cerrar sesión</b><span>Borra los datos de este navegador; siguen en la nube.</span></button>
       </div>
     </div>
   </div>
@@ -888,24 +860,14 @@ function saveRetro(pid){const st=loadPhaseStore();st[pid]=st[pid]||{};st[pid].re
 
 // ── GITHUB SYNC ─────────────────────────────────────────
 var SYNC_KEYS=['ao_milestones_v1','ao_milestones_v2','ao_phases_v1','ao_weekly_v1','ao_peso_v1','ao_countries_v1','ao_finanzas_v1','ao_diary_v1','ao_cities_v1','ao_neural_v1','ao_frases_v1','ao_pending_books_v1','ao_book_notes','ao_user_books','ao_session_v1'];
-var GH_TOKEN_KEY='ao_gh_token';
-var GH_REPO_KEY='ao_gh_repo';
-var GH_FILE='data/sync.json';
-
-function ghGetConfig(){return{token:localStorage.getItem(GH_TOKEN_KEY)||'',repo:localStorage.getItem(GH_REPO_KEY)||'alirto/alberts-odyssey'};}
-function ghSyncConfig(){var cfg=ghGetConfig();document.getElementById('ghToken').value=cfg.token;document.getElementById('ghRepo').value=cfg.repo;document.getElementById('ghConfigOk').style.display='none';document.getElementById('ghConfigErr').style.display='none';document.getElementById('ghSyncOverlay').classList.add('open');}
+function ghSyncConfig(){document.getElementById('ghSyncOverlay').classList.add('open');var ae=document.getElementById('acctEmail');if(ae&&window.aoCloud)ae.textContent=aoCloud.email();}
 function ghSyncCloseConfig(){document.getElementById('ghSyncOverlay').classList.remove('open');}
-function ghSyncSaveConfig(){var token=document.getElementById('ghToken').value.trim();var repo=document.getElementById('ghRepo').value.trim();var errEl=document.getElementById('ghConfigErr');var okEl=document.getElementById('ghConfigOk');errEl.style.display='none';okEl.style.display='none';if(!token||!repo){errEl.textContent='Rellena el token y el repositorio.';errEl.style.display='block';return;}localStorage.setItem(GH_TOKEN_KEY,token);localStorage.setItem(GH_REPO_KEY,repo);okEl.style.display='block';setTimeout(function(){ghSyncCloseConfig();setSyncStatus('Sincronización configurada','ok');},1000);}
 function setSyncStatus(msg,cls){var el=document.getElementById('syncStatus');el.textContent=msg;el.className='sync-status'+(cls?' '+cls:'');}
-function ghCollectData(){var data={v:2,ts:Date.now(),d:{}};SYNC_KEYS.forEach(function(key){var val=localStorage.getItem(key);if(val)data.d[key]=val;});return data;}
-async function ghGetFileSha(cfg){try{var res=await fetch('https://api.github.com/repos/'+cfg.repo+'/contents/'+GH_FILE,{headers:{'Authorization':'token '+cfg.token,'Accept':'application/vnd.github.v3+json'}});if(res.status===404)return null;if(!res.ok)return null;var json=await res.json();return json.sha||null;}catch(e){return null;}}
-async function ghSyncUpload(){var cfg=ghGetConfig();if(!cfg.token){setSyncStatus('Configura el token antes de subir','err');return;}setSyncStatus('Subiendo...','');var data=ghCollectData();var content=btoa(unescape(encodeURIComponent(JSON.stringify(data,null,2))));var sha=await ghGetFileSha(cfg);var body={message:'Sync: '+new Date().toISOString(),content:content};if(sha)body.committer={name:'Albert Sync',email:'sync@alberts-odyssey.local'};if(sha)body.sha=sha;try{var res=await fetch('https://api.github.com/repos/'+cfg.repo+'/contents/'+GH_FILE,{method:'PUT',headers:{'Authorization':'token '+cfg.token,'Accept':'application/vnd.github.v3+json','Content-Type':'application/json'},body:JSON.stringify(body)});if(res.ok){setSyncStatus('Subido a GitHub a las '+new Date().toLocaleTimeString('es-ES',{hour:'2-digit',minute:'2-digit'}),'ok');ghSyncCloseConfig();}else{var err=await res.json();setSyncStatus('Error: '+((err&&err.message)||res.status),'err');}}catch(e){setSyncStatus('Error de red','err');}}
-async function ghSyncDownload(){var cfg=ghGetConfig();if(!cfg.token){setSyncStatus('Configura el token antes de bajar','err');return;}setSyncStatus('Bajando...','');try{var res=await fetch('https://api.github.com/repos/'+cfg.repo+'/contents/'+GH_FILE,{headers:{'Authorization':'token '+cfg.token,'Accept':'application/vnd.github.v3+json'}});if(res.status===404){setSyncStatus('Sin datos en GitHub aún','err');return;}if(!res.ok){setSyncStatus('Error '+res.status,'err');return;}var json=await res.json();var raw=decodeURIComponent(escape(atob(json.content.replace(/\n/g,''))));var data=JSON.parse(raw);if(!data.v||!data.d){setSyncStatus('Archivo inválido','err');return;}Object.entries(data.d).forEach(function(entry){localStorage.setItem(entry[0],entry[1]);});setSyncStatus('Datos restaurados','ok');setTimeout(function(){location.reload();},800);}catch(e){setSyncStatus('Error: '+e.message,'err');}}
 
 // ── EXPORTAR / IMPORTAR POR ARCHIVO ─────────────────────
-function allDataKeys(){var ks=new Set(SYNC_KEYS);for(var i=0;i<localStorage.length;i++){var k=localStorage.key(i);if(k&&k.indexOf('ao_')===0&&k!==GH_TOKEN_KEY&&k!==GH_REPO_KEY)ks.add(k);}return Array.from(ks);}
+function allDataKeys(){var ks=new Set(SYNC_KEYS);for(var i=0;i<localStorage.length;i++){var k=localStorage.key(i);if(k&&k.indexOf('ao_')===0&&k!=='ao_gh_token'&&k!=='ao_gh_repo'&&k!=='ao_session_v1')ks.add(k);}return Array.from(ks);}
 function exportData(){var data={v:2,ts:Date.now(),d:{}};allDataKeys().forEach(function(k){var v=localStorage.getItem(k);if(v!==null)data.d[k]=v;});var blob=new Blob([JSON.stringify(data,null,2)],{type:'application/json'});var a=document.createElement('a');var d=new Date();a.href=URL.createObjectURL(blob);a.download='alberts-odyssey-datos-'+d.getFullYear()+'-'+pad2(d.getMonth()+1)+'-'+pad2(d.getDate())+'.json';document.body.appendChild(a);a.click();setTimeout(function(){URL.revokeObjectURL(a.href);a.remove();},500);var ok=document.getElementById('ioOk');ok.textContent='Archivo exportado con '+Object.keys(data.d).length+' bloques de datos.';ok.style.display='block';document.getElementById('ioErr').style.display='none';}
-function importData(input){var f=input.files&&input.files[0];if(!f)return;var ok=document.getElementById('ioOk'),err=document.getElementById('ioErr');ok.style.display='none';err.style.display='none';var r=new FileReader();r.onload=function(){try{var data=JSON.parse(r.result);if(!data||!data.d||typeof data.d!=='object')throw new Error('El archivo no tiene el formato esperado.');var n=Object.keys(data.d).length;if(!n)throw new Error('El archivo no contiene datos.');if(!confirm('Se van a sustituir los datos de este navegador por los del archivo ('+n+' bloques). ¿Continuar?')){input.value='';return;}Object.keys(data.d).forEach(function(k){if(k.indexOf('ao_')===0&&k!==GH_TOKEN_KEY&&k!==GH_REPO_KEY)localStorage.setItem(k,data.d[k]);});ok.textContent='Datos importados. La página se recargará.';ok.style.display='block';setTimeout(function(){location.reload();},900);}catch(e){err.textContent='No se pudo importar: '+e.message;err.style.display='block';}input.value='';};r.readAsText(f);}
+function importData(input){var f=input.files&&input.files[0];if(!f)return;var ok=document.getElementById('ioOk'),err=document.getElementById('ioErr');ok.style.display='none';err.style.display='none';var r=new FileReader();r.onload=function(){try{var data=JSON.parse(r.result);if(!data||!data.d||typeof data.d!=='object')throw new Error('El archivo no tiene el formato esperado.');var n=Object.keys(data.d).length;if(!n)throw new Error('El archivo no contiene datos.');if(!confirm('Se van a sustituir los datos de este navegador por los del archivo ('+n+' bloques). ¿Continuar?')){input.value='';return;}Object.keys(data.d).forEach(function(k){if(k.indexOf('ao_')===0&&k!=='ao_gh_token'&&k!=='ao_gh_repo'&&k!=='ao_session_v1')localStorage.setItem(k,data.d[k]);});ok.textContent='Datos importados. Guardando en la nube…';ok.style.display='block';var done=function(){location.reload();};if(window.aoCloud&&aoCloud.flushNow){aoCloud.flushNow().then(done,done);}else{setTimeout(done,900);}}catch(e){err.textContent='No se pudo importar: '+e.message;err.style.display='block';}input.value='';};r.readAsText(f);}
 
 // ── WEEKLY REVIEW ────────────────────────────────────────
 var WR_KEY='ao_weekly_v1';var wrCurrentReadId=null;var wrShowAll=false;var WR_LIMIT=5;
@@ -941,15 +903,6 @@ function wrEditEntry(id){var entries=wrLoad();var e=entries.find(function(x){ret
 function wrDeleteEntry(id){if(!confirm('¿Eliminar esta entrada?'))return;wrSaveAll(wrLoad().filter(function(e){return e.id!==id;}));wrCloseRead();wrRender();renderWeight();}
 
 // ── LOGIN ────────────────────────────────────────────────
-var PWD_HASH='d54123de468bd42ea00dafbd777f85fe5fa1ff6404d9838c007953c25c92a1c5';
-var SESSION_KEY='ao_session_v1';
-var SESSION_TTL=7*24*60*60*1000;
-async function hashPassword(pwd){var buf=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(pwd));return Array.from(new Uint8Array(buf)).map(function(x){return x.toString(16).padStart(2,'0');}).join('');}
-function checkSession(){try{var raw=localStorage.getItem(SESSION_KEY);if(!raw)return false;var s=JSON.parse(raw);if(Date.now()-s.ts>SESSION_TTL){localStorage.removeItem(SESSION_KEY);return false;}return s.ok===true;}catch(e){return false;}}
-function saveSession(){localStorage.setItem(SESSION_KEY,JSON.stringify({ok:true,ts:Date.now()}));}
-function showApp(){document.getElementById('loginScreen').classList.add('hidden');document.body.classList.remove('locked');}
-async function loginSubmit(){var pwd=document.getElementById('loginInput').value;var err=document.getElementById('loginError');var btn=document.querySelector('.login-btn');if(!pwd){err.textContent='Introduce la contraseña.';return;}btn.textContent='...';btn.disabled=true;var hash=await hashPassword(pwd);btn.textContent='Entrar';btn.disabled=false;if(hash===PWD_HASH){saveSession();showApp();}else{err.textContent='Contraseña incorrecta.';document.getElementById('loginInput').value='';document.getElementById('loginInput').focus();}}
-(function(){if(checkSession()){document.addEventListener('DOMContentLoaded',function(){showApp();});}else{document.body.classList.add('locked');}})();
 
 window.addEventListener('DOMContentLoaded',()=>{
   setDynamic();
@@ -965,5 +918,6 @@ window.addEventListener('DOMContentLoaded',()=>{
   var hm=location.hash.match(/^#(disenar|balance|fase)-(f[1-6])$/);if(hm){if(hm[1]==='disenar')openPhaseEditor(hm[2]);else if(hm[1]==='balance')openArchive(hm[2]);else togglePhaseRow(hm[2]);}
 });
 </script>
+<script type="module" src="js/cloud.js"></script>
 </body>
 </html>

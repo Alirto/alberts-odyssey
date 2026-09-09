@@ -238,8 +238,10 @@
   .tab-ico { display: inline-block; width: 20px; height: 20px; color: var(--ink-3); vertical-align: -0.2em; margin-right: 9px; transition: color .15s; }
   .tab-ico svg { width: 20px; height: 20px; display: block; }
 </style>
+<style>body.auth-pending>*:not(#loginScreen){visibility:hidden}</style>
+<script>setTimeout(function(){if(document.body&&document.body.classList.contains('auth-pending')&&!document.getElementById('loginScreen')){var d=document.createElement('div');d.id='loginScreen';d.style.cssText='position:fixed;inset:0;display:flex;align-items:center;justify-content:center;padding:24px;font:15px/1.5 system-ui,sans-serif;color:#45423A;text-align:center;background:#F3F0E8';d.textContent='No se ha podido cargar el acceso. Comprueba la conexión y recarga la página.';document.body.appendChild(d);}},8000);</script>
 </head>
-<body>
+<body class="auth-pending">
 
 <header class="top">
   <div class="wrap">
@@ -634,5 +636,6 @@ document.addEventListener('keydown',e=>{if(e.key==='Escape'){closeNP();cN();cC()
 </div>
 
 
+<script type="module" src="../js/cloud.js"></script>
 </body>
 </html>
