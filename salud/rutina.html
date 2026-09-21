@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Salud ‚Äî Albert's Odyssey</title>
+<title>Rutina de fuerza — Albert's Odyssey</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..600;1,9..144,300..600&family=DM+Sans:ital,opsz,wght@0,9..40,300..600;1,9..40,300..600&display=swap" rel="stylesheet">
@@ -52,8 +52,8 @@
   .masthead { padding: 48px 0 0; }
   .dateline { font-size: 13px; color: var(--ink-3); padding-bottom: 18px; }
   h1 { font-family: var(--serif); font-variation-settings: 'opsz' 144; font-weight: 400; font-size: 152px; line-height: .9; letter-spacing: -0.045em; padding-bottom: 36px; border-bottom: 1px solid var(--ink); }
-  .mast-row { padding: 32px 0 48px; }
-  .deck { font-family: var(--serif); font-variation-settings: 'opsz' 34; font-size: 34px; line-height: 1.22; letter-spacing: -0.018em; font-weight: 300; max-width: 30ch; }
+  .mast-row { display: grid; grid-template-columns: 8fr 4fr; gap: 64px; padding: 32px 0 48px; align-items: start; }
+  .deck { font-family: var(--serif); font-variation-settings: 'opsz' 34; font-size: 34px; line-height: 1.22; letter-spacing: -0.018em; font-weight: 300; }
   .deck em { font-style: italic; }
   .fig-num { font-size: 96px; line-height: .9; letter-spacing: -0.04em; }
   .fig-num small { font-size: 32px; color: var(--ink-3); letter-spacing: 0; margin-left: 4px; }
@@ -74,20 +74,16 @@
 
   /* Groups and entries */
   .grp { padding: 48px 0 8px; }
-  .grp .grp-hd { margin-top: 0; }
-  .grp-hd { margin-top: 56px; display: flex; align-items: baseline; gap: 18px; margin-bottom: 24px; }
+  .grp-hd { display: flex; align-items: baseline; gap: 18px; margin-bottom: 24px; }
   .grp-num { font-family: var(--serif); font-size: 14px; color: var(--ink-3); font-variant-numeric: tabular-nums; }
   .grp-ttl { font-family: var(--serif); font-variation-settings: 'opsz' 60; font-weight: 400; font-size: 34px; letter-spacing: -0.025em; line-height: 1; }
   .grp-hd .meta { margin-left: auto; text-align: right; max-width: 40ch; }
   .ent-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0 56px; border-top: 1px solid var(--ink); }
   .ent { padding: 24px 0 26px; border-bottom: 1px solid var(--rule); }
-  .ent-hd { display: grid; grid-template-columns: 30px 1fr auto; align-items: baseline; gap: 14px; }
-  .ent-ico { width: 22px; height: 22px; color: var(--ink); position: relative; top: 3px; }
-  .ent-ico svg { width: 22px; height: 22px; display: block; }
+  .ent-hd { display: flex; align-items: baseline; justify-content: space-between; gap: 20px; }
   .ent-hd h3 { font-family: var(--serif); font-variation-settings: 'opsz' 40; font-weight: 400; font-size: 26px; letter-spacing: -0.02em; line-height: 1; }
   .ent-dose { font-family: var(--serif); font-size: 17px; color: var(--ink-2); font-variant-numeric: tabular-nums; white-space: nowrap; letter-spacing: -0.01em; }
   .ent-why { font-size: 14.5px; color: var(--ink-2); line-height: 1.55; margin-top: 12px; max-width: 58ch; }
-  .ent-why, .ent-al, .ent-foods { margin-left: 44px; }
   .ent-why strong { color: var(--ink); font-weight: 500; }
   .ent-al { font-size: 13.5px; color: var(--ink-2); line-height: 1.5; margin-top: 10px; }
   .ent-al .ptag { margin-right: 8px; }
@@ -104,7 +100,6 @@
   .figures .fig-lbl { font-size: 13px; margin-top: 10px; max-width: none; }
 
   /* Dieta */
-  .pm-header p { margin-bottom: 0; }
   .pm-header p { font-family: var(--serif); font-variation-settings: 'opsz' 22; font-size: 22px; line-height: 1.4; letter-spacing: -0.01em; max-width: 60ch; margin: 40px 0 8px; font-weight: 300; }
   .pm-grid-2, .pm-grid-4 { display: grid; gap: 0 48px; border-top: 1px solid var(--ink); }
   .pm-grid-2 { grid-template-columns: 1fr 1fr; }
@@ -133,9 +128,10 @@
   .pm-callout strong { color: var(--ink); font-weight: 500; }
 
   /* Deporte */
-  .objetivo { display: grid; align-items: start; grid-template-columns: 5fr 7fr; gap: 64px; border-top: 1px solid var(--ink); padding: 24px 0 0; margin-bottom: 8px; }
+  .objetivo { display: grid; grid-template-columns: 5fr 7fr; gap: 64px; border-top: 1px solid var(--ink); padding: 24px 0 0; margin-bottom: 8px; }
   .obj-label { font-size: 11px; letter-spacing: .12em; text-transform: uppercase; font-weight: 600; color: var(--now); margin-bottom: 14px; }
   .obj-text { font-family: var(--serif); font-variation-settings: 'opsz' 20; font-size: 20px; line-height: 1.4; letter-spacing: -0.005em; max-width: 40ch; }
+  .obj-hitos { }
   .hito { display: grid; grid-template-columns: 16px 1fr; gap: 14px; align-items: baseline; padding: 13px 0; border-bottom: 1px solid var(--rule-soft); }
   .hito .g { width: 10px; height: 10px; border-radius: 50%; border: 1px solid var(--ink-3); position: relative; top: 1px; }
   .hito.active .g { border-color: var(--ink); box-shadow: inset 0 0 0 2px var(--paper), inset 0 0 0 10px var(--ink); }
@@ -149,13 +145,13 @@
   .card-desc { font-size: 14.5px; color: var(--ink-2); line-height: 1.55; max-width: 50ch; }
   .card-bottom { display: flex; justify-content: space-between; align-items: baseline; gap: 24px; margin-top: 18px; }
   .card-tags { font-size: 13px; color: var(--ink-3); }
-  .card-tag + .card-tag::before { content: ' ¬∑ '; }
+  .card-tag + .card-tag::before { content: ' · '; }
   .card-arrow { font-size: 11px; letter-spacing: .12em; text-transform: uppercase; font-weight: 600; color: var(--ink); border-bottom: 1px solid var(--ink); padding-bottom: 2px; }
 
   /* Overlays */
   .cardio-modal-overlay { position: fixed; inset: 0; background: rgba(23,22,17,.42); backdrop-filter: blur(3px); z-index: 1000; display: none; align-items: center; justify-content: center; padding: 24px; }
   .cardio-modal-overlay.open { display: flex; }
-  .cardio-modal { background: var(--paper); border: 1px solid var(--ink); width: 880px; max-width: 100%; max-height: calc(100vh - 48px); overflow-y: auto; display: flex; flex-direction: column; }
+  .cardio-modal { background: var(--paper); border: 1px solid var(--ink); width: 760px; max-width: 100%; max-height: calc(100vh - 48px); overflow-y: auto; display: flex; flex-direction: column; }
   .cardio-modal-hdr { padding: 22px 28px 18px; border-bottom: 1px solid var(--ink); display: flex; align-items: flex-start; justify-content: space-between; gap: 16px; position: sticky; top: 0; background: var(--paper); z-index: 1; }
   .cardio-modal-title { font-family: var(--serif); font-size: 24px; letter-spacing: -0.02em; line-height: 1; }
   .cardio-modal-sub { font-size: 13px; color: var(--ink-3); margin-top: 6px; }
@@ -174,6 +170,52 @@
   .cardio-desc { font-size: 14px; color: var(--ink-2); }
   .cardio-badge { font-size: 11px; letter-spacing: .1em; text-transform: uppercase; font-weight: 600; color: var(--ink-3); text-align: right; }
   .cardio-badge.badge-mixto { color: var(--ink); }
+
+  /* Peso */
+  .objetivo-band { font-size: 13px; color: var(--ink-3); padding-bottom: 20px; }
+  .objetivo-band b { color: var(--ink); font-weight: 500; }
+  .peso-hero { display: grid; grid-template-columns: repeat(4, 1fr); border-top: 1px solid var(--ink); margin-bottom: 48px; }
+  .ph-cell { padding: 18px 20px 22px 0; border-right: 1px solid var(--rule); }
+  .ph-cell + .ph-cell { padding-left: 20px; }
+  .ph-cell:last-child { border-right: none; }
+  .ph-cell-lbl { font-size: 12px; letter-spacing: .12em; text-transform: uppercase; color: var(--ink-3); font-weight: 500; margin-bottom: 12px; }
+  .ph-cell-val { font-family: var(--serif); font-variation-settings: 'opsz' 144; font-size: 44px; line-height: 1; letter-spacing: -0.03em; font-variant-numeric: tabular-nums; }
+  .ph-cell-val.gray { color: var(--ink-3); }
+  .ph-cell-val.red { color: var(--now); }
+  .ph-cell-sub { font-size: 13px; color: var(--ink-3); margin-top: 8px; }
+  .peso-chart-box { border-top: 1px solid var(--ink); padding-top: 16px; }
+  .peso-chart-hdr { display: flex; justify-content: space-between; align-items: baseline; gap: 24px; margin-bottom: 20px; }
+  .peso-chart-title { font-size: 12px; letter-spacing: .12em; text-transform: uppercase; color: var(--ink-3); font-weight: 500; }
+  .peso-chart-filters { display: flex; gap: 20px; }
+  .pf-btn { font-size: 11px; letter-spacing: .12em; text-transform: uppercase; font-weight: 600; color: var(--ink-3); padding: 4px 0; border-bottom: 1px solid transparent; }
+  .pf-btn.active, .pf-btn:hover { color: var(--ink); border-bottom-color: var(--ink); }
+  .peso-chart-wrap svg { width: 100%; height: auto; display: block; font-family: var(--sans); }
+  .weight-note { font-size: 13px; color: var(--ink-3); font-style: italic; margin-top: 12px; }
+  .peso-add-card { margin-top: 56px; border-top: 1px solid var(--ink); padding-top: 16px; }
+  .peso-add-title { font-size: 12px; letter-spacing: .12em; text-transform: uppercase; color: var(--ink-3); font-weight: 500; }
+  .peso-add-row { display: flex; gap: 32px; align-items: flex-end; flex-wrap: wrap; margin-top: 16px; }
+  .peso-input-group { display: flex; flex-direction: column; gap: 6px; }
+  .peso-input-group label { font-size: 11px; letter-spacing: .1em; text-transform: uppercase; color: var(--ink-3); font-weight: 500; }
+  .peso-input-group input { font-family: var(--sans); font-size: 15px; color: var(--ink); background: transparent; border: none; border-bottom: 1px solid var(--rule); padding: 8px 0; outline: none; min-width: 160px; border-radius: 0; }
+  .peso-input-group input:focus { border-bottom-color: var(--ink); }
+  .peso-add-btn { font-size: 14px; color: var(--ink); border: 1px solid var(--ink); padding: 8px 16px; background: transparent; transition: background .15s, color .15s; }
+  .peso-add-btn:hover { background: var(--ink); color: var(--paper); }
+  .peso-add-err { display: none; font-size: 13px; color: #A3442C; margin-top: 12px; }
+  .peso-log { margin-top: 56px; }
+  .peso-log-hdr { display: flex; justify-content: space-between; align-items: baseline; padding-bottom: 12px; border-bottom: 1px solid var(--ink); }
+  .peso-log-title { font-size: 12px; letter-spacing: .12em; text-transform: uppercase; color: var(--ink-3); font-weight: 500; }
+  .peso-log-hdr span:last-child { font-size: 13px !important; color: var(--ink-3) !important; }
+  .peso-row { display: grid; grid-template-columns: 150px 110px 150px 1fr auto; gap: 20px; align-items: baseline; padding: 12px 0; border-bottom: 1px solid var(--rule-soft); }
+  .peso-row.hdr { font-size: 11px; letter-spacing: .12em; text-transform: uppercase; color: var(--ink-3); font-weight: 500; padding: 10px 0; }
+  .peso-date { font-size: 14px; }
+  .peso-kg { font-family: var(--serif); font-size: 19px; font-variant-numeric: tabular-nums; letter-spacing: -0.01em; }
+  .peso-delta-pos { font-size: 13px; color: var(--ink); font-variant-numeric: tabular-nums; }
+  .peso-delta-neg { font-size: 13px; color: var(--now); font-weight: 500; font-variant-numeric: tabular-nums; }
+  .peso-delta-zero { font-size: 13px; color: var(--ink-3); }
+  .peso-note { font-size: 13.5px; color: var(--ink-2); font-style: italic; }
+  .peso-del-btn { font-size: 12px; color: var(--ink-3); text-decoration: underline; text-decoration-color: var(--rule); text-underline-offset: 3px; }
+  .peso-del-btn:hover { color: #A3442C; text-decoration-color: #A3442C; }
+  .peso-empty { font-size: 14px; color: var(--ink-3); font-style: italic; padding: 16px 0; }
 
   /* Footer */
   footer .wrap { border-top: 1px solid var(--ink); padding: 28px var(--gutter) 56px; display: flex; justify-content: space-between; gap: 32px; font-size: 13px; color: var(--ink-3); flex-wrap: wrap; }
@@ -200,20 +242,106 @@
     .deck { font-size: 26px; }
     .fig-num { font-size: 72px; }
     .main-tabs { gap: 24px; }
-    .ent-hd { grid-template-columns: 30px 1fr; row-gap: 6px; }
-    .ent-dose { grid-column: 2; white-space: normal; }
     .main-tab { font-size: 18px; }
     .day-row { grid-template-columns: 1fr; gap: 14px; }
+    .peso-hero { grid-template-columns: 1fr 1fr; }
+    .ph-cell:nth-child(2) { border-right: none; }
+    .peso-row { grid-template-columns: 110px 90px 1fr; }
+    .peso-row .peso-note, .peso-row.hdr span:nth-child(4) { display: none; }
     .cardio-row { grid-template-columns: 70px 70px 1fr; }
     .cardio-badge, .cardio-row.hdr span:nth-child(4) { display: none; }
   }
   @media (max-width: 600px) {
     .pm-grid-4, .figures.five { grid-template-columns: 1fr; }
-    .fig { border-right: none; }
+    .fig, .ph-cell { border-right: none; }
     .meal { grid-template-columns: 1fr; gap: 4px; }
   }
 
-  /* ‚îÄ‚îÄ Color e iconos ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ */
+  /* ── Rutina de fuerza ─────────────────────────────────────── */
+  h1 { font-size: clamp(64px, 10.4vw, 136px); }
+  .mast-row { display: block; padding: 32px 0 40px; }
+  .deck { max-width: 34ch; }
+  .masthead .figures { margin-bottom: 0; }
+  .masthead .fig-num small { font-size: 18px; color: var(--ink-3); letter-spacing: .02em; margin-left: 8px; font-family: var(--sans); font-variation-settings: normal; }
+  .top-right { margin-left: auto; }
+  .page { padding: 8px var(--gutter) 88px; }
+  .notice { font-size: 14.5px; color: var(--ink-2); line-height: 1.6; max-width: 72ch; padding: 18px 0; border-bottom: 1px solid var(--rule-soft); }
+  .notice strong { color: var(--ink); font-weight: 500; }
+  .notice.notice-warn strong { color: var(--now); }
+  .grp-hd { margin-top: 64px; }
+  .grp-hd + .notice { margin-top: -16px; }
+
+  .week-grid { border-top: 1px solid var(--ink); }
+  .session { display: grid; grid-template-columns: 3fr 9fr; gap: 64px; padding: 32px 0 40px; border-bottom: 1px solid var(--rule); }
+  .session-day { font-size: 12px; letter-spacing: .12em; text-transform: uppercase; color: var(--ink-3); font-weight: 500; }
+  .session-title { font-family: var(--serif); font-variation-settings: 'opsz' 60; font-size: 40px; letter-spacing: -0.03em; line-height: 1; margin: 12px 0 16px; }
+  .session-meta { display: flex; flex-direction: column; gap: 4px; font-size: 13px; color: var(--ink-3); }
+  .session-body { display: flex; flex-direction: column; gap: 28px; }
+  .block-label { font-size: 12px; letter-spacing: .12em; text-transform: uppercase; color: var(--ink); font-weight: 500; padding-bottom: 10px; border-bottom: 1px solid var(--ink); }
+  .ex { display: grid; grid-template-columns: 1fr auto; gap: 24px; align-items: baseline; padding: 11px 0; border-bottom: 1px solid var(--rule-soft); }
+  .ex-name { font-size: 15px; font-weight: 500; line-height: 1.35; }
+  .ex-detail { font-size: 13.5px; color: var(--ink-2); line-height: 1.5; margin-top: 2px; }
+  .ex-tag { font-size: 11px; letter-spacing: .1em; text-transform: uppercase; font-weight: 600; color: var(--ink-3); white-space: nowrap; }
+  .ex-tag.tag-primary { color: var(--ink); }
+  .ex-tag.tag-shoulder { color: var(--now); }
+  .finisher-table { width: 100%; border-collapse: collapse; margin-top: 4px; }
+  .finisher-table th { text-align: left; font-size: 11px; letter-spacing: .12em; text-transform: uppercase; color: var(--ink-3); font-weight: 500; padding: 10px 0; border-bottom: 1px solid var(--rule); }
+  .finisher-table td { font-size: 14px; padding: 10px 16px 10px 0; border-bottom: 1px solid var(--rule-soft); vertical-align: baseline; color: var(--ink-2); }
+  .finisher-table td:first-child { color: var(--ink); font-weight: 500; }
+  .finisher-table td:nth-child(2) { font-family: var(--serif); font-size: 18px; font-variant-numeric: tabular-nums; color: var(--ink); }
+  .finisher-note { font-size: 13px; color: var(--ink-3); font-style: italic; margin-top: 12px; }
+
+  .rest-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0 32px; border-top: 1px solid var(--ink); }
+  .rest-card { padding: 20px 0 24px; border-bottom: 1px solid var(--rule); }
+  .rest-day { font-size: 12px; letter-spacing: .12em; text-transform: uppercase; color: var(--ink-3); font-weight: 500; }
+  .rest-title { font-family: var(--serif); font-variation-settings: 'opsz' 20; font-size: 22px; letter-spacing: -0.01em; line-height: 1.2; margin: 10px 0 8px; }
+  .rest-desc { font-size: 14px; color: var(--ink-2); line-height: 1.55; }
+
+  .principles-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0 40px; border-top: 1px solid var(--ink); }
+  .principle { padding: 20px 0 24px; border-bottom: 1px solid var(--rule); }
+  .pr-title { font-family: var(--serif); font-variation-settings: 'opsz' 20; font-size: 22px; letter-spacing: -0.01em; line-height: 1.2; }
+  .pr-body { font-size: 14px; color: var(--ink-2); line-height: 1.55; margin-top: 8px; }
+
+  .prog-table { border-top: 1px solid var(--ink); }
+  .prog-table-hdr, .prog-row { display: grid; grid-template-columns: 200px 110px 1fr 260px; gap: 24px; align-items: baseline; padding: 14px 0; border-bottom: 1px solid var(--rule); }
+  .prog-table-hdr { font-size: 11px; letter-spacing: .12em; text-transform: uppercase; color: var(--ink-3); font-weight: 500; padding: 12px 0 10px; border-bottom-color: var(--rule); }
+  .prog-row { padding: 20px 0; }
+  .prog-phase { font-family: var(--serif); font-variation-settings: 'opsz' 20; font-size: 22px; letter-spacing: -0.01em; }
+  .prog-weeks { font-family: var(--serif); font-size: 20px; font-variant-numeric: tabular-nums; color: var(--ink-2); }
+  .prog-focus { font-size: 14px; color: var(--ink-2); line-height: 1.55; }
+  .prog-badge { font-size: 13px; color: var(--ink); }
+  .prog-table + .notice { margin-top: 32px; border-top: 1px solid var(--ink); border-bottom: none; padding-top: 24px; }
+
+
+  /* tarjetas de sesión */
+  .tcards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+  .tcard { border: 1px solid var(--ink); padding: 26px 28px 22px; cursor: pointer; display: flex; flex-direction: column; transition: background .15s; }
+  .tcard:hover { background: rgba(255,255,255,.45); }
+  .tcard-day { font-size: 12px; letter-spacing: .12em; text-transform: uppercase; color: var(--ink-3); font-weight: 500; }
+  .tcard-title { font-family: var(--serif); font-variation-settings: 'opsz' 60; font-size: 40px; letter-spacing: -0.03em; line-height: 1; margin: 12px 0 10px; }
+  .tcard-meta { font-size: 13px; color: var(--ink-3); padding-bottom: 18px; border-bottom: 1px solid var(--rule); }
+  .tcard-blocks { list-style: none; margin: 6px 0 22px; flex: 1; }
+  .tcard-blocks li { display: flex; justify-content: space-between; gap: 16px; font-size: 14px; padding: 9px 0; border-bottom: 1px solid var(--rule-soft); }
+  .tcard-blocks li:last-child { border-bottom: none; }
+  .tcard-foot { display: flex; justify-content: flex-end; }
+  .tcard-foot .cap-btn { color: var(--ink); border-bottom-color: var(--ink); }
+  .cardio-modal.wide { width: 880px; }
+  .sess-overlay .session-body { display: flex; flex-direction: column; gap: 28px; padding-top: 8px; }
+  @media (max-width: 1000px) { .tcards { grid-template-columns: 1fr; } }
+  @media (max-width: 1000px) {
+    .session { grid-template-columns: 1fr; gap: 24px; }
+    .rest-grid, .principles-grid { grid-template-columns: 1fr 1fr; }
+    .prog-table-hdr { display: none; }
+    .prog-row { grid-template-columns: 1fr 1fr; }
+    .prog-focus, .prog-row > div:last-child { grid-column: 1 / -1; }
+  }
+  @media (max-width: 600px) {
+    .rest-grid, .principles-grid { grid-template-columns: 1fr; }
+    .ex { grid-template-columns: 1fr; gap: 4px; }
+    .masthead .figures { grid-template-columns: 1fr; }
+  }
+
+  /* ── Color e iconos ─────────────────────────────────────── */
   .ico { display: inline-block; width: 1em; height: 1em; vertical-align: -0.12em; }
   .ico svg { width: 100%; height: 100%; display: block; }
   .dl-ico { display: flex; align-items: center; gap: 9px; }
@@ -222,51 +350,15 @@
   .grp-ico svg, .sec-ico svg { width: 26px; height: 26px; display: block; }
   .tab-ico { display: inline-block; width: 20px; height: 20px; color: var(--ink-3); vertical-align: -0.2em; margin-right: 9px; transition: color .15s; }
   .tab-ico svg { width: 20px; height: 20px; display: block; }
-  .main-tab.active { border-top-color: var(--acc); }
-  .main-tab.active .tab-ico { color: var(--acc); }
-  .ent-ico { color: var(--acc); }
-  .ent-grid .ent:hover { background: color-mix(in srgb, var(--acc) 5%, transparent); }
-
-  /* Planning marat√≥n */
-  .mp-sec { font-size: 11px; letter-spacing: .12em; text-transform: uppercase; font-weight: 600; color: var(--ink-3); padding: 32px 0 10px; border-bottom: 1px solid var(--ink); }
-  .mp-sec:first-child { padding-top: 20px; }
-  .mp-sec small { text-transform: none; letter-spacing: 0; font-weight: 400; font-size: 13px; margin-left: 12px; }
-  .mp-note { font-size: 13px; color: var(--ink-3); line-height: 1.5; padding: 10px 0 6px; }
-  .mp-pace { display: flex; justify-content: space-between; gap: 16px; padding: 9px 0; border-bottom: 1px solid var(--rule-soft); font-size: 14px; color: var(--ink-2); }
-  .mp-pace b { font-family: var(--serif); font-weight: 400; font-size: 16px; color: var(--ink); font-variant-numeric: tabular-nums; }
-  .mp-week { border-bottom: 1px solid var(--rule-soft); }
-  .mp-week summary { display: grid; grid-template-columns: 56px 120px 84px 1fr 16px; gap: 14px; align-items: baseline; padding: 12px 0; cursor: pointer; list-style: none; }
-  .mp-week summary::-webkit-details-marker { display: none; }
-  .mp-week summary::after { content: '+'; color: var(--ink-3); text-align: right; }
-  .mp-week[open] summary::after { content: '\2212'; }
-  .mp-week summary:hover .mp-sem { color: var(--acc); }
-  .mp-sem { font-size: 13px; font-weight: 500; }
-  .mp-dates { font-size: 13px; color: var(--ink-3); }
-  .mp-km { font-family: var(--serif); font-size: 17px; letter-spacing: -0.01em; font-variant-numeric: tabular-nums; }
-  .mp-key { font-size: 14px; color: var(--ink-2); }
-  .mp-key strong { color: var(--now); font-weight: 500; }
-  .mp-days { padding: 0 0 16px; }
-  .mp-day { display: grid; grid-template-columns: 96px 1fr; gap: 14px; padding: 7px 0 7px 10px; border-left: 2px solid transparent; font-size: 14px; line-height: 1.45; color: var(--ink-2); }
-  .mp-day .d { font-size: 13px; color: var(--ink-3); }
-  .mp-day.gym { color: var(--ink-3); }
-  .mp-day.key { color: var(--ink); border-left-color: var(--now); background: color-mix(in srgb, var(--now) 7%, transparent); }
-  .mp-day strong { font-weight: 500; color: var(--ink); }
-  .mp-wnote { font-size: 13px; color: var(--ink-3); padding: 6px 0 0 10px; }
-  .mp-fechas { display: grid; grid-template-columns: 1fr 1fr; gap: 0 32px; }
-  .mp-fecha { padding: 8px 0; border-bottom: 1px solid var(--rule-soft); font-size: 14px; color: var(--ink-2); }
-  .mp-list { list-style: none; }
-  .mp-list li { padding: 9px 0; border-bottom: 1px solid var(--rule-soft); font-size: 14px; color: var(--ink-2); line-height: 1.5; }
-  .mp-list strong { color: var(--ink); font-weight: 500; }
-  .masthead h1 + .main-tabs { border-top: none; }
-  @media (max-width: 700px) {
-    .mp-week summary { grid-template-columns: 48px 1fr 76px 16px; gap: 4px 12px; }
-    .mp-key { grid-column: 2 / 4; grid-row: 2; }
-    .mp-day { grid-template-columns: 1fr; gap: 2px; }
-    .mp-fechas { grid-template-columns: 1fr; }
-  }
+  .tcard { border-color: color-mix(in srgb, var(--acc) 55%, var(--paper)); background: color-mix(in srgb, var(--acc) 7%, var(--paper)); }
+  .tcard:hover { background: color-mix(in srgb, var(--acc) 13%, var(--paper)); }
+  .tcard-top { display: flex; justify-content: space-between; align-items: center; }
+  .tcard-day { color: var(--acc); }
+  .tc-ico { width: 22px; height: 22px; color: var(--acc); }
+  .tc-ico svg { width: 22px; height: 22px; display: block; }
 </style>
 <style>body.auth-pending>*:not(#loginScreen){visibility:hidden}</style>
-<script>setTimeout(function(){if(document.body&&document.body.classList.contains('auth-pending')&&!document.getElementById('loginScreen')){var d=document.createElement('div');d.id='loginScreen';d.style.cssText='position:fixed;inset:0;display:flex;align-items:center;justify-content:center;padding:24px;font:15px/1.5 system-ui,sans-serif;color:#45423A;text-align:center;background:#F3F0E8';d.textContent='No se ha podido cargar el acceso. Comprueba la conexi√≥n y recarga la p√°gina.';document.body.appendChild(d);}},8000);</script>
+<script>setTimeout(function(){if(document.body&&document.body.classList.contains('auth-pending')&&!document.getElementById('loginScreen')){var d=document.createElement('div');d.id='loginScreen';d.style.cssText='position:fixed;inset:0;display:flex;align-items:center;justify-content:center;padding:24px;font:15px/1.5 system-ui,sans-serif;color:#45423A;text-align:center;background:#F3F0E8';d.textContent='No se ha podido cargar el acceso. Comprueba la conexión y recarga la página.';document.body.appendChild(d);}},8000);</script>
 </head>
 <body class="auth-pending">
 
@@ -279,281 +371,365 @@
       <a href="../vlog/index.html">Vlog</a>
       <a href="../lecturas/index.html">Lecturas</a>
     </nav>
+    <div class="top-right"><a href="index.html#deporte" class="cap-btn">Volver a Deporte</a></div>
   </div>
 </header>
 
 <section class="masthead">
   <div class="wrap">
-    <div class="dateline dl-ico"><span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20.5C7 16.6 4.5 13.7 4.5 10.2 4.5 7.9 6.3 6 8.6 6c1.4 0 2.6.7 3.4 1.8C12.8 6.7 14 6 15.4 6c2.3 0 4.1 1.9 4.1 4.2 0 3.5-2.5 6.4-7.5 10.3z"/><path d="M7.5 12.5h2.3l1.4-2.3 1.9 4.6 1.4-2.3h2"/></svg></span><span>Pilar 01 ¬∑ Nutrici√≥n y entrenamiento ¬∑ 16 semanas de fuerza y 19 de carrera dominical</span></div>
-    <h1>Salud</h1>
-    <div class="main-tabs">
-      <button class="main-tab active" onclick="switchPanel('nutricion')"><span class="tab-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20C4 10 10 4 20 4c0 10-6 16-16 16z"/><path d="M4 20 14 10"/></svg></span>Nutrici√≥n</button>
-      <button class="main-tab" onclick="switchPanel('deporte')"><span class="tab-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2.5" y="9.5" width="3" height="5" rx=".5"/><rect x="18.5" y="9.5" width="3" height="5" rx=".5"/><rect x="5.5" y="7.5" width="3" height="9" rx=".5"/><rect x="15.5" y="7.5" width="3" height="9" rx=".5"/><path d="M8.5 12h7"/></svg></span>Deporte</button>
+    <div class="dateline dl-ico"><span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2.5" y="9.5" width="3" height="5" rx=".5"/><rect x="18.5" y="9.5" width="3" height="5" rx=".5"/><rect x="5.5" y="7.5" width="3" height="9" rx=".5"/><rect x="15.5" y="7.5" width="3" height="9" rx=".5"/><path d="M8.5 12h7"/></svg></span><span>Salud · Deporte · Programa de fuerza, fase 2</span></div>
+    <h1>Rutina de fuerza</h1>
+    <div class="mast-row">
+      <p class="deck">Full Body tres veces por semana durante 16 semanas. <em>Hombro con carga controlada, déficit calórico activo, orientado al deporte funcional.</em></p>
+    </div>
+    <div class="figures">
+      <div class="fig"><div class="fig-num num">3<small>por semana</small></div><div class="fig-lbl">Sesiones: lunes, miércoles y viernes</div></div>
+      <div class="fig"><div class="fig-num num">55<small>a 65 min</small></div><div class="fig-lbl">Duración de cada sesión</div></div>
+      <div class="fig"><div class="fig-num num">16<small>semanas</small></div><div class="fig-lbl">Horizonte de la fase 2, con descarga cada cuatro semanas</div></div>
     </div>
   </div>
 </section>
 
-<div class="wrap">
+<div class="wrap page">
 
-  <!-- PANEL 1 ‚Äî NUTRICI√ìN -->
-  <div class="panel active" id="panel-nutricion">
-    <div class="tabs-bar">
-      <button class="tab active" onclick="st('nutrientes')">Nutrientes</button>
-      <button class="tab" onclick="st('dieta')">Dieta</button>
+  <div class="notice notice-warn">
+    <div><strong>Hombros.</strong> Nada de press militar pesado ni elevaciones frontales con carga alta. Todos los movimientos de hombro son con mancuernas ligeras y rango controlado. Si hay dolor (no molestia, sino dolor), para el ejercicio y sustituye.</div>
+  </div>
+
+  <div class="notice notice-info">
+    <div><strong>Fase 2, orientación funcional y deportiva.</strong> Calentamientos en circuito con ejercicios que transfieren directamente a carrera, natación y trekking. Bloques funcionales con movimientos complejos (turkish get-up, KB swing, dead bug). Finisher metabólico intensificado. Objetivo: fuerza + resistencia + prevención de lesiones para deporte.</div>
+  </div>
+
+  <div class="grp-hd"><span class="grp-num">01</span><span class="grp-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="5" width="17" height="15.5" rx="1"/><path d="M3.5 10h17M8 3v4M16 3v4"/><path d="M8 14h2M14 14h2M8 17h2"/></svg></span><h2 class="grp-ttl">Distribución semanal</h2></div>
+
+  <div class="tcards"><div class="tcard" onclick="openSess('a')" id="card-a"><div class="tcard-top"><div class="tcard-day">Lunes</div><span class="tc-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2.5" y="9.5" width="3" height="5" rx=".5"/><rect x="18.5" y="9.5" width="3" height="5" rx=".5"/><rect x="5.5" y="7.5" width="3" height="9" rx=".5"/><rect x="15.5" y="7.5" width="3" height="9" rx=".5"/><path d="M8.5 12h7"/></svg></span></div><div class="tcard-title">Full Body A</div><div class="tcard-meta">55–65 min · Empuje + Tirón</div><ul class="tcard-blocks"><li><span>Calentamiento en circuito</span><span class="meta">4 ejercicios</span></li><li><span>Bloque principal</span><span class="meta">3 ejercicios</span></li><li><span>Bloque funcional + Accesorios</span><span class="meta">3 ejercicios</span></li><li><span>Core</span><span class="meta">1 ejercicio</span></li></ul><div class="tcard-foot"><span class="cap-btn">Abrir sesión</span></div></div><div class="tcard" onclick="openSess('b')" id="card-b"><div class="tcard-top"><div class="tcard-day">Miércoles</div><span class="tc-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2.5" y="9.5" width="3" height="5" rx=".5"/><rect x="18.5" y="9.5" width="3" height="5" rx=".5"/><rect x="5.5" y="7.5" width="3" height="9" rx=".5"/><rect x="15.5" y="7.5" width="3" height="9" rx=".5"/><path d="M8.5 12h7"/></svg></span></div><div class="tcard-title">Full Body B</div><div class="tcard-meta">55–65 min · Bisagra + Vertical</div><ul class="tcard-blocks"><li><span>Calentamiento en circuito</span><span class="meta">4 ejercicios</span></li><li><span>Bloque principal</span><span class="meta">3 ejercicios</span></li><li><span>Bloque funcional + Accesorios</span><span class="meta">3 ejercicios</span></li><li><span>Core</span><span class="meta">2 ejercicios</span></li></ul><div class="tcard-foot"><span class="cap-btn">Abrir sesión</span></div></div><div class="tcard" onclick="openSess('c')" id="card-c"><div class="tcard-top"><div class="tcard-day">Viernes</div><span class="tc-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2.5" y="9.5" width="3" height="5" rx=".5"/><rect x="18.5" y="9.5" width="3" height="5" rx=".5"/><rect x="5.5" y="7.5" width="3" height="9" rx=".5"/><rect x="15.5" y="7.5" width="3" height="9" rx=".5"/><path d="M8.5 12h7"/></svg></span></div><div class="tcard-title">Full Body C</div><div class="tcard-meta">55–65 min · Volumen + Finisher</div><ul class="tcard-blocks"><li><span>Calentamiento en circuito</span><span class="meta">4 ejercicios</span></li><li><span>Bloque principal</span><span class="meta">3 ejercicios</span></li><li><span>Bloque funcional</span><span class="meta">2 ejercicios</span></li><li><span>Finisher metabólico</span><span class="meta">4 ejercicios</span></li></ul><div class="tcard-foot"><span class="cap-btn">Abrir sesión</span></div></div></div>
+
+  <!-- DÍAS DE DESCANSO -->
+  <div class="grp-hd"><span class="grp-num">02</span><span class="grp-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 3v2.5M12 18.5V21M3 12h2.5M18.5 12H21M5.6 5.6l1.8 1.8M16.6 16.6l1.8 1.8M5.6 18.4l1.8-1.8M16.6 7.4l1.8-1.8"/></svg></span><h2 class="grp-ttl">Días de descanso activo</h2></div>
+  <div class="rest-grid">
+    <div class="rest-card">
+      <div class="rest-day">Martes</div>
+      <div class="rest-title">Descanso activo</div>
+      <div class="rest-desc">Caminar 30–45 min a paso ligero o estiramientos. Sin carga. El músculo crece aquí.</div>
     </div>
-    <div class="tp active" id="tp-nutrientes">
-<div class="grp"><div class="grp-hd"><span class="grp-num">01</span><span class="grp-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M13.5 4.5l6 6a4.24 4.24 0 0 1-6 6l-6-6a4.24 4.24 0 0 1 6-6z"/><path d="M10.5 7.5l6 6"/></svg></span><h2 class="grp-ttl">Vitaminas liposolubles</h2><span class="meta">se almacenan en tejido graso e h√≠gado</span></div>
-<div class="ent-grid"><div class="ent"><div class="ent-hd"><span class="ent-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 9.5 4 20"/><path d="M14.5 9.5c-1.6-1.6-1.6-4.2 0-5.8M14.5 9.5c1.6 1.6 4.2 1.6 5.8 0M14.5 9.5l-1.5-6M14.5 9.5l6-1.5"/><path d="M9 15l2 2M6.5 17.5l1.5 1.5"/></svg></span><h3>Vitamina A</h3><span class="ent-dose">900 mcg/d√≠a</span></div><p class="ent-why">Visi√≥n nocturna, sistema inmune y salud de la piel. Antioxidante celular. Con meses sin fruta ni verdura, la inmunidad es el primer sistema que cede.</p><p class="ent-al"><span class="ptag">D√©ficit</span>visi√≥n nocturna reducida, infecciones frecuentes, anemia</p><p class="ent-al"><span class="ptag soft">Exceso solo por suplementaci√≥n abusiva</span>p√©rdida de cabello, piel seca</p><p class="ent-foods"><span class="ptag soft">Fuentes</span>Zanahoria <b>1346 Œºg</b> <span class="sep">¬∑</span> Espinacas <b>771 Œºg</b> <span class="sep">¬∑</span> Mel√≥n <b>771 Œºg</b> <span class="sep">¬∑</span> Calabaza <b>707 Œºg</b> <span class="sep">¬∑</span> Yema huevo <b>570 Œºg</b></p></div><div class="ent"><div class="ent-hd"><span class="ent-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M4.9 4.9l2.1 2.1M17 17l2.1 2.1M4.9 19.1 7 17M17 7l2.1-2.1"/></svg></span><h3>Vitamina D</h3><span class="ent-dose">15 mcg/d√≠a</span></div><p class="ent-why">Absorci√≥n de calcio, funci√≥n inmune, rendimiento muscular. Trabajo de oficina en Madrid = exposici√≥n solar insuficiente garantizada. <strong>Suplementa: 2000‚Äì4000 UI/d√≠a con comida.</strong></p><p class="ent-al"><span class="ptag">D√©ficit</span>debilidad muscular, recuperaci√≥n comprometida, osteomalacia</p><p class="ent-al"><span class="ptag soft">Exceso</span>hipercalcemia, c√°lculos renales. Solo por sobredosis de suplemento</p><p class="ent-foods"><span class="ptag soft">Fuentes</span>Ac. h√≠gado bacalao <b>252 mcg</b> <span class="sep">¬∑</span> At√∫n fresco <b>25 mcg</b> <span class="sep">¬∑</span> Sardinas lata <b>17 mcg</b> <span class="sep">¬∑</span> Salm√≥n <b>5 mcg</b></p></div><div class="ent"><div class="ent-hd"><span class="ent-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20C4 10 10 4 20 4c0 10-6 16-16 16z"/><path d="M4 20 14 10"/></svg></span><h3>Vitamina E</h3><span class="ent-dose">15 mg/d√≠a</span></div><p class="ent-why">Antioxidante liposoluble potente. Protege c√©lulas del da√±o oxidativo y refuerza el sistema inmune. Especialmente relevante en fases de entrenamiento intenso.</p><p class="ent-al"><span class="ptag">D√©ficit</span>menor producci√≥n de anticuerpos, recuperaci√≥n m√°s lenta</p><p class="ent-foods"><span class="ptag soft">Fuentes</span>Semillas girasol <b>52 mg</b> <span class="sep">¬∑</span> Almendras <b>26 mg</b> <span class="sep">¬∑</span> Avellanas <b>24 mg</b> <span class="sep">¬∑</span> Aceite oliva <b>14 mg</b> <span class="sep">¬∑</span> Aguacate <b>2.1 mg</b></p></div><div class="ent"><div class="ent-hd"><span class="ent-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21c-5 0-8-3-8-8 0-4 3-7 8-9 5 2 8 5 8 9 0 5-3 8-8 8z"/><path d="M12 4v17M12 12c-2-1.5-4-1.5-6 0M12 9c2-1.5 4-1.5 6 0M12 16c-2-1-3.5-1-5 0"/></svg></span><h3>Vitamina K</h3><span class="ent-dose">120 mcg/d√≠a</span></div><p class="ent-why">Coagulaci√≥n y metabolismo √≥seo. Con d√©ficit de D ‚Äîprobable‚Äî, necesitas K2 para que el calcio llegue a los huesos en lugar de calcificar arterias.</p><p class="ent-al"><span class="ptag">D√©ficit</span>raro. Puede aparecer con uso prolongado de antibi√≥ticos</p><p class="ent-foods"><span class="ptag soft">Fuentes</span>Repollo verde <b>1060 Œºg</b> <span class="sep">¬∑</span> Col rizada <b>1054 Œºg</b> <span class="sep">¬∑</span> Espinacas <b>884 Œºg</b> <span class="sep">¬∑</span> Garbanzos <b>264 Œºg</b> <span class="sep">¬∑</span> Br√≥coli <b>154 Œºg</b></p></div></div></div>
-<div class="grp"><div class="grp-hd"><span class="grp-num">02</span><span class="grp-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3.5s6 6.5 6 11a6 6 0 0 1-12 0c0-4.5 6-11 6-11z"/></svg></span><h2 class="grp-ttl">Vitaminas hidrosolubles</h2><span class="meta">no se almacenan, consumo diario necesario</span></div>
-<div class="ent-grid"><div class="ent"><div class="ent-hd"><span class="ent-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.5"/><circle cx="12" cy="12" r="6"/><path d="M12 6v12M6 12h12M7.8 7.8l8.4 8.4M16.2 7.8 7.8 16.2"/></svg></span><h3>Vitamina C</h3><span class="ent-dose">90 mg/d√≠a</span></div><p class="ent-why">S√≠ntesis de col√°geno (tendones al retomar entrenos), inmunidad, absorci√≥n de hierro. Sin fruta en tu dieta est√°s casi con certeza deficitario.</p><p class="ent-al"><span class="ptag">D√©ficit</span>fatiga, mayor riesgo de lesiones tendinosas, cicatrizaci√≥n lenta</p><p class="ent-foods"><span class="ptag soft">Fuentes</span>Guayaba <b>273 mg</b> <span class="sep">¬∑</span> Pimientos <b>131 mg</b> <span class="sep">¬∑</span> Kiwi <b>71 mg</b> <span class="sep">¬∑</span> Br√≥coli <b>65 mg</b> <span class="sep">¬∑</span> Fresas <b>60 mg</b> <span class="sep">¬∑</span> Naranja <b>50 mg</b></p></div><div class="ent"><div class="ent-hd"><span class="ent-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12c2.5-3.5 6-5.5 10-5.5 2.5 0 5 1.5 7 4-2 2.5-4.5 4-7 4-4 0-7.5-2-10-5.5z"/><path d="M20 10.5 22.5 8M20 13.5l2.5 2.5M9 12h.01"/></svg></span><h3>Vitamina B12</h3><span class="ent-dose">2.4 mcg/d√≠a</span></div><p class="ent-why">Gl√≥bulos rojos, s√≠ntesis de ADN, salud neurol√≥gica. Impacta en memoria y concentraci√≥n. Su d√©ficit es silencioso y se manifiesta meses despu√©s.</p><p class="ent-al"><span class="ptag">D√©ficit</span>anemia megalobl√°stica, deterioro neurol√≥gico, fatiga cr√≥nica</p><p class="ent-foods"><span class="ptag soft">Fuentes</span>H√≠gado res <b>100 Œºg</b> <span class="sep">¬∑</span> Mejillones <b>21 Œºg</b> <span class="sep">¬∑</span> Sardinas <b>12 Œºg</b> <span class="sep">¬∑</span> At√∫n <b>2.7 Œºg</b> <span class="sep">¬∑</span> Huevo <b>0.5 Œºg</b></p></div><div class="ent"><div class="ent-hd"><span class="ent-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3c5 0 8 4 8 9s-3 9-8 9-8-4-8-9 3-9 8-9z"/><path d="M12 3c-2 3-2 6 0 9s2 6 0 9M7.5 7c2 1.5 7 1.5 9 0M7.5 17c2-1.5 7-1.5 9 0"/></svg></span><h3>Vitamina B6</h3><span class="ent-dose">1.3‚Äì1.7 mg/d√≠a</span></div><p class="ent-why">+100 reacciones enzim√°ticas. Metabolismo de prote√≠nas, serotonina y dopamina. Con alta ingesta proteica, la demanda de B6 sube proporcionalmente.</p><p class="ent-al"><span class="ptag">D√©ficit</span>anemia, confusi√≥n, depresi√≥n, debilidad muscular</p><p class="ent-foods"><span class="ptag soft">Fuentes</span>H√≠gado res <b>0.9 mg</b> <span class="sep">¬∑</span> Nueces <b>0.7 mg</b> <span class="sep">¬∑</span> Salm√≥n <b>0.6 mg</b> <span class="sep">¬∑</span> Garbanzos <b>0.6 mg</b> <span class="sep">¬∑</span> Pl√°tano <b>0.4 mg</b></p></div><div class="ent"><div class="ent-hd"><span class="ent-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21V11"/><path d="M12 11c0-4 3-7 7-7 0 4-3 7-7 7zM12 16c0-3-2-5-5-5 0 3 2 5 5 5z"/></svg></span><h3>√Åcido F√≥lico B9</h3><span class="ent-dose">400 mcg/d√≠a</span></div><p class="ent-why">S√≠ntesis de ADN, divisi√≥n celular, gl√≥bulos rojos. Regula homociste√≠na. Con carga f√≠sica y laboral alta, la renovaci√≥n celular sube y la demanda tambi√©n.</p><p class="ent-foods"><span class="ptag soft">Fuentes</span>Soja <b>240 Œºg</b> <span class="sep">¬∑</span> H√≠gado <b>192 Œºg</b> <span class="sep">¬∑</span> Garbanzos <b>180 Œºg</b> <span class="sep">¬∑</span> Espinacas <b>140 Œºg</b> <span class="sep">¬∑</span> Aguacate <b>~80 Œºg</b></p></div><div class="ent"><div class="ent-hd"><span class="ent-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M13 3 5 14h6l-1 7 8-11h-6l1-7z"/></svg></span><h3>Vitamina B3 ¬∑ Niacina</h3><span class="ent-dose">16 mg/d√≠a</span></div><p class="ent-why">Producci√≥n de ATP y conversi√≥n de macronutrientes en energ√≠a. Ligada al rendimiento f√≠sico y mental. F√°cilmente cubierta con carne, pescado y legumbres.</p><p class="ent-foods"><span class="ptag soft">Fuentes</span>H√≠gado <b>11.9 mg</b> <span class="sep">¬∑</span> At√∫n <b>11 mg</b> <span class="sep">¬∑</span> Cerdo magro <b>8.7 mg</b> <span class="sep">¬∑</span> Pollo <b>7.6 mg</b> <span class="sep">¬∑</span> Salm√≥n <b>5.4 mg</b></p></div></div></div>
-<div class="grp"><div class="grp-hd"><span class="grp-num">03</span><span class="grp-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 4h10l4 5-9 11L3 9l4-5z"/><path d="M3 9h18M9.5 9 12 20l2.5-11M7 4l2.5 5M17 4l-2.5 5"/></svg></span><h2 class="grp-ttl">Minerales</h2><span class="meta">macrominerales</span></div>
-<div class="ent-grid"><div class="ent"><div class="ent-hd"><span class="ent-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M8.5 5.5a2 2 0 1 1 3 2.5l4.5 4.5a2 2 0 1 1 2.5 3 2 2 0 1 1-3 2.5L11 13.5a2 2 0 1 1-2.5-3 2 2 0 1 1 0-5z"/></svg></span><h3>Calcio</h3><span class="ent-dose">1000‚Äì1200 mg/d√≠a</span></div><p class="ent-why">99% en huesos y dientes. Contracci√≥n muscular y transmisi√≥n nerviosa. Necesita vitamina D para ser absorbido ‚Äî los dos van juntos siempre.</p><p class="ent-al"><span class="ptag">D√©ficit</span>calambres, fragilidad √≥sea, dificultad de concentraci√≥n</p><p class="ent-foods"><span class="ptag soft">Fuentes</span>Queso Gruy√®re <b>560‚Äì850 mg</b> <span class="sep">¬∑</span> Yogur <b>415 mg</b> <span class="sep">¬∑</span> Sardinas lata <b>400 mg</b> <span class="sep">¬∑</span> Leche <b>300 mg</b> <span class="sep">¬∑</span> Almendras <b>240 mg</b></p></div><div class="ent"><div class="ent-hd"><span class="ent-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 14.5A8 8 0 1 1 9.5 4a6.5 6.5 0 0 0 10.5 10.5z"/><path d="M17 4h.01M20 8h.01"/></svg></span><h3>Magnesio</h3><span class="ent-dose">400‚Äì420 mg/d√≠a</span></div><p class="ent-why">+300 reacciones bioqu√≠micas. Regula glucosa, ritmo card√≠aco, contracci√≥n muscular y sue√±o. Reduce cortisol. El ojo que te vibra es s√≠ntoma cl√°sico de d√©ficit. <strong>Suplementa: glicinato 300‚Äì400 mg antes de dormir.</strong></p><p class="ent-al"><span class="ptag">D√©ficit</span>fasciculaci√≥n ocular, calambres, fatiga, sue√±o fragmentado</p><p class="ent-foods"><span class="ptag soft">Fuentes</span>Almendras <b>250 mg</b> <span class="sep">¬∑</span> Chocolate negro <b>100 mg</b> <span class="sep">¬∑</span> Pan integral <b>91 mg</b> <span class="sep">¬∑</span> Lentejas <b>78 mg</b> <span class="sep">¬∑</span> Espinacas <b>50 mg</b></p></div><div class="ent"><div class="ent-hd"><span class="ent-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3s6 6.5 6 11a6 6 0 0 1-12 0c0-4.5 6-11 6-11z"/><path d="M9.5 14.5c0 1.4.9 2.3 2 2.5"/></svg></span><h3>Hierro</h3><span class="ent-dose">8 mg/d√≠a</span></div><p class="ent-why">Transporta ox√≠geno a los m√∫sculos. Corriste una marat√≥n en febrero: el hierro se destruye en cada zancada. Tu reserva puede estar baja. Combina fuentes hemo con vitamina C.</p><p class="ent-al"><span class="ptag">D√©ficit</span>anemia ferrop√©nica, fatiga cr√≥nica ‚Äî frecuente en deportistas de resistencia</p><p class="ent-al"><span class="ptag soft">No suplementes sin anal√≠tica previa.</span>El exceso da√±a h√≠gado y coraz√≥n</p><p class="ent-foods"><span class="ptag soft">Fuentes</span>Berberechos <b>24 mg</b> <span class="sep">¬∑</span> H√≠gado res <b>8 mg</b> <span class="sep">¬∑</span> Lentejas <b>7.1 mg</b> <span class="sep">¬∑</span> Garbanzos <b>6.7 mg</b> <span class="sep">¬∑</span> Espinacas <b>4 mg</b></p></div><div class="ent"><div class="ent-hd"><span class="ent-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8c1 8 7 13 15 12 1 0 1.5-1 1-2C14 17 9 13 7 6 6 5 4 6 4 8z"/><path d="M6.5 9.5c1.5 5 5 8.5 10 10"/></svg></span><h3>Potasio</h3><span class="ent-dose">3400 mg/d√≠a</span></div><p class="ent-why">Equilibrio h√≠drico, presi√≥n arterial y funci√≥n card√≠aca muscular. Se pierde con el sudor. Su fuente principal es fruta y verdura.</p><p class="ent-foods"><span class="ptag soft">Fuentes</span>Espinaca cruda <b>529 mg</b> <span class="sep">¬∑</span> Aguacate <b>487 mg</b> <span class="sep">¬∑</span> Pl√°tano <b>370 mg</b> <span class="sep">¬∑</span> Mel√≥n <b>310 mg</b> <span class="sep">¬∑</span> Kiwi <b>290 mg</b></p></div></div></div>
-<div class="grp"><div class="grp-hd"><span class="grp-num">04</span><span class="grp-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 4h10l4 5-9 11L3 9l4-5z"/><path d="M3 9h18M9.5 9 12 20l2.5-11M7 4l2.5 5M17 4l-2.5 5"/></svg></span><h2 class="grp-ttl">Minerales</h2><span class="meta">oligominerales</span></div>
-<div class="ent-grid"><div class="ent"><div class="ent-hd"><span class="ent-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4c5 0 9 4 9 9H3c0-5 4-9 9-9z"/><path d="M12 4v9M7.5 5.5 9 13M16.5 5.5 15 13M3 13c3 3.5 15 3.5 18 0"/></svg></span><h3>Zinc</h3><span class="ent-dose">14 mg/d√≠a</span></div><p class="ent-why">+300 enzimas. Sistema inmune, s√≠ntesis de prote√≠nas y testosterona. Con objetivo de preservar m√∫sculo en d√©ficit cal√≥rico, el zinc tiene un rol directo en la recuperaci√≥n.</p><p class="ent-foods"><span class="ptag soft">Fuentes</span>Ostras crudas <b>59.2 mg</b> <span class="sep">¬∑</span> Carne res <b>8.5 mg</b> <span class="sep">¬∑</span> Almendras <b>5.0 mg</b> <span class="sep">¬∑</span> Lentejas <b>3.9 mg</b> <span class="sep">¬∑</span> Pollo <b>2.9 mg</b></p></div><div class="ent"><div class="ent-hd"><span class="ent-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="12" rx="5" ry="9" transform="rotate(30 12 12)"/><path d="M8.5 5.5 15.5 18.5"/></svg></span><h3>Selenio</h3><span class="ent-dose">55 mcg/d√≠a</span></div><p class="ent-why">Antioxidante. Regula metabolismo y funci√≥n tiroidea. Suelos europeos son deficitarios. Una nuez de Brasil al d√≠a cubre la dosis.</p><p class="ent-al"><span class="ptag soft">Selenosis por exceso.</span>No superes 2‚Äì3 nueces de Brasil al d√≠a</p><p class="ent-foods"><span class="ptag soft">Fuentes</span>Nuez de Brasil <b>90 Œºg</b> <span class="sep">¬∑</span> Bacalao salado <b>148 Œºg</b> <span class="sep">¬∑</span> Sardina <b>59 Œºg</b> <span class="sep">¬∑</span> Mejill√≥n <b>56 Œºg</b></p></div></div></div>
-<div class="grp"><div class="grp-hd"><span class="grp-num">05</span><span class="grp-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.5"/><circle cx="12" cy="12" r="4"/></svg></span><h2 class="grp-ttl">Macros</h2><span class="meta">objetivos diarios ¬∑ de 88 a 81 kg ¬∑ actividad moderada-alta</span></div>
-<div class="figures five"><div class="fig"><div class="fig-num num">2200</div><div class="fig-lbl"><b>Calor√≠as</b> ¬∑ kcal/d√≠a ¬∑ d√©ficit ~300 kcal</div></div><div class="fig"><div class="fig-num num">160‚Äì180g</div><div class="fig-lbl"><b>Prote√≠na</b> ¬∑ ~2g/kg peso objetivo</div></div><div class="fig"><div class="fig-num num">220‚Äì260g</div><div class="fig-lbl"><b>Carbohidratos</b> ¬∑ complejos prioritarios</div></div><div class="fig"><div class="fig-num num">60‚Äì75g</div><div class="fig-lbl"><b>Grasas</b> ¬∑ insaturadas prioritarias</div></div><div class="fig"><div class="fig-num num">2.5‚Äì3L</div><div class="fig-lbl"><b>Agua</b> ¬∑ por d√≠a</div></div></div>
-<div class="ent-grid"><div class="ent"><div class="ent-hd"><span class="ent-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3c4 0 7 6 7 11a7 7 0 0 1-14 0c0-5 3-11 7-11z"/><path d="M8.5 13c0 2 1 3.5 2.5 4"/></svg></span><h3>Prote√≠nas</h3><span class="ent-dose">160‚Äì180g/d√≠a</span></div><p class="ent-why">La recomendaci√≥n oficial de 0.83g/kg es para sedentarios. Para perder 7 kg preservando m√∫sculo necesitas 1.8‚Äì2g/kg del peso objetivo (81 kg).</p><p class="ent-foods"><span class="ptag soft">Fuentes</span>Pechuga pollo <b>31g/100g</b> <span class="sep">¬∑</span> At√∫n lata <b>32g/100g</b> <span class="sep">¬∑</span> Sardinas <b>21g/100g</b> <span class="sep">¬∑</span> Lentejas <b>26g/100g</b> <span class="sep">¬∑</span> Huevos <b>13g/100g</b> <span class="sep">¬∑</span> Garbanzos <b>21g/100g</b></p></div><div class="ent"><div class="ent-hd"><span class="ent-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21V8"/><path d="M12 8c-3 0-5-2-5-5 3 0 5 2 5 5zM12 8c3 0 5-2 5-5-3 0-5 2-5 5zM12 13c-3 0-5-2-5-5 3 0 5 2 5 5zM12 13c3 0 5-2 5-5-3 0-5 2-5 5zM12 18c-3 0-5-2-5-5 3 0 5 2 5 5zM12 18c3 0 5-2 5-5-3 0-5 2-5 5z"/></svg></span><h3>Carbohidratos</h3><span class="ent-dose">220‚Äì260g ¬∑ complejos</span></div><p class="ent-why">El problema no son los carbohidratos, son los refinados y los dulces. Picos de glucosa, bajadas de energ√≠a, mayor almacenamiento de grasa.</p><p class="ent-foods"><span class="ptag soft">Fuentes</span>Avena <b>12g/100g</b> <span class="sep">¬∑</span> Arroz integral <b>23.5g/100g</b> <span class="sep">¬∑</span> Lentejas <b>20g/100g</b> <span class="sep">¬∑</span> Patata cocida <b>17.6g/100g</b> <span class="sep">¬∑</span> Garbanzos <b>27.4g/100g</b></p></div><div class="ent"><div class="ent-hd"><span class="ent-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3c-3 0-4 4-4 7-2 1-3 3-3 5a7 7 0 0 0 14 0c0-2-1-4-3-5 0-3-1-7-4-7z"/><circle cx="12" cy="15" r="2.5"/></svg></span><h3>Grasas</h3><span class="ent-dose">25‚Äì30% calor√≠as</span></div><p class="ent-why">Las grasas insaturadas son antiinflamatorias, protegen el coraz√≥n y permiten absorber las vitaminas liposolubles A, D, E y K.</p><p class="ent-foods"><span class="ptag soft">Fuentes</span>Aceite oliva virgen <b>MUFA</b> <span class="sep">¬∑</span> Aguacate <b>MUFA</b> <span class="sep">¬∑</span> Salm√≥n / Sardinas <b>Omega-3</b> <span class="sep">¬∑</span> Nueces <b>Omega-3/6</b> <span class="sep">¬∑</span> Almendras <b>MUFA + Vit E</b></p></div></div></div>
+    <div class="rest-card">
+      <div class="rest-day">Jueves</div>
+      <div class="rest-title">Movilidad o cardio suave</div>
+      <div class="rest-desc">20 min de movilidad de cadera y hombros, o bicicleta estática a ritmo conversacional.</div>
     </div>
-    <div class="tp" id="tp-dieta">
-      
-      
-
-      <div class="pm-header">
-        <p>El gimnasio funciona porque est√° todo decidido de antemano. Este plan aplica la misma l√≥gica: cocinas una vez el domingo, el resto de la semana solo ensamblas. Cero decisiones con hambre. Aplica de lunes a viernes m√°s la cena del domingo. Duraci√≥n: 3‚Äì4 semanas estrictas.</p>
-      </div>
-
-      <div class="grp-hd"><span class="grp-num">01</span><span class="grp-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="4.5" width="14" height="16" rx="1"/><path d="M9 4.5V3.5h6v1M9 13l2 2 4-4"/></svg></span><h2 class="grp-ttl">Diagn√≥stico</h2></div>
-      <div class="pm-grid-2">
-        <div class="pm-card bar-green">
-          <div class="pm-title">El problema no es el qu√©, es el patr√≥n</div>
-          <div class="pm-text">Sabes perfectamente qu√© deber√≠as comer. El fallo es decidirlo en el momento, con hambre o cansancio. Este plan elimina la decisi√≥n: cada comida ya est√° escrita. No improvisas, no negocias contigo mismo.</div>
-        </div>
-        <div class="pm-card bar-yellow">
-          <div class="pm-title">6 semanas de estancamiento</div>
-          <div class="pm-text">El peso lleva plano entre 87 y 87.6 kg porque no est√°s en d√©ficit real. El deporte no da licencia ilimitada para comer. Tres semanas estrictas y la b√°scula vuelve a moverse.</div>
-        </div>
-      </div>
-
-      <div class="grp-hd"><span class="grp-num">02</span><span class="grp-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 10h16v6a4 4 0 0 1-4 4H8a4 4 0 0 1-4-4v-6z"/><path d="M2.5 10h19M9 6.5c0-1.5 1-2 1-3.5M14 6.5c0-1.5 1-2 1-3.5"/></svg></span><h2 class="grp-ttl">El domingo se cocina</h2><span class="meta">90 minutos</span></div>
-      <div class="pm-grid-4">
-        <div class="pm-card green-bg">
-          <div class="pm-title">Pollo al horno</div>
-          <div class="pm-meta">Prote√≠na ¬∑ base de 3 comidas</div>
-          <div class="pm-text">6 pechugas o contramuslos. Especias, lim√≥n, sal. 40 min a 200¬∞.</div>
-        </div>
-        <div class="pm-card green-bg">
-          <div class="pm-title">Ternera o salm√≥n</div>
-          <div class="pm-meta">Prote√≠na ¬∑ cubre 2 comidas</div>
-          <div class="pm-text">Salm√≥n al horno con el pollo, o carne picada de ternera a la plancha.</div>
-        </div>
-        <div class="pm-card green-bg">
-          <div class="pm-title">Arroz y patata</div>
-          <div class="pm-meta">Carbohidrato ¬∑ toda la semana</div>
-          <div class="pm-text">Una olla de arroz integral. Patatas cocidas o al horno, en raciones.</div>
-        </div>
-        <div class="pm-card green-bg">
-          <div class="pm-title">Verdura asada</div>
-          <div class="pm-meta">Verdura ¬∑ toda la semana</div>
-          <div class="pm-text">Bandeja grande: br√≥coli, pimiento, calabac√≠n, cebolla. Al horno a la vez.</div>
-        </div>
-      </div>
-
-      <div class="grp-hd"><span class="grp-num">03</span><span class="grp-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="5" width="17" height="15.5" rx="1"/><path d="M3.5 10h17M8 3v4M16 3v4"/><path d="M8 14h2M14 14h2M8 17h2"/></svg></span><h2 class="grp-ttl">La semana, comida a comida</h2></div>
-
-      <div class="day-row">
-        <div><div class="day-name">Lunes</div><div class="day-type">Full Body A</div><div class="day-badge">D√≠a de entreno</div></div>
-        <div class="meals">
-          <div class="meal"><div class="meal-tag tag-d">Desayuno</div><div><div class="meal-name">Yogur griego natural + fruta + avena</div><div class="meal-detail">Opcional y ligero. Si entrenas por la tarde, te da energ√≠a sin pesar.</div></div></div>
-          <div class="meal"><div class="meal-tag tag-c">Comida</div><div><div class="meal-name">Pollo + arroz integral + verdura asada</div><div class="meal-detail">Del batch del domingo. Ensamblas y al t√°per. Raci√≥n generosa de verdura.</div></div></div>
-          <div class="meal"><div class="meal-tag tag-n">Cena</div><div><div class="meal-name">Salm√≥n + verdura salteada</div><div class="meal-detail">Post-entreno: prioriza prote√≠na. Cena ligera, sin carbohidrato pesado.</div></div></div>
-        </div>
-      </div>
-
-      <div class="day-row">
-        <div><div class="day-name">Martes</div><div class="day-type">Descanso</div></div>
-        <div class="meals">
-          <div class="meal"><div class="meal-tag tag-d">Desayuno</div><div><div class="meal-name">Tostada integral + huevo + aguacate</div><div class="meal-detail">O lo saltas. Si desayunas, que sea esto ‚Äî nunca boller√≠a.</div></div></div>
-          <div class="meal"><div class="meal-tag tag-c">Comida</div><div><div class="meal-name">Ternera + patata + verdura asada</div><div class="meal-detail">D√≠a sin entreno: algo menos de carbohidrato que un d√≠a de gym.</div></div></div>
-          <div class="meal"><div class="meal-tag tag-n">Cena</div><div><div class="meal-name">Tortilla francesa de 3 huevos + ensalada</div><div class="meal-detail">R√°pida, sin tocar el batch. Cena ligera de d√≠a de descanso.</div></div></div>
-        </div>
-      </div>
-
-      <div class="day-row">
-        <div><div class="day-name">Mi√©rcoles</div><div class="day-type">Full Body B</div><div class="day-badge">D√≠a de entreno</div></div>
-        <div class="meals">
-          <div class="meal"><div class="meal-tag tag-d">Desayuno</div><div><div class="meal-name">Yogur griego + fruta + avena</div><div class="meal-detail">Igual que el lunes. Repetir es bueno ‚Äî elimina decisiones.</div></div></div>
-          <div class="meal"><div class="meal-tag tag-c">Comida</div><div><div class="meal-name">Pollo + arroz integral + verdura asada</div><div class="meal-detail">Del batch. D√≠a de entreno: raci√≥n completa de carbohidrato.</div></div></div>
-          <div class="meal"><div class="meal-tag tag-n">Cena</div><div><div class="meal-name">Pollo + verdura salteada</div><div class="meal-detail">Post-entreno. Termina el pollo del batch si queda.</div></div></div>
-        </div>
-      </div>
-
-      <div class="day-row">
-        <div><div class="day-name">Jueves</div><div class="day-type">Descanso</div></div>
-        <div class="meals">
-          <div class="meal"><div class="meal-tag tag-d">Desayuno</div><div><div class="meal-name">Tostada integral + huevo + aguacate</div><div class="meal-detail">O lo saltas. T√∫ decides seg√∫n c√≥mo te sientas.</div></div></div>
-          <div class="meal"><div class="meal-tag tag-c">Comida</div><div><div class="meal-name">Precocinado saludable Mercadona + verdura extra</div><div class="meal-detail">D√≠a comod√≠n. Compra un plato saludable, pero a√±√°dele verdura aparte.</div></div></div>
-          <div class="meal"><div class="meal-tag tag-n">Cena</div><div><div class="meal-name">Crema de verduras + huevos cocidos</div><div class="meal-detail">Ligera. La crema puede ser comprada ‚Äî b√∫scala sin nata.</div></div></div>
-        </div>
-      </div>
-
-      <div class="day-row">
-        <div><div class="day-name">Viernes</div><div class="day-type">Full Body C</div><div class="day-badge">D√≠a de entreno</div></div>
-        <div class="meals">
-          <div class="meal"><div class="meal-tag tag-d">Desayuno</div><div><div class="meal-name">Yogur griego + fruta + avena</div><div class="meal-detail">√öltima carga de la semana. Mant√©n el patr√≥n.</div></div></div>
-          <div class="meal"><div class="meal-tag tag-c">Comida</div><div><div class="meal-name">Lo que quede del batch + verdura</div><div class="meal-detail">Viernes vac√≠a la nevera. Combina lo que sobre ‚Äî pollo, arroz, ternera.</div></div></div>
-          <div class="meal"><div class="meal-tag tag-n">Cena</div><div><div class="meal-name">Cena libre ‚Äî con cabeza</div><div class="meal-detail">Sales, cenas fuera, disfrutas. No es barra libre, pero aqu√≠ est√° el margen.</div></div></div>
-        </div>
-      </div>
-
-      <div class="day-row">
-        <div><div class="day-name">Domingo</div><div class="day-type">Solo cena</div></div>
-        <div class="meals">
-          <div class="meal"><div class="meal-tag tag-n">Cena</div><div><div class="meal-name">Ligera ‚Äî tras cocinar el batch</div><div class="meal-detail">Mientras cocinas para la semana, cena algo simple: huevos, ensalada o una porci√≥n de lo que acabas de preparar. Arrancas la semana en orden.</div></div></div>
-        </div>
-      </div>
-
-      <div class="grp-hd"><span class="grp-num">04</span><span class="grp-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3.5l7 3v5.5c0 4.2-3 7.4-7 8.5-4-1.1-7-4.3-7-8.5V6.5l7-3z"/><path d="M9 12l2 2 4-4"/></svg></span><h2 class="grp-ttl">Principios no negociables</h2></div>
-      <div class="pm-grid-4">
-        <div class="pm-card bar-green"><div class="pm-title">Verdura en comida y cena</div><div class="pm-text">Sin excepci√≥n. Es el d√©ficit que llevas 6 semanas fallando. Cada plato principal lleva verdura.</div></div>
-        <div class="pm-card bar-green"><div class="pm-title">Prote√≠na en cada comida</div><div class="pm-text">Pollo, ternera, salm√≥n, huevos. Con tu carga de gimnasio, protege el m√∫sculo en d√©ficit.</div></div>
-        <div class="pm-card bar-green"><div class="pm-title">Carbohidrato complejo</div><div class="pm-text">Arroz integral, avena, patata. M√°s raci√≥n los d√≠as de entreno, menos los de descanso.</div></div>
-        <div class="pm-card bar-green"><div class="pm-title">El domingo se cocina</div><div class="pm-text">El batch del domingo no es opcional. Es la pieza que sostiene todo el sistema.</div></div>
-      </div>
-
-      <div class="grp-hd"><span class="grp-num">05</span><span class="grp-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.5"/><path d="M6 6l12 12"/></svg></span><h2 class="grp-ttl">Eliminar de lunes a viernes</h2></div>
-      <div class="pm-grid-4" style="margin-bottom:20px">
-        <div class="pm-card bar-red"><div class="pm-title">Dulces y boller√≠a</div><div class="pm-text">Cero croissants, alfajores, chuches entre semana. Si necesitas dulce: fruta o chocolate negro 85%.</div></div>
-        <div class="pm-card bar-red"><div class="pm-title">Alcohol</div><div class="pm-text">Cero alcohol L-V. Las 6 cervezas de una semana normal son az√∫car l√≠quido que frena el d√©ficit.</div></div>
-        <div class="pm-card bar-red"><div class="pm-title">Carbohidratos refinados</div><div class="pm-text">Pan blanco, boller√≠a, cereales azucarados. Picos de glucosa e inflamaci√≥n.</div></div>
-        <div class="pm-card bar-red"><div class="pm-title">Comidas incompletas</div><div class="pm-text">Cada comida sin prote√≠na ni verdura es una oportunidad perdida. El plan no las contempla.</div></div>
-      </div>
-
-      <div class="grp-hd"><span class="grp-num">06</span><span class="grp-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3.5 10h17l-1.5 9.5H5L3.5 10z"/><path d="M8 10l3-6M16 10l-3-6M3 10h18"/></svg></span><h2 class="grp-ttl">Lista de la compra</h2><span class="meta">una vez por semana</span></div>
-      <div class="pm-grid-4" style="margin-bottom:20px">
-        <div class="shop-col">
-          <h3>Prote√≠na</h3>
-          <ul><li>Pechuga / contramuslo pollo</li><li>Salm√≥n fresco</li><li>Carne picada ternera</li><li>Huevos (docena)</li><li>Yogur griego natural</li></ul>
-        </div>
-        <div class="shop-col">
-          <h3>Carbohidrato</h3>
-          <ul><li>Arroz integral</li><li>Patatas</li><li>Pan integral</li><li>Avena</li></ul>
-        </div>
-        <div class="shop-col">
-          <h3>Verdura y fruta</h3>
-          <ul><li>Br√≥coli</li><li>Pimiento, calabac√≠n, cebolla</li><li>Ensalada variada</li><li>Aguacate</li><li>Fruta de temporada</li></ul>
-        </div>
-        <div class="shop-col">
-          <h3>Comod√≠n</h3>
-          <ul><li>Precocinado saludable (1-2)</li><li>Crema de verduras sin nata</li><li>Especias, lim√≥n, aceite oliva</li></ul>
-        </div>
-      </div>
-
-      <div class="pm-callout">
-        <h2>Esto es temporal ‚Äî y por eso funciona</h2>
-        <p>Son <strong>3‚Äì4 semanas estrictas</strong>, no una condena de por vida. El objetivo es romper el estancamiento de 87 kg, llegar a un punto de control y demostrarte que puedes. Despu√©s se relaja a algo m√°s flexible. Un plan estricto con fecha de fin se sostiene; uno indefinido, no. <strong>Empieza este domingo con el batch cooking.</strong></p>
-      </div>
-
+    <div class="rest-card">
+      <div class="rest-day">Sábado</div>
+      <div class="rest-title">Actividad libre</div>
+      <div class="rest-desc">Trekking, pádel, fútbol, natación — lo que apetezca. Cuenta como actividad social también.</div>
+    </div>
+    <div class="rest-card">
+      <div class="rest-day">Domingo</div>
+      <div class="rest-title">Cardio dominical</div>
+      <div class="rest-desc">Sesión de carrera progresiva según programa de 19 semanas. Ver tabla en sección Deporte.</div>
     </div>
   </div>
 
-  <!-- PANEL 2 ‚Äî DEPORTE -->
-  <div class="panel" id="panel-deporte">
-
-    <div class="grp-hd"><span class="grp-num">01</span><span class="grp-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2.5" y="9.5" width="3" height="5" rx=".5"/><rect x="18.5" y="9.5" width="3" height="5" rx=".5"/><rect x="5.5" y="7.5" width="3" height="9" rx=".5"/><rect x="15.5" y="7.5" width="3" height="9" rx=".5"/><path d="M8.5 12h7"/></svg></span><h2 class="grp-ttl">Programa</h2></div>
-    <div class="content-grid">
-      <a href="rutina.html" class="content-card">
-        <div class="card-top">
-          <div class="card-title">Planning Gimnasio</div>
-        </div>
-        <div class="card-bottom">
-          <div class="card-tags"></div>
-          <div class="card-arrow">Abrir</div>
-        </div>
-      </a>
-      <div class="content-card" onclick="openCardioModal()" style="cursor:pointer">
-        <div class="card-top">
-          <div class="card-title">Planning Marat√≥n</div>
-        </div>
-        <div class="card-bottom">
-          <div class="card-tags"></div>
-          <div class="card-arrow">Abrir</div>
-        </div>
-      </div>
+  <!-- PRINCIPIOS -->
+  <div class="grp-hd"><span class="grp-num">03</span><span class="grp-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3.5l7 3v5.5c0 4.2-3 7.4-7 8.5-4-1.1-7-4.3-7-8.5V6.5l7-3z"/><path d="M9 12l2 2 4-4"/></svg></span><h2 class="grp-ttl">Principios de ejecución</h2></div>
+  <div class="principles-grid">
+    <div class="principle">
+      <div class="pr-title">Progresión semanal</div>
+      <div class="pr-body">Si completas todas las series en el rango alto de reps con buena técnica, añade 2.5 kg la semana siguiente en tren inferior y 1.25–2.5 kg en superior.</div>
     </div>
-
-    <!-- PLANNING MARAT√ìN (modal) -->
-    <div class="cardio-modal-overlay" id="cardioModalOverlay" onclick="if(event.target===this)closeCardioModal()">
-      <div class="cardio-modal">
-        <div class="cardio-modal-hdr">
-          <div class="cardio-modal-hdr-left">
-            <div>
-              <div class="cardio-modal-title">Planning Marat√≥n ¬∑ Sevilla 2027</div>
-              <div class="cardio-modal-sub">5 oct 2026 ‚Üí 21 feb 2027 ¬∑ bloque previo de 8 semanas + plan de 12</div>
-            </div>
-          </div>
-          <button class="cardio-modal-close" onclick="closeCardioModal()">Cerrar</button>
-        </div>
-        <div class="cardio-modal-stats" style="grid-template-columns:repeat(2,1fr)">
-          <div><div class="cardio-modal-stat-val">Sub 3:45</div><div class="cardio-modal-stat-lbl">Objetivo ¬∑ 5:20/km</div></div>
-          <div><div class="cardio-modal-stat-val">20</div><div class="cardio-modal-stat-lbl">Semanas</div></div>
-        </div>
-        <div class="cardio-modal-body">
-          <div class="mp-sec">Ritmos de referencia</div>
-          <div class="mp-pace"><span>Suave / rodaje</span><b>5:35-5:45 /km</b></div><div class="mp-pace"><span>Ritmo de marat√≥n (MP)</span><b>5:20 /km</b></div><div class="mp-pace"><span>Ritmo de media (paso de 21 km)</span><b>5:10-5:13 /km</b></div><div class="mp-pace"><span>Umbral (tiradas de 2-2,5 km)</span><b>~5:00 /km</b></div><div class="mp-pace"><span>Series de 1000-1600 m</span><b>4:50 /km</b></div><div class="mp-pace"><span>Series de 400 m</span><b>1:48-1:54</b></div><div class="mp-pace"><span>Series de 800 m</span><b>4:00 por 800 m</b></div>
-          <div class="mp-sec">Bloque previo<small>5 oct ‚Üí 29 nov ¬∑ m√°x. 4 d√≠as de carrera</small></div>
-          <div class="mp-note">Semana 0 (28 sep-4 oct): como ahora, 2 carreras y ~24 km.</div>
-          <details class="mp-week"><summary><span class="mp-sem">P1</span><span class="mp-dates">5-11 oct</span><span class="mp-km">~25 km</span><span class="mp-key">Series de 1 km con Charlie y Felix; largo 13 km</span></summary><div class="mp-days"><div class="mp-day run"><span class="d">Mar 6</span><span>12 km con 4√ó1 km a 5:00 (con Charlie y Felix)</span></div><div class="mp-day run"><span class="d">S√°b 10</span><span>13 km con el club (√∫ltimos 3 km algo m√°s r√°pidos)</span></div></div></details><details class="mp-week"><summary><span class="mp-sem">P2</span><span class="mp-dates">12-18 oct</span><span class="mp-km">~30 km</span><span class="mp-key">Tercer d√≠a (jueves suave); largo 14 km</span></summary><div class="mp-days"><div class="mp-day run"><span class="d">Mar 13</span><span>10 km con 4√ó1 km a 5:00</span></div><div class="mp-day run"><span class="d">Jue 15</span><span>6 km suaves (tercer d√≠a)</span></div><div class="mp-day run"><span class="d">S√°b 17</span><span>14 km con el club</span></div></div></details><details class="mp-week"><summary><span class="mp-sem">P3</span><span class="mp-dates">19-25 oct</span><span class="mp-km">~32 km</span><span class="mp-key"><strong>Reto 10 km ‚â§50:30 (dom 25)</strong></span></summary><div class="mp-days"><div class="mp-day run"><span class="d">Mar 20</span><span>12 km con 5√ó1 km a 4:58</span></div><div class="mp-day run"><span class="d">Jue 22</span><span>6 km suaves</span></div><div class="mp-day key"><span class="d">Dom 25</span><span><strong>reto de 10 km, objetivo ‚â§50:30</strong> (2 km de calentamiento + 10 km + 2 km de enfriamiento)</span></div></div></details><details class="mp-week"><summary><span class="mp-sem">P4</span><span class="mp-dates">26 oct-1 nov</span><span class="mp-km">~28 km</span><span class="mp-key">Recuperaci√≥n</span></summary><div class="mp-days"><div class="mp-day run"><span class="d">Mar 27</span><span>8 km suaves + 6 rectas de 100 m</span></div><div class="mp-day run"><span class="d">Jue 29</span><span>6 km suaves con 6√ó1' alegres</span></div><div class="mp-day run"><span class="d">S√°b 31</span><span>14 km c√≥modos con el club</span></div></div></details><details class="mp-week"><summary><span class="mp-sem">P5</span><span class="mp-dates">2-8 nov</span><span class="mp-km">~39 km</span><span class="mp-key">Cuarto d√≠a; largo 16 km</span></summary><div class="mp-days"><div class="mp-day run"><span class="d">Mar 3</span><span>11 km con 5√ó1000 m a 4:55</span></div><div class="mp-day run"><span class="d">Jue 5</span><span>7 km suaves</span></div><div class="mp-day run"><span class="d">S√°b 7</span><span>16 km (club + ampliaci√≥n)</span></div><div class="mp-day run"><span class="d">Dom 8</span><span>5 km suaves (cuarto d√≠a)</span></div></div></details><details class="mp-week"><summary><span class="mp-sem">P6</span><span class="mp-dates">9-15 nov</span><span class="mp-km">~43 km</span><span class="mp-key">Largo 19 km</span></summary><div class="mp-days"><div class="mp-day run"><span class="d">Mar 10</span><span>11 km con 3√ó2 km a ritmo umbral (~5:00)</span></div><div class="mp-day run"><span class="d">Jue 12</span><span>7 km suaves</span></div><div class="mp-day run"><span class="d">S√°b 14</span><span><strong>19 km</strong>: primeros 15 a 5:40, √∫ltimos 4 a 5:15</span></div><div class="mp-day run"><span class="d">Dom 15</span><span>6 km suaves</span></div></div></details><details class="mp-week"><summary><span class="mp-sem">P7</span><span class="mp-dates">16-22 nov</span><span class="mp-km">~39 km</span><span class="mp-key"><strong>Media marat√≥n ‚â§1:50 (dom 22)</strong></span></summary><div class="mp-days"><div class="mp-day run"><span class="d">Mar 17</span><span>8 km con 6√ó400 m a 1:48</span></div><div class="mp-day run"><span class="d">Jue 19</span><span>5 km suaves</span></div><div class="mp-day run"><span class="d">S√°b 21</span><span>3 km suaves + 4 aceleraciones</span></div><div class="mp-day key"><span class="d">Dom 22</span><span><strong>MEDIA MARAT√ìN, objetivo ‚â§1:50 (5:13/km)</strong>. Si falla, se entrena m√°s: el objetivo de marat√≥n no se revisa.</span></div></div></details><details class="mp-week"><summary><span class="mp-sem">P8</span><span class="mp-dates">23-29 nov</span><span class="mp-km">~40 km</span><span class="mp-key">Recuperaci√≥n</span></summary><div class="mp-days"><div class="mp-day run"><span class="d">Mar 24</span><span>8 km de recuperaci√≥n</span></div><div class="mp-day run"><span class="d">Mi√© 25</span><span>7 km suaves</span></div><div class="mp-day run"><span class="d">Jue 26</span><span>10 km con 4√ó1 km a 5:05</span></div><div class="mp-day run"><span class="d">Dom 29</span><span>15 km muy suaves. <strong>Cierra el bloque previo: 4 d√≠as de carrera y ~40 km, sin lesi√≥n ni corte de m√°s de 3 d√≠as.</strong></span></div></div></details>
-          <div class="mp-sec">Plan de 12 semanas<small>30 nov ‚Üí 21 feb</small></div>
-          <details class="mp-week"><summary><span class="mp-sem">Sem 1</span><span class="mp-dates">30 nov-6 dic</span><span class="mp-km">~47 km</span><span class="mp-key">4√ó1600; largo 18 km</span></summary><div class="mp-days"><div class="mp-day run"><span class="d">Mar 1 dic</span><span>4√ó1600 m a 7:45 (rec. 60" trote) + 2 km de calentamiento y 2 de enfriamiento (~11 km)</span></div><div class="mp-day run"><span class="d">Jue 3</span><span>10 km progresivos, de 5:45 a 5:15</span></div><div class="mp-day run"><span class="d">S√°b 5</span><span>18 km, √∫ltimos 5 km a 5:20</span></div><div class="mp-day run"><span class="d">Dom 6</span><span>8 km suaves</span></div></div></details><details class="mp-week"><summary><span class="mp-sem">Sem 2</span><span class="mp-dates">7-13 dic</span><span class="mp-km">~52 km</span><span class="mp-key">10√ó400; largo 20 km</span></summary><div class="mp-days"><div class="mp-day run"><span class="d">Mar 8</span><span>10√ó400 m a 1:48 (rec. 60" trote) + 2+2 km (~9,5 km)</span></div><div class="mp-day run"><span class="d">Mi√© 9</span><span>6 km suaves</span></div><div class="mp-day run"><span class="d">Jue 10</span><span>fartlek de 35': alternar 1' fuerte (~4:35/km) y 1' suave (~6,5 km)</span></div><div class="mp-day run"><span class="d">S√°b 12</span><span>20 km, √∫ltimos 8 km a 5:25</span></div><div class="mp-day run"><span class="d">Dom 13</span><span>10 km suaves</span></div></div></details><details class="mp-week"><summary><span class="mp-sem">Sem 3</span><span class="mp-dates">14-20 dic</span><span class="mp-km">~58 km</span><span class="mp-key">3√ó2500; largo 24 km</span></summary><div class="mp-days"><div class="mp-day run"><span class="d">Mar 15</span><span>3√ó2500 m a ritmo umbral (~5:00), rec. 2' trote + 2+2 km (~12 km)</span></div><div class="mp-day run"><span class="d">Mi√© 16</span><span>6 km suaves</span></div><div class="mp-day run"><span class="d">Jue 17</span><span>5 km suaves + 5 km a MP</span></div><div class="mp-day run"><span class="d">S√°b 19</span><span>24 km, √∫ltimos 5 km a 5:20</span></div><div class="mp-day key"><span class="d">Dom 20</span><span><strong>6 km suaves + revisi√≥n de mitad de fase</strong> (peso ‚â§83 kg)</span></div></div></details><details class="mp-week"><summary><span class="mp-sem">Sem 4</span><span class="mp-dates">21-27 dic</span><span class="mp-km">~66 km</span><span class="mp-key">6√ó1000; s√°b 21 km + dom 15 km</span></summary><div class="mp-days"><div class="mp-day run"><span class="d">Mar 22</span><span>6√ó1000 m a 4:50 (rec. 2' trote) + 2+2 km (~11,5 km)</span></div><div class="mp-day run"><span class="d">Mi√© 23</span><span>10 km suaves</span></div><div class="mp-day run"><span class="d">Jue 24 (Nochebuena)</span><span>3 km de calentamiento + 5 km c√≥modos, por la ma√±ana</span></div><div class="mp-day run"><span class="d">S√°b 26</span><span>21 km progresivos hasta 5:20</span></div><div class="mp-day run"><span class="d">Dom 27</span><span>15 km suaves</span></div></div></details><details class="mp-week"><summary><span class="mp-sem">Sem 5</span><span class="mp-dates">28 dic-3 ene</span><span class="mp-km">~73 km</span><span class="mp-key">Chequeo 10 km (jue 31 dic); <strong>domingo 30 km</strong></span></summary><div class="mp-days"><div class="mp-day run"><span class="d">Mar 29</span><span>14√ó400 m a 1:55 (rec. 30" trote) + 2+2 km (~10,7 km)</span></div><div class="mp-day run"><span class="d">Mi√© 30</span><span>8 km suaves</span></div><div class="mp-day key"><span class="d">Jue 31</span><span><strong>chequeo de 10 km a tope</strong> (referencia ‚â§50:00; por la ma√±ana) + 2+2 km</span></div><div class="mp-day run"><span class="d">S√°b 2</span><span>10 km suaves</span></div><div class="mp-day key"><span class="d">Dom 3</span><span><strong>30 km progresivos (primera tirada de 30 km)</strong></span></div></div></details><details class="mp-week"><summary><span class="mp-sem">Sem 6</span><span class="mp-dates">4-10 ene</span><span class="mp-km">~65 km</span><span class="mp-key">21√ó(300+100); largo 25 km</span></summary><div class="mp-days"><div class="mp-day run"><span class="d">Mar 5</span><span>21√ó(300 m a 1:21 + 100 m suaves) + 2+2 km (~12,4 km)</span></div><div class="mp-day run"><span class="d">Mi√© 6</span><span>8 km suaves</span></div><div class="mp-day run"><span class="d">Jue 7</span><span>10 km progresivos</span></div><div class="mp-day run"><span class="d">S√°b 9</span><span>25 km a ritmo c√≥modo (5:38)</span></div><div class="mp-day run"><span class="d">Dom 10</span><span>10 km suaves</span></div></div></details><details class="mp-week"><summary><span class="mp-sem">Sem 7</span><span class="mp-dates">11-17 ene</span><span class="mp-km">~74 km</span><span class="mp-key">21√ó400; <strong>s√°bado 30 km</strong></span></summary><div class="mp-days"><div class="mp-day run"><span class="d">Mar 12</span><span>21√ó400 m a 1:54 (rec. 30" trote) + 2+2 km (~14 km)</span></div><div class="mp-day run"><span class="d">Mi√© 13</span><span>10 km suaves</span></div><div class="mp-day run"><span class="d">Jue 14</span><span>10 km progresivos</span></div><div class="mp-day key"><span class="d">S√°b 16</span><span><strong>30 km progresivos (segunda tirada de 30 km; tu hito "Tirada larga de 30 km" vence el 17 ene)</strong></span></div><div class="mp-day run"><span class="d">Dom 17</span><span>10 km suaves</span></div></div></details><details class="mp-week"><summary><span class="mp-sem">Sem 8</span><span class="mp-dates">18-24 ene</span><span class="mp-km">~88 km</span><span class="mp-key"><strong>S√°b 10√ó1600 a MP + dom 27 km (20 a MP)</strong></span></summary><div class="mp-days"><div class="mp-day run"><span class="d">Mar 19</span><span>10√ó800 m a 4:00 (rec. 1' trote) + 2+2 km (~14 km)</span></div><div class="mp-day run"><span class="d">Mi√© 20</span><span>8 km suaves</span></div><div class="mp-day run"><span class="d">Jue 21</span><span>10 km a ritmo de media (5:10-5:13)</span></div><div class="mp-day run"><span class="d">Vie 22</span><span>6 km suaves</span></div><div class="mp-day key"><span class="d">S√°b 23</span><span><strong>10√ó1600 m a MP (5:20; 8:32 cada 1600), rec. 2' trote + 2+2 km (~23 km)</strong></span></div><div class="mp-day key"><span class="d">Dom 24</span><span><strong>27 km con los √∫ltimos 20 km a MP (5:20). Fin de semana clave.</strong></span></div><div class="mp-wnote"><em>Regla previa:</em> si el s√°bado llegas cansado, 8√ó1600; el domingo no se toca.</div></div></details><details class="mp-week"><summary><span class="mp-sem">Sem 9</span><span class="mp-dates">25-31 ene</span><span class="mp-km">~55 km</span><span class="mp-key">Descarga</span></summary><div class="mp-days"><div class="mp-day run"><span class="d">Mar 26</span><span>12√ó400 m a 1:54 (rec. 30" trote) + 2+2 km (~10 km).</span></div><div class="mp-day run"><span class="d">Mi√© 27</span><span>10 km en terreno variado</span></div><div class="mp-day run"><span class="d">Jue 28</span><span>3√ó1500 m a 7:00 (rec. 300 m trote) + 2+2 km (~9 km)</span></div><div class="mp-day run"><span class="d">S√°b 30</span><span>14 km suaves</span></div><div class="mp-day run"><span class="d">Dom 31</span><span>12 km CC</span></div></div></details><details class="mp-week"><summary><span class="mp-sem">Sem 10</span><span class="mp-dates">1-7 feb</span><span class="mp-km">~65 km</span><span class="mp-key">10√ó800; dom 20 km progresivo</span></summary><div class="mp-days"><div class="mp-day run"><span class="d">Mar 2</span><span>8 km CC</span></div><div class="mp-day run"><span class="d">Mi√© 3</span><span>10 km CC</span></div><div class="mp-day run"><span class="d">Jue 4</span><span>10√ó800 m a 4:00 (rec. 2' trote) + 2+2 km (~15,5 km)</span></div><div class="mp-day run"><span class="d">S√°b 6</span><span>12 km suaves</span></div><div class="mp-day run"><span class="d">Dom 7</span><span>20 km progresivos</span></div></div></details><details class="mp-week"><summary><span class="mp-sem">Sem 11</span><span class="mp-dates">8-14 feb</span><span class="mp-km">~43 km</span><span class="mp-key">5√ó1000; dom 10 km a MP</span></summary><div class="mp-days"><div class="mp-day run"><span class="d">Mar 9</span><span>5√ó1000 m a 4:50 (rec. 2' trote) + 2+2 km (~11 km)</span></div><div class="mp-day run"><span class="d">Jue 11</span><span>10√ó(700 m fuertes + 100 m suaves), 4:00 cada repetici√≥n, rec. 50"-1' + 2+2 km (~12 km)</span></div><div class="mp-day run"><span class="d">S√°b 13</span><span>10 km suaves</span></div><div class="mp-day key"><span class="d">Dom 14</span><span><strong>10 km a MP (5:20). Pesada de control: ‚â§82 kg.</strong></span></div></div></details><details class="mp-week"><summary><span class="mp-sem">Sem 12</span><span class="mp-dates">15-21 feb</span><span class="mp-km">~21 km</span><span class="mp-key">Afinado; <strong>marat√≥n</strong></span></summary><div class="mp-days"><div class="mp-day run"><span class="d">Mar 16</span><span>2 bloques de 6√ó200 m a ritmo vivo (rec. trote suave, 2' entre bloques) + calentamiento (~7 km)</span></div><div class="mp-day run"><span class="d">Mi√© 17</span><span>8 km suaves</span></div><div class="mp-day run"><span class="d">S√°b 20</span><span>6 km suaves + 4 aceleraciones. <strong>Taper completado.</strong></span></div><div class="mp-day key"><span class="d">Dom 21</span><span><strong>MARAT√ìN DE SEVILLA, objetivo sub 3:45 (5:20/km).</strong> Primeros 5 km a 5:25, despu√©s 5:20.</span></div></div></details>
-          <div class="mp-sec">Despu√©s de la marat√≥n</div>
-          <ul class='mp-list'><li>22 feb-7 mar: 2 semanas de recuperaci√≥n, solo rodajes suaves.</li></ul>
-          <div class="mp-sec">Reglas y notas</div>
-          <ul class='mp-list'><li><strong>Solo se saltan sesiones no clave.</strong> Nunca se acumulan dos sesiones para "recuperar". Si pierdes 3 d√≠as o m√°s, repite la semana anterior al 80% en vez de saltar hacia delante.</li><li><strong>Sesiones clave:</strong> series, tiradas largas, tramos a MP, y el fin de semana de la semana 8.</li><li><strong>Comida:</strong> con 65-88 km semanales no recortes. Practica geles e hidrataci√≥n en las tiradas largas (semanas 1, 5, 7 y 8) y ensaya el desayuno de carrera en la del 24 ene.</li><li><strong>Navidad y A√±o Nuevo</strong> caen en las semanas 4 y 5. Si un d√≠a no se puede, se mueve (no se recupera acumulando). El s√°bado y el domingo de las semanas 4 y 5 son lo importante.</li></ul>
-        </div>
-      </div>
+    <div class="principle">
+      <div class="pr-title">RPE, no ego</div>
+      <div class="pr-body">RPE 7–8 significa que podrías hacer 2–3 reps más. Nunca al fallo en ejercicios principales. En déficit calórico, entrenar al fallo destruye la recuperación.</div>
+    </div>
+    <div class="principle">
+      <div class="pr-title">Hombro: señal de alarma</div>
+      <div class="pr-body">Molestia leve → reduce carga. Dolor agudo o que irradia → para el ejercicio ese día. No seas héroe. Un hombro roto te saca 8 semanas del programa.</div>
+    </div>
+    <div class="principle">
+      <div class="pr-title">Semana de descarga (cada 4)</div>
+      <div class="pr-body">Semanas 4, 8, 12, 16: reduce la carga un 40–50%. Mismos ejercicios, menos peso. No es pereza, es parte del programa.</div>
+    </div>
+    <div class="principle">
+      <div class="pr-title">Proteína antes de entrenar</div>
+      <div class="pr-body">Si entrenas por la mañana, toma al menos 20–30g de proteína antes. Si entrenas por la tarde, la comida previa ya cubre. No entrenes en ayunas con esta frecuencia.</div>
+    </div>
+    <div class="principle">
+      <div class="pr-title">Si pierdes un día</div>
+      <div class="pr-body">No lo recuperes. Continúa con la siguiente sesión en el próximo día disponible. El objetivo es la consistencia a 16 semanas, no la perfección de cada semana.</div>
     </div>
   </div>
+
+  <!-- PROGRESIÓN POR FASES -->
+  <div class="grp-hd"><span class="grp-num">04</span><span class="grp-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5h16"/><path d="M4 15.5l5-5 4 3 7-7"/><path d="M15.5 6.5H20V11"/></svg></span><h2 class="grp-ttl">Progresión por fases</h2><span class="meta">16 semanas</span></div>
+  <div class="prog-table">
+    <div class="prog-table-hdr">
+      <span>Fase</span><span>Semanas</span><span>Enfoque</span><span>Volumen / Intensidad</span>
+    </div>
+    <div class="prog-row">
+      <div class="prog-phase">Adaptación</div>
+      <div class="prog-weeks">1–4</div>
+      <div class="prog-focus">Técnica en ejercicios nuevos. Dominar circuitos de calentamiento.</div>
+      <div><span class="prog-badge">3 series · RPE 6–7</span></div>
+    </div>
+    <div class="prog-row">
+      <div class="prog-phase">Construcción</div>
+      <div class="prog-weeks">5–8</div>
+      <div class="prog-focus">Subir carga progresivamente. Técnica asentada. Finisher completo.</div>
+      <div><span class="prog-badge">4 series · RPE 7–8</span></div>
+    </div>
+    <div class="prog-row">
+      <div class="prog-phase">Intensificación</div>
+      <div class="prog-weeks">9–12</div>
+      <div class="prog-focus">Máxima carga del ciclo. Drop sets y rest-pause a pleno rendimiento.</div>
+      <div><span class="prog-badge">4 series · RPE 8–8.5</span></div>
+    </div>
+    <div class="prog-row">
+      <div class="prog-phase">Consolidación</div>
+      <div class="prog-weeks">13–16</div>
+      <div class="prog-focus">Mantener fuerza, reducir volumen. Resultados visibles.</div>
+      <div><span class="prog-badge">3 series · RPE 7.5 + descarga sem 16</span></div>
+    </div>
+  </div>
+
+  <div class="notice notice-info">
+    <div><strong>Revisión obligatoria en semana 8.</strong> Evalúa progreso en fuerza, composición corporal y nivel de fatiga. Si la carga laboral en Portland es muy alta las primeras semanas, reduce a 2 sesiones temporalmente — pero no a cero. 2 sesiones mantiene, 0 sesiones retrocede.</div>
+  </div>
+
+
 
 </div>
 
 <footer>
   <div class="wrap">
-    <span>Albert's Odyssey ¬∑ Salud ¬∑ Pilar 01</span>
-    <span><a href="../index.html" class="txt-btn">Volver al inicio</a></span>
+    <span>Albert's Odyssey · Salud · Rutina de fuerza</span>
+    <span><a href="index.html#deporte" class="txt-btn">Volver a Deporte</a></span>
   </div>
 </footer>
 
+<div class="cardio-modal-overlay sess-overlay" id="sess-a" onclick="if(event.target===this)closeSess()"><div class="cardio-modal wide"><div class="cardio-modal-hdr"><div><div class="cardio-modal-sub">Lunes · 55–65 min · Empuje + Tirón</div><div class="cardio-modal-title">Full Body A</div></div><button class="cardio-modal-close" onclick="closeSess()">Cerrar</button></div><div class="cardio-modal-body"><div class="session-body">
+
+        <div class="block">
+          <div class="block-label">Calentamiento en circuito — 3 rondas · 45 seg entre rondas</div>
+          <div class="ex">
+            <div><div class="ex-name">Jump squat (sin peso)</div><div class="ex-detail">×10 · Activa sistema nervioso, potencia de pierna para correr</div></div>
+            <div class="ex-tag tag-warmup">Activación</div>
+          </div>
+          <div class="ex">
+            <div><div class="ex-name">Remo con banda</div><div class="ex-detail">×15 · Activa manguito rotador antes del press, protege hombro</div></div>
+            <div class="ex-tag tag-warmup">Hombro</div>
+          </div>
+          <div class="ex">
+            <div><div class="ex-name">Hip hinge con palo</div><div class="ex-detail">×10 · Activa cadena posterior antes de sentadilla</div></div>
+            <div class="ex-tag tag-warmup">Movilidad</div>
+          </div>
+          <div class="ex">
+            <div><div class="ex-name">Mountain climbers</div><div class="ex-detail">×20 · Eleva FC, activa core estabilizador</div></div>
+            <div class="ex-tag tag-warmup">Core</div>
+          </div>
+        </div>
+
+        <div class="block">
+          <div class="block-label">Bloque principal</div>
+          <div class="ex">
+            <div><div class="ex-name">Sentadilla con barra</div><div class="ex-detail">4×4–6 · 2 min descanso · Bajas reps, más carga — desarrollar fuerza real</div></div>
+            <div class="ex-tag tag-primary">Principal</div>
+          </div>
+          <div class="ex">
+            <div><div class="ex-name">Press banca con barra</div><div class="ex-detail">4×4–6 · 2 min descanso · Pausa 1 seg en pecho — más control y activación</div></div>
+            <div class="ex-tag tag-primary">Principal</div>
+          </div>
+          <div class="ex">
+            <div><div class="ex-name">Remo con barra (pronado)</div><div class="ex-detail">4×6–8 · 90 seg descanso · Equilibra press, fortalece espalda alta</div></div>
+            <div class="ex-tag tag-primary">Principal</div>
+          </div>
+        </div>
+
+        <div class="block">
+          <div class="block-label">Bloque funcional + Accesorios</div>
+          <div class="ex">
+            <div><div class="ex-name">Turkish get-up (KB)</div><div class="ex-detail">3×3 por lado · 60 seg descanso · Estabilidad total, coordinación — útil para cualquier deporte</div></div>
+            <div class="ex-tag tag-functional">Funcional</div>
+          </div>
+          <div class="ex">
+            <div><div class="ex-name">Superserie: Curl bíceps + Tríceps polea</div><div class="ex-detail">3×10–12 c/u · 45 seg descanso · Sin descanso entre los dos ejercicios</div></div>
+            <div class="ex-tag tag-secondary">Superserie</div>
+          </div>
+          <div class="ex">
+            <div><div class="ex-name">Elevaciones laterales mancuerna</div><div class="ex-detail">3×15–20 · 45 seg descanso · Peso ligero, codo ligeramente flexionado</div></div>
+            <div class="ex-tag tag-shoulder">Hombro</div>
+          </div>
+        </div>
+
+        <div class="block">
+          <div class="block-label">Core</div>
+          <div class="ex">
+            <div><div class="ex-name">Plancha frontal + Rueda abdominal</div><div class="ex-detail">3×30 seg + 3×8 · 30 seg descanso · Antiextensión — estabilidad en carrera</div></div>
+            <div class="ex-tag tag-core">Core</div>
+          </div>
+        </div>
+
+      </div></div></div></div>
+<div class="cardio-modal-overlay sess-overlay" id="sess-b" onclick="if(event.target===this)closeSess()"><div class="cardio-modal wide"><div class="cardio-modal-hdr"><div><div class="cardio-modal-sub">Miércoles · 55–65 min · Bisagra + Vertical</div><div class="cardio-modal-title">Full Body B</div></div><button class="cardio-modal-close" onclick="closeSess()">Cerrar</button></div><div class="cardio-modal-body"><div class="session-body">
+
+        <div class="block">
+          <div class="block-label">Calentamiento en circuito — 3 rondas · 45 seg entre rondas</div>
+          <div class="ex">
+            <div><div class="ex-name">Puente de glúteo con banda</div><div class="ex-detail">×15 · Activa glúteos antes del peso muerto — reduce riesgo lumbar</div></div>
+            <div class="ex-tag tag-warmup">Activación</div>
+          </div>
+          <div class="ex">
+            <div><div class="ex-name">Face pull con goma</div><div class="ex-detail">×15 · Protege hombro posterior antes del jalón</div></div>
+            <div class="ex-tag tag-warmup">Hombro</div>
+          </div>
+          <div class="ex">
+            <div><div class="ex-name">Inchworm</div><div class="ex-detail">×6 · Movilidad de cadena posterior completa — útil para trekking y correr</div></div>
+            <div class="ex-tag tag-warmup">Movilidad</div>
+          </div>
+          <div class="ex">
+            <div><div class="ex-name">Saltos laterales</div><div class="ex-detail">×10 por lado · Activa estabilizadores de tobillo y rodilla — previene lesiones en carrera</div></div>
+            <div class="ex-tag tag-warmup">Activación</div>
+          </div>
+        </div>
+
+        <div class="block">
+          <div class="block-label">Bloque principal</div>
+          <div class="ex">
+            <div><div class="ex-name">Peso muerto convencional</div><div class="ex-detail">4×3–5 · 3 min descanso · El ejercicio más funcional del gimnasio · Objetivo: acercarse a 150 kg progresivamente</div></div>
+            <div class="ex-tag tag-primary">Principal</div>
+          </div>
+          <div class="ex">
+            <div><div class="ex-name">Jalón al pecho (agarre neutro)</div><div class="ex-detail">4×6–8 · 90 seg descanso · Sustituye dominadas para proteger hombro · Clave en natación</div></div>
+            <div class="ex-tag tag-primary">Principal</div>
+          </div>
+          <div class="ex">
+            <div><div class="ex-name">Press inclinado con mancuernas</div><div class="ex-detail">4×8–10 · 90 seg descanso · Menos estrés en hombro que barra · Mayor rango de movimiento</div></div>
+            <div class="ex-tag tag-primary">Principal</div>
+          </div>
+        </div>
+
+        <div class="block">
+          <div class="block-label">Bloque funcional + Accesorios</div>
+          <div class="ex">
+            <div><div class="ex-name">KB Swing</div><div class="ex-detail">4×15 · 60 seg descanso · Potencia de cadera explosiva — transferible a correr y trekking cuesta arriba</div></div>
+            <div class="ex-tag tag-functional">Funcional</div>
+          </div>
+          <div class="ex">
+            <div><div class="ex-name">Rest-pause: Extensiones tríceps polea</div><div class="ex-detail">1×15 + 15 seg pausa + 8 · 60 seg descanso · Equivale a 2 series en 1 — ahorra tiempo</div></div>
+            <div class="ex-tag tag-secondary">Rest-pause</div>
+          </div>
+          <div class="ex">
+            <div><div class="ex-name">Curl femoral en máquina</div><div class="ex-detail">3×12–15 · 45 seg descanso · Complementa peso muerto, equilibra cuádriceps — previene lesiones en carrera</div></div>
+            <div class="ex-tag tag-secondary">Accesorio</div>
+          </div>
+        </div>
+
+        <div class="block">
+          <div class="block-label">Core</div>
+          <div class="ex">
+            <div><div class="ex-name">Dead bug</div><div class="ex-detail">3×8 por lado · 30 seg descanso · Antiextensión lumbar — estabilidad en movimiento, útil para correr</div></div>
+            <div class="ex-tag tag-core">Core</div>
+          </div>
+          <div class="ex">
+            <div><div class="ex-name">Pallof press en polea</div><div class="ex-detail">3×10 por lado · 30 seg descanso · Resistencia rotacional — estabiliza columna en trekking con mochila</div></div>
+            <div class="ex-tag tag-core">Core</div>
+          </div>
+        </div>
+
+      </div></div></div></div>
+<div class="cardio-modal-overlay sess-overlay" id="sess-c" onclick="if(event.target===this)closeSess()"><div class="cardio-modal wide"><div class="cardio-modal-hdr"><div><div class="cardio-modal-sub">Viernes · 55–65 min · Volumen + Finisher</div><div class="cardio-modal-title">Full Body C</div></div><button class="cardio-modal-close" onclick="closeSess()">Cerrar</button></div><div class="cardio-modal-body"><div class="session-body">
+
+        <div class="block">
+          <div class="block-label">Calentamiento en circuito — 3 rondas · 45 seg entre rondas</div>
+          <div class="ex">
+            <div><div class="ex-name">Sentadilla goblet KB</div><div class="ex-detail">×10 · Activa pierna con movilidad de cadera</div></div>
+            <div class="ex-tag tag-warmup">Activación</div>
+          </div>
+          <div class="ex">
+            <div><div class="ex-name">Rotación torácica en suelo</div><div class="ex-detail">×8 por lado · Movilidad de columna — previene compensaciones en carrera larga</div></div>
+            <div class="ex-tag tag-warmup">Movilidad</div>
+          </div>
+          <div class="ex">
+            <div><div class="ex-name">Skipping en el sitio</div><div class="ex-detail">×20 seg · Activa patrón de carrera, eleva FC</div></div>
+            <div class="ex-tag tag-warmup">Activación</div>
+          </div>
+          <div class="ex">
+            <div><div class="ex-name">Step-up con rodilla alta</div><div class="ex-detail">×8 por lado · Activa glúteo y estabilizadores — patrón de trekking</div></div>
+            <div class="ex-tag tag-warmup">Funcional</div>
+          </div>
+        </div>
+
+        <div class="block">
+          <div class="block-label">Bloque principal</div>
+          <div class="ex">
+            <div><div class="ex-name">Prensa de pierna</div><div class="ex-detail">4×10–12 · 90 seg descanso · Volumen de pierna sin desgaste del SNC — permite entrenar más duro el finisher después</div></div>
+            <div class="ex-tag tag-primary">Principal</div>
+          </div>
+          <div class="ex">
+            <div><div class="ex-name">Remo en polea baja (agarre neutro)</div><div class="ex-detail">4×10–12 · 90 seg descanso · Volumen de espalda — acumula trabajo que A y B no completan</div></div>
+            <div class="ex-tag tag-primary">Principal</div>
+          </div>
+          <div class="ex">
+            <div><div class="ex-name">Dips en paralelas — drop set</div><div class="ex-detail">Serie máx → -20% → máx · 2 min descanso · Si molesta hombro sustituir por fondos en banco</div></div>
+            <div class="ex-tag tag-primary">Drop set</div>
+          </div>
+        </div>
+
+        <div class="block">
+          <div class="block-label">Bloque funcional</div>
+          <div class="ex">
+            <div><div class="ex-name">Zancadas caminando con mancuernas</div><div class="ex-detail">3×12 por pierna · 45 seg descanso · Patrón de trekking directo — estabilidad unilateral con carga</div></div>
+            <div class="ex-tag tag-functional">Funcional</div>
+          </div>
+          <div class="ex">
+            <div><div class="ex-name">Superserie: Face pull alto + Curl bíceps</div><div class="ex-detail">3×20 + 3×12 · 45 seg descanso · Salud hombro + trabajo de brazos eficiente</div></div>
+            <div class="ex-tag tag-shoulder">Hombro</div>
+          </div>
+        </div>
+
+        <div class="block">
+          <div class="block-label">Finisher metabólico — 4 rondas · 75 seg entre rondas</div>
+          <table class="finisher-table">
+            <thead>
+              <tr>
+                <th>Ejercicio</th>
+                <th>Reps</th>
+                <th>Por qué</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>KB swing</td>
+                <td>12</td>
+                <td>Potencia de cadera explosiva</td>
+              </tr>
+              <tr>
+                <td>Sentadillas goblet</td>
+                <td>10</td>
+                <td>Resistencia muscular de pierna</td>
+              </tr>
+              <tr>
+                <td>Remo con goma</td>
+                <td>8</td>
+                <td>Resistencia de espalda</td>
+              </tr>
+              <tr>
+                <td>Burpees</td>
+                <td>6</td>
+                <td>Cardiovascular total — transfiere a cualquier deporte</td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="finisher-note">Sin descanso entre ejercicios · 75 seg entre rondas · 4 rondas totales</div>
+        </div>
+
+      </div></div></div></div>
+
 <script>
-function switchPanel(id) {
-  document.querySelectorAll('.panel').forEach(function(p) { p.classList.remove('active'); });
-  document.querySelectorAll('.main-tab').forEach(function(t, i) {
-    var ids = ['nutricion','deporte'];
-    t.classList.toggle('active', ids[i] === id);
-  });
-  document.getElementById('panel-' + id).classList.add('active');
-}
-function st(id) {
-  var o = ['nutrientes','dieta'];
-  document.querySelectorAll('.tab').forEach(function(t, i) { t.classList.toggle('active', o[i] === id); });
-  document.querySelectorAll('.tp').forEach(function(p) { p.classList.toggle('active', p.id === 'tp-' + id); });
-}
-function openCardioModal() {
-  document.getElementById('cardioModalOverlay').classList.add('open');
-  document.body.classList.add('locked');
-}
-function closeCardioModal() {
-  document.getElementById('cardioModalOverlay').classList.remove('open');
-  document.body.classList.remove('locked');
-}
-document.addEventListener('keydown', function(e) {
-  if (e.key === 'Escape') closeCardioModal();
-});
-
-document.addEventListener('DOMContentLoaded', function() {
-  var h = location.hash.replace('#', ''); if (['nutricion','deporte'].indexOf(h) >= 0) switchPanel(h); if (h === 'dieta') { switchPanel('nutricion'); st('dieta'); } if (h === 'cardio') { switchPanel('deporte'); openCardioModal(); }
-});
-
+function openSess(k){closeSess();var el=document.getElementById('sess-'+k);if(!el)return;el.classList.add('open');document.body.classList.add('locked');history.replaceState(null,'','#'+k);}
+function closeSess(){document.querySelectorAll('.sess-overlay.open').forEach(function(o){o.classList.remove('open');});document.body.classList.remove('locked');}
+document.addEventListener('keydown',function(e){if(e.key==='Escape')closeSess();});
+document.addEventListener('DOMContentLoaded',function(){var h=location.hash.replace('#','');if(['a','b','c'].indexOf(h)>=0)openSess(h);});
 </script>
+
 <script type="module" src="../js/cloud.js"></script>
 </body>
 </html>
