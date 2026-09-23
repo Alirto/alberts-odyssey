@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Rutina de fuerza ‚Äî Albert's Odyssey</title>
+<title>Rutina de fuerza — Albert's Odyssey</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..600;1,9..144,300..600&family=DM+Sans:ital,opsz,wght@0,9..40,300..600;1,9..40,300..600&display=swap" rel="stylesheet">
@@ -145,7 +145,7 @@
   .card-desc { font-size: 14.5px; color: var(--ink-2); line-height: 1.55; max-width: 50ch; }
   .card-bottom { display: flex; justify-content: space-between; align-items: baseline; gap: 24px; margin-top: 18px; }
   .card-tags { font-size: 13px; color: var(--ink-3); }
-  .card-tag + .card-tag::before { content: ' ¬∑ '; }
+  .card-tag + .card-tag::before { content: ' · '; }
   .card-arrow { font-size: 11px; letter-spacing: .12em; text-transform: uppercase; font-weight: 600; color: var(--ink); border-bottom: 1px solid var(--ink); padding-bottom: 2px; }
 
   /* Overlays */
@@ -257,7 +257,7 @@
     .meal { grid-template-columns: 1fr; gap: 4px; }
   }
 
-  /* ‚îÄ‚îÄ Rutina de fuerza ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ */
+  /* ── Rutina de fuerza ─────────────────────────────────────── */
   h1 { font-size: clamp(64px, 10.4vw, 136px); }
   .mast-row { display: block; padding: 32px 0 40px; }
   .deck { max-width: 34ch; }
@@ -313,7 +313,7 @@
   .prog-table + .notice { margin-top: 32px; border-top: 1px solid var(--ink); border-bottom: none; padding-top: 24px; }
 
 
-  /* tarjetas de sesi√≥n */
+  /* tarjetas de sesión */
   .tcards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
   .tcard { border: 1px solid var(--ink); padding: 26px 28px 22px; cursor: pointer; display: flex; flex-direction: column; transition: background .15s; }
   .tcard:hover { background: rgba(255,255,255,.45); }
@@ -341,7 +341,7 @@
     .masthead .figures { grid-template-columns: 1fr; }
   }
 
-  /* ‚îÄ‚îÄ Color e iconos ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ */
+  /* ── Color e iconos ─────────────────────────────────────── */
   .ico { display: inline-block; width: 1em; height: 1em; vertical-align: -0.12em; }
   .ico svg { width: 100%; height: 100%; display: block; }
   .dl-ico { display: flex; align-items: center; gap: 9px; }
@@ -356,9 +356,27 @@
   .tcard-day { color: var(--acc); }
   .tc-ico { width: 22px; height: 22px; color: var(--acc); }
   .tc-ico svg { width: 22px; height: 22px; display: block; }
+
+  /* Calendario del bloque */
+  .tcards { margin-top: 36px; }
+  .cal-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; border-top: 1px solid var(--ink); padding-top: 20px; }
+  .cal-week { border: 1px solid var(--rule); border-top: 3px solid var(--ink-3); padding: 14px 16px 16px; min-height: 124px; display: flex; flex-direction: column; gap: 4px; }
+  .cal-top { display: flex; justify-content: space-between; align-items: baseline; gap: 8px; }
+  .cal-n { font-size: 11px; letter-spacing: .12em; text-transform: uppercase; font-weight: 600; color: var(--ink-3); }
+  .cal-d { font-size: 13px; color: var(--ink-3); white-space: nowrap; }
+  .cal-state { font-family: var(--serif); font-variation-settings: 'opsz' 40; font-size: 24px; letter-spacing: -0.02em; line-height: 1.1; margin-top: 8px; }
+  .cal-note { font-size: 13px; color: var(--ink-2); line-height: 1.4; margin-top: 2px; }
+  .cal-up { border-top-color: var(--acc); background: color-mix(in srgb, var(--acc) 7%, var(--paper)); }
+  .cal-up .cal-state { color: var(--acc); }
+  .cal-rest { border-top-color: var(--now); background: color-mix(in srgb, var(--now) 8%, var(--paper)); }
+  .cal-rest .cal-state { color: var(--now); }
+  .cal-legend { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0 32px; margin-top: 20px; }
+  .cal-leg { font-size: 13.5px; color: var(--ink-2); line-height: 1.5; padding: 10px 0; border-top: 1px solid var(--rule-soft); }
+  .cal-leg b { color: var(--ink); font-weight: 500; }
+  @media (max-width: 1000px) { .cal-grid { grid-template-columns: repeat(2, 1fr); } .cal-legend { grid-template-columns: 1fr; } }
 </style>
 <style>body.auth-pending>*:not(#loginScreen){visibility:hidden}</style>
-<script>setTimeout(function(){if(document.body&&document.body.classList.contains('auth-pending')&&!document.getElementById('loginScreen')){var d=document.createElement('div');d.id='loginScreen';d.style.cssText='position:fixed;inset:0;display:flex;align-items:center;justify-content:center;padding:24px;font:15px/1.5 system-ui,sans-serif;color:#45423A;text-align:center;background:#F3F0E8';d.textContent='No se ha podido cargar el acceso. Comprueba la conexi√≥n y recarga la p√°gina.';document.body.appendChild(d);}},8000);</script>
+<script>setTimeout(function(){if(document.body&&document.body.classList.contains('auth-pending')&&!document.getElementById('loginScreen')){var d=document.createElement('div');d.id='loginScreen';d.style.cssText='position:fixed;inset:0;display:flex;align-items:center;justify-content:center;padding:24px;font:15px/1.5 system-ui,sans-serif;color:#45423A;text-align:center;background:#F3F0E8';d.textContent='No se ha podido cargar el acceso. Comprueba la conexión y recarga la página.';document.body.appendChild(d);}},8000);</script>
 </head>
 <body class="auth-pending">
 
@@ -377,121 +395,64 @@
 
 <section class="masthead">
   <div class="wrap">
-    <div class="dateline dl-ico"><span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2.5" y="9.5" width="3" height="5" rx=".5"/><rect x="18.5" y="9.5" width="3" height="5" rx=".5"/><rect x="5.5" y="7.5" width="3" height="9" rx=".5"/><rect x="15.5" y="7.5" width="3" height="9" rx=".5"/><path d="M8.5 12h7"/></svg></span><span>Salud ¬∑ Deporte ¬∑ Programa de fuerza, fase 2</span></div>
+    <div class="dateline dl-ico"><span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2.5" y="9.5" width="3" height="5" rx=".5"/><rect x="18.5" y="9.5" width="3" height="5" rx=".5"/><rect x="5.5" y="7.5" width="3" height="9" rx=".5"/><rect x="15.5" y="7.5" width="3" height="9" rx=".5"/><path d="M8.5 12h7"/></svg></span><span>Salud · Deporte · Programa de fuerza · bloque previo maratón</span></div>
     <h1>Rutina de fuerza</h1>
-    <div class="mast-row">
-      <p class="deck">Full Body tres veces por semana durante 16 semanas. <em>Hombro con carga controlada, d√©ficit cal√≥rico activo, orientado al deporte funcional.</em></p>
-    </div>
-    <div class="figures">
-      <div class="fig"><div class="fig-num num">3<small>por semana</small></div><div class="fig-lbl">Sesiones: lunes, mi√©rcoles y viernes</div></div>
-      <div class="fig"><div class="fig-num num">55<small>a 65 min</small></div><div class="fig-lbl">Duraci√≥n de cada sesi√≥n</div></div>
-      <div class="fig"><div class="fig-num num">16<small>semanas</small></div><div class="fig-lbl">Horizonte de la fase 2, con descarga cada cuatro semanas</div></div>
-    </div>
   </div>
 </section>
 
 <div class="wrap page">
 
-  <div class="notice notice-warn">
-    <div><strong>Hombros.</strong> Nada de press militar pesado ni elevaciones frontales con carga alta. Todos los movimientos de hombro son con mancuernas ligeras y rango controlado. Si hay dolor (no molestia, sino dolor), para el ejercicio y sustituye.</div>
-  </div>
+  <div class="tcards"><div class="tcard" onclick="openSess('a')" id="card-a"><div class="tcard-top"><div class="tcard-day">Lunes</div><span class="tc-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2.5" y="9.5" width="3" height="5" rx=".5"/><rect x="18.5" y="9.5" width="3" height="5" rx=".5"/><rect x="5.5" y="7.5" width="3" height="9" rx=".5"/><rect x="15.5" y="7.5" width="3" height="9" rx=".5"/><path d="M8.5 12h7"/></svg></span></div><div class="tcard-title">Full Body A</div><div class="tcard-meta">Empuje + Tirón</div><ul class="tcard-blocks"><li><span>Calentamiento en circuito</span><span class="meta">4 ejercicios</span></li><li><span>Bloque 1 · Fuerza</span><span class="meta">3 ejercicios</span></li><li><span>Bloque 2 · Dinámico</span><span class="meta">6 ejercicios</span></li><li><span>Bloque 3 · Circuito final</span><span class="meta">4 ejercicios</span></li></ul><div class="tcard-foot"><span class="cap-btn">Abrir sesión</span></div></div><div class="tcard" onclick="openSess('b')" id="card-b"><div class="tcard-top"><div class="tcard-day">Miércoles</div><span class="tc-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2.5" y="9.5" width="3" height="5" rx=".5"/><rect x="18.5" y="9.5" width="3" height="5" rx=".5"/><rect x="5.5" y="7.5" width="3" height="9" rx=".5"/><rect x="15.5" y="7.5" width="3" height="9" rx=".5"/><path d="M8.5 12h7"/></svg></span></div><div class="tcard-title">Full Body B</div><div class="tcard-meta">Bisagra + Vertical</div><ul class="tcard-blocks"><li><span>Calentamiento en circuito</span><span class="meta">4 ejercicios</span></li><li><span>Bloque 1 · Fuerza</span><span class="meta">3 ejercicios</span></li><li><span>Bloque 2 · Dinámico</span><span class="meta">5 ejercicios</span></li><li><span>Bloque 3 · Circuito final</span><span class="meta">4 ejercicios</span></li></ul><div class="tcard-foot"><span class="cap-btn">Abrir sesión</span></div></div><div class="tcard" onclick="openSess('c')" id="card-c"><div class="tcard-top"><div class="tcard-day">Viernes</div><span class="tc-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2.5" y="9.5" width="3" height="5" rx=".5"/><rect x="18.5" y="9.5" width="3" height="5" rx=".5"/><rect x="5.5" y="7.5" width="3" height="9" rx=".5"/><rect x="15.5" y="7.5" width="3" height="9" rx=".5"/><path d="M8.5 12h7"/></svg></span></div><div class="tcard-title">Full Body C</div><div class="tcard-meta">Volumen + Circuito</div><ul class="tcard-blocks"><li><span>Calentamiento en circuito</span><span class="meta">4 ejercicios</span></li><li><span>Bloque 1 · Fuerza</span><span class="meta">3 ejercicios</span></li><li><span>Bloque 2 · Dinámico</span><span class="meta">6 ejercicios</span></li><li><span>Bloque 3 · Circuito final</span><span class="meta">4 ejercicios</span></li></ul><div class="tcard-foot"><span class="cap-btn">Abrir sesión</span></div></div></div>
 
-  <div class="notice notice-info">
-    <div><strong>Fase 2, orientaci√≥n funcional y deportiva.</strong> Calentamientos en circuito con ejercicios que transfieren directamente a carrera, nataci√≥n y trekking. Bloques funcionales con movimientos complejos (turkish get-up, KB swing, dead bug). Finisher metab√≥lico intensificado. Objetivo: fuerza + resistencia + prevenci√≥n de lesiones para deporte.</div>
-  </div>
+  <div class="grp-hd"><span class="grp-num">01</span><span class="grp-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="5" width="17" height="15.5" rx="1"/><path d="M3.5 10h17M8 3v4M16 3v4"/><path d="M8 14h2M14 14h2M8 17h2"/></svg></span><h2 class="grp-ttl">Calendario del bloque</h2><span class="meta">5 oct → 29 nov · 8 semanas</span></div>
+  <div class="cal-grid"><div class="cal-week cal-up"><div class="cal-top"><span class="cal-n">Semana 1</span><span class="cal-d">5–11 oct</span></div><div class="cal-state">Subida</div><div class="cal-note">Arranque del bloque</div></div><div class="cal-week cal-up"><div class="cal-top"><span class="cal-n">Semana 2</span><span class="cal-d">12–18 oct</span></div><div class="cal-state">Subida</div><div class="cal-note"></div></div><div class="cal-week cal-mant"><div class="cal-top"><span class="cal-n">Semana 3</span><span class="cal-d">19–25 oct</span></div><div class="cal-state">Mantenimiento</div><div class="cal-note">Reto 10 km (dom 25)</div></div><div class="cal-week cal-rest"><div class="cal-top"><span class="cal-n">Semana 4</span><span class="cal-d">26 oct–1 nov</span></div><div class="cal-state">Descanso</div><div class="cal-note">Recuperación de carrera</div></div><div class="cal-week cal-up"><div class="cal-top"><span class="cal-n">Semana 5</span><span class="cal-d">2–8 nov</span></div><div class="cal-state">Subida</div><div class="cal-note"></div></div><div class="cal-week cal-up"><div class="cal-top"><span class="cal-n">Semana 6</span><span class="cal-d">9–15 nov</span></div><div class="cal-state">Subida</div><div class="cal-note">Más kilómetros del bloque</div></div><div class="cal-week cal-mant"><div class="cal-top"><span class="cal-n">Semana 7</span><span class="cal-d">16–22 nov</span></div><div class="cal-state">Mantenimiento</div><div class="cal-note">Media maratón (dom 22)</div></div><div class="cal-week cal-rest"><div class="cal-top"><span class="cal-n">Semana 8</span><span class="cal-d">23–29 nov</span></div><div class="cal-state">Descanso</div><div class="cal-note">Test de marcas de fuerza (sáb 28)</div></div></div>
+  <div class="cal-legend"><div class="cal-leg"><b>Subida.</b> Intenta subir la carga respecto a la semana anterior.</div><div class="cal-leg"><b>Mantenimiento.</b> Misma carga que la semana anterior, sin subir.</div><div class="cal-leg"><b>Descanso.</b> Carga y volumen reducidos, mismos ejercicios.</div></div>
 
-  <div class="grp-hd"><span class="grp-num">01</span><span class="grp-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="5" width="17" height="15.5" rx="1"/><path d="M3.5 10h17M8 3v4M16 3v4"/><path d="M8 14h2M14 14h2M8 17h2"/></svg></span><h2 class="grp-ttl">Distribuci√≥n semanal</h2></div>
 
-  <div class="tcards"><div class="tcard" onclick="openSess('a')" id="card-a"><div class="tcard-top"><div class="tcard-day">Lunes</div><span class="tc-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2.5" y="9.5" width="3" height="5" rx=".5"/><rect x="18.5" y="9.5" width="3" height="5" rx=".5"/><rect x="5.5" y="7.5" width="3" height="9" rx=".5"/><rect x="15.5" y="7.5" width="3" height="9" rx=".5"/><path d="M8.5 12h7"/></svg></span></div><div class="tcard-title">Full Body A</div><div class="tcard-meta">55‚Äì65 min ¬∑ Empuje + Tir√≥n</div><ul class="tcard-blocks"><li><span>Calentamiento en circuito</span><span class="meta">4 ejercicios</span></li><li><span>Bloque principal</span><span class="meta">3 ejercicios</span></li><li><span>Bloque funcional + Accesorios</span><span class="meta">3 ejercicios</span></li><li><span>Core</span><span class="meta">1 ejercicio</span></li></ul><div class="tcard-foot"><span class="cap-btn">Abrir sesi√≥n</span></div></div><div class="tcard" onclick="openSess('b')" id="card-b"><div class="tcard-top"><div class="tcard-day">Mi√©rcoles</div><span class="tc-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2.5" y="9.5" width="3" height="5" rx=".5"/><rect x="18.5" y="9.5" width="3" height="5" rx=".5"/><rect x="5.5" y="7.5" width="3" height="9" rx=".5"/><rect x="15.5" y="7.5" width="3" height="9" rx=".5"/><path d="M8.5 12h7"/></svg></span></div><div class="tcard-title">Full Body B</div><div class="tcard-meta">55‚Äì65 min ¬∑ Bisagra + Vertical</div><ul class="tcard-blocks"><li><span>Calentamiento en circuito</span><span class="meta">4 ejercicios</span></li><li><span>Bloque principal</span><span class="meta">3 ejercicios</span></li><li><span>Bloque funcional + Accesorios</span><span class="meta">3 ejercicios</span></li><li><span>Core</span><span class="meta">2 ejercicios</span></li></ul><div class="tcard-foot"><span class="cap-btn">Abrir sesi√≥n</span></div></div><div class="tcard" onclick="openSess('c')" id="card-c"><div class="tcard-top"><div class="tcard-day">Viernes</div><span class="tc-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2.5" y="9.5" width="3" height="5" rx=".5"/><rect x="18.5" y="9.5" width="3" height="5" rx=".5"/><rect x="5.5" y="7.5" width="3" height="9" rx=".5"/><rect x="15.5" y="7.5" width="3" height="9" rx=".5"/><path d="M8.5 12h7"/></svg></span></div><div class="tcard-title">Full Body C</div><div class="tcard-meta">55‚Äì65 min ¬∑ Volumen + Finisher</div><ul class="tcard-blocks"><li><span>Calentamiento en circuito</span><span class="meta">4 ejercicios</span></li><li><span>Bloque principal</span><span class="meta">3 ejercicios</span></li><li><span>Bloque funcional</span><span class="meta">2 ejercicios</span></li><li><span>Finisher metab√≥lico</span><span class="meta">4 ejercicios</span></li></ul><div class="tcard-foot"><span class="cap-btn">Abrir sesi√≥n</span></div></div></div>
-
-  <!-- D√çAS DE DESCANSO -->
-  <div class="grp-hd"><span class="grp-num">02</span><span class="grp-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 3v2.5M12 18.5V21M3 12h2.5M18.5 12H21M5.6 5.6l1.8 1.8M16.6 16.6l1.8 1.8M5.6 18.4l1.8-1.8M16.6 7.4l1.8-1.8"/></svg></span><h2 class="grp-ttl">D√≠as de descanso activo</h2></div>
+  <!-- DÍAS DE DESCANSO -->
+  <div class="grp-hd"><span class="grp-num">02</span><span class="grp-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 3v2.5M12 18.5V21M3 12h2.5M18.5 12H21M5.6 5.6l1.8 1.8M16.6 16.6l1.8 1.8M5.6 18.4l1.8-1.8M16.6 7.4l1.8-1.8"/></svg></span><h2 class="grp-ttl">El resto de la semana</h2></div>
   <div class="rest-grid">
     <div class="rest-card">
       <div class="rest-day">Martes</div>
-      <div class="rest-title">Descanso activo</div>
-      <div class="rest-desc">Caminar 30‚Äì45 min a paso ligero o estiramientos. Sin carga. El m√∫sculo crece aqu√≠.</div>
+      <div class="rest-title">Carrera · series</div>
+      <div class="rest-desc">Sesión de series o rodaje según el Planning Maratón.</div>
     </div>
     <div class="rest-card">
       <div class="rest-day">Jueves</div>
-      <div class="rest-title">Movilidad o cardio suave</div>
-      <div class="rest-desc">20 min de movilidad de cadera y hombros, o bicicleta est√°tica a ritmo conversacional.</div>
+      <div class="rest-title">Carrera suave</div>
+      <div class="rest-desc">Rodaje suave según el Planning Maratón (desde la semana 2).</div>
     </div>
     <div class="rest-card">
-      <div class="rest-day">S√°bado</div>
-      <div class="rest-title">Actividad libre</div>
-      <div class="rest-desc">Trekking, p√°del, f√∫tbol, nataci√≥n ‚Äî lo que apetezca. Cuenta como actividad social tambi√©n.</div>
+      <div class="rest-day">Sábado</div>
+      <div class="rest-title">Tirada larga</div>
+      <div class="rest-desc">Carrera larga con el club, según el Planning Maratón.</div>
     </div>
     <div class="rest-card">
       <div class="rest-day">Domingo</div>
-      <div class="rest-title">Cardio dominical</div>
-      <div class="rest-desc">Sesi√≥n de carrera progresiva seg√∫n programa de 19 semanas. Ver tabla en secci√≥n Deporte.</div>
+      <div class="rest-title">Descanso o carrera suave</div>
+      <div class="rest-desc">Según la semana del Planning Maratón.</div>
     </div>
   </div>
 
   <!-- PRINCIPIOS -->
-  <div class="grp-hd"><span class="grp-num">03</span><span class="grp-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3.5l7 3v5.5c0 4.2-3 7.4-7 8.5-4-1.1-7-4.3-7-8.5V6.5l7-3z"/><path d="M9 12l2 2 4-4"/></svg></span><h2 class="grp-ttl">Principios de ejecuci√≥n</h2></div>
+  <div class="grp-hd"><span class="grp-num">03</span><span class="grp-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3.5l7 3v5.5c0 4.2-3 7.4-7 8.5-4-1.1-7-4.3-7-8.5V6.5l7-3z"/><path d="M9 12l2 2 4-4"/></svg></span><h2 class="grp-ttl">Principios de ejecución</h2></div>
   <div class="principles-grid">
     <div class="principle">
-      <div class="pr-title">Progresi√≥n semanal</div>
-      <div class="pr-body">Si completas todas las series en el rango alto de reps con buena t√©cnica, a√±ade 2.5 kg la semana siguiente en tren inferior y 1.25‚Äì2.5 kg en superior.</div>
+      <div class="pr-title">Hombro: señal de alarma</div>
+      <div class="pr-body">Molestia leve → reduce carga. Dolor agudo o que irradia → para el ejercicio ese día. No seas héroe. Un hombro roto te saca 8 semanas del programa.</div>
     </div>
     <div class="principle">
-      <div class="pr-title">RPE, no ego</div>
-      <div class="pr-body">RPE 7‚Äì8 significa que podr√≠as hacer 2‚Äì3 reps m√°s. Nunca al fallo en ejercicios principales. En d√©ficit cal√≥rico, entrenar al fallo destruye la recuperaci√≥n.</div>
+      <div class="pr-title">Proteína antes de entrenar</div>
+      <div class="pr-body">Si entrenas por la mañana, toma al menos 20–30g de proteína antes. Si entrenas por la tarde, la comida previa ya cubre. No entrenes en ayunas con esta frecuencia.</div>
     </div>
     <div class="principle">
-      <div class="pr-title">Hombro: se√±al de alarma</div>
-      <div class="pr-body">Molestia leve ‚Üí reduce carga. Dolor agudo o que irradia ‚Üí para el ejercicio ese d√≠a. No seas h√©roe. Un hombro roto te saca 8 semanas del programa.</div>
-    </div>
-    <div class="principle">
-      <div class="pr-title">Semana de descarga (cada 4)</div>
-      <div class="pr-body">Semanas 4, 8, 12, 16: reduce la carga un 40‚Äì50%. Mismos ejercicios, menos peso. No es pereza, es parte del programa.</div>
-    </div>
-    <div class="principle">
-      <div class="pr-title">Prote√≠na antes de entrenar</div>
-      <div class="pr-body">Si entrenas por la ma√±ana, toma al menos 20‚Äì30g de prote√≠na antes. Si entrenas por la tarde, la comida previa ya cubre. No entrenes en ayunas con esta frecuencia.</div>
-    </div>
-    <div class="principle">
-      <div class="pr-title">Si pierdes un d√≠a</div>
-      <div class="pr-body">No lo recuperes. Contin√∫a con la siguiente sesi√≥n en el pr√≥ximo d√≠a disponible. El objetivo es la consistencia a 16 semanas, no la perfecci√≥n de cada semana.</div>
-    </div>
-  </div>
-
-  <!-- PROGRESI√ìN POR FASES -->
-  <div class="grp-hd"><span class="grp-num">04</span><span class="grp-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5h16"/><path d="M4 15.5l5-5 4 3 7-7"/><path d="M15.5 6.5H20V11"/></svg></span><h2 class="grp-ttl">Progresi√≥n por fases</h2><span class="meta">16 semanas</span></div>
-  <div class="prog-table">
-    <div class="prog-table-hdr">
-      <span>Fase</span><span>Semanas</span><span>Enfoque</span><span>Volumen / Intensidad</span>
-    </div>
-    <div class="prog-row">
-      <div class="prog-phase">Adaptaci√≥n</div>
-      <div class="prog-weeks">1‚Äì4</div>
-      <div class="prog-focus">T√©cnica en ejercicios nuevos. Dominar circuitos de calentamiento.</div>
-      <div><span class="prog-badge">3 series ¬∑ RPE 6‚Äì7</span></div>
-    </div>
-    <div class="prog-row">
-      <div class="prog-phase">Construcci√≥n</div>
-      <div class="prog-weeks">5‚Äì8</div>
-      <div class="prog-focus">Subir carga progresivamente. T√©cnica asentada. Finisher completo.</div>
-      <div><span class="prog-badge">4 series ¬∑ RPE 7‚Äì8</span></div>
-    </div>
-    <div class="prog-row">
-      <div class="prog-phase">Intensificaci√≥n</div>
-      <div class="prog-weeks">9‚Äì12</div>
-      <div class="prog-focus">M√°xima carga del ciclo. Drop sets y rest-pause a pleno rendimiento.</div>
-      <div><span class="prog-badge">4 series ¬∑ RPE 8‚Äì8.5</span></div>
-    </div>
-    <div class="prog-row">
-      <div class="prog-phase">Consolidaci√≥n</div>
-      <div class="prog-weeks">13‚Äì16</div>
-      <div class="prog-focus">Mantener fuerza, reducir volumen. Resultados visibles.</div>
-      <div><span class="prog-badge">3 series ¬∑ RPE 7.5 + descarga sem 16</span></div>
+      <div class="pr-title">Si pierdes un día</div>
+      <div class="pr-body">No lo recuperes. Continúa con la siguiente sesión en el próximo día disponible. El objetivo es la consistencia durante las 8 semanas del bloque previo, no la perfección de cada semana.</div>
     </div>
   </div>
 
   <div class="notice notice-info">
-    <div><strong>Revisi√≥n obligatoria en semana 8.</strong> Eval√∫a progreso en fuerza, composici√≥n corporal y nivel de fatiga. Si la carga laboral en Portland es muy alta las primeras semanas, reduce a 2 sesiones temporalmente ‚Äî pero no a cero. 2 sesiones mantiene, 0 sesiones retrocede.</div>
+    <div><strong>Semana 8 cierra el bloque previo.</strong> Coincide con el test de marcas de fuerza (sáb 28 nov) y con la recuperación tras la media maratón. A partir del 30 nov, con el plan de 12 semanas hacia la maratón, el gimnasio baja a 2 sesiones — esa versión se diseña más adelante. Si la carga laboral se dispara antes, baja a 2 sesiones esa semana, pero no a cero.</div>
   </div>
 
 
@@ -500,226 +461,42 @@
 
 <footer>
   <div class="wrap">
-    <span>Albert's Odyssey ¬∑ Salud ¬∑ Rutina de fuerza</span>
+    <span>Albert's Odyssey · Salud · Rutina de fuerza</span>
     <span><a href="index.html#deporte" class="txt-btn">Volver a Deporte</a></span>
   </div>
 </footer>
 
-<div class="cardio-modal-overlay sess-overlay" id="sess-a" onclick="if(event.target===this)closeSess()"><div class="cardio-modal wide"><div class="cardio-modal-hdr"><div><div class="cardio-modal-sub">Lunes ¬∑ 55‚Äì65 min ¬∑ Empuje + Tir√≥n</div><div class="cardio-modal-title">Full Body A</div></div><button class="cardio-modal-close" onclick="closeSess()">Cerrar</button></div><div class="cardio-modal-body"><div class="session-body">
+<div class="cardio-modal-overlay sess-overlay" id="sess-a" onclick="if(event.target===this)closeSess()"><div class="cardio-modal wide"><div class="cardio-modal-hdr"><div><div class="cardio-modal-sub">Lunes · Empuje + Tirón</div><div class="cardio-modal-title">Full Body A</div></div><button class="cardio-modal-close" onclick="closeSess()">Cerrar</button></div><div class="cardio-modal-body"><div class="session-body">
 
-        <div class="block">
-          <div class="block-label">Calentamiento en circuito ‚Äî 3 rondas ¬∑ 45 seg entre rondas</div>
-          <div class="ex">
-            <div><div class="ex-name">Jump squat (sin peso)</div><div class="ex-detail">√ó10 ¬∑ Activa sistema nervioso, potencia de pierna para correr</div></div>
-            <div class="ex-tag tag-warmup">Activaci√≥n</div>
-          </div>
-          <div class="ex">
-            <div><div class="ex-name">Remo con banda</div><div class="ex-detail">√ó15 ¬∑ Activa manguito rotador antes del press, protege hombro</div></div>
-            <div class="ex-tag tag-warmup">Hombro</div>
-          </div>
-          <div class="ex">
-            <div><div class="ex-name">Hip hinge con palo</div><div class="ex-detail">√ó10 ¬∑ Activa cadena posterior antes de sentadilla</div></div>
-            <div class="ex-tag tag-warmup">Movilidad</div>
-          </div>
-          <div class="ex">
-            <div><div class="ex-name">Mountain climbers</div><div class="ex-detail">√ó20 ¬∑ Eleva FC, activa core estabilizador</div></div>
-            <div class="ex-tag tag-warmup">Core</div>
-          </div>
-        </div>
+        <div class="block"><div class="block-label">Calentamiento en circuito — 3 rondas · 1 min de descanso</div><div class="ex"><div><div class="ex-name">Step-up con rodilla alta</div><div class="ex-detail">8 por pierna</div></div><div class="ex-tag tag-warmup">Calentamiento</div></div><div class="ex"><div><div class="ex-name">Flexiones</div><div class="ex-detail">8 controladas</div></div><div class="ex-tag tag-warmup">Calentamiento</div></div><div class="ex"><div><div class="ex-name">Leg raises</div><div class="ex-detail">8 controladas</div></div><div class="ex-tag tag-warmup">Calentamiento</div></div><div class="ex"><div><div class="ex-name">Remo en ergómetro</div><div class="ex-detail">45 seg</div></div><div class="ex-tag tag-warmup">Calentamiento</div></div></div>
 
-        <div class="block">
-          <div class="block-label">Bloque principal</div>
-          <div class="ex">
-            <div><div class="ex-name">Sentadilla con barra</div><div class="ex-detail">4√ó4‚Äì6 ¬∑ 2 min descanso ¬∑ Bajas reps, m√°s carga ‚Äî desarrollar fuerza real</div></div>
-            <div class="ex-tag tag-primary">Principal</div>
-          </div>
-          <div class="ex">
-            <div><div class="ex-name">Press banca con barra</div><div class="ex-detail">4√ó4‚Äì6 ¬∑ 2 min descanso ¬∑ Pausa 1 seg en pecho ‚Äî m√°s control y activaci√≥n</div></div>
-            <div class="ex-tag tag-primary">Principal</div>
-          </div>
-          <div class="ex">
-            <div><div class="ex-name">Remo con barra (pronado)</div><div class="ex-detail">4√ó6‚Äì8 ¬∑ 90 seg descanso ¬∑ Equilibra press, fortalece espalda alta</div></div>
-            <div class="ex-tag tag-primary">Principal</div>
-          </div>
-        </div>
+        <div class="block"><div class="block-label">Bloque 1 — Fuerza</div><div class="ex"><div><div class="ex-name">Sentadilla con barra</div><div class="ex-detail">5 reps × 4 series · 2 min descanso</div></div><div class="ex-tag tag-primary">Fuerza</div></div><div class="ex"><div><div class="ex-name">Press banca con barra</div><div class="ex-detail">6 reps × 4 series · 2 min descanso</div></div><div class="ex-tag tag-primary">Fuerza</div></div><div class="ex"><div><div class="ex-name">Remo con barra</div><div class="ex-detail">6 reps × 4 series · 2 min descanso</div></div><div class="ex-tag tag-primary">Fuerza</div></div></div>
 
-        <div class="block">
-          <div class="block-label">Bloque funcional + Accesorios</div>
-          <div class="ex">
-            <div><div class="ex-name">Turkish get-up (KB)</div><div class="ex-detail">3√ó3 por lado ¬∑ 60 seg descanso ¬∑ Estabilidad total, coordinaci√≥n ‚Äî √∫til para cualquier deporte</div></div>
-            <div class="ex-tag tag-functional">Funcional</div>
-          </div>
-          <div class="ex">
-            <div><div class="ex-name">Superserie: Curl b√≠ceps + Tr√≠ceps polea</div><div class="ex-detail">3√ó10‚Äì12 c/u ¬∑ 45 seg descanso ¬∑ Sin descanso entre los dos ejercicios</div></div>
-            <div class="ex-tag tag-secondary">Superserie</div>
-          </div>
-          <div class="ex">
-            <div><div class="ex-name">Elevaciones laterales mancuerna</div><div class="ex-detail">3√ó15‚Äì20 ¬∑ 45 seg descanso ¬∑ Peso ligero, codo ligeramente flexionado</div></div>
-            <div class="ex-tag tag-shoulder">Hombro</div>
-          </div>
-        </div>
+        <div class="block"><div class="block-label">Bloque 2 — Dinámico</div><div class="ex"><div><div class="ex-name">Press Arnold con mancuernas</div><div class="ex-detail">8–10 reps × 3 series · 1:30 descanso</div></div><div class="ex-tag tag-shoulder">Hombro</div></div><div class="ex"><div><div class="ex-name">Superserie: Curl bíceps + Extensión de tríceps</div><div class="ex-detail">8–10 reps × 3 series · 1 min descanso</div></div><div class="ex-tag tag-secondary">Superserie</div></div><div class="ex"><div><div class="ex-name">Hip thrust</div><div class="ex-detail">10–12 reps × 3 series · 1 min descanso</div></div><div class="ex-tag tag-secondary">Dinámico</div></div><div class="ex"><div><div class="ex-name">Superserie: Plancha + Rueda abdominal</div><div class="ex-detail">45 seg + 10 reps × 3 series · 1 min descanso</div></div><div class="ex-tag tag-secondary">Superserie</div></div></div>
 
-        <div class="block">
-          <div class="block-label">Core</div>
-          <div class="ex">
-            <div><div class="ex-name">Plancha frontal + Rueda abdominal</div><div class="ex-detail">3√ó30 seg + 3√ó8 ¬∑ 30 seg descanso ¬∑ Antiextensi√≥n ‚Äî estabilidad en carrera</div></div>
-            <div class="ex-tag tag-core">Core</div>
-          </div>
-        </div>
+        <div class="block"><div class="block-label">Bloque 3 — Circuito final · 3 rondas · 45 seg de descanso</div><div class="ex"><div><div class="ex-name">Kettlebell swing</div><div class="ex-detail">10</div></div><div class="ex-tag tag-hit">Circuito</div></div><div class="ex"><div><div class="ex-name">Burpees</div><div class="ex-detail">8</div></div><div class="ex-tag tag-hit">Circuito</div></div><div class="ex"><div><div class="ex-name">Saltos al cajón</div><div class="ex-detail">10</div></div><div class="ex-tag tag-hit">Circuito</div></div><div class="ex"><div><div class="ex-name">Mountain climbers</div><div class="ex-detail">10</div></div><div class="ex-tag tag-hit">Circuito</div></div></div>
 
       </div></div></div></div>
-<div class="cardio-modal-overlay sess-overlay" id="sess-b" onclick="if(event.target===this)closeSess()"><div class="cardio-modal wide"><div class="cardio-modal-hdr"><div><div class="cardio-modal-sub">Mi√©rcoles ¬∑ 55‚Äì65 min ¬∑ Bisagra + Vertical</div><div class="cardio-modal-title">Full Body B</div></div><button class="cardio-modal-close" onclick="closeSess()">Cerrar</button></div><div class="cardio-modal-body"><div class="session-body">
+<div class="cardio-modal-overlay sess-overlay" id="sess-b" onclick="if(event.target===this)closeSess()"><div class="cardio-modal wide"><div class="cardio-modal-hdr"><div><div class="cardio-modal-sub">Miércoles · Bisagra + Vertical</div><div class="cardio-modal-title">Full Body B</div></div><button class="cardio-modal-close" onclick="closeSess()">Cerrar</button></div><div class="cardio-modal-body"><div class="session-body">
 
-        <div class="block">
-          <div class="block-label">Calentamiento en circuito ‚Äî 3 rondas ¬∑ 45 seg entre rondas</div>
-          <div class="ex">
-            <div><div class="ex-name">Puente de gl√∫teo con banda</div><div class="ex-detail">√ó15 ¬∑ Activa gl√∫teos antes del peso muerto ‚Äî reduce riesgo lumbar</div></div>
-            <div class="ex-tag tag-warmup">Activaci√≥n</div>
-          </div>
-          <div class="ex">
-            <div><div class="ex-name">Face pull con goma</div><div class="ex-detail">√ó15 ¬∑ Protege hombro posterior antes del jal√≥n</div></div>
-            <div class="ex-tag tag-warmup">Hombro</div>
-          </div>
-          <div class="ex">
-            <div><div class="ex-name">Inchworm</div><div class="ex-detail">√ó6 ¬∑ Movilidad de cadena posterior completa ‚Äî √∫til para trekking y correr</div></div>
-            <div class="ex-tag tag-warmup">Movilidad</div>
-          </div>
-          <div class="ex">
-            <div><div class="ex-name">Saltos laterales</div><div class="ex-detail">√ó10 por lado ¬∑ Activa estabilizadores de tobillo y rodilla ‚Äî previene lesiones en carrera</div></div>
-            <div class="ex-tag tag-warmup">Activaci√≥n</div>
-          </div>
-        </div>
+        <div class="block"><div class="block-label">Calentamiento en circuito — 3 rondas · 1 min de descanso</div><div class="ex"><div><div class="ex-name">Step-up con rodilla alta</div><div class="ex-detail">8 por pierna</div></div><div class="ex-tag tag-warmup">Calentamiento</div></div><div class="ex"><div><div class="ex-name">Flexiones</div><div class="ex-detail">8 controladas</div></div><div class="ex-tag tag-warmup">Calentamiento</div></div><div class="ex"><div><div class="ex-name">Leg raises</div><div class="ex-detail">8 controladas</div></div><div class="ex-tag tag-warmup">Calentamiento</div></div><div class="ex"><div><div class="ex-name">Remo en ergómetro</div><div class="ex-detail">45 seg</div></div><div class="ex-tag tag-warmup">Calentamiento</div></div></div>
 
-        <div class="block">
-          <div class="block-label">Bloque principal</div>
-          <div class="ex">
-            <div><div class="ex-name">Peso muerto convencional</div><div class="ex-detail">4√ó3‚Äì5 ¬∑ 3 min descanso ¬∑ El ejercicio m√°s funcional del gimnasio ¬∑ Objetivo: acercarse a 150 kg progresivamente</div></div>
-            <div class="ex-tag tag-primary">Principal</div>
-          </div>
-          <div class="ex">
-            <div><div class="ex-name">Jal√≥n al pecho (agarre neutro)</div><div class="ex-detail">4√ó6‚Äì8 ¬∑ 90 seg descanso ¬∑ Sustituye dominadas para proteger hombro ¬∑ Clave en nataci√≥n</div></div>
-            <div class="ex-tag tag-primary">Principal</div>
-          </div>
-          <div class="ex">
-            <div><div class="ex-name">Press inclinado con mancuernas</div><div class="ex-detail">4√ó8‚Äì10 ¬∑ 90 seg descanso ¬∑ Menos estr√©s en hombro que barra ¬∑ Mayor rango de movimiento</div></div>
-            <div class="ex-tag tag-primary">Principal</div>
-          </div>
-        </div>
+        <div class="block"><div class="block-label">Bloque 1 — Fuerza</div><div class="ex"><div><div class="ex-name">Peso muerto</div><div class="ex-detail">5 reps × 4 series · 2 min descanso</div></div><div class="ex-tag tag-primary">Fuerza</div></div><div class="ex"><div><div class="ex-name">Dominadas</div><div class="ex-detail">8–10 reps × 4 series · 2 min descanso</div></div><div class="ex-tag tag-primary">Fuerza</div></div><div class="ex"><div><div class="ex-name">Press inclinado</div><div class="ex-detail">8 reps × 4 series · 1:30 descanso</div></div><div class="ex-tag tag-primary">Fuerza</div></div></div>
 
-        <div class="block">
-          <div class="block-label">Bloque funcional + Accesorios</div>
-          <div class="ex">
-            <div><div class="ex-name">KB Swing</div><div class="ex-detail">4√ó15 ¬∑ 60 seg descanso ¬∑ Potencia de cadera explosiva ‚Äî transferible a correr y trekking cuesta arriba</div></div>
-            <div class="ex-tag tag-functional">Funcional</div>
-          </div>
-          <div class="ex">
-            <div><div class="ex-name">Rest-pause: Extensiones tr√≠ceps polea</div><div class="ex-detail">1√ó15 + 15 seg pausa + 8 ¬∑ 60 seg descanso ¬∑ Equivale a 2 series en 1 ‚Äî ahorra tiempo</div></div>
-            <div class="ex-tag tag-secondary">Rest-pause</div>
-          </div>
-          <div class="ex">
-            <div><div class="ex-name">Curl femoral en m√°quina</div><div class="ex-detail">3√ó12‚Äì15 ¬∑ 45 seg descanso ¬∑ Complementa peso muerto, equilibra cu√°driceps ‚Äî previene lesiones en carrera</div></div>
-            <div class="ex-tag tag-secondary">Accesorio</div>
-          </div>
-        </div>
+        <div class="block"><div class="block-label">Bloque 2 — Dinámico</div><div class="ex"><div><div class="ex-name">Remo con mancuernas</div><div class="ex-detail">8 reps × 3 series · 1 min descanso</div></div><div class="ex-tag tag-secondary">Dinámico</div></div><div class="ex"><div><div class="ex-name">Gemelos</div><div class="ex-detail">12 reps × 3 series · 1 min descanso</div></div><div class="ex-tag tag-secondary">Dinámico</div></div><div class="ex"><div><div class="ex-name">Superserie: Pallof con pelota + Sentadilla goblet</div><div class="ex-detail">10 reps × 3 series · 1 min descanso</div></div><div class="ex-tag tag-secondary">Superserie</div></div><div class="ex"><div><div class="ex-name">Laterales de hombro</div><div class="ex-detail">10 reps × 3 series · 1 min descanso</div></div><div class="ex-tag tag-shoulder">Hombro</div></div></div>
 
-        <div class="block">
-          <div class="block-label">Core</div>
-          <div class="ex">
-            <div><div class="ex-name">Dead bug</div><div class="ex-detail">3√ó8 por lado ¬∑ 30 seg descanso ¬∑ Antiextensi√≥n lumbar ‚Äî estabilidad en movimiento, √∫til para correr</div></div>
-            <div class="ex-tag tag-core">Core</div>
-          </div>
-          <div class="ex">
-            <div><div class="ex-name">Pallof press en polea</div><div class="ex-detail">3√ó10 por lado ¬∑ 30 seg descanso ¬∑ Resistencia rotacional ‚Äî estabiliza columna en trekking con mochila</div></div>
-            <div class="ex-tag tag-core">Core</div>
-          </div>
-        </div>
+        <div class="block"><div class="block-label">Bloque 3 — Circuito final · 3 rondas · 45 seg de descanso</div><div class="ex"><div><div class="ex-name">Kettlebell swing</div><div class="ex-detail">10</div></div><div class="ex-tag tag-hit">Circuito</div></div><div class="ex"><div><div class="ex-name">Flexiones</div><div class="ex-detail">15</div></div><div class="ex-tag tag-hit">Circuito</div></div><div class="ex"><div><div class="ex-name">Salto a pies juntos</div><div class="ex-detail">10</div></div><div class="ex-tag tag-hit">Circuito</div></div><div class="ex"><div><div class="ex-name">Russian twist</div><div class="ex-detail">10 por lado</div></div><div class="ex-tag tag-hit">Circuito</div></div></div>
 
       </div></div></div></div>
-<div class="cardio-modal-overlay sess-overlay" id="sess-c" onclick="if(event.target===this)closeSess()"><div class="cardio-modal wide"><div class="cardio-modal-hdr"><div><div class="cardio-modal-sub">Viernes ¬∑ 55‚Äì65 min ¬∑ Volumen + Finisher</div><div class="cardio-modal-title">Full Body C</div></div><button class="cardio-modal-close" onclick="closeSess()">Cerrar</button></div><div class="cardio-modal-body"><div class="session-body">
+<div class="cardio-modal-overlay sess-overlay" id="sess-c" onclick="if(event.target===this)closeSess()"><div class="cardio-modal wide"><div class="cardio-modal-hdr"><div><div class="cardio-modal-sub">Viernes · Volumen + Finisher</div><div class="cardio-modal-title">Full Body C</div></div><button class="cardio-modal-close" onclick="closeSess()">Cerrar</button></div><div class="cardio-modal-body"><div class="session-body">
 
-        <div class="block">
-          <div class="block-label">Calentamiento en circuito ‚Äî 3 rondas ¬∑ 45 seg entre rondas</div>
-          <div class="ex">
-            <div><div class="ex-name">Sentadilla goblet KB</div><div class="ex-detail">√ó10 ¬∑ Activa pierna con movilidad de cadera</div></div>
-            <div class="ex-tag tag-warmup">Activaci√≥n</div>
-          </div>
-          <div class="ex">
-            <div><div class="ex-name">Rotaci√≥n tor√°cica en suelo</div><div class="ex-detail">√ó8 por lado ¬∑ Movilidad de columna ‚Äî previene compensaciones en carrera larga</div></div>
-            <div class="ex-tag tag-warmup">Movilidad</div>
-          </div>
-          <div class="ex">
-            <div><div class="ex-name">Skipping en el sitio</div><div class="ex-detail">√ó20 seg ¬∑ Activa patr√≥n de carrera, eleva FC</div></div>
-            <div class="ex-tag tag-warmup">Activaci√≥n</div>
-          </div>
-          <div class="ex">
-            <div><div class="ex-name">Step-up con rodilla alta</div><div class="ex-detail">√ó8 por lado ¬∑ Activa gl√∫teo y estabilizadores ‚Äî patr√≥n de trekking</div></div>
-            <div class="ex-tag tag-warmup">Funcional</div>
-          </div>
-        </div>
+        <div class="block"><div class="block-label">Calentamiento en circuito — 3 rondas · 1 min de descanso</div><div class="ex"><div><div class="ex-name">Step-up con rodilla alta</div><div class="ex-detail">8 por pierna</div></div><div class="ex-tag tag-warmup">Calentamiento</div></div><div class="ex"><div><div class="ex-name">Flexiones</div><div class="ex-detail">8 controladas</div></div><div class="ex-tag tag-warmup">Calentamiento</div></div><div class="ex"><div><div class="ex-name">Leg raises</div><div class="ex-detail">8 controladas</div></div><div class="ex-tag tag-warmup">Calentamiento</div></div><div class="ex"><div><div class="ex-name">Remo en ergómetro</div><div class="ex-detail">45 seg</div></div><div class="ex-tag tag-warmup">Calentamiento</div></div></div>
 
-        <div class="block">
-          <div class="block-label">Bloque principal</div>
-          <div class="ex">
-            <div><div class="ex-name">Prensa de pierna</div><div class="ex-detail">4√ó10‚Äì12 ¬∑ 90 seg descanso ¬∑ Volumen de pierna sin desgaste del SNC ‚Äî permite entrenar m√°s duro el finisher despu√©s</div></div>
-            <div class="ex-tag tag-primary">Principal</div>
-          </div>
-          <div class="ex">
-            <div><div class="ex-name">Remo en polea baja (agarre neutro)</div><div class="ex-detail">4√ó10‚Äì12 ¬∑ 90 seg descanso ¬∑ Volumen de espalda ‚Äî acumula trabajo que A y B no completan</div></div>
-            <div class="ex-tag tag-primary">Principal</div>
-          </div>
-          <div class="ex">
-            <div><div class="ex-name">Dips en paralelas ‚Äî drop set</div><div class="ex-detail">Serie m√°x ‚Üí -20% ‚Üí m√°x ¬∑ 2 min descanso ¬∑ Si molesta hombro sustituir por fondos en banco</div></div>
-            <div class="ex-tag tag-primary">Drop set</div>
-          </div>
-        </div>
+        <div class="block"><div class="block-label">Bloque 1 — Fuerza</div><div class="ex"><div><div class="ex-name">Prensa</div><div class="ex-detail">10 reps × 4 series · 2 min descanso</div></div><div class="ex-tag tag-primary">Fuerza</div></div><div class="ex"><div><div class="ex-name">Remo en polea</div><div class="ex-detail">8–10 reps × 4 series · 2 min descanso</div></div><div class="ex-tag tag-primary">Fuerza</div></div><div class="ex"><div><div class="ex-name">Fondos</div><div class="ex-detail">15 reps × 4 series · 1:30 descanso</div></div><div class="ex-tag tag-primary">Fuerza</div></div></div>
 
-        <div class="block">
-          <div class="block-label">Bloque funcional</div>
-          <div class="ex">
-            <div><div class="ex-name">Zancadas caminando con mancuernas</div><div class="ex-detail">3√ó12 por pierna ¬∑ 45 seg descanso ¬∑ Patr√≥n de trekking directo ‚Äî estabilidad unilateral con carga</div></div>
-            <div class="ex-tag tag-functional">Funcional</div>
-          </div>
-          <div class="ex">
-            <div><div class="ex-name">Superserie: Face pull alto + Curl b√≠ceps</div><div class="ex-detail">3√ó20 + 3√ó12 ¬∑ 45 seg descanso ¬∑ Salud hombro + trabajo de brazos eficiente</div></div>
-            <div class="ex-tag tag-shoulder">Hombro</div>
-          </div>
-        </div>
+        <div class="block"><div class="block-label">Bloque 2 — Dinámico</div><div class="ex"><div><div class="ex-name">Zancadas</div><div class="ex-detail">8 reps × 3 series · 1 min descanso</div></div><div class="ex-tag tag-secondary">Dinámico</div></div><div class="ex"><div><div class="ex-name">Superserie: Curl martillo + Flexiones de tríceps</div><div class="ex-detail">12 reps × 3 series · 1 min descanso</div></div><div class="ex-tag tag-secondary">Superserie</div></div><div class="ex"><div><div class="ex-name">Superserie: Pallof con pelota + Sentadilla goblet</div><div class="ex-detail">10 reps × 3 series · 1 min descanso</div></div><div class="ex-tag tag-secondary">Superserie</div></div><div class="ex"><div><div class="ex-name">Laterales de hombro</div><div class="ex-detail">10 reps × 3 series · 1 min descanso</div></div><div class="ex-tag tag-shoulder">Hombro</div></div></div>
 
-        <div class="block">
-          <div class="block-label">Finisher metab√≥lico ‚Äî 4 rondas ¬∑ 75 seg entre rondas</div>
-          <table class="finisher-table">
-            <thead>
-              <tr>
-                <th>Ejercicio</th>
-                <th>Reps</th>
-                <th>Por qu√©</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>KB swing</td>
-                <td>12</td>
-                <td>Potencia de cadera explosiva</td>
-              </tr>
-              <tr>
-                <td>Sentadillas goblet</td>
-                <td>10</td>
-                <td>Resistencia muscular de pierna</td>
-              </tr>
-              <tr>
-                <td>Remo con goma</td>
-                <td>8</td>
-                <td>Resistencia de espalda</td>
-              </tr>
-              <tr>
-                <td>Burpees</td>
-                <td>6</td>
-                <td>Cardiovascular total ‚Äî transfiere a cualquier deporte</td>
-              </tr>
-            </tbody>
-          </table>
-          <div class="finisher-note">Sin descanso entre ejercicios ¬∑ 75 seg entre rondas ¬∑ 4 rondas totales</div>
-        </div>
+        <div class="block"><div class="block-label">Bloque 3 — Circuito final · 3 rondas · 45 seg de descanso</div><div class="ex"><div><div class="ex-name">Kettlebell swing</div><div class="ex-detail">10</div></div><div class="ex-tag tag-hit">Circuito</div></div><div class="ex"><div><div class="ex-name">Burpees</div><div class="ex-detail">8</div></div><div class="ex-tag tag-hit">Circuito</div></div><div class="ex"><div><div class="ex-name">Saltos al cajón</div><div class="ex-detail">10</div></div><div class="ex-tag tag-hit">Circuito</div></div><div class="ex"><div><div class="ex-name">Oblicuos</div><div class="ex-detail">10 por lado</div></div><div class="ex-tag tag-hit">Circuito</div></div></div>
 
       </div></div></div></div>
 
