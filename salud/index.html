@@ -618,6 +618,27 @@ document.addEventListener('DOMContentLoaded', function() {
       break;
     }
   }
+
+  // "Tu semana": sustituye los días de carrera por el detalle real de la semana en curso
+  var nowWeek = document.querySelector('.mp-week-now');
+  if (nowWeek){
+    var abbr = {0:'Dom',1:'Lun',2:'Mar',3:'Mié',4:'Jue',5:'Vie',6:'Sáb'};
+    var porDia = {};
+    nowWeek.querySelectorAll('.mp-day.run').forEach(function(d){
+      var fecha = d.querySelector('.d');
+      var desc = d.querySelector('span:last-child');
+      if (!fecha || !desc) return;
+      var pref = fecha.textContent.trim().slice(0, 3);
+      porDia[pref] = desc.textContent.trim();
+    });
+    document.querySelectorAll('.ws-day.run').forEach(function(el){
+      var dow = parseInt(el.getAttribute('data-dow'), 10);
+      var pref = abbr[dow];
+      var ses = el.querySelector('.ws-day-ses');
+      if (ses && porDia[pref]) ses.textContent = porDia[pref];
+      else if (ses && !porDia[pref]) ses.textContent = 'Descanso';
+    });
+  }
 })();
 </script>
 <script type="module" src="../js/cloud.js"></script>
