@@ -287,6 +287,9 @@
   @media (max-width: 600px) { .week-strip { grid-template-columns: repeat(2, 1fr); } .ws-day:nth-child(2n) { border-right: none; } .ws-day:nth-child(4) { border-right: 1px solid var(--rule); } }
   .content-grid-3 { grid-template-columns: repeat(3, 1fr); }
   @media (max-width: 1000px) { .content-grid-3 { grid-template-columns: 1fr; } }
+
+  .week-now-lbl { font-size: 13px; color: var(--ink-3); padding-bottom: 10px; }
+  .week-now-lbl b { color: var(--ink); font-weight: 500; }
 </style>
 <style>body.auth-pending>*:not(#loginScreen){visibility:hidden}</style>
 <script>setTimeout(function(){if(document.body&&document.body.classList.contains('auth-pending')&&!document.getElementById('loginScreen')){var d=document.createElement('div');d.id='loginScreen';d.style.cssText='position:fixed;inset:0;display:flex;align-items:center;justify-content:center;padding:24px;font:15px/1.5 system-ui,sans-serif;color:#45423A;text-align:center;background:#F3F0E8';d.textContent='No se ha podido cargar el acceso. Comprueba la conexión y recarga la página.';document.body.appendChild(d);}},8000);</script>
@@ -484,14 +487,15 @@
 
     
     <div class="grp-hd"><span class="grp-num">01</span><span class="grp-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="5" width="17" height="15.5" rx="1"/><path d="M3.5 10h17M8 3v4M16 3v4"/></svg></span><h2 class="grp-ttl">Tu semana</h2><span class="meta">gimnasio y carrera combinados · toca un día para abrir su detalle</span></div>
+    <div class="week-now-lbl" id="weekNowLbl"></div>
     <div class="week-strip">
       <a class="ws-day gym" href="rutina.html#a" data-dow="1"><div class="ws-day-lbl">Lunes</div><div class="ws-day-type">Gimnasio</div><div class="ws-day-ses">Full Body A</div></a>
-      <a class="ws-day run" href="javascript:void(0)" onclick="openCardioModal()" data-dow="2"><div class="ws-day-lbl">Martes</div><div class="ws-day-type">Carrera</div><div class="ws-day-ses">Series</div></a>
+      <a class="ws-day run" href="javascript:void(0)" onclick="openCardioModal()" data-dow="2"><div class="ws-day-lbl">Martes</div><div class="ws-day-type">Carrera</div><div class="ws-day-ses">—</div></a>
       <a class="ws-day gym" href="rutina.html#b" data-dow="3"><div class="ws-day-lbl">Miércoles</div><div class="ws-day-type">Gimnasio</div><div class="ws-day-ses">Full Body B</div></a>
-      <a class="ws-day run" href="javascript:void(0)" onclick="openCardioModal()" data-dow="4"><div class="ws-day-lbl">Jueves</div><div class="ws-day-type">Carrera</div><div class="ws-day-ses">Rodaje suave</div></a>
+      <a class="ws-day run" href="javascript:void(0)" onclick="openCardioModal()" data-dow="4"><div class="ws-day-lbl">Jueves</div><div class="ws-day-type">Carrera</div><div class="ws-day-ses">—</div></a>
       <a class="ws-day gym" href="rutina.html#c" data-dow="5"><div class="ws-day-lbl">Viernes</div><div class="ws-day-type">Gimnasio</div><div class="ws-day-ses">Full Body C</div></a>
-      <a class="ws-day run" href="javascript:void(0)" onclick="openCardioModal()" data-dow="6"><div class="ws-day-lbl">Sábado</div><div class="ws-day-type">Carrera</div><div class="ws-day-ses">Tirada larga</div></a>
-      <a class="ws-day run" href="javascript:void(0)" onclick="openCardioModal()" data-dow="0"><div class="ws-day-lbl">Domingo</div><div class="ws-day-type">Carrera</div><div class="ws-day-ses">Descanso o suave</div></a>
+      <a class="ws-day run" href="javascript:void(0)" onclick="openCardioModal()" data-dow="6"><div class="ws-day-lbl">Sábado</div><div class="ws-day-type">Carrera</div><div class="ws-day-ses">—</div></a>
+      <a class="ws-day run" href="javascript:void(0)" onclick="openCardioModal()" data-dow="0"><div class="ws-day-lbl">Domingo</div><div class="ws-day-type">Carrera</div><div class="ws-day-ses">—</div></a>
       </div>
 
     <div class="grp-hd"><span class="grp-num">02</span><span class="grp-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2.5" y="9.5" width="3" height="5" rx=".5"/><rect x="18.5" y="9.5" width="3" height="5" rx=".5"/><rect x="5.5" y="7.5" width="3" height="9" rx=".5"/><rect x="15.5" y="7.5" width="3" height="9" rx=".5"/><path d="M8.5 12h7"/></svg></span><h2 class="grp-ttl">Programa</h2></div>
@@ -616,6 +620,26 @@ document.addEventListener('DOMContentLoaded', function() {
       var sem = weeks[i].querySelector('.mp-sem');
       if (sem) sem.insertAdjacentHTML('afterbegin', '<span class="mp-now-tag">Ahora</span>');
       break;
+    }
+  }
+
+  // Etiqueta de semana actual sobre "Tu semana"
+  var lbl = document.getElementById('weekNowLbl');
+  var firstStart = new Date('2026-10-05T00:00:00');
+  var lastWeek = weeks[weeks.length - 1];
+  var lastEnd = lastWeek ? new Date(new Date(lastWeek.getAttribute('data-start') + 'T00:00:00').getTime() + 7*24*3600*1000) : null;
+  if (lbl){
+    var nowWeekEl = document.querySelector('.mp-week-now');
+    if (nowWeekEl){
+      var sem = nowWeekEl.querySelector('.mp-sem').textContent.replace('Ahora', '').trim();
+      var fechas = nowWeekEl.querySelector('.mp-dates').textContent.trim();
+      lbl.innerHTML = 'Semana <b>' + sem + '</b> del bloque · ' + fechas;
+    } else if (today < firstStart) {
+      lbl.innerHTML = 'Antes del bloque previo — <b>empieza el 5 de octubre</b>. Los días de carrera de abajo son orientativos hasta entonces.';
+    } else if (lastEnd && today >= lastEnd) {
+      lbl.innerHTML = 'Bloque de maratón terminado.';
+    } else {
+      lbl.innerHTML = '';
     }
   }
 
