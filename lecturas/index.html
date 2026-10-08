@@ -212,6 +212,51 @@
   .pending-badge { color: var(--acc); }
   .book-card:hover { background: color-mix(in srgb, var(--acc) 6%, transparent); }
   .sl .ico { width: 24px; height: 24px; color: var(--ink-2); align-self: center; margin-right: 2px; }
+
+  /* ── Lectura: estados, lista y ficha ─────────────────────── */
+  .fcount { font-family: var(--sans); font-size: 12px; color: var(--ink-3); margin-left: 7px; letter-spacing: 0; vertical-align: 3px; }
+  .book-line { font-size: 12.5px; color: var(--ink-3); }
+  .book-prev { font-size: 13px; color: var(--ink-2); line-height: 1.5; font-style: italic; margin-top: 4px; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+  .book-card.has-notes .book-author::after { content: none; }
+  .phase-pages { margin-top: 26px; padding-top: 16px; border-top: 1px solid var(--rule); max-width: 34ch; }
+  .pp-line { font-size: 14px; color: var(--ink-3); }
+  .pp-line b { font-family: var(--serif); font-size: 28px; font-weight: 400; color: var(--ink); letter-spacing: -0.02em; }
+  .pp-bar { height: 3px; background: var(--rule-soft); margin-top: 10px; }
+  .pp-bar i { display: block; height: 100%; background: var(--acc); }
+  .pp-next { font-size: 12.5px; color: var(--ink-3); margin-top: 8px; line-height: 1.45; }
+  .rd-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0 48px; border-top: 1px solid var(--ink); }
+  .rd-card { padding: 22px 0 24px; border-bottom: 1px solid var(--rule); cursor: pointer; display: flex; flex-direction: column; gap: 4px; transition: background .15s; }
+  .rd-card:hover { background: rgba(255,255,255,.4); }
+  .rd-top { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; }
+  .rd-badge { font-size: 11px; letter-spacing: .1em; text-transform: uppercase; font-weight: 600; color: var(--acc); }
+  .rd-since, .rd-prog { font-size: 13px; color: var(--ink-3); }
+  .rd-prog { margin-top: 6px; }
+  .rd-actions { margin-top: 12px; display: flex; gap: 8px; }
+  .tl-controls { display: flex; gap: 32px; align-items: flex-end; flex-wrap: wrap; margin-bottom: 8px; }
+  .tl-select { font-size: 15px; background: transparent; border: none; border-bottom: 1px solid var(--rule); padding: 8px 0; outline: none; min-width: 240px; color: var(--ink); border-radius: 0; }
+  .tl-grp { margin-top: 36px; margin-bottom: 14px; font-family: var(--serif); font-variation-settings: 'opsz' 40; font-size: 24px; letter-spacing: -0.02em; display: flex; align-items: baseline; gap: 14px; }
+  .tl-card { cursor: pointer; transition: background .15s; }
+  .tl-card:hover { background: rgba(255,255,255,.4); }
+  .tl-why { font-size: 13.5px; color: var(--ink-2); line-height: 1.5; margin-top: 8px; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+  .tl-imp { color: var(--now); }
+  .tl-foot { margin-top: 10px; }
+  .tl-foot .modal-add-btn, .rd-actions .modal-add-btn { margin-right: 0; font-size: 13px; }
+  .rd-actions .modal-add-btn { margin-right: 20px; }
+  .modal.ficha { width: 760px; }
+  .fi-state-lbl { font-size: 11px; letter-spacing: .12em; text-transform: uppercase; font-weight: 600; color: var(--acc); }
+  .fi-seg { display: flex; border: 1px solid var(--ink); }
+  .fi-seg button { flex: 1; padding: 10px 12px; font-size: 13px; letter-spacing: .04em; border-right: 1px solid var(--ink); transition: background .15s, color .15s; }
+  .fi-seg button:last-child { border-right: none; }
+  .fi-seg button.on { background: var(--ink); color: var(--paper); }
+  .fi-seg button:not(.on):hover { background: rgba(255,255,255,.5); }
+  .fi-grid { row-gap: 18px; }
+  .fi-panel { display: flex; flex-direction: column; gap: 16px; padding: 18px 20px 20px; border: 1px solid var(--rule); }
+  .fi-why { font-size: 15px; line-height: 1.6; color: var(--ink-2); margin-top: 6px; }
+  .fi-note-actions { display: flex; align-items: baseline; gap: 20px; flex-wrap: wrap; margin-top: 4px; }
+  #fi-notes { display: flex; flex-direction: column; gap: 12px; }
+  .notes-editor { width: 100%; min-height: 340px; font-family: var(--sans); font-size: 15px; line-height: 1.7; color: var(--ink); background: transparent; border: 1px solid var(--rule); padding: 14px 16px; resize: vertical; outline: none; border-radius: 0; }
+  .notes-editor:focus { border-color: var(--ink); }
+  @media (max-width: 900px) { .rd-grid { grid-template-columns: 1fr; } .tl-controls { gap: 18px; } .tl-select { min-width: 0; width: 100%; } }
 </style>
 <style>body.auth-pending>*:not(#loginScreen){visibility:hidden}</style>
 <script>setTimeout(function(){if(document.body&&document.body.classList.contains('auth-pending')&&!document.getElementById('loginScreen')){var d=document.createElement('div');d.id='loginScreen';d.style.cssText='position:fixed;inset:0;display:flex;align-items:center;justify-content:center;padding:24px;font:15px/1.5 system-ui,sans-serif;color:#45423A;text-align:center;background:#F3F0E8';d.textContent='No se ha podido cargar el acceso. Comprueba la conexión y recarga la página.';document.body.appendChild(d);}},8000);</script>
@@ -236,18 +281,15 @@
     <div class="dateline dl-ico"><span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 7c-1.6-1.2-3.8-1.6-7-1.5v12c3.2-.1 5.4.3 7 1.5 1.6-1.2 3.8-1.6 7-1.5v-12c-3.2-.1-5.4.3-7 1.5z"/><path d="M12 7v12"/></svg></span><span>Lecturas · Registro desde 2018</span></div>
     <h1>Biblioteca</h1>
     <div class="mast-row">
-      <p class="deck">Registro de lecturas desde 2018. <em>Biografías, economía, ciencia, filosofía.</em> Pulsa un libro para leer las notas.</p>
+      <p class="deck">Registro de lecturas desde 2018. <em>Biografías, economía, ciencia, filosofía.</em> Pulsa un libro para ver su ficha y tus notas.</p>
       <div>
-        <div class="fig-num num" id="stat-total">171</div>
-        <div class="fig-lbl">Libros leídos en <b>9</b> años de registro, con una nota media de <b>4,1</b> sobre 5. <b id="stat-pending">0</b> pendientes y <b id="stat-frases">0</b> frases guardadas.</div>
+        <div class="fig-num num" id="stat-total">0</div>
+        <div class="fig-lbl">Libros leídos en <b id="stat-years">9</b> años de registro, con una nota media de <b id="stat-avg">–</b> sobre 5. <b id="stat-reading">0</b> leyendo, <b id="stat-pending">0</b> por leer y <b id="stat-frases">0</b> frases guardadas.</div>
+        <div class="phase-pages" id="phase-pages"></div>
       </div>
     </div>
     <div class="toolbar">
-      <div class="filters" id="filters">
-        <button class="filter-btn active" onclick="filterYear('all', this)"><span class="tab-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 7c-1.6-1.2-3.8-1.6-7-1.5v12c3.2-.1 5.4.3 7 1.5 1.6-1.2 3.8-1.6 7-1.5v-12c-3.2-.1-5.4.3-7 1.5z"/><path d="M12 7v12"/></svg></span>Todos</button>
-        <button class="filter-btn" onclick="filterYear('pending', this)"><span class="tab-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 3.5h10v17l-5-3.5-5 3.5v-17z"/></svg></span>Pendientes</button>
-        <button class="filter-btn" onclick="filterYear('frases', this)"><span class="tab-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9.5 6.5C6.5 7.3 5 9.5 5 12.5v5h5v-5H7.2c0-1.9 1-3.2 2.3-3.9zM19 6.5c-3 .8-4.5 3-4.5 6v5h5v-5h-2.8c0-1.9 1-3.2 2.3-3.9z"/></svg></span>Frases</button>
-      </div>
+      <div class="filters" id="filters"></div>
       <div class="toolbar-actions">
         <button class="add-book-btn" id="mainAddBtn" onclick="openAddModal()">Añadir libro</button>
         <button class="add-book-btn" onclick="openAddFraseModal()">Añadir frase</button>
@@ -267,20 +309,11 @@
   </div>
 </footer>
 
-<!-- MODAL -->
+<!-- FICHA DEL LIBRO -->
 <div class="modal-overlay" id="modal-overlay" onclick="closeModal(event)">
   <div class="modal" id="modal">
-    <div class="modal-hdr">
-      <button class="modal-close" onclick="closeModalDirect()">Cerrar</button>
-      <div class="modal-rating" id="m-rating"></div>
-      <div class="modal-title" id="m-title"></div>
-      <div class="modal-author" id="m-author"></div>
-      <div class="modal-meta" id="m-meta"></div>
-    </div>
-    <div class="modal-body">
-      <div class="modal-notes-label">Notas de lectura</div>
-      <div id="m-notes-content"></div>
-    </div>
+    <div class="modal-hdr" id="fh"></div>
+    <div class="modal-body" id="fb"></div>
   </div>
 </div>
 
@@ -370,21 +403,29 @@
 </div>
 
 
-<!-- ADD PENDING MODAL -->
+<!-- AÑADIR A LA LISTA -->
 <div class="add-pending-overlay" id="add-pending-overlay" onclick="if(event.target===this)closeAddPendingModal()">
   <div class="add-pending-modal">
     <div class="add-modal-hdr">
-      <h3>Añadir pendiente</h3>
+      <h3>Añadir a la lista</h3>
       <button class="modal-close" onclick="closeAddPendingModal()">Cerrar</button>
     </div>
     <div class="add-modal-body">
       <div class="form-group"><label>Título *</label><input type="text" id="pend-title" placeholder="Título del libro" autocomplete="off"></div>
       <div class="form-group"><label>Autor *</label><input type="text" id="pend-author" placeholder="Nombre del autor" autocomplete="off"></div>
+      <div class="form-row">
+        <div class="form-group"><label>Estado</label><select id="pend-estado" onchange="pendEstadoChange()"><option value="porleer">Por leer</option><option value="leyendo">Leyendo</option></select></div>
+        <div class="form-group"><label>Páginas</label><input type="number" id="pend-pages" min="0" placeholder="0"></div>
+      </div>
+      <div class="form-row" id="pend-leyendo-row" style="display:none">
+        <div class="form-group"><label>Empecé el</label><input type="date" id="pend-inicio"></div>
+        <div class="form-group"><label>Página actual</label><input type="number" id="pend-actual" min="0" placeholder="0"></div>
+      </div>
       <div class="form-group"><label>Nota (opcional)</label><input type="text" id="pend-note" placeholder="Ej: Recomendado por..." autocomplete="off"></div>
       <div id="pend-error" style="font-size:12px;color:#C0614A;display:none;"></div>
       <div class="form-actions">
         <button class="btn-secondary" onclick="closeAddPendingModal()">Cancelar</button>
-        <button class="btn-primary" onclick="savePendingBook()">Añadir a pendientes</button>
+        <button class="btn-primary" onclick="savePendingBook()">Añadir a la lista</button>
       </div>
     </div>
   </div>
@@ -559,6 +600,10 @@ const BOOKS = [
   { title: "Invertir en bolsa con sentido común", author: "Jose Antonio Madrigal", rating: 3, year: "2018", pages: 128, notes: "" },
 ];
 
+// ── LISTA DE LIBROS POR LEER (94 únicos de los 100 recomendados) ──────
+const WL_BLOCKS = ["Real Estate (Prioridad Máxima)", "Inversión y Finanzas", "Biografías", "Estrategia y Liderazgo", "Productividad (Con Criterio)", "Economía, Historia y Pensamiento Crítico", "Ficción y Ensayo", "Ciencia, Tecnología y Futuro", "Huecos Específicos"];
+const WISHLIST = [{"id": "wl001","n": "1","bloque": "Real Estate (Prioridad Máxima)","title": "What Every Real Estate Investor Needs to Know About Cash Flow","author": "Frank Gallinelli","why": "Cap rate, NOI, IRR aplicado a proyectos reales. El manual técnico del analista inmobiliario.","orden": 4,"imp": false},{"id": "wl002","n": "2","bloque": "Real Estate (Prioridad Máxima)","title": "Am I Being Too Subtle?","author": "Sam Zell","why": "Memorias del mayor inversor en RE del mundo. Tu formato favorito (Ride of a Lifetime 5/5, Invent and Wander 5/5).","orden": 3,"imp": false},{"id": "wl003","n": "3","bloque": "Real Estate (Prioridad Máxima)","title": "The Power Broker","author": "Robert Caro","why": "Robert Moses y el urbanismo de Nueva York. 1.300p — la biblia del desarrollo urbano. Más apasionante que el Churchill.","orden": 11,"imp": true,"ordenNota": "proyecto de verano"},{"id": "wl004","n": "4","bloque": "Real Estate (Prioridad Máxima)","title": "The Death and Life of Great American Cities","author": "Jane Jacobs","why": "Por qué algunas ciudades funcionan. Fundamento conceptual del urbanismo moderno. Imprescindible para quien convierte oficinas en apartamentos turísticos.","orden": null,"imp": false},{"id": "wl005","n": "5","bloque": "Real Estate (Prioridad Máxima)","title": "The Millionaire Real Estate Investor","author": "Gary Keller","why": "Marco mental para escalar en RE. Complementa Libertad Inmobiliaria con metodología americana.","orden": null,"imp": false},{"id": "wl006","n": "6","bloque": "Real Estate (Prioridad Máxima)","title": "The Cult of We","author": "Eliot Brown & Maureen Farrell","why": "WeWork y el colapso de Neumann. El caso de estudio más importante en RE tech de la última década.","orden": null,"imp": false},{"id": "wl007","n": "7","bloque": "Real Estate (Prioridad Máxima)","title": "Evicted","author": "Matthew Desmond","why": "Pulitzer sobre el mercado de alquiler. Cambia cómo piensas sobre rentabilidad y responsabilidad en RE.","orden": null,"imp": false},{"id": "wl008","n": "8","bloque": "Real Estate (Prioridad Máxima)","title": "Scale","author": "Geoffrey West","why": "Cómo crecen ciudades y empresas siguiendo las mismas leyes matemáticas.","orden": null,"imp": false},{"id": "wl009","n": "9","bloque": "Real Estate (Prioridad Máxima)","title": "The New Urban Crisis","author": "Richard Florida","why": "Gentrificación, apartamentos turísticos y ciudades globales. Muy relevante para Madrid.","orden": null,"imp": false},{"id": "wl010","n": "10","bloque": "Real Estate (Prioridad Máxima)","title": "Confessions of a Real Estate Entrepreneur","author": "James Randel","why": "Casos reales de deals que salieron bien y mal. Aprendizaje práctico sin glamour.","orden": null,"imp": false},{"id": "wl011","n": "11","bloque": "Inversión y Finanzas","title": "The Intelligent Investor","author": "Benjamin Graham","why": "El hueco más inexplicable de tu biblioteca. Tienes Fisher 5/5, Buffett Essays 5/5, Snowball 5/5 — este es el origen de todo.","orden": 6,"imp": true},{"id": "wl012","n": "12","bloque": "Inversión y Finanzas","title": "Security Analysis","author": "Graham & Dodd","why": "El trabajo académico detrás del anterior. Para después de Graham.","orden": null,"imp": false},{"id": "wl013","n": "13","bloque": "Inversión y Finanzas","title": "The Big Short","author": "Michael Lewis","why": "Su mejor libro. Supera a Liar's Poker (3/5) y Flash Boys (3/5) que ya tienes.","orden": 5,"imp": false},{"id": "wl014","n": "14","bloque": "Inversión y Finanzas","title": "Barbarians at the Gate","author": "Burrough & Helyar","why": "El thriller financiero corporativo más famoso. Si Business Adventures te dio 5/5, este lo supera.","orden": 10,"imp": false},{"id": "wl015","n": "15","bloque": "Inversión y Finanzas","title": "When Genius Failed","author": "Roger Lowenstein","why": "La caída de LTCM. Complementa A Short History of Financial Euphoria (4/5).","orden": null,"imp": false},{"id": "wl016","n": "16","bloque": "Inversión y Finanzas","title": "Against the Gods: The Remarkable Story of Risk","author": "Peter Bernstein","why": "Historia del riesgo desde Grecia hasta Wall Street. Complementa tu trilogía Taleb.","orden": null,"imp": false},{"id": "wl017","n": "17","bloque": "Inversión y Finanzas","title": "More Money Than God","author": "Sebastian Mallaby","why": "Historia de los hedge funds. El siguiente nivel después de Liar's Poker.","orden": null,"imp": false},{"id": "wl018","n": "18","bloque": "Inversión y Finanzas","title": "Den of Thieves","author": "James Stewart","why": "El escándalo de insider trading de los 80 (Boesky, Milken). Narrativa de Lewis quality, menos conocido.","orden": null,"imp": false},{"id": "wl019","n": "19","bloque": "Inversión y Finanzas","title": "The Alchemy of Finance","author": "George Soros","why": "Reflexividad y mercados. Difícil pero revela por qué los mercados no siguen los modelos convencionales.","orden": null,"imp": false},{"id": "wl020","n": "20","bloque": "Inversión y Finanzas","title": "The Almanack of Naval Ravikant","author": "Eric Jorgenson","why": "Corto, gratis online. Sobre riqueza y decisiones. Complementa The Most Important Thing (4/5) de Marks.","orden": null,"imp": false},{"id": "wl021","n": "21","bloque": "Biografías","title": "Alexander Hamilton","author": "Ron Chernow","why": "Dado que Titan (4/5) te gustó, esta es la obra cumbre de Chernow. El hombre que diseñó el sistema financiero americano.","orden": 8,"imp": true},{"id": "wl022","n": "22","bloque": "Biografías","title": "The House of Morgan","author": "Ron Chernow","why": "Historia de JP Morgan. Relevante para quien viene de la banca.","orden": null,"imp": false},{"id": "wl023","n": "23","bloque": "Biografías","title": "Bad Blood","author": "John Carreyrou","why": "El fraude de Theranos. El mejor libro sobre due diligence fallida y señales de alarma que nadie vio.","orden": null,"imp": false},{"id": "wl024","n": "24","bloque": "Biografías","title": "No Filter","author": "Sarah Frier","why": "La historia real de Instagram. Mejor que The Everything Store (3/5).","orden": null,"imp": false},{"id": "wl025","n": "25","bloque": "Biografías","title": "Build","author": "Tony Fadell","why": "El creador del iPod y Nest. Más honesto que Creativity Inc (3/5).","orden": null,"imp": false},{"id": "wl026","n": "26","bloque": "Biografías","title": "The Score Takes Care of Itself","author": "Bill Walsh","why": "Los 49ers y el liderazgo. El mejor libro de gestión deportiva con aplicación directa a proyectos.","orden": null,"imp": false},{"id": "wl027","n": "27","bloque": "Biografías","title": "No Rules Rules","author": "Reed Hastings & Erin Meyer","why": "Cómo Netflix construyó cultura de alto rendimiento. Para cuando gestiones equipos.","orden": null,"imp": false},{"id": "wl028","n": "28","bloque": "Biografías","title": "The Code Breaker","author": "Walter Isaacson","why": "CRISPR y el futuro de la biología. El Isaacson más reciente. Dado Einstein 5/5, Leonardo 5/5, Jobs 5/5.","orden": null,"imp": false},{"id": "wl029","n": "29","bloque": "Biografías","title": "Working","author": "Robert Caro","why": "Cómo escribe sus libros. Corto, para preparar The Power Broker.","orden": null,"imp": false},{"id": "wl030","n": "30","bloque": "Biografías","title": "The House","author": "Charlie Gasparino","why": "Goldman Sachs desde dentro. Lo que Bloomberg by Bloomberg (3/5) no llegó a hacer.","orden": null,"imp": false},{"id": "wl031","n": "31","bloque": "Estrategia y Liderazgo","title": "Never Split the Difference","author": "Chris Voss","why": "El más urgente de toda la lista. Negociación táctica — aplicación inmediata con constructoras y bancos.","orden": 2,"imp": true},{"id": "wl032","n": "32","bloque": "Estrategia y Liderazgo","title": "Good Strategy Bad Strategy","author": "Richard Rumelt","why": "La distinción más importante en estrategia. Cambia cómo evalúas las decisiones de empresa.","orden": null,"imp": false},{"id": "wl033","n": "33","bloque": "Estrategia y Liderazgo","title": "An Astronaut's Guide to Life on Earth","author": "Chris Hadfield","why": "Sistemas, preparación y gestión del error. Liderazgo encubierto como memorias espaciales.","orden": null,"imp": false},{"id": "wl034","n": "34","bloque": "Estrategia y Liderazgo","title": "Extreme Ownership","author": "Jocko Willink","why": "Responsabilidad radical. Aplicable a coordinar proyectos complejos.","orden": null,"imp": false},{"id": "wl035","n": "35","bloque": "Estrategia y Liderazgo","title": "Turn the Ship Around!","author": "L. David Marquet","why": "El mejor libro sobre delegación real. Cómo transformar un submarino nuclear con sistemas de responsabilidad.","orden": null,"imp": false},{"id": "wl036","n": "36","bloque": "Estrategia y Liderazgo","title": "High Output Management","author": "Andy Grove","why": "Manual de Intel sobre gestión operativa. Lo que Checklist Manifesto (2/5) quería ser.","orden": null,"imp": false},{"id": "wl037","n": "37","bloque": "Estrategia y Liderazgo","title": "Playing to Win","author": "Lafley & Martin","why": "El framework más limpio sobre qué es estrategia y qué no lo es.","orden": null,"imp": false},{"id": "wl038","n": "38","bloque": "Estrategia y Liderazgo","title": "The Goal","author": "Eliyahu Goldratt","why": "Novela de gestión operativa. La teoría de las restricciones. Por qué los proyectos siempre se retrasan.","orden": null,"imp": false},{"id": "wl039","n": "39","bloque": "Estrategia y Liderazgo","title": "Thinking in Systems","author": "Donella Meadows","why": "Cómo funcionan los sistemas complejos. Conecta Taleb, Dalio y la experiencia en banca.","orden": null,"imp": false},{"id": "wl040","n": "40","bloque": "Estrategia y Liderazgo","title": "Range","author": "David Epstein","why": "Por qué venir de otro sector es un activo en RE. Antídoto a la narrativa de las 10.000 horas.","orden": null,"imp": false},{"id": "wl041","n": "41","bloque": "Productividad (Con Criterio)","title": "So Good They Can't Ignore You","author": "Cal Newport","why": "Va antes de Deep Work (4/5). La idea de que 'sigue tu pasión' es un mal consejo. Aplica a una transición de sector.","orden": null,"imp": false},{"id": "wl042","n": "42","bloque": "Productividad (Con Criterio)","title": "Essentialism","author": "Greg McKeown","why": "Hacer menos, pero mejor. Para gestionar muchas prioridades a la vez.","orden": null,"imp": false},{"id": "wl043","n": "43","bloque": "Productividad (Con Criterio)","title": "The War of Art","author": "Steven Pressfield","why": "Sobre la resistencia que impide ejecutar. Más honesto que cualquier libro de productividad convencional.","orden": null,"imp": false},{"id": "wl044","n": "44","bloque": "Productividad (Con Criterio)","title": "Ultralearning","author": "Scott Young","why": "Aprender cosas difíciles rápido. Clave en los primeros 12 meses en RE.","orden": null,"imp": false},{"id": "wl045","n": "45","bloque": "Productividad (Con Criterio)","title": "How Will You Measure Your Life?","author": "Clayton Christensen","why": "Aplicar teorías de gestión empresarial a decisiones de vida. Relevante en los veintitantos.","orden": null,"imp": false},{"id": "wl046","n": "46","bloque": "Productividad (Con Criterio)","title": "The Art of Learning","author": "Josh Waitzkin","why": "Campeón de ajedrez y artes marciales sobre cómo aprender a nivel élite. Más profundo que Compound Effect (5/5).","orden": null,"imp": false},{"id": "wl047","n": "47","bloque": "Productividad (Con Criterio)","title": "Meditations","author": "Marco Aurelio","why": "El estoicismo desde dentro. Dado que tienes Taleb en todos 4/5, este es el texto original.","orden": null,"imp": false},{"id": "wl048","n": "48","bloque": "Productividad (Con Criterio)","title": "Letters from a Stoic","author": "Séneca","why": "Más accesible que Aurelio. Séneca era rico y práctico — habla de dinero, tiempo y ambición.","orden": null,"imp": false},{"id": "wl049","n": "49","bloque": "Productividad (Con Criterio)","title": "The Obstacle Is the Way","author": "Ryan Holiday","why": "Estoicismo moderno aplicado. Para los momentos difíciles del trabajo.","orden": null,"imp": false},{"id": "wl050","n": "50","bloque": "Productividad (Con Criterio)","title": "Hell Yeah or No","author": "Derek Sivers","why": "El más honesto sobre tomar decisiones de vida. Muy corto.","orden": null,"imp": false},{"id": "wl051","n": "51","bloque": "Economía, Historia y Pensamiento Crítico","title": "Why Nations Fail","author": "Acemoglu & Robinson","why": "Por qué Argentina fracasa repetidamente y España no.","orden": 9,"imp": false},{"id": "wl052","n": "52","bloque": "Economía, Historia y Pensamiento Crítico","title": "The Dictator's Handbook","author": "Bruce Bueno de Mesquita","why": "Por qué los líderes hacen lo que hacen. Cambia cómo lees las noticias y los movimientos corporativos.","orden": null,"imp": false},{"id": "wl053","n": "53","bloque": "Economía, Historia y Pensamiento Crítico","title": "Freakonomics","author": "Levitt & Dubner","why": "Tienes SuperFreakonomics (4/5), empieza por el original. Igual de bueno, diferente conjunto de casos.","orden": null,"imp": false},{"id": "wl054","n": "54","bloque": "Economía, Historia y Pensamiento Crítico","title": "The Road to Serfdom","author": "Friedrich Hayek","why": "El contrapunto liberal más influyente del siglo XX a Capital XXI (Piketty, 5/5) que ya tienes.","orden": null,"imp": false},{"id": "wl055","n": "55","bloque": "Economía, Historia y Pensamiento Crítico","title": "Guns, Germs, and Steel","author": "Jared Diamond","why": "Por qué unos países dominaron a otros. Complementa Sapiens (5/5) con más rigor científico.","orden": null,"imp": false},{"id": "wl056","n": "56","bloque": "Economía, Historia y Pensamiento Crítico","title": "Bloodlands: Europe Between Hitler and Stalin","author": "Timothy Snyder","why": "Historia europea en su momento más oscuro. Contexto político para tanta historia económica.","orden": null,"imp": false},{"id": "wl057","n": "57","bloque": "Economía, Historia y Pensamiento Crítico","title": "Superforecasting","author": "Philip Tetlock","why": "Cómo hacer predicciones más precisas. Aplicable a valoraciones de mercado y planificación de proyectos.","orden": null,"imp": false},{"id": "wl058","n": "58","bloque": "Economía, Historia y Pensamiento Crítico","title": "The Signal and the Noise","author": "Nate Silver","why": "Predicción y probabilidad. Más accesible que Superforecasting, igual de útil.","orden": null,"imp": false},{"id": "wl059","n": "59","bloque": "Economía, Historia y Pensamiento Crítico","title": "Thinking Strategically","author": "Dixit & Nalebuff","why": "Teoría de juegos aplicada. Para negociaciones con bancos, administraciones y socios en RE.","orden": null,"imp": false},{"id": "wl060","n": "60","bloque": "Economía, Historia y Pensamiento Crítico","title": "Debt: The First 5,000 Years","author": "David Graeber","why": "Historia de la deuda como fundamento de la sociedad. Complementa la trilogía Taleb con perspectiva antropológica.","orden": null,"imp": false},{"id": "wl061","n": "61","bloque": "Ficción y Ensayo","title": "The Count of Monte Cristo","author": "Alexandre Dumas","why": "La mejor novela de venganza y poder. Dado Harry Potter (5/5) y Tolkien (4-5/5), este te va a absorber igual.","orden": null,"imp": false},{"id": "wl062","n": "62","bloque": "Ficción y Ensayo","title": "The Fountainhead","author": "Ayn Rand","why": "El protagonista es un arquitecto que no cede. En el mundo inmobiliario tiene una dimensión extra.","orden": null,"imp": false},{"id": "wl063","n": "63","bloque": "Ficción y Ensayo","title": "Ficciones","author": "Jorge Luis Borges","why": "El argentino más importante de la literatura universal. Nació en Buenos Aires.","orden": null,"imp": false},{"id": "wl064","n": "64","bloque": "Ficción y Ensayo","title": "Cien años de soledad","author": "Gabriel García Márquez","why": "El mayor hueco literario de un lector hispanohablante.","orden": null,"imp": false},{"id": "wl065","n": "65","bloque": "Ficción y Ensayo","title": "El nombre de la rosa","author": "Umberto Eco","why": "Thriller medieval intelectual. Dado Roma soy yo (5/5), el salto a Eco es natural.","orden": null,"imp": false},{"id": "wl066","n": "66","bloque": "Ficción y Ensayo","title": "Los pilares de la tierra","author": "Ken Follett","why": "Construcción de una catedral medieval como hilo narrativo. El que más vas a disfrutar de toda la lista.","orden": 7,"imp": true},{"id": "wl067","n": "67","bloque": "Ficción y Ensayo","title": "The Master and Margarita","author": "Mikhail Bulgakov","why": "El diablo en Moscú soviético. La gran novela rusa que sí funciona, a diferencia de Tolstoy (2/5).","orden": null,"imp": false},{"id": "wl068","n": "68","bloque": "Ficción y Ensayo","title": "Rayuela","author": "Julio Cortázar","why": "La novela argentina fundamental.","orden": null,"imp": false},{"id": "wl069","n": "69","bloque": "Ficción y Ensayo","title": "Crime and Punishment","author": "Fyodor Dostoevsky","why": "La mejor novela psicológica. Diferente a Tolstoy: más rápido, más urbano, más angustiante.","orden": null,"imp": false},{"id": "wl070","n": "70","bloque": "Ficción y Ensayo","title": "De Profundis","author": "Oscar Wilde","why": "Wilde en la cárcel. Dado Dorian Gray (5/5) y Cuentos (4/5), el Wilde más íntimo y devastador.","orden": null,"imp": false},{"id": "wl071","n": "71","bloque": "Ficción y Ensayo","title": "Siddhartha","author": "Hermann Hesse","why": "Búsqueda del sentido. Corto, profundo. Complementa Man's Search for Meaning (3/5).","orden": null,"imp": false},{"id": "wl072","n": "72","bloque": "Ficción y Ensayo","title": "La sombra del viento","author": "Carlos Ruiz Zafón","why": "Barcelona, misterio, arquitectura. Muy entretenido y atmosférico.","orden": null,"imp": false},{"id": "wl073","n": "73","bloque": "Ficción y Ensayo","title": "Pedro Páramo","author": "Juan Rulfo","why": "100 páginas que inventaron el realismo mágico antes que García Márquez.","orden": null,"imp": false},{"id": "wl074","n": "74","bloque": "Ficción y Ensayo","title": "The Glass Castle","author": "Jeannette Walls","why": "Memorias de infancia caótica. El género de Educated (5/5). Diferente, igual de impactante.","orden": null,"imp": false},{"id": "wl075","n": "75","bloque": "Ficción y Ensayo","title": "Norwegian Wood","author": "Haruki Murakami","why": "La más accesible de Murakami.","orden": null,"imp": false},{"id": "wl076","n": "76","bloque": "Ciencia, Tecnología y Futuro","title": "The Beginning of Infinity","author": "David Deutsch","why": "Sobre el progreso y por qué es posible. Favorito de muchos de los mejores inversores de largo plazo.","orden": null,"imp": false},{"id": "wl077","n": "77","bloque": "Ciencia, Tecnología y Futuro","title": "Homo Deus","author": "Yuval Noah Harari","why": "El futuro de la humanidad desde el autor de Sapiens (5/5).","orden": null,"imp": false},{"id": "wl078","n": "78","bloque": "Ciencia, Tecnología y Futuro","title": "21 Lessons for the 21st Century","author": "Yuval Noah Harari","why": "El más práctico de los tres Harari. Presente, no pasado ni futuro.","orden": null,"imp": false},{"id": "wl079","n": "79","bloque": "Ciencia, Tecnología y Futuro","title": "The Innovator's Dilemma","author": "Clayton Christensen","why": "Por qué las grandes empresas fracasan ante nuevos competidores. Qué pasa con RE frente a las proptech.","orden": null,"imp": false},{"id": "wl080","n": "80","bloque": "Ciencia, Tecnología y Futuro","title": "Moonwalking with Einstein","author": "Joshua Foer","why": "Un periodista se convierte en campeón de memoria. Sobre los límites del aprendizaje. Muy entretenido.","orden": null,"imp": false},{"id": "wl081","n": "81","bloque": "Ciencia, Tecnología y Futuro","title": "The Order of Time","author": "Carlo Rovelli","why": "Física cuántica explicada como poesía. El mejor libro de divulgación científica de la última década.","orden": null,"imp": false},{"id": "wl082","n": "82","bloque": "Ciencia, Tecnología y Futuro","title": "A Short History of Nearly Everything","author": "Bill Bryson","why": "Historia de la ciencia en formato narrativo. Mejor que Breve historia de la química (Asimov, 2/5) para tu estilo.","orden": null,"imp": false},{"id": "wl083","n": "83","bloque": "Ciencia, Tecnología y Futuro","title": "The Gene: An Intimate History","author": "Siddhartha Mukherjee","why": "Historia de la genética. Narrativo y científicamente sólido.","orden": null,"imp": false},{"id": "wl084","n": "84","bloque": "Ciencia, Tecnología y Futuro","title": "Power: A History of Energy","author": "Richard Rhodes","why": "Historia de la energía nuclear. Complementa American Prometheus (3/5) con más contexto industrial.","orden": null,"imp": false},{"id": "wl086","n": "86","bloque": "Huecos Específicos","title": "Pre-Suasion","author": "Robert Cialdini","why": "La secuela directa de Influence (4/5). Sobre cómo el contexto previo modifica la persuasión.","orden": 1,"imp": false},{"id": "wl087","n": "87","bloque": "Huecos Específicos","title": "The Laws of Human Nature","author": "Robert Greene","why": "El más maduro de Greene. Más útil que 48 Laws of Power en contextos profesionales reales.","orden": null,"imp": false},{"id": "wl088","n": "88","bloque": "Huecos Específicos","title": "Mastery","author": "Robert Greene","why": "Cómo construir expertise real en los primeros años de una carrera. Respuesta al síndrome del impostor.","orden": null,"imp": false},{"id": "wl089","n": "89","bloque": "Huecos Específicos","title": "The Personal MBA","author": "Josh Kaufman","why": "El MBA que no vas a hacer. Marco conceptual de negocios en un solo libro.","orden": null,"imp": false},{"id": "wl090","n": "90","bloque": "Huecos Específicos","title": "How to Win Friends and Influence People","author": "Dale Carnegie","why": "Para quien coordina promotoras, constructoras y administraciones. Sigue siendo el manual más práctico.","orden": null,"imp": false},{"id": "wl091","n": "91","bloque": "Huecos Específicos","title": "The E-Myth Revisited","author": "Michael Gerber","why": "Por qué la mayoría de los negocios fracasan. Para cuando montes tu propia operación.","orden": null,"imp": false},{"id": "wl092","n": "92","bloque": "Huecos Específicos","title": "Venture Deals","author": "Brad Feld & Jason Mendelson","why": "Cómo funcionan las estructuras de capital en RE e inversión. Para entender a los inversores.","orden": null,"imp": false},{"id": "wl093","n": "93","bloque": "Huecos Específicos","title": "The Warren Buffett Way","author": "Robert Hagstrom","why": "Análisis del método de inversión de Buffett. Complementa los Essays (5/5) con más estructura analítica.","orden": null,"imp": false},{"id": "wl094","n": "94","bloque": "Huecos Específicos","title": "One Up on Wall Street","author": "Peter Lynch","why": "Mejor que Beating the Street (3/5) que ya tienes. Empieza por este.","orden": null,"imp": false},{"id": "wl095","n": "95","bloque": "Huecos Específicos","title": "Confessions of an Economic Hit Man","author": "John Perkins","why": "Cómo funciona el dinero internacional.","orden": null,"imp": false}];
+
 // Load notes from localStorage
 const NOTES_KEY = 'ao_book_notes';
 function loadNotes() {
@@ -665,15 +710,6 @@ function saveNewBook() {
   filterYear('all', document.querySelector('.filter-btn'));
 }
 
-function rebuildFilters() {
-  const container = document.getElementById('filters');
-  container.innerHTML = `<button class="filter-btn ${activeYear==='all'?'active':''}" onclick="filterYear('all', this)"><span class="tab-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 7c-1.6-1.2-3.8-1.6-7-1.5v12c3.2-.1 5.4.3 7 1.5 1.6-1.2 3.8-1.6 7-1.5v-12c-3.2-.1-5.4.3-7 1.5z"/><path d="M12 7v12"/></svg></span>Todos</button><button class="filter-btn ${activeYear==='pending'?'active':''}" onclick="filterYear('pending', this)"><span class="tab-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 3.5h10v17l-5-3.5-5 3.5v-17z"/></svg></span>Pendientes</button><button class="filter-btn ${activeYear==='frases'?'active':''}" onclick="filterYear('frases', this)"><span class="tab-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9.5 6.5C6.5 7.3 5 9.5 5 12.5v5h5v-5H7.2c0-1.9 1-3.2 2.3-3.9zM19 6.5c-3 .8-4.5 3-4.5 6v5h5v-5h-2.8c0-1.9 1-3.2 2.3-3.9z"/></svg></span>Frases</button>`;
-}
-
-function updateStats() {
-  const total = getAllBooks().length;
-  document.getElementById('stat-total').textContent = total;
-}
 
 
 
@@ -821,225 +857,560 @@ function saveFrase() {
   if (activeYear === 'frases') renderFrases();
 }
 
-// ── FILTER YEAR ───────────────────────────────────────────
-function filterYear(yr, btn) {
-  activeYear = yr;
-  document.querySelectorAll('.filter-btn').forEach(function(b) { b.classList.remove('active'); });
-  if (btn) btn.classList.add('active');
-  // Swap add button behavior
-  var mainBtn = document.getElementById('mainAddBtn');
-  if (mainBtn) {
-    if (yr === 'pending') {
-      mainBtn.setAttribute('onclick', 'openAddPendingModal()');
-      mainBtn.textContent = 'Añadir pendiente';
-    } else {
-      mainBtn.setAttribute('onclick', 'openAddModal()');
-      mainBtn.textContent = 'Añadir libro';
-    }
-  }
-  if (yr === 'pending') { renderPending(); return; }
-  if (yr === 'frases') { renderFrases(); return; }
-  render(); // 'all' only
-}
+// ── LECTURA: lista, estados y ficha ───────────────────────
+// Estado de cada libro de la lista en localStorage (ao_reading_v1):
+//   { "<id>": { estado: 'leyendo' | 'leido', inicio, fin, pages, actual, rating } }
+// Sin registro (o sin estado) = por leer. Las notas siguen en ao_book_notes (por título).
 
-// ── PENDIENTES ────────────────────────────────────────────
+function esc(s) { return String(s == null ? '' : s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;'); }
+function normT(s) { return String(s || '').toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '').replace(/[^a-z0-9]+/g, ' ').trim(); }
+function slugT(s) { return normT(s).replace(/ /g, '-'); }
+function todayISO() { var d = new Date(); return d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0'); }
+var MESES = ['ene', 'feb', 'mar', 'abr', 'may', 'jun', 'jul', 'ago', 'sep', 'oct', 'nov', 'dic'];
+function fmtDate(iso) { if (!iso) return ''; var p = iso.split('-'); return parseInt(p[2], 10) + ' ' + MESES[parseInt(p[1], 10) - 1] + ' ' + p[0]; }
+function fmtDay(iso) { var p = iso.split('-'); return parseInt(p[2], 10) + ' ' + MESES[parseInt(p[1], 10) - 1]; }
+function fmtInt(n) { return String(n).replace(/\B(?=(\d{3})+(?!\d))/g, '.'); }
+function daysSince(iso) { var a = new Date(iso + 'T00:00:00'), b = new Date(); b.setHours(0, 0, 0, 0); return Math.max(1, Math.round((b - a) / 86400000) + 1); }
+function preview(t, n) { t = String(t || '').replace(/\s+/g, ' ').trim(); return t.length > n ? t.slice(0, n).trim() + '…' : t; }
+
+// ── ESTADO DE LECTURA ─────────────────────────────────────
+var RD_KEY = 'ao_reading_v1';
+function loadRD() {
+  try { var o = JSON.parse(localStorage.getItem(RD_KEY) || '{}'); return (o && typeof o === 'object' && !Array.isArray(o)) ? o : {}; } catch (e) { return {}; }
+}
+function saveRD(o) { localStorage.setItem(RD_KEY, JSON.stringify(o)); }
+function setRD(id, patch) { var o = loadRD(); o[id] = Object.assign({}, o[id] || {}, patch); saveRD(o); }
+function clearRD(id) { var o = loadRD(); delete o[id]; saveRD(o); }
+function estadoDe(id, rd) { var r = (rd || loadRD())[id]; return (r && r.estado) ? r.estado : 'porleer'; }
+
+// ── PENDIENTES PROPIOS ────────────────────────────────────
 var PENDING_KEY = 'ao_pending_books_v1';
 var HC_PENDING = [{"title": "Maldita Roma", "author": "Santiago Posteguillo", "note": ""}, {"title": "Los Tres Mundos", "author": "Santiago Posteguillo", "note": ""}, {"title": "Influencia", "author": "Robert Cialdini", "note": ""}, {"title": "Pre-Suasion", "author": "Robert Cialdini", "note": ""}, {"title": "Libertad Inmobiliaria", "author": "Carlos Galán", "note": ""}, {"title": "Never Split the Difference", "author": "Chris Voss", "note": ""}];
-function loadPending() {
-  try {
-    var user = JSON.parse(localStorage.getItem(PENDING_KEY) || '[]');
-    // Merge: user additions first, then hardcoded ones not already present
-    var titles = new Set(user.map(function(b){return b.title.toLowerCase();}));
-    var hc = HC_PENDING.filter(function(b){return !titles.has(b.title.toLowerCase());});
-    return [...user, ...hc];
-  } catch(e) { return HC_PENDING; }
+function loadPendingList() {
+  try { var l = JSON.parse(localStorage.getItem(PENDING_KEY) || 'null'); return Array.isArray(l) ? l : []; } catch (e) { return []; }
 }
 function storePending(list) { localStorage.setItem(PENDING_KEY, JSON.stringify(list)); }
-
-function updatePendingStat() {
-  var el = document.getElementById('stat-pending');
-  if (el) el.textContent = loadPending().length;
+function pid(b) { return b.id || ('pd-' + slugT(b.title)); }
+// Los pendientes que estaban fijos en el código pasan una sola vez a la lista editable
+function migratePending() {
+  if (localStorage.getItem('ao_pending_migrated_v2')) return;
+  var user = loadPendingList();
+  var titles = new Set(user.map(function (b) { return normT(b.title); }));
+  HC_PENDING.forEach(function (b) { if (!titles.has(normT(b.title))) user.push({ title: b.title, author: b.author, note: b.note || '' }); });
+  user.forEach(function (b) { if (!b.id) b.id = 'pd-' + slugT(b.title); });
+  storePending(user);
+  localStorage.setItem('ao_pending_migrated_v2', '1');
 }
 
-function renderPending() {
-  var list = loadPending();
-  var container = document.getElementById('books-container');
-  if (!list.length) {
-    container.innerHTML = '<div class="pending-section"><div class="pending-empty">Sin libros pendientes aún.<br>Pulsa "Añadir pendiente" para anotar los próximos libros que quieres leer.</div></div>';
+// Todos los libros "por leer / leyendo / leídos de la lista" en una sola colección
+function allItems() {
+  var items = WISHLIST.map(function (w) {
+    return { id: w.id, src: 'wl', title: w.title, author: w.author, why: w.why, bloque: w.bloque, n: w.n, orden: w.orden, ordenNota: w.ordenNota, imp: w.imp, pages: 0 };
+  });
+  var seen = {};
+  items.forEach(function (i) { seen[normT(i.title)] = i; });
+  loadPendingList().forEach(function (p) {
+    var k = normT(p.title);
+    if (seen[k]) { if (p.note) seen[k].userNote = p.note; return; }
+    var it = { id: pid(p), src: 'pd', title: p.title, author: p.author || '', why: p.note || '', bloque: 'Mis pendientes', n: '', pages: p.pages || 0 };
+    seen[k] = it; items.push(it);
+  });
+  return items;
+}
+function itemPages(it, rd) { var r = (rd || loadRD())[it.id] || {}; return r.pages || it.pages || 0; }
+
+// ── LIBROS LEÍDOS (histórico + añadidos + terminados desde la lista) ──
+function readBooksByYear() {
+  var rd = loadRD(), byYear = {};
+  function push(y, b) { (byYear[y] = byYear[y] || []).push(b); }
+  allItems().filter(function (it) { return estadoDe(it.id, rd) === 'leido'; })
+    .sort(function (a, b) { return String(rd[b.id].fin || '').localeCompare(String(rd[a.id].fin || '')); })
+    .forEach(function (it) {
+      var r = rd[it.id], y = String(r.fin || todayISO()).slice(0, 4);
+      push(y, { k: 'i:' + it.id, title: it.title, author: it.author, rating: r.rating || 0, pages: itemPages(it, rd), year: y, own: true });
+    });
+  loadUserBooks().forEach(function (b) {
+    push(String(b.year), { k: 'u:' + encodeURIComponent(b.title + '|' + b.author + '|' + b.year), title: b.title, author: b.author, rating: b.rating, pages: b.pages, year: String(b.year), user: true });
+  });
+  BOOKS.forEach(function (b, i) {
+    push(String(b.year), { k: 'b:' + i, title: b.title, author: b.author, rating: b.rating, pages: b.pages, year: String(b.year) });
+  });
+  return byYear;
+}
+
+// ── ESTADÍSTICAS, FILTROS Y META DE PÁGINAS ───────────────
+var F2_START = '2026-10-01', F2_GOAL = 3000;
+var F2_HITOS = [['2026-10-31', 500], ['2026-12-20', 1300], ['2027-01-31', 2000], ['2027-03-31', 3000]];
+
+function f2Pages() {
+  var rd = loadRD(), total = 0, missing = false;
+  Object.keys(rd).forEach(function (id) {
+    var r = rd[id];
+    if (!r || !r.estado || !r.inicio || r.inicio < F2_START) return;
+    if (r.estado === 'leido') { total += r.pages || 0; if (!r.pages) missing = true; }
+    else if (r.estado === 'leyendo') { total += r.actual || 0; if (!r.actual) missing = true; }
+  });
+  return { total: total, missing: missing };
+}
+
+function updatePhasePages() {
+  var el = document.getElementById('phase-pages');
+  if (!el) return;
+  var f = f2Pages(), pct = Math.min(100, Math.round(f.total / F2_GOAL * 100));
+  var next = F2_HITOS.filter(function (h) { return h[1] > f.total; })[0];
+  var nextTxt = next ? ('Siguiente hito: ' + fmtInt(next[1]) + ' págs el ' + fmtDay(next[0]) + (todayISO() > next[0] ? ' (vencido)' : '')) : 'Meta de la fase alcanzada';
+  el.innerHTML = '<div class="pp-line">Fase 2 · <b>' + fmtInt(f.total) + '</b> de ' + fmtInt(F2_GOAL) + ' páginas</div>'
+    + '<div class="pp-bar"><i style="width:' + pct + '%"></i></div>'
+    + '<div class="pp-next">' + nextTxt + '</div>'
+    + (f.missing ? '<div class="pp-next">Hay libros de la fase sin páginas: añádelas en su ficha para que cuenten.</div>' : '');
+}
+
+function updateStats() {
+  var byYear = readBooksByYear(), total = 0, sum = 0, rated = 0, years = [];
+  Object.keys(byYear).forEach(function (y) {
+    years.push(parseInt(y, 10));
+    byYear[y].forEach(function (b) { total++; if (b.rating) { sum += b.rating; rated++; } });
+  });
+  var nYears = years.length ? (Math.max.apply(null, years) - Math.min.apply(null, years) + 1) : 0;
+  var rd = loadRD(), items = allItems();
+  var reading = items.filter(function (it) { return estadoDe(it.id, rd) === 'leyendo'; }).length;
+  var toread = items.filter(function (it) { return estadoDe(it.id, rd) === 'porleer'; }).length;
+  function set(id, v) { var e = document.getElementById(id); if (e) e.textContent = v; }
+  set('stat-total', total);
+  set('stat-years', nYears);
+  set('stat-avg', rated ? (sum / rated).toFixed(1).replace('.', ',') : '–');
+  set('stat-reading', reading);
+  set('stat-pending', toread);
+  updatePhasePages();
+}
+
+var FILTER_ICONS = {
+  all: '<path d="M12 7c-1.6-1.2-3.8-1.6-7-1.5v12c3.2-.1 5.4.3 7 1.5 1.6-1.2 3.8-1.6 7-1.5v-12c-3.2-.1-5.4.3-7 1.5z"/><path d="M12 7v12"/>',
+  leyendo: '<path d="M5 4h11a3 3 0 0 1 3 3v13H8a3 3 0 0 1-3-3V4z"/><path d="M8 17h11"/>',
+  porleer: '<path d="M7 3.5h10v17l-5-3.5-5 3.5v-17z"/>',
+  frases: '<path d="M9.5 6.5C6.5 7.3 5 9.5 5 12.5v5h5v-5H7.2c0-1.9 1-3.2 2.3-3.9zM19 6.5c-3 .8-4.5 3-4.5 6v5h5v-5h-2.8c0-1.9 1-3.2 2.3-3.9z"/>'
+};
+function rebuildFilters() {
+  var rd = loadRD(), items = allItems();
+  var nReading = items.filter(function (it) { return estadoDe(it.id, rd) === 'leyendo'; }).length;
+  var nToRead = items.filter(function (it) { return estadoDe(it.id, rd) === 'porleer'; }).length;
+  function btn(view, label, count) {
+    return '<button class="filter-btn' + (activeYear === view ? ' active' : '') + '" onclick="filterYear(\'' + view + '\', this)"><span class="tab-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">' + FILTER_ICONS[view] + '</svg></span>' + label + (count != null ? '<span class="fcount">' + count + '</span>' : '') + '</button>';
+  }
+  document.getElementById('filters').innerHTML = btn('all', 'Todos') + btn('leyendo', 'Leyendo', nReading) + btn('porleer', 'Por leer', nToRead) + btn('frases', 'Frases');
+}
+
+// ── VISTAS ────────────────────────────────────────────────
+function filterYear(view, btn) {
+  if (view === 'pending') view = 'porleer';
+  activeYear = view;
+  rebuildFilters();
+  var mainBtn = document.getElementById('mainAddBtn');
+  if (mainBtn) {
+    if (view === 'porleer' || view === 'leyendo') { mainBtn.setAttribute('onclick', 'openAddPendingModal()'); mainBtn.textContent = 'Añadir a la lista'; }
+    else { mainBtn.setAttribute('onclick', 'openAddModal()'); mainBtn.textContent = 'Añadir libro'; }
+  }
+  if (view === 'porleer') renderToRead();
+  else if (view === 'leyendo') renderReading();
+  else if (view === 'frases') renderFrases();
+  else render();
+  try { history.replaceState(null, '', view === 'all' ? location.pathname + location.search : '#' + view); } catch (e) {}
+}
+
+function refreshView() {
+  rebuildFilters();
+  updateStats();
+  if (activeYear === 'porleer') renderToReadList();
+  else if (activeYear === 'leyendo') renderReading();
+  else if (activeYear === 'frases') return;
+  else render();
+}
+
+// Todos (leídos por año)
+function render() {
+  var notes = loadNotes(), byYear = readBooksByYear();
+  var years = Object.keys(byYear).sort(function (a, b) { return b - a; });
+  var html = '';
+  years.forEach(function (year) {
+    var books = byYear[year];
+    html += '<div class="year-section" id="year-' + year + '"><div class="sl">' + year + ' <span class="sl-count">' + books.length + ' libro' + (books.length !== 1 ? 's' : '') + '</span></div><div class="book-grid">';
+    books.forEach(function (b) {
+      var n = notes[b.title] || '';
+      html += '<div class="book-card' + (n ? ' has-notes' : '') + (b.user ? ' user-book' : '') + '" data-k="' + esc(b.k) + '">'
+        + '<div class="book-rating">' + stars(b.rating) + '</div>'
+        + '<div class="book-title">' + esc(b.title) + '</div>'
+        + '<div class="book-author">' + esc(b.author) + '</div>'
+        + (b.pages ? '<div class="book-line">' + fmtInt(b.pages) + ' págs</div>' : '')
+        + (n ? '<div class="book-prev">' + esc(preview(n, 160)) + '</div>' : '')
+        + '</div>';
+    });
+    html += '</div></div>';
+  });
+  document.getElementById('books-container').innerHTML = html;
+}
+
+// Leyendo
+function renderReading() {
+  var rd = loadRD(), notes = loadNotes();
+  var cur = allItems().filter(function (it) { return estadoDe(it.id, rd) === 'leyendo'; })
+    .sort(function (a, b) { return String(rd[b.id].inicio || '').localeCompare(String(rd[a.id].inicio || '')); });
+  var html = '<div class="pending-section"><div class="sl">Leyendo <span class="sl-count">' + cur.length + ' libro' + (cur.length !== 1 ? 's' : '') + '</span></div>';
+  if (!cur.length) {
+    html += '<div class="pending-empty">No estás leyendo nada ahora mismo.<br>Elige uno en «Por leer» o pulsa «Añadir a la lista» para anotar el que ya tienes entre manos.</div>';
+  } else {
+    html += '<div class="rd-grid">';
+    cur.forEach(function (it) {
+      var r = rd[it.id], pages = itemPages(it, rd), actual = r.actual || 0;
+      var pct = pages ? Math.min(100, Math.round(actual / pages * 100)) : 0;
+      var n = notes[it.title] || '';
+      html += '<div class="rd-card" data-k="i:' + esc(it.id) + '">'
+        + '<div class="rd-top"><span class="rd-badge">Leyendo' + (r.inicio ? ' · día ' + daysSince(r.inicio) : '') + '</span>' + (r.inicio ? '<span class="rd-since">desde el ' + esc(fmtDate(r.inicio)) + '</span>' : '') + '</div>'
+        + '<div class="pending-title">' + esc(it.title) + '</div>'
+        + '<div class="pending-author">' + esc(it.author) + '</div>'
+        + (pages ? '<div class="pp-bar"><i style="width:' + pct + '%"></i></div><div class="rd-prog">' + (actual ? 'Página ' + fmtInt(actual) + ' de ' + fmtInt(pages) + ' · ' + pct + ' %' : fmtInt(pages) + ' páginas · sin empezar a contar') + '</div>' : '<div class="rd-prog">Sin páginas: añádelas en la ficha</div>')
+        + (n ? '<div class="book-prev">' + esc(preview(n, 160)) + '</div>' : '')
+        + '<div class="rd-actions"><button class="modal-add-btn" data-act="finish" data-id="' + esc(it.id) + '">Terminar</button><button class="modal-add-btn" data-act="back" data-id="' + esc(it.id) + '">Volver a por leer</button></div>'
+        + '</div>';
+    });
+    html += '</div>';
+  }
+  html += '</div>';
+  document.getElementById('books-container').innerHTML = html;
+}
+
+// Por leer
+var tlSearch = '', tlBloque = '';
+function renderToRead() {
+  var blocks = WL_BLOCKS.concat(['Mis pendientes']);
+  var opts = '<option value="">Todos los bloques</option>' + blocks.map(function (b) { return '<option value="' + esc(b) + '"' + (tlBloque === b ? ' selected' : '') + '>' + esc(b) + '</option>'; }).join('');
+  document.getElementById('books-container').innerHTML = '<div class="pending-section">'
+    + '<div class="sl">Por leer <span class="sl-count" id="tl-count"></span></div>'
+    + '<div class="tl-controls"><input class="frases-search" id="tl-search" placeholder="Buscar título o autor…" value="' + esc(tlSearch) + '" oninput="tlSet(this.value, null)"><select class="tl-select" id="tl-bloque" onchange="tlSet(null, this.value)">' + opts + '</select></div>'
+    + '<div id="tl-list"></div></div>';
+  renderToReadList();
+}
+function tlSet(q, b) { if (q !== null) tlSearch = q; if (b !== null) tlBloque = b; renderToReadList(); }
+function renderToReadList() {
+  var host = document.getElementById('tl-list');
+  if (!host) return;
+  var rd = loadRD(), notes = loadNotes(), q = normT(tlSearch);
+  var pool = allItems().filter(function (it) { return estadoDe(it.id, rd) === 'porleer'; });
+  var items = pool.filter(function (it) { return (!tlBloque || it.bloque === tlBloque) && (!q || normT(it.title + ' ' + it.author).indexOf(q) >= 0); });
+  var cnt = document.getElementById('tl-count');
+  if (cnt) cnt.textContent = (items.length === pool.length ? pool.length : items.length + ' de ' + pool.length) + ' libro' + (pool.length !== 1 ? 's' : '');
+  if (!items.length) { host.innerHTML = '<div class="pending-empty">' + (pool.length ? 'Ningún libro coincide con la búsqueda.' : 'No queda nada por leer en la lista.') + '</div>'; return; }
+  var order = WL_BLOCKS.concat(['Mis pendientes']), html = '';
+  order.forEach(function (bl) {
+    var group = items.filter(function (it) { return it.bloque === bl; });
+    if (!group.length) return;
+    html += '<div class="tl-grp">' + esc(bl) + ' <span class="sl-count">' + group.length + '</span></div><div class="pending-grid">';
+    group.forEach(function (it) {
+      var tags = [];
+      if (it.n) tags.push('#' + esc(it.n));
+      if (it.imp) tags.push('<span class="tl-imp">Imprescindible</span>');
+      if (it.orden) tags.push('Orden sugerido ' + it.orden);
+      var n = notes[it.title] || '';
+      html += '<div class="pending-card tl-card" data-k="i:' + esc(it.id) + '">'
+        + '<div class="pending-badge">' + (tags.join(' · ') || 'Por leer') + '</div>'
+        + '<div class="pending-title">' + esc(it.title) + '</div>'
+        + '<div class="pending-author">' + esc(it.author) + '</div>'
+        + (it.why ? '<div class="tl-why">' + esc(it.why) + '</div>' : '')
+        + (n ? '<div class="book-prev">Notas: ' + esc(preview(n, 90)) + '</div>' : '')
+        + '<div class="tl-foot"><button class="modal-add-btn" data-act="start" data-id="' + esc(it.id) + '">Empezar a leer</button></div>'
+        + '</div>';
+    });
+    html += '</div>';
+  });
+  host.innerHTML = html;
+}
+
+// ── CAMBIOS DE ESTADO ─────────────────────────────────────
+function startReading(id) {
+  var rd = loadRD();
+  var other = allItems().filter(function (it) { return it.id !== id && estadoDe(it.id, rd) === 'leyendo'; })[0];
+  if (other && !confirm('Ya estás leyendo «' + other.title + '». ¿Empezar también este?')) return false;
+  var r = rd[id] || {};
+  setRD(id, { estado: 'leyendo', inicio: (r.estado === 'leido' ? '' : r.inicio) || todayISO(), fin: undefined, rating: undefined });
+  refreshView();
+  return true;
+}
+function backToToRead(id) {
+  var rd = loadRD(), r = rd[id] || {};
+  if ((r.estado === 'leyendo' || r.estado === 'leido') && !confirm('¿Volver a «Por leer»? Se borran las fechas, la página actual y la valoración. Las notas se conservan.')) return false;
+  var pages = r.pages; clearRD(id); if (pages) setRD(id, { pages: pages });
+  refreshView();
+  return true;
+}
+function doAct(act, id) {
+  if (act === 'start') startReading(id);
+  else if (act === 'finish') openFicha('i:' + id, { finish: true });
+  else if (act === 'back') backToToRead(id);
+}
+document.getElementById('books-container').addEventListener('click', function (e) {
+  var a = e.target.closest('[data-act]');
+  if (a) { e.stopPropagation(); doAct(a.getAttribute('data-act'), a.getAttribute('data-id')); return; }
+  var c = e.target.closest('[data-k]');
+  if (c) openFicha(c.getAttribute('data-k'));
+});
+
+// ── FICHA DEL LIBRO ───────────────────────────────────────
+var currentKey = null, finishOpen = false, finRating = 0, notesEditing = false;
+
+function resolveKey(key) {
+  if (!key) return null;
+  if (key.indexOf('i:') === 0) {
+    var id = key.slice(2);
+    var it = allItems().filter(function (x) { return x.id === id; })[0];
+    return it ? { kind: 'item', item: it, title: it.title } : null;
+  }
+  if (key.indexOf('b:') === 0) { var b = BOOKS[parseInt(key.slice(2), 10)]; return b ? { kind: 'base', book: b, title: b.title } : null; }
+  if (key.indexOf('u:') === 0) {
+    var k = decodeURIComponent(key.slice(2));
+    var ub = loadUserBooks().filter(function (x) { return (x.title + '|' + x.author + '|' + x.year) === k; })[0];
+    return ub ? { kind: 'user', book: ub, title: ub.title } : null;
+  }
+  return null;
+}
+function getNotes(title) { var n = loadNotes(); return n[title] || ''; }
+
+function starPicker(cur, fn) {
+  var s = '<div class="star-picker">';
+  for (var i = 1; i <= 5; i++) s += '<span class="star-pick' + (i <= cur ? ' on' : '') + '" onclick="' + fn + '(' + i + ')">★</span>';
+  return s + '</div>';
+}
+
+function openFicha(key, opts) {
+  var o = resolveKey(key);
+  if (!o) return;
+  var sameBook = (currentKey === key);
+  currentKey = key;
+  finishOpen = !!(opts && opts.finish);
+  if (!sameBook || (opts && opts.resetNotes)) notesEditing = false;
+  if (finishOpen) { var r0 = (o.kind === 'item' ? (loadRD()[o.item.id] || {}) : {}); finRating = r0.rating || 0; }
+  var hdr = document.getElementById('fh'), body = document.getElementById('fb');
+  if (o.kind === 'item') fichaItem(o.item, hdr, body);
+  else fichaBook(o, hdr, body);
+  document.getElementById('modal').classList.add('ficha');
+  document.getElementById('modal-overlay').classList.add('open');
+  document.body.style.overflow = 'hidden';
+  renderNotesBox();
+}
+
+function fichaItem(it, hdr, body) {
+  var rd = loadRD(), r = rd[it.id] || {}, estado = r.estado || 'porleer', pages = r.pages || it.pages || 0;
+  var tags = '';
+  if (it.n) tags += '<span class="modal-tag">Lista #' + esc(it.n) + '</span>';
+  if (it.src === 'wl') tags += '<span class="modal-tag">' + esc(it.bloque) + '</span>';
+  if (it.src === 'pd') tags += '<span class="modal-tag">Mis pendientes</span>';
+  if (it.imp) tags += '<span class="modal-tag" style="color:var(--now)">Imprescindible</span>';
+  if (it.orden) tags += '<span class="modal-tag">Orden sugerido: ' + it.orden + (it.ordenNota ? ' · ' + esc(it.ordenNota) : '') + '</span>';
+  var label = estado === 'leido' ? ('Leído' + (r.fin ? ' · ' + fmtDate(r.fin) : '')) : estado === 'leyendo' ? ('Leyendo' + (r.inicio ? ' · día ' + daysSince(r.inicio) : '')) : 'Por leer';
+  hdr.innerHTML = '<button class="modal-close" onclick="closeModalDirect()">Cerrar</button>'
+    + '<div class="modal-rating fi-state-lbl">' + label + '</div>'
+    + '<div class="modal-title">' + esc(it.title) + '</div>'
+    + '<div class="modal-author">' + esc(it.author) + '</div>'
+    + '<div class="modal-meta">' + tags + '</div>';
+
+  var seg = '<div class="fi-seg">'
+    + [['porleer', 'Por leer'], ['leyendo', 'Leyendo'], ['leido', 'Leído']].map(function (s) {
+      return '<button class="' + ((finishOpen ? 'leido' : estado) === s[0] ? 'on' : '') + '" onclick="fiState(\'' + s[0] + '\')">' + s[1] + '</button>';
+    }).join('') + '</div>';
+
+  var grid = '';
+  if (finishOpen) {
+    grid = '<div class="fi-panel"><div class="modal-notes-label">Marcar como leído</div>'
+      + '<div class="form-row"><div class="form-group"><label>Empecé el</label><input type="date" id="ff-inicio" value="' + esc(r.inicio || '') + '"></div>'
+      + '<div class="form-group"><label>Terminé el</label><input type="date" id="ff-fin" value="' + esc(r.fin || todayISO()) + '"></div></div>'
+      + '<div class="form-row"><div class="form-group"><label>Páginas</label><input type="number" min="0" id="ff-pages" value="' + (pages || '') + '" placeholder="0"></div>'
+      + '<div class="form-group"><label>Valoración</label>' + starPicker(finRating, 'finRate') + '</div></div>'
+      + '<div class="meta">Si lo empezaste desde el 1 de octubre de 2026, sus páginas cuentan para la meta de la Fase 2.</div>'
+      + '<div id="ff-err" class="msg" style="display:none"></div>'
+      + '<div class="form-actions"><button class="btn-primary" onclick="saveFinish()">Guardar como leído</button><button class="btn-secondary" onclick="openFicha(currentKey)">Cancelar</button></div></div>';
+  } else {
+    var f = '<div class="form-group"><label>Páginas</label><input type="number" min="0" value="' + (pages || '') + '" placeholder="0" onchange="fiSet(\'pages\', this.value)"></div>';
+    if (estado === 'leyendo') {
+      var actual = r.actual || 0, pct = pages ? Math.min(100, Math.round(actual / pages * 100)) : 0;
+      f += '<div class="form-group"><label>Página actual</label><input type="number" min="0" value="' + (actual || '') + '" placeholder="0" onchange="fiSet(\'actual\', this.value)"></div>'
+        + '<div class="form-group"><label>Empecé el</label><input type="date" value="' + esc(r.inicio || '') + '" onchange="fiSet(\'inicio\', this.value)"></div>'
+        + '<div class="form-group"><label>Progreso</label><div class="pp-bar" style="margin-top:14px"><i id="fi-bar" style="width:' + pct + '%"></i></div><div class="meta" id="fi-pct">' + (pages ? pct + ' %' : 'Añade las páginas para ver el progreso') + '</div></div>';
+    } else if (estado === 'leido') {
+      f += '<div class="form-group"><label>Valoración</label>' + starPicker(r.rating || 0, 'fiRate') + '</div>'
+        + '<div class="form-group"><label>Empecé el</label><input type="date" value="' + esc(r.inicio || '') + '" onchange="fiSet(\'inicio\', this.value)"></div>'
+        + '<div class="form-group"><label>Terminé el</label><input type="date" value="' + esc(r.fin || '') + '" onchange="fiSet(\'fin\', this.value)"></div>';
+    }
+    grid = '<div class="form-row fi-grid">' + f + '</div>';
+  }
+
+  var why = it.why ? ('<div><div class="modal-notes-label">' + (it.src === 'wl' ? 'Por qué leerlo' : 'Nota') + '</div><div class="fi-why">' + esc(it.why) + (it.userNote ? '<br><em>' + esc(it.userNote) + '</em>' : '') + '</div></div>') : '';
+  var del = it.src === 'pd' ? '<div><button class="modal-add-btn" style="color:#A3442C" onclick="deleteFromList()">Eliminar de la lista</button></div>' : '';
+  body.innerHTML = seg + grid + why + '<div id="fi-notes"></div>' + del;
+}
+
+function fichaBook(o, hdr, body) {
+  var b = o.book, tags = '<span class="modal-tag">Leído en ' + esc(b.year) + '</span>';
+  if (b.pages) tags += '<span class="modal-tag">' + fmtInt(b.pages) + ' páginas</span>';
+  if (b.rating) tags += '<span class="modal-tag">' + b.rating + ' de 5</span>';
+  if (o.kind === 'user') tags += '<span class="modal-tag" style="color:var(--now)">Añadido por ti</span>';
+  hdr.innerHTML = '<button class="modal-close" onclick="closeModalDirect()">Cerrar</button>'
+    + '<div class="modal-rating">' + stars(b.rating) + '</div>'
+    + '<div class="modal-title">' + esc(b.title) + '</div>'
+    + '<div class="modal-author">' + esc(b.author) + '</div>'
+    + '<div class="modal-meta">' + tags + '</div>';
+  var del = o.kind === 'user' ? '<div><button class="modal-add-btn" style="color:#A3442C" onclick="deleteUserBookFicha()">Eliminar libro</button></div>' : '';
+  body.innerHTML = '<div id="fi-notes"></div>' + del;
+}
+
+function curItem() { var o = resolveKey(currentKey); return (o && o.kind === 'item') ? o.item : null; }
+
+function fiState(st) {
+  var it = curItem(); if (!it) return;
+  var r = loadRD()[it.id] || {}, cur = r.estado || 'porleer';
+  if (st === 'leido') { if (cur === 'leido' && !finishOpen) return; openFicha(currentKey, { finish: true }); return; }
+  if (st === cur && !finishOpen) return;
+  if (st === 'leyendo') { if (!startReading(it.id)) return; openFicha(currentKey); return; }
+  if (st === 'porleer') { if (!backToToRead(it.id)) return; openFicha(currentKey); }
+}
+function fiSet(field, val) {
+  var it = curItem(); if (!it) return;
+  var patch = {};
+  if (field === 'pages' || field === 'actual') { var n = parseInt(val, 10); patch[field] = (isNaN(n) || n < 0) ? 0 : n; }
+  else patch[field] = val || undefined;
+  setRD(it.id, patch);
+  refreshView();
+  if (field === 'pages' || field === 'actual') {
+    var r = loadRD()[it.id] || {}, pages = r.pages || it.pages || 0, pct = pages ? Math.min(100, Math.round((r.actual || 0) / pages * 100)) : 0;
+    var bar = document.getElementById('fi-bar'), t = document.getElementById('fi-pct');
+    if (bar) bar.style.width = pct + '%';
+    if (t) t.textContent = pages ? pct + ' %' : 'Añade las páginas para ver el progreso';
+  }
+}
+function fiRate(n) { var it = curItem(); if (!it) return; setRD(it.id, { rating: n }); refreshView(); openFicha(currentKey); }
+function finRate(n) {
+  finRating = n;
+  document.querySelectorAll('.fi-panel .star-pick').forEach(function (s, i) { s.classList.toggle('on', i < n); });
+}
+function saveFinish() {
+  var it = curItem(); if (!it) return;
+  var inicio = document.getElementById('ff-inicio').value, fin = document.getElementById('ff-fin').value;
+  var pages = parseInt(document.getElementById('ff-pages').value, 10) || 0;
+  var err = document.getElementById('ff-err');
+  if (!fin) { err.textContent = 'Indica cuándo lo terminaste.'; err.style.display = 'block'; return; }
+  if (inicio && fin < inicio) { err.textContent = 'La fecha de fin no puede ser anterior a la de inicio.'; err.style.display = 'block'; return; }
+  setRD(it.id, { estado: 'leido', inicio: inicio || undefined, fin: fin, pages: pages, rating: finRating || undefined, actual: undefined });
+  refreshView();
+  openFicha(currentKey);
+}
+function deleteFromList() {
+  var it = curItem(); if (!it || it.src !== 'pd') return;
+  if (!confirm('¿Eliminar «' + it.title + '» de la lista?')) return;
+  storePending(loadPendingList().filter(function (p) { return pid(p) !== it.id; }));
+  clearRD(it.id);
+  closeModalDirect();
+  refreshView();
+}
+function deleteUserBookFicha() {
+  var o = resolveKey(currentKey); if (!o || o.kind !== 'user') return;
+  var b = o.book;
+  if (!confirm('¿Eliminar "' + b.title + '"?')) return;
+  saveUserBooks(loadUserBooks().filter(function (x) { return !(x.title === b.title && x.author === b.author && x.year === b.year); }));
+  closeModalDirect();
+  refreshView();
+}
+
+// ── NOTAS ─────────────────────────────────────────────────
+function renderNotesBox() {
+  var o = resolveKey(currentKey), host = document.getElementById('fi-notes');
+  if (!o || !host) return;
+  var t = getNotes(o.title);
+  if (notesEditing) {
+    host.innerHTML = '<div class="modal-notes-label">Notas de lectura</div>'
+      + '<textarea id="notes-editor" class="notes-editor" placeholder="Pega aquí todas tus notas, frases subrayadas y reflexiones del libro…"></textarea>'
+      + '<div class="fi-note-actions"><button class="btn-primary" onclick="notesSave()">Guardar notas</button><button class="btn-secondary" onclick="notesCancel()">Cancelar</button><span class="meta">Cmd/Ctrl + Enter para guardar</span></div>';
+    var ta = document.getElementById('notes-editor');
+    ta.value = t;
+    ta.addEventListener('keydown', function (e) { if ((e.metaKey || e.ctrlKey) && e.key === 'Enter') { e.preventDefault(); notesSave(); } });
+    ta.focus();
     return;
   }
-  var html = '<div class="pending-section">'
-    + '<div class="sl"><span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 3.5h10v17l-5-3.5-5 3.5v-17z"/></svg></span>Por leer <span class="sl-count">' + list.length + ' libro' + (list.length !== 1 ? 's' : '') + '</span></div>'
-    + '<div class="pending-grid">';
-  list.forEach(function(b, i) {
-    html += '<div class="pending-card">'
-      + '<button class="pending-del-btn" onclick="deletePendingBook(' + i + ');event.stopPropagation();">Eliminar</button>'
-      + '<div class="pending-badge">Por leer</div>'
-      + '<div class="pending-title">' + b.title.replace(/</g,'&lt;') + '</div>'
-      + '<div class="pending-author">' + b.author.replace(/</g,'&lt;') + '</div>'
-      + (b.note ? '<div class="pending-note">' + b.note.replace(/</g,'&lt;') + '</div>' : '')
-      + '</div>';
-  });
-  html += '</div></div>';
-  container.innerHTML = html;
+  host.innerHTML = '<div class="modal-notes-label">Notas de lectura</div>'
+    + (t ? '<div class="modal-notes">' + esc(t) + '</div>' : '<div class="modal-no-notes">Aún no hay notas para este libro.</div>')
+    + '<div class="fi-note-actions"><button class="modal-add-btn" onclick="notesEdit()">' + (t ? 'Editar notas' : 'Añadir notas') + '</button>'
+    + (t ? '<button class="modal-add-btn" id="notes-copy-btn" onclick="notesCopy()">Copiar notas</button>' : '') + '</div>';
+}
+function notesEdit() { notesEditing = true; renderNotesBox(); }
+function notesCancel() { notesEditing = false; renderNotesBox(); }
+function notesSave() {
+  var o = resolveKey(currentKey); if (!o) return;
+  var ta = document.getElementById('notes-editor');
+  saveNote(o.title, ta ? ta.value.replace(/\s+$/, '') : '');
+  notesEditing = false;
+  renderNotesBox();
+  refreshView();
+}
+function notesCopy() {
+  var o = resolveKey(currentKey); if (!o) return;
+  var t = getNotes(o.title), btn = document.getElementById('notes-copy-btn');
+  function done(ok) { if (btn) { btn.textContent = ok ? 'Copiado' : 'No se pudo copiar'; setTimeout(function () { if (btn) btn.textContent = 'Copiar notas'; }, 1600); } }
+  function fallback() {
+    try { var ta = document.createElement('textarea'); ta.value = t; ta.style.position = 'fixed'; ta.style.opacity = '0'; document.body.appendChild(ta); ta.select(); var ok = document.execCommand('copy'); document.body.removeChild(ta); done(ok); } catch (e) { done(false); }
+  }
+  if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(t).then(function () { done(true); }, fallback); else fallback();
 }
 
-function deletePendingBook(idx) {
-  if (!confirm('¿Eliminar este libro de pendientes?')) return;
-  var list = loadPending();
-  list.splice(idx, 1);
-  storePending(list);
-  updatePendingStat();
-  renderPending();
+// ── AÑADIR A LA LISTA ─────────────────────────────────────
+function pendEstadoChange() {
+  var leyendo = document.getElementById('pend-estado').value === 'leyendo';
+  document.getElementById('pend-leyendo-row').style.display = leyendo ? 'grid' : 'none';
 }
-
 function openAddPendingModal() {
-  document.getElementById('pend-title').value = '';
-  document.getElementById('pend-author').value = '';
-  document.getElementById('pend-note').value = '';
+  ['pend-title', 'pend-author', 'pend-pages', 'pend-actual', 'pend-note'].forEach(function (id) { document.getElementById(id).value = ''; });
+  document.getElementById('pend-estado').value = (activeYear === 'leyendo') ? 'leyendo' : 'porleer';
+  document.getElementById('pend-inicio').value = todayISO();
   document.getElementById('pend-error').style.display = 'none';
+  pendEstadoChange();
   document.getElementById('add-pending-overlay').classList.add('open');
   document.body.style.overflow = 'hidden';
-  setTimeout(function() { document.getElementById('pend-title').focus(); }, 100);
+  setTimeout(function () { document.getElementById('pend-title').focus(); }, 100);
 }
-
 function closeAddPendingModal() {
   document.getElementById('add-pending-overlay').classList.remove('open');
   document.body.style.overflow = '';
 }
-
 function savePendingBook() {
   var title = document.getElementById('pend-title').value.trim();
   var author = document.getElementById('pend-author').value.trim();
   var note = document.getElementById('pend-note').value.trim();
+  var pages = parseInt(document.getElementById('pend-pages').value, 10) || 0;
+  var estado = document.getElementById('pend-estado').value;
   var errEl = document.getElementById('pend-error');
   if (!title) { errEl.textContent = 'El título es obligatorio.'; errEl.style.display = 'block'; return; }
   if (!author) { errEl.textContent = 'El autor es obligatorio.'; errEl.style.display = 'block'; return; }
   errEl.style.display = 'none';
-  var list = loadPending();
-  list.push({ title: title, author: author, note: note });
+  var id = 'pd' + Date.now();
+  var list = loadPendingList();
+  list.push({ id: id, title: title, author: author, note: note, pages: pages });
   storePending(list);
-  updatePendingStat();
-  closeAddPendingModal();
-  if (activeYear === 'pending') renderPending();
-}
-
-// ── INIT ──────────────────────────────────────────────────
-// ── OVERRIDE render to include user books ──────────────────
-function render() {
-  const notes = loadNotes();
-  const userBooks = loadUserBooks();
-  const container = document.getElementById('books-container');
-  const allYears = getAllYears();
-  const yearsToShow = activeYear === 'all' ? allYears : [activeYear];
-  let html = '';
-
-  yearsToShow.forEach(year => {
-    const base = BOOKS.filter(b => b.year === year);
-    const user = userBooks.filter(b => b.year === year);
-    const books = [...user, ...base];
-    if (!books.length) return;
-    html += `<div class="year-section" id="year-${year}">
-      <div class="sl">${year} <span class="sl-count">${books.length} libro${books.length !== 1 ? 's' : ''}</span></div>
-      <div class="book-grid">`;
-    books.forEach((b) => {
-      const isUser = !!b._user;
-      const allB = getAllBooks();
-      const idx = allB.findIndex(x => x.title === b.title && x.author === b.author && x.year === b.year);
-      const hasNotes = !!(b.notes || notes[b.title]);
-      html += `<div class="book-card${hasNotes ? ' has-notes' : ''}${isUser ? ' user-book' : ''}" onclick="openModal(${idx})">
-        <div class="book-rating">${stars(b.rating)}</div>
-        <div class="book-title">${b.title}</div>
-        <div class="book-author">${b.author}</div>
-      </div>`;
-    });
-    html += `</div></div>`;
-  });
-
-  container.innerHTML = html;
-}
-
-// ── OVERRIDE openModal to use getAllBooks ──────────────────
-function openModal(idx) {
-  const allB = getAllBooks();
-  const b = allB[idx];
-  if (!b) return;
-  const notes = loadNotes();
-  const bookNotes = b.notes || notes[b.title] || '';
-  currentBookIdx = idx;
-
-  document.getElementById('m-rating').innerHTML = stars(b.rating);
-  document.getElementById('m-title').textContent = b.title;
-  document.getElementById('m-author').textContent = b.author;
-
-  let meta = `<span class="modal-tag">Leído en ${b.year}</span>`;
-  if (b.pages) meta += `<span class="modal-tag">${b.pages} páginas</span>`;
-  if (b.rating) meta += `<span class="modal-tag">${b.rating} de 5</span>`;
-  if (b._user) meta += `<span class="modal-tag" style="color:var(--now)">Añadido por ti</span>`;
-  document.getElementById('m-meta').innerHTML = meta;
-
-  // Delete button for user books
-  const deleteBtn = b._user
-    ? `<button class="modal-add-btn" style="color:#A3442C" onclick="deleteUserBook(${idx})">Eliminar libro</button>`
-    : '';
-
-  if (bookNotes) {
-    document.getElementById('m-notes-content').innerHTML =
-      `<div class="modal-notes">${bookNotes}</div>
-       <button class="modal-add-btn" onclick="editNotes(${idx})">Editar notas</button>${deleteBtn}`;
-  } else {
-    document.getElementById('m-notes-content').innerHTML =
-      `<div class="modal-no-notes">Aún no hay notas para este libro.</div>
-       <button class="modal-add-btn" onclick="editNotes(${idx})">Añadir notas</button>${deleteBtn}`;
+  if (estado === 'leyendo') {
+    var rd = loadRD();
+    var other = allItems().filter(function (it) { return it.id !== id && estadoDe(it.id, rd) === 'leyendo'; })[0];
+    var go = !other || confirm('Ya estás leyendo «' + other.title + '». ¿Añadir este también como «Leyendo»?');
+    if (go) setRD(id, { estado: 'leyendo', inicio: document.getElementById('pend-inicio').value || todayISO(), actual: parseInt(document.getElementById('pend-actual').value, 10) || 0, pages: pages });
   }
-
-  document.getElementById('modal-overlay').classList.add('open');
-  document.body.style.overflow = 'hidden';
+  closeAddPendingModal();
+  filterYear(estado === 'leyendo' && estadoDe(id) === 'leyendo' ? 'leyendo' : 'porleer');
 }
 
-function editNotes(idx) {
-  const allB = getAllBooks();
-  const b = allB[idx];
-  const notes = loadNotes();
-  const current = b.notes || notes[b.title] || '';
-  document.getElementById('m-notes-content').innerHTML =
-    `<textarea id="notes-editor" style="width:100%;min-height:180px;font-family:var(--sans);font-size:15px;line-height:1.7;border:none;border-bottom:1px solid var(--rule);padding:8px 0;resize:vertical;color:var(--ink);background:transparent;outline:none;" placeholder="Escribe tus notas, frases destacadas, reflexiones...">${current}</textarea>
-     <div style="display:flex;gap:20px;margin-top:12px;">
-       <button class="modal-add-btn" onclick="saveNoteUI(${idx})" style="color:var(--ink);text-decoration-color:var(--ink)">Guardar</button>
-       <button class="modal-add-btn" onclick="openModal(${idx})">Cancelar</button>
-     </div>`;
-  document.getElementById('notes-editor').focus();
-}
-
-function saveNoteUI(idx) {
-  const allB = getAllBooks();
-  const b = allB[idx];
-  const text = document.getElementById('notes-editor').value.trim();
-  saveNote(b.title, text);
-  openModal(idx);
-  render();
-}
-
-function deleteUserBook(idx) {
-  const allB = getAllBooks();
-  const b = allB[idx];
-  if (!b._user) return;
-  if (!confirm(`¿Eliminar "${b.title}"?`)) return;
-  const userBooks = loadUserBooks().filter(x => !(x.title === b.title && x.author === b.author && x.year === b.year));
-  saveUserBooks(userBooks);
-  closeModalDirect();
-  rebuildFilters();
-  updateStats();
-  render();
-}
-
-// ── INIT ──────────────────────────────────────────────────
+// ── INICIO ────────────────────────────────────────────────
+migratePending();
 rebuildFilters();
 updateStats();
-updatePendingStat();
 updateFrasesStat();
 render();
-(function(){var h=location.hash.replace('#','');if(h==='pendientes'){filterYear('pending',document.querySelectorAll('.filter-btn')[1]);}else if(h==='frases'){filterYear('frases',document.querySelectorAll('.filter-btn')[2]);}})();
+(function () {
+  var h = location.hash.replace('#', '');
+  var map = { pendientes: 'porleer', porleer: 'porleer', leyendo: 'leyendo', frases: 'frases' };
+  if (map[h]) filterYear(map[h]);
+})();
 </script>
 <script type="module" src="../js/cloud.js"></script>
 </body>
