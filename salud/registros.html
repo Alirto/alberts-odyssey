@@ -83,6 +83,21 @@
   .rec-del-btn { font-size: 12px; color: var(--ink-3); text-decoration: underline; text-decoration-color: var(--rule); text-underline-offset: 3px; }
   .rec-del-btn:hover { color: #A3442C; text-decoration-color: #A3442C; }
   .rec-empty { font-size: 14px; color: var(--ink-3); font-style: italic; padding: 16px 0; }
+  .rec-row.comp { grid-template-columns: 100px 80px 80px 70px 80px 80px 70px 1fr auto; }
+  .rec-input-group input.sm { min-width: 0; width: 110px; }
+
+  /* Composición: resumen */
+  .kpi-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0 32px; margin-bottom: 48px; }
+  .kpi { border-top: 1px solid var(--ink); padding-top: 14px; }
+  .kpi-lbl { font-size: 11px; letter-spacing: .12em; text-transform: uppercase; color: var(--ink-3); font-weight: 500; }
+  .kpi-val { font-family: var(--serif); font-variation-settings: 'opsz' 60; font-size: 40px; letter-spacing: -0.03em; line-height: 1.1; margin-top: 8px; font-variant-numeric: tabular-nums; }
+  .kpi-val small { font-family: var(--sans); font-size: 14px; color: var(--ink-3); letter-spacing: 0; margin-left: 4px; }
+  .kpi-delta { font-size: 13px; margin-top: 4px; font-variant-numeric: tabular-nums; color: var(--ink-3); }
+  .kpi-delta.good { color: var(--acc); }
+  .kpi-delta.bad { color: #A3442C; }
+  .kpi-goal { font-size: 13px; color: var(--ink-2); margin-top: 10px; padding-top: 10px; border-top: 1px solid var(--rule-soft); }
+  .kpi-goal.met { color: var(--acc); }
+  .comp-cond { font-size: 13.5px; color: var(--ink-2); margin-top: 18px; max-width: 760px; }
 
   footer .wrap { border-top: 1px solid var(--ink); padding: 28px var(--gutter) 56px; display: flex; justify-content: space-between; gap: 32px; font-size: 13px; color: var(--ink-3); flex-wrap: wrap; }
 
@@ -95,7 +110,9 @@
     .menu a { padding: 13px 0; white-space: nowrap; }
     .main-tabs { gap: 24px; }
     .main-tab { font-size: 18px; }
-    .rec-row, .rec-row.gym { grid-template-columns: 1fr 1fr; row-gap: 4px; }
+    .rec-row, .rec-row.gym, .rec-row.comp { grid-template-columns: 1fr 1fr; row-gap: 4px; }
+    .kpi-grid { grid-template-columns: 1fr 1fr; gap: 28px 24px; }
+    .kpi-val { font-size: 32px; }
     .rec-row.hdr { display: none; }
     .rec-note { grid-column: 1 / -1; }
   }
@@ -134,6 +151,7 @@
     <div class="main-tabs">
       <button class="main-tab active" onclick="switchPanel('carrera')"><span class="tab-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="5" r="2"/><path d="M9 22l2-7-3-2 1-5 4 3 1 4 3 2-1 3M7 13l-3 2"/></svg></span>Carrera</button>
       <button class="main-tab" onclick="switchPanel('gimnasio')"><span class="tab-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2.5" y="9.5" width="3" height="5" rx=".5"/><rect x="18.5" y="9.5" width="3" height="5" rx=".5"/><rect x="5.5" y="7.5" width="3" height="9" rx=".5"/><rect x="15.5" y="7.5" width="3" height="9" rx=".5"/><path d="M8.5 12h7"/></svg></span>Gimnasio</button>
+      <button class="main-tab" onclick="switchPanel('composicion')"><span class="tab-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="3.5" width="17" height="17" rx="3"/><path d="M8 9.5a5 5 0 0 1 8 0"/><path d="M12 9.5l1.5-2"/></svg></span>Composición</button>
     </div>
   </div>
 </section>
@@ -193,6 +211,35 @@
     </div>
   </div>
 
+  <!-- PANEL COMPOSICIÓN -->
+  <div class="panel" id="panel-composicion">
+    <div class="grp-hd"><span class="grp-num">Basal → hoy</span><span class="grp-ttl">Composición corporal</span></div>
+    <div class="kpi-grid" id="comp-kpis"></div>
+
+    <div class="rec-add-card">
+      <div class="rec-add-title">Registrar medición</div>
+      <div class="rec-add-row">
+        <div class="rec-input-group"><label>Fecha</label><input type="date" id="comp-fecha"></div>
+        <div class="rec-input-group"><label>Peso (kg)</label><input class="sm" type="number" id="comp-peso" step="0.1" min="0" placeholder="0"></div>
+        <div class="rec-input-group"><label>Músculo (kg)</label><input class="sm" type="number" id="comp-mme" step="0.1" min="0" placeholder="0"></div>
+        <div class="rec-input-group"><label>Grasa (%)</label><input class="sm" type="number" id="comp-grasa" step="0.1" min="0" placeholder="0"></div>
+        <div class="rec-input-group"><label>Masa grasa (kg)</label><input class="sm" type="number" id="comp-mg" step="0.1" min="0" placeholder="0"></div>
+        <div class="rec-input-group"><label>Visceral (cm²)</label><input class="sm" type="number" id="comp-visc" step="0.1" min="0" placeholder="0"></div>
+        <div class="rec-input-group"><label>Cintura (cm)</label><input class="sm" type="number" id="comp-cint" step="0.5" min="0" placeholder="0"></div>
+        <div class="rec-input-group"><label>Nota (opcional)</label><input type="text" id="comp-nota" placeholder="Ej. InBody, solo cintura"></div>
+        <button class="rec-add-btn" onclick="addComp()">Añadir</button>
+      </div>
+      <div class="rec-add-err" id="comp-err">Rellena la fecha y al menos un valor.</div>
+      <p class="comp-cond">Para que las mediciones sean comparables: siempre el mismo InBody, entre las 18:30 y las 19:00, sin entrenar antes ese día, con 3 horas sin comer y después de orinar. La cintura, en ayunas y a la altura del ombligo. El músculo es la masa musculoesquelética del InBody.</p>
+    </div>
+
+    <div class="rec-log">
+      <div class="rec-log-hdr"><span class="rec-log-title">Historial</span><span class="meta" id="comp-count"></span></div>
+      <div class="rec-row hdr comp"><span>Fecha</span><span>Peso</span><span>Músculo</span><span>Grasa</span><span>M. grasa</span><span>Visceral</span><span>Cintura</span><span>Nota</span><span></span></div>
+      <div id="comp-list"></div>
+    </div>
+  </div>
+
 </div>
 
 <footer>
@@ -206,7 +253,7 @@
 function switchPanel(id) {
   document.querySelectorAll('.panel').forEach(function(p) { p.classList.remove('active'); });
   document.querySelectorAll('.main-tab').forEach(function(t, i) {
-    var ids = ['carrera','gimnasio'];
+    var ids = ['carrera','gimnasio','composicion'];
     t.classList.toggle('active', ids[i] === id);
   });
   document.getElementById('panel-' + id).classList.add('active');
@@ -215,6 +262,7 @@ function switchPanel(id) {
 
 var RUN_KEY = 'ao_running_log_v1';
 var GYM_KEY = 'ao_gym_maxes_v1';
+var COMP_KEY = 'ao_body_comp_v1';
 
 function load(key) {
   try { var v = JSON.parse(localStorage.getItem(key) || '[]'); return Array.isArray(v) ? v : []; }
@@ -310,14 +358,95 @@ function delGym(id) {
   renderGym();
 }
 
+// Objetivos de la Fase 2 (28 mar 2027). dir: -1 = cuanto menos mejor, 1 = cuanto más mejor
+var COMP_METRICS = [
+  { k: 'peso',  lbl: 'Peso',     unit: 'kg', dir: -1, goal: 81,   goalTxt: 'Objetivo 28 mar: 81 kg' },
+  { k: 'mme',   lbl: 'Músculo',  unit: 'kg', dir: 1,  goal: 40.0, goalTxt: 'Objetivo: ≥ 40,0 kg' },
+  { k: 'grasa', lbl: 'Grasa',    unit: '%',  dir: -1, goal: 14.5, goalTxt: 'Objetivo 28 mar: ≤ 14,5 %' },
+  { k: 'cint',  lbl: 'Cintura',  unit: 'cm', dir: -1, goal: null, goalTxt: 'Seguimiento mensual' }
+];
+function num(v) { return (v === null || v === undefined || v === '') ? null : v; }
+function fmtNum(v, d) { return v == null ? '—' : v.toFixed(d).replace('.', ','); }
+function compSorted() {
+  return load(COMP_KEY).slice().sort(function(a, b) { return (a.fecha || '').localeCompare(b.fecha || ''); });
+}
+function renderCompKpis(asc) {
+  var el = document.getElementById('comp-kpis');
+  el.innerHTML = COMP_METRICS.map(function(m) {
+    var withVal = asc.filter(function(it) { return num(it[m.k]) != null; });
+    var first = withVal[0], last = withVal[withVal.length - 1];
+    var val = last ? last[m.k] : null;
+    var delta = '';
+    if (first && last && first !== last) {
+      var d = last[m.k] - first[m.k];
+      var cls = d === 0 ? '' : ((d * m.dir) > 0 ? 'good' : 'bad');
+      delta = '<div class="kpi-delta ' + cls + '">' + (d > 0 ? '+' : '') + fmtNum(d, 1) + ' ' + m.unit + ' desde la basal (' + fmtDate(first.fecha) + ')</div>';
+    } else if (first) {
+      delta = '<div class="kpi-delta">Basal · ' + fmtDate(first.fecha) + '</div>';
+    } else {
+      delta = '<div class="kpi-delta">Sin datos</div>';
+    }
+    var met = m.goal != null && val != null && (m.dir < 0 ? val <= m.goal : val >= m.goal);
+    return '<div class="kpi"><div class="kpi-lbl">' + m.lbl + '</div>' +
+      '<div class="kpi-val">' + fmtNum(val, 1) + '<small>' + m.unit + '</small></div>' + delta +
+      '<div class="kpi-goal' + (met && m.dir < 0 ? ' met' : '') + '">' + m.goalTxt + '</div></div>';
+  }).join('');
+}
+function renderComp() {
+  var asc = compSorted();
+  renderCompKpis(asc);
+  var items = asc.slice().reverse();
+  var el = document.getElementById('comp-list');
+  document.getElementById('comp-count').textContent = items.length ? items.length + (items.length === 1 ? ' medición' : ' mediciones') : '';
+  if (!items.length) { el.innerHTML = '<div class="rec-empty">Todavía no has registrado ninguna medición.</div>'; return; }
+  function cell(v, d, u) { return '<span class="rec-val">' + (v != null ? fmtNum(v, d) + (u ? ' ' + u : '') : '—') + '</span>'; }
+  el.innerHTML = items.map(function(it) {
+    return '<div class="rec-row comp">' +
+      '<span class="rec-date">' + fmtDate(it.fecha) + '</span>' +
+      cell(num(it.peso), 1, 'kg') + cell(num(it.mme), 1, 'kg') + cell(num(it.grasa), 1, '%') +
+      cell(num(it.mg), 1, 'kg') + cell(num(it.visc), 1, '') + cell(num(it.cint), 1, 'cm') +
+      '<span class="rec-note">' + (it.nota || '') + '</span>' +
+      '<button class="rec-del-btn" onclick="delComp(\'' + it.id + '\')">Borrar</button>' +
+      '</div>';
+  }).join('');
+}
+function addComp() {
+  var fecha = document.getElementById('comp-fecha').value;
+  var f = { peso: 'comp-peso', mme: 'comp-mme', grasa: 'comp-grasa', mg: 'comp-mg', visc: 'comp-visc', cint: 'comp-cint' };
+  var rec = { id: 'c' + Date.now(), fecha: fecha };
+  var any = false;
+  Object.keys(f).forEach(function(k) {
+    var v = document.getElementById(f[k]).value;
+    rec[k] = v ? parseFloat(v) : null;
+    if (v) any = true;
+  });
+  rec.nota = document.getElementById('comp-nota').value.trim();
+  var err = document.getElementById('comp-err');
+  if (!fecha || !any) { err.style.display = 'block'; return; }
+  err.style.display = 'none';
+  var items = load(COMP_KEY);
+  items.push(rec);
+  save(COMP_KEY, items);
+  Object.keys(f).forEach(function(k) { document.getElementById(f[k]).value = ''; });
+  document.getElementById('comp-nota').value = '';
+  renderComp();
+}
+function delComp(id) {
+  if (!confirm('¿Borrar esta medición?')) return;
+  save(COMP_KEY, load(COMP_KEY).filter(function(it) { return it.id !== id; }));
+  renderComp();
+}
+
 document.addEventListener('DOMContentLoaded', function() {
   var h = location.hash.replace('#', '');
-  if (['carrera', 'gimnasio'].indexOf(h) >= 0) switchPanel(h);
+  if (['carrera', 'gimnasio', 'composicion'].indexOf(h) >= 0) switchPanel(h);
   renderRun();
   renderGym();
+  renderComp();
   window.addEventListener('storage', function(e) {
     if (e.key === RUN_KEY) renderRun();
     if (e.key === GYM_KEY) renderGym();
+    if (e.key === COMP_KEY) renderComp();
   });
 });
 </script>
