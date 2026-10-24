@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Lecturas ‚Äî Albert's Odyssey</title>
+<title>Lecturas — Albert's Odyssey</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..600;1,9..144,300..600&family=DM+Sans:ital,opsz,wght@0,9..40,300..600;1,9..40,300..600&display=swap" rel="stylesheet">
@@ -117,7 +117,7 @@
     .sec-meta { margin-left: 0; text-align: left; justify-content: flex-start; }
   }
 
-  /* ‚îÄ‚îÄ Lecturas ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ */
+  /* ── Lecturas ───────────────────────────────────────────── */
   .toolbar { display: flex; align-items: baseline; justify-content: space-between; gap: 32px; border-top: 1px solid var(--ink); flex-wrap: wrap; }
   .filters { display: flex; gap: 36px; }
   .filter-btn { font-family: var(--serif); font-variation-settings: 'opsz' 20; font-size: 22px; letter-spacing: -0.01em; color: var(--ink-3); padding: 18px 0 16px; border-top: 2px solid transparent; margin-top: -1px; transition: color .15s; }
@@ -138,7 +138,7 @@
   .star.full { color: var(--ink); } .star.empty { color: var(--rule); }
   .book-title { font-family: var(--serif); font-variation-settings: 'opsz' 20; font-size: 19px; line-height: 1.25; letter-spacing: -0.01em; }
   .book-author { font-size: 13px; color: var(--ink-3); }
-  .book-card.has-notes .book-author::after { content: ' ¬∑ notas'; color: var(--now); font-weight: 500; }
+  .book-card.has-notes .book-author::after { content: ' · notas'; color: var(--now); font-weight: 500; }
   .book-card.user-book .book-title { font-style: italic; }
 
   .frases-section { margin-top: 40px; }
@@ -197,7 +197,7 @@
   @media (max-width: 1000px) { .book-grid { grid-template-columns: 1fr 1fr; } .pending-grid { grid-template-columns: 1fr 1fr; } .frases-masonry { grid-template-columns: 1fr; } }
   @media (max-width: 600px) { .book-grid, .pending-grid { grid-template-columns: 1fr; } .filters { gap: 20px; } .filter-btn { font-size: 18px; } }
 
-  /* ‚îÄ‚îÄ Color e iconos ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ */
+  /* ── Color e iconos ─────────────────────────────────────── */
   .ico { display: inline-block; width: 1em; height: 1em; vertical-align: -0.12em; }
   .ico svg { width: 100%; height: 100%; display: block; }
   .dl-ico { display: flex; align-items: center; gap: 9px; }
@@ -213,7 +213,7 @@
   .book-card:hover { background: color-mix(in srgb, var(--acc) 6%, transparent); }
   .sl .ico { width: 24px; height: 24px; color: var(--ink-2); align-self: center; margin-right: 2px; }
 
-  /* ‚îÄ‚îÄ Lectura: estados, lista y ficha ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ */
+  /* ── Lectura: estados, lista y ficha ─────────────────────── */
   .fcount { font-family: var(--sans); font-size: 12px; color: var(--ink-3); margin-left: 7px; letter-spacing: 0; vertical-align: 3px; }
   .book-line { font-size: 12.5px; color: var(--ink-3); }
   .book-prev { font-size: 13px; color: var(--ink-2); line-height: 1.5; font-style: italic; margin-top: 4px; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
@@ -258,7 +258,7 @@
   .notes-editor:focus { border-color: var(--ink); }
   @media (max-width: 900px) { .rd-grid { grid-template-columns: 1fr; } .tl-controls { gap: 18px; } .tl-select { min-width: 0; width: 100%; } }
 
-  /* ‚îÄ‚îÄ Libros 3D (estilo Stripe Press) ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ */
+  /* ── Libros 3D (estilo Stripe Press) ─────────────────────── */
   .shelf { display: grid; grid-template-columns: repeat(auto-fill, minmax(170px, 1fr)); gap: 44px 32px; border-top: 1px solid var(--ink); padding-top: 36px; }
   .bk-slot { display: flex; flex-direction: column; align-items: center; gap: 16px; cursor: pointer; outline: none; text-align: center; }
   .bk-stage { perspective: 700px; display: flex; justify-content: center; padding: 6px 0 14px; }
@@ -354,7 +354,7 @@
   @media (prefers-reduced-motion: reduce) { .bk3d, .shelf.reveal .bk-slot { transition: none !important; opacity: 1 !important; transform: none; } }
 </style>
 <style>body.auth-pending>*:not(#loginScreen){visibility:hidden}</style>
-<script>setTimeout(function(){if(document.body&&document.body.classList.contains('auth-pending')&&!document.getElementById('loginScreen')){var d=document.createElement('div');d.id='loginScreen';d.style.cssText='position:fixed;inset:0;display:flex;align-items:center;justify-content:center;padding:24px;font:15px/1.5 system-ui,sans-serif;color:#45423A;text-align:center;background:#F3F0E8';d.textContent='No se ha podido cargar el acceso. Comprueba la conexi√≥n y recarga la p√°gina.';document.body.appendChild(d);}},8000);</script>
+<script>setTimeout(function(){if(document.body&&document.body.classList.contains('auth-pending')&&!document.getElementById('loginScreen')){var d=document.createElement('div');d.id='loginScreen';d.style.cssText='position:fixed;inset:0;display:flex;align-items:center;justify-content:center;padding:24px;font:15px/1.5 system-ui,sans-serif;color:#45423A;text-align:center;background:#F3F0E8';d.textContent='No se ha podido cargar el acceso. Comprueba la conexión y recarga la página.';document.body.appendChild(d);}},8000);</script>
 </head>
 <body class="auth-pending">
 
@@ -373,21 +373,21 @@
 
 <section class="masthead">
   <div class="wrap">
-    <div class="dateline dl-ico"><span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 7c-1.6-1.2-3.8-1.6-7-1.5v12c3.2-.1 5.4.3 7 1.5 1.6-1.2 3.8-1.6 7-1.5v-12c-3.2-.1-5.4.3-7 1.5z"/><path d="M12 7v12"/></svg></span><span>Lecturas ¬∑ Registro desde 2018</span></div>
+    <div class="dateline dl-ico"><span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 7c-1.6-1.2-3.8-1.6-7-1.5v12c3.2-.1 5.4.3 7 1.5 1.6-1.2 3.8-1.6 7-1.5v-12c-3.2-.1-5.4.3-7 1.5z"/><path d="M12 7v12"/></svg></span><span>Lecturas · Registro desde 2018</span></div>
     <h1>Biblioteca</h1>
     <div class="mast-row">
-      <p class="deck">Registro de lecturas desde 2018. <em>Biograf√≠as, econom√≠a, ciencia, filosof√≠a.</em> Pulsa un libro para ver su ficha y tus notas.</p>
+      <p class="deck">Registro de lecturas desde 2018. <em>Biografías, economía, ciencia, filosofía.</em> Pulsa un libro para ver su ficha y tus notas.</p>
       <div>
         <div class="fig-num num" id="stat-total">0</div>
-        <div class="fig-lbl">Libros le√≠dos en <b id="stat-years">9</b> a√±os de registro, con una nota media de <b id="stat-avg">‚Äì</b> sobre 5. <b id="stat-reading">0</b> leyendo, <b id="stat-pending">0</b> por leer y <b id="stat-frases">0</b> frases guardadas.</div>
+        <div class="fig-lbl">Libros leídos en <b id="stat-years">9</b> años de registro, con una nota media de <b id="stat-avg">–</b> sobre 5. <b id="stat-reading">0</b> leyendo, <b id="stat-pending">0</b> por leer y <b id="stat-frases">0</b> frases guardadas.</div>
         <div class="phase-pages" id="phase-pages"></div>
       </div>
     </div>
     <div class="toolbar">
       <div class="filters" id="filters"></div>
       <div class="toolbar-actions">
-        <button class="add-book-btn" id="mainAddBtn" onclick="openAddModal()">A√±adir libro</button>
-        <button class="add-book-btn" onclick="openAddFraseModal()">A√±adir frase</button>
+        <button class="add-book-btn" id="mainAddBtn" onclick="openAddModal()">Añadir libro</button>
+        <button class="add-book-btn" onclick="openAddFraseModal()">Añadir frase</button>
       </div>
     </div>
   </div>
@@ -399,7 +399,7 @@
 
 <footer>
   <div class="wrap">
-    <span>Albert's Odyssey ¬∑ Lecturas</span>
+    <span>Albert's Odyssey · Lecturas</span>
     <span><a href="../index.html" class="txt-btn">Volver al inicio</a></span>
   </div>
 </footer>
@@ -409,7 +409,7 @@
   <div class="modal" id="modal">
     <div class="fi-stage" id="fstage"></div>
     <div class="fi-text">
-      <div class="fi-nav" id="fnav" hidden><button class="modal-close" onclick="fichaStep(-1)">‚Üê Anterior</button><button class="modal-close" onclick="fichaStep(1)">Siguiente ‚Üí</button></div>
+      <div class="fi-nav" id="fnav" hidden><button class="modal-close" onclick="fichaStep(-1)">← Anterior</button><button class="modal-close" onclick="fichaStep(1)">Siguiente →</button></div>
       <div class="modal-hdr" id="fh"></div>
       <div class="modal-body" id="fb"></div>
     </div>
@@ -421,13 +421,13 @@
 <div class="add-modal-overlay" id="add-modal-overlay" onclick="if(event.target===this)closeAddModal()">
   <div class="add-modal">
     <div class="add-modal-hdr">
-      <h3>A√±adir libro</h3>
+      <h3>Añadir libro</h3>
       <button class="modal-close" onclick="closeAddModal()">Cerrar</button>
     </div>
     <div class="add-modal-body">
       <div class="form-group">
-        <label>T√≠tulo *</label>
-        <input type="text" id="add-title" placeholder="T√≠tulo del libro" autocomplete="off">
+        <label>Título *</label>
+        <input type="text" id="add-title" placeholder="Título del libro" autocomplete="off">
       </div>
       <div class="form-group">
         <label>Autor *</label>
@@ -435,7 +435,7 @@
       </div>
       <div class="form-row">
         <div class="form-group">
-          <label>A√±o de lectura *</label>
+          <label>Año de lectura *</label>
           <select id="add-year">
             <option value="2026">2026</option>
             <option value="2025">2025</option>
@@ -449,18 +449,18 @@
           </select>
         </div>
         <div class="form-group">
-          <label>P√°ginas</label>
+          <label>Páginas</label>
           <input type="number" id="add-pages" placeholder="0" min="0">
         </div>
       </div>
       <div class="form-group">
         <label>Rating</label>
         <div class="star-picker" id="star-picker">
-          <span class="star-pick" data-v="1" onclick="setRating(1)">‚òÖ</span>
-          <span class="star-pick" data-v="2" onclick="setRating(2)">‚òÖ</span>
-          <span class="star-pick" data-v="3" onclick="setRating(3)">‚òÖ</span>
-          <span class="star-pick" data-v="4" onclick="setRating(4)">‚òÖ</span>
-          <span class="star-pick" data-v="5" onclick="setRating(5)">‚òÖ</span>
+          <span class="star-pick" data-v="1" onclick="setRating(1)">★</span>
+          <span class="star-pick" data-v="2" onclick="setRating(2)">★</span>
+          <span class="star-pick" data-v="3" onclick="setRating(3)">★</span>
+          <span class="star-pick" data-v="4" onclick="setRating(4)">★</span>
+          <span class="star-pick" data-v="5" onclick="setRating(5)">★</span>
         </div>
       </div>
       <div id="add-error" style="font-size:12px;color:#C0614A;display:none;"></div>
@@ -476,13 +476,13 @@
 <div class="add-frase-overlay" id="add-frase-overlay" onclick="if(event.target===this)closeAddFraseModal()">
   <div class="add-frase-modal">
     <div class="add-modal-hdr">
-      <h3>A√±adir frase</h3>
+      <h3>Añadir frase</h3>
       <button class="modal-close" onclick="closeAddFraseModal()">Cerrar</button>
     </div>
     <div class="add-modal-body">
       <div class="form-group">
         <label>Frase *</label>
-        <textarea id="frase-text" placeholder="Escribe la frase aqu√≠..." style="font-family:'DM Sans',sans-serif;font-size:13px;color:var(--text-1);background:var(--bg);border:1px solid var(--border);border-radius:8px;padding:9px 12px;outline:none;resize:vertical;min-height:90px;width:100%;line-height:1.6;transition:border-color .15s;" onfocus="this.style.borderColor='var(--accent)'" onblur="this.style.borderColor='var(--border)'"></textarea>
+        <textarea id="frase-text" placeholder="Escribe la frase aquí..." style="font-family:'DM Sans',sans-serif;font-size:13px;color:var(--text-1);background:var(--bg);border:1px solid var(--border);border-radius:8px;padding:9px 12px;outline:none;resize:vertical;min-height:90px;width:100%;line-height:1.6;transition:border-color .15s;" onfocus="this.style.borderColor='var(--accent)'" onblur="this.style.borderColor='var(--border)'"></textarea>
       </div>
       <div class="form-group">
         <label>Autor *</label>
@@ -502,29 +502,29 @@
 </div>
 
 
-<!-- A√ëADIR A LA LISTA -->
+<!-- AÑADIR A LA LISTA -->
 <div class="add-pending-overlay" id="add-pending-overlay" onclick="if(event.target===this)closeAddPendingModal()">
   <div class="add-pending-modal">
     <div class="add-modal-hdr">
-      <h3>A√±adir a la lista</h3>
+      <h3>Añadir a la lista</h3>
       <button class="modal-close" onclick="closeAddPendingModal()">Cerrar</button>
     </div>
     <div class="add-modal-body">
-      <div class="form-group"><label>T√≠tulo *</label><input type="text" id="pend-title" placeholder="T√≠tulo del libro" autocomplete="off"></div>
+      <div class="form-group"><label>Título *</label><input type="text" id="pend-title" placeholder="Título del libro" autocomplete="off"></div>
       <div class="form-group"><label>Autor *</label><input type="text" id="pend-author" placeholder="Nombre del autor" autocomplete="off"></div>
       <div class="form-row">
         <div class="form-group"><label>Estado</label><select id="pend-estado" onchange="pendEstadoChange()"><option value="porleer">Por leer</option><option value="leyendo">Leyendo</option></select></div>
-        <div class="form-group"><label>P√°ginas</label><input type="number" id="pend-pages" min="0" placeholder="0"></div>
+        <div class="form-group"><label>Páginas</label><input type="number" id="pend-pages" min="0" placeholder="0"></div>
       </div>
       <div class="form-row" id="pend-leyendo-row" style="display:none">
-        <div class="form-group"><label>Empec√© el</label><input type="date" id="pend-inicio"></div>
-        <div class="form-group"><label>P√°gina actual</label><input type="number" id="pend-actual" min="0" placeholder="0"></div>
+        <div class="form-group"><label>Empecé el</label><input type="date" id="pend-inicio"></div>
+        <div class="form-group"><label>Página actual</label><input type="number" id="pend-actual" min="0" placeholder="0"></div>
       </div>
       <div class="form-group"><label>Nota (opcional)</label><input type="text" id="pend-note" placeholder="Ej: Recomendado por..." autocomplete="off"></div>
       <div id="pend-error" style="font-size:12px;color:#C0614A;display:none;"></div>
       <div class="form-actions">
         <button class="btn-secondary" onclick="closeAddPendingModal()">Cancelar</button>
-        <button class="btn-primary" onclick="savePendingBook()">A√±adir a la lista</button>
+        <button class="btn-primary" onclick="savePendingBook()">Añadir a la lista</button>
       </div>
     </div>
   </div>
@@ -533,12 +533,12 @@
 
 
 <script>
-// ‚îÄ‚îÄ BOOK DATA ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ
+// ── BOOK DATA ─────────────────────────────────────────────
 const BOOKS = [
   // 2026
   { title: "Roma soy yo", author: "Santiago Posteguillo", rating: 5, year: "2026", pages: 752, notes: "" },
-  { title: "El √∫ltimo secreto", author: "Dan Brown", rating: 3, year: "2026", pages: 832, notes: "" },
-  { title: "El libro negro del emprendedor", author: "Fernando Tr√≠as de Bes", rating: 4, year: "2026", pages: 192, notes: "" },
+  { title: "El último secreto", author: "Dan Brown", rating: 3, year: "2026", pages: 832, notes: "" },
+  { title: "El libro negro del emprendedor", author: "Fernando Trías de Bes", rating: 4, year: "2026", pages: 192, notes: "" },
 
   // 2025
   { title: "Elon Musk", author: "Walter Isaacson", rating: 4, year: "2025", pages: 688, notes: "" },
@@ -550,20 +550,20 @@ const BOOKS = [
   { title: "Poor Charlie's Almanack", author: "Charles T. Munger", rating: 4, year: "2025", pages: 548, notes: "" },
 
   // 2023
-  { title: "Breve historia de la qu√≠mica", author: "Isaac Asimov", rating: 2, year: "2023", pages: 266, notes: "" },
+  { title: "Breve historia de la química", author: "Isaac Asimov", rating: 2, year: "2023", pages: 266, notes: "" },
   { title: "Seeking Wisdom: From Darwin To Munger", author: "Peter Bevelin", rating: 3, year: "2023", pages: 318, notes: "" },
   { title: "American Prometheus", author: "Kai Bird", rating: 3, year: "2023", pages: 721, notes: "" },
   { title: "The Sailor Who Fell from Grace with the Sea", author: "Yukio Mishima", rating: 2, year: "2023", pages: 181, notes: "" },
   { title: "The Autobiography of Benjamin Franklin", author: "Benjamin Franklin", rating: 3, year: "2023", pages: 143, notes: "" },
   { title: "Influence: The Psychology of Persuasion", author: "Robert B. Cialdini", rating: 4, year: "2023", pages: 320, notes: "" },
   { title: "The Brain: The Story of You", author: "David Eagleman", rating: 3, year: "2023", pages: 224, notes: "" },
-  { title: "Pap√† Goriot", author: "Honor√© de Balzac", rating: 1, year: "2023", pages: 256, notes: "" },
+  { title: "Papà Goriot", author: "Honoré de Balzac", rating: 1, year: "2023", pages: 256, notes: "" },
   { title: "El viaje es la recompensa", author: "Francisco Luzon", rating: 3, year: "2023", pages: 268, notes: "" },
   { title: "Good to Great", author: "Jim Collins", rating: 3, year: "2023", pages: 300, notes: "" },
-  { title: "El pr√≠ncipe", author: "Niccol√≤ Machiavelli", rating: 3, year: "2023", pages: 132, notes: "" },
+  { title: "El príncipe", author: "Niccolò Machiavelli", rating: 3, year: "2023", pages: 132, notes: "" },
   { title: "Ruido: Un fallo en el juicio humano", author: "Daniel Kahneman", rating: 3, year: "2023", pages: 540, notes: "" },
   { title: "Schliemann - Geschichte eines Goldsuchers", author: "Emil Ludwig", rating: 4, year: "2023", pages: 355, notes: "" },
-  { title: "Eugenia Grandet / Piel de Zapa", author: "Honor√© de Balzac", rating: 2, year: "2023", pages: 464, notes: "" },
+  { title: "Eugenia Grandet / Piel de Zapa", author: "Honoré de Balzac", rating: 2, year: "2023", pages: 464, notes: "" },
   { title: "Harry Potter and the Prisoner of Azkaban", author: "J.K. Rowling", rating: 4, year: "2023", pages: 547, notes: "" },
   { title: "Harry Potter and the Chamber of Secrets", author: "J.K. Rowling", rating: 4, year: "2023", pages: 341, notes: "" },
 
@@ -571,10 +571,10 @@ const BOOKS = [
   { title: "Harry Potter and the Philosopher's Stone", author: "J.K. Rowling", rating: 5, year: "2022", pages: 309, notes: "" },
   { title: "Viajes de Marco Polo", author: "Marco Polo", rating: 3, year: "2022", pages: 0, notes: "" },
   { title: "Ana Karenina", author: "Leo Tolstoy", rating: 2, year: "2022", pages: 0, notes: "" },
-  { title: "Los d√≠as de gloria", author: "Mario Conde", rating: 3, year: "2022", pages: 0, notes: "" },
+  { title: "Los días de gloria", author: "Mario Conde", rating: 3, year: "2022", pages: 0, notes: "" },
   { title: "The Psychology of Human Misjudgement", author: "Charles T. Munger", rating: 5, year: "2022", pages: 0, notes: "" },
   { title: "Jugarse la piel", author: "Nassim Nicholas Taleb", rating: 4, year: "2022", pages: 0, notes: "" },
-  { title: "Antifr√°gil", author: "Nassim Nicholas Taleb", rating: 4, year: "2022", pages: 0, notes: "" },
+  { title: "Antifrágil", author: "Nassim Nicholas Taleb", rating: 4, year: "2022", pages: 0, notes: "" },
   { title: "Fooled by Randomness", author: "Nassim Nicholas Taleb", rating: 4, year: "2022", pages: 0, notes: "" },
   { title: "El cisne negro", author: "Nassim Nicholas Taleb", rating: 4, year: "2022", pages: 0, notes: "" },
   { title: "2001: Una odisea espacial", author: "Arthur C. Clarke", rating: 2, year: "2022", pages: 0, notes: "" },
@@ -592,7 +592,7 @@ const BOOKS = [
   { title: "Zero to One", author: "Peter Thiel", rating: 4, year: "2021", pages: 0, notes: "" },
   { title: "Principles of Economics", author: "Carl Menger", rating: 4, year: "2021", pages: 0, notes: "" },
   { title: "The Origins of Money", author: "Carl Menger", rating: 4, year: "2021", pages: 0, notes: "" },
-  { title: "El patr√≥n Bitcoin", author: "Saifedean Ammous", rating: 3, year: "2021", pages: 0, notes: "" },
+  { title: "El patrón Bitcoin", author: "Saifedean Ammous", rating: 3, year: "2021", pages: 0, notes: "" },
   { title: "Digital Gold", author: "Nathaniel Popper", rating: 4, year: "2021", pages: 0, notes: "" },
   { title: "The Essays of Warren Buffett", author: "Warren Buffett", rating: 5, year: "2021", pages: 0, notes: "" },
   { title: "Tap Dancing to Work", author: "Carol J. Loomis", rating: 3, year: "2021", pages: 0, notes: "" },
@@ -603,12 +603,12 @@ const BOOKS = [
   { title: "The Invisible Hand", author: "Adam Smith", rating: 4, year: "2021", pages: 0, notes: "" },
   { title: "The Wealth of Nations", author: "Adam Smith", rating: 5, year: "2021", pages: 0, notes: "" },
   { title: "How to Avoid a Climate Disaster", author: "Bill Gates", rating: 4, year: "2021", pages: 0, notes: "" },
-  { title: "La conquista de Am√©rica contada para esc√©pticos", author: "Juan Eslava Gal√°n", rating: 3, year: "2021", pages: 0, notes: "" },
-  { title: "Winston Churchill: Una biograf√≠a colectiva", author: "Richard Toye", rating: 3, year: "2021", pages: 0, notes: "" },
-  { title: "Historia de Espa√±a contada para esc√©pticos", author: "Juan Eslava Gal√°n", rating: 4, year: "2021", pages: 0, notes: "" },
+  { title: "La conquista de América contada para escépticos", author: "Juan Eslava Galán", rating: 3, year: "2021", pages: 0, notes: "" },
+  { title: "Winston Churchill: Una biografía colectiva", author: "Richard Toye", rating: 3, year: "2021", pages: 0, notes: "" },
+  { title: "Historia de España contada para escépticos", author: "Juan Eslava Galán", rating: 4, year: "2021", pages: 0, notes: "" },
 
   // 2020
-  { title: "Los Reyes Cat√≥licos", author: "Juan Eslava Gal√°n", rating: 3, year: "2020", pages: 0, notes: "" },
+  { title: "Los Reyes Católicos", author: "Juan Eslava Galán", rating: 3, year: "2020", pages: 0, notes: "" },
   { title: "Invent and Wander", author: "Jeff Bezos", rating: 5, year: "2020", pages: 0, notes: "" },
   { title: "12 Rules for Life", author: "Jordan B. Peterson", rating: 3, year: "2020", pages: 0, notes: "" },
   { title: "The Monk Who Sold His Ferrari", author: "Robin Sharma", rating: 3, year: "2020", pages: 0, notes: "" },
@@ -630,7 +630,7 @@ const BOOKS = [
   { title: "Steve Jobs", author: "Walter Isaacson", rating: 5, year: "2020", pages: 0, notes: "" },
   { title: "Thinking, Fast and Slow", author: "Daniel Kahneman", rating: 5, year: "2020", pages: 0, notes: "" },
   { title: "Energy: A Beginner's Guide", author: "Vaclav Smil", rating: 4, year: "2020", pages: 0, notes: "" },
-  { title: "Invirtiendo a largo plazo", author: "Francisco Garc√≠a Param√©s", rating: 4, year: "2020", pages: 0, notes: "" },
+  { title: "Invirtiendo a largo plazo", author: "Francisco García Paramés", rating: 4, year: "2020", pages: 0, notes: "" },
   { title: "Tim Cook", author: "Leander Kahney", rating: 3, year: "2020", pages: 0, notes: "" },
   { title: "Banker to the Poor", author: "Muhammad Yunus", rating: 4, year: "2020", pages: 0, notes: "" },
   { title: "A World of Three Zeros", author: "Muhammad Yunus", rating: 4, year: "2020", pages: 0, notes: "" },
@@ -640,9 +640,9 @@ const BOOKS = [
 
   // 2019
   { title: "El retorno del rey", author: "J.R.R. Tolkien", rating: 5, year: "2019", pages: 0, notes: "" },
-  { title: "El Principito", author: "Antoine de Saint-Exup√©ry", rating: 5, year: "2019", pages: 0, notes: "" },
+  { title: "El Principito", author: "Antoine de Saint-Exupéry", rating: 5, year: "2019", pages: 0, notes: "" },
   { title: "Lords of Finance", author: "Liaquat Ahamed", rating: 4, year: "2019", pages: 0, notes: "" },
-  { title: "El peque√±o libro para invertir con sentido com√∫n", author: "John C. Bogle", rating: 4, year: "2019", pages: 0, notes: "" },
+  { title: "El pequeño libro para invertir con sentido común", author: "John C. Bogle", rating: 4, year: "2019", pages: 0, notes: "" },
   { title: "The Picture of Dorian Gray", author: "Oscar Wilde", rating: 5, year: "2019", pages: 0, notes: "" },
   { title: "Liar's Poker", author: "Michael Lewis", rating: 3, year: "2019", pages: 0, notes: "" },
   { title: "Leonardo da Vinci", author: "Walter Isaacson", rating: 5, year: "2019", pages: 0, notes: "" },
@@ -661,7 +661,7 @@ const BOOKS = [
   { title: "The Last Question", author: "Isaac Asimov", rating: 5, year: "2019", pages: 0, notes: "" },
   { title: "Factfulness", author: "Hans Rosling", rating: 5, year: "2019", pages: 0, notes: "" },
   { title: "Smarter Faster Better", author: "Charles Duhigg", rating: 4, year: "2019", pages: 0, notes: "" },
-  { title: "La teor√≠a del todo", author: "Stephen W. Hawking", rating: 4, year: "2019", pages: 0, notes: "" },
+  { title: "La teoría del todo", author: "Stephen W. Hawking", rating: 4, year: "2019", pages: 0, notes: "" },
   { title: "Educated", author: "Tara Westover", rating: 5, year: "2019", pages: 0, notes: "" },
 
   // 2018
@@ -677,7 +677,7 @@ const BOOKS = [
   { title: "SuperFreakonomics", author: "Steven D. Levitt", rating: 4, year: "2018", pages: 270, notes: "" },
   { title: "Business Adventures", author: "John Brooks", rating: 5, year: "2018", pages: 408, notes: "" },
   { title: "The Hunger Games", author: "Suzanne Collins", rating: 5, year: "2018", pages: 374, notes: "" },
-  { title: "Memorias de um Operador da Bolsa", author: "Edwin Lef√®vre", rating: 4, year: "2018", pages: 272, notes: "" },
+  { title: "Memorias de um Operador da Bolsa", author: "Edwin Lefèvre", rating: 4, year: "2018", pages: 272, notes: "" },
   { title: "Directo Al Infierno", author: "John LeFevre", rating: 4, year: "2018", pages: 288, notes: "" },
   { title: "The Richest Man in Babylon", author: "George S. Clason", rating: 5, year: "2018", pages: 194, notes: "" },
   { title: "The Power of Habit", author: "Charles Duhigg", rating: 5, year: "2018", pages: 375, notes: "" },
@@ -694,14 +694,14 @@ const BOOKS = [
   { title: "Space Chronicles", author: "Neil deGrasse Tyson", rating: 3, year: "2018", pages: 384, notes: "" },
   { title: "El Arte de la Guerra", author: "Sun Tzu", rating: 3, year: "2018", pages: 55, notes: "" },
   { title: "Trading en la zona", author: "Mark Douglas", rating: 2, year: "2018", pages: 208, notes: "" },
-  { title: "G√°nate y ganar√°s en bolsa", author: "Jose Antonio Madrigal", rating: 3, year: "2018", pages: 128, notes: "" },
+  { title: "Gánate y ganarás en bolsa", author: "Jose Antonio Madrigal", rating: 3, year: "2018", pages: 128, notes: "" },
   { title: "Un monje en Wall Street", author: "Jose Antonio Madrigal", rating: 3, year: "2018", pages: 128, notes: "" },
-  { title: "Invertir en bolsa con sentido com√∫n", author: "Jose Antonio Madrigal", rating: 3, year: "2018", pages: 128, notes: "" },
+  { title: "Invertir en bolsa con sentido común", author: "Jose Antonio Madrigal", rating: 3, year: "2018", pages: 128, notes: "" },
 ];
 
-// ‚îÄ‚îÄ LISTA DE LIBROS POR LEER (94 √∫nicos de los 100 recomendados) ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ
-const WL_BLOCKS = ["Real Estate (Prioridad M√°xima)", "Inversi√≥n y Finanzas", "Biograf√≠as", "Estrategia y Liderazgo", "Productividad (Con Criterio)", "Econom√≠a, Historia y Pensamiento Cr√≠tico", "Ficci√≥n y Ensayo", "Ciencia, Tecnolog√≠a y Futuro", "Huecos Espec√≠ficos"];
-const WISHLIST = [{"id": "wl001","n": "1","bloque": "Real Estate (Prioridad M√°xima)","title": "What Every Real Estate Investor Needs to Know About Cash Flow","author": "Frank Gallinelli","why": "Cap rate, NOI, IRR aplicado a proyectos reales. El manual t√©cnico del analista inmobiliario.","orden": 4,"imp": false},{"id": "wl002","n": "2","bloque": "Real Estate (Prioridad M√°xima)","title": "Am I Being Too Subtle?","author": "Sam Zell","why": "Memorias del mayor inversor en RE del mundo. Tu formato favorito (Ride of a Lifetime 5/5, Invent and Wander 5/5).","orden": 3,"imp": false},{"id": "wl003","n": "3","bloque": "Real Estate (Prioridad M√°xima)","title": "The Power Broker","author": "Robert Caro","why": "Robert Moses y el urbanismo de Nueva York. 1.300p ‚Äî la biblia del desarrollo urbano. M√°s apasionante que el Churchill.","orden": 11,"imp": true,"ordenNota": "proyecto de verano"},{"id": "wl004","n": "4","bloque": "Real Estate (Prioridad M√°xima)","title": "The Death and Life of Great American Cities","author": "Jane Jacobs","why": "Por qu√© algunas ciudades funcionan. Fundamento conceptual del urbanismo moderno. Imprescindible para quien convierte oficinas en apartamentos tur√≠sticos.","orden": null,"imp": false},{"id": "wl005","n": "5","bloque": "Real Estate (Prioridad M√°xima)","title": "The Millionaire Real Estate Investor","author": "Gary Keller","why": "Marco mental para escalar en RE. Complementa Libertad Inmobiliaria con metodolog√≠a americana.","orden": null,"imp": false},{"id": "wl006","n": "6","bloque": "Real Estate (Prioridad M√°xima)","title": "The Cult of We","author": "Eliot Brown & Maureen Farrell","why": "WeWork y el colapso de Neumann. El caso de estudio m√°s importante en RE tech de la √∫ltima d√©cada.","orden": null,"imp": false},{"id": "wl007","n": "7","bloque": "Real Estate (Prioridad M√°xima)","title": "Evicted","author": "Matthew Desmond","why": "Pulitzer sobre el mercado de alquiler. Cambia c√≥mo piensas sobre rentabilidad y responsabilidad en RE.","orden": null,"imp": false},{"id": "wl008","n": "8","bloque": "Real Estate (Prioridad M√°xima)","title": "Scale","author": "Geoffrey West","why": "C√≥mo crecen ciudades y empresas siguiendo las mismas leyes matem√°ticas.","orden": null,"imp": false},{"id": "wl009","n": "9","bloque": "Real Estate (Prioridad M√°xima)","title": "The New Urban Crisis","author": "Richard Florida","why": "Gentrificaci√≥n, apartamentos tur√≠sticos y ciudades globales. Muy relevante para Madrid.","orden": null,"imp": false},{"id": "wl010","n": "10","bloque": "Real Estate (Prioridad M√°xima)","title": "Confessions of a Real Estate Entrepreneur","author": "James Randel","why": "Casos reales de deals que salieron bien y mal. Aprendizaje pr√°ctico sin glamour.","orden": null,"imp": false},{"id": "wl011","n": "11","bloque": "Inversi√≥n y Finanzas","title": "The Intelligent Investor","author": "Benjamin Graham","why": "El hueco m√°s inexplicable de tu biblioteca. Tienes Fisher 5/5, Buffett Essays 5/5, Snowball 5/5 ‚Äî este es el origen de todo.","orden": 6,"imp": true},{"id": "wl012","n": "12","bloque": "Inversi√≥n y Finanzas","title": "Security Analysis","author": "Graham & Dodd","why": "El trabajo acad√©mico detr√°s del anterior. Para despu√©s de Graham.","orden": null,"imp": false},{"id": "wl013","n": "13","bloque": "Inversi√≥n y Finanzas","title": "The Big Short","author": "Michael Lewis","why": "Su mejor libro. Supera a Liar's Poker (3/5) y Flash Boys (3/5) que ya tienes.","orden": 5,"imp": false},{"id": "wl014","n": "14","bloque": "Inversi√≥n y Finanzas","title": "Barbarians at the Gate","author": "Burrough & Helyar","why": "El thriller financiero corporativo m√°s famoso. Si Business Adventures te dio 5/5, este lo supera.","orden": 10,"imp": false},{"id": "wl015","n": "15","bloque": "Inversi√≥n y Finanzas","title": "When Genius Failed","author": "Roger Lowenstein","why": "La ca√≠da de LTCM. Complementa A Short History of Financial Euphoria (4/5).","orden": null,"imp": false},{"id": "wl016","n": "16","bloque": "Inversi√≥n y Finanzas","title": "Against the Gods: The Remarkable Story of Risk","author": "Peter Bernstein","why": "Historia del riesgo desde Grecia hasta Wall Street. Complementa tu trilog√≠a Taleb.","orden": null,"imp": false},{"id": "wl017","n": "17","bloque": "Inversi√≥n y Finanzas","title": "More Money Than God","author": "Sebastian Mallaby","why": "Historia de los hedge funds. El siguiente nivel despu√©s de Liar's Poker.","orden": null,"imp": false},{"id": "wl018","n": "18","bloque": "Inversi√≥n y Finanzas","title": "Den of Thieves","author": "James Stewart","why": "El esc√°ndalo de insider trading de los 80 (Boesky, Milken). Narrativa de Lewis quality, menos conocido.","orden": null,"imp": false},{"id": "wl019","n": "19","bloque": "Inversi√≥n y Finanzas","title": "The Alchemy of Finance","author": "George Soros","why": "Reflexividad y mercados. Dif√≠cil pero revela por qu√© los mercados no siguen los modelos convencionales.","orden": null,"imp": false},{"id": "wl020","n": "20","bloque": "Inversi√≥n y Finanzas","title": "The Almanack of Naval Ravikant","author": "Eric Jorgenson","why": "Corto, gratis online. Sobre riqueza y decisiones. Complementa The Most Important Thing (4/5) de Marks.","orden": null,"imp": false},{"id": "wl021","n": "21","bloque": "Biograf√≠as","title": "Alexander Hamilton","author": "Ron Chernow","why": "Dado que Titan (4/5) te gust√≥, esta es la obra cumbre de Chernow. El hombre que dise√±√≥ el sistema financiero americano.","orden": 8,"imp": true},{"id": "wl022","n": "22","bloque": "Biograf√≠as","title": "The House of Morgan","author": "Ron Chernow","why": "Historia de JP Morgan. Relevante para quien viene de la banca.","orden": null,"imp": false},{"id": "wl023","n": "23","bloque": "Biograf√≠as","title": "Bad Blood","author": "John Carreyrou","why": "El fraude de Theranos. El mejor libro sobre due diligence fallida y se√±ales de alarma que nadie vio.","orden": null,"imp": false},{"id": "wl024","n": "24","bloque": "Biograf√≠as","title": "No Filter","author": "Sarah Frier","why": "La historia real de Instagram. Mejor que The Everything Store (3/5).","orden": null,"imp": false},{"id": "wl025","n": "25","bloque": "Biograf√≠as","title": "Build","author": "Tony Fadell","why": "El creador del iPod y Nest. M√°s honesto que Creativity Inc (3/5).","orden": null,"imp": false},{"id": "wl026","n": "26","bloque": "Biograf√≠as","title": "The Score Takes Care of Itself","author": "Bill Walsh","why": "Los 49ers y el liderazgo. El mejor libro de gesti√≥n deportiva con aplicaci√≥n directa a proyectos.","orden": null,"imp": false},{"id": "wl027","n": "27","bloque": "Biograf√≠as","title": "No Rules Rules","author": "Reed Hastings & Erin Meyer","why": "C√≥mo Netflix construy√≥ cultura de alto rendimiento. Para cuando gestiones equipos.","orden": null,"imp": false},{"id": "wl028","n": "28","bloque": "Biograf√≠as","title": "The Code Breaker","author": "Walter Isaacson","why": "CRISPR y el futuro de la biolog√≠a. El Isaacson m√°s reciente. Dado Einstein 5/5, Leonardo 5/5, Jobs 5/5.","orden": null,"imp": false},{"id": "wl029","n": "29","bloque": "Biograf√≠as","title": "Working","author": "Robert Caro","why": "C√≥mo escribe sus libros. Corto, para preparar The Power Broker.","orden": null,"imp": false},{"id": "wl030","n": "30","bloque": "Biograf√≠as","title": "The House","author": "Charlie Gasparino","why": "Goldman Sachs desde dentro. Lo que Bloomberg by Bloomberg (3/5) no lleg√≥ a hacer.","orden": null,"imp": false},{"id": "wl031","n": "31","bloque": "Estrategia y Liderazgo","title": "Never Split the Difference","author": "Chris Voss","why": "El m√°s urgente de toda la lista. Negociaci√≥n t√°ctica ‚Äî aplicaci√≥n inmediata con constructoras y bancos.","orden": 2,"imp": true},{"id": "wl032","n": "32","bloque": "Estrategia y Liderazgo","title": "Good Strategy Bad Strategy","author": "Richard Rumelt","why": "La distinci√≥n m√°s importante en estrategia. Cambia c√≥mo eval√∫as las decisiones de empresa.","orden": null,"imp": false},{"id": "wl033","n": "33","bloque": "Estrategia y Liderazgo","title": "An Astronaut's Guide to Life on Earth","author": "Chris Hadfield","why": "Sistemas, preparaci√≥n y gesti√≥n del error. Liderazgo encubierto como memorias espaciales.","orden": null,"imp": false},{"id": "wl034","n": "34","bloque": "Estrategia y Liderazgo","title": "Extreme Ownership","author": "Jocko Willink","why": "Responsabilidad radical. Aplicable a coordinar proyectos complejos.","orden": null,"imp": false},{"id": "wl035","n": "35","bloque": "Estrategia y Liderazgo","title": "Turn the Ship Around!","author": "L. David Marquet","why": "El mejor libro sobre delegaci√≥n real. C√≥mo transformar un submarino nuclear con sistemas de responsabilidad.","orden": null,"imp": false},{"id": "wl036","n": "36","bloque": "Estrategia y Liderazgo","title": "High Output Management","author": "Andy Grove","why": "Manual de Intel sobre gesti√≥n operativa. Lo que Checklist Manifesto (2/5) quer√≠a ser.","orden": null,"imp": false},{"id": "wl037","n": "37","bloque": "Estrategia y Liderazgo","title": "Playing to Win","author": "Lafley & Martin","why": "El framework m√°s limpio sobre qu√© es estrategia y qu√© no lo es.","orden": null,"imp": false},{"id": "wl038","n": "38","bloque": "Estrategia y Liderazgo","title": "The Goal","author": "Eliyahu Goldratt","why": "Novela de gesti√≥n operativa. La teor√≠a de las restricciones. Por qu√© los proyectos siempre se retrasan.","orden": null,"imp": false},{"id": "wl039","n": "39","bloque": "Estrategia y Liderazgo","title": "Thinking in Systems","author": "Donella Meadows","why": "C√≥mo funcionan los sistemas complejos. Conecta Taleb, Dalio y la experiencia en banca.","orden": null,"imp": false},{"id": "wl040","n": "40","bloque": "Estrategia y Liderazgo","title": "Range","author": "David Epstein","why": "Por qu√© venir de otro sector es un activo en RE. Ant√≠doto a la narrativa de las 10.000 horas.","orden": null,"imp": false},{"id": "wl041","n": "41","bloque": "Productividad (Con Criterio)","title": "So Good They Can't Ignore You","author": "Cal Newport","why": "Va antes de Deep Work (4/5). La idea de que 'sigue tu pasi√≥n' es un mal consejo. Aplica a una transici√≥n de sector.","orden": null,"imp": false},{"id": "wl042","n": "42","bloque": "Productividad (Con Criterio)","title": "Essentialism","author": "Greg McKeown","why": "Hacer menos, pero mejor. Para gestionar muchas prioridades a la vez.","orden": null,"imp": false},{"id": "wl043","n": "43","bloque": "Productividad (Con Criterio)","title": "The War of Art","author": "Steven Pressfield","why": "Sobre la resistencia que impide ejecutar. M√°s honesto que cualquier libro de productividad convencional.","orden": null,"imp": false},{"id": "wl044","n": "44","bloque": "Productividad (Con Criterio)","title": "Ultralearning","author": "Scott Young","why": "Aprender cosas dif√≠ciles r√°pido. Clave en los primeros 12 meses en RE.","orden": null,"imp": false},{"id": "wl045","n": "45","bloque": "Productividad (Con Criterio)","title": "How Will You Measure Your Life?","author": "Clayton Christensen","why": "Aplicar teor√≠as de gesti√≥n empresarial a decisiones de vida. Relevante en los veintitantos.","orden": null,"imp": false},{"id": "wl046","n": "46","bloque": "Productividad (Con Criterio)","title": "The Art of Learning","author": "Josh Waitzkin","why": "Campe√≥n de ajedrez y artes marciales sobre c√≥mo aprender a nivel √©lite. M√°s profundo que Compound Effect (5/5).","orden": null,"imp": false},{"id": "wl047","n": "47","bloque": "Productividad (Con Criterio)","title": "Meditations","author": "Marco Aurelio","why": "El estoicismo desde dentro. Dado que tienes Taleb en todos 4/5, este es el texto original.","orden": null,"imp": false},{"id": "wl048","n": "48","bloque": "Productividad (Con Criterio)","title": "Letters from a Stoic","author": "S√©neca","why": "M√°s accesible que Aurelio. S√©neca era rico y pr√°ctico ‚Äî habla de dinero, tiempo y ambici√≥n.","orden": null,"imp": false},{"id": "wl049","n": "49","bloque": "Productividad (Con Criterio)","title": "The Obstacle Is the Way","author": "Ryan Holiday","why": "Estoicismo moderno aplicado. Para los momentos dif√≠ciles del trabajo.","orden": null,"imp": false},{"id": "wl050","n": "50","bloque": "Productividad (Con Criterio)","title": "Hell Yeah or No","author": "Derek Sivers","why": "El m√°s honesto sobre tomar decisiones de vida. Muy corto.","orden": null,"imp": false},{"id": "wl051","n": "51","bloque": "Econom√≠a, Historia y Pensamiento Cr√≠tico","title": "Why Nations Fail","author": "Acemoglu & Robinson","why": "Por qu√© Argentina fracasa repetidamente y Espa√±a no.","orden": 9,"imp": false},{"id": "wl052","n": "52","bloque": "Econom√≠a, Historia y Pensamiento Cr√≠tico","title": "The Dictator's Handbook","author": "Bruce Bueno de Mesquita","why": "Por qu√© los l√≠deres hacen lo que hacen. Cambia c√≥mo lees las noticias y los movimientos corporativos.","orden": null,"imp": false},{"id": "wl053","n": "53","bloque": "Econom√≠a, Historia y Pensamiento Cr√≠tico","title": "Freakonomics","author": "Levitt & Dubner","why": "Tienes SuperFreakonomics (4/5), empieza por el original. Igual de bueno, diferente conjunto de casos.","orden": null,"imp": false},{"id": "wl054","n": "54","bloque": "Econom√≠a, Historia y Pensamiento Cr√≠tico","title": "The Road to Serfdom","author": "Friedrich Hayek","why": "El contrapunto liberal m√°s influyente del siglo XX a Capital XXI (Piketty, 5/5) que ya tienes.","orden": null,"imp": false},{"id": "wl055","n": "55","bloque": "Econom√≠a, Historia y Pensamiento Cr√≠tico","title": "Guns, Germs, and Steel","author": "Jared Diamond","why": "Por qu√© unos pa√≠ses dominaron a otros. Complementa Sapiens (5/5) con m√°s rigor cient√≠fico.","orden": null,"imp": false},{"id": "wl056","n": "56","bloque": "Econom√≠a, Historia y Pensamiento Cr√≠tico","title": "Bloodlands: Europe Between Hitler and Stalin","author": "Timothy Snyder","why": "Historia europea en su momento m√°s oscuro. Contexto pol√≠tico para tanta historia econ√≥mica.","orden": null,"imp": false},{"id": "wl057","n": "57","bloque": "Econom√≠a, Historia y Pensamiento Cr√≠tico","title": "Superforecasting","author": "Philip Tetlock","why": "C√≥mo hacer predicciones m√°s precisas. Aplicable a valoraciones de mercado y planificaci√≥n de proyectos.","orden": null,"imp": false},{"id": "wl058","n": "58","bloque": "Econom√≠a, Historia y Pensamiento Cr√≠tico","title": "The Signal and the Noise","author": "Nate Silver","why": "Predicci√≥n y probabilidad. M√°s accesible que Superforecasting, igual de √∫til.","orden": null,"imp": false},{"id": "wl059","n": "59","bloque": "Econom√≠a, Historia y Pensamiento Cr√≠tico","title": "Thinking Strategically","author": "Dixit & Nalebuff","why": "Teor√≠a de juegos aplicada. Para negociaciones con bancos, administraciones y socios en RE.","orden": null,"imp": false},{"id": "wl060","n": "60","bloque": "Econom√≠a, Historia y Pensamiento Cr√≠tico","title": "Debt: The First 5,000 Years","author": "David Graeber","why": "Historia de la deuda como fundamento de la sociedad. Complementa la trilog√≠a Taleb con perspectiva antropol√≥gica.","orden": null,"imp": false},{"id": "wl061","n": "61","bloque": "Ficci√≥n y Ensayo","title": "The Count of Monte Cristo","author": "Alexandre Dumas","why": "La mejor novela de venganza y poder. Dado Harry Potter (5/5) y Tolkien (4-5/5), este te va a absorber igual.","orden": null,"imp": false},{"id": "wl062","n": "62","bloque": "Ficci√≥n y Ensayo","title": "The Fountainhead","author": "Ayn Rand","why": "El protagonista es un arquitecto que no cede. En el mundo inmobiliario tiene una dimensi√≥n extra.","orden": null,"imp": false},{"id": "wl063","n": "63","bloque": "Ficci√≥n y Ensayo","title": "Ficciones","author": "Jorge Luis Borges","why": "El argentino m√°s importante de la literatura universal. Naci√≥ en Buenos Aires.","orden": null,"imp": false},{"id": "wl064","n": "64","bloque": "Ficci√≥n y Ensayo","title": "Cien a√±os de soledad","author": "Gabriel Garc√≠a M√°rquez","why": "El mayor hueco literario de un lector hispanohablante.","orden": null,"imp": false},{"id": "wl065","n": "65","bloque": "Ficci√≥n y Ensayo","title": "El nombre de la rosa","author": "Umberto Eco","why": "Thriller medieval intelectual. Dado Roma soy yo (5/5), el salto a Eco es natural.","orden": null,"imp": false},{"id": "wl066","n": "66","bloque": "Ficci√≥n y Ensayo","title": "Los pilares de la tierra","author": "Ken Follett","why": "Construcci√≥n de una catedral medieval como hilo narrativo. El que m√°s vas a disfrutar de toda la lista.","orden": 7,"imp": true},{"id": "wl067","n": "67","bloque": "Ficci√≥n y Ensayo","title": "The Master and Margarita","author": "Mikhail Bulgakov","why": "El diablo en Mosc√∫ sovi√©tico. La gran novela rusa que s√≠ funciona, a diferencia de Tolstoy (2/5).","orden": null,"imp": false},{"id": "wl068","n": "68","bloque": "Ficci√≥n y Ensayo","title": "Rayuela","author": "Julio Cort√°zar","why": "La novela argentina fundamental.","orden": null,"imp": false},{"id": "wl069","n": "69","bloque": "Ficci√≥n y Ensayo","title": "Crime and Punishment","author": "Fyodor Dostoevsky","why": "La mejor novela psicol√≥gica. Diferente a Tolstoy: m√°s r√°pido, m√°s urbano, m√°s angustiante.","orden": null,"imp": false},{"id": "wl070","n": "70","bloque": "Ficci√≥n y Ensayo","title": "De Profundis","author": "Oscar Wilde","why": "Wilde en la c√°rcel. Dado Dorian Gray (5/5) y Cuentos (4/5), el Wilde m√°s √≠ntimo y devastador.","orden": null,"imp": false},{"id": "wl071","n": "71","bloque": "Ficci√≥n y Ensayo","title": "Siddhartha","author": "Hermann Hesse","why": "B√∫squeda del sentido. Corto, profundo. Complementa Man's Search for Meaning (3/5).","orden": null,"imp": false},{"id": "wl072","n": "72","bloque": "Ficci√≥n y Ensayo","title": "La sombra del viento","author": "Carlos Ruiz Zaf√≥n","why": "Barcelona, misterio, arquitectura. Muy entretenido y atmosf√©rico.","orden": null,"imp": false},{"id": "wl073","n": "73","bloque": "Ficci√≥n y Ensayo","title": "Pedro P√°ramo","author": "Juan Rulfo","why": "100 p√°ginas que inventaron el realismo m√°gico antes que Garc√≠a M√°rquez.","orden": null,"imp": false},{"id": "wl074","n": "74","bloque": "Ficci√≥n y Ensayo","title": "The Glass Castle","author": "Jeannette Walls","why": "Memorias de infancia ca√≥tica. El g√©nero de Educated (5/5). Diferente, igual de impactante.","orden": null,"imp": false},{"id": "wl075","n": "75","bloque": "Ficci√≥n y Ensayo","title": "Norwegian Wood","author": "Haruki Murakami","why": "La m√°s accesible de Murakami.","orden": null,"imp": false},{"id": "wl076","n": "76","bloque": "Ciencia, Tecnolog√≠a y Futuro","title": "The Beginning of Infinity","author": "David Deutsch","why": "Sobre el progreso y por qu√© es posible. Favorito de muchos de los mejores inversores de largo plazo.","orden": null,"imp": false},{"id": "wl077","n": "77","bloque": "Ciencia, Tecnolog√≠a y Futuro","title": "Homo Deus","author": "Yuval Noah Harari","why": "El futuro de la humanidad desde el autor de Sapiens (5/5).","orden": null,"imp": false},{"id": "wl078","n": "78","bloque": "Ciencia, Tecnolog√≠a y Futuro","title": "21 Lessons for the 21st Century","author": "Yuval Noah Harari","why": "El m√°s pr√°ctico de los tres Harari. Presente, no pasado ni futuro.","orden": null,"imp": false},{"id": "wl079","n": "79","bloque": "Ciencia, Tecnolog√≠a y Futuro","title": "The Innovator's Dilemma","author": "Clayton Christensen","why": "Por qu√© las grandes empresas fracasan ante nuevos competidores. Qu√© pasa con RE frente a las proptech.","orden": null,"imp": false},{"id": "wl080","n": "80","bloque": "Ciencia, Tecnolog√≠a y Futuro","title": "Moonwalking with Einstein","author": "Joshua Foer","why": "Un periodista se convierte en campe√≥n de memoria. Sobre los l√≠mites del aprendizaje. Muy entretenido.","orden": null,"imp": false},{"id": "wl081","n": "81","bloque": "Ciencia, Tecnolog√≠a y Futuro","title": "The Order of Time","author": "Carlo Rovelli","why": "F√≠sica cu√°ntica explicada como poes√≠a. El mejor libro de divulgaci√≥n cient√≠fica de la √∫ltima d√©cada.","orden": null,"imp": false},{"id": "wl082","n": "82","bloque": "Ciencia, Tecnolog√≠a y Futuro","title": "A Short History of Nearly Everything","author": "Bill Bryson","why": "Historia de la ciencia en formato narrativo. Mejor que Breve historia de la qu√≠mica (Asimov, 2/5) para tu estilo.","orden": null,"imp": false},{"id": "wl083","n": "83","bloque": "Ciencia, Tecnolog√≠a y Futuro","title": "The Gene: An Intimate History","author": "Siddhartha Mukherjee","why": "Historia de la gen√©tica. Narrativo y cient√≠ficamente s√≥lido.","orden": null,"imp": false},{"id": "wl084","n": "84","bloque": "Ciencia, Tecnolog√≠a y Futuro","title": "Power: A History of Energy","author": "Richard Rhodes","why": "Historia de la energ√≠a nuclear. Complementa American Prometheus (3/5) con m√°s contexto industrial.","orden": null,"imp": false},{"id": "wl086","n": "86","bloque": "Huecos Espec√≠ficos","title": "Pre-Suasion","author": "Robert Cialdini","why": "La secuela directa de Influence (4/5). Sobre c√≥mo el contexto previo modifica la persuasi√≥n.","orden": 1,"imp": false},{"id": "wl087","n": "87","bloque": "Huecos Espec√≠ficos","title": "The Laws of Human Nature","author": "Robert Greene","why": "El m√°s maduro de Greene. M√°s √∫til que 48 Laws of Power en contextos profesionales reales.","orden": null,"imp": false},{"id": "wl088","n": "88","bloque": "Huecos Espec√≠ficos","title": "Mastery","author": "Robert Greene","why": "C√≥mo construir expertise real en los primeros a√±os de una carrera. Respuesta al s√≠ndrome del impostor.","orden": null,"imp": false},{"id": "wl089","n": "89","bloque": "Huecos Espec√≠ficos","title": "The Personal MBA","author": "Josh Kaufman","why": "El MBA que no vas a hacer. Marco conceptual de negocios en un solo libro.","orden": null,"imp": false},{"id": "wl090","n": "90","bloque": "Huecos Espec√≠ficos","title": "How to Win Friends and Influence People","author": "Dale Carnegie","why": "Para quien coordina promotoras, constructoras y administraciones. Sigue siendo el manual m√°s pr√°ctico.","orden": null,"imp": false},{"id": "wl091","n": "91","bloque": "Huecos Espec√≠ficos","title": "The E-Myth Revisited","author": "Michael Gerber","why": "Por qu√© la mayor√≠a de los negocios fracasan. Para cuando montes tu propia operaci√≥n.","orden": null,"imp": false},{"id": "wl092","n": "92","bloque": "Huecos Espec√≠ficos","title": "Venture Deals","author": "Brad Feld & Jason Mendelson","why": "C√≥mo funcionan las estructuras de capital en RE e inversi√≥n. Para entender a los inversores.","orden": null,"imp": false},{"id": "wl093","n": "93","bloque": "Huecos Espec√≠ficos","title": "The Warren Buffett Way","author": "Robert Hagstrom","why": "An√°lisis del m√©todo de inversi√≥n de Buffett. Complementa los Essays (5/5) con m√°s estructura anal√≠tica.","orden": null,"imp": false},{"id": "wl094","n": "94","bloque": "Huecos Espec√≠ficos","title": "One Up on Wall Street","author": "Peter Lynch","why": "Mejor que Beating the Street (3/5) que ya tienes. Empieza por este.","orden": null,"imp": false},{"id": "wl095","n": "95","bloque": "Huecos Espec√≠ficos","title": "Confessions of an Economic Hit Man","author": "John Perkins","why": "C√≥mo funciona el dinero internacional.","orden": null,"imp": false}];
+// ── LISTA DE LIBROS POR LEER (94 únicos de los 100 recomendados) ──────
+const WL_BLOCKS = ["Real Estate (Prioridad Máxima)", "Inversión y Finanzas", "Biografías", "Estrategia y Liderazgo", "Productividad (Con Criterio)", "Economía, Historia y Pensamiento Crítico", "Ficción y Ensayo", "Ciencia, Tecnología y Futuro", "Huecos Específicos"];
+const WISHLIST = [{"id": "wl001","n": "1","bloque": "Real Estate (Prioridad Máxima)","title": "What Every Real Estate Investor Needs to Know About Cash Flow","author": "Frank Gallinelli","why": "Cap rate, NOI, IRR aplicado a proyectos reales. El manual técnico del analista inmobiliario.","orden": 4,"imp": false},{"id": "wl002","n": "2","bloque": "Real Estate (Prioridad Máxima)","title": "Am I Being Too Subtle?","author": "Sam Zell","why": "Memorias del mayor inversor en RE del mundo. Tu formato favorito (Ride of a Lifetime 5/5, Invent and Wander 5/5).","orden": 3,"imp": false},{"id": "wl003","n": "3","bloque": "Real Estate (Prioridad Máxima)","title": "The Power Broker","author": "Robert Caro","why": "Robert Moses y el urbanismo de Nueva York. 1.300p — la biblia del desarrollo urbano. Más apasionante que el Churchill.","orden": 11,"imp": true,"ordenNota": "proyecto de verano"},{"id": "wl004","n": "4","bloque": "Real Estate (Prioridad Máxima)","title": "The Death and Life of Great American Cities","author": "Jane Jacobs","why": "Por qué algunas ciudades funcionan. Fundamento conceptual del urbanismo moderno. Imprescindible para quien convierte oficinas en apartamentos turísticos.","orden": null,"imp": false},{"id": "wl005","n": "5","bloque": "Real Estate (Prioridad Máxima)","title": "The Millionaire Real Estate Investor","author": "Gary Keller","why": "Marco mental para escalar en RE. Complementa Libertad Inmobiliaria con metodología americana.","orden": null,"imp": false},{"id": "wl006","n": "6","bloque": "Real Estate (Prioridad Máxima)","title": "The Cult of We","author": "Eliot Brown & Maureen Farrell","why": "WeWork y el colapso de Neumann. El caso de estudio más importante en RE tech de la última década.","orden": null,"imp": false},{"id": "wl007","n": "7","bloque": "Real Estate (Prioridad Máxima)","title": "Evicted","author": "Matthew Desmond","why": "Pulitzer sobre el mercado de alquiler. Cambia cómo piensas sobre rentabilidad y responsabilidad en RE.","orden": null,"imp": false},{"id": "wl008","n": "8","bloque": "Real Estate (Prioridad Máxima)","title": "Scale","author": "Geoffrey West","why": "Cómo crecen ciudades y empresas siguiendo las mismas leyes matemáticas.","orden": null,"imp": false},{"id": "wl009","n": "9","bloque": "Real Estate (Prioridad Máxima)","title": "The New Urban Crisis","author": "Richard Florida","why": "Gentrificación, apartamentos turísticos y ciudades globales. Muy relevante para Madrid.","orden": null,"imp": false},{"id": "wl010","n": "10","bloque": "Real Estate (Prioridad Máxima)","title": "Confessions of a Real Estate Entrepreneur","author": "James Randel","why": "Casos reales de deals que salieron bien y mal. Aprendizaje práctico sin glamour.","orden": null,"imp": false},{"id": "wl011","n": "11","bloque": "Inversión y Finanzas","title": "The Intelligent Investor","author": "Benjamin Graham","why": "El hueco más inexplicable de tu biblioteca. Tienes Fisher 5/5, Buffett Essays 5/5, Snowball 5/5 — este es el origen de todo.","orden": 6,"imp": true},{"id": "wl012","n": "12","bloque": "Inversión y Finanzas","title": "Security Analysis","author": "Graham & Dodd","why": "El trabajo académico detrás del anterior. Para después de Graham.","orden": null,"imp": false},{"id": "wl013","n": "13","bloque": "Inversión y Finanzas","title": "The Big Short","author": "Michael Lewis","why": "Su mejor libro. Supera a Liar's Poker (3/5) y Flash Boys (3/5) que ya tienes.","orden": 5,"imp": false},{"id": "wl014","n": "14","bloque": "Inversión y Finanzas","title": "Barbarians at the Gate","author": "Burrough & Helyar","why": "El thriller financiero corporativo más famoso. Si Business Adventures te dio 5/5, este lo supera.","orden": 10,"imp": false},{"id": "wl015","n": "15","bloque": "Inversión y Finanzas","title": "When Genius Failed","author": "Roger Lowenstein","why": "La caída de LTCM. Complementa A Short History of Financial Euphoria (4/5).","orden": null,"imp": false},{"id": "wl016","n": "16","bloque": "Inversión y Finanzas","title": "Against the Gods: The Remarkable Story of Risk","author": "Peter Bernstein","why": "Historia del riesgo desde Grecia hasta Wall Street. Complementa tu trilogía Taleb.","orden": null,"imp": false},{"id": "wl017","n": "17","bloque": "Inversión y Finanzas","title": "More Money Than God","author": "Sebastian Mallaby","why": "Historia de los hedge funds. El siguiente nivel después de Liar's Poker.","orden": null,"imp": false},{"id": "wl018","n": "18","bloque": "Inversión y Finanzas","title": "Den of Thieves","author": "James Stewart","why": "El escándalo de insider trading de los 80 (Boesky, Milken). Narrativa de Lewis quality, menos conocido.","orden": null,"imp": false},{"id": "wl019","n": "19","bloque": "Inversión y Finanzas","title": "The Alchemy of Finance","author": "George Soros","why": "Reflexividad y mercados. Difícil pero revela por qué los mercados no siguen los modelos convencionales.","orden": null,"imp": false},{"id": "wl020","n": "20","bloque": "Inversión y Finanzas","title": "The Almanack of Naval Ravikant","author": "Eric Jorgenson","why": "Corto, gratis online. Sobre riqueza y decisiones. Complementa The Most Important Thing (4/5) de Marks.","orden": null,"imp": false},{"id": "wl021","n": "21","bloque": "Biografías","title": "Alexander Hamilton","author": "Ron Chernow","why": "Dado que Titan (4/5) te gustó, esta es la obra cumbre de Chernow. El hombre que diseñó el sistema financiero americano.","orden": 8,"imp": true},{"id": "wl022","n": "22","bloque": "Biografías","title": "The House of Morgan","author": "Ron Chernow","why": "Historia de JP Morgan. Relevante para quien viene de la banca.","orden": null,"imp": false},{"id": "wl023","n": "23","bloque": "Biografías","title": "Bad Blood","author": "John Carreyrou","why": "El fraude de Theranos. El mejor libro sobre due diligence fallida y señales de alarma que nadie vio.","orden": null,"imp": false},{"id": "wl024","n": "24","bloque": "Biografías","title": "No Filter","author": "Sarah Frier","why": "La historia real de Instagram. Mejor que The Everything Store (3/5).","orden": null,"imp": false},{"id": "wl025","n": "25","bloque": "Biografías","title": "Build","author": "Tony Fadell","why": "El creador del iPod y Nest. Más honesto que Creativity Inc (3/5).","orden": null,"imp": false},{"id": "wl026","n": "26","bloque": "Biografías","title": "The Score Takes Care of Itself","author": "Bill Walsh","why": "Los 49ers y el liderazgo. El mejor libro de gestión deportiva con aplicación directa a proyectos.","orden": null,"imp": false},{"id": "wl027","n": "27","bloque": "Biografías","title": "No Rules Rules","author": "Reed Hastings & Erin Meyer","why": "Cómo Netflix construyó cultura de alto rendimiento. Para cuando gestiones equipos.","orden": null,"imp": false},{"id": "wl028","n": "28","bloque": "Biografías","title": "The Code Breaker","author": "Walter Isaacson","why": "CRISPR y el futuro de la biología. El Isaacson más reciente. Dado Einstein 5/5, Leonardo 5/5, Jobs 5/5.","orden": null,"imp": false},{"id": "wl029","n": "29","bloque": "Biografías","title": "Working","author": "Robert Caro","why": "Cómo escribe sus libros. Corto, para preparar The Power Broker.","orden": null,"imp": false},{"id": "wl030","n": "30","bloque": "Biografías","title": "The House","author": "Charlie Gasparino","why": "Goldman Sachs desde dentro. Lo que Bloomberg by Bloomberg (3/5) no llegó a hacer.","orden": null,"imp": false},{"id": "wl031","n": "31","bloque": "Estrategia y Liderazgo","title": "Never Split the Difference","author": "Chris Voss","why": "El más urgente de toda la lista. Negociación táctica — aplicación inmediata con constructoras y bancos.","orden": 2,"imp": true},{"id": "wl032","n": "32","bloque": "Estrategia y Liderazgo","title": "Good Strategy Bad Strategy","author": "Richard Rumelt","why": "La distinción más importante en estrategia. Cambia cómo evalúas las decisiones de empresa.","orden": null,"imp": false},{"id": "wl033","n": "33","bloque": "Estrategia y Liderazgo","title": "An Astronaut's Guide to Life on Earth","author": "Chris Hadfield","why": "Sistemas, preparación y gestión del error. Liderazgo encubierto como memorias espaciales.","orden": null,"imp": false},{"id": "wl034","n": "34","bloque": "Estrategia y Liderazgo","title": "Extreme Ownership","author": "Jocko Willink","why": "Responsabilidad radical. Aplicable a coordinar proyectos complejos.","orden": null,"imp": false},{"id": "wl035","n": "35","bloque": "Estrategia y Liderazgo","title": "Turn the Ship Around!","author": "L. David Marquet","why": "El mejor libro sobre delegación real. Cómo transformar un submarino nuclear con sistemas de responsabilidad.","orden": null,"imp": false},{"id": "wl036","n": "36","bloque": "Estrategia y Liderazgo","title": "High Output Management","author": "Andy Grove","why": "Manual de Intel sobre gestión operativa. Lo que Checklist Manifesto (2/5) quería ser.","orden": null,"imp": false},{"id": "wl037","n": "37","bloque": "Estrategia y Liderazgo","title": "Playing to Win","author": "Lafley & Martin","why": "El framework más limpio sobre qué es estrategia y qué no lo es.","orden": null,"imp": false},{"id": "wl038","n": "38","bloque": "Estrategia y Liderazgo","title": "The Goal","author": "Eliyahu Goldratt","why": "Novela de gestión operativa. La teoría de las restricciones. Por qué los proyectos siempre se retrasan.","orden": null,"imp": false},{"id": "wl039","n": "39","bloque": "Estrategia y Liderazgo","title": "Thinking in Systems","author": "Donella Meadows","why": "Cómo funcionan los sistemas complejos. Conecta Taleb, Dalio y la experiencia en banca.","orden": null,"imp": false},{"id": "wl040","n": "40","bloque": "Estrategia y Liderazgo","title": "Range","author": "David Epstein","why": "Por qué venir de otro sector es un activo en RE. Antídoto a la narrativa de las 10.000 horas.","orden": null,"imp": false},{"id": "wl041","n": "41","bloque": "Productividad (Con Criterio)","title": "So Good They Can't Ignore You","author": "Cal Newport","why": "Va antes de Deep Work (4/5). La idea de que 'sigue tu pasión' es un mal consejo. Aplica a una transición de sector.","orden": null,"imp": false},{"id": "wl042","n": "42","bloque": "Productividad (Con Criterio)","title": "Essentialism","author": "Greg McKeown","why": "Hacer menos, pero mejor. Para gestionar muchas prioridades a la vez.","orden": null,"imp": false},{"id": "wl043","n": "43","bloque": "Productividad (Con Criterio)","title": "The War of Art","author": "Steven Pressfield","why": "Sobre la resistencia que impide ejecutar. Más honesto que cualquier libro de productividad convencional.","orden": null,"imp": false},{"id": "wl044","n": "44","bloque": "Productividad (Con Criterio)","title": "Ultralearning","author": "Scott Young","why": "Aprender cosas difíciles rápido. Clave en los primeros 12 meses en RE.","orden": null,"imp": false},{"id": "wl045","n": "45","bloque": "Productividad (Con Criterio)","title": "How Will You Measure Your Life?","author": "Clayton Christensen","why": "Aplicar teorías de gestión empresarial a decisiones de vida. Relevante en los veintitantos.","orden": null,"imp": false},{"id": "wl046","n": "46","bloque": "Productividad (Con Criterio)","title": "The Art of Learning","author": "Josh Waitzkin","why": "Campeón de ajedrez y artes marciales sobre cómo aprender a nivel élite. Más profundo que Compound Effect (5/5).","orden": null,"imp": false},{"id": "wl047","n": "47","bloque": "Productividad (Con Criterio)","title": "Meditations","author": "Marco Aurelio","why": "El estoicismo desde dentro. Dado que tienes Taleb en todos 4/5, este es el texto original.","orden": null,"imp": false},{"id": "wl048","n": "48","bloque": "Productividad (Con Criterio)","title": "Letters from a Stoic","author": "Séneca","why": "Más accesible que Aurelio. Séneca era rico y práctico — habla de dinero, tiempo y ambición.","orden": null,"imp": false},{"id": "wl049","n": "49","bloque": "Productividad (Con Criterio)","title": "The Obstacle Is the Way","author": "Ryan Holiday","why": "Estoicismo moderno aplicado. Para los momentos difíciles del trabajo.","orden": null,"imp": false},{"id": "wl050","n": "50","bloque": "Productividad (Con Criterio)","title": "Hell Yeah or No","author": "Derek Sivers","why": "El más honesto sobre tomar decisiones de vida. Muy corto.","orden": null,"imp": false},{"id": "wl051","n": "51","bloque": "Economía, Historia y Pensamiento Crítico","title": "Why Nations Fail","author": "Acemoglu & Robinson","why": "Por qué Argentina fracasa repetidamente y España no.","orden": 9,"imp": false},{"id": "wl052","n": "52","bloque": "Economía, Historia y Pensamiento Crítico","title": "The Dictator's Handbook","author": "Bruce Bueno de Mesquita","why": "Por qué los líderes hacen lo que hacen. Cambia cómo lees las noticias y los movimientos corporativos.","orden": null,"imp": false},{"id": "wl053","n": "53","bloque": "Economía, Historia y Pensamiento Crítico","title": "Freakonomics","author": "Levitt & Dubner","why": "Tienes SuperFreakonomics (4/5), empieza por el original. Igual de bueno, diferente conjunto de casos.","orden": null,"imp": false},{"id": "wl054","n": "54","bloque": "Economía, Historia y Pensamiento Crítico","title": "The Road to Serfdom","author": "Friedrich Hayek","why": "El contrapunto liberal más influyente del siglo XX a Capital XXI (Piketty, 5/5) que ya tienes.","orden": null,"imp": false},{"id": "wl055","n": "55","bloque": "Economía, Historia y Pensamiento Crítico","title": "Guns, Germs, and Steel","author": "Jared Diamond","why": "Por qué unos países dominaron a otros. Complementa Sapiens (5/5) con más rigor científico.","orden": null,"imp": false},{"id": "wl056","n": "56","bloque": "Economía, Historia y Pensamiento Crítico","title": "Bloodlands: Europe Between Hitler and Stalin","author": "Timothy Snyder","why": "Historia europea en su momento más oscuro. Contexto político para tanta historia económica.","orden": null,"imp": false},{"id": "wl057","n": "57","bloque": "Economía, Historia y Pensamiento Crítico","title": "Superforecasting","author": "Philip Tetlock","why": "Cómo hacer predicciones más precisas. Aplicable a valoraciones de mercado y planificación de proyectos.","orden": null,"imp": false},{"id": "wl058","n": "58","bloque": "Economía, Historia y Pensamiento Crítico","title": "The Signal and the Noise","author": "Nate Silver","why": "Predicción y probabilidad. Más accesible que Superforecasting, igual de útil.","orden": null,"imp": false},{"id": "wl059","n": "59","bloque": "Economía, Historia y Pensamiento Crítico","title": "Thinking Strategically","author": "Dixit & Nalebuff","why": "Teoría de juegos aplicada. Para negociaciones con bancos, administraciones y socios en RE.","orden": null,"imp": false},{"id": "wl060","n": "60","bloque": "Economía, Historia y Pensamiento Crítico","title": "Debt: The First 5,000 Years","author": "David Graeber","why": "Historia de la deuda como fundamento de la sociedad. Complementa la trilogía Taleb con perspectiva antropológica.","orden": null,"imp": false},{"id": "wl061","n": "61","bloque": "Ficción y Ensayo","title": "The Count of Monte Cristo","author": "Alexandre Dumas","why": "La mejor novela de venganza y poder. Dado Harry Potter (5/5) y Tolkien (4-5/5), este te va a absorber igual.","orden": null,"imp": false},{"id": "wl062","n": "62","bloque": "Ficción y Ensayo","title": "The Fountainhead","author": "Ayn Rand","why": "El protagonista es un arquitecto que no cede. En el mundo inmobiliario tiene una dimensión extra.","orden": null,"imp": false},{"id": "wl063","n": "63","bloque": "Ficción y Ensayo","title": "Ficciones","author": "Jorge Luis Borges","why": "El argentino más importante de la literatura universal. Nació en Buenos Aires.","orden": null,"imp": false},{"id": "wl064","n": "64","bloque": "Ficción y Ensayo","title": "Cien años de soledad","author": "Gabriel García Márquez","why": "El mayor hueco literario de un lector hispanohablante.","orden": null,"imp": false},{"id": "wl065","n": "65","bloque": "Ficción y Ensayo","title": "El nombre de la rosa","author": "Umberto Eco","why": "Thriller medieval intelectual. Dado Roma soy yo (5/5), el salto a Eco es natural.","orden": null,"imp": false},{"id": "wl066","n": "66","bloque": "Ficción y Ensayo","title": "Los pilares de la tierra","author": "Ken Follett","why": "Construcción de una catedral medieval como hilo narrativo. El que más vas a disfrutar de toda la lista.","orden": 7,"imp": true},{"id": "wl067","n": "67","bloque": "Ficción y Ensayo","title": "The Master and Margarita","author": "Mikhail Bulgakov","why": "El diablo en Moscú soviético. La gran novela rusa que sí funciona, a diferencia de Tolstoy (2/5).","orden": null,"imp": false},{"id": "wl068","n": "68","bloque": "Ficción y Ensayo","title": "Rayuela","author": "Julio Cortázar","why": "La novela argentina fundamental.","orden": null,"imp": false},{"id": "wl069","n": "69","bloque": "Ficción y Ensayo","title": "Crime and Punishment","author": "Fyodor Dostoevsky","why": "La mejor novela psicológica. Diferente a Tolstoy: más rápido, más urbano, más angustiante.","orden": null,"imp": false},{"id": "wl070","n": "70","bloque": "Ficción y Ensayo","title": "De Profundis","author": "Oscar Wilde","why": "Wilde en la cárcel. Dado Dorian Gray (5/5) y Cuentos (4/5), el Wilde más íntimo y devastador.","orden": null,"imp": false},{"id": "wl071","n": "71","bloque": "Ficción y Ensayo","title": "Siddhartha","author": "Hermann Hesse","why": "Búsqueda del sentido. Corto, profundo. Complementa Man's Search for Meaning (3/5).","orden": null,"imp": false},{"id": "wl072","n": "72","bloque": "Ficción y Ensayo","title": "La sombra del viento","author": "Carlos Ruiz Zafón","why": "Barcelona, misterio, arquitectura. Muy entretenido y atmosférico.","orden": null,"imp": false},{"id": "wl073","n": "73","bloque": "Ficción y Ensayo","title": "Pedro Páramo","author": "Juan Rulfo","why": "100 páginas que inventaron el realismo mágico antes que García Márquez.","orden": null,"imp": false},{"id": "wl074","n": "74","bloque": "Ficción y Ensayo","title": "The Glass Castle","author": "Jeannette Walls","why": "Memorias de infancia caótica. El género de Educated (5/5). Diferente, igual de impactante.","orden": null,"imp": false},{"id": "wl075","n": "75","bloque": "Ficción y Ensayo","title": "Norwegian Wood","author": "Haruki Murakami","why": "La más accesible de Murakami.","orden": null,"imp": false},{"id": "wl076","n": "76","bloque": "Ciencia, Tecnología y Futuro","title": "The Beginning of Infinity","author": "David Deutsch","why": "Sobre el progreso y por qué es posible. Favorito de muchos de los mejores inversores de largo plazo.","orden": null,"imp": false},{"id": "wl077","n": "77","bloque": "Ciencia, Tecnología y Futuro","title": "Homo Deus","author": "Yuval Noah Harari","why": "El futuro de la humanidad desde el autor de Sapiens (5/5).","orden": null,"imp": false},{"id": "wl078","n": "78","bloque": "Ciencia, Tecnología y Futuro","title": "21 Lessons for the 21st Century","author": "Yuval Noah Harari","why": "El más práctico de los tres Harari. Presente, no pasado ni futuro.","orden": null,"imp": false},{"id": "wl079","n": "79","bloque": "Ciencia, Tecnología y Futuro","title": "The Innovator's Dilemma","author": "Clayton Christensen","why": "Por qué las grandes empresas fracasan ante nuevos competidores. Qué pasa con RE frente a las proptech.","orden": null,"imp": false},{"id": "wl080","n": "80","bloque": "Ciencia, Tecnología y Futuro","title": "Moonwalking with Einstein","author": "Joshua Foer","why": "Un periodista se convierte en campeón de memoria. Sobre los límites del aprendizaje. Muy entretenido.","orden": null,"imp": false},{"id": "wl081","n": "81","bloque": "Ciencia, Tecnología y Futuro","title": "The Order of Time","author": "Carlo Rovelli","why": "Física cuántica explicada como poesía. El mejor libro de divulgación científica de la última década.","orden": null,"imp": false},{"id": "wl082","n": "82","bloque": "Ciencia, Tecnología y Futuro","title": "A Short History of Nearly Everything","author": "Bill Bryson","why": "Historia de la ciencia en formato narrativo. Mejor que Breve historia de la química (Asimov, 2/5) para tu estilo.","orden": null,"imp": false},{"id": "wl083","n": "83","bloque": "Ciencia, Tecnología y Futuro","title": "The Gene: An Intimate History","author": "Siddhartha Mukherjee","why": "Historia de la genética. Narrativo y científicamente sólido.","orden": null,"imp": false},{"id": "wl084","n": "84","bloque": "Ciencia, Tecnología y Futuro","title": "Power: A History of Energy","author": "Richard Rhodes","why": "Historia de la energía nuclear. Complementa American Prometheus (3/5) con más contexto industrial.","orden": null,"imp": false},{"id": "wl086","n": "86","bloque": "Huecos Específicos","title": "Pre-Suasion","author": "Robert Cialdini","why": "La secuela directa de Influence (4/5). Sobre cómo el contexto previo modifica la persuasión.","orden": 1,"imp": false},{"id": "wl087","n": "87","bloque": "Huecos Específicos","title": "The Laws of Human Nature","author": "Robert Greene","why": "El más maduro de Greene. Más útil que 48 Laws of Power en contextos profesionales reales.","orden": null,"imp": false},{"id": "wl088","n": "88","bloque": "Huecos Específicos","title": "Mastery","author": "Robert Greene","why": "Cómo construir expertise real en los primeros años de una carrera. Respuesta al síndrome del impostor.","orden": null,"imp": false},{"id": "wl089","n": "89","bloque": "Huecos Específicos","title": "The Personal MBA","author": "Josh Kaufman","why": "El MBA que no vas a hacer. Marco conceptual de negocios en un solo libro.","orden": null,"imp": false},{"id": "wl090","n": "90","bloque": "Huecos Específicos","title": "How to Win Friends and Influence People","author": "Dale Carnegie","why": "Para quien coordina promotoras, constructoras y administraciones. Sigue siendo el manual más práctico.","orden": null,"imp": false},{"id": "wl091","n": "91","bloque": "Huecos Específicos","title": "The E-Myth Revisited","author": "Michael Gerber","why": "Por qué la mayoría de los negocios fracasan. Para cuando montes tu propia operación.","orden": null,"imp": false},{"id": "wl092","n": "92","bloque": "Huecos Específicos","title": "Venture Deals","author": "Brad Feld & Jason Mendelson","why": "Cómo funcionan las estructuras de capital en RE e inversión. Para entender a los inversores.","orden": null,"imp": false},{"id": "wl093","n": "93","bloque": "Huecos Específicos","title": "The Warren Buffett Way","author": "Robert Hagstrom","why": "Análisis del método de inversión de Buffett. Complementa los Essays (5/5) con más estructura analítica.","orden": null,"imp": false},{"id": "wl094","n": "94","bloque": "Huecos Específicos","title": "One Up on Wall Street","author": "Peter Lynch","why": "Mejor que Beating the Street (3/5) que ya tienes. Empieza por este.","orden": null,"imp": false},{"id": "wl095","n": "95","bloque": "Huecos Específicos","title": "Confessions of an Economic Hit Man","author": "John Perkins","why": "Cómo funciona el dinero internacional.","orden": null,"imp": false}];
 
 // Load notes from localStorage
 const NOTES_KEY = 'ao_book_notes';
@@ -714,18 +714,18 @@ function saveNote(title, text) {
   localStorage.setItem(NOTES_KEY, JSON.stringify(notes));
 }
 
-// ‚îÄ‚îÄ RENDER ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ
+// ── RENDER ────────────────────────────────────────────────
 const YEARS = ['2026','2025','2023','2022','2021','2020','2019','2018'];
 let activeYear = 'all';
 
 function stars(r) {
   if (!r) return '<span style="font-size:11px;color:var(--text-3)">Sin rating</span>';
   let s = '';
-  for (let i = 1; i <= 5; i++) s += `<span class="star ${i <= r ? 'full' : 'empty'}">${i <= r ? '‚òÖ' : '‚òÜ'}</span>`;
+  for (let i = 1; i <= 5; i++) s += `<span class="star ${i <= r ? 'full' : 'empty'}">${i <= r ? '★' : '☆'}</span>`;
   return s;
 }
 
-// ‚îÄ‚îÄ MODAL CLOSE ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ
+// ── MODAL CLOSE ───────────────────────────────────────────
 let currentBookIdx = null;
 function closeModal(e) {
   if (e.target === document.getElementById('modal-overlay')) closeModalDirect();
@@ -737,7 +737,7 @@ function closeModalDirect() {
 }
 document.addEventListener('keydown', e => { if (e.key === 'Escape') { closeModalDirect(); closeAddModal(); closeAddPendingModal(); closeAddFraseModal(); } });
 
-// ‚îÄ‚îÄ ADD BOOK ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ
+// ── ADD BOOK ──────────────────────────────────────────────
 const USER_BOOKS_KEY = 'ao_user_books';
 let addRating = 0;
 
@@ -791,7 +791,7 @@ function saveNewBook() {
   const pages = parseInt(document.getElementById('add-pages').value) || 0;
   const errEl = document.getElementById('add-error');
 
-  if (!title) { errEl.textContent = 'El t√≠tulo es obligatorio.'; errEl.style.display='block'; return; }
+  if (!title) { errEl.textContent = 'El título es obligatorio.'; errEl.style.display='block'; return; }
   if (!author) { errEl.textContent = 'El autor es obligatorio.'; errEl.style.display='block'; return; }
   errEl.style.display = 'none';
 
@@ -813,11 +813,11 @@ function saveNewBook() {
 
 
 
-// ‚îÄ‚îÄ FRASES C√âLEBRES ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ
+// ── FRASES CÉLEBRES ──────────────────────────────────────
 var FRASES_KEY = 'ao_frases_v1';
 var frasesSearchTerm = '';
 
-var HC_FRASES = [{"text": "We who cut mere stones must always be envisioning cathedrals", "author": "Medieval Quarry workers", "source": "Deep Work - Cal Newport"}, {"text": "As I always say, the iron rule in life is that only 20 percent of the people can be in the top fifth", "author": "Charlie Munger", "source": "Poor Charlie's Almanack"}, {"text": "If you want to persuade, appeal to interest, not to reason.", "author": "Benjamin Franklin", "source": "Poor Charlie's Almanack - Charlie Munger"}, {"text": "Truth is hard to assimilate in any mind when opposed by interest.", "author": "Dr. Samuel Johnson", "source": "Poor Charlie's Almanack - Charlie Munger"}, {"text": "Everything should be made as simple as possible, but no more simple", "author": "Einstein", "source": "Poor Charlie's Almanack - Charlie Munger"}, {"text": "What a man wishes, that also will he believe", "author": "Dem√≥stenes", "source": "Poor Charlie's Almanack - Charlie Munger"}, {"text": "En casa de herrero, cuchillo de palo", "author": "Viejo Dicho", "source": ""}, {"text": "I wish I knew where I was going to die so I never go there", "author": "Rustic Person", "source": "Poor Charlie's Almanack - Charlie Munger"}, {"text": "Y si el barco se hunde lo hacemos submarino. Aqu√≠ nadie se rinde", "author": "Viejo Dicho", "source": "Tiktok - Noel"}, {"text": "Como te ven te tratan. Si te ven mal te maltratan, si te ven bien te contratan", "author": "Dicho Argentino", "source": "Noel"}, {"text": "Doubt is not pleasant, but certainty is absurd", "author": "Voltaire", "source": "Howard Marks Memmos"}, {"text": "La suerte es lo m√°s importante, pero m√°s vale que te pille trabajando", "author": "Picasso", "source": "Jordi Romero - Entrevista"}, {"text": "At critical moments in time, you can raise the aspirations of other people significantly, especially when they are relatively young, simply by suggesting they do something better or more ambitious than what they might have in mind. It costs you relatively little to do this, but the benefit to them, and to the broader world, may be enormous", "author": "Tyler Cohen", "source": "The Exponential Fellowship"}, {"text": "If the house is burning, don't focus on the cause, just leave the house", "author": "Nathan French", "source": "Youtube"}, {"text": "Too many chefs in the kitchen is not good", "author": "Viejo Dicho", "source": "Pablo Canton - Abanca USA"}, {"text": "Maybe any hotel has clean sheets, but not every hotel advises it", "author": "Viejo Dicho", "source": "Abanca USA"}, {"text": "Un p√°jaro conf√≠a en sus alas, no en la rama", "author": "Viejo Dicho", "source": "Gustavo Rodriguez - Abanca USA"}, {"text": "Only fools are dancing, but the bigger fools are watching", "author": "Japanese Proverb", "source": ""}, {"text": "Lo pol√≠ticamente correcto es anti democr√°tico", "author": "Alfonso Guerra", "source": "El Hormiguero - TV"}, {"text": "He that spits against the wind, spits in his own face", "author": "Benjamin Franklin", "source": ""}, {"text": "Those who drink to the bottom of the cup must expect to meet some of the dregs", "author": "Benjamin Franklin", "source": ""}, {"text": "One does not dress for private company as for a public ball", "author": "Benjamin Franklin", "source": ""}, {"text": "Lost time is never found again", "author": "Benjamin Franklin", "source": ""}, {"text": "God helps them that help themselves", "author": "Benjamin Franklin", "source": ""}, {"text": "Half the truth is often a great lie", "author": "Benjamin Franklin", "source": ""}, {"text": "When a manager with a reputation for brilliance tackles a business with a reputation of bad economics, the reputation of the business remains intact", "author": "Warren Buffett", "source": ""}, {"text": "There was never a good knife made of bad steel.", "author": "Benjamin Franklin", "source": ""}, {"text": "Genius without education is like silver in the mine", "author": "Benjamin Franklin", "source": ""}, {"text": "When the well's dry we know the worth of water", "author": "Benjamin Franklin", "source": ""}, {"text": "The cat in gloves catches no mice.", "author": "Benjamin Franklin", "source": ""}, {"text": "Fish and visitors stink in three days", "author": "Benjamin Franklin", "source": ""}, {"text": "Early to bed and early to rise, makes a man healthy, wealthy and wise", "author": "Benjamin Franklin", "source": ""}, {"text": "Slow and steady diligence is the true way to wealth", "author": "Benjamin Franklin", "source": ""}, {"text": "A man is sometimes more generous when he has little money than when he has plenty", "author": "Benjamin Franklin", "source": ""}, {"text": "Curiosity is one of the permanent and certain characteristics of a vigorous mind", "author": "Samuel Johnson", "source": ""}, {"text": "The superior man does not waste himself on what is distant, on what is absent. He stands in the here and now, in the real situation", "author": "Confucius", "source": ""}, {"text": "Respond intelligently even to unintelligent treatment", "author": "Lao Tsu", "source": ""}, {"text": "Be happy while you're living, for you are a long time dead", "author": "Scottish Proverb", "source": ""}, {"text": "The formulation of a problem is often more essential than its solution, which may be merely a matter of mathematical or experimental skill", "author": "Albert Einstein", "source": ""}, {"text": "An ounce of prevention is worth a pound of cure.", "author": "Henry de Bracton", "source": ""}, {"text": "If you can't explain it simply, you don't understand it well enough", "author": "Albert Einstein", "source": ""}, {"text": "Never express yourself more clearly than you are able to think", "author": "Niels Bohr", "source": ""}, {"text": "Just as iron rusts from disuse, and stagnant water putrefies, or when cold turns to ice, so our intellect wastes unless it is kept in use", "author": "Leonardo Da Vinci", "source": ""}, {"text": "There are no foolish questions and no man becomes a fool until he has stopped asking questions", "author": "Charles Proteus Steinmetz", "source": ""}, {"text": "The general who wins a battle makes many calculations in his temple before the battle is fought", "author": "Sun Tzu", "source": ""}, {"text": "The brain can be developed just the same way as the muscles can be developed, if one will only take the pains to train the mind to think", "author": "Thomas Alva Edison", "source": ""}, {"text": "Those who cannot remember the past are condemned to repeat it", "author": "George Santayana", "source": ""}, {"text": "It is likely that unlikely things should happen", "author": "Arist√≥teles", "source": ""}, {"text": "Don't find fault, find a remedy", "author": "Henry Ford", "source": ""}, {"text": "He that builds before he counts the cost, acts foolishly; And he that counts before he builds, finds he did not count wisely", "author": "Benjamin Franklin", "source": ""}, {"text": "The art of prophecy is very difficult, especially with respect to the future", "author": "Mark Twain", "source": ""}, {"text": "Do not, therefore, expect any prophecy from me: had I known what one will discover tomorrow, I would have published it long ago, to secure priority", "author": "Henri Poincar√©", "source": ""}, {"text": "Please accept my resignation. I don't care to belong to any club that will have me as a member", "author": "Groucho Marx", "source": ""}, {"text": "Bad logicians have committed more involuntary crimes than bad men have done intentionally", "author": "Pierre S. Du Pont", "source": ""}, {"text": "The road to hell is paved with good intentions", "author": "Samuel Johnson", "source": ""}, {"text": "Don't judge a man until you've walked two moons in his moccasins", "author": "American Proverb", "source": ""}, {"text": "If you have nothing to say, say nothing", "author": "Mark Twain", "source": ""}, {"text": "Man finds nothing so intolerable as to be in a state of complete rest without passions, without occupation, without diversion, without effort", "author": "Blaise Pascal", "source": ""}, {"text": "I have often said that the sole cause of man's unhappiness is that he does not know how to sit quietly in his room", "author": "Blaise Pascal", "source": ""}, {"text": "Everything seems stupid when it fails", "author": "Fyodor Dostoevsky", "source": ""}, {"text": "There is nothing so disturbing to one's well-being and judgment as to see a friend get rich", "author": "Charles P. Kindleberger", "source": ""}, {"text": "Man will do many things to get himself loved; he will do all things to get himself envied", "author": "Mark Twain", "source": ""}, {"text": "It was not that Adam ate the apple for the apple's sake, but because it was forbidden. It would have been better for us if the serpent had been forbidden", "author": "Mark Twain", "source": ""}, {"text": "To forbid us something is to make us want it", "author": "Michael De Montaigne", "source": ""}, {"text": "The first principle is that you must not fool yourself - and you are the easiest person to fool", "author": "Richard Feynman", "source": ""}, {"text": "An optimist is a person who sees a green light everywhere, while the pessimist sees only the red stoplight. The truly wise person is colorblind.", "author": "Dr. Albert Schweitzer", "source": ""}, {"text": "All men think all men are mortal but themselves", "author": "Edward Young", "source": ""}, {"text": "Would you persuade, speak of interest not of reason", "author": "Benjamin Franklin", "source": ""}, {"text": "Whose bread I eat, his song I sing", "author": "German Proverb", "source": ""}, {"text": "My doctor gave me six months to live. When I told him I couldn't pay the bill, he gave me six more months.", "author": "Walter Matthau", "source": ""}, {"text": "The worst abuses come where people have the greatest temptations", "author": "Charlie Munger", "source": ""}, {"text": "Men's natures are alike; it is their habits that carry them far apart", "author": "Confucius", "source": ""}, {"text": "The advice we give others is the advice that we ourselves need", "author": "Gian Carlo", "source": ""}, {"text": "A man who has committed a mistake and doesn't correct it, is committing another mistake", "author": "Confucius", "source": ""}, {"text": "Celebrate work, duty and discipline - and worry little as to the consequences", "author": "Oppenheimer", "source": "American Prometheus - Kai Bird y Martin J. Sherwin"}, {"text": "Las palabras vuelan, lo escrito queda", "author": "Cayo Tito", "source": "Muy Historia - Revista"}, {"text": "Where all think alike, no one thinks very much.", "author": "Walter Lippmann", "source": "Influence - Robert Cialdini"}, {"text": "Conf√≠a pero comprueba", "author": "Viejo Proverbio Ruso", "source": "Chernobyl - Serie"}, {"text": "Ahora me he convertido en la muerte. En la destructora de mundos", "author": "Bhagavad Gita", "source": "Oppenheimer - Pel√≠cula"}, {"text": "La peor parte de estar loco es que la gente espera que te comportes como una persona normal", "author": "El Joker", "source": "El Joker - Pel√≠cula"}, {"text": "There is no expedient to which a man will not resort to avoid the real labor of things", "author": "Joshua Reynolds", "source": "Influence - Robert Cialdini"}, {"text": "Intenta dar sentido a lo que ves y preg√∫ntate qu√© hace que el Universo exista. Se curioso.", "author": "Stephen Hawking", "source": ""}, {"text": "Espera cada d√≠a la muerte a fin de que cuando esta llegue, mueras en paz. La desdicha, cuando ocurre, no es tan espantosa como la tem√≠amos‚Ä¶", "author": "Hagakure Siglo XVIII", "source": "El Marino que perdi√≥ la Gracia del Mar - Yukio Mishima"}, {"text": "One person seeking glory doesn't accomplish much.", "author": "Sam Walton", "source": "Made in America"}, {"text": "Hay hombres que luchan un d√≠a y son buenos, hay otros que luchan un a√±o y son mejores, hay quienes luchan muchos a√±os y son muy buenos, pero hay los que luchan toda la vida, esos son los imprescindibles.", "author": "Bertolt Brecht", "source": "El Viaje es la Recompensa"}, {"text": "Todos estamos en las cloacas, pero algunos estamos mirando a las estrellas", "author": "Oscar Wilde", "source": "El Viaje es la Recompensa - Francisco Luz√≥n"}, {"text": "Si supiera que el mundo se muere ma√±ana, yo hoy todav√≠a plantar√≠a un √°rbol.", "author": "Martin Luther King", "source": "El Viaje es la Recompensa - Francisco Luz√≥n"}, {"text": "No podemos elegir d√≥nde iniciamos nuestra vida, pero podr√≠amos finalizarla donde quisi√©ramos. Yo s√© d√≥nde estar√©: yendo en ese tren min√∫sculo a ning√∫n lugar en particular, por siempre jam√°s", "author": "Tony Judt", "source": "El Viaje es la Recompensa - Francisco Luz√≥n"}, {"text": "El deseo de luz produce luz.", "author": "Simone Weil", "source": "El Viaje es la Recompensa - Francisco Luz√≥n"}, {"text": "Be regular and orderly in your life so that you may be violent and original in your work", "author": "Gustave Flaubert", "source": ""}, {"text": "Es como San Jorge de los Carteles. Siempre a caballo pero nunca cabalga", "author": "Benjamin Franklin", "source": "Benjamin Franklin - Autobiograf√≠a"}, {"text": "La felicidad humana no se produce con grandes golpes de buena suerte que ocurren rara vez, sino con las peque√±as ventajas que obtenemos cada d√≠a.", "author": "Benjamin Franklin", "source": "Benjamin Franklin - Autobiograf√≠a"}, {"text": "Aquel que una vez te hizo un bien estar√° m√°s dispuesto a repetirlo que aquel a quien has servido", "author": "Benjamin Franklin", "source": "Benjamin Franklin - Autobiograf√≠a"}, {"text": "En la conversaci√≥n se puede adquirir sobre todo por el uso de los o√≠dos antes que el de la lengua", "author": "Benjamin Franklin", "source": "Benjamin Franklin - Autobiograf√≠a"}, {"text": "Hazlo, y si te da miedo, lo haces con miedo", "author": "Viejo Dicho", "source": "Visto en una discoteca"}, {"text": "Sin duda, es eso lo que hace de la muerte algo tan duro: la curiosidad insatisfecha", "author": "Beryl Markham", "source": ""}, {"text": "Por eso, a un pr√≠ncipe no le debe preocupar la fama de cruel si con ello consigue la unidad y confianza de sus s√∫bditos", "author": "Maquiavelo", "source": "El Pr√≠ncipe - Maquiavelo"}, {"text": "Hay una gran diferencia entre c√≥mo se vive y c√≥mo se deber√≠a vivir, de modo que quien se gu√≠a no por lo que hay que hacer sino por lo que se deber√≠a, conocer√° antes su propia ruina que su propia salvaci√≥n", "author": "Maquiavelo", "source": "El Pr√≠ncipe - Maquiavelo"}, {"text": "Se trata de la historia de un arquitecto que construy√≥ una vez una biblioteca. Era perfecta. Pero cada a√±o las estanter√≠as hund√≠an varios cent√≠metros, hasta que al final la librer√≠a termin√≥ condenada al fracaso. ¬øY si no pienso en los libros?", "author": "Vieja Historia", "source": "Ted Mosby - How I met your mother"}, {"text": "El pr√≠ncipe debe ir personalmente a la cabeza de su ej√©rcito asumiendo √©l mismo las funciones de capit√°n", "author": "Maquiavelo", "source": "El Pr√≠ncipe - Maquiavelo"}, {"text": "Los Estados que surgen r√°pidamente, como todas las cosas de la naturaleza que nacen y crecen enseguida, carecen de ra√≠ces y ramificaciones, de manera que la primera adversidad los destruye", "author": "Maquiavelo", "source": "El Pr√≠ncipe - Maquiavelo"}, {"text": "Todos los profetas armados vencieron mientras los desarmados sucumbieron", "author": "Maquiavelo", "source": "El Pr√≠ncipe - Maquiavelo"}, {"text": "[Los problemas] previ√©ndolo, se pueden atajar f√°cilmente, mientras que si dejas que afloren, el remedio no sirve ya, pues la enfermedad se ha hecho incurable.", "author": "Maquiavelo", "source": "El Pr√≠ncipe - Maquiavelo"}, {"text": "No olvidar las leyes de sus antepasados y amoldarse a los tiempos", "author": "Maquiavelo", "source": "El Pr√≠ncipe - Maquiavelo"}, {"text": "R√≠e y todos reir√°n contigo, llora y llorar√°s solo", "author": "Viejo Dicho", "source": "Old Boy - Pel√≠cula"}, {"text": "Es m√°s f√°cil ganar oro que mantenerlo", "author": "Heinrich Schliemann", "source": ""}, {"text": "Cuando los hechos cambian, yo cambio de opini√≥n ¬øY usted?", "author": "John Maynard Keynes", "source": ""}, {"text": "A un hombre con un martillo todos los problemas le parecer√°n clavos", "author": "Viejo Dicho", "source": "Charlie Munger"}, {"text": "En los mismos r√≠os entramos y no entramos, somos y no somos los mismos", "author": "Her√°clito", "source": "Roma Maldita - Santiago Posteguillo"}, {"text": "La mujer que va por la calle y llama al marido porque ve un coche en la autopista en contramano y le dice: ¬°He visto un coche en la autopista en contramano!. A lo que responde el marido: ¬øUno? ¬°Hay miles!", "author": "Viejo Dicho", "source": "Recitado por Charlie Munger en la Universidad de Michigan"}, {"text": "Quien nace mortal camina hacia la muerte.", "author": "Calino", "source": "Roma Maldita - Santiago Posteguillo"}];
+var HC_FRASES = [{"text": "We who cut mere stones must always be envisioning cathedrals", "author": "Medieval Quarry workers", "source": "Deep Work - Cal Newport"}, {"text": "As I always say, the iron rule in life is that only 20 percent of the people can be in the top fifth", "author": "Charlie Munger", "source": "Poor Charlie's Almanack"}, {"text": "If you want to persuade, appeal to interest, not to reason.", "author": "Benjamin Franklin", "source": "Poor Charlie's Almanack - Charlie Munger"}, {"text": "Truth is hard to assimilate in any mind when opposed by interest.", "author": "Dr. Samuel Johnson", "source": "Poor Charlie's Almanack - Charlie Munger"}, {"text": "Everything should be made as simple as possible, but no more simple", "author": "Einstein", "source": "Poor Charlie's Almanack - Charlie Munger"}, {"text": "What a man wishes, that also will he believe", "author": "Demóstenes", "source": "Poor Charlie's Almanack - Charlie Munger"}, {"text": "En casa de herrero, cuchillo de palo", "author": "Viejo Dicho", "source": ""}, {"text": "I wish I knew where I was going to die so I never go there", "author": "Rustic Person", "source": "Poor Charlie's Almanack - Charlie Munger"}, {"text": "Y si el barco se hunde lo hacemos submarino. Aquí nadie se rinde", "author": "Viejo Dicho", "source": "Tiktok - Noel"}, {"text": "Como te ven te tratan. Si te ven mal te maltratan, si te ven bien te contratan", "author": "Dicho Argentino", "source": "Noel"}, {"text": "Doubt is not pleasant, but certainty is absurd", "author": "Voltaire", "source": "Howard Marks Memmos"}, {"text": "La suerte es lo más importante, pero más vale que te pille trabajando", "author": "Picasso", "source": "Jordi Romero - Entrevista"}, {"text": "At critical moments in time, you can raise the aspirations of other people significantly, especially when they are relatively young, simply by suggesting they do something better or more ambitious than what they might have in mind. It costs you relatively little to do this, but the benefit to them, and to the broader world, may be enormous", "author": "Tyler Cohen", "source": "The Exponential Fellowship"}, {"text": "If the house is burning, don't focus on the cause, just leave the house", "author": "Nathan French", "source": "Youtube"}, {"text": "Too many chefs in the kitchen is not good", "author": "Viejo Dicho", "source": "Pablo Canton - Abanca USA"}, {"text": "Maybe any hotel has clean sheets, but not every hotel advises it", "author": "Viejo Dicho", "source": "Abanca USA"}, {"text": "Un pájaro confía en sus alas, no en la rama", "author": "Viejo Dicho", "source": "Gustavo Rodriguez - Abanca USA"}, {"text": "Only fools are dancing, but the bigger fools are watching", "author": "Japanese Proverb", "source": ""}, {"text": "Lo políticamente correcto es anti democrático", "author": "Alfonso Guerra", "source": "El Hormiguero - TV"}, {"text": "He that spits against the wind, spits in his own face", "author": "Benjamin Franklin", "source": ""}, {"text": "Those who drink to the bottom of the cup must expect to meet some of the dregs", "author": "Benjamin Franklin", "source": ""}, {"text": "One does not dress for private company as for a public ball", "author": "Benjamin Franklin", "source": ""}, {"text": "Lost time is never found again", "author": "Benjamin Franklin", "source": ""}, {"text": "God helps them that help themselves", "author": "Benjamin Franklin", "source": ""}, {"text": "Half the truth is often a great lie", "author": "Benjamin Franklin", "source": ""}, {"text": "When a manager with a reputation for brilliance tackles a business with a reputation of bad economics, the reputation of the business remains intact", "author": "Warren Buffett", "source": ""}, {"text": "There was never a good knife made of bad steel.", "author": "Benjamin Franklin", "source": ""}, {"text": "Genius without education is like silver in the mine", "author": "Benjamin Franklin", "source": ""}, {"text": "When the well's dry we know the worth of water", "author": "Benjamin Franklin", "source": ""}, {"text": "The cat in gloves catches no mice.", "author": "Benjamin Franklin", "source": ""}, {"text": "Fish and visitors stink in three days", "author": "Benjamin Franklin", "source": ""}, {"text": "Early to bed and early to rise, makes a man healthy, wealthy and wise", "author": "Benjamin Franklin", "source": ""}, {"text": "Slow and steady diligence is the true way to wealth", "author": "Benjamin Franklin", "source": ""}, {"text": "A man is sometimes more generous when he has little money than when he has plenty", "author": "Benjamin Franklin", "source": ""}, {"text": "Curiosity is one of the permanent and certain characteristics of a vigorous mind", "author": "Samuel Johnson", "source": ""}, {"text": "The superior man does not waste himself on what is distant, on what is absent. He stands in the here and now, in the real situation", "author": "Confucius", "source": ""}, {"text": "Respond intelligently even to unintelligent treatment", "author": "Lao Tsu", "source": ""}, {"text": "Be happy while you're living, for you are a long time dead", "author": "Scottish Proverb", "source": ""}, {"text": "The formulation of a problem is often more essential than its solution, which may be merely a matter of mathematical or experimental skill", "author": "Albert Einstein", "source": ""}, {"text": "An ounce of prevention is worth a pound of cure.", "author": "Henry de Bracton", "source": ""}, {"text": "If you can't explain it simply, you don't understand it well enough", "author": "Albert Einstein", "source": ""}, {"text": "Never express yourself more clearly than you are able to think", "author": "Niels Bohr", "source": ""}, {"text": "Just as iron rusts from disuse, and stagnant water putrefies, or when cold turns to ice, so our intellect wastes unless it is kept in use", "author": "Leonardo Da Vinci", "source": ""}, {"text": "There are no foolish questions and no man becomes a fool until he has stopped asking questions", "author": "Charles Proteus Steinmetz", "source": ""}, {"text": "The general who wins a battle makes many calculations in his temple before the battle is fought", "author": "Sun Tzu", "source": ""}, {"text": "The brain can be developed just the same way as the muscles can be developed, if one will only take the pains to train the mind to think", "author": "Thomas Alva Edison", "source": ""}, {"text": "Those who cannot remember the past are condemned to repeat it", "author": "George Santayana", "source": ""}, {"text": "It is likely that unlikely things should happen", "author": "Aristóteles", "source": ""}, {"text": "Don't find fault, find a remedy", "author": "Henry Ford", "source": ""}, {"text": "He that builds before he counts the cost, acts foolishly; And he that counts before he builds, finds he did not count wisely", "author": "Benjamin Franklin", "source": ""}, {"text": "The art of prophecy is very difficult, especially with respect to the future", "author": "Mark Twain", "source": ""}, {"text": "Do not, therefore, expect any prophecy from me: had I known what one will discover tomorrow, I would have published it long ago, to secure priority", "author": "Henri Poincaré", "source": ""}, {"text": "Please accept my resignation. I don't care to belong to any club that will have me as a member", "author": "Groucho Marx", "source": ""}, {"text": "Bad logicians have committed more involuntary crimes than bad men have done intentionally", "author": "Pierre S. Du Pont", "source": ""}, {"text": "The road to hell is paved with good intentions", "author": "Samuel Johnson", "source": ""}, {"text": "Don't judge a man until you've walked two moons in his moccasins", "author": "American Proverb", "source": ""}, {"text": "If you have nothing to say, say nothing", "author": "Mark Twain", "source": ""}, {"text": "Man finds nothing so intolerable as to be in a state of complete rest without passions, without occupation, without diversion, without effort", "author": "Blaise Pascal", "source": ""}, {"text": "I have often said that the sole cause of man's unhappiness is that he does not know how to sit quietly in his room", "author": "Blaise Pascal", "source": ""}, {"text": "Everything seems stupid when it fails", "author": "Fyodor Dostoevsky", "source": ""}, {"text": "There is nothing so disturbing to one's well-being and judgment as to see a friend get rich", "author": "Charles P. Kindleberger", "source": ""}, {"text": "Man will do many things to get himself loved; he will do all things to get himself envied", "author": "Mark Twain", "source": ""}, {"text": "It was not that Adam ate the apple for the apple's sake, but because it was forbidden. It would have been better for us if the serpent had been forbidden", "author": "Mark Twain", "source": ""}, {"text": "To forbid us something is to make us want it", "author": "Michael De Montaigne", "source": ""}, {"text": "The first principle is that you must not fool yourself - and you are the easiest person to fool", "author": "Richard Feynman", "source": ""}, {"text": "An optimist is a person who sees a green light everywhere, while the pessimist sees only the red stoplight. The truly wise person is colorblind.", "author": "Dr. Albert Schweitzer", "source": ""}, {"text": "All men think all men are mortal but themselves", "author": "Edward Young", "source": ""}, {"text": "Would you persuade, speak of interest not of reason", "author": "Benjamin Franklin", "source": ""}, {"text": "Whose bread I eat, his song I sing", "author": "German Proverb", "source": ""}, {"text": "My doctor gave me six months to live. When I told him I couldn't pay the bill, he gave me six more months.", "author": "Walter Matthau", "source": ""}, {"text": "The worst abuses come where people have the greatest temptations", "author": "Charlie Munger", "source": ""}, {"text": "Men's natures are alike; it is their habits that carry them far apart", "author": "Confucius", "source": ""}, {"text": "The advice we give others is the advice that we ourselves need", "author": "Gian Carlo", "source": ""}, {"text": "A man who has committed a mistake and doesn't correct it, is committing another mistake", "author": "Confucius", "source": ""}, {"text": "Celebrate work, duty and discipline - and worry little as to the consequences", "author": "Oppenheimer", "source": "American Prometheus - Kai Bird y Martin J. Sherwin"}, {"text": "Las palabras vuelan, lo escrito queda", "author": "Cayo Tito", "source": "Muy Historia - Revista"}, {"text": "Where all think alike, no one thinks very much.", "author": "Walter Lippmann", "source": "Influence - Robert Cialdini"}, {"text": "Confía pero comprueba", "author": "Viejo Proverbio Ruso", "source": "Chernobyl - Serie"}, {"text": "Ahora me he convertido en la muerte. En la destructora de mundos", "author": "Bhagavad Gita", "source": "Oppenheimer - Película"}, {"text": "La peor parte de estar loco es que la gente espera que te comportes como una persona normal", "author": "El Joker", "source": "El Joker - Película"}, {"text": "There is no expedient to which a man will not resort to avoid the real labor of things", "author": "Joshua Reynolds", "source": "Influence - Robert Cialdini"}, {"text": "Intenta dar sentido a lo que ves y pregúntate qué hace que el Universo exista. Se curioso.", "author": "Stephen Hawking", "source": ""}, {"text": "Espera cada día la muerte a fin de que cuando esta llegue, mueras en paz. La desdicha, cuando ocurre, no es tan espantosa como la temíamos…", "author": "Hagakure Siglo XVIII", "source": "El Marino que perdió la Gracia del Mar - Yukio Mishima"}, {"text": "One person seeking glory doesn't accomplish much.", "author": "Sam Walton", "source": "Made in America"}, {"text": "Hay hombres que luchan un día y son buenos, hay otros que luchan un año y son mejores, hay quienes luchan muchos años y son muy buenos, pero hay los que luchan toda la vida, esos son los imprescindibles.", "author": "Bertolt Brecht", "source": "El Viaje es la Recompensa"}, {"text": "Todos estamos en las cloacas, pero algunos estamos mirando a las estrellas", "author": "Oscar Wilde", "source": "El Viaje es la Recompensa - Francisco Luzón"}, {"text": "Si supiera que el mundo se muere mañana, yo hoy todavía plantaría un árbol.", "author": "Martin Luther King", "source": "El Viaje es la Recompensa - Francisco Luzón"}, {"text": "No podemos elegir dónde iniciamos nuestra vida, pero podríamos finalizarla donde quisiéramos. Yo sé dónde estaré: yendo en ese tren minúsculo a ningún lugar en particular, por siempre jamás", "author": "Tony Judt", "source": "El Viaje es la Recompensa - Francisco Luzón"}, {"text": "El deseo de luz produce luz.", "author": "Simone Weil", "source": "El Viaje es la Recompensa - Francisco Luzón"}, {"text": "Be regular and orderly in your life so that you may be violent and original in your work", "author": "Gustave Flaubert", "source": ""}, {"text": "Es como San Jorge de los Carteles. Siempre a caballo pero nunca cabalga", "author": "Benjamin Franklin", "source": "Benjamin Franklin - Autobiografía"}, {"text": "La felicidad humana no se produce con grandes golpes de buena suerte que ocurren rara vez, sino con las pequeñas ventajas que obtenemos cada día.", "author": "Benjamin Franklin", "source": "Benjamin Franklin - Autobiografía"}, {"text": "Aquel que una vez te hizo un bien estará más dispuesto a repetirlo que aquel a quien has servido", "author": "Benjamin Franklin", "source": "Benjamin Franklin - Autobiografía"}, {"text": "En la conversación se puede adquirir sobre todo por el uso de los oídos antes que el de la lengua", "author": "Benjamin Franklin", "source": "Benjamin Franklin - Autobiografía"}, {"text": "Hazlo, y si te da miedo, lo haces con miedo", "author": "Viejo Dicho", "source": "Visto en una discoteca"}, {"text": "Sin duda, es eso lo que hace de la muerte algo tan duro: la curiosidad insatisfecha", "author": "Beryl Markham", "source": ""}, {"text": "Por eso, a un príncipe no le debe preocupar la fama de cruel si con ello consigue la unidad y confianza de sus súbditos", "author": "Maquiavelo", "source": "El Príncipe - Maquiavelo"}, {"text": "Hay una gran diferencia entre cómo se vive y cómo se debería vivir, de modo que quien se guía no por lo que hay que hacer sino por lo que se debería, conocerá antes su propia ruina que su propia salvación", "author": "Maquiavelo", "source": "El Príncipe - Maquiavelo"}, {"text": "Se trata de la historia de un arquitecto que construyó una vez una biblioteca. Era perfecta. Pero cada año las estanterías hundían varios centímetros, hasta que al final la librería terminó condenada al fracaso. ¿Y si no pienso en los libros?", "author": "Vieja Historia", "source": "Ted Mosby - How I met your mother"}, {"text": "El príncipe debe ir personalmente a la cabeza de su ejército asumiendo él mismo las funciones de capitán", "author": "Maquiavelo", "source": "El Príncipe - Maquiavelo"}, {"text": "Los Estados que surgen rápidamente, como todas las cosas de la naturaleza que nacen y crecen enseguida, carecen de raíces y ramificaciones, de manera que la primera adversidad los destruye", "author": "Maquiavelo", "source": "El Príncipe - Maquiavelo"}, {"text": "Todos los profetas armados vencieron mientras los desarmados sucumbieron", "author": "Maquiavelo", "source": "El Príncipe - Maquiavelo"}, {"text": "[Los problemas] previéndolo, se pueden atajar fácilmente, mientras que si dejas que afloren, el remedio no sirve ya, pues la enfermedad se ha hecho incurable.", "author": "Maquiavelo", "source": "El Príncipe - Maquiavelo"}, {"text": "No olvidar las leyes de sus antepasados y amoldarse a los tiempos", "author": "Maquiavelo", "source": "El Príncipe - Maquiavelo"}, {"text": "Ríe y todos reirán contigo, llora y llorarás solo", "author": "Viejo Dicho", "source": "Old Boy - Película"}, {"text": "Es más fácil ganar oro que mantenerlo", "author": "Heinrich Schliemann", "source": ""}, {"text": "Cuando los hechos cambian, yo cambio de opinión ¿Y usted?", "author": "John Maynard Keynes", "source": ""}, {"text": "A un hombre con un martillo todos los problemas le parecerán clavos", "author": "Viejo Dicho", "source": "Charlie Munger"}, {"text": "En los mismos ríos entramos y no entramos, somos y no somos los mismos", "author": "Heráclito", "source": "Roma Maldita - Santiago Posteguillo"}, {"text": "La mujer que va por la calle y llama al marido porque ve un coche en la autopista en contramano y le dice: ¡He visto un coche en la autopista en contramano!. A lo que responde el marido: ¿Uno? ¡Hay miles!", "author": "Viejo Dicho", "source": "Recitado por Charlie Munger en la Universidad de Michigan"}, {"text": "Quien nace mortal camina hacia la muerte.", "author": "Calino", "source": "Roma Maldita - Santiago Posteguillo"}];
 function loadFrases() {
   try {
     var user = JSON.parse(localStorage.getItem(FRASES_KEY) || '[]');
@@ -851,7 +851,7 @@ function renderFrases() {
     + '</div>';
 
   if (!list.length) {
-    html += '<div class="frases-empty">Sin frases a√±adidas a√∫n.<br>Pulsa "A√±adir frase" para guardar una frase que te haya impactado.</div>';
+    html += '<div class="frases-empty">Sin frases añadidas aún.<br>Pulsa "Añadir frase" para guardar una frase que te haya impactado.</div>';
   } else if (!filtered.length) {
     html += '<div class="frases-empty">Sin resultados para "' + frasesSearchTerm.replace(/</g,'&lt;') + '".</div>';
   } else {
@@ -884,7 +884,7 @@ function frasesSearch(val) {
 }
 
 function deleteFrase(idx) {
-  if (!confirm('¬øEliminar esta frase?')) return;
+  if (!confirm('¿Eliminar esta frase?')) return;
   var list = loadFrases();
   list.splice(idx, 1);
   storeFrases(list);
@@ -900,7 +900,7 @@ function openAddFraseModal() {
   document.getElementById('frase-error').style.display = 'none';
   // Reset modal title and button
   var hdr = document.querySelector('.add-frase-modal .add-modal-hdr h3');
-  if (hdr) hdr.textContent = 'A√±adir frase';
+  if (hdr) hdr.textContent = 'Añadir frase';
   var btn = document.querySelector('.add-frase-modal .btn-primary');
   if (btn) btn.textContent = 'Guardar frase';
   document.getElementById('add-frase-overlay').classList.add('open');
@@ -957,13 +957,13 @@ function saveFrase() {
   if (activeYear === 'frases') renderFrases();
 }
 
-// ‚îÄ‚îÄ LECTURA: lista, estados y ficha ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ
+// ── LECTURA: lista, estados y ficha ───────────────────────
 // Estado de cada libro de la lista en localStorage (ao_reading_v1):
 //   { "<id>": { estado: 'leyendo' | 'leido', inicio, fin, pages, actual, rating } }
-// Sin registro (o sin estado) = por leer. Las notas siguen en ao_book_notes (por t√≠tulo).
+// Sin registro (o sin estado) = por leer. Las notas siguen en ao_book_notes (por título).
 
 function esc(s) { return String(s == null ? '' : s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;'); }
-function normT(s) { return String(s || '').toLowerCase().normalize('NFD').replace(/[ÃÄ-ÕØ]/g, '').replace(/[^a-z0-9]+/g, ' ').trim(); }
+function normT(s) { return String(s || '').toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '').replace(/[^a-z0-9]+/g, ' ').trim(); }
 function slugT(s) { return normT(s).replace(/ /g, '-'); }
 function todayISO() { var d = new Date(); return d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0'); }
 var MESES = ['ene', 'feb', 'mar', 'abr', 'may', 'jun', 'jul', 'ago', 'sep', 'oct', 'nov', 'dic'];
@@ -971,9 +971,9 @@ function fmtDate(iso) { if (!iso) return ''; var p = iso.split('-'); return pars
 function fmtDay(iso) { var p = iso.split('-'); return parseInt(p[2], 10) + ' ' + MESES[parseInt(p[1], 10) - 1]; }
 function fmtInt(n) { return String(n).replace(/\B(?=(\d{3})+(?!\d))/g, '.'); }
 function daysSince(iso) { var a = new Date(iso + 'T00:00:00'), b = new Date(); b.setHours(0, 0, 0, 0); return Math.max(1, Math.round((b - a) / 86400000) + 1); }
-function preview(t, n) { t = String(t || '').replace(/\s+/g, ' ').trim(); return t.length > n ? t.slice(0, n).trim() + '‚Ä¶' : t; }
+function preview(t, n) { t = String(t || '').replace(/\s+/g, ' ').trim(); return t.length > n ? t.slice(0, n).trim() + '…' : t; }
 
-// ‚îÄ‚îÄ ESTADO DE LECTURA ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ
+// ── ESTADO DE LECTURA ─────────────────────────────────────
 var RD_KEY = 'ao_reading_v1';
 function loadRD() {
   try { var o = JSON.parse(localStorage.getItem(RD_KEY) || '{}'); return (o && typeof o === 'object' && !Array.isArray(o)) ? o : {}; } catch (e) { return {}; }
@@ -983,15 +983,15 @@ function setRD(id, patch) { var o = loadRD(); o[id] = Object.assign({}, o[id] ||
 function clearRD(id) { var o = loadRD(); delete o[id]; saveRD(o); }
 function estadoDe(id, rd) { var r = (rd || loadRD())[id]; return (r && r.estado) ? r.estado : 'porleer'; }
 
-// ‚îÄ‚îÄ PENDIENTES PROPIOS ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ
+// ── PENDIENTES PROPIOS ────────────────────────────────────
 var PENDING_KEY = 'ao_pending_books_v1';
-var HC_PENDING = [{"title": "Maldita Roma", "author": "Santiago Posteguillo", "note": ""}, {"title": "Los Tres Mundos", "author": "Santiago Posteguillo", "note": ""}, {"title": "Influencia", "author": "Robert Cialdini", "note": ""}, {"title": "Pre-Suasion", "author": "Robert Cialdini", "note": ""}, {"title": "Libertad Inmobiliaria", "author": "Carlos Gal√°n", "note": ""}, {"title": "Never Split the Difference", "author": "Chris Voss", "note": ""}];
+var HC_PENDING = [{"title": "Maldita Roma", "author": "Santiago Posteguillo", "note": ""}, {"title": "Los Tres Mundos", "author": "Santiago Posteguillo", "note": ""}, {"title": "Influencia", "author": "Robert Cialdini", "note": ""}, {"title": "Pre-Suasion", "author": "Robert Cialdini", "note": ""}, {"title": "Libertad Inmobiliaria", "author": "Carlos Galán", "note": ""}, {"title": "Never Split the Difference", "author": "Chris Voss", "note": ""}];
 function loadPendingList() {
   try { var l = JSON.parse(localStorage.getItem(PENDING_KEY) || 'null'); return Array.isArray(l) ? l : []; } catch (e) { return []; }
 }
 function storePending(list) { localStorage.setItem(PENDING_KEY, JSON.stringify(list)); }
 function pid(b) { return b.id || ('pd-' + slugT(b.title)); }
-// Los pendientes que estaban fijos en el c√≥digo pasan una sola vez a la lista editable
+// Los pendientes que estaban fijos en el código pasan una sola vez a la lista editable
 function migratePending() {
   if (localStorage.getItem('ao_pending_migrated_v2')) return;
   var user = loadPendingList();
@@ -1002,7 +1002,7 @@ function migratePending() {
   localStorage.setItem('ao_pending_migrated_v2', '1');
 }
 
-// Todos los libros "por leer / leyendo / le√≠dos de la lista" en una sola colecci√≥n
+// Todos los libros "por leer / leyendo / leídos de la lista" en una sola colección
 function allItems() {
   var items = WISHLIST.map(function (w) {
     return { id: w.id, src: 'wl', title: w.title, author: w.author, why: w.why, bloque: w.bloque, n: w.n, orden: w.orden, ordenNota: w.ordenNota, imp: w.imp, pages: 0 };
@@ -1019,7 +1019,7 @@ function allItems() {
 }
 function itemPages(it, rd) { var r = (rd || loadRD())[it.id] || {}; return r.pages || it.pages || 0; }
 
-// ‚îÄ‚îÄ LIBROS LE√çDOS (hist√≥rico + a√±adidos + terminados desde la lista) ‚îÄ‚îÄ
+// ── LIBROS LEÍDOS (histórico + añadidos + terminados desde la lista) ──
 function readBooksByYear() {
   var rd = loadRD(), byYear = {};
   function push(y, b) { (byYear[y] = byYear[y] || []).push(b); }
@@ -1038,7 +1038,7 @@ function readBooksByYear() {
   return byYear;
 }
 
-// ‚îÄ‚îÄ ESTAD√çSTICAS, FILTROS Y META DE P√ÅGINAS ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ
+// ── ESTADÍSTICAS, FILTROS Y META DE PÁGINAS ───────────────
 var F2_START = '2026-10-01', F2_GOAL = 3000;
 var F2_HITOS = [['2026-10-31', 500], ['2026-12-20', 1300], ['2027-01-31', 2000], ['2027-03-31', 3000]];
 
@@ -1058,11 +1058,11 @@ function updatePhasePages() {
   if (!el) return;
   var f = f2Pages(), pct = Math.min(100, Math.round(f.total / F2_GOAL * 100));
   var next = F2_HITOS.filter(function (h) { return h[1] > f.total; })[0];
-  var nextTxt = next ? ('Siguiente hito: ' + fmtInt(next[1]) + ' p√°gs el ' + fmtDay(next[0]) + (todayISO() > next[0] ? ' (vencido)' : '')) : 'Meta de la fase alcanzada';
-  el.innerHTML = '<div class="pp-line">Fase 2 ¬∑ <b>' + fmtInt(f.total) + '</b> de ' + fmtInt(F2_GOAL) + ' p√°ginas</div>'
+  var nextTxt = next ? ('Siguiente hito: ' + fmtInt(next[1]) + ' págs el ' + fmtDay(next[0]) + (todayISO() > next[0] ? ' (vencido)' : '')) : 'Meta de la fase alcanzada';
+  el.innerHTML = '<div class="pp-line">Fase 2 · <b>' + fmtInt(f.total) + '</b> de ' + fmtInt(F2_GOAL) + ' páginas</div>'
     + '<div class="pp-bar"><i style="width:' + pct + '%"></i></div>'
     + '<div class="pp-next">' + nextTxt + '</div>'
-    + (f.missing ? '<div class="pp-next">Hay libros de la fase sin p√°ginas: a√±√°delas en su ficha para que cuenten.</div>' : '');
+    + (f.missing ? '<div class="pp-next">Hay libros de la fase sin páginas: añádelas en su ficha para que cuenten.</div>' : '');
 }
 
 function updateStats() {
@@ -1078,7 +1078,7 @@ function updateStats() {
   function set(id, v) { var e = document.getElementById(id); if (e) e.textContent = v; }
   set('stat-total', total);
   set('stat-years', nYears);
-  set('stat-avg', rated ? (sum / rated).toFixed(1).replace('.', ',') : '‚Äì');
+  set('stat-avg', rated ? (sum / rated).toFixed(1).replace('.', ',') : '–');
   set('stat-reading', reading);
   set('stat-pending', toread);
   updatePhasePages();
@@ -1100,15 +1100,15 @@ function rebuildFilters() {
   document.getElementById('filters').innerHTML = btn('all', 'Todos') + btn('leyendo', 'Leyendo', nReading) + btn('porleer', 'Por leer', nToRead) + btn('frases', 'Frases');
 }
 
-// ‚îÄ‚îÄ VISTAS ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ
+// ── VISTAS ────────────────────────────────────────────────
 function filterYear(view, btn) {
   if (view === 'pending') view = 'porleer';
   activeYear = view;
   rebuildFilters();
   var mainBtn = document.getElementById('mainAddBtn');
   if (mainBtn) {
-    if (view === 'porleer' || view === 'leyendo') { mainBtn.setAttribute('onclick', 'openAddPendingModal()'); mainBtn.textContent = 'A√±adir a la lista'; }
-    else { mainBtn.setAttribute('onclick', 'openAddModal()'); mainBtn.textContent = 'A√±adir libro'; }
+    if (view === 'porleer' || view === 'leyendo') { mainBtn.setAttribute('onclick', 'openAddPendingModal()'); mainBtn.textContent = 'Añadir a la lista'; }
+    else { mainBtn.setAttribute('onclick', 'openAddModal()'); mainBtn.textContent = 'Añadir libro'; }
   }
   if (view === 'porleer') renderToRead();
   else if (view === 'leyendo') renderReading();
@@ -1126,7 +1126,7 @@ function refreshView() {
   else render();
 }
 
-// Todos (le√≠dos por a√±o), como estanter√≠a de libros 3D
+// Todos (leídos por año), como estantería de libros 3D
 var shelfKeys = [], shelfBooks = {}, shelfRevealed = false;
 function render() {
   var notes = loadNotes(), byYear = readBooksByYear();
@@ -1161,7 +1161,7 @@ function renderReading() {
     .sort(function (a, b) { return String(rd[b.id].inicio || '').localeCompare(String(rd[a.id].inicio || '')); });
   var html = '<div class="pending-section"><div class="sl">Leyendo <span class="sl-count">' + cur.length + ' libro' + (cur.length !== 1 ? 's' : '') + '</span></div>';
   if (!cur.length) {
-    html += '<div class="pending-empty">No est√°s leyendo nada ahora mismo.<br>Elige uno en ¬´Por leer¬ª o pulsa ¬´A√±adir a la lista¬ª para anotar el que ya tienes entre manos.</div>';
+    html += '<div class="pending-empty">No estás leyendo nada ahora mismo.<br>Elige uno en «Por leer» o pulsa «Añadir a la lista» para anotar el que ya tienes entre manos.</div>';
   } else {
     html += '<div class="rd-grid">';
     cur.forEach(function (it) {
@@ -1169,10 +1169,10 @@ function renderReading() {
       var pct = pages ? Math.min(100, Math.round(actual / pages * 100)) : 0;
       var n = notes[it.title] || '';
       html += '<div class="rd-card" data-k="i:' + esc(it.id) + '">'
-        + '<div class="rd-top"><span class="rd-badge">Leyendo' + (r.inicio ? ' ¬∑ d√≠a ' + daysSince(r.inicio) : '') + '</span>' + (r.inicio ? '<span class="rd-since">desde el ' + esc(fmtDate(r.inicio)) + '</span>' : '') + '</div>'
+        + '<div class="rd-top"><span class="rd-badge">Leyendo' + (r.inicio ? ' · día ' + daysSince(r.inicio) : '') + '</span>' + (r.inicio ? '<span class="rd-since">desde el ' + esc(fmtDate(r.inicio)) + '</span>' : '') + '</div>'
         + '<div class="pending-title">' + esc(it.title) + '</div>'
         + '<div class="pending-author">' + esc(it.author) + '</div>'
-        + (pages ? '<div class="pp-bar"><i style="width:' + pct + '%"></i></div><div class="rd-prog">' + (actual ? 'P√°gina ' + fmtInt(actual) + ' de ' + fmtInt(pages) + ' ¬∑ ' + pct + ' %' : fmtInt(pages) + ' p√°ginas ¬∑ sin empezar a contar') + '</div>' : '<div class="rd-prog">Sin p√°ginas: a√±√°delas en la ficha</div>')
+        + (pages ? '<div class="pp-bar"><i style="width:' + pct + '%"></i></div><div class="rd-prog">' + (actual ? 'Página ' + fmtInt(actual) + ' de ' + fmtInt(pages) + ' · ' + pct + ' %' : fmtInt(pages) + ' páginas · sin empezar a contar') + '</div>' : '<div class="rd-prog">Sin páginas: añádelas en la ficha</div>')
         + (n ? '<div class="book-prev">' + esc(preview(n, 160)) + '</div>' : '')
         + '<div class="rd-actions"><button class="modal-add-btn" data-act="finish" data-id="' + esc(it.id) + '">Terminar</button><button class="modal-add-btn" data-act="back" data-id="' + esc(it.id) + '">Volver a por leer</button></div>'
         + '</div>';
@@ -1190,7 +1190,7 @@ function renderToRead() {
   var opts = '<option value="">Todos los bloques</option>' + blocks.map(function (b) { return '<option value="' + esc(b) + '"' + (tlBloque === b ? ' selected' : '') + '>' + esc(b) + '</option>'; }).join('');
   document.getElementById('books-container').innerHTML = '<div class="pending-section">'
     + '<div class="sl">Por leer <span class="sl-count" id="tl-count"></span></div>'
-    + '<div class="tl-controls"><input class="frases-search" id="tl-search" placeholder="Buscar t√≠tulo o autor‚Ä¶" value="' + esc(tlSearch) + '" oninput="tlSet(this.value, null)"><select class="tl-select" id="tl-bloque" onchange="tlSet(null, this.value)">' + opts + '</select></div>'
+    + '<div class="tl-controls"><input class="frases-search" id="tl-search" placeholder="Buscar título o autor…" value="' + esc(tlSearch) + '" oninput="tlSet(this.value, null)"><select class="tl-select" id="tl-bloque" onchange="tlSet(null, this.value)">' + opts + '</select></div>'
     + '<div id="tl-list"></div></div>';
   renderToReadList();
 }
@@ -1203,7 +1203,7 @@ function renderToReadList() {
   var items = pool.filter(function (it) { return (!tlBloque || it.bloque === tlBloque) && (!q || normT(it.title + ' ' + it.author).indexOf(q) >= 0); });
   var cnt = document.getElementById('tl-count');
   if (cnt) cnt.textContent = (items.length === pool.length ? pool.length : items.length + ' de ' + pool.length) + ' libro' + (pool.length !== 1 ? 's' : '');
-  if (!items.length) { host.innerHTML = '<div class="pending-empty">' + (pool.length ? 'Ning√∫n libro coincide con la b√∫squeda.' : 'No queda nada por leer en la lista.') + '</div>'; return; }
+  if (!items.length) { host.innerHTML = '<div class="pending-empty">' + (pool.length ? 'Ningún libro coincide con la búsqueda.' : 'No queda nada por leer en la lista.') + '</div>'; return; }
   var order = WL_BLOCKS.concat(['Mis pendientes']), html = '';
   order.forEach(function (bl) {
     var group = items.filter(function (it) { return it.bloque === bl; });
@@ -1216,7 +1216,7 @@ function renderToReadList() {
       if (it.orden) tags.push('Orden sugerido ' + it.orden);
       var n = notes[it.title] || '';
       html += '<div class="pending-card tl-card" data-k="i:' + esc(it.id) + '">'
-        + '<div class="pending-badge">' + (tags.join(' ¬∑ ') || 'Por leer') + '</div>'
+        + '<div class="pending-badge">' + (tags.join(' · ') || 'Por leer') + '</div>'
         + '<div class="pending-title">' + esc(it.title) + '</div>'
         + '<div class="pending-author">' + esc(it.author) + '</div>'
         + (it.why ? '<div class="tl-why">' + esc(it.why) + '</div>' : '')
@@ -1229,11 +1229,11 @@ function renderToReadList() {
   host.innerHTML = html;
 }
 
-// ‚îÄ‚îÄ CAMBIOS DE ESTADO ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ
+// ── CAMBIOS DE ESTADO ─────────────────────────────────────
 function startReading(id) {
   var rd = loadRD();
   var other = allItems().filter(function (it) { return it.id !== id && estadoDe(it.id, rd) === 'leyendo'; })[0];
-  if (other && !confirm('Ya est√°s leyendo ¬´' + other.title + '¬ª. ¬øEmpezar tambi√©n este?')) return false;
+  if (other && !confirm('Ya estás leyendo «' + other.title + '». ¿Empezar también este?')) return false;
   var r = rd[id] || {};
   setRD(id, { estado: 'leyendo', inicio: (r.estado === 'leido' ? '' : r.inicio) || todayISO(), fin: undefined, rating: undefined });
   refreshView();
@@ -1241,7 +1241,7 @@ function startReading(id) {
 }
 function backToToRead(id) {
   var rd = loadRD(), r = rd[id] || {};
-  if ((r.estado === 'leyendo' || r.estado === 'leido') && !confirm('¬øVolver a ¬´Por leer¬ª? Se borran las fechas, la p√°gina actual y la valoraci√≥n. Las notas se conservan.')) return false;
+  if ((r.estado === 'leyendo' || r.estado === 'leido') && !confirm('¿Volver a «Por leer»? Se borran las fechas, la página actual y la valoración. Las notas se conservan.')) return false;
   var pages = r.pages; clearRD(id); if (pages) setRD(id, { pages: pages });
   refreshView();
   return true;
@@ -1258,7 +1258,7 @@ document.getElementById('books-container').addEventListener('click', function (e
   if (c) openFicha(c.getAttribute('data-k'));
 });
 
-// ‚îÄ‚îÄ FICHA DEL LIBRO ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ
+// ── FICHA DEL LIBRO ───────────────────────────────────────
 var currentKey = null, finishOpen = false, finRating = 0, notesEditing = false;
 
 function resolveKey(key) {
@@ -1280,7 +1280,7 @@ function getNotes(title) { var n = loadNotes(); return n[title] || ''; }
 
 function starPicker(cur, fn) {
   var s = '<div class="star-picker">';
-  for (var i = 1; i <= 5; i++) s += '<span class="star-pick' + (i <= cur ? ' on' : '') + '" onclick="' + fn + '(' + i + ')">‚òÖ</span>';
+  for (var i = 1; i <= 5; i++) s += '<span class="star-pick' + (i <= cur ? ' on' : '') + '" onclick="' + fn + '(' + i + ')">★</span>';
   return s + '</div>';
 }
 
@@ -1302,7 +1302,7 @@ function openFicha(key, opts) {
   renderNotesBox();
 }
 
-// Libro 3D de la ficha, fondo te√±ido con su color y navegaci√≥n por la estanter√≠a
+// Libro 3D de la ficha, fondo teñido con su color y navegación por la estantería
 var fichaBookKey = null;
 function fichaBookData(o) {
   if (o.kind === 'item') return { title: o.item.title, author: o.item.author, pages: itemPages(o.item) };
@@ -1328,7 +1328,7 @@ function fichaStep(dir) {
   var i = shelfKeys.indexOf(currentKey); if (i < 0) return;
   openFicha(shelfKeys[(i + dir + shelfKeys.length) % shelfKeys.length]);
   document.querySelector('.fi-text').scrollTop = 0;
-  document.getElementById('modal').scrollTop = 0;  // en m√≥vil hace scroll la ficha entera
+  document.getElementById('modal').scrollTop = 0;  // en móvil hace scroll la ficha entera
 }
 document.getElementById('modal-overlay').addEventListener('mousemove', function (e) {
   var bk = document.querySelector('#fstage .bk3d'); if (!bk) return;
@@ -1352,8 +1352,8 @@ function fichaItem(it, hdr, body) {
   if (it.src === 'wl') tags += '<span class="modal-tag">' + esc(it.bloque) + '</span>';
   if (it.src === 'pd') tags += '<span class="modal-tag">Mis pendientes</span>';
   if (it.imp) tags += '<span class="modal-tag" style="color:var(--now)">Imprescindible</span>';
-  if (it.orden) tags += '<span class="modal-tag">Orden sugerido: ' + it.orden + (it.ordenNota ? ' ¬∑ ' + esc(it.ordenNota) : '') + '</span>';
-  var label = estado === 'leido' ? ('Le√≠do' + (r.fin ? ' ¬∑ ' + fmtDate(r.fin) : '')) : estado === 'leyendo' ? ('Leyendo' + (r.inicio ? ' ¬∑ d√≠a ' + daysSince(r.inicio) : '')) : 'Por leer';
+  if (it.orden) tags += '<span class="modal-tag">Orden sugerido: ' + it.orden + (it.ordenNota ? ' · ' + esc(it.ordenNota) : '') + '</span>';
+  var label = estado === 'leido' ? ('Leído' + (r.fin ? ' · ' + fmtDate(r.fin) : '')) : estado === 'leyendo' ? ('Leyendo' + (r.inicio ? ' · día ' + daysSince(r.inicio) : '')) : 'Por leer';
   hdr.innerHTML = '<button class="modal-close" onclick="closeModalDirect()">Cerrar</button>'
     + '<div class="modal-rating fi-state-lbl">' + label + '</div>'
     + '<div class="modal-title">' + esc(it.title) + '</div>'
@@ -1361,45 +1361,45 @@ function fichaItem(it, hdr, body) {
     + '<div class="modal-meta">' + tags + '</div>';
 
   var seg = '<div class="fi-seg">'
-    + [['porleer', 'Por leer'], ['leyendo', 'Leyendo'], ['leido', 'Le√≠do']].map(function (s) {
+    + [['porleer', 'Por leer'], ['leyendo', 'Leyendo'], ['leido', 'Leído']].map(function (s) {
       return '<button class="' + ((finishOpen ? 'leido' : estado) === s[0] ? 'on' : '') + '" onclick="fiState(\'' + s[0] + '\')">' + s[1] + '</button>';
     }).join('') + '</div>';
 
   var grid = '';
   if (finishOpen) {
-    grid = '<div class="fi-panel"><div class="modal-notes-label">Marcar como le√≠do</div>'
-      + '<div class="form-row"><div class="form-group"><label>Empec√© el</label><input type="date" id="ff-inicio" value="' + esc(r.inicio || '') + '"></div>'
-      + '<div class="form-group"><label>Termin√© el</label><input type="date" id="ff-fin" value="' + esc(r.fin || todayISO()) + '"></div></div>'
-      + '<div class="form-row"><div class="form-group"><label>P√°ginas</label><input type="number" min="0" id="ff-pages" value="' + (pages || '') + '" placeholder="0"></div>'
-      + '<div class="form-group"><label>Valoraci√≥n</label>' + starPicker(finRating, 'finRate') + '</div></div>'
-      + '<div class="meta">Si lo empezaste desde el 1 de octubre de 2026, sus p√°ginas cuentan para la meta de la Fase 2.</div>'
+    grid = '<div class="fi-panel"><div class="modal-notes-label">Marcar como leído</div>'
+      + '<div class="form-row"><div class="form-group"><label>Empecé el</label><input type="date" id="ff-inicio" value="' + esc(r.inicio || '') + '"></div>'
+      + '<div class="form-group"><label>Terminé el</label><input type="date" id="ff-fin" value="' + esc(r.fin || todayISO()) + '"></div></div>'
+      + '<div class="form-row"><div class="form-group"><label>Páginas</label><input type="number" min="0" id="ff-pages" value="' + (pages || '') + '" placeholder="0"></div>'
+      + '<div class="form-group"><label>Valoración</label>' + starPicker(finRating, 'finRate') + '</div></div>'
+      + '<div class="meta">Si lo empezaste desde el 1 de octubre de 2026, sus páginas cuentan para la meta de la Fase 2.</div>'
       + '<div id="ff-err" class="msg" style="display:none"></div>'
-      + '<div class="form-actions"><button class="btn-primary" onclick="saveFinish()">Guardar como le√≠do</button><button class="btn-secondary" onclick="openFicha(currentKey)">Cancelar</button></div></div>';
+      + '<div class="form-actions"><button class="btn-primary" onclick="saveFinish()">Guardar como leído</button><button class="btn-secondary" onclick="openFicha(currentKey)">Cancelar</button></div></div>';
   } else {
-    var f = '<div class="form-group"><label>P√°ginas</label><input type="number" min="0" value="' + (pages || '') + '" placeholder="0" onchange="fiSet(\'pages\', this.value)"></div>';
+    var f = '<div class="form-group"><label>Páginas</label><input type="number" min="0" value="' + (pages || '') + '" placeholder="0" onchange="fiSet(\'pages\', this.value)"></div>';
     if (estado === 'leyendo') {
       var actual = r.actual || 0, pct = pages ? Math.min(100, Math.round(actual / pages * 100)) : 0;
-      f += '<div class="form-group"><label>P√°gina actual</label><input type="number" min="0" value="' + (actual || '') + '" placeholder="0" onchange="fiSet(\'actual\', this.value)"></div>'
-        + '<div class="form-group"><label>Empec√© el</label><input type="date" value="' + esc(r.inicio || '') + '" onchange="fiSet(\'inicio\', this.value)"></div>'
-        + '<div class="form-group"><label>Progreso</label><div class="pp-bar" style="margin-top:14px"><i id="fi-bar" style="width:' + pct + '%"></i></div><div class="meta" id="fi-pct">' + (pages ? pct + ' %' : 'A√±ade las p√°ginas para ver el progreso') + '</div></div>';
+      f += '<div class="form-group"><label>Página actual</label><input type="number" min="0" value="' + (actual || '') + '" placeholder="0" onchange="fiSet(\'actual\', this.value)"></div>'
+        + '<div class="form-group"><label>Empecé el</label><input type="date" value="' + esc(r.inicio || '') + '" onchange="fiSet(\'inicio\', this.value)"></div>'
+        + '<div class="form-group"><label>Progreso</label><div class="pp-bar" style="margin-top:14px"><i id="fi-bar" style="width:' + pct + '%"></i></div><div class="meta" id="fi-pct">' + (pages ? pct + ' %' : 'Añade las páginas para ver el progreso') + '</div></div>';
     } else if (estado === 'leido') {
-      f += '<div class="form-group"><label>Valoraci√≥n</label>' + starPicker(r.rating || 0, 'fiRate') + '</div>'
-        + '<div class="form-group"><label>Empec√© el</label><input type="date" value="' + esc(r.inicio || '') + '" onchange="fiSet(\'inicio\', this.value)"></div>'
-        + '<div class="form-group"><label>Termin√© el</label><input type="date" value="' + esc(r.fin || '') + '" onchange="fiSet(\'fin\', this.value)"></div>';
+      f += '<div class="form-group"><label>Valoración</label>' + starPicker(r.rating || 0, 'fiRate') + '</div>'
+        + '<div class="form-group"><label>Empecé el</label><input type="date" value="' + esc(r.inicio || '') + '" onchange="fiSet(\'inicio\', this.value)"></div>'
+        + '<div class="form-group"><label>Terminé el</label><input type="date" value="' + esc(r.fin || '') + '" onchange="fiSet(\'fin\', this.value)"></div>';
     }
     grid = '<div class="form-row fi-grid">' + f + '</div>';
   }
 
-  var why = it.why ? ('<div><div class="modal-notes-label">' + (it.src === 'wl' ? 'Por qu√© leerlo' : 'Nota') + '</div><div class="fi-why">' + esc(it.why) + (it.userNote ? '<br><em>' + esc(it.userNote) + '</em>' : '') + '</div></div>') : '';
+  var why = it.why ? ('<div><div class="modal-notes-label">' + (it.src === 'wl' ? 'Por qué leerlo' : 'Nota') + '</div><div class="fi-why">' + esc(it.why) + (it.userNote ? '<br><em>' + esc(it.userNote) + '</em>' : '') + '</div></div>') : '';
   var del = it.src === 'pd' ? '<div><button class="modal-add-btn" style="color:#A3442C" onclick="deleteFromList()">Eliminar de la lista</button></div>' : '';
   body.innerHTML = seg + grid + why + '<div id="fi-notes"></div>' + del;
 }
 
 function fichaBook(o, hdr, body) {
-  var b = o.book, tags = '<span class="modal-tag">Le√≠do en ' + esc(b.year) + '</span>';
-  if (b.pages) tags += '<span class="modal-tag">' + fmtInt(b.pages) + ' p√°ginas</span>';
+  var b = o.book, tags = '<span class="modal-tag">Leído en ' + esc(b.year) + '</span>';
+  if (b.pages) tags += '<span class="modal-tag">' + fmtInt(b.pages) + ' páginas</span>';
   if (b.rating) tags += '<span class="modal-tag">' + b.rating + ' de 5</span>';
-  if (o.kind === 'user') tags += '<span class="modal-tag" style="color:var(--now)">A√±adido por ti</span>';
+  if (o.kind === 'user') tags += '<span class="modal-tag" style="color:var(--now)">Añadido por ti</span>';
   hdr.innerHTML = '<button class="modal-close" onclick="closeModalDirect()">Cerrar</button>'
     + '<div class="modal-rating">' + stars(b.rating) + '</div>'
     + '<div class="modal-title">' + esc(b.title) + '</div>'
@@ -1430,7 +1430,7 @@ function fiSet(field, val) {
     var r = loadRD()[it.id] || {}, pages = r.pages || it.pages || 0, pct = pages ? Math.min(100, Math.round((r.actual || 0) / pages * 100)) : 0;
     var bar = document.getElementById('fi-bar'), t = document.getElementById('fi-pct');
     if (bar) bar.style.width = pct + '%';
-    if (t) t.textContent = pages ? pct + ' %' : 'A√±ade las p√°ginas para ver el progreso';
+    if (t) t.textContent = pages ? pct + ' %' : 'Añade las páginas para ver el progreso';
   }
 }
 function fiRate(n) { var it = curItem(); if (!it) return; setRD(it.id, { rating: n }); refreshView(); openFicha(currentKey); }
@@ -1443,7 +1443,7 @@ function saveFinish() {
   var inicio = document.getElementById('ff-inicio').value, fin = document.getElementById('ff-fin').value;
   var pages = parseInt(document.getElementById('ff-pages').value, 10) || 0;
   var err = document.getElementById('ff-err');
-  if (!fin) { err.textContent = 'Indica cu√°ndo lo terminaste.'; err.style.display = 'block'; return; }
+  if (!fin) { err.textContent = 'Indica cuándo lo terminaste.'; err.style.display = 'block'; return; }
   if (inicio && fin < inicio) { err.textContent = 'La fecha de fin no puede ser anterior a la de inicio.'; err.style.display = 'block'; return; }
   setRD(it.id, { estado: 'leido', inicio: inicio || undefined, fin: fin, pages: pages, rating: finRating || undefined, actual: undefined });
   refreshView();
@@ -1451,7 +1451,7 @@ function saveFinish() {
 }
 function deleteFromList() {
   var it = curItem(); if (!it || it.src !== 'pd') return;
-  if (!confirm('¬øEliminar ¬´' + it.title + '¬ª de la lista?')) return;
+  if (!confirm('¿Eliminar «' + it.title + '» de la lista?')) return;
   storePending(loadPendingList().filter(function (p) { return pid(p) !== it.id; }));
   clearRD(it.id);
   closeModalDirect();
@@ -1460,20 +1460,20 @@ function deleteFromList() {
 function deleteUserBookFicha() {
   var o = resolveKey(currentKey); if (!o || o.kind !== 'user') return;
   var b = o.book;
-  if (!confirm('¬øEliminar "' + b.title + '"?')) return;
+  if (!confirm('¿Eliminar "' + b.title + '"?')) return;
   saveUserBooks(loadUserBooks().filter(function (x) { return !(x.title === b.title && x.author === b.author && x.year === b.year); }));
   closeModalDirect();
   refreshView();
 }
 
-// ‚îÄ‚îÄ NOTAS ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ
+// ── NOTAS ─────────────────────────────────────────────────
 function renderNotesBox() {
   var o = resolveKey(currentKey), host = document.getElementById('fi-notes');
   if (!o || !host) return;
   var t = getNotes(o.title);
   if (notesEditing) {
     host.innerHTML = '<div class="modal-notes-label">Notas de lectura</div>'
-      + '<textarea id="notes-editor" class="notes-editor" placeholder="Pega aqu√≠ todas tus notas, frases subrayadas y reflexiones del libro‚Ä¶"></textarea>'
+      + '<textarea id="notes-editor" class="notes-editor" placeholder="Pega aquí todas tus notas, frases subrayadas y reflexiones del libro…"></textarea>'
       + '<div class="fi-note-actions"><button class="btn-primary" onclick="notesSave()">Guardar notas</button><button class="btn-secondary" onclick="notesCancel()">Cancelar</button><span class="meta">Cmd/Ctrl + Enter para guardar</span></div>';
     var ta = document.getElementById('notes-editor');
     ta.value = t;
@@ -1482,8 +1482,8 @@ function renderNotesBox() {
     return;
   }
   host.innerHTML = '<div class="modal-notes-label">Notas de lectura</div>'
-    + (t ? '<div class="modal-notes">' + esc(t) + '</div>' : '<div class="modal-no-notes">A√∫n no hay notas para este libro.</div>')
-    + '<div class="fi-note-actions"><button class="modal-add-btn" onclick="notesEdit()">' + (t ? 'Editar notas' : 'A√±adir notas') + '</button>'
+    + (t ? '<div class="modal-notes">' + esc(t) + '</div>' : '<div class="modal-no-notes">Aún no hay notas para este libro.</div>')
+    + '<div class="fi-note-actions"><button class="modal-add-btn" onclick="notesEdit()">' + (t ? 'Editar notas' : 'Añadir notas') + '</button>'
     + (t ? '<button class="modal-add-btn" id="notes-copy-btn" onclick="notesCopy()">Copiar notas</button>' : '') + '</div>';
 }
 function notesEdit() { notesEditing = true; renderNotesBox(); }
@@ -1506,7 +1506,7 @@ function notesCopy() {
   if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(t).then(function () { done(true); }, fallback); else fallback();
 }
 
-// ‚îÄ‚îÄ A√ëADIR A LA LISTA ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ
+// ── AÑADIR A LA LISTA ─────────────────────────────────────
 function pendEstadoChange() {
   var leyendo = document.getElementById('pend-estado').value === 'leyendo';
   document.getElementById('pend-leyendo-row').style.display = leyendo ? 'grid' : 'none';
@@ -1532,7 +1532,7 @@ function savePendingBook() {
   var pages = parseInt(document.getElementById('pend-pages').value, 10) || 0;
   var estado = document.getElementById('pend-estado').value;
   var errEl = document.getElementById('pend-error');
-  if (!title) { errEl.textContent = 'El t√≠tulo es obligatorio.'; errEl.style.display = 'block'; return; }
+  if (!title) { errEl.textContent = 'El título es obligatorio.'; errEl.style.display = 'block'; return; }
   if (!author) { errEl.textContent = 'El autor es obligatorio.'; errEl.style.display = 'block'; return; }
   errEl.style.display = 'none';
   var id = 'pd' + Date.now();
@@ -1542,16 +1542,19 @@ function savePendingBook() {
   if (estado === 'leyendo') {
     var rd = loadRD();
     var other = allItems().filter(function (it) { return it.id !== id && estadoDe(it.id, rd) === 'leyendo'; })[0];
-    var go = !other || confirm('Ya est√°s leyendo ¬´' + other.title + '¬ª. ¬øA√±adir este tambi√©n como ¬´Leyendo¬ª?');
+    var go = !other || confirm('Ya estás leyendo «' + other.title + '». ¿Añadir este también como «Leyendo»?');
     if (go) setRD(id, { estado: 'leyendo', inicio: document.getElementById('pend-inicio').value || todayISO(), actual: parseInt(document.getElementById('pend-actual').value, 10) || 0, pages: pages });
   }
   closeAddPendingModal();
   filterYear(estado === 'leyendo' && estadoDe(id) === 'leyendo' ? 'leyendo' : 'porleer');
 }
 
-// ‚îÄ‚îÄ LIBROS 3D Y PORTADAS ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ
+// ── LIBROS 3D Y PORTADAS ──────────────────────────────────
 // Portada: campo `cover` del libro (URL) si lo tiene; si no, se busca en Open Library y se guarda
 // en este navegador. La clave no empieza por ao_ para que cloud.js no la suba a la nube.
+// Portadas ya resueltas (id de Open Library + color medio) para no buscarlas en cada visita.
+// 0 = sin portada válida en Open Library: se usa la tipográfica (o pon `cover:` en el libro).
+var COVERS = {"roma soy yo|santiago posteguillo":[12937757,"#461c17"],"el ultimo secreto|dan brown":0,"el libro negro del emprendedor|fernando trias de bes":[8137980,"#67685a"],"elon musk|walter isaacson":[14420016,"#5a4b48"],"titan the life of john d rockefeller sr|ron chernow":[12373738,"#38332c"],"the checklist manifesto|atul gawande":[8231866,"#c9b4b3"],"how to live on 24 hours a day|arnold bennett":[1760143,"#929f97"],"25 hours a day|nick bare":[13223568,"#504b36"],"deep work|cal newport":[7988607,"#8a7516"],"poor charlie s almanack|charles t munger":[8337563,"#32361f"],"breve historia de la quimica|isaac asimov":[10613020,"#7d6638"],"seeking wisdom from darwin to munger|peter bevelin":[9671797,"#0e0e0e"],"american prometheus|kai bird":[6460516,"#937770"],"the sailor who fell from grace with the sea|yukio mishima":0,"the autobiography of benjamin franklin|benjamin franklin":[5647361,"#846e5e"],"influence the psychology of persuasion|robert b cialdini":[431011,"#b4a7a3"],"the brain the story of you|david eagleman":[9576564,"#090907"],"papa goriot|honore de balzac":[8237944,"#cab572"],"el viaje es la recompensa|francisco luzon":[14124128,"#434548"],"good to great|jim collins":[7431270,"#ed2b2c"],"el principe|niccolo machiavelli":[12328579,"#58564e"],"ruido un fallo en el juicio humano|daniel kahneman":[10981966,"#e1e0df"],"schliemann geschichte eines goldsuchers|emil ludwig":[15057474,"#4c4e2d"],"eugenia grandet piel de zapa|honore de balzac":[8237025,"#877a5f"],"harry potter and the prisoner of azkaban|j k rowling":[10580435,"#784b39"],"harry potter and the chamber of secrets|j k rowling":[15158664,"#7d82a9"],"harry potter and the philosopher s stone|j k rowling":[15155833,"#b0717a"],"viajes de marco polo|marco polo":[13314021,"#a77a46"],"ana karenina|leo tolstoy":0,"los dias de gloria|mario conde":[14156046,"#a098a1"],"the psychology of human misjudgement|charles t munger":0,"jugarse la piel|nassim nicholas taleb":[13663372,"#e2e2e2"],"antifragil|nassim nicholas taleb":[9180157,"#cfb8b4"],"fooled by randomness|nassim nicholas taleb":[855791,"#4d4a6d"],"el cisne negro|nassim nicholas taleb":[12344090,"#dedede"],"2001 una odisea espacial|arthur c clarke":[11344400,"#34362a"],"the new new thing|michael lewis":[809757,"#91979d"],"dune messiah|frank herbert":[980253,"#a68978"],"a short history of financial euphoria|john kenneth galbraith":[4009269,"#5e453e"],"the great crash 1929|john kenneth galbraith":[6507896,"#989682"],"dune|frank herbert":[11481354,"#47402d"],"cuentos completos oscar wilde|oscar wilde":0,"brave new world|aldous huxley":[8231823,"#5a5122"],"animal farm|george orwell":[11261770,"#373431"],"1984|george orwell":[8745958,"#80483e"],"zero to one|peter thiel":[9002334,"#6290b7"],"principles of economics|carl menger":[8499522,"#8c6269"],"the origins of money|carl menger":[8702191,"#fcfcfc"],"el patron bitcoin|saifedean ammous":[10320866,"#f4e2d0"],"digital gold|nathaniel popper":[7897458,"#292728"],"the essays of warren buffett|warren buffett":[6497216,"#e9dca9"],"tap dancing to work|carol j loomis":[13812497,"#b2855b"],"el utilitarismo|john stuart mill":[675806,"#efa0a2"],"on liberty|john stuart mill":[966821,"#cccbc7"],"autobiography|john stuart mill":[8982987,"#9e9e9e"],"the theory of moral sentiments|adam smith":[5584363,"#fafce6"],"the invisible hand|adam smith":[12370643,"#c5e4e7"],"the wealth of nations|adam smith":[12816911,"#c4adaf"],"how to avoid a climate disaster|bill gates":[10656063,"#d2c9d0"],"la conquista de america contada para escepticos|juan eslava galan":[10412381,"#d4d1c7"],"winston churchill una biografia colectiva|richard toye":[8868428,"#807c79"],"historia de espana contada para escepticos|juan eslava galan":[12866597,"#675340"],"los reyes catolicos|juan eslava galan":[15143454,"#35200c"],"invent and wander|jeff bezos":[10229085,"#e2eae5"],"12 rules for life|jordan b peterson":[8131760,"#efeeeb"],"the monk who sold his ferrari|robin sharma":[48817,"#bdb7a2"],"los renglones torcidos de dios|torcuato luca de tena":[5299758,"#fbfbfb"],"university of berkshire hathaway|daniel pecaut":[10102083,"#2d6343"],"beating the street|peter lynch":[4007078,"#c6aeb2"],"surely you re joking mr feynman|richard p feynman":[9274698,"#8d807f"],"good economics for hard times|abhijit v banerjee":[9322264,"#e9e5df"],"the innovators|walter isaacson":[7313659,"#785946"],"man s search for meaning|viktor e frankl":[11203708,"#b37e7c"],"the lessons of history|will durant":[7240225,"#7c9c9f"],"the game|alessandro baricco":[9160569,"#232825"],"bloomberg by bloomberg|michael r bloomberg":[9712900,"#958a8a"],"einstein his life and universe|walter isaacson":[474440,"#877461"],"breve historia del tiempo|stephen w hawking":[10432365,"#6b5e5f"],"crashed how a decade of financial crises changed the world|adam tooze":[9388517,"#6a8f96"],"the ride of a lifetime|robert iger":[8788773,"#67615e"],"creativity inc|ed catmull":[13124793,"#8e2d20"],"steve jobs|walter isaacson":[12374726,"#a5a5a5"],"thinking fast and slow|daniel kahneman":[13290711,"#f6f4ed"],"energy a beginner s guide|vaclav smil":[607692,"#988776"],"invirtiendo a largo plazo|francisco garcia parames":[8068469,"#e6e6e1"],"tim cook|leander kahney":[8807499,"#353432"],"banker to the poor|muhammad yunus":[1468840,"#7c3d3b"],"a world of three zeros|muhammad yunus":[8862041,"#f1f0ed"],"principles life and work|ray dalio":[8315355,"#7f7b7b"],"the most important thing|howard marks":[10001222,"#d2d7c0"],"capital in the twenty first century|thomas piketty":0,"el retorno del rey|j r r tolkien":[14627062,"#295d74"],"el principito|antoine de saint exupery":[13499066,"#454a43"],"lords of finance|liaquat ahamed":[6390416,"#b6c1b6"],"el pequeno libro para invertir con sentido comun|john c bogle":[1239500,"#943121"],"the picture of dorian gray|oscar wilde":[14314858,"#544e3b"],"liar s poker|michael lewis":[204556,"#d8cd14"],"leonardo da vinci|walter isaacson":[8087691,"#926524"],"robinson crusoe|daniel defoe":[368541,"#7c513f"],"the economic consequences of the peace|john maynard keynes":[10925001,"#13191d"],"las dos torres|j r r tolkien":[14627564,"#386794"],"the future of humanity|michio kaku":[8807416,"#7e8083"],"la comunidad del anillo|j r r tolkien":[14627060,"#28648d"],"el imperio ibm|thomas j watson jr":0,"the outsiders|william n thorndike jr":[10461140,"#9b9289"],"sapiens a brief history of humankind|yuval noah harari":[8634250,"#f5eae7"],"the compound effect|darren hardy":[7115046,"#cdd0d4"],"outliers the story of success|malcolm gladwell":[10021591,"#f6f5f5"],"common stocks and uncommon profits|philip a fisher":[788750,"#6a977c"],"the hobbit|j r r tolkien":[14627509,"#4b4033"],"the last question|isaac asimov":[14414350,"#13252c"],"factfulness|hans rosling":[8186237,"#e9aea0"],"smarter faster better|charles duhigg":[12690321,"#423b41"],"la teoria del todo|stephen w hawking":[942436,"#3a3430"],"educated|tara westover":[8314077,"#d2aa94"],"harry potter and the deathly hallows|j k rowling":[15158660,"#585149"],"harry potter and the half blood prince|j k rowling":[10716273,"#684c44"],"harry potter and the order of the phoenix|j k rowling":[15158666,"#7f7050"],"harry potter and the goblet of fire|j k rowling":[12059372,"#7b2c1e"],"the snowball warren buffett and the business of life|alice schroeder":[6916021,"#000000"],"flash boys|michael lewis":[8260825,"#902227"],"the subtle art of not giving a f ck|mark manson":[8231990,"#cf490e"],"elon musk tesla spacex and the quest for a fantastic future|ashlee vance":[8463846,"#534040"],"shoe dog|phil knight":[8858487,"#e34a3c"],"superfreakonomics|steven d levitt":[6304875,"#b1c3c9"],"business adventures|john brooks":[8231778,"#c8574a"],"the hunger games|suzanne collins":[12646537,"#191818"],"memorias de um operador da bolsa|edwin lefevre":[300533,"#87795c"],"directo al infierno|john lefevre":[10954181,"#7b4f22"],"the richest man in babylon|george s clason":[10491331,"#564c3f"],"the power of habit|charles duhigg":[9078085,"#f8d619"],"philip a fisher collected works|philip a fisher":[788750,"#6a977c"],"perdiendo la virginidad|richard branson":[12391759,"#646061"],"focus the hidden driver of excellence|daniel goleman":[10398270,"#f0e5e4"],"unshakeable|anthony robbins":[8814861,"#3f3f3d"],"think and grow rich|napoleon hill":[14542536,"#591a18"],"who moved my cheese|spencer johnson":[258839,"#d6c9c9"],"harry potter and the sorcerer s stone|j k rowling":[276518,"#d8c3c0"],"the everything store jeff bezos and the age of amazon|brad stone":[7264584,"#ceb89f"],"rich dad poor dad|robert t kiyosaki":[8315603,"#72574a"],"emotional intelligence|daniel goleman":[1359485,"#bda8a4"],"space chronicles|neil degrasse tyson":[8120700,"#a79b93"],"el arte de la guerra|sun tzu":[13723515,"#b41619"],"trading en la zona|mark douglas":[8775205,"#adb2bb"],"ganate y ganaras en bolsa|jose antonio madrigal":0,"un monje en wall street|jose antonio madrigal":0,"invertir en bolsa con sentido comun|jose antonio madrigal":0};
 var COVERS_KEY = 'lib3d_covers_v1';
 var COVER_PALETTE = ['#2B2A27', '#8F9360', '#A86F1C', '#3E4A5C', '#7A3B2E', '#5C6B4E', '#C9B27C', '#1F3B3A'];
 var coverCache = (function () { try { return JSON.parse(localStorage.getItem(COVERS_KEY) || '{}'); } catch (e) { return {}; } })();
@@ -1561,7 +1564,7 @@ function hashS(s) { var h = 0; for (var i = 0; i < s.length; i++) h = (h * 31 + 
 function hexLum(hex) { var n = parseInt(hex.slice(1), 16); return (0.299 * (n >> 16) + 0.587 * ((n >> 8) & 255) + 0.114 * (n & 255)) / 255; }
 function toHex(r, g, b) { return '#' + [r, g, b].map(function (v) { return Math.round(v).toString(16).padStart(2, '0'); }).join(''); }
 function fgFor(hex) { return hexLum(hex) > 0.6 ? '#1d1c17' : '#F3F0E8'; }
-// grosor del lomo proporcional a las p√°ginas
+// grosor del lomo proporcional a las páginas
 function depthFor(pages) { return Math.max(12, Math.min(44, 10 + (pages || 300) / 22)); }
 // fondo de la ficha: el color de la portada, algo desaturado y aclarado hasta que el texto oscuro se lea bien
 function tintBg(hex) {
@@ -1575,7 +1578,8 @@ function tintBg(hex) {
 }
 
 function coverInfo(b) {
-  var c = coverCache[coverKey(b.title, b.author)] || {};
+  var k = coverKey(b.title, b.author), pre = COVERS[k];
+  var c = (!b.cover && pre) ? { id: pre[0], color: pre[1] } : (coverCache[k] || {});
   var ol = c.id ? 'https://covers.openlibrary.org/b/id/' + c.id : '';
   return {
     small: b.cover || (ol && ol + '-M.jpg'),
@@ -1596,20 +1600,21 @@ function typoCover(b, fg) {
 function book3D(b, big) {
   var ci = coverInfo(b), fg = fgFor(ci.color), d = depthFor(b.pages) * (big ? 1.6 : 1), url = big ? ci.big : ci.small;
   function tag(u) { return '<img src="' + esc(u) + '" alt="" loading="lazy" onerror="this.parentNode.classList.remove(\'has-img\');this.remove()">'; }
-  // en la ficha, la peque√±a (ya en cach√©) sale al instante y la grande la tapa al cargar
+  // en la ficha, la pequeña (ya en caché) sale al instante y la grande la tapa al cargar
   var img = url ? ((big && ci.small !== ci.big ? tag(ci.small) : '') + tag(url)) : '';
   return '<div class="bk-holder" data-ck="' + esc(coverKey(b.title, b.author)) + '"><div class="bk3d" style="--c:' + ci.color + ';--fg:' + fg + ';--d:' + Math.round(d) + 'px">'
     + '<div class="bk-back"></div><div class="bk-pt"></div><div class="bk-pb"></div><div class="bk-pr"></div>'
-    + '<div class="bk-spine"><span>' + esc(b.title) + ' ¬∑ ' + esc(b.author) + '</span></div>'
+    + '<div class="bk-spine"><span>' + esc(b.title) + ' · ' + esc(b.author) + '</span></div>'
     + '<div class="bk-front' + (url ? ' has-img' : '') + '">' + typoCover(b, fg) + img + '</div>'
     + '</div><div class="bk-shadow"></div></div>';
 }
 
-// B√∫squeda de portadas: perezosa (solo libros cerca de la pantalla) y como mucho 4 a la vez
+// Búsqueda de portadas: perezosa (solo libros cerca de la pantalla) y como mucho 4 a la vez
 var coverQueue = [], coverActive = 0, coverPending = {};
 function requestCover(b) {
   var k = coverKey(b.title, b.author), c = coverCache[k];
-  // ¬´sin portada¬ª caduca a los 30 d√≠as por si Open Library la a√±ade despu√©s
+  if (!b.cover && k in COVERS) return;  // ya resuelta en COVERS
+  // «sin portada» caduca a los 30 días por si Open Library la añade después
   if (coverPending[k] || (c && (c.color || (c.none && Date.now() - c.none < 2592e6)))) return;
   coverPending[k] = true; coverQueue.push(b); pumpCovers();
 }
@@ -1649,7 +1654,7 @@ function lookupCover(b) {
     var q = 'https://openlibrary.org/search.json?limit=1&fields=cover_i&title=' + encodeURIComponent(b.title.split(':')[0]) + '&author=' + encodeURIComponent(author);
     return withTimeout(fetch(q).then(function (r) { if (!r.ok) throw r; return r.json(); })).then(function (j) { return j.docs && j.docs[0] && j.docs[0].cover_i; });
   }
-  // segundo intento solo con el apellido ("Stephen W. Hawking" ‚Üí "Hawking")
+  // segundo intento solo con el apellido ("Stephen W. Hawking" → "Hawking")
   var surname = String(b.author || '').trim().split(/\s+/).pop();
   return search(b.author || '').then(function (id) { return id || (surname && surname !== b.author ? search(surname) : null); }).then(function (id) {
     if (!id) { coverCache[k] = { none: Date.now() }; storeCovers(); return; }
@@ -1657,9 +1662,9 @@ function lookupCover(b) {
       coverCache[k] = col ? { id: id, color: col } : { none: Date.now() };
       storeCovers(); coverUpdated(k);
     });
-  }).catch(function () { delete coverPending[k]; });  // error de red: se reintenta en la pr√≥xima visita
+  }).catch(function () { delete coverPending[k]; });  // error de red: se reintenta en la próxima visita
 }
-// repinta los libros afectados sin rehacer la p√°gina
+// repinta los libros afectados sin rehacer la página
 function coverUpdated(k) {
   document.querySelectorAll('#books-container .bk-holder').forEach(function (h) {
     if (h.getAttribute('data-ck') !== k) return;
@@ -1687,7 +1692,7 @@ function wireShelf() {
     else { slot.classList.add('in'); requestCover(shelfBooks[slot.getAttribute('data-k')]); }
     slot.style.transitionDelay = (i % 6) * 60 + 'ms';
     slot.addEventListener('keydown', function (e) { if (e.key === 'Enter') openFicha(slot.getAttribute('data-k')); });
-    // en reposo se ve el lomo; al pasar el rat√≥n gira hacia la portada (solo con rat√≥n: en el m√≥vil evita el doble toque)
+    // en reposo se ve el lomo; al pasar el ratón gira hacia la portada (solo con ratón: en el móvil evita el doble toque)
     if (!canHover) return;
     slot.addEventListener('mousemove', function (e) {
       var bk = slot.querySelector('.bk3d'), r = slot.getBoundingClientRect();
@@ -1705,7 +1710,7 @@ function wireShelf() {
   });
 }
 
-// ‚îÄ‚îÄ INICIO ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ
+// ── INICIO ────────────────────────────────────────────────
 migratePending();
 rebuildFilters();
 updateStats();
