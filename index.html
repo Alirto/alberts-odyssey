@@ -245,6 +245,96 @@
   .wr-more { padding: 18px 0 0; font-size: 14px; }
   .wr-empty { padding: 32px 0; font-size: 14px; color: var(--ink-3); font-style: italic; border-top: 1px solid var(--ink); }
 
+  /* ── Calendario de revisiones: el año como un plano en perspectiva (la idea del calendario cósmico de Sagan, con la estética de la web) ── */
+  .cc { position: relative; height: 760px; margin-top: 48px; border-top: 1px solid var(--ink); overflow: hidden; perspective: 2400px; perspective-origin: 50% 25%; user-select: none; -webkit-user-select: none; }
+  .cc-plane { position: absolute; left: calc(50% + var(--ox, 0px)); top: calc(50% + var(--oy, 0px)); width: 1000px; display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; transform-style: preserve-3d;
+    transform: translate(-50%, -50%) scale(var(--s, 1)) translate(0px, 0px) rotateX(var(--tx, 36deg)) rotateZ(var(--tz, -4deg));
+    transition: transform 1s cubic-bezier(.2,.7,.2,1), left 1s cubic-bezier(.2,.7,.2,1), top 1s cubic-bezier(.2,.7,.2,1); }
+  .cc.zoomed .cc-plane { left: 50%; top: 53%; }
+  .cc-plane.tracking { transition: transform .15s linear; }
+  .cc.cols3 { height: 780px; }
+  .cc.cols3 .cc-plane { width: 760px; grid-template-columns: repeat(3, 1fr); }
+  .cc.cols2 { height: 720px; }
+  .cc.cols2 .cc-plane { width: 520px; grid-template-columns: repeat(2, 1fr); }
+  .cc-month { position: relative; aspect-ratio: 1.22; padding: 12px 12px 10px; background: #F9F7F1; border: 1px solid var(--rule); outline: 1px solid transparent; cursor: pointer;
+    box-shadow: 0 1px 0 rgba(23,22,17,.04), 0 18px 28px -18px rgba(23,22,17,.32);
+    transition: transform .5s cubic-bezier(.2,.7,.2,1), opacity .6s, border-color .3s, box-shadow .4s; }
+  .cc-month.cur { border-color: var(--ink); }
+  .cc-month.futm { background: rgba(249,247,241,.45); border-color: var(--rule-soft); box-shadow: none; }
+  .cc-month.futm .cc-mn { color: var(--ink-3); }
+  .cc:not(.zoomed) .cc-month:hover, .cc:not(.zoomed) .cc-month:focus-visible { transform: translateZ(14px); border-color: var(--ink); box-shadow: 0 1px 0 rgba(23,22,17,.04), 0 30px 36px -20px rgba(23,22,17,.4); }
+  .cc.zoomed .cc-month { opacity: .2; }
+  .cc.zoomed .cc-month.on { opacity: 1; cursor: default; }
+  .cc-mn { display: flex; justify-content: space-between; align-items: baseline; gap: 8px; margin-bottom: 8px; font-family: var(--serif); font-variation-settings: 'opsz' 20; font-size: 20px; letter-spacing: -0.01em; line-height: 1; color: var(--ink); }
+  .cc-mn span { font-family: var(--sans); font-size: 9px; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-3); }
+  .cc-month.cur .cc-mn span { color: var(--now); }
+  .cc-g { display: grid; grid-template-columns: repeat(7, 1fr); gap: 2px 0; text-align: center; font-size: 12px; line-height: 1; }
+  .cc-wd { color: var(--ink-3); font-size: 9px; font-weight: 500; letter-spacing: .1em; padding-bottom: 4px; }
+  .cc-d { position: relative; display: block; padding: 4px 0; color: var(--ink-2); font: inherit; font-variant-numeric: tabular-nums; }
+  .cc-d.fut { color: var(--rule); }
+  .cc-d.inrev { background: rgba(23,22,17,.045); }
+  .cc-d.rev { color: var(--paper); background: var(--ink); font-weight: 600; cursor: pointer; transition: background .15s; }
+  .cc.zoomed .cc-d.rev:hover { background: var(--now); }
+  .cc-d.miss::after { content: ''; position: absolute; inset: 0 1px; border: 1px dashed var(--now); }
+  .cc-d.cc-now::before { content: ''; position: absolute; left: 50%; bottom: 0; width: 3px; height: 3px; margin-left: -1.5px; border-radius: 50%; background: var(--now); }
+  .cc-d.rev.cc-now::before { background: var(--paper); }
+  .cc-hud { position: absolute; left: 0; right: 0; display: flex; justify-content: space-between; align-items: baseline; gap: 10px 24px; flex-wrap: wrap; pointer-events: none; z-index: 2; }
+  .cc-hud.hud-t { top: 22px; } .cc-hud.hud-b { bottom: 4px; }
+  .cc-hud button { pointer-events: auto; }
+  .cc-yr { font-family: var(--serif); font-variation-settings: 'opsz' 60; font-size: 34px; letter-spacing: -0.025em; line-height: 1; margin-right: 18px; }
+  .cc-yrs { display: inline-flex; gap: 16px; font-size: 14px; }
+  .cc-yrs button { color: var(--ink-3); }
+  .cc-yrs button.on { color: var(--ink); border-bottom: 1px solid var(--ink); }
+  .cc-leg { display: flex; gap: 6px 20px; flex-wrap: wrap; font-size: 13px; color: var(--ink-3); }
+  .cc-leg i { display: inline-block; width: 10px; height: 10px; margin-right: 8px; vertical-align: -1px; }
+  .cc-leg .k-rev { background: var(--ink); }
+  .cc-leg .k-miss { border: 1px dashed var(--now); }
+  .cc-leg .k-today { width: 5px; height: 5px; border-radius: 50%; background: var(--now); vertical-align: 1px; }
+  .cc-hint { font-size: 13px; color: var(--ink-3); }
+  .cc-back { display: none; }
+  .cc.zoomed .cc-back { display: inline; }
+  .cc-tip { position: absolute; z-index: 3; width: 290px; padding: 14px 16px; background: var(--paper); border: 1px solid var(--ink); color: var(--ink-2); font-size: 13px; line-height: 1.5; pointer-events: none; opacity: 0; transition: opacity .15s; }
+  .cc-tip.on { opacity: 1; }
+  .cc-tip b { display: block; font-family: var(--serif); font-weight: 400; font-size: 17px; letter-spacing: -0.01em; margin-bottom: 6px; color: var(--ink); }
+  @media (max-width: 700px) { .cc-yr { font-size: 28px; } .cc-hint { display: none; } .cc-leg { font-size: 12px; gap: 6px 14px; } }
+  @media (prefers-reduced-motion: reduce) { .cc-plane, .cc-month { transition: none; } }
+
+  /* ── Lectura de la semana (estilo LessWrong) ─────────────── */
+  .overlay.reader { --book: 'warnock-pro', Palatino, 'Palatino Linotype', 'Book Antiqua', Georgia, serif; --gill: 'Gill Sans', 'Gill Sans MT', Calibri, 'DM Sans', sans-serif;
+    display: none; padding: 0; background: #FCFBF8; backdrop-filter: none; -webkit-backdrop-filter: none; overflow-y: auto; z-index: 1100; }
+  .overlay.reader.open { display: block; }
+  .rd-bar { position: sticky; top: 0; z-index: 2; display: flex; justify-content: space-between; align-items: center; gap: 20px; padding: 16px 28px; background: rgba(252,251,248,.94); backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); }
+  .rd-bar button { font-family: var(--gill); font-size: 15px; color: #6f6f6f; white-space: nowrap; }
+  .rd-bar button:hover { color: #111; }
+  .rd-acts { display: flex; gap: 22px; }
+  .rd-acts .del:hover { color: #A3442C; }
+  .rd-art { max-width: 682px; margin: 0 auto; padding: 64px 0 120px; color: rgba(0,0,0,.87); }
+  .rd-kicker { font-family: var(--book); font-variant: small-caps; font-size: 22px; line-height: 1.2; color: rgba(0,0,0,.6); margin-bottom: 14px; }
+  .rd-title { font-family: var(--book); font-weight: 400; font-size: clamp(36px, 5vw, 54px); line-height: 1.1; letter-spacing: -0.005em; color: rgba(0,0,0,.87); }
+  .rd-meta { display: flex; flex-wrap: wrap; gap: 6px 18px; align-items: baseline; margin-top: 22px; font-family: var(--gill); font-size: 16px; color: #757575; }
+  .rd-meta b { color: rgba(0,0,0,.87); font-weight: 600; }
+  .rd-tags { display: flex; flex-wrap: wrap; gap: 6px 16px; margin-top: 12px; font-family: var(--gill); font-size: 14px; color: #757575; }
+  .rd-body { margin-top: 52px; font-family: var(--book); font-size: 19px; line-height: 1.55; }
+  .rd-body h2 { font-family: var(--book); font-variation-settings: normal; font-weight: 400; font-size: 27px; line-height: 1.2; letter-spacing: normal; color: #424242; margin: 46px 0 16px; scroll-margin-top: 90px; }
+  .rd-body h2:first-child { margin-top: 0; }
+  .rd-body p { margin: 0 0 1em; }
+  .rd-body ul, .rd-body ol { margin: 0 0 1em; padding-left: 1.6em; }
+  .rd-body li { margin-bottom: .35em; }
+  .rd-empty { font-style: italic; color: #757575; }
+  .rd-foot { margin-top: 72px; padding-top: 28px; border-top: 1px solid rgba(0,0,0,.12); display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+  .rd-nav { text-align: left; }
+  .rd-nav.next { text-align: right; }
+  .rd-nav small { display: block; font-family: var(--gill); font-size: 14px; color: #757575; margin-bottom: 6px; }
+  .rd-nav span { font-family: var(--book); font-size: 21px; color: rgba(0,0,0,.87); line-height: 1.3; }
+  .rd-nav:hover span { text-decoration: underline; text-decoration-color: rgba(0,0,0,.25); text-underline-offset: 4px; }
+  .rd-toc { position: fixed; top: 150px; left: max(24px, calc(50% - 341px - 250px)); width: 190px; padding-left: 16px; border-left: 1px solid rgba(0,0,0,.12); font-family: var(--gill); font-size: 15px; line-height: 1.3; }
+  .rd-toc-ttl { color: rgba(0,0,0,.87); margin-bottom: 10px; }
+  .rd-toc button { display: block; position: relative; text-align: left; padding: 6px 0; font-family: inherit; font-size: inherit; color: #9a9a9a; }
+  .rd-toc button:hover, .rd-toc button.on { color: rgba(0,0,0,.87); }
+  .rd-toc button.on::before { content: ''; position: absolute; left: -20px; top: 50%; width: 7px; height: 7px; margin-top: -3.5px; border-radius: 50%; background: rgba(0,0,0,.6); }
+  @media (max-width: 1180px) { .rd-toc { display: none; } }
+  @media (max-width: 760px) { .rd-art { padding: 36px 20px 80px; } .rd-bar { padding: 12px 16px; } .rd-acts { gap: 16px; } .rd-acts .nv { display: none; } .rd-body { font-size: 18px; } .rd-foot { grid-template-columns: 1fr; } .rd-nav.next { text-align: left; } }
+
   /* Footer */
   footer .wrap { border-top: 1px solid var(--ink); padding: 28px var(--gutter) 56px; display: flex; justify-content: space-between; gap: 32px; font-size: 13px; color: var(--ink-3); flex-wrap: wrap; }
   .sync-status { font-size: 13px; color: var(--ink-3); }
@@ -478,6 +568,7 @@
       <div class="sec-meta meta"><span id="wkMeta"></span></div>
     </div>
     <div id="wrGrid"></div>
+    <div class="cc" id="cc" aria-label="Calendario de revisiones semanales"></div>
   </div>
 </section>
 
@@ -575,19 +666,26 @@
   </div>
 </div>
 
-<!-- WR READ SHEET -->
-<div class="overlay center" id="wrReadOverlay" onclick="wrReadOverlayClick(event)">
-  <div class="sheet">
-    <div class="sheet-hdr">
-      <div><div class="sheet-sub" id="wrReadDate" style="margin:0 0 8px"></div><div class="sheet-ttl" id="wrReadTitle"></div></div>
-      <div class="wr-read-actions">
-        <button class="txt-btn" onclick="wrEditEntry(wrCurrentReadId)">Editar</button>
-        <button class="txt-btn del" onclick="wrDeleteEntry(wrCurrentReadId)">Eliminar</button>
-        <button class="txt-btn" onclick="wrCloseRead()">Cerrar</button>
-      </div>
+<!-- WR READ: lectura de la semana a pantalla completa, estilo LessWrong -->
+<div class="overlay reader" id="wrReadOverlay">
+  <div class="rd-bar">
+    <button onclick="wrCloseRead()">← Revisión semanal</button>
+    <div class="rd-acts">
+      <button class="nv" onclick="wrStep(-1)">← Anterior</button>
+      <button class="nv" onclick="wrStep(1)">Siguiente →</button>
+      <button onclick="wrEditEntry(wrCurrentReadId)">Editar</button>
+      <button class="del" onclick="wrDeleteEntry(wrCurrentReadId)">Eliminar</button>
     </div>
-    <div class="sheet-body" id="wrReadBody" style="gap:0"></div>
   </div>
+  <nav class="rd-toc" id="rdToc"></nav>
+  <article class="rd-art">
+    <div class="rd-kicker" id="wrReadDate"></div>
+    <div class="rd-title" id="wrReadTitle"></div>
+    <div class="rd-meta" id="rdMeta"></div>
+    <div class="rd-tags" id="rdTags"></div>
+    <div class="rd-body" id="wrReadBody"></div>
+    <div class="rd-foot" id="rdFoot"></div>
+  </article>
 </div>
 
 <script>
@@ -879,28 +977,171 @@ function wrPreview(e){return e.deporte||e.trabajo||e.nutricion||e.social||e.fina
 function wrRender(){
   var entries=wrLoad().slice().sort(function(a,b){return b.date.localeCompare(a.date);});
   var grid=document.getElementById('wrGrid');var meta=document.getElementById('wkMeta');
-  if(!entries.length){meta.innerHTML='Cada domingo, una entrada por pilar · <button class="txt-btn" onclick="wrOpenNew()">Nueva semana</button>';grid.innerHTML='<div class="wr-empty">Sin entradas aún. Añade la primera semana para empezar el registro.</div>';return;}
+  if(!entries.length){meta.innerHTML='Cada domingo, una entrada por pilar · <button class="txt-btn" onclick="wrOpenNew()">Nueva semana</button>';grid.innerHTML='<div class="wr-empty">Sin entradas aún. Añade la primera semana para empezar el registro.</div>';ccRender([]);return;}
   var now=new Date();var lastD=new Date(entries[0].date+'T12:00:00');var weeksAgo=Math.floor((now-lastD)/(7*24*60*60*1000));
   meta.innerHTML='<b>'+entries.length+'</b> semanas registradas desde el '+fmtDay(entries[entries.length-1].date)+' · <button class="txt-btn" onclick="wrOpenNew()">Nueva semana</button>';
   var html='';
   if(weeksAgo>=2){var wk=Math.floor((now-START_DATE)/(7*24*60*60*1000))+1;html+='<div class="wr-row missing" style="border-top:1px solid var(--ink)"><div class="wr-date">'+now.getDate()+' '+MESES_CORTOS[now.getMonth()]+'<small>semana '+wk+' · '+now.getFullYear()+'</small></div><div class="wr-preview empty"><span class="attn">Sin registro esta semana.</span> Han pasado '+weeksAgo+' semanas desde la última revisión, el '+fmtDay(lastD)+'. <button class="txt-btn" onclick="wrOpenNew()">Escribir la revisión</button></div></div>';}
   var f=entries[0];var fd=new Date(f.date+'T12:00:00');var fp=wrPreview(f);
   html+='<div class="wr-feat" onclick="wrOpenRead(\''+f.id+'\')"'+(weeksAgo>=2?' style="border-top:none"':'')+'><div><div class="wr-feat-date">'+fd.getDate()+' '+MESES_CORTOS[fd.getMonth()]+' '+fd.getFullYear()+'<small>Última revisión · semana '+(f.weekNum||'—')+(parseKg(f.peso)?' · '+fmtKg(parseKg(f.peso))+' kg':'')+'</small></div></div><div><div class="wr-feat-text">'+(fp?esc(firstSentences(fp,330)):'<i>Sin notas en esta semana</i>')+'</div><div class="wr-feat-meta">'+wrTags(f)+'</div></div></div>';
-  var rest=entries.slice(1);var shown=wrShowAll?rest:rest.slice(0,WR_LIMIT);
-  html+='<div class="wr-list">'+shown.map(function(e){var d=new Date(e.date+'T12:00:00');var preview=wrPreview(e);return '<div class="wr-row" onclick="wrOpenRead(this.dataset.id)" data-id="'+e.id+'"><div class="wr-date">'+d.getDate()+' '+MESES_CORTOS[d.getMonth()]+'<small>semana '+(e.weekNum||'—')+' · '+d.getFullYear()+'</small></div><div class="wr-preview'+(preview?'':' empty')+'">'+(preview?esc(firstSentences(preview,170)):'Sin notas en esta semana')+'</div></div>';}).join('')+'</div>';
-  if(rest.length>WR_LIMIT)html+='<div class="wr-more"><button class="txt-btn" onclick="wrToggleAll()">'+(wrShowAll?'Mostrar solo las últimas '+WR_LIMIT:'Ver las '+entries.length+' semanas')+'</button></div>';
   grid.innerHTML=html;
+  ccRender(entries);
 }
 function wrOpenNew(){document.getElementById('wrEditId').value='';document.getElementById('wrModalTitle').textContent='Nueva semana';var now=new Date();document.getElementById('wrDate').value=now.toISOString().split('T')[0];var diff=Math.floor((now-START_DATE)/(7*24*60*60*1000))+1;document.getElementById('wrWeekNum').value=Math.max(1,diff);['wrPeso','wrDeporte','wrNutricion','wrTrabajo','wrFinanzas','wrDesarrollo','wrSocial','wrHitos'].forEach(function(id){document.getElementById(id).value='';});document.getElementById('wrOverlay').classList.add('open');}
 function wrCloseNew(){document.getElementById('wrOverlay').classList.remove('open');}
 function wrOverlayClick(e){if(e.target===document.getElementById('wrOverlay'))wrCloseNew();}
 function wrSave(){var date=document.getElementById('wrDate').value;if(!date){alert('Elige una fecha para la semana.');return;}var editId=document.getElementById('wrEditId').value;var entry={id:editId||'wr_'+Date.now(),date:date,weekNum:document.getElementById('wrWeekNum').value,title:wrBuildTitle(date),peso:document.getElementById('wrPeso').value.trim(),deporte:document.getElementById('wrDeporte').value.trim(),nutricion:document.getElementById('wrNutricion').value.trim(),trabajo:document.getElementById('wrTrabajo').value.trim(),finanzas:document.getElementById('wrFinanzas').value.trim(),desarrollo:document.getElementById('wrDesarrollo').value.trim(),social:document.getElementById('wrSocial').value.trim(),hitos:document.getElementById('wrHitos').value.trim(),savedAt:new Date().toISOString()};var entries=wrLoad();if(editId){var idx=entries.findIndex(function(e){return e.id===editId;});if(idx>=0)entries[idx]=entry;else entries.push(entry);}else{entries.push(entry);}wrSaveAll(entries);wrCloseNew();wrRender();renderWeight();}
 function wrBuildTitle(dateStr){var d=new Date(dateStr+'T12:00:00');var m=MESES_LARGOS[d.getMonth()];return'Review — '+m.charAt(0).toUpperCase()+m.slice(1)+' '+d.getDate();}
-function wrOpenRead(id){var entries=wrLoad();var e=entries.find(function(x){return x.id===id;});if(!e)return;wrCurrentReadId=id;var d=new Date(e.date+'T12:00:00');document.getElementById('wrReadDate').textContent='Semana '+(e.weekNum||'—')+' · '+fmtDay(d);document.getElementById('wrReadTitle').textContent='Revisión del '+d.getDate()+' de '+MESES_LARGOS[d.getMonth()];var sections=[{label:'Peso',val:e.peso},{label:'Deporte',val:e.deporte},{label:'Nutrición',val:e.nutricion},{label:'Gobelas · Trabajo',val:e.trabajo},{label:'Finanzas',val:e.finanzas},{label:'Lecturas y desarrollo',val:e.desarrollo},{label:'Social',val:e.social},{label:'Hitos',val:e.hitos}].filter(function(s){return s.val;});document.getElementById('wrReadBody').innerHTML=sections.map(function(s){return'<div class="wr-read-section"><div class="wr-read-section-lbl">'+s.label+'</div><div class="wr-read-section-val">'+esc(s.val)+'</div></div>';}).join('')||'<div class="wr-read-section-empty">Sin contenido en esta entrada.</div>';document.getElementById('wrReadOverlay').classList.add('open');}
-function wrCloseRead(){document.getElementById('wrReadOverlay').classList.remove('open');wrCurrentReadId=null;}
-function wrReadOverlayClick(e){if(e.target===document.getElementById('wrReadOverlay'))wrCloseRead();}
 function wrEditEntry(id){var entries=wrLoad();var e=entries.find(function(x){return x.id===id;});if(!e)return;wrCloseRead();document.getElementById('wrEditId').value=e.id;document.getElementById('wrModalTitle').textContent='Editar semana';document.getElementById('wrDate').value=e.date;document.getElementById('wrWeekNum').value=e.weekNum||'';document.getElementById('wrPeso').value=e.peso||'';document.getElementById('wrDeporte').value=e.deporte||'';document.getElementById('wrNutricion').value=e.nutricion||'';document.getElementById('wrTrabajo').value=e.trabajo||'';document.getElementById('wrFinanzas').value=e.finanzas||'';document.getElementById('wrDesarrollo').value=e.desarrollo||'';document.getElementById('wrSocial').value=e.social||'';document.getElementById('wrHitos').value=e.hitos||'';document.getElementById('wrOverlay').classList.add('open');}
 function wrDeleteEntry(id){if(!confirm('¿Eliminar esta entrada?'))return;wrSaveAll(wrLoad().filter(function(e){return e.id!==id;}));wrCloseRead();wrRender();renderWeight();}
+
+// ── CALENDARIO CÓSMICO ───────────────────────────────────
+// El año como plano 3D de 12 meses (la idea del calendario cósmico de Sagan). Revisión = cuadro de tinta; semana cerrada sin revisión = discontinuo ámbar.
+var ccYear=null,ccZoom=-1,ccHover=window.matchMedia&&matchMedia('(hover: hover)').matches;
+function isoDay(d){return d.getFullYear()+'-'+pad2(d.getMonth()+1)+'-'+pad2(d.getDate());}
+function ccMonday(d){var x=new Date(d.getFullYear(),d.getMonth(),d.getDate(),12);x.setDate(x.getDate()-((x.getDay()+6)%7));return x;}
+// la revisión del lunes cuenta para la semana que acaba de cerrar
+function ccReviewedWeek(dateStr){var d=new Date(dateStr+'T12:00:00');if(d.getDay()===1)d.setDate(d.getDate()-1);return isoDay(ccMonday(d));}
+function ccData(entries){
+  var byDay={},revWeeks={},miss={},today=new Date();today.setHours(12,0,0,0);
+  entries.forEach(function(e){byDay[e.date]=e;revWeeks[ccReviewedWeek(e.date)]=e;});
+  for(var m=ccMonday(START_DATE);;){var sun=new Date(m);sun.setDate(sun.getDate()+6);if(sun>=today)break;if(!revWeeks[isoDay(m)])miss[isoDay(sun)]=1;m.setDate(m.getDate()+7);}
+  return {byDay:byDay,revWeeks:revWeeks,miss:miss,today:isoDay(today)};
+}
+function ccRender(entries){
+  var host=document.getElementById('cc');if(!host)return;
+  var D=ccData(entries),now=new Date(),years={};
+  years[now.getFullYear()]=1;entries.forEach(function(e){years[e.date.slice(0,4)]=1;});
+  var ys=Object.keys(years).sort();if(!ccYear||!years[ccYear])ccYear=String(now.getFullYear());
+  var Y=+ccYear,nRevY=entries.filter(function(e){return e.date.slice(0,4)===ccYear;}).length;
+  var nMissY=Object.keys(D.miss).filter(function(k){return k.slice(0,4)===ccYear;}).length;
+  var tiles='';
+  for(var mi=0;mi<12;mi++){
+    var first=new Date(Y,mi,1),dim=new Date(Y,mi+1,0).getDate(),cells='',nRev=0;
+    ['L','M','X','J','V','S','D'].forEach(function(w){cells+='<span class="cc-wd">'+w+'</span>';});
+    for(var b=(first.getDay()+6)%7;b>0;b--)cells+='<span></span>';
+    for(var d=1;d<=dim;d++){
+      var dt=new Date(Y,mi,d,12),k=isoDay(dt),e=D.byDay[k],cls='cc-d';
+      if(k>D.today)cls+=' fut';if(k===D.today)cls+=' cc-now';if(D.revWeeks[isoDay(ccMonday(dt))])cls+=' inrev';if(D.miss[k])cls+=' miss';
+      if(e){nRev++;cells+='<button type="button" class="'+cls+' rev" data-id="'+esc(e.id)+'">'+d+'</button>';}
+      else cells+='<span class="'+cls+'">'+d+'</span>';
+    }
+    var mk=Y*12+mi,nk=now.getFullYear()*12+now.getMonth(),mcls=mk===nk?' cur':mk>nk?' futm':'';
+    tiles+='<div class="cc-month m'+mi+mcls+'" data-m="'+mi+'" tabindex="0" role="button" aria-label="'+MESES_LARGOS[mi]+' '+Y+'"><div class="cc-mn">'+MESES_LARGOS[mi]+(nRev?'<span>'+nRev+' '+(nRev===1?'revisión':'revisiones')+'</span>':(mk===nk?'<span>ahora</span>':''))+'</div><div class="cc-g">'+cells+'</div></div>';
+  }
+  var yrs=ys.length>1?'<span class="cc-yrs">'+ys.map(function(y){return '<button class="'+(y===ccYear?'on':'')+'" onclick="ccSetYear(\''+y+'\')">'+y+'</button>';}).join('')+'</span>':'';
+  host.innerHTML='<div class="cc-hud hud-t"><div><span class="cc-yr">'+ccYear+'</span>'+yrs+'</div><button class="cc-back" onclick="ccZoomTo(-1)">← Todo el año</button></div>'
+    +'<div class="cc-plane" id="ccPlane">'+tiles+'</div>'
+    +'<div class="cc-hud hud-b"><div class="cc-leg"><span><i class="k-rev"></i>'+nRevY+' '+(nRevY===1?'revisión':'revisiones')+'</span><span><i class="k-miss"></i>'+nMissY+' '+(nMissY===1?'semana':'semanas')+' sin revisión</span><span><i class="k-today"></i>hoy</span></div><div class="cc-hint"></div></div>'
+    +'<div class="cc-tip" id="ccTip"></div>';
+  ccLayout();ccZoomTo(ccZoom,true);
+}
+function ccSetYear(y){ccYear=y;ccZoom=-1;wrRender();}
+function ccBox(pl){var b={l:1e9,t:1e9,r:-1e9,b:-1e9};pl.querySelectorAll('.cc-month').forEach(function(m){var q=m.getBoundingClientRect();b.l=Math.min(b.l,q.left);b.t=Math.min(b.t,q.top);b.r=Math.max(b.r,q.right);b.b=Math.max(b.b,q.bottom);});return b;}
+// encaja el plano inclinado entre el año (arriba) y la leyenda (abajo): mide, escala y centra; dos pasadas por la perspectiva
+function ccLayout(){
+  var host=document.getElementById('cc'),pl=document.getElementById('ccPlane');if(!host||!pl)return;
+  var w=host.clientWidth,cols=w<480?2:w<700?3:4,narrow=cols<4;if(!w)return;host.classList.toggle('cols3',cols===3);host.classList.toggle('cols2',cols===2);
+  // inclinación moderada: con más de ~40° los números se aplastan y no se leen
+  host.dataset.tx=narrow?32:36;host.dataset.tz=narrow?-3:-4;
+  pl.style.setProperty('--tx',host.dataset.tx+'deg');pl.style.setProperty('--tz',host.dataset.tz+'deg');
+  pl.style.transition='none';pl.style.transform='';pl.classList.remove('tracking');
+  var TOP=78,BOT=46,s=1,ox=0,oy=0;
+  for(var pass=0;pass<2;pass++){
+    host.style.setProperty('--s',s.toFixed(4));host.style.setProperty('--ox',ox.toFixed(1)+'px');host.style.setProperty('--oy',oy.toFixed(1)+'px');
+    var H=host.getBoundingClientRect(),b=ccBox(pl),bw=b.r-b.l,bh=b.b-b.t;
+    var k=Math.min((w-24)/bw,(H.height-TOP-BOT)/bh);
+    var cx=(b.l+b.r)/2-(H.left+H.width/2),cy=(b.t+b.b)/2-(H.top+H.height/2),ty=TOP+(H.height-TOP-BOT)/2-H.height/2;
+    // al escalar k respecto al centro del plano, el centro de la caja pasa a (ox,oy)+k·(c−o): se elige o para que quede en (0,ty)
+    s*=k;ox=-k*(cx-ox);oy=ty-k*(cy-oy);
+  }
+  host.style.setProperty('--s',s.toFixed(4));host.style.setProperty('--ox',ox.toFixed(1)+'px');host.style.setProperty('--oy',oy.toFixed(1)+'px');
+  void pl.offsetWidth;pl.style.transition='';
+}
+// acercarse a un mes: el plano se endereza y el mes queda centrado y grande (-1 = volver al año)
+function ccZoomTo(mi,instant){
+  var host=document.getElementById('cc'),pl=document.getElementById('ccPlane');if(!host||!pl)return;
+  ccZoom=mi;host.classList.toggle('zoomed',mi>=0);ccTip(null);
+  pl.querySelectorAll('.cc-month').forEach(function(t){t.classList.toggle('on',+t.dataset.m===mi);});
+  var hint=host.querySelector('.cc-hint');if(hint)hint.textContent=mi>=0?'Pulsa una semana marcada para leerla':'Pulsa un mes para acercarte';
+  if(instant)pl.style.transition='none';
+  if(mi<0)pl.style.transform='';
+  else{
+    var t=pl.querySelector('.cc-month[data-m="'+mi+'"]'),dx=pl.offsetWidth/2-(t.offsetLeft+t.offsetWidth/2),dy=pl.offsetHeight/2-(t.offsetTop+t.offsetHeight/2);
+    var S=Math.min(host.clientWidth*.9/t.offsetWidth,(host.clientHeight-130)/t.offsetHeight);
+    pl.style.transform='translate(-50%,-50%) scale('+S.toFixed(3)+') translate('+dx+'px,'+dy+'px) rotateX(0deg) rotateZ(0deg)';
+  }
+  if(instant){void pl.offsetWidth;pl.style.transition='';}
+}
+function ccTip(btn,ev){
+  var tip=document.getElementById('ccTip');if(!tip)return;
+  if(!btn){tip.classList.remove('on');return;}
+  var e=wrLoad().find(function(x){return x.id===btn.dataset.id;});if(!e)return;
+  var d=new Date(e.date+'T12:00:00'),pv=wrPreview(e),host=document.getElementById('cc'),r=host.getBoundingClientRect();
+  tip.innerHTML='<b>Semana '+(e.weekNum||'—')+' · '+d.getDate()+' '+MESES_CORTOS[d.getMonth()]+'</b>'+(pv?esc(firstSentences(pv,150)):'<i>Sin notas</i>');
+  var x=ev.clientX-r.left+16,y=ev.clientY-r.top+16;
+  if(x+300>r.width)x=ev.clientX-r.left-306;if(y+140>r.height)y=ev.clientY-r.top-150;
+  tip.style.left=x+'px';tip.style.top=y+'px';tip.classList.add('on');
+}
+function ccInit(){
+  var host=document.getElementById('cc');if(!host)return;
+  host.addEventListener('click',function(e){
+    var r=e.target.closest('.cc-d.rev'),t=e.target.closest('.cc-month');
+    if(r&&ccZoom>=0&&t&&+t.dataset.m===ccZoom){wrOpenRead(r.dataset.id);return;}
+    if(t){if(+t.dataset.m!==ccZoom)ccZoomTo(+t.dataset.m);return;}
+    if(ccZoom>=0&&!e.target.closest('button'))ccZoomTo(-1);
+  });
+  host.addEventListener('keydown',function(e){var t=e.target.closest('.cc-month');if(t&&e.key==='Enter'){e.preventDefault();ccZoomTo(+t.dataset.m);}});
+  host.addEventListener('mousemove',function(e){
+    var r=e.target.closest('.cc-d.rev');if(r)ccTip(r,e);else ccTip(null);
+    var pl=document.getElementById('ccPlane');if(!pl||ccZoom>=0||!ccHover)return;
+    var b=host.getBoundingClientRect(),mx=(e.clientX-b.left)/b.width-.5,my=(e.clientY-b.top)/b.height-.5;
+    pl.classList.add('tracking');pl.style.setProperty('--tx',(+host.dataset.tx-my*6)+'deg');pl.style.setProperty('--tz',(+host.dataset.tz+mx*6)+'deg');
+  });
+  host.addEventListener('mouseleave',function(){ccTip(null);var pl=document.getElementById('ccPlane');if(!pl)return;pl.classList.remove('tracking');pl.style.setProperty('--tx',host.dataset.tx+'deg');pl.style.setProperty('--tz',host.dataset.tz+'deg');});
+  var rt;window.addEventListener('resize',function(){clearTimeout(rt);rt=setTimeout(function(){ccLayout();ccZoomTo(ccZoom,true);},120);});
+  var ov=document.getElementById('wrReadOverlay');
+  ov.addEventListener('scroll',rdSpy);
+  document.getElementById('rdToc').addEventListener('click',function(e){var b=e.target.closest('button[data-s]');if(b)document.getElementById('rd-s'+b.dataset.s).scrollIntoView({behavior:'smooth',block:'start'});});
+  document.addEventListener('keydown',function(e){
+    if(/INPUT|TEXTAREA|SELECT/.test(e.target.tagName))return;
+    if(ov.classList.contains('open')){if(e.key==='Escape')wrCloseRead();else if(e.key==='ArrowLeft')wrStep(-1);else if(e.key==='ArrowRight')wrStep(1);return;}
+    if(e.key==='Escape'&&ccZoom>=0&&!document.querySelector('.overlay.open'))ccZoomTo(-1);
+  });
+}
+
+// ── LECTURA DE LA SEMANA (estilo LessWrong) ──────────────
+var WR_SECTIONS=[['deporte','Deporte'],['nutricion','Nutrición'],['trabajo','Gobelas · Trabajo'],['finanzas','Finanzas'],['desarrollo','Lecturas y desarrollo'],['social','Social'],['hitos','Hitos']];
+function wrSorted(){return wrLoad().slice().sort(function(a,b){return a.date.localeCompare(b.date);});}
+// texto libre → párrafos; las líneas seguidas que empiezan por "-", "•" o "1." forman una lista
+function wrProse(t){var re=/^([-•*]|\d+[.)])\s+/;return String(t).trim().split(/\n\s*\n/).map(function(block){
+  var out='',run=[],kind=null;
+  function flush(){if(!run.length)return;out+=kind==='p'?'<p>'+run.map(esc).join('<br>')+'</p>':'<'+kind+'>'+run.map(function(l){return '<li>'+esc(l.replace(re,''))+'</li>';}).join('')+'</'+kind+'>';run=[];}
+  block.split('\n').map(function(l){return l.trim();}).filter(Boolean).forEach(function(l){var k=re.test(l)?(/^\d/.test(l)?'ol':'ul'):'p';if(k!==kind)flush();kind=k;run.push(l);});
+  flush();return out;}).join('');}
+function wrPhaseOf(date){var p=PHASES.find(function(x){return date>=x.start&&date<=x.end;});return p?'Fase '+(PHASES.indexOf(p)+1)+(p.name?' · '+p.name:''):'';}
+function wrOpenRead(id){
+  var list=wrSorted(),i=list.findIndex(function(x){return x.id===id;});if(i<0)return;
+  var e=list[i],d=new Date(e.date+'T12:00:00'),ph=wrPhaseOf(e.date),kg=parseKg(e.peso);wrCurrentReadId=id;
+  var secs=WR_SECTIONS.filter(function(s){return e[s[0]];});
+  var words=secs.reduce(function(n,s){return n+String(e[s[0]]).split(/\s+/).length;},0);
+  document.getElementById('wrReadDate').textContent=(ph?ph+' · ':'')+'Semana '+(e.weekNum||'—');
+  document.getElementById('wrReadTitle').textContent='Revisión del '+d.getDate()+' de '+MESES_LARGOS[d.getMonth()];
+  document.getElementById('rdMeta').innerHTML='<span>por <b>Alberto Gutiérrez</b></span><span>'+d.getDate()+' '+MESES_CORTOS[d.getMonth()]+' '+d.getFullYear()+'</span><span>'+Math.max(1,Math.round(words/230))+' min de lectura</span>'+(e.peso?'<span>'+(kg?fmtKg(kg)+' kg':esc(e.peso))+'</span>':'');
+  document.getElementById('rdTags').innerHTML=wrTags(e);
+  document.getElementById('wrReadBody').innerHTML=secs.map(function(s,j){return '<h2 id="rd-s'+j+'">'+s[1]+'</h2>'+wrProse(e[s[0]]);}).join('')||'<p class="rd-empty">Sin contenido en esta semana.</p>';
+  document.getElementById('rdToc').innerHTML=secs.length>1?'<div class="rd-toc-ttl">Semana '+(e.weekNum||'—')+'</div>'+secs.map(function(s,j){return '<button data-s="'+j+'">'+s[1]+'</button>';}).join(''):'';
+  function nav(x,cls){if(!x)return '<div></div>';var xd=new Date(x.date+'T12:00:00');return '<button class="rd-nav '+cls+'" onclick="wrOpenRead(\''+x.id+'\')"><small>'+(cls==='prev'?'← Semana anterior':'Semana siguiente →')+'</small><span>Revisión del '+xd.getDate()+' de '+MESES_LARGOS[xd.getMonth()]+'</span></button>';}
+  document.getElementById('rdFoot').innerHTML=nav(list[i-1],'prev')+nav(list[i+1],'next');
+  var ov=document.getElementById('wrReadOverlay');ov.classList.add('open');ov.scrollTop=0;document.body.style.overflow='hidden';rdSpy();
+}
+function wrStep(dir){var list=wrSorted(),i=list.findIndex(function(x){return x.id===wrCurrentReadId;});if(i>=0&&list[i+dir])wrOpenRead(list[i+dir].id);}
+function wrCloseRead(){document.getElementById('wrReadOverlay').classList.remove('open');document.body.style.overflow='';wrCurrentReadId=null;}
+function rdSpy(){
+  var ov=document.getElementById('wrReadOverlay'),hs=ov.querySelectorAll('.rd-body h2'),bs=ov.querySelectorAll('.rd-toc button[data-s]'),cur=0;if(!bs.length)return;
+  hs.forEach(function(h,j){if(h.getBoundingClientRect().top<window.innerHeight*.35)cur=j;});
+  bs.forEach(function(b,j){b.classList.toggle('on',j===cur);});
+}
 
 // ── LOGIN ────────────────────────────────────────────────
 
@@ -911,6 +1152,7 @@ window.addEventListener('DOMContentLoaded',()=>{
   renderNextActions();
   renderWeight();
   checkBalance();
+  ccInit();
   wrRender();
   const title=document.getElementById('mastTitle'),bar=document.getElementById('topbar');
   if('IntersectionObserver' in window){new IntersectionObserver(en=>{bar.classList.toggle('scrolled',!en[0].isIntersecting);},{threshold:0}).observe(title);}
