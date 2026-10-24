@@ -285,22 +285,25 @@
   .bk-back { transform: rotateY(180deg) translateZ(calc(var(--d) / 2)); filter: brightness(.8); }
   .bk-front img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; }
   .bk-front.has-img .bk-typo { visibility: hidden; }
+  /* aristas nítidas: canto de la tapa y surco de la bisagra como líneas de 1px, sin degradados borrosos */
   .bk-front::after {
     content: ''; position: absolute; inset: 0; pointer-events: none;
+    box-shadow: inset 0 0 0 1px rgba(0,0,0,.14);
     background:
-      linear-gradient(90deg, rgba(0,0,0,.28) 0, rgba(255,255,255,.18) 2.5%, rgba(0,0,0,.12) 4%, transparent 7%),
+      linear-gradient(90deg, rgba(0,0,0,.4) 0 1px, transparent 1px),
+      linear-gradient(90deg, transparent 0 5%, rgba(0,0,0,.22) 5% calc(5% + 1px), rgba(255,255,255,.07) calc(5% + 1px) calc(5% + 2px), transparent calc(5% + 2px)),
       linear-gradient(115deg, rgba(255,255,255,0) 30%, rgba(255,255,255,.10) 50%, rgba(255,255,255,0) 70%);
-    background-size: 100% 100%, 250% 100%;
-    background-position: 0 0, var(--sx, 60%) 0;
+    background-size: 100% 100%, 100% 100%, 250% 100%;
+    background-position: 0 0, 0 0, var(--sx, 60%) 0;
     transition: background-position .7s;
   }
   .bk-spine {
     width: var(--d); height: var(--h); left: calc((var(--w) - var(--d)) / 2);
-    transform: rotateY(-90deg) translateZ(calc(var(--w) / 2));
+    transform: rotateY(-90deg) translateZ(calc(var(--w) / 2 - .5px));  /* medio píxel por dentro de la tapa: sin hueco en la junta */
     background: var(--c); filter: brightness(.72); display: flex; align-items: center; justify-content: center; overflow: hidden;
   }
   .bk-spine span { writing-mode: vertical-rl; font-size: 9px; letter-spacing: .06em; white-space: nowrap; color: var(--fg); opacity: .9; font-weight: 500; max-height: 88%; overflow: hidden; text-overflow: ellipsis; }
-  .bk-spine::after { content: ''; position: absolute; inset: 0; background: linear-gradient(90deg, rgba(0,0,0,.25), rgba(255,255,255,.08) 45%, rgba(0,0,0,.25)); }
+  .bk-spine::after { content: ''; position: absolute; inset: 0; background: linear-gradient(90deg, rgba(0,0,0,.16), transparent 35% 65%, rgba(0,0,0,.16)); box-shadow: inset 1px 0 0 rgba(0,0,0,.35), inset -1px 0 0 rgba(0,0,0,.35); }
   .bk-pr, .bk-pt, .bk-pb { background: repeating-linear-gradient(var(--dir, 90deg), #F7F3EA 0 1px, #DCD6C8 1px 2px); }
   .bk-pr {
     width: calc(var(--d) - 4px); height: calc(var(--h) - 6px); top: 3px; left: calc((var(--w) - var(--d) + 4px) / 2);
