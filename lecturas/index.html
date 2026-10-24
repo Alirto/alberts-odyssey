@@ -273,13 +273,18 @@
 
   .bk-holder { position: relative; }
   .bk3d {
-    --w: 132px; --h: 198px; --d: 26px; --ry: 28deg; --rx: 4deg; --lift: 0px;
+    --w: 132px; --h: 198px; --d: 26px; --ry: 28deg; --rx: 0deg; --lift: 0px;
     position: relative; width: var(--w); height: var(--h); transform-style: preserve-3d;
     transform: translateY(var(--lift)) rotateX(var(--rx)) rotateY(var(--ry));
     transition: transform .7s cubic-bezier(.2,.7,.2,1);
   }
   .bk3d.tracking { transition: transform .12s linear; }
   .bk3d > div { position: absolute; backface-visibility: hidden; }
+  /* suavizado de las aristas exteriores en pantallas 1x: con un borde transparente de 1px el navegador
+     funde el canto con el fondo en vez de dejar escalones. La junta lomo-tapa va sin borde para no abrir hueco. */
+  .bk-front, .bk-spine, .bk-pr, .bk-pt, .bk-pb { border: 1px solid transparent; background-clip: padding-box; outline: 1px solid transparent; }
+  .bk-front { border-left-width: 0; }
+  .bk-spine { border-right-width: 0; }
   .bk-front, .bk-back { inset: 0; border-radius: 1px 3px 3px 1px; overflow: hidden; background: var(--c); }
   .bk-front { transform: translateZ(calc(var(--d) / 2)); }
   .bk-back { transform: rotateY(180deg) translateZ(calc(var(--d) / 2)); filter: brightness(.8); }
@@ -328,7 +333,7 @@
   .modal-overlay.bk-mode { padding: 0; background: var(--fbg, var(--paper)); backdrop-filter: none; --rule: rgba(23,22,17,.22); --rule-soft: rgba(23,22,17,.12); }
   .modal.ficha { width: 100%; max-width: none; height: 100vh; height: 100dvh; max-height: none; border: 0; background: transparent; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); overflow: hidden; }
   .fi-stage { perspective: 1300px; display: flex; align-items: center; justify-content: center; padding: 48px; min-height: 0; }
-  .fi-stage .bk3d { --w: min(26vw, 320px); --h: calc(var(--w) * 1.5); --ry: 22deg; --rx: 6deg; }
+  .fi-stage .bk3d { --w: min(26vw, 320px); --h: calc(var(--w) * 1.5); --ry: 22deg; --rx: 2deg; }
   .fi-stage .bk-shadow { bottom: -36px; height: 40px; }
   .fi-stage .bk-typo .ct { font-size: 20px; } .fi-stage .bk-typo .ca { font-size: 13px; } .fi-stage .bk-spine span { font-size: 13px; }
   .fi-text { overflow-y: auto; padding: 14vh 6vw 64px 0; max-width: 680px; }
@@ -1338,7 +1343,7 @@ document.getElementById('modal-overlay').addEventListener('mousemove', function 
   var mx = e.clientX / innerWidth - 0.5, my = e.clientY / innerHeight - 0.5;
   bk.classList.add('tracking');
   bk.style.setProperty('--ry', (22 + mx * 30) + 'deg');
-  bk.style.setProperty('--rx', (6 - my * 12) + 'deg');
+  bk.style.setProperty('--rx', (2 - my * 8) + 'deg');
   bk.style.setProperty('--sx', (60 - mx * 80) + '%');
 });
 document.addEventListener('keydown', function (e) {
@@ -1702,7 +1707,7 @@ function wireShelf() {
       var mx = (e.clientX - r.left) / r.width - 0.5, my = (e.clientY - r.top) / r.height - 0.5;
       bk.classList.add('tracking');
       bk.style.setProperty('--ry', (8 + mx * 36) + 'deg');
-      bk.style.setProperty('--rx', (2 - my * 18) + 'deg');
+      bk.style.setProperty('--rx', (-my * 8) + 'deg');
       bk.style.setProperty('--sx', (60 - mx * 80) + '%');
     });
     slot.addEventListener('mouseleave', function () {
