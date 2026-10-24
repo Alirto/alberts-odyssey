@@ -226,13 +226,10 @@
   /* datos al pasar el cursor por la gráfica de peso */
   .weight { position: relative; }
   #wChart { cursor: crosshair; touch-action: pan-y; }
-  .w-tip { position: absolute; z-index: 5; width: 236px; padding: 12px 14px; background: var(--paper); border: 1px solid var(--ink); font-size: 12.5px; line-height: 1.5; color: var(--ink-3); pointer-events: none; opacity: 0; transition: opacity .12s; box-shadow: 0 12px 24px -16px rgba(23,22,17,.4); }
+  .w-tip { position: absolute; z-index: 5; width: auto; white-space: nowrap; padding: 6px 12px; background: var(--paper); border: 1px solid var(--ink); font-size: 12.5px; line-height: 1.5; color: var(--ink-3); pointer-events: none; opacity: 0; transition: opacity .12s; box-shadow: 0 12px 24px -16px rgba(23,22,17,.4); }
   .w-tip.on { opacity: 1; }
-  .w-tip-d { font-size: 11px; letter-spacing: .1em; text-transform: uppercase; font-weight: 500; }
-  .w-tip-kg { font-family: var(--serif); font-variation-settings: 'opsz' 60; font-size: 30px; line-height: 1.05; letter-spacing: -0.02em; color: var(--ink); margin: 4px 0 6px; }
+  .w-tip-kg { font-family: var(--serif); font-variation-settings: 'opsz' 60; font-size: 22px; line-height: 1.1; letter-spacing: -0.02em; color: var(--ink); }
   .w-tip-kg small { font-size: 14px; color: var(--ink-3); letter-spacing: 0; }
-  .w-tip-r span { color: var(--ink); font-weight: 500; }
-  .w-tip-a { margin-top: 8px; padding-top: 8px; border-top: 1px solid var(--rule-soft); color: #2D6A4F; }
 
   /* 04 Weekly */
   .wr-feat { display: grid; grid-template-columns: 5fr 7fr; gap: 64px; border-top: 1px solid var(--ink); padding: 28px 0 32px; cursor: pointer; }
@@ -908,29 +905,23 @@ function renderWeight(){
   <div class="weight-note">La línea base es el objetivo de ${WEIGHT_TARGET} kg para septiembre de 2026.${weeksAgo>=2?' Sin registros desde el '+fmtDay(last.d)+', hace '+weeksAgo+' semanas.':''}</div><div class="w-tip" id="wTip" role="status"></div>`;
   wireWeight(pts,pts.map(p=>x(p.d)),pts.map(p=>y(p.kg)),W);
 }
-// Datos de cada registro: el cursor se engancha al punto más cercano en horizontal (los puntos son demasiado pequeños para apuntarlos).
-// Con ratón, clic abre la revisión de esa semana; en el móvil, el primer toque muestra los datos y el segundo la abre.
+// Peso de cada registro: el cursor se engancha al punto más cercano en horizontal (los puntos son demasiado pequeños para apuntarlos).
+// Con ratón, clic abre la revisión de esa semana; en el móvil, el primer toque muestra el peso y el segundo la abre.
 var wTipBound=false;
 function wireWeight(pts,xs,ys,W){
   const el=document.getElementById('weightBlock'),svg=document.getElementById('wChart'),tip=document.getElementById('wTip'),guide=document.getElementById('wGuide'),hi=document.getElementById('wHi');
   let cur=-1,prevTap=-1,lastType='mouse';
-  const sg=v=>(v>0?'+':v<0?'−':'±')+fmtKg(Math.abs(v))+' kg';
   function show(i){
     if(i===cur)return;cur=i;
-    const p=pts[i],prev=pts[i-1],d=new Date(p.d+'T12:00:00'),toGo=p.kg-WEIGHT_TARGET;
+    const p=pts[i];
     guide.setAttribute('x1',xs[i]);guide.setAttribute('x2',xs[i]);guide.setAttribute('visibility','visible');
     hi.setAttribute('cx',xs[i]);hi.setAttribute('cy',ys[i]);hi.setAttribute('visibility','visible');
-    tip.innerHTML='<div class="w-tip-d">'+(p.wk?'Semana '+esc(p.wk)+' · ':'')+d.getDate()+' '+MESES_CORTOS[d.getMonth()]+' '+d.getFullYear()+'</div>'
-      +'<div class="w-tip-kg">'+fmtKg(p.kg)+'<small> kg</small></div>'
-      +'<div class="w-tip-r">'+(prev?'<span>'+sg(p.kg-prev.kg)+'</span> respecto a la semana anterior':'Primer registro')+'</div>'
-      +(i?'<div class="w-tip-r"><span>'+sg(p.kg-pts[0].kg)+'</span> desde el '+fmtDay(pts[0].d)+'</div>':'')
-      +'<div class="w-tip-r">'+(toGo>0?'<span>'+fmtKg(toGo)+' kg</span> por encima del objetivo':'Objetivo de '+WEIGHT_TARGET+' kg alcanzado')+'</div>'
-      +(p.id?'<div class="w-tip-a">'+(lastType==='mouse'?'Clic para abrir la revisión':'Toca otra vez para abrir la revisión')+'</div>':'');
+    tip.innerHTML='<div class="w-tip-kg">'+fmtKg(p.kg)+'<small> kg</small></div>';
     const r=svg.getBoundingClientRect(),er=el.getBoundingClientRect(),k=r.width/W;
     const px=r.left-er.left+xs[i]*k,py=r.top-er.top+ys[i]*k;
     tip.classList.add('on');
     const tw=tip.offsetWidth,th=tip.offsetHeight;
-    let tl=Math.max(0,Math.min(px-tw/2,er.width-tw)),tt=py-th-16;if(tt<0)tt=py+16;
+    let tl=Math.max(0,Math.min(px-tw/2,er.width-tw)),tt=py-th-12;if(tt<0)tt=py+12;
     tip.style.left=tl+'px';tip.style.top=tt+'px';
   }
   function hide(){cur=-1;tip.classList.remove('on');guide.setAttribute('visibility','hidden');hi.setAttribute('visibility','hidden');}
