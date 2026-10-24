@@ -223,6 +223,16 @@
   .weight svg { width: 100%; height: auto; display: block; overflow: visible; font-family: var(--sans); }
   .weight-foot { display: flex; justify-content: space-between; font-size: 12px; color: var(--ink-3); margin-top: 8px; }
   .weight-note { font-size: 13px; color: var(--ink-3); font-style: italic; margin-top: 14px; }
+  /* datos al pasar el cursor por la gráfica de peso */
+  .weight { position: relative; }
+  #wChart { cursor: crosshair; touch-action: pan-y; }
+  .w-tip { position: absolute; z-index: 5; width: 236px; padding: 12px 14px; background: var(--paper); border: 1px solid var(--ink); font-size: 12.5px; line-height: 1.5; color: var(--ink-3); pointer-events: none; opacity: 0; transition: opacity .12s; box-shadow: 0 12px 24px -16px rgba(23,22,17,.4); }
+  .w-tip.on { opacity: 1; }
+  .w-tip-d { font-size: 11px; letter-spacing: .1em; text-transform: uppercase; font-weight: 500; }
+  .w-tip-kg { font-family: var(--serif); font-variation-settings: 'opsz' 60; font-size: 30px; line-height: 1.05; letter-spacing: -0.02em; color: var(--ink); margin: 4px 0 6px; }
+  .w-tip-kg small { font-size: 14px; color: var(--ink-3); letter-spacing: 0; }
+  .w-tip-r span { color: var(--ink); font-weight: 500; }
+  .w-tip-a { margin-top: 8px; padding-top: 8px; border-top: 1px solid var(--rule-soft); color: #2D6A4F; }
 
   /* 04 Weekly */
   .wr-feat { display: grid; grid-template-columns: 5fr 7fr; gap: 64px; border-top: 1px solid var(--ink); padding: 28px 0 32px; cursor: pointer; }
@@ -874,7 +884,7 @@ function renderNextActions(){
 
 // ── PESO (solo revisiones semanales) ─────────────────────
 function parseKg(v){if(v===undefined||v===null)return null;const m=String(v).match(/^\s*(\d+(?:[.,]\d+)?)/);return m?parseFloat(m[1].replace(',','.')):null;}
-function weightPoints(){const map={};wrLoad().forEach(e=>{const kg=parseKg(e.peso);if(e.date&&kg)map[e.date]=kg;});return Object.keys(map).sort().map(d=>({d,kg:map[d]}));}
+function weightPoints(){const map={};wrLoad().forEach(e=>{const kg=parseKg(e.peso);if(e.date&&kg)map[e.date]={kg,id:e.id,wk:e.weekNum};});return Object.keys(map).sort().map(d=>({d,kg:map[d].kg,id:map[d].id,wk:map[d].wk}));}
 function renderWeight(){
   const el=document.getElementById('weightBlock');const pts=weightPoints();
   if(pts.length<2){el.innerHTML='<span class="label">Peso</span><div class="no-active" style="border-top:none">Sin registros de peso suficientes todavía.</div>';return;}
@@ -891,10 +901,46 @@ function renderWeight(){
   let grid='';for(let v=lo+2;v<=hi;v+=2){const yy=y(v).toFixed(1);grid+=`<line x1="${padL}" x2="${W-padR}" y1="${yy}" y2="${yy}" stroke="#DDD8CB" stroke-width="1"/><text x="${W-padR+10}" y="${(+yy+4).toFixed(1)}" font-size="12" fill="#625E55">${v}</text>`;}
   const yB=y(lo).toFixed(1);
   const dots=pts.map(p=>`<circle cx="${x(p.d).toFixed(1)}" cy="${y(p.kg).toFixed(1)}" r="3" fill="#F3F0E8" stroke="#2D6A4F" stroke-width="1.5"/>`).join('');
+  const hover=`<line id="wGuide" y1="${padT}" y2="${yB}" stroke="#625E55" stroke-width="1" stroke-dasharray="3 3" visibility="hidden"/><circle id="wHi" r="5" fill="#2D6A4F" stroke="#F3F0E8" stroke-width="2" visibility="hidden"/>`;
   el.innerHTML=`<div class="weight-hd"><div><span class="label"><span class="ico" aria-hidden="true">${ico('peso')}</span>Peso</span><div class="weight-now num">${fmtKg(last.kg)}<small>kg</small></div></div><div class="weight-delta"><b>${delta>0?'+':delta<0?'−':''}${fmtKg(Math.abs(delta))} kg</b> desde el ${fmtDay(first.d)}<br>${toGo>0?'<b>'+fmtKg(toGo)+' kg</b> por encima del objetivo':'Objetivo de '+WEIGHT_TARGET+' kg alcanzado'}</div></div>
-  <svg viewBox="0 0 ${W} ${H}" xmlns="http://www.w3.org/2000/svg" aria-label="Evolución del peso">${grid}<line x1="${padL}" x2="${W-padR}" y1="${yB}" y2="${yB}" stroke="#171611" stroke-width="1"/><text x="${W-padR+10}" y="${(+yB+4).toFixed(1)}" font-size="12" fill="#171611" font-weight="500">${lo}</text><path d="${path} L${x(last.d).toFixed(1)} ${yB} L${x(first.d).toFixed(1)} ${yB} Z" fill="#2D6A4F" opacity=".09"/><path d="${path}" fill="none" stroke="#2D6A4F" stroke-width="1.75" stroke-linejoin="round" stroke-linecap="round"/>${dots}</svg>
+  <svg id="wChart" viewBox="0 0 ${W} ${H}" xmlns="http://www.w3.org/2000/svg" aria-label="Evolución del peso">${grid}<line x1="${padL}" x2="${W-padR}" y1="${yB}" y2="${yB}" stroke="#171611" stroke-width="1"/><text x="${W-padR+10}" y="${(+yB+4).toFixed(1)}" font-size="12" fill="#171611" font-weight="500">${lo}</text><path d="${path} L${x(last.d).toFixed(1)} ${yB} L${x(first.d).toFixed(1)} ${yB} Z" fill="#2D6A4F" opacity=".09"/><path d="${path}" fill="none" stroke="#2D6A4F" stroke-width="1.75" stroke-linejoin="round" stroke-linecap="round"/>${dots}${hover}</svg>
   <div class="weight-foot"><span>${fmtDay(first.d)}</span><span>${fmtDay(mid.d)}</span><span>${fmtDay(last.d)}</span></div>
-  <div class="weight-note">La línea base es el objetivo de ${WEIGHT_TARGET} kg para septiembre de 2026.${weeksAgo>=2?' Sin registros desde el '+fmtDay(last.d)+', hace '+weeksAgo+' semanas.':''}</div>`;
+  <div class="weight-note">La línea base es el objetivo de ${WEIGHT_TARGET} kg para septiembre de 2026.${weeksAgo>=2?' Sin registros desde el '+fmtDay(last.d)+', hace '+weeksAgo+' semanas.':''}</div><div class="w-tip" id="wTip" role="status"></div>`;
+  wireWeight(pts,pts.map(p=>x(p.d)),pts.map(p=>y(p.kg)),W);
+}
+// Datos de cada registro: el cursor se engancha al punto más cercano en horizontal (los puntos son demasiado pequeños para apuntarlos).
+// Con ratón, clic abre la revisión de esa semana; en el móvil, el primer toque muestra los datos y el segundo la abre.
+var wTipBound=false;
+function wireWeight(pts,xs,ys,W){
+  const el=document.getElementById('weightBlock'),svg=document.getElementById('wChart'),tip=document.getElementById('wTip'),guide=document.getElementById('wGuide'),hi=document.getElementById('wHi');
+  let cur=-1,prevTap=-1,lastType='mouse';
+  const sg=v=>(v>0?'+':v<0?'−':'±')+fmtKg(Math.abs(v))+' kg';
+  function show(i){
+    if(i===cur)return;cur=i;
+    const p=pts[i],prev=pts[i-1],d=new Date(p.d+'T12:00:00'),toGo=p.kg-WEIGHT_TARGET;
+    guide.setAttribute('x1',xs[i]);guide.setAttribute('x2',xs[i]);guide.setAttribute('visibility','visible');
+    hi.setAttribute('cx',xs[i]);hi.setAttribute('cy',ys[i]);hi.setAttribute('visibility','visible');
+    tip.innerHTML='<div class="w-tip-d">'+(p.wk?'Semana '+esc(p.wk)+' · ':'')+d.getDate()+' '+MESES_CORTOS[d.getMonth()]+' '+d.getFullYear()+'</div>'
+      +'<div class="w-tip-kg">'+fmtKg(p.kg)+'<small> kg</small></div>'
+      +'<div class="w-tip-r">'+(prev?'<span>'+sg(p.kg-prev.kg)+'</span> respecto a la semana anterior':'Primer registro')+'</div>'
+      +(i?'<div class="w-tip-r"><span>'+sg(p.kg-pts[0].kg)+'</span> desde el '+fmtDay(pts[0].d)+'</div>':'')
+      +'<div class="w-tip-r">'+(toGo>0?'<span>'+fmtKg(toGo)+' kg</span> por encima del objetivo':'Objetivo de '+WEIGHT_TARGET+' kg alcanzado')+'</div>'
+      +(p.id?'<div class="w-tip-a">'+(lastType==='mouse'?'Clic para abrir la revisión':'Toca otra vez para abrir la revisión')+'</div>':'');
+    const r=svg.getBoundingClientRect(),er=el.getBoundingClientRect(),k=r.width/W;
+    const px=r.left-er.left+xs[i]*k,py=r.top-er.top+ys[i]*k;
+    tip.classList.add('on');
+    const tw=tip.offsetWidth,th=tip.offsetHeight;
+    let tl=Math.max(0,Math.min(px-tw/2,er.width-tw)),tt=py-th-16;if(tt<0)tt=py+16;
+    tip.style.left=tl+'px';tip.style.top=tt+'px';
+  }
+  function hide(){cur=-1;tip.classList.remove('on');guide.setAttribute('visibility','hidden');hi.setAttribute('visibility','hidden');}
+  function nearest(ev){const r=svg.getBoundingClientRect(),vx=(ev.clientX-r.left)*W/r.width;let b=0,bd=1e9;xs.forEach((x,i)=>{const dd=Math.abs(x-vx);if(dd<bd){bd=dd;b=i;}});return b;}
+  svg.addEventListener('pointermove',e=>{lastType=e.pointerType||'mouse';if(lastType==='mouse')show(nearest(e));});
+  svg.addEventListener('pointerdown',e=>{lastType=e.pointerType||'mouse';prevTap=cur;if(lastType!=='mouse'){cur=-1;show(nearest(e));}});
+  svg.addEventListener('pointerleave',e=>{if((e.pointerType||'mouse')==='mouse')hide();});
+  svg.addEventListener('click',e=>{const i=nearest(e),p=pts[i];if(!p.id)return;if(lastType==='mouse'||prevTap===i){hide();wrOpenRead(p.id);}});
+  window.wHideTip=hide;
+  if(!wTipBound){wTipBound=true;document.addEventListener('pointerdown',e=>{if(!e.target.closest('#wChart')&&window.wHideTip)window.wHideTip();});}
 }
 function checkBalance(){
   const vals=MODEL.filter(p=>p.objectives.length).map(p=>({name:p.name,pct:calcPillarPct(p)}));const el=document.getElementById('balanceAlert');
